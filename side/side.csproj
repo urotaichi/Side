@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{77D07324-B54B-4E8E-A6C4-CEFB83BC7A4B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MasaoPlus</RootNamespace>
+    <AssemblyName>side</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>side.ico</ApplicationIcon>
+    <StartupObject>MasaoPlus.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\..\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChipData.cs" />
+    <Compile Include="ChipDataClass.cs" />
+    <Compile Include="ChipsData.cs" />
+    <Compile Include="Colors.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="ConfigParam.cs" />
+    <Compile Include="ConfigurationOwner.cs" />
+    <Compile Include="Controls\CommandLinkButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ConfigList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\DataGridViewNumericUpdownCell.cs" />
+    <Compile Include="Controls\DataGridViewNumericUpdownColumn.cs" />
+    <Compile Include="Controls\DataGridViewNumericUpdownEditingControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\OverViewer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CurrentProjectData.cs" />
+    <Compile Include="Definition.cs" />
+    <Compile Include="Dialogs\HTMLInheritance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\HTMLInheritance.Designer.cs">
+      <DependentUpon>HTMLInheritance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\NewProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\NewProject.Designer.cs">
+      <DependentUpon>NewProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\OutputControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\OutputControl.Designer.cs">
+      <DependentUpon>OutputControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ProjectConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ProjectConfig.Designer.cs">
+      <DependentUpon>ProjectConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ProjectLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ProjectLoading.Designer.cs">
+      <DependentUpon>ProjectLoading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ProjInheritance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ProjInheritance.Designer.cs">
+      <DependentUpon>ProjInheritance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\PropertyTextInputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\PropertyTextInputDialog.Designer.cs">
+      <DependentUpon>PropertyTextInputDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\ResetRuntime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\ResetRuntime.Designer.cs">
+      <DependentUpon>ResetRuntime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\RuntimeManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\RuntimeManager.Designer.cs">
+      <DependentUpon>RuntimeManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\StartUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\StartUp.Designer.cs">
+      <DependentUpon>StartUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\VersionInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\VersionInfo.Designer.cs">
+      <DependentUpon>VersionInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\WebUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\WebUpdate.Designer.cs">
+      <DependentUpon>WebUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DrawEx.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="GUIChipList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUIDesigner.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HTMLReplaceData.cs" />
+    <Compile Include="IntegratedBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Native.cs" />
+    <Compile Include="OverViewWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OverViewWindow.Designer.cs">
+      <DependentUpon>OverViewWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Project.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Runtime.cs" />
+    <Compile Include="SideConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SideConfig.Designer.cs">
+      <DependentUpon>SideConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="State.cs" />
+    <Compile Include="Subsystem.cs" />
+    <Compile Include="TextEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UpdateData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\CommandLinkButton.resources" />
+    <EmbeddedResource Include="Controls\ConfigList.resources" />
+    <EmbeddedResource Include="Controls\OverViewer.resources" />
+    <EmbeddedResource Include="Dialogs\HTMLInheritance.resources" />
+    <EmbeddedResource Include="Dialogs\NewProject.resources" />
+    <EmbeddedResource Include="Dialogs\OutputControl.resources" />
+    <EmbeddedResource Include="Dialogs\ProjectConfig.resources" />
+    <EmbeddedResource Include="Dialogs\ProjectLoading.resources" />
+    <EmbeddedResource Include="Dialogs\ProjInheritance.resources" />
+    <EmbeddedResource Include="Dialogs\PropertyTextInputDialog.resources" />
+    <EmbeddedResource Include="Dialogs\ResetRuntime.resources" />
+    <EmbeddedResource Include="Dialogs\RuntimeManager.resources" />
+    <EmbeddedResource Include="Dialogs\StartUp.resources" />
+    <EmbeddedResource Include="Dialogs\VersionInfo.resources" />
+    <EmbeddedResource Include="Dialogs\WebUpdate.resources" />
+    <EmbeddedResource Include="GUIChipList.resources" />
+    <EmbeddedResource Include="GUIDesigner.resources" />
+    <EmbeddedResource Include="IntegratedBrowser.resources" />
+    <EmbeddedResource Include="MainWindow.resources" />
+    <EmbeddedResource Include="OverViewWindow.resources" />
+    <EmbeddedResource Include="Properties\Resources.resources" />
+    <EmbeddedResource Include="SideConfig.resources" />
+    <EmbeddedResource Include="TextEditor.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
