@@ -1,0 +1,1693 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Configurations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <param name="mcs_screen_size" desc="解像度" type="list" value="1" category="システム">
+    <list>６４０×４８０</list>
+    <list>５１２×３２０</list>
+  </param>
+  <param name="j_hp" desc="HP" type="int" value="0" category="システム" />
+  <param name="j_hp_name" desc="HPの名前" type="string" value="HP" category="表示" />
+  <param name="j_tokugi" desc="主人公の特技" type="list" value="1" category="システム" chip="tokugi">
+    <list>なし</list><list>落ちるのが遅い</list><list>空中で下ｷｰを押すと急降下</list>
+    <list>全速体当たりで敵を倒せる</list><list>空中の左右加速度が大きい</list>
+    <list>壁キックができる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙが水平に飛ぶ</list>
+    <list>空中でもう1回ジャンプできる</list><list>速く走れる</list>
+    <list>ジャンプできない</list><list>スーパージャンプが高い</list>
+    <list>ｼﾞｬﾝﾌﾟ不可 Z,Xキーで穴掘り</list><list>ｼﾞｬﾝﾌﾟ不可 走行不可 Z,Xキーで穴掘り</list>
+    <list>8方向移動 右向き固定</list><list>4方向移動</list>
+    <list>壁ジャンプができる</list><list>HP3(1upキノコで回復)</list>
+    <list>ひたすら右へ歩く</list><list>ひたすら右へ走る</list>
+  </param>
+  <param name="j_add_tokugi" desc="追加用の主人公の特技" type="list" value="1" category="システム">
+    <list>なし</list><list>ドリル</list><list>落ちるのが遅い</list>
+    <list>下キーを押すと急降下</list><list>全速体当たりで敵を倒せる</list>
+    <list>空中の左右加速度が高い</list><list>速く走れる</list><list>走れない</list>
+    <list>空中でもう1回ｼﾞｬﾝﾌﾟできる</list><list>壁キック</list>
+    <list>壁ジャンプ</list><list>ｼﾞｬﾝﾌﾟ時にﾌｧｲﾔｰﾎﾞｰﾙが出ない</list>
+    <list>ｼﾞｬﾝﾌﾟの高さを固定 小</list><list>ｼﾞｬﾝﾌﾟの高さを固定 小中</list>
+    <list>ｼﾞｬﾝﾌﾟの高さを固定 中</list><list>ｼﾞｬﾝﾌﾟの高さを固定 大</list>
+    <list>しっぽ 敵を倒せる</list><list>しっぽ ブロック１を壊せる</list>
+    <list>しっぽ 敵を倒せてﾌﾞﾛｯｸ1を壊せる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ 短射程</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾎｰﾐﾝｸﾞｱﾐｭﾚｯﾄ</list>
+    <list>昇龍拳(↑ｷｰ+Zｷｰ)(効果音はｼﾞｪｯﾄ)</list><list>ｻｲｺｸﾗｯｼｬｰｱﾀｯｸ(↓ｷｰ+Zｷｰ)(効果音は噴火)</list>
+    <list>ﾛｹｯﾄ頭突き(↓ｷｰ+Zｷｰ)(効果音はｸﾞﾚﾈｰﾄﾞ)</list><list>ｽｶｲｱｯﾊﾟｰ(↑ｷｰ+Zｷｰ)(効果音はｸﾞﾚﾈｰﾄﾞ)</list>
+    <list>流星ｷｯｸ(空中で↓ｷｰ)(効果音は水の波動)</list><list>ヘルメット</list>
+  </param>
+  <param name="j_add_tokugi2" desc="追加用の主人公の特技２" type="list" value="1" category="システム">
+    <list>なし</list><list>ドリル</list><list>落ちるのが遅い</list>
+    <list>下キーを押すと急降下</list><list>全速体当たりで敵を倒せる</list>
+    <list>空中の左右加速度が高い</list><list>速く走れる</list><list>走れない</list>
+    <list>空中でもう1回ｼﾞｬﾝﾌﾟできる</list><list>壁キック</list>
+    <list>壁ジャンプ</list><list>ｼﾞｬﾝﾌﾟ時にﾌｧｲﾔｰﾎﾞｰﾙが出ない</list>
+    <list>ｼﾞｬﾝﾌﾟの高さを固定 小</list><list>ｼﾞｬﾝﾌﾟの高さを固定 小中</list>
+    <list>ｼﾞｬﾝﾌﾟの高さを固定 中</list><list>ｼﾞｬﾝﾌﾟの高さを固定 大</list>
+    <list>しっぽ 敵を倒せる</list><list>しっぽ ブロック１を壊せる</list>
+    <list>しっぽ 敵を倒せてﾌﾞﾛｯｸ1を壊せる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ 短射程</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾎｰﾐﾝｸﾞｱﾐｭﾚｯﾄ</list>
+    <list>昇龍拳(↑ｷｰ+Zｷｰ)(効果音はｼﾞｪｯﾄ)</list><list>ｻｲｺｸﾗｯｼｬｰｱﾀｯｸ(↓ｷｰ+Zｷｰ)(効果音は噴火)</list>
+    <list>ﾛｹｯﾄ頭突き(↓ｷｰ+Zｷｰ)(効果音はｸﾞﾚﾈｰﾄﾞ)</list><list>ｽｶｲｱｯﾊﾟｰ(↑ｷｰ+Zｷｰ)(効果音はｸﾞﾚﾈｰﾄﾞ)</list>
+    <list>流星ｷｯｸ(空中で↓ｷｰ)(効果音は水の波動)</list><list>ヘルメット</list>
+  </param>
+  <param name="j_add_tokugi3" desc="追加用の主人公の特技３" type="list" value="1" category="システム">
+    <list>なし</list><list>ドリル</list><list>落ちるのが遅い</list>
+    <list>下キーを押すと急降下</list><list>全速体当たりで敵を倒せる</list>
+    <list>空中の左右加速度が高い</list><list>速く走れる</list><list>走れない</list>
+    <list>空中でもう1回ｼﾞｬﾝﾌﾟできる</list><list>壁キック</list>
+    <list>壁ジャンプ</list><list>ｼﾞｬﾝﾌﾟ時にﾌｧｲﾔｰﾎﾞｰﾙが出ない</list>
+    <list>ｼﾞｬﾝﾌﾟの高さを固定 小</list><list>ｼﾞｬﾝﾌﾟの高さを固定 小中</list>
+    <list>ｼﾞｬﾝﾌﾟの高さを固定 中</list><list>ｼﾞｬﾝﾌﾟの高さを固定 大</list>
+    <list>しっぽ 敵を倒せる</list><list>しっぽ ブロック１を壊せる</list>
+    <list>しっぽ 敵を倒せてﾌﾞﾛｯｸ1を壊せる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ 短射程</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾎｰﾐﾝｸﾞｱﾐｭﾚｯﾄ</list>
+    <list>昇龍拳(↑ｷｰ+Zｷｰ)(効果音はｼﾞｪｯﾄ)</list><list>ｻｲｺｸﾗｯｼｬｰｱﾀｯｸ(↓ｷｰ+Zｷｰ)(効果音は噴火)</list>
+    <list>ﾛｹｯﾄ頭突き(↓ｷｰ+Zｷｰ)(効果音はｸﾞﾚﾈｰﾄﾞ)</list><list>ｽｶｲｱｯﾊﾟｰ(↑ｷｰ+Zｷｰ)(効果音はｸﾞﾚﾈｰﾄﾞ)</list>
+    <list>流星ｷｯｸ(空中で↓ｷｰ)(効果音は水の波動)</list><list>ヘルメット</list>
+  </param>
+  <param name="j_add_tokugi4" desc="追加用の主人公の特技４" type="list" value="1" category="システム">
+    <list>なし</list><list>ドリル</list><list>落ちるのが遅い</list>
+    <list>下キーを押すと急降下</list><list>全速体当たりで敵を倒せる</list>
+    <list>空中の左右加速度が高い</list><list>速く走れる</list><list>走れない</list>
+    <list>空中でもう1回ｼﾞｬﾝﾌﾟできる</list><list>壁キック</list>
+    <list>壁ジャンプ</list><list>ｼﾞｬﾝﾌﾟ時にﾌｧｲﾔｰﾎﾞｰﾙが出ない</list>
+    <list>ｼﾞｬﾝﾌﾟの高さを固定 小</list><list>ｼﾞｬﾝﾌﾟの高さを固定 小中</list>
+    <list>ｼﾞｬﾝﾌﾟの高さを固定 中</list><list>ｼﾞｬﾝﾌﾟの高さを固定 大</list>
+    <list>しっぽ 敵を倒せる</list><list>しっぽ ブロック１を壊せる</list>
+    <list>しっぽ 敵を倒せてﾌﾞﾛｯｸ1を壊せる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ 短射程</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾎｰﾐﾝｸﾞｱﾐｭﾚｯﾄ</list>
+    <list>昇龍拳(↑ｷｰ+Zｷｰ)(効果音はｼﾞｪｯﾄ)</list><list>ｻｲｺｸﾗｯｼｬｰｱﾀｯｸ(↓ｷｰ+Zｷｰ)(効果音は噴火)</list>
+    <list>ﾛｹｯﾄ頭突き(↓ｷｰ+Zｷｰ)(効果音はｸﾞﾚﾈｰﾄﾞ)</list><list>ｽｶｲｱｯﾊﾟｰ(↑ｷｰ+Zｷｰ)(効果音はｸﾞﾚﾈｰﾄﾞ)</list>
+    <list>流星ｷｯｸ(空中で↓ｷｰ)(効果音は水の波動)</list><list>ヘルメット</list>
+  </param>
+  <param name="scroll_area" desc="スクロール範囲" type="list" value="1" category="システム">
+    <list>全部</list><list>左下１画面分</list>
+    <list>左下横２画面分</list><list>左下縦２画面分</list><list>左下４画面分</list>
+  </param>
+  <param name="view_move_type" desc="表示領域の動き方" type="list" value="1" category="システム">
+    <list>右進行用の視界</list><list>左進行用の視界</list>
+  </param>
+  <param name="clear_type" desc="ステージクリア条件" type="list" value="1" category="システム">
+    <list>星を取る</list><list>ｺｲﾝ全部で星出現</list><list>ｺｲﾝ全部で脱出ﾊｼｺﾞ出現</list>
+  </param>
+  <param name="time_max" desc="制限時間" type="int" value="0" category="システム" />
+  <param name="scroll_mode" desc="スクロールモード" type="list" value="1" category="システム">
+    <list>全方向スクロール</list><list>強制スクロール</list><list>高速強制スクロール</list>
+  </param>
+  <param name="scroll_mode_s" desc="スクロールモード(ステージ2)" type="list" value="1" category="システム" stage="2">
+    <list>全方向スクロール</list><list>強制スクロール</list><list>高速強制スクロール</list>
+  </param>
+  <param name="scroll_mode_t" desc="スクロールモード(ステージ3)" type="list" value="1" category="システム" stage="3">
+    <list>全方向スクロール</list><list>強制スクロール</list><list>高速強制スクロール</list>
+  </param>
+  <param name="scroll_mode_f" desc="スクロールモード(ステージ4)" type="list" value="1" category="システム" stage="4">
+    <list>全方向スクロール</list><list>強制スクロール</list><list>高速強制スクロール</list>
+  </param>
+  <param name="fx_bgm_switch" desc="BGMを利用する" type="bool" value="false" category="BGM" />
+  <param name="se_switch" desc="効果音を利用する" type="bool" value="true" category="効果音" />
+  <!-- ドッスンスンの設定ここから -->
+  
+  <param name="dossunsun_type" desc="ドッスンスンのタイプ" type="list" value="1" category="仕掛け" chip="Dossunsun">
+    <list>ドッスンスン</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
+    <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
+    <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
+    <list>右ドッスンスン</list><list>跳ねるドッスンスン</list><list>上がらないﾄﾞｯｽﾝｽﾝ</list>
+    <list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 上</list><list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 下</list><list>上下ドッスンスン</list>
+    <list>左右ドッスンスン</list><list>ロングレンジドッスンスン</list>
+    <list>ファイヤーバー２本</list><list>ﾌｧｲﾔｰﾊﾞｰ3本 左回り</list> <list>ﾌｧｲﾔｰﾊﾞｰ3本 右回り</list>
+    <list>隠しブロック</list><list>右にブロック１が出る</list><list>左にブロック１が出る</list>
+    <list>上にハシゴが出る</list><list>シーソー</list><list>シーソー　左が下</list><list>シーソー　右が下</list>
+    <list>ブランコ</list><list>ブランコ　２個連続</list><list>スウィングバー　左</list>
+    <list>スウィングバー　右</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 左</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 右</list>
+    <list>上にﾌﾞﾛｯｸ1が出る</list><list>上にﾌﾞﾛｯｸ1が2つ出る</list><list>右にﾌﾞﾛｯｸ1が2つ出る</list>
+    <list>左にブロック１が２つ出る</list><list>ジャンプ台が出る</list><list>トゲが出る</list>
+    <list>周囲のﾄｹﾞをｺｲﾝに変換</list><list>周囲のﾄｹﾞをﾌﾞﾛｯｸ1に変換</list><list>周囲のﾌﾞﾛｯｸ1をｺｲﾝに変換</list>
+    <list>周囲のﾌﾞﾛｯｸ4を消去</list><list>お店</list><list>ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人</list>
+    <list>ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人</list><list>ﾌｧｲﾔｰｳｫｰﾙ 上へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 下へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 左へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 右へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで上下</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで左右</list><list>壁まで上下移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>壁まで左右移動するﾄﾞｯｽﾝｽﾝ</list><list>乗ると左右移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>火山</list><list>逆火山</list><list>動くＴ字型</list><list>動くＴ字型 ２個連続</list>
+    <list>ロープ</list><list>ロープ  ２本連続</list><list>乗れるｶｲｵｰﾙ 方向ｷｰで移動</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 上へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 下へ速射</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 左へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 右へ速射</list>
+    <list>得点で開く扉</list><list>ｺｲﾝを全部取ると開く扉</list>
+    <list>周囲10ﾊﾟｰﾂ以内のｺｲﾝを全部取ると開く扉</list><list>左15ﾊﾟｰﾂ以内の雑魚敵を全部倒すと開く扉</list>
+    <list>人間大砲　右向き</list><list>人間大砲　左向き</list><list>人間大砲　天井</list><list>人間大砲　右の壁</list>
+    <list>人間大砲　左の壁</list><list>高性能ジャンプ台</list><list>左へ飛ばすバネ</list><list>右へ飛ばすバネ</list>
+    <list>ｽﾎﾟｯﾄ処理　小</list><list>ｽﾎﾟｯﾄ処理　中</list><list>ｽﾎﾟｯﾄ処理　大</list><list>ｽﾎﾟｯﾄ処理　終了</list>
+    <list>ｽﾎﾟｯﾄ処理 範囲拡大ｱｲﾃﾑ</list><list>人食いﾜｶﾒ 上へ拡大縮小</list>
+    <list>人食いﾜｶﾒ 下へ拡大縮小</list><list>人食いﾜｶﾒ 中央から拡大縮小</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙｾﾚｸﾄの人</list><list>ﾌﾞﾛｯｸ1破壊砲発射 右</list><list>ﾌﾞﾛｯｸ1破壊砲発射 左</list>
+    <list>ﾌﾞﾛｯｸ1破壊砲発射 上</list><list>ﾌﾞﾛｯｸ1破壊砲発射 下</list><list>グレネード５発</list>
+    <list>回転するﾄﾞｯｽﾝｽﾝ 左回り</list><list>回転するﾄﾞｯｽﾝｽﾝ 右回り</list><list>回転する巨大ﾄﾞｯｽﾝｽﾝ 左回り</list>
+    <list>回転する巨大ﾄﾞｯｽﾝｽﾝ 右回り</list><list>画面内で右強制ｽｸﾛｰﾙ</list><list>画面内で左強制ｽｸﾛｰﾙ</list>
+    <list>画面内で上強制ｽｸﾛｰﾙ</list><list>画面内で下強制ｽｸﾛｰﾙ</list><list>画面内で右上強制ｽｸﾛｰﾙ</list>
+    <list>画面内で右下強制ｽｸﾛｰﾙ</list><list>画面内で左上強制ｽｸﾛｰﾙ</list><list>画面内で左下強制ｽｸﾛｰﾙ</list>
+    <list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞｱｯﾌﾟ</list><list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞﾀﾞｳﾝ</list><list>画面内で全方向ｽｸﾛｰﾙ</list>
+    <list>画面内でｽｸﾛｰﾙ停止</list><list>自分が重なると右強制ｽｸﾛｰﾙ</list><list>自分が重なると上強制ｽｸﾛｰﾙ</list>
+    <list>自分が重なると全方向ｽｸﾛｰﾙ</list><list>画面内で横固定縦自由ｽｸﾛｰﾙ</list><list>画面内で右強制縦自由ｽｸﾛｰﾙ</list>
+    <list>画面内で左進行用の視界</list><list>画面内で右進行用の視界</list><list>曲線による上り坂</list><list>曲線による下り坂</list>
+    <list>曲線による上り坂  線のみ</list><list>曲線による下り坂  線のみ</list><list>乗れる円</list><list>乗れる円  大</list>
+    <list>乗れる半円</list><list>乗れる半円  線のみ</list><list>人口太陽  左回り</list><list>人口太陽  右回り</list>
+    <list>人口太陽 棒5本 左回り</list><list>人口太陽 棒5本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ 左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ 右回り</list><list>上下移動する半円 下から</list><list>上下移動する半円 上から</list>
+    <list>乗ると上がる半円</list><list>乗ると下がる半円</list><list>柱付きの半円</list><list>乗ると下がる円</list>
+    <list>乗ると下がる円 降りると上がる</list><list>上下移動する円 上から</list><list>上下移動する円 下から</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 左回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速右回り</list><list>落ちるだけのﾄﾞｯｽﾝｽﾝ</list><list>動かないドッスンスン</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝ</list><list>上へ押せるﾄﾞｯｽﾝｽﾝ</list><list>その場で跳ねるﾄﾞｯｽﾝｽﾝ</list>
+    <list>長いロープ</list> <list>長いロープ  右から</list><list>長いﾛｰﾌﾟ つかまると動く</list>
+    <list>長いﾛｰﾌﾟ つかまると左から動く</list><list>左向きのトゲ４つ</list>
+    <list>右向きのトゲ４つ</list><list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ここへ全部持って行くとｸﾘｱ)</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ﾛｯｸ機能付き)</list><list>右へ一方通行</list>
+    <list>左へ一方通行</list><list>上へ一方通行</list><list>下へ一方通行</list><list>右へ一方通行 表示なし</list><list>左へ一方通行 表示なし</list>
+    <list>上へ一方通行 表示なし</list><list>下へ一方通行 表示なし</list><list>ゆれる棒</list><list>ゆれる棒  左から</list>
+    <list>ゆれる棒  広角</list><list>ゆれる棒 広角 左から</list><list>跳ねる円</list><list>跳ねる円  大</list><list>下向きﾜｰﾌﾟ土管1</list>
+    <list>下向きﾜｰﾌﾟ土管2</list><list>下向きﾜｰﾌﾟ土管3</list><list>下向きﾜｰﾌﾟ土管4</list><list>下向き土管1 上向き1につながる</list>
+    <list>下向き土管2 上向き2につながる</list><list>下向き土管3 上向き3につながる</list><list>下向き土管4 上向き4につながる</list>
+    <list>ｺﾝﾃｨﾆｭｰ 残り人数のみ</list><list>?ﾌﾞﾛｯｸ ｺﾝﾃｨﾆｭｰ</list><list>左向き土管1 左右1につながる</list>
+    <list>左向き土管2 左右2につながる</list><list>左向き土管3 左右3につながる</list><list>左向き土管4 左右4につながる</list>
+    <list>右向き土管1 左右1につながる</list><list>右向き土管2 左右2につながる</list><list>右向き土管3 左右3につながる</list>
+    <list>右向き土管4 左右4につながる</list><list>ｽｲｯﾁ 重なるとON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ式の扉 ONで開く</list>
+    <list>ｽｲｯﾁ式の扉 ONで閉まる</list><list>ｽｲｯﾁ式ﾄｹﾞ ONでﾌﾞﾛｯｸ4</list><list>ｽｲｯﾁ式ﾄｹﾞ OFFでﾌﾞﾛｯｸ4</list>
+    <list>ｽｲｯﾁ式ﾄｹﾞ ONで消える</list><list>ｽｲｯﾁ式ﾄｹﾞ ONで出現</list><list>ｽｲｯﾁ式ﾊｼｺﾞ ONで消える</list>
+    <list>ｽｲｯﾁ式ﾊｼｺﾞ ONで出現</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで出現</list>
+    <list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで出現</list><list>ｽｲｯﾁ式動く床 ONで上</list>
+    <list>ｽｲｯﾁ式動く床 ONで下</list><list>ｽｲｯﾁ式動く床 ONで右</list><list>ｽｲｯﾁ式動く床 ONで左</list>
+    <list>ｽｲｯﾁ式長く動く床 ONで上</list> <list>ｽｲｯﾁ式長く動く床 ONで右</list>
+    <list>ｽｲｯﾁ 重なるとON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>連動ｽｲｯﾁ 重なるとON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list><list>連動ｽｲｯﾁ ↑ｷｰでON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から上</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から上</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から下</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から下</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左回り</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで出現</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで左</list><list>ｽｲｯﾁ式動くT字型 ONで右</list><list>ｽｲｯﾁ式速く動くT字型 ONで左</list>
+    <list>ｽｲｯﾁ式速く動くT字型 ONで右</list><list>ｽｲｯﾁ式動くT字型 ONで左から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から左</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで右から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から右</list>
+<!--追加したぞ-->
+    <list>ＫＥＹ１</list><list>ＫＥＹ２</list><list>ＫＥＹ１で開く扉</list><list>ＫＥＹ２で開く扉</list>
+    <list>ＫＥＹ１  落ちる</list><list>ＫＥＹ２  落ちる</list><list>ＫＥＹ１が３つで開く扉</list><list>ＫＥＹ２が３つで開く扉</list>
+    <list>乗ると壊れるブロック</list><list>KEY1が3つでONの動作の人</list>
+    <list>KEY2が3つでONの動作の人</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで出現</list>
+    <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+  </param>
+
+   <!-- ドッスンスンの設定ポイントここまで -->
+
+   <!-- ファイヤーバー1の設定ここから　ポイント２ -->
+   
+  <param name="firebar1_type" desc="ファイヤーバー（左回り）のタイプ" type="list" value="1" category="仕掛け" chip="Fire1">
+    <list>ファイヤーバー 左回り</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
+    <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
+    <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
+    <list>右ドッスンスン</list><list>跳ねるドッスンスン</list><list>上がらないﾄﾞｯｽﾝｽﾝ</list>
+    <list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 上</list><list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 下</list><list>上下ドッスンスン</list>
+    <list>左右ドッスンスン</list><list>ロングレンジドッスンスン</list>
+    <list>ファイヤーバー２本</list><list>ﾌｧｲﾔｰﾊﾞｰ3本 左回り</list> <list>ﾌｧｲﾔｰﾊﾞｰ3本 右回り</list>
+    <list>隠しブロック</list><list>右にブロック１が出る</list><list>左にブロック１が出る</list>
+    <list>上にハシゴが出る</list><list>シーソー</list><list>シーソー　左が下</list><list>シーソー　右が下</list>
+    <list>ブランコ</list><list>ブランコ　２個連続</list><list>スウィングバー　左</list>
+    <list>スウィングバー　右</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 左</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 右</list>
+    <list>上にﾌﾞﾛｯｸ1が出る</list><list>上にﾌﾞﾛｯｸ1が2つ出る</list><list>右にﾌﾞﾛｯｸ1が2つ出る</list>
+    <list>左にブロック１が２つ出る</list><list>ジャンプ台が出る</list><list>トゲが出る</list>
+    <list>周囲のﾄｹﾞをｺｲﾝに変換</list><list>周囲のﾄｹﾞをﾌﾞﾛｯｸ1に変換</list><list>周囲のﾌﾞﾛｯｸ1をｺｲﾝに変換</list>
+    <list>周囲のﾌﾞﾛｯｸ4を消去</list><list>お店</list><list>ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人</list>
+    <list>ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人</list><list>ﾌｧｲﾔｰｳｫｰﾙ 上へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 下へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 左へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 右へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで上下</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで左右</list><list>壁まで上下移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>壁まで左右移動するﾄﾞｯｽﾝｽﾝ</list><list>乗ると左右移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>火山</list><list>逆火山</list><list>動くＴ字型</list><list>動くＴ字型 ２個連続</list>
+    <list>ロープ</list><list>ロープ  ２本連続</list><list>乗れるｶｲｵｰﾙ 方向ｷｰで移動</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 上へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 下へ速射</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 左へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 右へ速射</list>
+    <list>得点で開く扉</list><list>ｺｲﾝを全部取ると開く扉</list>
+    <list>周囲10ﾊﾟｰﾂ以内のｺｲﾝを全部取ると開く扉</list><list>左15ﾊﾟｰﾂ以内の雑魚敵を全部倒すと開く扉</list>
+    <list>人間大砲　右向き</list><list>人間大砲　左向き</list><list>人間大砲　天井</list><list>人間大砲　右の壁</list>
+    <list>人間大砲　左の壁</list><list>高性能ジャンプ台</list><list>左へ飛ばすバネ</list><list>右へ飛ばすバネ</list>
+    <list>ｽﾎﾟｯﾄ処理　小</list><list>ｽﾎﾟｯﾄ処理　中</list><list>ｽﾎﾟｯﾄ処理　大</list><list>ｽﾎﾟｯﾄ処理　終了</list>
+    <list>ｽﾎﾟｯﾄ処理 範囲拡大ｱｲﾃﾑ</list><list>人食いﾜｶﾒ 上へ拡大縮小</list>
+    <list>人食いﾜｶﾒ 下へ拡大縮小</list><list>人食いﾜｶﾒ 中央から拡大縮小</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙｾﾚｸﾄの人</list><list>ﾌﾞﾛｯｸ1破壊砲発射 右</list><list>ﾌﾞﾛｯｸ1破壊砲発射 左</list>
+    <list>ﾌﾞﾛｯｸ1破壊砲発射 上</list><list>ﾌﾞﾛｯｸ1破壊砲発射 下</list><list>グレネード５発</list>
+    <list>回転するﾄﾞｯｽﾝｽﾝ 左回り</list><list>回転するﾄﾞｯｽﾝｽﾝ 右回り</list><list>回転する巨大ﾄﾞｯｽﾝｽﾝ 左回り</list>
+    <list>回転する巨大ﾄﾞｯｽﾝｽﾝ 右回り</list><list>画面内で右強制ｽｸﾛｰﾙ</list><list>画面内で左強制ｽｸﾛｰﾙ</list>
+    <list>画面内で上強制ｽｸﾛｰﾙ</list><list>画面内で下強制ｽｸﾛｰﾙ</list><list>画面内で右上強制ｽｸﾛｰﾙ</list>
+    <list>画面内で右下強制ｽｸﾛｰﾙ</list><list>画面内で左上強制ｽｸﾛｰﾙ</list><list>画面内で左下強制ｽｸﾛｰﾙ</list>
+    <list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞｱｯﾌﾟ</list><list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞﾀﾞｳﾝ</list><list>画面内で全方向ｽｸﾛｰﾙ</list>
+    <list>画面内でｽｸﾛｰﾙ停止</list><list>自分が重なると右強制ｽｸﾛｰﾙ</list><list>自分が重なると上強制ｽｸﾛｰﾙ</list>
+    <list>自分が重なると全方向ｽｸﾛｰﾙ</list><list>画面内で横固定縦自由ｽｸﾛｰﾙ</list><list>画面内で右強制縦自由ｽｸﾛｰﾙ</list>
+    <list>画面内で左進行用の視界</list><list>画面内で右進行用の視界</list><list>曲線による上り坂</list><list>曲線による下り坂</list>
+    <list>曲線による上り坂  線のみ</list><list>曲線による下り坂  線のみ</list><list>乗れる円</list><list>乗れる円  大</list>
+    <list>乗れる半円</list><list>乗れる半円  線のみ</list><list>人口太陽  左回り</list><list>人口太陽  右回り</list>
+    <list>人口太陽 棒5本 左回り</list><list>人口太陽 棒5本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ 左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ 右回り</list><list>上下移動する半円 下から</list><list>上下移動する半円 上から</list>
+    <list>乗ると上がる半円</list><list>乗ると下がる半円</list><list>柱付きの半円</list><list>乗ると下がる円</list>
+    <list>乗ると下がる円 降りると上がる</list><list>上下移動する円 上から</list><list>上下移動する円 下から</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 左回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速右回り</list><list>落ちるだけのﾄﾞｯｽﾝｽﾝ</list><list>動かないドッスンスン</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝ</list><list>上へ押せるﾄﾞｯｽﾝｽﾝ</list><list>その場で跳ねるﾄﾞｯｽﾝｽﾝ</list>
+    <list>長いロープ</list> <list>長いロープ  右から</list><list>長いﾛｰﾌﾟ つかまると動く</list>
+    <list>長いﾛｰﾌﾟ つかまると左から動く</list><list>左向きのトゲ４つ</list>
+    <list>右向きのトゲ４つ</list><list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ここへ全部持って行くとｸﾘｱ)</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ﾛｯｸ機能付き)</list><list>右へ一方通行</list>
+    <list>左へ一方通行</list><list>上へ一方通行</list><list>下へ一方通行</list><list>右へ一方通行 表示なし</list><list>左へ一方通行 表示なし</list>
+    <list>上へ一方通行 表示なし</list><list>下へ一方通行 表示なし</list><list>ゆれる棒</list><list>ゆれる棒  左から</list>
+    <list>ゆれる棒  広角</list><list>ゆれる棒 広角 左から</list><list>跳ねる円</list><list>跳ねる円  大</list><list>下向きﾜｰﾌﾟ土管1</list>
+    <list>下向きﾜｰﾌﾟ土管2</list><list>下向きﾜｰﾌﾟ土管3</list><list>下向きﾜｰﾌﾟ土管4</list><list>下向き土管1 上向き1につながる</list>
+    <list>下向き土管2 上向き2につながる</list><list>下向き土管3 上向き3につながる</list><list>下向き土管4 上向き4につながる</list>
+    <list>ｺﾝﾃｨﾆｭｰ 残り人数のみ</list><list>?ﾌﾞﾛｯｸ ｺﾝﾃｨﾆｭｰ</list><list>左向き土管1 左右1につながる</list>
+    <list>左向き土管2 左右2につながる</list><list>左向き土管3 左右3につながる</list><list>左向き土管4 左右4につながる</list>
+    <list>右向き土管1 左右1につながる</list><list>右向き土管2 左右2につながる</list><list>右向き土管3 左右3につながる</list>
+    <list>右向き土管4 左右4につながる</list><list>ｽｲｯﾁ 重なるとON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ式の扉 ONで開く</list>
+    <list>ｽｲｯﾁ式の扉 ONで閉まる</list><list>ｽｲｯﾁ式ﾄｹﾞ ONでﾌﾞﾛｯｸ4</list><list>ｽｲｯﾁ式ﾄｹﾞ OFFでﾌﾞﾛｯｸ4</list>
+    <list>ｽｲｯﾁ式ﾄｹﾞ ONで消える</list><list>ｽｲｯﾁ式ﾄｹﾞ ONで出現</list><list>ｽｲｯﾁ式ﾊｼｺﾞ ONで消える</list>
+    <list>ｽｲｯﾁ式ﾊｼｺﾞ ONで出現</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで出現</list>
+    <list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで出現</list><list>ｽｲｯﾁ式動く床 ONで上</list>
+    <list>ｽｲｯﾁ式動く床 ONで下</list><list>ｽｲｯﾁ式動く床 ONで右</list><list>ｽｲｯﾁ式動く床 ONで左</list>
+    <list>ｽｲｯﾁ式長く動く床 ONで上</list> <list>ｽｲｯﾁ式長く動く床 ONで右</list>
+    <list>ｽｲｯﾁ 重なるとON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>連動ｽｲｯﾁ 重なるとON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list><list>連動ｽｲｯﾁ ↑ｷｰでON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から上</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から上</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から下</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から下</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左回り</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで出現</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで左</list><list>ｽｲｯﾁ式動くT字型 ONで右</list><list>ｽｲｯﾁ式速く動くT字型 ONで左</list>
+    <list>ｽｲｯﾁ式速く動くT字型 ONで右</list><list>ｽｲｯﾁ式動くT字型 ONで左から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から左</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで右から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から右</list>
+<!--追加したぞ-->
+    <list>ＫＥＹ１</list><list>ＫＥＹ２</list><list>ＫＥＹ１で開く扉</list><list>ＫＥＹ２で開く扉</list>
+    <list>ＫＥＹ１  落ちる</list><list>ＫＥＹ２  落ちる</list><list>ＫＥＹ１が３つで開く扉</list><list>ＫＥＹ２が３つで開く扉</list>
+    <list>乗ると壊れるブロック</list><list>KEY1が3つでONの動作の人</list>
+    <list>KEY2が3つでONの動作の人</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで出現</list>
+    <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+  </param>
+  
+   <!-- ファイヤーバー1の設定ポイントここまで -->
+
+   <!-- ファイヤーバー2の設定ここから　ポイント３ -->
+   
+  <param name="firebar2_type" desc="ファイヤーバー（右回り）のタイプ" type="list" value="1" category="仕掛け" chip="Fire2">
+    <list>ファイヤーバー 右回り</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
+    <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
+    <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
+    <list>右ドッスンスン</list><list>跳ねるドッスンスン</list><list>上がらないﾄﾞｯｽﾝｽﾝ</list>
+    <list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 上</list><list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 下</list><list>上下ドッスンスン</list>
+    <list>左右ドッスンスン</list><list>ロングレンジドッスンスン</list>
+    <list>ファイヤーバー２本</list><list>ﾌｧｲﾔｰﾊﾞｰ3本 左回り</list> <list>ﾌｧｲﾔｰﾊﾞｰ3本 右回り</list>
+    <list>隠しブロック</list><list>右にブロック１が出る</list><list>左にブロック１が出る</list>
+    <list>上にハシゴが出る</list><list>シーソー</list><list>シーソー　左が下</list><list>シーソー　右が下</list>
+    <list>ブランコ</list><list>ブランコ　２個連続</list><list>スウィングバー　左</list>
+    <list>スウィングバー　右</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 左</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 右</list>
+    <list>上にﾌﾞﾛｯｸ1が出る</list><list>上にﾌﾞﾛｯｸ1が2つ出る</list><list>右にﾌﾞﾛｯｸ1が2つ出る</list>
+    <list>左にブロック１が２つ出る</list><list>ジャンプ台が出る</list><list>トゲが出る</list>
+    <list>周囲のﾄｹﾞをｺｲﾝに変換</list><list>周囲のﾄｹﾞをﾌﾞﾛｯｸ1に変換</list><list>周囲のﾌﾞﾛｯｸ1をｺｲﾝに変換</list>
+    <list>周囲のﾌﾞﾛｯｸ4を消去</list><list>お店</list><list>ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人</list>
+    <list>ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人</list><list>ﾌｧｲﾔｰｳｫｰﾙ 上へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 下へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 左へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 右へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで上下</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで左右</list><list>壁まで上下移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>壁まで左右移動するﾄﾞｯｽﾝｽﾝ</list><list>乗ると左右移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>火山</list><list>逆火山</list><list>動くＴ字型</list><list>動くＴ字型 ２個連続</list>
+    <list>ロープ</list><list>ロープ  ２本連続</list><list>乗れるｶｲｵｰﾙ 方向ｷｰで移動</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 上へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 下へ速射</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 左へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 右へ速射</list>
+    <list>得点で開く扉</list><list>ｺｲﾝを全部取ると開く扉</list>
+    <list>周囲10ﾊﾟｰﾂ以内のｺｲﾝを全部取ると開く扉</list><list>左15ﾊﾟｰﾂ以内の雑魚敵を全部倒すと開く扉</list>
+    <list>人間大砲　右向き</list><list>人間大砲　左向き</list><list>人間大砲　天井</list><list>人間大砲　右の壁</list>
+    <list>人間大砲　左の壁</list><list>高性能ジャンプ台</list><list>左へ飛ばすバネ</list><list>右へ飛ばすバネ</list>
+    <list>ｽﾎﾟｯﾄ処理　小</list><list>ｽﾎﾟｯﾄ処理　中</list><list>ｽﾎﾟｯﾄ処理　大</list><list>ｽﾎﾟｯﾄ処理　終了</list>
+    <list>ｽﾎﾟｯﾄ処理 範囲拡大ｱｲﾃﾑ</list><list>人食いﾜｶﾒ 上へ拡大縮小</list>
+    <list>人食いﾜｶﾒ 下へ拡大縮小</list><list>人食いﾜｶﾒ 中央から拡大縮小</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙｾﾚｸﾄの人</list><list>ﾌﾞﾛｯｸ1破壊砲発射 右</list><list>ﾌﾞﾛｯｸ1破壊砲発射 左</list>
+    <list>ﾌﾞﾛｯｸ1破壊砲発射 上</list><list>ﾌﾞﾛｯｸ1破壊砲発射 下</list><list>グレネード５発</list>
+    <list>回転するﾄﾞｯｽﾝｽﾝ 左回り</list><list>回転するﾄﾞｯｽﾝｽﾝ 右回り</list><list>回転する巨大ﾄﾞｯｽﾝｽﾝ 左回り</list>
+    <list>回転する巨大ﾄﾞｯｽﾝｽﾝ 右回り</list><list>画面内で右強制ｽｸﾛｰﾙ</list><list>画面内で左強制ｽｸﾛｰﾙ</list>
+    <list>画面内で上強制ｽｸﾛｰﾙ</list><list>画面内で下強制ｽｸﾛｰﾙ</list><list>画面内で右上強制ｽｸﾛｰﾙ</list>
+    <list>画面内で右下強制ｽｸﾛｰﾙ</list><list>画面内で左上強制ｽｸﾛｰﾙ</list><list>画面内で左下強制ｽｸﾛｰﾙ</list>
+    <list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞｱｯﾌﾟ</list><list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞﾀﾞｳﾝ</list><list>画面内で全方向ｽｸﾛｰﾙ</list>
+    <list>画面内でｽｸﾛｰﾙ停止</list><list>自分が重なると右強制ｽｸﾛｰﾙ</list><list>自分が重なると上強制ｽｸﾛｰﾙ</list>
+    <list>自分が重なると全方向ｽｸﾛｰﾙ</list><list>画面内で横固定縦自由ｽｸﾛｰﾙ</list><list>画面内で右強制縦自由ｽｸﾛｰﾙ</list>
+    <list>画面内で左進行用の視界</list><list>画面内で右進行用の視界</list><list>曲線による上り坂</list><list>曲線による下り坂</list>
+    <list>曲線による上り坂  線のみ</list><list>曲線による下り坂  線のみ</list><list>乗れる円</list><list>乗れる円  大</list>
+    <list>乗れる半円</list><list>乗れる半円  線のみ</list><list>人口太陽  左回り</list><list>人口太陽  右回り</list>
+    <list>人口太陽 棒5本 左回り</list><list>人口太陽 棒5本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ 左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ 右回り</list><list>上下移動する半円 下から</list><list>上下移動する半円 上から</list>
+    <list>乗ると上がる半円</list><list>乗ると下がる半円</list><list>柱付きの半円</list><list>乗ると下がる円</list>
+    <list>乗ると下がる円 降りると上がる</list><list>上下移動する円 上から</list><list>上下移動する円 下から</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 左回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速右回り</list><list>落ちるだけのﾄﾞｯｽﾝｽﾝ</list><list>動かないドッスンスン</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝ</list><list>上へ押せるﾄﾞｯｽﾝｽﾝ</list><list>その場で跳ねるﾄﾞｯｽﾝｽﾝ</list>
+    <list>長いロープ</list> <list>長いロープ  右から</list><list>長いﾛｰﾌﾟ つかまると動く</list>
+    <list>長いﾛｰﾌﾟ つかまると左から動く</list><list>左向きのトゲ４つ</list>
+    <list>右向きのトゲ４つ</list><list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ここへ全部持って行くとｸﾘｱ)</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ﾛｯｸ機能付き)</list><list>右へ一方通行</list>
+    <list>左へ一方通行</list><list>上へ一方通行</list><list>下へ一方通行</list><list>右へ一方通行 表示なし</list><list>左へ一方通行 表示なし</list>
+    <list>上へ一方通行 表示なし</list><list>下へ一方通行 表示なし</list><list>ゆれる棒</list><list>ゆれる棒  左から</list>
+    <list>ゆれる棒  広角</list><list>ゆれる棒 広角 左から</list><list>跳ねる円</list><list>跳ねる円  大</list><list>下向きﾜｰﾌﾟ土管1</list>
+    <list>下向きﾜｰﾌﾟ土管2</list><list>下向きﾜｰﾌﾟ土管3</list><list>下向きﾜｰﾌﾟ土管4</list><list>下向き土管1 上向き1につながる</list>
+    <list>下向き土管2 上向き2につながる</list><list>下向き土管3 上向き3につながる</list><list>下向き土管4 上向き4につながる</list>
+    <list>ｺﾝﾃｨﾆｭｰ 残り人数のみ</list><list>?ﾌﾞﾛｯｸ ｺﾝﾃｨﾆｭｰ</list><list>左向き土管1 左右1につながる</list>
+    <list>左向き土管2 左右2につながる</list><list>左向き土管3 左右3につながる</list><list>左向き土管4 左右4につながる</list>
+    <list>右向き土管1 左右1につながる</list><list>右向き土管2 左右2につながる</list><list>右向き土管3 左右3につながる</list>
+    <list>右向き土管4 左右4につながる</list><list>ｽｲｯﾁ 重なるとON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ式の扉 ONで開く</list>
+    <list>ｽｲｯﾁ式の扉 ONで閉まる</list><list>ｽｲｯﾁ式ﾄｹﾞ ONでﾌﾞﾛｯｸ4</list><list>ｽｲｯﾁ式ﾄｹﾞ OFFでﾌﾞﾛｯｸ4</list>
+    <list>ｽｲｯﾁ式ﾄｹﾞ ONで消える</list><list>ｽｲｯﾁ式ﾄｹﾞ ONで出現</list><list>ｽｲｯﾁ式ﾊｼｺﾞ ONで消える</list>
+    <list>ｽｲｯﾁ式ﾊｼｺﾞ ONで出現</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで出現</list>
+    <list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで出現</list><list>ｽｲｯﾁ式動く床 ONで上</list>
+    <list>ｽｲｯﾁ式動く床 ONで下</list><list>ｽｲｯﾁ式動く床 ONで右</list><list>ｽｲｯﾁ式動く床 ONで左</list>
+    <list>ｽｲｯﾁ式長く動く床 ONで上</list> <list>ｽｲｯﾁ式長く動く床 ONで右</list>
+    <list>ｽｲｯﾁ 重なるとON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>連動ｽｲｯﾁ 重なるとON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list><list>連動ｽｲｯﾁ ↑ｷｰでON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から上</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から上</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から下</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から下</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左回り</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで出現</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで左</list><list>ｽｲｯﾁ式動くT字型 ONで右</list><list>ｽｲｯﾁ式速く動くT字型 ONで左</list>
+    <list>ｽｲｯﾁ式速く動くT字型 ONで右</list><list>ｽｲｯﾁ式動くT字型 ONで左から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から左</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで右から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から右</list>
+<!--追加したぞ-->
+    <list>ＫＥＹ１</list><list>ＫＥＹ２</list><list>ＫＥＹ１で開く扉</list><list>ＫＥＹ２で開く扉</list>
+    <list>ＫＥＹ１  落ちる</list><list>ＫＥＹ２  落ちる</list><list>ＫＥＹ１が３つで開く扉</list><list>ＫＥＹ２が３つで開く扉</list>
+    <list>乗ると壊れるブロック</list><list>KEY1が3つでONの動作の人</list>
+    <list>KEY2が3つでONの動作の人</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで出現</list>
+    <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+  </param>
+  
+   <!-- ファイヤーバー2の設定ポイントここまで -->
+
+   <!-- 動く床(上下移動)の設定ここから　ポイント４  -->
+   
+  <param name="ugokuyuka1_type" desc="動く床(上下移動)のタイプ" type="list" value="1" category="仕掛け" chip="VMovFloor">
+    <list>動く床　上下移動</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
+    <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
+    <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
+    <list>右ドッスンスン</list><list>跳ねるドッスンスン</list><list>上がらないﾄﾞｯｽﾝｽﾝ</list>
+    <list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 上</list><list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 下</list><list>上下ドッスンスン</list>
+    <list>左右ドッスンスン</list><list>ロングレンジドッスンスン</list>
+    <list>ファイヤーバー２本</list><list>ﾌｧｲﾔｰﾊﾞｰ3本 左回り</list> <list>ﾌｧｲﾔｰﾊﾞｰ3本 右回り</list>
+    <list>隠しブロック</list><list>右にブロック１が出る</list><list>左にブロック１が出る</list>
+    <list>上にハシゴが出る</list><list>シーソー</list><list>シーソー　左が下</list><list>シーソー　右が下</list>
+    <list>ブランコ</list><list>ブランコ　２個連続</list><list>スウィングバー　左</list>
+    <list>スウィングバー　右</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 左</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 右</list>
+    <list>上にﾌﾞﾛｯｸ1が出る</list><list>上にﾌﾞﾛｯｸ1が2つ出る</list><list>右にﾌﾞﾛｯｸ1が2つ出る</list>
+    <list>左にブロック１が２つ出る</list><list>ジャンプ台が出る</list><list>トゲが出る</list>
+    <list>周囲のﾄｹﾞをｺｲﾝに変換</list><list>周囲のﾄｹﾞをﾌﾞﾛｯｸ1に変換</list><list>周囲のﾌﾞﾛｯｸ1をｺｲﾝに変換</list>
+    <list>周囲のﾌﾞﾛｯｸ4を消去</list><list>お店</list><list>ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人</list>
+    <list>ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人</list><list>ﾌｧｲﾔｰｳｫｰﾙ 上へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 下へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 左へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 右へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで上下</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで左右</list><list>壁まで上下移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>壁まで左右移動するﾄﾞｯｽﾝｽﾝ</list><list>乗ると左右移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>火山</list><list>逆火山</list><list>動くＴ字型</list><list>動くＴ字型 ２個連続</list>
+    <list>ロープ</list><list>ロープ  ２本連続</list><list>乗れるｶｲｵｰﾙ 方向ｷｰで移動</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 上へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 下へ速射</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 左へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 右へ速射</list>
+    <list>得点で開く扉</list><list>ｺｲﾝを全部取ると開く扉</list>
+    <list>周囲10ﾊﾟｰﾂ以内のｺｲﾝを全部取ると開く扉</list><list>左15ﾊﾟｰﾂ以内の雑魚敵を全部倒すと開く扉</list>
+    <list>人間大砲　右向き</list><list>人間大砲　左向き</list><list>人間大砲　天井</list><list>人間大砲　右の壁</list>
+    <list>人間大砲　左の壁</list><list>高性能ジャンプ台</list><list>左へ飛ばすバネ</list><list>右へ飛ばすバネ</list>
+    <list>ｽﾎﾟｯﾄ処理　小</list><list>ｽﾎﾟｯﾄ処理　中</list><list>ｽﾎﾟｯﾄ処理　大</list><list>ｽﾎﾟｯﾄ処理　終了</list>
+    <list>ｽﾎﾟｯﾄ処理 範囲拡大ｱｲﾃﾑ</list><list>人食いﾜｶﾒ 上へ拡大縮小</list>
+    <list>人食いﾜｶﾒ 下へ拡大縮小</list><list>人食いﾜｶﾒ 中央から拡大縮小</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙｾﾚｸﾄの人</list><list>ﾌﾞﾛｯｸ1破壊砲発射 右</list><list>ﾌﾞﾛｯｸ1破壊砲発射 左</list>
+    <list>ﾌﾞﾛｯｸ1破壊砲発射 上</list><list>ﾌﾞﾛｯｸ1破壊砲発射 下</list><list>グレネード５発</list>
+    <list>回転するﾄﾞｯｽﾝｽﾝ 左回り</list><list>回転するﾄﾞｯｽﾝｽﾝ 右回り</list><list>回転する巨大ﾄﾞｯｽﾝｽﾝ 左回り</list>
+    <list>回転する巨大ﾄﾞｯｽﾝｽﾝ 右回り</list><list>画面内で右強制ｽｸﾛｰﾙ</list><list>画面内で左強制ｽｸﾛｰﾙ</list>
+    <list>画面内で上強制ｽｸﾛｰﾙ</list><list>画面内で下強制ｽｸﾛｰﾙ</list><list>画面内で右上強制ｽｸﾛｰﾙ</list>
+    <list>画面内で右下強制ｽｸﾛｰﾙ</list><list>画面内で左上強制ｽｸﾛｰﾙ</list><list>画面内で左下強制ｽｸﾛｰﾙ</list>
+    <list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞｱｯﾌﾟ</list><list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞﾀﾞｳﾝ</list><list>画面内で全方向ｽｸﾛｰﾙ</list>
+    <list>画面内でｽｸﾛｰﾙ停止</list><list>自分が重なると右強制ｽｸﾛｰﾙ</list><list>自分が重なると上強制ｽｸﾛｰﾙ</list>
+    <list>自分が重なると全方向ｽｸﾛｰﾙ</list><list>画面内で横固定縦自由ｽｸﾛｰﾙ</list><list>画面内で右強制縦自由ｽｸﾛｰﾙ</list>
+    <list>画面内で左進行用の視界</list><list>画面内で右進行用の視界</list><list>曲線による上り坂</list><list>曲線による下り坂</list>
+    <list>曲線による上り坂  線のみ</list><list>曲線による下り坂  線のみ</list><list>乗れる円</list><list>乗れる円  大</list>
+    <list>乗れる半円</list><list>乗れる半円  線のみ</list><list>人口太陽  左回り</list><list>人口太陽  右回り</list>
+    <list>人口太陽 棒5本 左回り</list><list>人口太陽 棒5本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ 左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ 右回り</list><list>上下移動する半円 下から</list><list>上下移動する半円 上から</list>
+    <list>乗ると上がる半円</list><list>乗ると下がる半円</list><list>柱付きの半円</list><list>乗ると下がる円</list>
+    <list>乗ると下がる円 降りると上がる</list><list>上下移動する円 上から</list><list>上下移動する円 下から</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 左回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速右回り</list><list>落ちるだけのﾄﾞｯｽﾝｽﾝ</list><list>動かないドッスンスン</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝ</list><list>上へ押せるﾄﾞｯｽﾝｽﾝ</list><list>その場で跳ねるﾄﾞｯｽﾝｽﾝ</list>
+    <list>長いロープ</list> <list>長いロープ  右から</list><list>長いﾛｰﾌﾟ つかまると動く</list>
+    <list>長いﾛｰﾌﾟ つかまると左から動く</list><list>左向きのトゲ４つ</list>
+    <list>右向きのトゲ４つ</list><list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ここへ全部持って行くとｸﾘｱ)</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ﾛｯｸ機能付き)</list><list>右へ一方通行</list>
+    <list>左へ一方通行</list><list>上へ一方通行</list><list>下へ一方通行</list><list>右へ一方通行 表示なし</list><list>左へ一方通行 表示なし</list>
+    <list>上へ一方通行 表示なし</list><list>下へ一方通行 表示なし</list><list>ゆれる棒</list><list>ゆれる棒  左から</list>
+    <list>ゆれる棒  広角</list><list>ゆれる棒 広角 左から</list><list>跳ねる円</list><list>跳ねる円  大</list><list>下向きﾜｰﾌﾟ土管1</list>
+    <list>下向きﾜｰﾌﾟ土管2</list><list>下向きﾜｰﾌﾟ土管3</list><list>下向きﾜｰﾌﾟ土管4</list><list>下向き土管1 上向き1につながる</list>
+    <list>下向き土管2 上向き2につながる</list><list>下向き土管3 上向き3につながる</list><list>下向き土管4 上向き4につながる</list>
+    <list>ｺﾝﾃｨﾆｭｰ 残り人数のみ</list><list>?ﾌﾞﾛｯｸ ｺﾝﾃｨﾆｭｰ</list><list>左向き土管1 左右1につながる</list>
+    <list>左向き土管2 左右2につながる</list><list>左向き土管3 左右3につながる</list><list>左向き土管4 左右4につながる</list>
+    <list>右向き土管1 左右1につながる</list><list>右向き土管2 左右2につながる</list><list>右向き土管3 左右3につながる</list>
+    <list>右向き土管4 左右4につながる</list><list>ｽｲｯﾁ 重なるとON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ式の扉 ONで開く</list>
+    <list>ｽｲｯﾁ式の扉 ONで閉まる</list><list>ｽｲｯﾁ式ﾄｹﾞ ONでﾌﾞﾛｯｸ4</list><list>ｽｲｯﾁ式ﾄｹﾞ OFFでﾌﾞﾛｯｸ4</list>
+    <list>ｽｲｯﾁ式ﾄｹﾞ ONで消える</list><list>ｽｲｯﾁ式ﾄｹﾞ ONで出現</list><list>ｽｲｯﾁ式ﾊｼｺﾞ ONで消える</list>
+    <list>ｽｲｯﾁ式ﾊｼｺﾞ ONで出現</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで出現</list>
+    <list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで出現</list><list>ｽｲｯﾁ式動く床 ONで上</list>
+    <list>ｽｲｯﾁ式動く床 ONで下</list><list>ｽｲｯﾁ式動く床 ONで右</list><list>ｽｲｯﾁ式動く床 ONで左</list>
+    <list>ｽｲｯﾁ式長く動く床 ONで上</list> <list>ｽｲｯﾁ式長く動く床 ONで右</list>
+    <list>ｽｲｯﾁ 重なるとON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>連動ｽｲｯﾁ 重なるとON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list><list>連動ｽｲｯﾁ ↑ｷｰでON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から上</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から上</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から下</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から下</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左回り</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで出現</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで左</list><list>ｽｲｯﾁ式動くT字型 ONで右</list><list>ｽｲｯﾁ式速く動くT字型 ONで左</list>
+    <list>ｽｲｯﾁ式速く動くT字型 ONで右</list><list>ｽｲｯﾁ式動くT字型 ONで左から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から左</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで右から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から右</list>
+<!--追加したぞ-->
+    <list>ＫＥＹ１</list><list>ＫＥＹ２</list><list>ＫＥＹ１で開く扉</list><list>ＫＥＹ２で開く扉</list>
+    <list>ＫＥＹ１  落ちる</list><list>ＫＥＹ２  落ちる</list><list>ＫＥＹ１が３つで開く扉</list><list>ＫＥＹ２が３つで開く扉</list>
+    <list>乗ると壊れるブロック</list><list>KEY1が3つでONの動作の人</list>
+    <list>KEY2が3つでONの動作の人</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで出現</list>
+    <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+  </param>
+  
+   <!-- 動く床(上下移動)の設定ポイントここまで  -->
+
+   <!-- 動く床(左右移動)の設定ここから　ポイント５  -->
+   
+  <param name="ugokuyuka2_type" desc="動く床(左右移動)のタイプ" type="list" value="1" category="仕掛け" chip="HMovFloor">
+    <list>動く床　左右移動</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
+    <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
+    <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
+    <list>右ドッスンスン</list><list>跳ねるドッスンスン</list><list>上がらないﾄﾞｯｽﾝｽﾝ</list>
+    <list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 上</list><list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 下</list><list>上下ドッスンスン</list>
+    <list>左右ドッスンスン</list><list>ロングレンジドッスンスン</list>
+    <list>ファイヤーバー２本</list><list>ﾌｧｲﾔｰﾊﾞｰ3本 左回り</list> <list>ﾌｧｲﾔｰﾊﾞｰ3本 右回り</list>
+    <list>隠しブロック</list><list>右にブロック１が出る</list><list>左にブロック１が出る</list>
+    <list>上にハシゴが出る</list><list>シーソー</list><list>シーソー　左が下</list><list>シーソー　右が下</list>
+    <list>ブランコ</list><list>ブランコ　２個連続</list><list>スウィングバー　左</list>
+    <list>スウィングバー　右</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 左</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 右</list>
+    <list>上にﾌﾞﾛｯｸ1が出る</list><list>上にﾌﾞﾛｯｸ1が2つ出る</list><list>右にﾌﾞﾛｯｸ1が2つ出る</list>
+    <list>左にブロック１が２つ出る</list><list>ジャンプ台が出る</list><list>トゲが出る</list>
+    <list>周囲のﾄｹﾞをｺｲﾝに変換</list><list>周囲のﾄｹﾞをﾌﾞﾛｯｸ1に変換</list><list>周囲のﾌﾞﾛｯｸ1をｺｲﾝに変換</list>
+    <list>周囲のﾌﾞﾛｯｸ4を消去</list><list>お店</list><list>ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人</list>
+    <list>ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人</list><list>ﾌｧｲﾔｰｳｫｰﾙ 上へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 下へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 左へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 右へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで上下</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで左右</list><list>壁まで上下移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>壁まで左右移動するﾄﾞｯｽﾝｽﾝ</list><list>乗ると左右移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>火山</list><list>逆火山</list><list>動くＴ字型</list><list>動くＴ字型 ２個連続</list>
+    <list>ロープ</list><list>ロープ  ２本連続</list><list>乗れるｶｲｵｰﾙ 方向ｷｰで移動</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 上へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 下へ速射</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 左へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 右へ速射</list>
+    <list>得点で開く扉</list><list>ｺｲﾝを全部取ると開く扉</list>
+    <list>周囲10ﾊﾟｰﾂ以内のｺｲﾝを全部取ると開く扉</list><list>左15ﾊﾟｰﾂ以内の雑魚敵を全部倒すと開く扉</list>
+    <list>人間大砲　右向き</list><list>人間大砲　左向き</list><list>人間大砲　天井</list><list>人間大砲　右の壁</list>
+    <list>人間大砲　左の壁</list><list>高性能ジャンプ台</list><list>左へ飛ばすバネ</list><list>右へ飛ばすバネ</list>
+    <list>ｽﾎﾟｯﾄ処理　小</list><list>ｽﾎﾟｯﾄ処理　中</list><list>ｽﾎﾟｯﾄ処理　大</list><list>ｽﾎﾟｯﾄ処理　終了</list>
+    <list>ｽﾎﾟｯﾄ処理 範囲拡大ｱｲﾃﾑ</list><list>人食いﾜｶﾒ 上へ拡大縮小</list>
+    <list>人食いﾜｶﾒ 下へ拡大縮小</list><list>人食いﾜｶﾒ 中央から拡大縮小</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙｾﾚｸﾄの人</list><list>ﾌﾞﾛｯｸ1破壊砲発射 右</list><list>ﾌﾞﾛｯｸ1破壊砲発射 左</list>
+    <list>ﾌﾞﾛｯｸ1破壊砲発射 上</list><list>ﾌﾞﾛｯｸ1破壊砲発射 下</list><list>グレネード５発</list>
+    <list>回転するﾄﾞｯｽﾝｽﾝ 左回り</list><list>回転するﾄﾞｯｽﾝｽﾝ 右回り</list><list>回転する巨大ﾄﾞｯｽﾝｽﾝ 左回り</list>
+    <list>回転する巨大ﾄﾞｯｽﾝｽﾝ 右回り</list><list>画面内で右強制ｽｸﾛｰﾙ</list><list>画面内で左強制ｽｸﾛｰﾙ</list>
+    <list>画面内で上強制ｽｸﾛｰﾙ</list><list>画面内で下強制ｽｸﾛｰﾙ</list><list>画面内で右上強制ｽｸﾛｰﾙ</list>
+    <list>画面内で右下強制ｽｸﾛｰﾙ</list><list>画面内で左上強制ｽｸﾛｰﾙ</list><list>画面内で左下強制ｽｸﾛｰﾙ</list>
+    <list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞｱｯﾌﾟ</list><list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞﾀﾞｳﾝ</list><list>画面内で全方向ｽｸﾛｰﾙ</list>
+    <list>画面内でｽｸﾛｰﾙ停止</list><list>自分が重なると右強制ｽｸﾛｰﾙ</list><list>自分が重なると上強制ｽｸﾛｰﾙ</list>
+    <list>自分が重なると全方向ｽｸﾛｰﾙ</list><list>画面内で横固定縦自由ｽｸﾛｰﾙ</list><list>画面内で右強制縦自由ｽｸﾛｰﾙ</list>
+    <list>画面内で左進行用の視界</list><list>画面内で右進行用の視界</list><list>曲線による上り坂</list><list>曲線による下り坂</list>
+    <list>曲線による上り坂  線のみ</list><list>曲線による下り坂  線のみ</list><list>乗れる円</list><list>乗れる円  大</list>
+    <list>乗れる半円</list><list>乗れる半円  線のみ</list><list>人口太陽  左回り</list><list>人口太陽  右回り</list>
+    <list>人口太陽 棒5本 左回り</list><list>人口太陽 棒5本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ 左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ 右回り</list><list>上下移動する半円 下から</list><list>上下移動する半円 上から</list>
+    <list>乗ると上がる半円</list><list>乗ると下がる半円</list><list>柱付きの半円</list><list>乗ると下がる円</list>
+    <list>乗ると下がる円 降りると上がる</list><list>上下移動する円 上から</list><list>上下移動する円 下から</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 左回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速右回り</list><list>落ちるだけのﾄﾞｯｽﾝｽﾝ</list><list>動かないドッスンスン</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝ</list><list>上へ押せるﾄﾞｯｽﾝｽﾝ</list><list>その場で跳ねるﾄﾞｯｽﾝｽﾝ</list>
+    <list>長いロープ</list> <list>長いロープ  右から</list><list>長いﾛｰﾌﾟ つかまると動く</list>
+    <list>長いﾛｰﾌﾟ つかまると左から動く</list><list>左向きのトゲ４つ</list>
+    <list>右向きのトゲ４つ</list><list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ここへ全部持って行くとｸﾘｱ)</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ﾛｯｸ機能付き)</list><list>右へ一方通行</list>
+    <list>左へ一方通行</list><list>上へ一方通行</list><list>下へ一方通行</list><list>右へ一方通行 表示なし</list><list>左へ一方通行 表示なし</list>
+    <list>上へ一方通行 表示なし</list><list>下へ一方通行 表示なし</list><list>ゆれる棒</list><list>ゆれる棒  左から</list>
+    <list>ゆれる棒  広角</list><list>ゆれる棒 広角 左から</list><list>跳ねる円</list><list>跳ねる円  大</list><list>下向きﾜｰﾌﾟ土管1</list>
+    <list>下向きﾜｰﾌﾟ土管2</list><list>下向きﾜｰﾌﾟ土管3</list><list>下向きﾜｰﾌﾟ土管4</list><list>下向き土管1 上向き1につながる</list>
+    <list>下向き土管2 上向き2につながる</list><list>下向き土管3 上向き3につながる</list><list>下向き土管4 上向き4につながる</list>
+    <list>ｺﾝﾃｨﾆｭｰ 残り人数のみ</list><list>?ﾌﾞﾛｯｸ ｺﾝﾃｨﾆｭｰ</list><list>左向き土管1 左右1につながる</list>
+    <list>左向き土管2 左右2につながる</list><list>左向き土管3 左右3につながる</list><list>左向き土管4 左右4につながる</list>
+    <list>右向き土管1 左右1につながる</list><list>右向き土管2 左右2につながる</list><list>右向き土管3 左右3につながる</list>
+    <list>右向き土管4 左右4につながる</list><list>ｽｲｯﾁ 重なるとON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ式の扉 ONで開く</list>
+    <list>ｽｲｯﾁ式の扉 ONで閉まる</list><list>ｽｲｯﾁ式ﾄｹﾞ ONでﾌﾞﾛｯｸ4</list><list>ｽｲｯﾁ式ﾄｹﾞ OFFでﾌﾞﾛｯｸ4</list>
+    <list>ｽｲｯﾁ式ﾄｹﾞ ONで消える</list><list>ｽｲｯﾁ式ﾄｹﾞ ONで出現</list><list>ｽｲｯﾁ式ﾊｼｺﾞ ONで消える</list>
+    <list>ｽｲｯﾁ式ﾊｼｺﾞ ONで出現</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで出現</list>
+    <list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで出現</list><list>ｽｲｯﾁ式動く床 ONで上</list>
+    <list>ｽｲｯﾁ式動く床 ONで下</list><list>ｽｲｯﾁ式動く床 ONで右</list><list>ｽｲｯﾁ式動く床 ONで左</list>
+    <list>ｽｲｯﾁ式長く動く床 ONで上</list> <list>ｽｲｯﾁ式長く動く床 ONで右</list>
+    <list>ｽｲｯﾁ 重なるとON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>連動ｽｲｯﾁ 重なるとON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list><list>連動ｽｲｯﾁ ↑ｷｰでON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から上</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から上</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から下</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から下</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左回り</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで出現</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで左</list><list>ｽｲｯﾁ式動くT字型 ONで右</list><list>ｽｲｯﾁ式速く動くT字型 ONで左</list>
+    <list>ｽｲｯﾁ式速く動くT字型 ONで右</list><list>ｽｲｯﾁ式動くT字型 ONで左から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から左</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで右から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から右</list>
+<!--追加したぞ-->
+    <list>ＫＥＹ１</list><list>ＫＥＹ２</list><list>ＫＥＹ１で開く扉</list><list>ＫＥＹ２で開く扉</list>
+    <list>ＫＥＹ１  落ちる</list><list>ＫＥＹ２  落ちる</list><list>ＫＥＹ１が３つで開く扉</list><list>ＫＥＹ２が３つで開く扉</list>
+    <list>乗ると壊れるブロック</list><list>KEY1が3つでONの動作の人</list>
+    <list>KEY2が3つでONの動作の人</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで出現</list>
+    <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+  </param>
+  
+   <!-- 動く床(左右移動)の設定ポイントここまで  -->
+
+   <!-- 動く床(左右移動x2)の設定ここから　ポイント６ -->
+   
+  <param name="ugokuyuka3_type" desc="動く床(左右移動x2)のタイプ" type="list" value="1" category="仕掛け" chip="DMovFloor">
+    <list>動く床 左右移動 2個連続</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
+    <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
+    <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
+    <list>右ドッスンスン</list><list>跳ねるドッスンスン</list><list>上がらないﾄﾞｯｽﾝｽﾝ</list>
+    <list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 上</list><list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 下</list><list>上下ドッスンスン</list>
+    <list>左右ドッスンスン</list><list>ロングレンジドッスンスン</list>
+    <list>ファイヤーバー２本</list><list>ﾌｧｲﾔｰﾊﾞｰ3本 左回り</list> <list>ﾌｧｲﾔｰﾊﾞｰ3本 右回り</list>
+    <list>隠しブロック</list><list>右にブロック１が出る</list><list>左にブロック１が出る</list>
+    <list>上にハシゴが出る</list><list>シーソー</list><list>シーソー　左が下</list><list>シーソー　右が下</list>
+    <list>ブランコ</list><list>ブランコ　２個連続</list><list>スウィングバー　左</list>
+    <list>スウィングバー　右</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 左</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 右</list>
+    <list>上にﾌﾞﾛｯｸ1が出る</list><list>上にﾌﾞﾛｯｸ1が2つ出る</list><list>右にﾌﾞﾛｯｸ1が2つ出る</list>
+    <list>左にブロック１が２つ出る</list><list>ジャンプ台が出る</list><list>トゲが出る</list>
+    <list>周囲のﾄｹﾞをｺｲﾝに変換</list><list>周囲のﾄｹﾞをﾌﾞﾛｯｸ1に変換</list><list>周囲のﾌﾞﾛｯｸ1をｺｲﾝに変換</list>
+    <list>周囲のﾌﾞﾛｯｸ4を消去</list><list>お店</list><list>ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人</list>
+    <list>ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人</list><list>ﾌｧｲﾔｰｳｫｰﾙ 上へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 下へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 左へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 右へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで上下</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで左右</list><list>壁まで上下移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>壁まで左右移動するﾄﾞｯｽﾝｽﾝ</list><list>乗ると左右移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>火山</list><list>逆火山</list><list>動くＴ字型</list><list>動くＴ字型 ２個連続</list>
+    <list>ロープ</list><list>ロープ  ２本連続</list><list>乗れるｶｲｵｰﾙ 方向ｷｰで移動</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 上へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 下へ速射</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 左へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 右へ速射</list>
+    <list>得点で開く扉</list><list>ｺｲﾝを全部取ると開く扉</list>
+    <list>周囲10ﾊﾟｰﾂ以内のｺｲﾝを全部取ると開く扉</list><list>左15ﾊﾟｰﾂ以内の雑魚敵を全部倒すと開く扉</list>
+    <list>人間大砲　右向き</list><list>人間大砲　左向き</list><list>人間大砲　天井</list><list>人間大砲　右の壁</list>
+    <list>人間大砲　左の壁</list><list>高性能ジャンプ台</list><list>左へ飛ばすバネ</list><list>右へ飛ばすバネ</list>
+    <list>ｽﾎﾟｯﾄ処理　小</list><list>ｽﾎﾟｯﾄ処理　中</list><list>ｽﾎﾟｯﾄ処理　大</list><list>ｽﾎﾟｯﾄ処理　終了</list>
+    <list>ｽﾎﾟｯﾄ処理 範囲拡大ｱｲﾃﾑ</list><list>人食いﾜｶﾒ 上へ拡大縮小</list>
+    <list>人食いﾜｶﾒ 下へ拡大縮小</list><list>人食いﾜｶﾒ 中央から拡大縮小</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙｾﾚｸﾄの人</list><list>ﾌﾞﾛｯｸ1破壊砲発射 右</list><list>ﾌﾞﾛｯｸ1破壊砲発射 左</list>
+    <list>ﾌﾞﾛｯｸ1破壊砲発射 上</list><list>ﾌﾞﾛｯｸ1破壊砲発射 下</list><list>グレネード５発</list>
+    <list>回転するﾄﾞｯｽﾝｽﾝ 左回り</list><list>回転するﾄﾞｯｽﾝｽﾝ 右回り</list><list>回転する巨大ﾄﾞｯｽﾝｽﾝ 左回り</list>
+    <list>回転する巨大ﾄﾞｯｽﾝｽﾝ 右回り</list><list>画面内で右強制ｽｸﾛｰﾙ</list><list>画面内で左強制ｽｸﾛｰﾙ</list>
+    <list>画面内で上強制ｽｸﾛｰﾙ</list><list>画面内で下強制ｽｸﾛｰﾙ</list><list>画面内で右上強制ｽｸﾛｰﾙ</list>
+    <list>画面内で右下強制ｽｸﾛｰﾙ</list><list>画面内で左上強制ｽｸﾛｰﾙ</list><list>画面内で左下強制ｽｸﾛｰﾙ</list>
+    <list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞｱｯﾌﾟ</list><list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞﾀﾞｳﾝ</list><list>画面内で全方向ｽｸﾛｰﾙ</list>
+    <list>画面内でｽｸﾛｰﾙ停止</list><list>自分が重なると右強制ｽｸﾛｰﾙ</list><list>自分が重なると上強制ｽｸﾛｰﾙ</list>
+    <list>自分が重なると全方向ｽｸﾛｰﾙ</list><list>画面内で横固定縦自由ｽｸﾛｰﾙ</list><list>画面内で右強制縦自由ｽｸﾛｰﾙ</list>
+    <list>画面内で左進行用の視界</list><list>画面内で右進行用の視界</list><list>曲線による上り坂</list><list>曲線による下り坂</list>
+    <list>曲線による上り坂  線のみ</list><list>曲線による下り坂  線のみ</list><list>乗れる円</list><list>乗れる円  大</list>
+    <list>乗れる半円</list><list>乗れる半円  線のみ</list><list>人口太陽  左回り</list><list>人口太陽  右回り</list>
+    <list>人口太陽 棒5本 左回り</list><list>人口太陽 棒5本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ 左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ 右回り</list><list>上下移動する半円 下から</list><list>上下移動する半円 上から</list>
+    <list>乗ると上がる半円</list><list>乗ると下がる半円</list><list>柱付きの半円</list><list>乗ると下がる円</list>
+    <list>乗ると下がる円 降りると上がる</list><list>上下移動する円 上から</list><list>上下移動する円 下から</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 左回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速右回り</list><list>落ちるだけのﾄﾞｯｽﾝｽﾝ</list><list>動かないドッスンスン</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝ</list><list>上へ押せるﾄﾞｯｽﾝｽﾝ</list><list>その場で跳ねるﾄﾞｯｽﾝｽﾝ</list>
+    <list>長いロープ</list> <list>長いロープ  右から</list><list>長いﾛｰﾌﾟ つかまると動く</list>
+    <list>長いﾛｰﾌﾟ つかまると左から動く</list><list>左向きのトゲ４つ</list>
+    <list>右向きのトゲ４つ</list><list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ここへ全部持って行くとｸﾘｱ)</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ﾛｯｸ機能付き)</list><list>右へ一方通行</list>
+    <list>左へ一方通行</list><list>上へ一方通行</list><list>下へ一方通行</list><list>右へ一方通行 表示なし</list><list>左へ一方通行 表示なし</list>
+    <list>上へ一方通行 表示なし</list><list>下へ一方通行 表示なし</list><list>ゆれる棒</list><list>ゆれる棒  左から</list>
+    <list>ゆれる棒  広角</list><list>ゆれる棒 広角 左から</list><list>跳ねる円</list><list>跳ねる円  大</list><list>下向きﾜｰﾌﾟ土管1</list>
+    <list>下向きﾜｰﾌﾟ土管2</list><list>下向きﾜｰﾌﾟ土管3</list><list>下向きﾜｰﾌﾟ土管4</list><list>下向き土管1 上向き1につながる</list>
+    <list>下向き土管2 上向き2につながる</list><list>下向き土管3 上向き3につながる</list><list>下向き土管4 上向き4につながる</list>
+    <list>ｺﾝﾃｨﾆｭｰ 残り人数のみ</list><list>?ﾌﾞﾛｯｸ ｺﾝﾃｨﾆｭｰ</list><list>左向き土管1 左右1につながる</list>
+    <list>左向き土管2 左右2につながる</list><list>左向き土管3 左右3につながる</list><list>左向き土管4 左右4につながる</list>
+    <list>右向き土管1 左右1につながる</list><list>右向き土管2 左右2につながる</list><list>右向き土管3 左右3につながる</list>
+    <list>右向き土管4 左右4につながる</list><list>ｽｲｯﾁ 重なるとON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ式の扉 ONで開く</list>
+    <list>ｽｲｯﾁ式の扉 ONで閉まる</list><list>ｽｲｯﾁ式ﾄｹﾞ ONでﾌﾞﾛｯｸ4</list><list>ｽｲｯﾁ式ﾄｹﾞ OFFでﾌﾞﾛｯｸ4</list>
+    <list>ｽｲｯﾁ式ﾄｹﾞ ONで消える</list><list>ｽｲｯﾁ式ﾄｹﾞ ONで出現</list><list>ｽｲｯﾁ式ﾊｼｺﾞ ONで消える</list>
+    <list>ｽｲｯﾁ式ﾊｼｺﾞ ONで出現</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで出現</list>
+    <list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで出現</list><list>ｽｲｯﾁ式動く床 ONで上</list>
+    <list>ｽｲｯﾁ式動く床 ONで下</list><list>ｽｲｯﾁ式動く床 ONで右</list><list>ｽｲｯﾁ式動く床 ONで左</list>
+    <list>ｽｲｯﾁ式長く動く床 ONで上</list> <list>ｽｲｯﾁ式長く動く床 ONで右</list>
+    <list>ｽｲｯﾁ 重なるとON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>連動ｽｲｯﾁ 重なるとON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list><list>連動ｽｲｯﾁ ↑ｷｰでON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から上</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から上</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から下</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から下</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左回り</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで出現</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで左</list><list>ｽｲｯﾁ式動くT字型 ONで右</list><list>ｽｲｯﾁ式速く動くT字型 ONで左</list>
+    <list>ｽｲｯﾁ式速く動くT字型 ONで右</list><list>ｽｲｯﾁ式動くT字型 ONで左から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から左</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで右から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から右</list>
+<!--追加したぞ-->
+    <list>ＫＥＹ１</list><list>ＫＥＹ２</list><list>ＫＥＹ１で開く扉</list><list>ＫＥＹ２で開く扉</list>
+    <list>ＫＥＹ１  落ちる</list><list>ＫＥＹ２  落ちる</list><list>ＫＥＹ１が３つで開く扉</list><list>ＫＥＹ２が３つで開く扉</list>
+    <list>乗ると壊れるブロック</list><list>KEY1が3つでONの動作の人</list>
+    <list>KEY2が3つでONの動作の人</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで出現</list>
+    <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+  </param>
+  
+  <!-- 動く床(左右移動x2)の設定ポイントここまで -->
+   
+  <!-- コインが出る？ブロックの設定ここから　ポイント７ -->
+      
+  <param name="coin1_type" desc="コインが出る？ブロックのタイプ" type="list" value="1" category="仕掛け" chip="coin1">
+    <list>コインが出る？ブロック</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
+    <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
+    <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
+    <list>右ドッスンスン</list><list>跳ねるドッスンスン</list><list>上がらないﾄﾞｯｽﾝｽﾝ</list>
+    <list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 上</list><list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 下</list><list>上下ドッスンスン</list>
+    <list>左右ドッスンスン</list><list>ロングレンジドッスンスン</list>
+    <list>ファイヤーバー２本</list><list>ﾌｧｲﾔｰﾊﾞｰ3本 左回り</list> <list>ﾌｧｲﾔｰﾊﾞｰ3本 右回り</list>
+    <list>隠しブロック</list><list>右にブロック１が出る</list><list>左にブロック１が出る</list>
+    <list>上にハシゴが出る</list><list>シーソー</list><list>シーソー　左が下</list><list>シーソー　右が下</list>
+    <list>ブランコ</list><list>ブランコ　２個連続</list><list>スウィングバー　左</list>
+    <list>スウィングバー　右</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 左</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 右</list>
+    <list>上にﾌﾞﾛｯｸ1が出る</list><list>上にﾌﾞﾛｯｸ1が2つ出る</list><list>右にﾌﾞﾛｯｸ1が2つ出る</list>
+    <list>左にブロック１が２つ出る</list><list>ジャンプ台が出る</list><list>トゲが出る</list>
+    <list>周囲のﾄｹﾞをｺｲﾝに変換</list><list>周囲のﾄｹﾞをﾌﾞﾛｯｸ1に変換</list><list>周囲のﾌﾞﾛｯｸ1をｺｲﾝに変換</list>
+    <list>周囲のﾌﾞﾛｯｸ4を消去</list><list>お店</list><list>ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人</list>
+    <list>ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人</list><list>ﾌｧｲﾔｰｳｫｰﾙ 上へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 下へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 左へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 右へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで上下</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで左右</list><list>壁まで上下移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>壁まで左右移動するﾄﾞｯｽﾝｽﾝ</list><list>乗ると左右移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>火山</list><list>逆火山</list><list>動くＴ字型</list><list>動くＴ字型 ２個連続</list>
+    <list>ロープ</list><list>ロープ  ２本連続</list><list>乗れるｶｲｵｰﾙ 方向ｷｰで移動</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 上へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 下へ速射</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 左へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 右へ速射</list>
+    <list>得点で開く扉</list><list>ｺｲﾝを全部取ると開く扉</list>
+    <list>周囲10ﾊﾟｰﾂ以内のｺｲﾝを全部取ると開く扉</list><list>左15ﾊﾟｰﾂ以内の雑魚敵を全部倒すと開く扉</list>
+    <list>人間大砲　右向き</list><list>人間大砲　左向き</list><list>人間大砲　天井</list><list>人間大砲　右の壁</list>
+    <list>人間大砲　左の壁</list><list>高性能ジャンプ台</list><list>左へ飛ばすバネ</list><list>右へ飛ばすバネ</list>
+    <list>ｽﾎﾟｯﾄ処理　小</list><list>ｽﾎﾟｯﾄ処理　中</list><list>ｽﾎﾟｯﾄ処理　大</list><list>ｽﾎﾟｯﾄ処理　終了</list>
+    <list>ｽﾎﾟｯﾄ処理 範囲拡大ｱｲﾃﾑ</list><list>人食いﾜｶﾒ 上へ拡大縮小</list>
+    <list>人食いﾜｶﾒ 下へ拡大縮小</list><list>人食いﾜｶﾒ 中央から拡大縮小</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙｾﾚｸﾄの人</list><list>ﾌﾞﾛｯｸ1破壊砲発射 右</list><list>ﾌﾞﾛｯｸ1破壊砲発射 左</list>
+    <list>ﾌﾞﾛｯｸ1破壊砲発射 上</list><list>ﾌﾞﾛｯｸ1破壊砲発射 下</list><list>グレネード５発</list>
+    <list>回転するﾄﾞｯｽﾝｽﾝ 左回り</list><list>回転するﾄﾞｯｽﾝｽﾝ 右回り</list><list>回転する巨大ﾄﾞｯｽﾝｽﾝ 左回り</list>
+    <list>回転する巨大ﾄﾞｯｽﾝｽﾝ 右回り</list><list>画面内で右強制ｽｸﾛｰﾙ</list><list>画面内で左強制ｽｸﾛｰﾙ</list>
+    <list>画面内で上強制ｽｸﾛｰﾙ</list><list>画面内で下強制ｽｸﾛｰﾙ</list><list>画面内で右上強制ｽｸﾛｰﾙ</list>
+    <list>画面内で右下強制ｽｸﾛｰﾙ</list><list>画面内で左上強制ｽｸﾛｰﾙ</list><list>画面内で左下強制ｽｸﾛｰﾙ</list>
+    <list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞｱｯﾌﾟ</list><list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞﾀﾞｳﾝ</list><list>画面内で全方向ｽｸﾛｰﾙ</list>
+    <list>画面内でｽｸﾛｰﾙ停止</list><list>自分が重なると右強制ｽｸﾛｰﾙ</list><list>自分が重なると上強制ｽｸﾛｰﾙ</list>
+    <list>自分が重なると全方向ｽｸﾛｰﾙ</list><list>画面内で横固定縦自由ｽｸﾛｰﾙ</list><list>画面内で右強制縦自由ｽｸﾛｰﾙ</list>
+    <list>画面内で左進行用の視界</list><list>画面内で右進行用の視界</list><list>曲線による上り坂</list><list>曲線による下り坂</list>
+    <list>曲線による上り坂  線のみ</list><list>曲線による下り坂  線のみ</list><list>乗れる円</list><list>乗れる円  大</list>
+    <list>乗れる半円</list><list>乗れる半円  線のみ</list><list>人口太陽  左回り</list><list>人口太陽  右回り</list>
+    <list>人口太陽 棒5本 左回り</list><list>人口太陽 棒5本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ 左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ 右回り</list><list>上下移動する半円 下から</list><list>上下移動する半円 上から</list>
+    <list>乗ると上がる半円</list><list>乗ると下がる半円</list><list>柱付きの半円</list><list>乗ると下がる円</list>
+    <list>乗ると下がる円 降りると上がる</list><list>上下移動する円 上から</list><list>上下移動する円 下から</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 左回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速右回り</list><list>落ちるだけのﾄﾞｯｽﾝｽﾝ</list><list>動かないドッスンスン</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝ</list><list>上へ押せるﾄﾞｯｽﾝｽﾝ</list><list>その場で跳ねるﾄﾞｯｽﾝｽﾝ</list>
+    <list>長いロープ</list> <list>長いロープ  右から</list><list>長いﾛｰﾌﾟ つかまると動く</list>
+    <list>長いﾛｰﾌﾟ つかまると左から動く</list><list>左向きのトゲ４つ</list>
+    <list>右向きのトゲ４つ</list><list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ここへ全部持って行くとｸﾘｱ)</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ﾛｯｸ機能付き)</list><list>右へ一方通行</list>
+    <list>左へ一方通行</list><list>上へ一方通行</list><list>下へ一方通行</list><list>右へ一方通行 表示なし</list><list>左へ一方通行 表示なし</list>
+    <list>上へ一方通行 表示なし</list><list>下へ一方通行 表示なし</list><list>ゆれる棒</list><list>ゆれる棒  左から</list>
+    <list>ゆれる棒  広角</list><list>ゆれる棒 広角 左から</list><list>跳ねる円</list><list>跳ねる円  大</list><list>下向きﾜｰﾌﾟ土管1</list>
+    <list>下向きﾜｰﾌﾟ土管2</list><list>下向きﾜｰﾌﾟ土管3</list><list>下向きﾜｰﾌﾟ土管4</list><list>下向き土管1 上向き1につながる</list>
+    <list>下向き土管2 上向き2につながる</list><list>下向き土管3 上向き3につながる</list><list>下向き土管4 上向き4につながる</list>
+    <list>ｺﾝﾃｨﾆｭｰ 残り人数のみ</list><list>?ﾌﾞﾛｯｸ ｺﾝﾃｨﾆｭｰ</list><list>左向き土管1 左右1につながる</list>
+    <list>左向き土管2 左右2につながる</list><list>左向き土管3 左右3につながる</list><list>左向き土管4 左右4につながる</list>
+    <list>右向き土管1 左右1につながる</list><list>右向き土管2 左右2につながる</list><list>右向き土管3 左右3につながる</list>
+    <list>右向き土管4 左右4につながる</list><list>ｽｲｯﾁ 重なるとON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ式の扉 ONで開く</list>
+    <list>ｽｲｯﾁ式の扉 ONで閉まる</list><list>ｽｲｯﾁ式ﾄｹﾞ ONでﾌﾞﾛｯｸ4</list><list>ｽｲｯﾁ式ﾄｹﾞ OFFでﾌﾞﾛｯｸ4</list>
+    <list>ｽｲｯﾁ式ﾄｹﾞ ONで消える</list><list>ｽｲｯﾁ式ﾄｹﾞ ONで出現</list><list>ｽｲｯﾁ式ﾊｼｺﾞ ONで消える</list>
+    <list>ｽｲｯﾁ式ﾊｼｺﾞ ONで出現</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで出現</list>
+    <list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで出現</list><list>ｽｲｯﾁ式動く床 ONで上</list>
+    <list>ｽｲｯﾁ式動く床 ONで下</list><list>ｽｲｯﾁ式動く床 ONで右</list><list>ｽｲｯﾁ式動く床 ONで左</list>
+    <list>ｽｲｯﾁ式長く動く床 ONで上</list> <list>ｽｲｯﾁ式長く動く床 ONで右</list>
+    <list>ｽｲｯﾁ 重なるとON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>連動ｽｲｯﾁ 重なるとON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list><list>連動ｽｲｯﾁ ↑ｷｰでON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から上</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から上</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から下</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から下</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左回り</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで出現</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで左</list><list>ｽｲｯﾁ式動くT字型 ONで右</list><list>ｽｲｯﾁ式速く動くT字型 ONで左</list>
+    <list>ｽｲｯﾁ式速く動くT字型 ONで右</list><list>ｽｲｯﾁ式動くT字型 ONで左から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から左</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで右から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から右</list>
+<!--追加したぞ-->
+    <list>ＫＥＹ１</list><list>ＫＥＹ２</list><list>ＫＥＹ１で開く扉</list><list>ＫＥＹ２で開く扉</list>
+    <list>ＫＥＹ１  落ちる</list><list>ＫＥＹ２  落ちる</list><list>ＫＥＹ１が３つで開く扉</list><list>ＫＥＹ２が３つで開く扉</list>
+    <list>乗ると壊れるブロック</list><list>KEY1が3つでONの動作の人</list>
+    <list>KEY2が3つでONの動作の人</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで出現</list>
+    <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+  </param>
+  
+  <!-- コインが出る？ブロックの設定ポイントここまで -->
+  
+  <!-- コイン３枚が出る？ブロックの設定ここから　ポイント８ -->
+  
+  <param name="coin3_type" desc="コイン３枚が出る？ブロックのタイプ" type="list" value="1" category="仕掛け" chip="coin3">
+    <list>コイン３枚が出る？ブロック</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
+    <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
+    <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
+    <list>右ドッスンスン</list><list>跳ねるドッスンスン</list><list>上がらないﾄﾞｯｽﾝｽﾝ</list>
+    <list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 上</list><list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 下</list><list>上下ドッスンスン</list>
+    <list>左右ドッスンスン</list><list>ロングレンジドッスンスン</list>
+    <list>ファイヤーバー２本</list><list>ﾌｧｲﾔｰﾊﾞｰ3本 左回り</list> <list>ﾌｧｲﾔｰﾊﾞｰ3本 右回り</list>
+    <list>隠しブロック</list><list>右にブロック１が出る</list><list>左にブロック１が出る</list>
+    <list>上にハシゴが出る</list><list>シーソー</list><list>シーソー　左が下</list><list>シーソー　右が下</list>
+    <list>ブランコ</list><list>ブランコ　２個連続</list><list>スウィングバー　左</list>
+    <list>スウィングバー　右</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 左</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 右</list>
+    <list>上にﾌﾞﾛｯｸ1が出る</list><list>上にﾌﾞﾛｯｸ1が2つ出る</list><list>右にﾌﾞﾛｯｸ1が2つ出る</list>
+    <list>左にブロック１が２つ出る</list><list>ジャンプ台が出る</list><list>トゲが出る</list>
+    <list>周囲のﾄｹﾞをｺｲﾝに変換</list><list>周囲のﾄｹﾞをﾌﾞﾛｯｸ1に変換</list><list>周囲のﾌﾞﾛｯｸ1をｺｲﾝに変換</list>
+    <list>周囲のﾌﾞﾛｯｸ4を消去</list><list>お店</list><list>ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人</list>
+    <list>ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人</list><list>ﾌｧｲﾔｰｳｫｰﾙ 上へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 下へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 左へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 右へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで上下</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで左右</list><list>壁まで上下移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>壁まで左右移動するﾄﾞｯｽﾝｽﾝ</list><list>乗ると左右移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>火山</list><list>逆火山</list><list>動くＴ字型</list><list>動くＴ字型 ２個連続</list>
+    <list>ロープ</list><list>ロープ  ２本連続</list><list>乗れるｶｲｵｰﾙ 方向ｷｰで移動</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 上へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 下へ速射</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 左へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 右へ速射</list>
+    <list>得点で開く扉</list><list>ｺｲﾝを全部取ると開く扉</list>
+    <list>周囲10ﾊﾟｰﾂ以内のｺｲﾝを全部取ると開く扉</list><list>左15ﾊﾟｰﾂ以内の雑魚敵を全部倒すと開く扉</list>
+    <list>人間大砲　右向き</list><list>人間大砲　左向き</list><list>人間大砲　天井</list><list>人間大砲　右の壁</list>
+    <list>人間大砲　左の壁</list><list>高性能ジャンプ台</list><list>左へ飛ばすバネ</list><list>右へ飛ばすバネ</list>
+    <list>ｽﾎﾟｯﾄ処理　小</list><list>ｽﾎﾟｯﾄ処理　中</list><list>ｽﾎﾟｯﾄ処理　大</list><list>ｽﾎﾟｯﾄ処理　終了</list>
+    <list>ｽﾎﾟｯﾄ処理 範囲拡大ｱｲﾃﾑ</list><list>人食いﾜｶﾒ 上へ拡大縮小</list>
+    <list>人食いﾜｶﾒ 下へ拡大縮小</list><list>人食いﾜｶﾒ 中央から拡大縮小</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙｾﾚｸﾄの人</list><list>ﾌﾞﾛｯｸ1破壊砲発射 右</list><list>ﾌﾞﾛｯｸ1破壊砲発射 左</list>
+    <list>ﾌﾞﾛｯｸ1破壊砲発射 上</list><list>ﾌﾞﾛｯｸ1破壊砲発射 下</list><list>グレネード５発</list>
+    <list>回転するﾄﾞｯｽﾝｽﾝ 左回り</list><list>回転するﾄﾞｯｽﾝｽﾝ 右回り</list><list>回転する巨大ﾄﾞｯｽﾝｽﾝ 左回り</list>
+    <list>回転する巨大ﾄﾞｯｽﾝｽﾝ 右回り</list><list>画面内で右強制ｽｸﾛｰﾙ</list><list>画面内で左強制ｽｸﾛｰﾙ</list>
+    <list>画面内で上強制ｽｸﾛｰﾙ</list><list>画面内で下強制ｽｸﾛｰﾙ</list><list>画面内で右上強制ｽｸﾛｰﾙ</list>
+    <list>画面内で右下強制ｽｸﾛｰﾙ</list><list>画面内で左上強制ｽｸﾛｰﾙ</list><list>画面内で左下強制ｽｸﾛｰﾙ</list>
+    <list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞｱｯﾌﾟ</list><list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞﾀﾞｳﾝ</list><list>画面内で全方向ｽｸﾛｰﾙ</list>
+    <list>画面内でｽｸﾛｰﾙ停止</list><list>自分が重なると右強制ｽｸﾛｰﾙ</list><list>自分が重なると上強制ｽｸﾛｰﾙ</list>
+    <list>自分が重なると全方向ｽｸﾛｰﾙ</list><list>画面内で横固定縦自由ｽｸﾛｰﾙ</list><list>画面内で右強制縦自由ｽｸﾛｰﾙ</list>
+    <list>画面内で左進行用の視界</list><list>画面内で右進行用の視界</list><list>曲線による上り坂</list><list>曲線による下り坂</list>
+    <list>曲線による上り坂  線のみ</list><list>曲線による下り坂  線のみ</list><list>乗れる円</list><list>乗れる円  大</list>
+    <list>乗れる半円</list><list>乗れる半円  線のみ</list><list>人口太陽  左回り</list><list>人口太陽  右回り</list>
+    <list>人口太陽 棒5本 左回り</list><list>人口太陽 棒5本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ 左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ 右回り</list><list>上下移動する半円 下から</list><list>上下移動する半円 上から</list>
+    <list>乗ると上がる半円</list><list>乗ると下がる半円</list><list>柱付きの半円</list><list>乗ると下がる円</list>
+    <list>乗ると下がる円 降りると上がる</list><list>上下移動する円 上から</list><list>上下移動する円 下から</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 左回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速右回り</list><list>落ちるだけのﾄﾞｯｽﾝｽﾝ</list><list>動かないドッスンスン</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝ</list><list>上へ押せるﾄﾞｯｽﾝｽﾝ</list><list>その場で跳ねるﾄﾞｯｽﾝｽﾝ</list>
+    <list>長いロープ</list> <list>長いロープ  右から</list><list>長いﾛｰﾌﾟ つかまると動く</list>
+    <list>長いﾛｰﾌﾟ つかまると左から動く</list><list>左向きのトゲ４つ</list>
+    <list>右向きのトゲ４つ</list><list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ここへ全部持って行くとｸﾘｱ)</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ﾛｯｸ機能付き)</list><list>右へ一方通行</list>
+    <list>左へ一方通行</list><list>上へ一方通行</list><list>下へ一方通行</list><list>右へ一方通行 表示なし</list><list>左へ一方通行 表示なし</list>
+    <list>上へ一方通行 表示なし</list><list>下へ一方通行 表示なし</list><list>ゆれる棒</list><list>ゆれる棒  左から</list>
+    <list>ゆれる棒  広角</list><list>ゆれる棒 広角 左から</list><list>跳ねる円</list><list>跳ねる円  大</list><list>下向きﾜｰﾌﾟ土管1</list>
+    <list>下向きﾜｰﾌﾟ土管2</list><list>下向きﾜｰﾌﾟ土管3</list><list>下向きﾜｰﾌﾟ土管4</list><list>下向き土管1 上向き1につながる</list>
+    <list>下向き土管2 上向き2につながる</list><list>下向き土管3 上向き3につながる</list><list>下向き土管4 上向き4につながる</list>
+    <list>ｺﾝﾃｨﾆｭｰ 残り人数のみ</list><list>?ﾌﾞﾛｯｸ ｺﾝﾃｨﾆｭｰ</list><list>左向き土管1 左右1につながる</list>
+    <list>左向き土管2 左右2につながる</list><list>左向き土管3 左右3につながる</list><list>左向き土管4 左右4につながる</list>
+    <list>右向き土管1 左右1につながる</list><list>右向き土管2 左右2につながる</list><list>右向き土管3 左右3につながる</list>
+    <list>右向き土管4 左右4につながる</list><list>ｽｲｯﾁ 重なるとON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ式の扉 ONで開く</list>
+    <list>ｽｲｯﾁ式の扉 ONで閉まる</list><list>ｽｲｯﾁ式ﾄｹﾞ ONでﾌﾞﾛｯｸ4</list><list>ｽｲｯﾁ式ﾄｹﾞ OFFでﾌﾞﾛｯｸ4</list>
+    <list>ｽｲｯﾁ式ﾄｹﾞ ONで消える</list><list>ｽｲｯﾁ式ﾄｹﾞ ONで出現</list><list>ｽｲｯﾁ式ﾊｼｺﾞ ONで消える</list>
+    <list>ｽｲｯﾁ式ﾊｼｺﾞ ONで出現</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで出現</list>
+    <list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで出現</list><list>ｽｲｯﾁ式動く床 ONで上</list>
+    <list>ｽｲｯﾁ式動く床 ONで下</list><list>ｽｲｯﾁ式動く床 ONで右</list><list>ｽｲｯﾁ式動く床 ONで左</list>
+    <list>ｽｲｯﾁ式長く動く床 ONで上</list> <list>ｽｲｯﾁ式長く動く床 ONで右</list>
+    <list>ｽｲｯﾁ 重なるとON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>連動ｽｲｯﾁ 重なるとON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list><list>連動ｽｲｯﾁ ↑ｷｰでON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から上</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から上</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から下</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から下</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左回り</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで出現</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで左</list><list>ｽｲｯﾁ式動くT字型 ONで右</list><list>ｽｲｯﾁ式速く動くT字型 ONで左</list>
+    <list>ｽｲｯﾁ式速く動くT字型 ONで右</list><list>ｽｲｯﾁ式動くT字型 ONで左から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から左</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで右から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から右</list>
+<!--追加したぞ-->
+    <list>ＫＥＹ１</list><list>ＫＥＹ２</list><list>ＫＥＹ１で開く扉</list><list>ＫＥＹ２で開く扉</list>
+    <list>ＫＥＹ１  落ちる</list><list>ＫＥＹ２  落ちる</list><list>ＫＥＹ１が３つで開く扉</list><list>ＫＥＹ２が３つで開く扉</list>
+    <list>乗ると壊れるブロック</list><list>KEY1が3つでONの動作の人</list>
+    <list>KEY2が3つでONの動作の人</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで出現</list>
+    <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+  </param>
+  
+  <!-- コイン３枚が出る？ブロックの設定ポイントここまで -->
+  
+  <!-- リンク土管１の設定ここから　ポイント９ -->
+  
+  <param name="dokan1_type" desc="リンク土管１のタイプ" type="list" value="1" category="仕掛け" chip="dokan1">
+    <list>リンク土管１</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
+    <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
+    <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
+    <list>右ドッスンスン</list><list>跳ねるドッスンスン</list><list>上がらないﾄﾞｯｽﾝｽﾝ</list>
+    <list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 上</list><list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 下</list><list>上下ドッスンスン</list>
+    <list>左右ドッスンスン</list><list>ロングレンジドッスンスン</list>
+    <list>ファイヤーバー２本</list><list>ﾌｧｲﾔｰﾊﾞｰ3本 左回り</list> <list>ﾌｧｲﾔｰﾊﾞｰ3本 右回り</list>
+    <list>隠しブロック</list><list>右にブロック１が出る</list><list>左にブロック１が出る</list>
+    <list>上にハシゴが出る</list><list>シーソー</list><list>シーソー　左が下</list><list>シーソー　右が下</list>
+    <list>ブランコ</list><list>ブランコ　２個連続</list><list>スウィングバー　左</list>
+    <list>スウィングバー　右</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 左</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 右</list>
+    <list>上にﾌﾞﾛｯｸ1が出る</list><list>上にﾌﾞﾛｯｸ1が2つ出る</list><list>右にﾌﾞﾛｯｸ1が2つ出る</list>
+    <list>左にブロック１が２つ出る</list><list>ジャンプ台が出る</list><list>トゲが出る</list>
+    <list>周囲のﾄｹﾞをｺｲﾝに変換</list><list>周囲のﾄｹﾞをﾌﾞﾛｯｸ1に変換</list><list>周囲のﾌﾞﾛｯｸ1をｺｲﾝに変換</list>
+    <list>周囲のﾌﾞﾛｯｸ4を消去</list><list>お店</list><list>ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人</list>
+    <list>ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人</list><list>ﾌｧｲﾔｰｳｫｰﾙ 上へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 下へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 左へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 右へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで上下</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで左右</list><list>壁まで上下移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>壁まで左右移動するﾄﾞｯｽﾝｽﾝ</list><list>乗ると左右移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>火山</list><list>逆火山</list><list>動くＴ字型</list><list>動くＴ字型 ２個連続</list>
+    <list>ロープ</list><list>ロープ  ２本連続</list><list>乗れるｶｲｵｰﾙ 方向ｷｰで移動</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 上へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 下へ速射</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 左へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 右へ速射</list>
+    <list>得点で開く扉</list><list>ｺｲﾝを全部取ると開く扉</list>
+    <list>周囲10ﾊﾟｰﾂ以内のｺｲﾝを全部取ると開く扉</list><list>左15ﾊﾟｰﾂ以内の雑魚敵を全部倒すと開く扉</list>
+    <list>人間大砲　右向き</list><list>人間大砲　左向き</list><list>人間大砲　天井</list><list>人間大砲　右の壁</list>
+    <list>人間大砲　左の壁</list><list>高性能ジャンプ台</list><list>左へ飛ばすバネ</list><list>右へ飛ばすバネ</list>
+    <list>ｽﾎﾟｯﾄ処理　小</list><list>ｽﾎﾟｯﾄ処理　中</list><list>ｽﾎﾟｯﾄ処理　大</list><list>ｽﾎﾟｯﾄ処理　終了</list>
+    <list>ｽﾎﾟｯﾄ処理 範囲拡大ｱｲﾃﾑ</list><list>人食いﾜｶﾒ 上へ拡大縮小</list>
+    <list>人食いﾜｶﾒ 下へ拡大縮小</list><list>人食いﾜｶﾒ 中央から拡大縮小</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙｾﾚｸﾄの人</list><list>ﾌﾞﾛｯｸ1破壊砲発射 右</list><list>ﾌﾞﾛｯｸ1破壊砲発射 左</list>
+    <list>ﾌﾞﾛｯｸ1破壊砲発射 上</list><list>ﾌﾞﾛｯｸ1破壊砲発射 下</list><list>グレネード５発</list>
+    <list>回転するﾄﾞｯｽﾝｽﾝ 左回り</list><list>回転するﾄﾞｯｽﾝｽﾝ 右回り</list><list>回転する巨大ﾄﾞｯｽﾝｽﾝ 左回り</list>
+    <list>回転する巨大ﾄﾞｯｽﾝｽﾝ 右回り</list><list>画面内で右強制ｽｸﾛｰﾙ</list><list>画面内で左強制ｽｸﾛｰﾙ</list>
+    <list>画面内で上強制ｽｸﾛｰﾙ</list><list>画面内で下強制ｽｸﾛｰﾙ</list><list>画面内で右上強制ｽｸﾛｰﾙ</list>
+    <list>画面内で右下強制ｽｸﾛｰﾙ</list><list>画面内で左上強制ｽｸﾛｰﾙ</list><list>画面内で左下強制ｽｸﾛｰﾙ</list>
+    <list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞｱｯﾌﾟ</list><list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞﾀﾞｳﾝ</list><list>画面内で全方向ｽｸﾛｰﾙ</list>
+    <list>画面内でｽｸﾛｰﾙ停止</list><list>自分が重なると右強制ｽｸﾛｰﾙ</list><list>自分が重なると上強制ｽｸﾛｰﾙ</list>
+    <list>自分が重なると全方向ｽｸﾛｰﾙ</list><list>画面内で横固定縦自由ｽｸﾛｰﾙ</list><list>画面内で右強制縦自由ｽｸﾛｰﾙ</list>
+    <list>画面内で左進行用の視界</list><list>画面内で右進行用の視界</list><list>曲線による上り坂</list><list>曲線による下り坂</list>
+    <list>曲線による上り坂  線のみ</list><list>曲線による下り坂  線のみ</list><list>乗れる円</list><list>乗れる円  大</list>
+    <list>乗れる半円</list><list>乗れる半円  線のみ</list><list>人口太陽  左回り</list><list>人口太陽  右回り</list>
+    <list>人口太陽 棒5本 左回り</list><list>人口太陽 棒5本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ 左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ 右回り</list><list>上下移動する半円 下から</list><list>上下移動する半円 上から</list>
+    <list>乗ると上がる半円</list><list>乗ると下がる半円</list><list>柱付きの半円</list><list>乗ると下がる円</list>
+    <list>乗ると下がる円 降りると上がる</list><list>上下移動する円 上から</list><list>上下移動する円 下から</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 左回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速右回り</list><list>落ちるだけのﾄﾞｯｽﾝｽﾝ</list><list>動かないドッスンスン</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝ</list><list>上へ押せるﾄﾞｯｽﾝｽﾝ</list><list>その場で跳ねるﾄﾞｯｽﾝｽﾝ</list>
+    <list>長いロープ</list> <list>長いロープ  右から</list><list>長いﾛｰﾌﾟ つかまると動く</list>
+    <list>長いﾛｰﾌﾟ つかまると左から動く</list><list>左向きのトゲ４つ</list>
+    <list>右向きのトゲ４つ</list><list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ここへ全部持って行くとｸﾘｱ)</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ﾛｯｸ機能付き)</list><list>右へ一方通行</list>
+    <list>左へ一方通行</list><list>上へ一方通行</list><list>下へ一方通行</list><list>右へ一方通行 表示なし</list><list>左へ一方通行 表示なし</list>
+    <list>上へ一方通行 表示なし</list><list>下へ一方通行 表示なし</list><list>ゆれる棒</list><list>ゆれる棒  左から</list>
+    <list>ゆれる棒  広角</list><list>ゆれる棒 広角 左から</list><list>跳ねる円</list><list>跳ねる円  大</list><list>下向きﾜｰﾌﾟ土管1</list>
+    <list>下向きﾜｰﾌﾟ土管2</list><list>下向きﾜｰﾌﾟ土管3</list><list>下向きﾜｰﾌﾟ土管4</list><list>下向き土管1 上向き1につながる</list>
+    <list>下向き土管2 上向き2につながる</list><list>下向き土管3 上向き3につながる</list><list>下向き土管4 上向き4につながる</list>
+    <list>ｺﾝﾃｨﾆｭｰ 残り人数のみ</list><list>?ﾌﾞﾛｯｸ ｺﾝﾃｨﾆｭｰ</list><list>左向き土管1 左右1につながる</list>
+    <list>左向き土管2 左右2につながる</list><list>左向き土管3 左右3につながる</list><list>左向き土管4 左右4につながる</list>
+    <list>右向き土管1 左右1につながる</list><list>右向き土管2 左右2につながる</list><list>右向き土管3 左右3につながる</list>
+    <list>右向き土管4 左右4につながる</list><list>ｽｲｯﾁ 重なるとON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ式の扉 ONで開く</list>
+    <list>ｽｲｯﾁ式の扉 ONで閉まる</list><list>ｽｲｯﾁ式ﾄｹﾞ ONでﾌﾞﾛｯｸ4</list><list>ｽｲｯﾁ式ﾄｹﾞ OFFでﾌﾞﾛｯｸ4</list>
+    <list>ｽｲｯﾁ式ﾄｹﾞ ONで消える</list><list>ｽｲｯﾁ式ﾄｹﾞ ONで出現</list><list>ｽｲｯﾁ式ﾊｼｺﾞ ONで消える</list>
+    <list>ｽｲｯﾁ式ﾊｼｺﾞ ONで出現</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで出現</list>
+    <list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで出現</list><list>ｽｲｯﾁ式動く床 ONで上</list>
+    <list>ｽｲｯﾁ式動く床 ONで下</list><list>ｽｲｯﾁ式動く床 ONで右</list><list>ｽｲｯﾁ式動く床 ONで左</list>
+    <list>ｽｲｯﾁ式長く動く床 ONで上</list> <list>ｽｲｯﾁ式長く動く床 ONで右</list>
+    <list>ｽｲｯﾁ 重なるとON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>連動ｽｲｯﾁ 重なるとON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list><list>連動ｽｲｯﾁ ↑ｷｰでON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から上</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から上</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から下</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から下</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左回り</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで出現</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで左</list><list>ｽｲｯﾁ式動くT字型 ONで右</list><list>ｽｲｯﾁ式速く動くT字型 ONで左</list>
+    <list>ｽｲｯﾁ式速く動くT字型 ONで右</list><list>ｽｲｯﾁ式動くT字型 ONで左から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から左</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで右から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から右</list>
+<!--追加したぞ-->
+    <list>ＫＥＹ１</list><list>ＫＥＹ２</list><list>ＫＥＹ１で開く扉</list><list>ＫＥＹ２で開く扉</list>
+    <list>ＫＥＹ１  落ちる</list><list>ＫＥＹ２  落ちる</list><list>ＫＥＹ１が３つで開く扉</list><list>ＫＥＹ２が３つで開く扉</list>
+    <list>乗ると壊れるブロック</list><list>KEY1が3つでONの動作の人</list>
+    <list>KEY2が3つでONの動作の人</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで出現</list>
+    <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+  </param>
+  
+  <!-- リンク土管１の設定ポイントここまで -->
+  
+  <!-- リンク土管２の設定ここから　ポイント１０ -->
+  
+  <param name="dokan2_type" desc="リンク土管２のタイプ" type="list" value="1" category="仕掛け" chip="dokan2">
+    <list>リンク土管２</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
+    <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
+    <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
+    <list>右ドッスンスン</list><list>跳ねるドッスンスン</list><list>上がらないﾄﾞｯｽﾝｽﾝ</list>
+    <list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 上</list><list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 下</list><list>上下ドッスンスン</list>
+    <list>左右ドッスンスン</list><list>ロングレンジドッスンスン</list>
+    <list>ファイヤーバー２本</list><list>ﾌｧｲﾔｰﾊﾞｰ3本 左回り</list> <list>ﾌｧｲﾔｰﾊﾞｰ3本 右回り</list>
+    <list>隠しブロック</list><list>右にブロック１が出る</list><list>左にブロック１が出る</list>
+    <list>上にハシゴが出る</list><list>シーソー</list><list>シーソー　左が下</list><list>シーソー　右が下</list>
+    <list>ブランコ</list><list>ブランコ　２個連続</list><list>スウィングバー　左</list>
+    <list>スウィングバー　右</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 左</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 右</list>
+    <list>上にﾌﾞﾛｯｸ1が出る</list><list>上にﾌﾞﾛｯｸ1が2つ出る</list><list>右にﾌﾞﾛｯｸ1が2つ出る</list>
+    <list>左にブロック１が２つ出る</list><list>ジャンプ台が出る</list><list>トゲが出る</list>
+    <list>周囲のﾄｹﾞをｺｲﾝに変換</list><list>周囲のﾄｹﾞをﾌﾞﾛｯｸ1に変換</list><list>周囲のﾌﾞﾛｯｸ1をｺｲﾝに変換</list>
+    <list>周囲のﾌﾞﾛｯｸ4を消去</list><list>お店</list><list>ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人</list>
+    <list>ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人</list><list>ﾌｧｲﾔｰｳｫｰﾙ 上へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 下へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 左へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 右へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで上下</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで左右</list><list>壁まで上下移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>壁まで左右移動するﾄﾞｯｽﾝｽﾝ</list><list>乗ると左右移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>火山</list><list>逆火山</list><list>動くＴ字型</list><list>動くＴ字型 ２個連続</list>
+    <list>ロープ</list><list>ロープ  ２本連続</list><list>乗れるｶｲｵｰﾙ 方向ｷｰで移動</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 上へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 下へ速射</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 左へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 右へ速射</list>
+    <list>得点で開く扉</list><list>ｺｲﾝを全部取ると開く扉</list>
+    <list>周囲10ﾊﾟｰﾂ以内のｺｲﾝを全部取ると開く扉</list><list>左15ﾊﾟｰﾂ以内の雑魚敵を全部倒すと開く扉</list>
+    <list>人間大砲　右向き</list><list>人間大砲　左向き</list><list>人間大砲　天井</list><list>人間大砲　右の壁</list>
+    <list>人間大砲　左の壁</list><list>高性能ジャンプ台</list><list>左へ飛ばすバネ</list><list>右へ飛ばすバネ</list>
+    <list>ｽﾎﾟｯﾄ処理　小</list><list>ｽﾎﾟｯﾄ処理　中</list><list>ｽﾎﾟｯﾄ処理　大</list><list>ｽﾎﾟｯﾄ処理　終了</list>
+    <list>ｽﾎﾟｯﾄ処理 範囲拡大ｱｲﾃﾑ</list><list>人食いﾜｶﾒ 上へ拡大縮小</list>
+    <list>人食いﾜｶﾒ 下へ拡大縮小</list><list>人食いﾜｶﾒ 中央から拡大縮小</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙｾﾚｸﾄの人</list><list>ﾌﾞﾛｯｸ1破壊砲発射 右</list><list>ﾌﾞﾛｯｸ1破壊砲発射 左</list>
+    <list>ﾌﾞﾛｯｸ1破壊砲発射 上</list><list>ﾌﾞﾛｯｸ1破壊砲発射 下</list><list>グレネード５発</list>
+    <list>回転するﾄﾞｯｽﾝｽﾝ 左回り</list><list>回転するﾄﾞｯｽﾝｽﾝ 右回り</list><list>回転する巨大ﾄﾞｯｽﾝｽﾝ 左回り</list>
+    <list>回転する巨大ﾄﾞｯｽﾝｽﾝ 右回り</list><list>画面内で右強制ｽｸﾛｰﾙ</list><list>画面内で左強制ｽｸﾛｰﾙ</list>
+    <list>画面内で上強制ｽｸﾛｰﾙ</list><list>画面内で下強制ｽｸﾛｰﾙ</list><list>画面内で右上強制ｽｸﾛｰﾙ</list>
+    <list>画面内で右下強制ｽｸﾛｰﾙ</list><list>画面内で左上強制ｽｸﾛｰﾙ</list><list>画面内で左下強制ｽｸﾛｰﾙ</list>
+    <list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞｱｯﾌﾟ</list><list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞﾀﾞｳﾝ</list><list>画面内で全方向ｽｸﾛｰﾙ</list>
+    <list>画面内でｽｸﾛｰﾙ停止</list><list>自分が重なると右強制ｽｸﾛｰﾙ</list><list>自分が重なると上強制ｽｸﾛｰﾙ</list>
+    <list>自分が重なると全方向ｽｸﾛｰﾙ</list><list>画面内で横固定縦自由ｽｸﾛｰﾙ</list><list>画面内で右強制縦自由ｽｸﾛｰﾙ</list>
+    <list>画面内で左進行用の視界</list><list>画面内で右進行用の視界</list><list>曲線による上り坂</list><list>曲線による下り坂</list>
+    <list>曲線による上り坂  線のみ</list><list>曲線による下り坂  線のみ</list><list>乗れる円</list><list>乗れる円  大</list>
+    <list>乗れる半円</list><list>乗れる半円  線のみ</list><list>人口太陽  左回り</list><list>人口太陽  右回り</list>
+    <list>人口太陽 棒5本 左回り</list><list>人口太陽 棒5本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ 左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ 右回り</list><list>上下移動する半円 下から</list><list>上下移動する半円 上から</list>
+    <list>乗ると上がる半円</list><list>乗ると下がる半円</list><list>柱付きの半円</list><list>乗ると下がる円</list>
+    <list>乗ると下がる円 降りると上がる</list><list>上下移動する円 上から</list><list>上下移動する円 下から</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 左回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速右回り</list><list>落ちるだけのﾄﾞｯｽﾝｽﾝ</list><list>動かないドッスンスン</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝ</list><list>上へ押せるﾄﾞｯｽﾝｽﾝ</list><list>その場で跳ねるﾄﾞｯｽﾝｽﾝ</list>
+    <list>長いロープ</list> <list>長いロープ  右から</list><list>長いﾛｰﾌﾟ つかまると動く</list>
+    <list>長いﾛｰﾌﾟ つかまると左から動く</list><list>左向きのトゲ４つ</list>
+    <list>右向きのトゲ４つ</list><list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ここへ全部持って行くとｸﾘｱ)</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ﾛｯｸ機能付き)</list><list>右へ一方通行</list>
+    <list>左へ一方通行</list><list>上へ一方通行</list><list>下へ一方通行</list><list>右へ一方通行 表示なし</list><list>左へ一方通行 表示なし</list>
+    <list>上へ一方通行 表示なし</list><list>下へ一方通行 表示なし</list><list>ゆれる棒</list><list>ゆれる棒  左から</list>
+    <list>ゆれる棒  広角</list><list>ゆれる棒 広角 左から</list><list>跳ねる円</list><list>跳ねる円  大</list><list>下向きﾜｰﾌﾟ土管1</list>
+    <list>下向きﾜｰﾌﾟ土管2</list><list>下向きﾜｰﾌﾟ土管3</list><list>下向きﾜｰﾌﾟ土管4</list><list>下向き土管1 上向き1につながる</list>
+    <list>下向き土管2 上向き2につながる</list><list>下向き土管3 上向き3につながる</list><list>下向き土管4 上向き4につながる</list>
+    <list>ｺﾝﾃｨﾆｭｰ 残り人数のみ</list><list>?ﾌﾞﾛｯｸ ｺﾝﾃｨﾆｭｰ</list><list>左向き土管1 左右1につながる</list>
+    <list>左向き土管2 左右2につながる</list><list>左向き土管3 左右3につながる</list><list>左向き土管4 左右4につながる</list>
+    <list>右向き土管1 左右1につながる</list><list>右向き土管2 左右2につながる</list><list>右向き土管3 左右3につながる</list>
+    <list>右向き土管4 左右4につながる</list><list>ｽｲｯﾁ 重なるとON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ式の扉 ONで開く</list>
+    <list>ｽｲｯﾁ式の扉 ONで閉まる</list><list>ｽｲｯﾁ式ﾄｹﾞ ONでﾌﾞﾛｯｸ4</list><list>ｽｲｯﾁ式ﾄｹﾞ OFFでﾌﾞﾛｯｸ4</list>
+    <list>ｽｲｯﾁ式ﾄｹﾞ ONで消える</list><list>ｽｲｯﾁ式ﾄｹﾞ ONで出現</list><list>ｽｲｯﾁ式ﾊｼｺﾞ ONで消える</list>
+    <list>ｽｲｯﾁ式ﾊｼｺﾞ ONで出現</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで出現</list>
+    <list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで出現</list><list>ｽｲｯﾁ式動く床 ONで上</list>
+    <list>ｽｲｯﾁ式動く床 ONで下</list><list>ｽｲｯﾁ式動く床 ONで右</list><list>ｽｲｯﾁ式動く床 ONで左</list>
+    <list>ｽｲｯﾁ式長く動く床 ONで上</list> <list>ｽｲｯﾁ式長く動く床 ONで右</list>
+    <list>ｽｲｯﾁ 重なるとON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>連動ｽｲｯﾁ 重なるとON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list><list>連動ｽｲｯﾁ ↑ｷｰでON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から上</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から上</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から下</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から下</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左回り</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで出現</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで左</list><list>ｽｲｯﾁ式動くT字型 ONで右</list><list>ｽｲｯﾁ式速く動くT字型 ONで左</list>
+    <list>ｽｲｯﾁ式速く動くT字型 ONで右</list><list>ｽｲｯﾁ式動くT字型 ONで左から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から左</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで右から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から右</list>
+<!--追加したぞ-->
+    <list>ＫＥＹ１</list><list>ＫＥＹ２</list><list>ＫＥＹ１で開く扉</list><list>ＫＥＹ２で開く扉</list>
+    <list>ＫＥＹ１  落ちる</list><list>ＫＥＹ２  落ちる</list><list>ＫＥＹ１が３つで開く扉</list><list>ＫＥＹ２が３つで開く扉</list>
+    <list>乗ると壊れるブロック</list><list>KEY1が3つでONの動作の人</list>
+    <list>KEY2が3つでONの動作の人</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで出現</list>
+    <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+  </param>
+  
+  <!-- リンク土管２の設定ポイントここまで -->
+  
+  <!-- リンク土管３の設定ここから　ポイント１１ -->
+  
+  <param name="dokan3_type" desc="リンク土管３のタイプ" type="list" value="1" category="仕掛け" chip="dokan3">
+    <list>リンク土管３</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
+    <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
+    <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
+    <list>右ドッスンスン</list><list>跳ねるドッスンスン</list><list>上がらないﾄﾞｯｽﾝｽﾝ</list>
+    <list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 上</list><list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 下</list><list>上下ドッスンスン</list>
+    <list>左右ドッスンスン</list><list>ロングレンジドッスンスン</list>
+    <list>ファイヤーバー２本</list><list>ﾌｧｲﾔｰﾊﾞｰ3本 左回り</list> <list>ﾌｧｲﾔｰﾊﾞｰ3本 右回り</list>
+    <list>隠しブロック</list><list>右にブロック１が出る</list><list>左にブロック１が出る</list>
+    <list>上にハシゴが出る</list><list>シーソー</list><list>シーソー　左が下</list><list>シーソー　右が下</list>
+    <list>ブランコ</list><list>ブランコ　２個連続</list><list>スウィングバー　左</list>
+    <list>スウィングバー　右</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 左</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 右</list>
+    <list>上にﾌﾞﾛｯｸ1が出る</list><list>上にﾌﾞﾛｯｸ1が2つ出る</list><list>右にﾌﾞﾛｯｸ1が2つ出る</list>
+    <list>左にブロック１が２つ出る</list><list>ジャンプ台が出る</list><list>トゲが出る</list>
+    <list>周囲のﾄｹﾞをｺｲﾝに変換</list><list>周囲のﾄｹﾞをﾌﾞﾛｯｸ1に変換</list><list>周囲のﾌﾞﾛｯｸ1をｺｲﾝに変換</list>
+    <list>周囲のﾌﾞﾛｯｸ4を消去</list><list>お店</list><list>ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人</list>
+    <list>ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人</list><list>ﾌｧｲﾔｰｳｫｰﾙ 上へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 下へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 左へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 右へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで上下</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで左右</list><list>壁まで上下移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>壁まで左右移動するﾄﾞｯｽﾝｽﾝ</list><list>乗ると左右移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>火山</list><list>逆火山</list><list>動くＴ字型</list><list>動くＴ字型 ２個連続</list>
+    <list>ロープ</list><list>ロープ  ２本連続</list><list>乗れるｶｲｵｰﾙ 方向ｷｰで移動</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 上へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 下へ速射</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 左へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 右へ速射</list>
+    <list>得点で開く扉</list><list>ｺｲﾝを全部取ると開く扉</list>
+    <list>周囲10ﾊﾟｰﾂ以内のｺｲﾝを全部取ると開く扉</list><list>左15ﾊﾟｰﾂ以内の雑魚敵を全部倒すと開く扉</list>
+    <list>人間大砲　右向き</list><list>人間大砲　左向き</list><list>人間大砲　天井</list><list>人間大砲　右の壁</list>
+    <list>人間大砲　左の壁</list><list>高性能ジャンプ台</list><list>左へ飛ばすバネ</list><list>右へ飛ばすバネ</list>
+    <list>ｽﾎﾟｯﾄ処理　小</list><list>ｽﾎﾟｯﾄ処理　中</list><list>ｽﾎﾟｯﾄ処理　大</list><list>ｽﾎﾟｯﾄ処理　終了</list>
+    <list>ｽﾎﾟｯﾄ処理 範囲拡大ｱｲﾃﾑ</list><list>人食いﾜｶﾒ 上へ拡大縮小</list>
+    <list>人食いﾜｶﾒ 下へ拡大縮小</list><list>人食いﾜｶﾒ 中央から拡大縮小</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙｾﾚｸﾄの人</list><list>ﾌﾞﾛｯｸ1破壊砲発射 右</list><list>ﾌﾞﾛｯｸ1破壊砲発射 左</list>
+    <list>ﾌﾞﾛｯｸ1破壊砲発射 上</list><list>ﾌﾞﾛｯｸ1破壊砲発射 下</list><list>グレネード５発</list>
+    <list>回転するﾄﾞｯｽﾝｽﾝ 左回り</list><list>回転するﾄﾞｯｽﾝｽﾝ 右回り</list><list>回転する巨大ﾄﾞｯｽﾝｽﾝ 左回り</list>
+    <list>回転する巨大ﾄﾞｯｽﾝｽﾝ 右回り</list><list>画面内で右強制ｽｸﾛｰﾙ</list><list>画面内で左強制ｽｸﾛｰﾙ</list>
+    <list>画面内で上強制ｽｸﾛｰﾙ</list><list>画面内で下強制ｽｸﾛｰﾙ</list><list>画面内で右上強制ｽｸﾛｰﾙ</list>
+    <list>画面内で右下強制ｽｸﾛｰﾙ</list><list>画面内で左上強制ｽｸﾛｰﾙ</list><list>画面内で左下強制ｽｸﾛｰﾙ</list>
+    <list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞｱｯﾌﾟ</list><list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞﾀﾞｳﾝ</list><list>画面内で全方向ｽｸﾛｰﾙ</list>
+    <list>画面内でｽｸﾛｰﾙ停止</list><list>自分が重なると右強制ｽｸﾛｰﾙ</list><list>自分が重なると上強制ｽｸﾛｰﾙ</list>
+    <list>自分が重なると全方向ｽｸﾛｰﾙ</list><list>画面内で横固定縦自由ｽｸﾛｰﾙ</list><list>画面内で右強制縦自由ｽｸﾛｰﾙ</list>
+    <list>画面内で左進行用の視界</list><list>画面内で右進行用の視界</list><list>曲線による上り坂</list><list>曲線による下り坂</list>
+    <list>曲線による上り坂  線のみ</list><list>曲線による下り坂  線のみ</list><list>乗れる円</list><list>乗れる円  大</list>
+    <list>乗れる半円</list><list>乗れる半円  線のみ</list><list>人口太陽  左回り</list><list>人口太陽  右回り</list>
+    <list>人口太陽 棒5本 左回り</list><list>人口太陽 棒5本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ 左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ 右回り</list><list>上下移動する半円 下から</list><list>上下移動する半円 上から</list>
+    <list>乗ると上がる半円</list><list>乗ると下がる半円</list><list>柱付きの半円</list><list>乗ると下がる円</list>
+    <list>乗ると下がる円 降りると上がる</list><list>上下移動する円 上から</list><list>上下移動する円 下から</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 左回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速右回り</list><list>落ちるだけのﾄﾞｯｽﾝｽﾝ</list><list>動かないドッスンスン</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝ</list><list>上へ押せるﾄﾞｯｽﾝｽﾝ</list><list>その場で跳ねるﾄﾞｯｽﾝｽﾝ</list>
+    <list>長いロープ</list> <list>長いロープ  右から</list><list>長いﾛｰﾌﾟ つかまると動く</list>
+    <list>長いﾛｰﾌﾟ つかまると左から動く</list><list>左向きのトゲ４つ</list>
+    <list>右向きのトゲ４つ</list><list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ここへ全部持って行くとｸﾘｱ)</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ﾛｯｸ機能付き)</list><list>右へ一方通行</list>
+    <list>左へ一方通行</list><list>上へ一方通行</list><list>下へ一方通行</list><list>右へ一方通行 表示なし</list><list>左へ一方通行 表示なし</list>
+    <list>上へ一方通行 表示なし</list><list>下へ一方通行 表示なし</list><list>ゆれる棒</list><list>ゆれる棒  左から</list>
+    <list>ゆれる棒  広角</list><list>ゆれる棒 広角 左から</list><list>跳ねる円</list><list>跳ねる円  大</list><list>下向きﾜｰﾌﾟ土管1</list>
+    <list>下向きﾜｰﾌﾟ土管2</list><list>下向きﾜｰﾌﾟ土管3</list><list>下向きﾜｰﾌﾟ土管4</list><list>下向き土管1 上向き1につながる</list>
+    <list>下向き土管2 上向き2につながる</list><list>下向き土管3 上向き3につながる</list><list>下向き土管4 上向き4につながる</list>
+    <list>ｺﾝﾃｨﾆｭｰ 残り人数のみ</list><list>?ﾌﾞﾛｯｸ ｺﾝﾃｨﾆｭｰ</list><list>左向き土管1 左右1につながる</list>
+    <list>左向き土管2 左右2につながる</list><list>左向き土管3 左右3につながる</list><list>左向き土管4 左右4につながる</list>
+    <list>右向き土管1 左右1につながる</list><list>右向き土管2 左右2につながる</list><list>右向き土管3 左右3につながる</list>
+    <list>右向き土管4 左右4につながる</list><list>ｽｲｯﾁ 重なるとON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ式の扉 ONで開く</list>
+    <list>ｽｲｯﾁ式の扉 ONで閉まる</list><list>ｽｲｯﾁ式ﾄｹﾞ ONでﾌﾞﾛｯｸ4</list><list>ｽｲｯﾁ式ﾄｹﾞ OFFでﾌﾞﾛｯｸ4</list>
+    <list>ｽｲｯﾁ式ﾄｹﾞ ONで消える</list><list>ｽｲｯﾁ式ﾄｹﾞ ONで出現</list><list>ｽｲｯﾁ式ﾊｼｺﾞ ONで消える</list>
+    <list>ｽｲｯﾁ式ﾊｼｺﾞ ONで出現</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで出現</list>
+    <list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで出現</list><list>ｽｲｯﾁ式動く床 ONで上</list>
+    <list>ｽｲｯﾁ式動く床 ONで下</list><list>ｽｲｯﾁ式動く床 ONで右</list><list>ｽｲｯﾁ式動く床 ONで左</list>
+    <list>ｽｲｯﾁ式長く動く床 ONで上</list> <list>ｽｲｯﾁ式長く動く床 ONで右</list>
+    <list>ｽｲｯﾁ 重なるとON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>連動ｽｲｯﾁ 重なるとON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list><list>連動ｽｲｯﾁ ↑ｷｰでON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から上</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から上</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から下</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から下</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左回り</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで出現</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで左</list><list>ｽｲｯﾁ式動くT字型 ONで右</list><list>ｽｲｯﾁ式速く動くT字型 ONで左</list>
+    <list>ｽｲｯﾁ式速く動くT字型 ONで右</list><list>ｽｲｯﾁ式動くT字型 ONで左から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から左</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで右から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から右</list>
+<!--追加したぞ-->
+    <list>ＫＥＹ１</list><list>ＫＥＹ２</list><list>ＫＥＹ１で開く扉</list><list>ＫＥＹ２で開く扉</list>
+    <list>ＫＥＹ１  落ちる</list><list>ＫＥＹ２  落ちる</list><list>ＫＥＹ１が３つで開く扉</list><list>ＫＥＹ２が３つで開く扉</list>
+    <list>乗ると壊れるブロック</list><list>KEY1が3つでONの動作の人</list>
+    <list>KEY2が3つでONの動作の人</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで出現</list>
+    <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+  </param>
+  
+  <!-- リンク土管３の設定ポイントここまで -->
+  
+  <!-- リンク土管４の設定ここから　ポイント１２ -->
+  
+  <param name="dokan4_type" desc="リンク土管４のタイプ" type="list" value="1" category="仕掛け" chip="dokan4">
+    <list>リンク土管４</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
+    <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
+    <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
+    <list>右ドッスンスン</list><list>跳ねるドッスンスン</list><list>上がらないﾄﾞｯｽﾝｽﾝ</list>
+    <list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 上</list><list>ｴﾚﾍﾞｰﾀｰﾄﾞｯｽﾝｽﾝ 下</list><list>上下ドッスンスン</list>
+    <list>左右ドッスンスン</list><list>ロングレンジドッスンスン</list>
+    <list>ファイヤーバー２本</list><list>ﾌｧｲﾔｰﾊﾞｰ3本 左回り</list> <list>ﾌｧｲﾔｰﾊﾞｰ3本 右回り</list>
+    <list>隠しブロック</list><list>右にブロック１が出る</list><list>左にブロック１が出る</list>
+    <list>上にハシゴが出る</list><list>シーソー</list><list>シーソー　左が下</list><list>シーソー　右が下</list>
+    <list>ブランコ</list><list>ブランコ　２個連続</list><list>スウィングバー　左</list>
+    <list>スウィングバー　右</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 左</list><list>ｽｳｨﾝｸﾞﾌｧｲﾔｰﾊﾞｰ 右</list>
+    <list>上にﾌﾞﾛｯｸ1が出る</list><list>上にﾌﾞﾛｯｸ1が2つ出る</list><list>右にﾌﾞﾛｯｸ1が2つ出る</list>
+    <list>左にブロック１が２つ出る</list><list>ジャンプ台が出る</list><list>トゲが出る</list>
+    <list>周囲のﾄｹﾞをｺｲﾝに変換</list><list>周囲のﾄｹﾞをﾌﾞﾛｯｸ1に変換</list><list>周囲のﾌﾞﾛｯｸ1をｺｲﾝに変換</list>
+    <list>周囲のﾌﾞﾛｯｸ4を消去</list><list>お店</list><list>ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人</list>
+    <list>ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人</list><list>ﾌｧｲﾔｰｳｫｰﾙ 上へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 下へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 左へ伸びる</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 右へ伸びる</list><list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで上下</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 壁まで左右</list><list>壁まで上下移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>壁まで左右移動するﾄﾞｯｽﾝｽﾝ</list><list>乗ると左右移動するﾄﾞｯｽﾝｽﾝ</list>
+    <list>火山</list><list>逆火山</list><list>動くＴ字型</list><list>動くＴ字型 ２個連続</list>
+    <list>ロープ</list><list>ロープ  ２本連続</list><list>乗れるｶｲｵｰﾙ 方向ｷｰで移動</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 上へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 下へ速射</list>
+    <list>ﾌｧｲﾔｰｳｫｰﾙ 左へ速射</list><list>ﾌｧｲﾔｰｳｫｰﾙ 右へ速射</list>
+    <list>得点で開く扉</list><list>ｺｲﾝを全部取ると開く扉</list>
+    <list>周囲10ﾊﾟｰﾂ以内のｺｲﾝを全部取ると開く扉</list><list>左15ﾊﾟｰﾂ以内の雑魚敵を全部倒すと開く扉</list>
+    <list>人間大砲　右向き</list><list>人間大砲　左向き</list><list>人間大砲　天井</list><list>人間大砲　右の壁</list>
+    <list>人間大砲　左の壁</list><list>高性能ジャンプ台</list><list>左へ飛ばすバネ</list><list>右へ飛ばすバネ</list>
+    <list>ｽﾎﾟｯﾄ処理　小</list><list>ｽﾎﾟｯﾄ処理　中</list><list>ｽﾎﾟｯﾄ処理　大</list><list>ｽﾎﾟｯﾄ処理　終了</list>
+    <list>ｽﾎﾟｯﾄ処理 範囲拡大ｱｲﾃﾑ</list><list>人食いﾜｶﾒ 上へ拡大縮小</list>
+    <list>人食いﾜｶﾒ 下へ拡大縮小</list><list>人食いﾜｶﾒ 中央から拡大縮小</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙ 水平に飛ぶ</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ 跳ねる</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ ﾀﾞﾌﾞﾙ</list>
+    <list>ﾌｧｲﾔｰﾎﾞｰﾙｾﾚｸﾄの人</list><list>ﾌﾞﾛｯｸ1破壊砲発射 右</list><list>ﾌﾞﾛｯｸ1破壊砲発射 左</list>
+    <list>ﾌﾞﾛｯｸ1破壊砲発射 上</list><list>ﾌﾞﾛｯｸ1破壊砲発射 下</list><list>グレネード５発</list>
+    <list>回転するﾄﾞｯｽﾝｽﾝ 左回り</list><list>回転するﾄﾞｯｽﾝｽﾝ 右回り</list><list>回転する巨大ﾄﾞｯｽﾝｽﾝ 左回り</list>
+    <list>回転する巨大ﾄﾞｯｽﾝｽﾝ 右回り</list><list>画面内で右強制ｽｸﾛｰﾙ</list><list>画面内で左強制ｽｸﾛｰﾙ</list>
+    <list>画面内で上強制ｽｸﾛｰﾙ</list><list>画面内で下強制ｽｸﾛｰﾙ</list><list>画面内で右上強制ｽｸﾛｰﾙ</list>
+    <list>画面内で右下強制ｽｸﾛｰﾙ</list><list>画面内で左上強制ｽｸﾛｰﾙ</list><list>画面内で左下強制ｽｸﾛｰﾙ</list>
+    <list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞｱｯﾌﾟ</list><list>ｽｸﾛｰﾙｽﾋﾟｰﾄﾞﾀﾞｳﾝ</list><list>画面内で全方向ｽｸﾛｰﾙ</list>
+    <list>画面内でｽｸﾛｰﾙ停止</list><list>自分が重なると右強制ｽｸﾛｰﾙ</list><list>自分が重なると上強制ｽｸﾛｰﾙ</list>
+    <list>自分が重なると全方向ｽｸﾛｰﾙ</list><list>画面内で横固定縦自由ｽｸﾛｰﾙ</list><list>画面内で右強制縦自由ｽｸﾛｰﾙ</list>
+    <list>画面内で左進行用の視界</list><list>画面内で右進行用の視界</list><list>曲線による上り坂</list><list>曲線による下り坂</list>
+    <list>曲線による上り坂  線のみ</list><list>曲線による下り坂  線のみ</list><list>乗れる円</list><list>乗れる円  大</list>
+    <list>乗れる半円</list><list>乗れる半円  線のみ</list><list>人口太陽  左回り</list><list>人口太陽  右回り</list>
+    <list>人口太陽 棒5本 左回り</list><list>人口太陽 棒5本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ 左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ 右回り</list><list>上下移動する半円 下から</list><list>上下移動する半円 上から</list>
+    <list>乗ると上がる半円</list><list>乗ると下がる半円</list><list>柱付きの半円</list><list>乗ると下がる円</list>
+    <list>乗ると下がる円 降りると上がる</list><list>上下移動する円 上から</list><list>上下移動する円 下から</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 左回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 右回り</list><list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速左回り</list>
+    <list>ﾌｧｲﾔｰﾘﾝｸﾞ2本 高速右回り</list><list>落ちるだけのﾄﾞｯｽﾝｽﾝ</list><list>動かないドッスンスン</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝ</list><list>上へ押せるﾄﾞｯｽﾝｽﾝ</list><list>その場で跳ねるﾄﾞｯｽﾝｽﾝ</list>
+    <list>長いロープ</list> <list>長いロープ  右から</list><list>長いﾛｰﾌﾟ つかまると動く</list>
+    <list>長いﾛｰﾌﾟ つかまると左から動く</list><list>左向きのトゲ４つ</list>
+    <list>右向きのトゲ４つ</list><list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ここへ全部持って行くとｸﾘｱ)</list>
+    <list>左右へ押せるﾄﾞｯｽﾝｽﾝのｺﾞｰﾙ(ﾛｯｸ機能付き)</list><list>右へ一方通行</list>
+    <list>左へ一方通行</list><list>上へ一方通行</list><list>下へ一方通行</list><list>右へ一方通行 表示なし</list><list>左へ一方通行 表示なし</list>
+    <list>上へ一方通行 表示なし</list><list>下へ一方通行 表示なし</list><list>ゆれる棒</list><list>ゆれる棒  左から</list>
+    <list>ゆれる棒  広角</list><list>ゆれる棒 広角 左から</list><list>跳ねる円</list><list>跳ねる円  大</list><list>下向きﾜｰﾌﾟ土管1</list>
+    <list>下向きﾜｰﾌﾟ土管2</list><list>下向きﾜｰﾌﾟ土管3</list><list>下向きﾜｰﾌﾟ土管4</list><list>下向き土管1 上向き1につながる</list>
+    <list>下向き土管2 上向き2につながる</list><list>下向き土管3 上向き3につながる</list><list>下向き土管4 上向き4につながる</list>
+    <list>ｺﾝﾃｨﾆｭｰ 残り人数のみ</list><list>?ﾌﾞﾛｯｸ ｺﾝﾃｨﾆｭｰ</list><list>左向き土管1 左右1につながる</list>
+    <list>左向き土管2 左右2につながる</list><list>左向き土管3 左右3につながる</list><list>左向き土管4 左右4につながる</list>
+    <list>右向き土管1 左右1につながる</list><list>右向き土管2 左右2につながる</list><list>右向き土管3 左右3につながる</list>
+    <list>右向き土管4 左右4につながる</list><list>ｽｲｯﾁ 重なるとON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ式の扉 ONで開く</list>
+    <list>ｽｲｯﾁ式の扉 ONで閉まる</list><list>ｽｲｯﾁ式ﾄｹﾞ ONでﾌﾞﾛｯｸ4</list><list>ｽｲｯﾁ式ﾄｹﾞ OFFでﾌﾞﾛｯｸ4</list>
+    <list>ｽｲｯﾁ式ﾄｹﾞ ONで消える</list><list>ｽｲｯﾁ式ﾄｹﾞ ONで出現</list><list>ｽｲｯﾁ式ﾊｼｺﾞ ONで消える</list>
+    <list>ｽｲｯﾁ式ﾊｼｺﾞ ONで出現</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ縦 ONで出現</list>
+    <list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで消える</list><list>ｽｲｯﾁ式電撃ﾊﾞﾘｱ横 ONで出現</list><list>ｽｲｯﾁ式動く床 ONで上</list>
+    <list>ｽｲｯﾁ式動く床 ONで下</list><list>ｽｲｯﾁ式動く床 ONで右</list><list>ｽｲｯﾁ式動く床 ONで左</list>
+    <list>ｽｲｯﾁ式長く動く床 ONで上</list> <list>ｽｲｯﾁ式長く動く床 ONで右</list>
+    <list>ｽｲｯﾁ 重なるとON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>ｽｲｯﾁ ↑ｷｰでON/OFF(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲10ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>?ﾌﾞﾛｯｸ ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list><list>?ﾌﾞﾛｯｸ OFFの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>連動ｽｲｯﾁ 重なるとON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list><list>連動ｽｲｯﾁ ↑ｷｰでON/OFF(ﾏｯﾌﾟ全体に影響 同ｽｲｯﾁへ連動)</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から上</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から上</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から下</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から下</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 右から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 左から左回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から左回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 上から右回り</list><list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から右回り</list>
+    <list>ｽｲｯﾁ式ﾌｧｲﾔｰﾊﾞｰ 下から左回り</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ横4つ ONで出現</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで左</list><list>ｽｲｯﾁ式動くT字型 ONで右</list><list>ｽｲｯﾁ式速く動くT字型 ONで左</list>
+    <list>ｽｲｯﾁ式速く動くT字型 ONで右</list><list>ｽｲｯﾁ式動くT字型 ONで左から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から左</list>
+    <list>ｽｲｯﾁ式動くT字型 ONで右から上</list><list>ｽｲｯﾁ式動くT字型 ONで上から右</list>
+<!--追加したぞ-->
+    <list>ＫＥＹ１</list><list>ＫＥＹ２</list><list>ＫＥＹ１で開く扉</list><list>ＫＥＹ２で開く扉</list>
+    <list>ＫＥＹ１  落ちる</list><list>ＫＥＹ２  落ちる</list><list>ＫＥＹ１が３つで開く扉</list><list>ＫＥＹ２が３つで開く扉</list>
+    <list>乗ると壊れるブロック</list><list>KEY1が3つでONの動作の人</list>
+    <list>KEY2が3つでONの動作の人</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで消える</list><list>ｽｲｯﾁ式ﾌﾞﾛｯｸ縦4つ ONで出現</list>
+    <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
+    <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+  </param>
+  
+  <!-- リンク土管４の設定ポイントここまで -->
+  
+  <param name="control_parts_visible" desc="スクロール制御パーツの表示をしない（デバッグ用）" type="bool" value="true" category="システム" />
+  <param name="mcs_haikei_visible" desc="レイヤーモードでなくても背景画像を表示する" type="bool" value="true" category="画像" />
+  <param name="layer_mode" desc="背景レイヤーの表示をしない" type="bool" value="true" category="システム" chip="InvisLayer" />
+  <param name="filename_mapchip" desc="背景レイヤーチップのファイル名" type="file" value="mapchip.gif" rel="LAYERCHIP" category="画像" />
+  <param name="filename_haikei" desc="ステージ1背景のファイル名" type="file" value="haikei.png" category="画像" />
+  <param name="filename_haikei2" desc="ステージ2背景のファイル名" type="file" value="haikei.png" category="画像" stage="2" />  
+  <param name="filename_haikei3" desc="ステージ3背景のファイル名" type="file" value="haikei.png" category="画像" stage="3" />  
+  <param name="filename_haikei4" desc="ステージ4背景のファイル名" type="file" value="haikei.png" category="画像" stage="4" />  
+  <param name="gazou_scroll" desc="背景画像のスクロール" type="list" value="2" category="画像">
+    <list>しない</list><list>左右ｽｸﾛｰﾙ 速度1/4</list><list>左へ強制スクロール</list><list>指定速度で強制ｽｸﾛｰﾙ</list>
+    <list>上下スクロール</list><list>全方向ｽｸﾛｰﾙ 速度1/2</list><list>全方向ｽｸﾛｰﾙ 速度1/1</list><list>画像ｻｲｽﾞ 640×640専用</list>
+    <list>画像ｻｲｽﾞ 1024×640専用</list><list>左右ｽｸﾛｰﾙ 速度1/2</list><list>ﾏｯﾌﾟの指定座標に設置 画像ｻｲｽﾞは任意</list>
+  </param>
+  <param name="gazou_scroll_speed_x" desc="上の設定が&quot;指定速度で強制ｽｸﾛｰﾙ&quot;の場合のX方向指定速度(-32-32)" type="int" value="8" category="画像" />
+  <param name="gazou_scroll_speed_y" desc="上の設定が&quot;指定速度で強制ｽｸﾛｰﾙ&quot;の場合のY方向指定速度(-32-32)" type="int" value="-8" category="画像" />
+  <param name="gazou_scroll_x" desc="上の設定が&quot;ﾏｯﾌﾟの指定座標に設置&quot;の場合のX座標" type="int" value="0" category="画像" />
+  <param name="gazou_scroll_y" desc="上の設定が&quot;ﾏｯﾌﾟの指定座標に設置&quot;の場合のY座標" type="int" value="0" category="画像" />
+  <param name="second_gazou_visible" desc="セカンド画像を使用しない" type="bool" value="true" category="画像" />
+  <param name="filename_second_haikei" desc="ステージ1セカンド画像のファイル名" type="file" value="haikei_second.gif" category="画像" />
+  <param name="filename_second_haikei2" desc="ステージ2セカンド画像のファイル名" type="file" value="haikei_second.gif" category="画像" stage="2" />
+  <param name="filename_second_haikei3" desc="ステージ3セカンド画像のファイル名" type="file" value="haikei_second.gif" category="画像" stage="3" />
+  <param name="filename_second_haikei4" desc="ステージ4セカンド画像のファイル名" type="file" value="haikei_second.gif" category="画像" stage="4" />
+  <param name="second_gazou_scroll" desc="セカンド画像のスクロール" type="list" value="1" category="画像">
+    <list>しない</list><list>左右ｽｸﾛｰﾙ 速度1/4</list><list>左右ｽｸﾛｰﾙ 速度1/2</list>
+    <list>指定速度で強制ｽｸﾛｰﾙ</list><list>左右ｽｸﾛｰﾙ 速度3/2</list><list>画像ｻｲｽﾞ 640×960</list>
+    <list>全方向ｽｸﾛｰﾙ 速度1/1</list><list>ﾏｯﾌﾟの指定座標に設置 画像ｻｲｽﾞは任意</list>
+  </param>
+  <param name="second_gazou_scroll_speed_x" desc="上の設定が&quot;指定速度で強制ｽｸﾛｰﾙ&quot;の場合のX方向指定速度(-32-32)" type="int" value="8" category="画像" />
+  <param name="second_gazou_scroll_speed_y" desc="上の設定が&quot;指定速度で強制ｽｸﾛｰﾙ&quot;の場合のY方向指定速度(-32-32)" type="int" value="-8" category="画像" />
+  <param name="second_gazou_scroll_x" desc="上の設定が&quot;ﾏｯﾌﾟの指定座標に設置&quot;の場合のX座標" type="int" value="0" category="画像" />
+  <param name="second_gazou_scroll_y" desc="上の設定が&quot;ﾏｯﾌﾟの指定座標に設置&quot;の場合のY座標" type="int" value="0" category="画像" />
+  <param name="second_gazou_priority" desc="セカンド画像の表示位置" type="list" value="1" category="画像">
+    <list>背景画像の奥</list><list>主人公の手前</list>
+  </param>
+  <param name="water_visible" desc="水の表示" type="list" value="2" category="画像" chip="WaterVisible">
+    <list>ﾚｲﾔｰ使用時は表示しない</list><list>常に表示する</list>
+  </param>
+  <param name="water_clear_switch" desc="水の半透明表示をしない" type="bool" value="true" category="画像" />
+  <param name="water_clear_level" desc="水の透明度(0-255)" type="int" value="128" category="画像" />
+  <param name="now_loading" desc="起動中メッセージ" type="string" value="ただいまファイルを読み込み中。しばらくお待ち下さい。" category="表示" />
+  <param name="easy_mode" desc="イージーモードにするか" type="list" value="1" category="システム">
+    <list>ノーマルモード</list><list>敵の端を踏んでも倒せる</list>
+  </param>
+  <param name="score_v" desc="得点の表示" type="bool" value="true" category="表示" />
+  <param name="stage_max" desc="ステージ数" type="int" value="1" category="システム" rel="STAGENUM" stage="2" />
+  <param name="stage_kaishi" desc="開始ステージ(デバッグ用)" type="int" value="1" category="システム" rel="STAGESTART" stage="2" />
+  <param name="jibun_left_shoki" desc="残り人数" type="int" value="1" category="システム" />
+  <param name="score_1up_1" desc="1upする得点 1" type="int" value="0" category="システム" stage="2" />
+  <param name="score_1up_2" desc="1upする得点 2" type="int" value="0" category="システム" stage="2" />
+  <param name="stage_select" desc="ステージ選択方式" type="list" value="1" category="システム" rel="STAGESELECT" stage="5">
+    <list>順番にクリア</list><list>地図画面を利用</list>
+  </param>
+  <param name="pause_switch" desc="ポーズ機能を使わない" type="bool" value="false" category="システム" />
+  <param name="j_equip_grenade" desc="グレネード装備数" type="int" value="0" category="装備" />
+  <param name="j_tail_hf" desc="しっぽの標準装備をしない" type="bool" value="true" category="装備" />
+  <param name="j_tail_type" desc="しっぽの特徴" type="list" value="3" category="装備" chip="TailT">
+    <list>敵を倒せる</list><list>ブロック１を壊せる</list><list>敵を倒せてﾌﾞﾛｯｸ1を壊せる</list>
+  </param>
+  <param name="j_fire_equip" desc="ファイヤーボールを標準装備しない" type="bool" value="true" category="装備" />
+  <param name="j_fire_type" desc="ファイヤーボールの種類（初期値）" type="list" value="1" category="装備">
+    <list>跳ねる</list><list>水平に飛ぶ</list><list>水平に飛ぶ  短射程</list><list>ダブル</list>
+  </param>
+  <param name="j_fire_mkf" desc="水中でファイアボールが使えない" type="bool" value="false" category="装備" chip="FireT" />
+  <param name="j_enemy_press" desc="雑魚敵を踏める" type="list" value="1" category="敵">
+    <list>踏める</list><list>踏めない</list><list>当たり判定なし</list>
+  </param>
+  <param name="grenade_type" desc="グレネードの種類" type="list" value="1" category="装備" chip="GrenadeT">
+    <list>ｸﾞﾚﾈｰﾄﾞ(ﾎﾞｽを倒せる)</list><list>ｸﾞﾚﾈｰﾄﾞ(ﾎﾞｽには効かない)</list><list>ｴﾈﾙｷﾞｰ砲(ﾎﾞｽを倒せる)</list><list>ｴﾈﾙｷﾞｰ砲(ﾎﾞｽには効かない)</list>
+    <list>ﾌﾟﾗｽﾞﾏ砲(ﾎﾞｽを倒せる)</list><list>ﾌﾟﾗｽﾞﾏ砲(ﾎﾞｽには効かない)</list><list>夢想封印(ﾎﾞｽには効かない)</list><list>ﾌｧｲﾔｰﾎﾞｰﾙを発射</list><list>ﾌﾞﾛｯｸ1破壊砲(ﾎﾞｽには効かない)</list>
+  </param>
+  <param name="poppie_attack" desc="ポッピー直進の攻撃パターン" type="list" value="1" category="敵" chip="PoppieA">
+    <list>直進</list><list>火の粉</list><list>火の粉　３連射</list><list>バブル光線３発</list><list>ハリケンブラスト</list>
+  </param>
+  <param name="mizutaro_attack" desc="ミズタロウの攻撃パターン" type="list" value="1" category="敵" chip="MizutaroA">
+    <list>みずでっぽう</list><list>はっぱカッター３発</list><list>電撃</list><list>みずでっぽう 水平発射</list><list>ハリケンブラスト</list>
+  </param>
+  <param name="chikorin_attack" desc="チコリンの攻撃パターン" type="list" value="1" category="敵" chip="ChikorinA">
+    <list>はっぱカッター</list><list>ﾋﾉﾗﾗｼを8匹投げる</list><list>ﾋﾉﾗﾗｼを無限に投げる</list><list>マリリを８匹投げる</list>
+    <list>マリリを無限に投げる</list><list>はっぱｶｯﾀｰ 地形で消える</list><list>はっぱｶｯﾀｰ 乱れ射ち</list><list>ｿｰﾗｰﾋﾞｰﾑ 左へ発射</list>
+    <list>ｿｰﾗｰﾋﾞｰﾑ 右へ発射</list>
+  </param>
+  <param name="mariri_attack" desc="マリリの攻撃パターン" type="list" value="1" category="敵" chip="MaririA">
+    <list>ジャンプで進む</list><list>その場でジャンプ</list><list>左右にジャンプ</list><list>左右移動</list><list>体当たり</list>
+  </param>
+  <param name="yachamo_kf" desc="ヤチャモの攻撃パターン" type="list" value="1" category="敵" chip="YachamoA">
+    <list>火の粉</list><list>何もしない</list><list>グレネード</list><list>はっぱカッター３発</list>
+    <list>プラズマ砲</list><list>火の粉  速射</list><list>火の粉  ３連射</list><list>破壊光線 左へ発射</list><list>破壊光線 右へ発射</list>
+  </param>
+  <param name="dengeki_mkf" desc="ピカチーの攻撃パターン" type="list" value="1" category="敵" chip="PikachiA">
+    <list>電撃　水中で消える</list><list>電撃 水中でも使える</list><list>みずでっぽう 水平発射</list><list>電撃３発</list><list>プラズマ砲</list>
+  </param>
+  <param name="airms_kf" desc="エアームズの攻撃パターン" type="list" value="1" category="敵" chip="AirmsA">
+    <list>壁に当たると止まる</list><list>壁に当たると向きを変える</list>
+    <list>その場で爆弾投下</list><list>その場でｸﾞﾚﾈｰﾄﾞ投下</list><list>左右に動いて爆弾投下</list>
+  </param>
+  <param name="taiking_attack" desc="タイキングの攻撃パターン" type="list" value="1" category="敵" chip="TaikingA">
+    <list>左右移動 水中専用</list><list>はねる</list><list>縄張りをまもる</list><list>左回り</list><list>右回り</list>
+  </param>
+  <param name="kuragesso_attack" desc="クラゲッソの攻撃パターン" type="list" value="1" category="敵" chip="KuragessoA">
+    <list>ﾊﾞﾌﾞﾙ光線 水中専用</list><list>近づくと落ちる</list><list>縄張りをまもる</list><list>左回り</list><list>右回り</list>
+  </param>
+  <param name="boss_type" desc="グラーダ攻撃パターン" type="list" value="1" category="敵" chip="GrounderA">
+    <list>噴火</list><list>亀を投げる</list><list>ヒノララシを投げる</list><list>マリリを投げる</list><list>がんせきほう</list>
+  </param>
+  <param name="boss2_type" desc="カイオール攻撃パターン" type="list" value="1" category="敵" chip="KaioleA">
+    <list>水の波動</list><list>バブル光線</list><list>うずしお</list><list>バブル光線連射</list>
+    <list>ハリケンブラスト</list><list>ﾊﾞﾌﾞﾙ光線回転連射</list><list>何もしない</list><list>水の波動  直進</list>
+  </param>
+  <param name="boss3_type" desc="センクウザ攻撃パターン" type="list" value="1" category="敵" chip="SenkuuzaA">
+    <list>グレネード</list><list>ﾊﾞﾘｱを張って体当たり</list><list>ﾊﾞﾘｱを張って高速体当たり</list><list>ﾊﾞﾘｱを張ってｼﾞｬﾝﾌﾟ</list>
+    <list>りゅうせいぐん</list><list>回転体当たり</list><list>高速回転体当たり</list><list>回転ジャンプ</list>
+  </param>
+  <param name="boss_destroy_type" desc="ボスの倒し方" type="list" value="1" category="敵">
+    <list>３回踏む</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ,しっぽ</list>
+  </param>
+  <param name="boss_hp_max" desc="ボスのHP(倒し方がしっぽなどの場合)" type="int" value="20" category="敵" />
+  <param name="j_tail_ap_boss" desc="しっぽの攻撃力　ボス用" type="int" value="4" category="装備" />
+  <param name="boss_name" desc="ボスのHPゲージに表示する名前1" type="string" value="グラーダ" category="表示" />
+  <param name="boss2_name" desc="ボスのHPゲージに表示する名前2" type="string" value="カイオール" category="表示" />
+  <param name="boss3_name" desc="ボスのHPゲージに表示する名前3" type="string" value="センクウザ" category="表示" />
+  <param name="suberuyuka_hkf" desc="ドリル等ですべる床を破壊できるか" type="bool" value="true" category="装備" chip="Suberuyuka" />
+  <param name="shop_name" desc="ショップ店員" type="string" value="店員さん" category="お店" />
+  <param name="serifu5" desc="ショップ店員セリフ1" type="text" value="いらっしゃいませ。&#xD;&#xA;当店では、ＳＣＯＲＥと、アイテムを、&#xD;&#xA;交換いたします。" category="お店" row="3" />
+  <param name="shop_serifu1" desc="ショップ店員セリフその他(1)" type="string" value="どれになさいますか？" category="お店" />
+  <param name="shop_serifu2" desc="ショップ店員セリフその他(2)" type="string" value="で、よろしいですか？" category="お店" />
+  <param name="shop_serifu3" desc="ショップ店員セリフその他(3)" type="string" value="はい" category="お店" />
+  <param name="shop_serifu4" desc="ショップ店員セリフその他(4)" type="string" value="いいえ" category="お店" />
+  <param name="shop_serifu5" desc="ショップ店員セリフその他(5)" type="string" value="を、装備した。" category="お店" />
+  <param name="shop_serifu6" desc="ショップ店員セリフその他(6)" type="string" value="ＳＣＯＲＥが、足りません。" category="お店" />
+  <param name="serifu8" desc="ショップ店員セリフ(地図)" type="text" value="本日の営業は、終了しました。&#xD;&#xA;またのご来店を、&#xD;&#xA;こころより、お待ちしております。" category="地図" row="3" stage="5" />
+  <param name="shop_item_name1" desc="店にあるアイテム(1)" type="string" value="グレネード３発" category="お店" />
+  <param name="shop_item_teika1" desc="アイテムの値段(1)[0で無くなる]" type="int" value="200" category="お店" />
+  <param name="shop_item_name2" desc="店にあるアイテム(2)" type="string" value="ジェット" category="お店" />
+  <param name="shop_item_teika2" desc="アイテムの値段(2)[0で無くなる]" type="int" value="150" category="お店" />
+  <param name="shop_item_name3" desc="店にあるアイテム(3)" type="string" value="ドリル" category="お店" />
+  <param name="shop_item_teika3" desc="アイテムの値段(3)[0で無くなる]" type="int" value="100" category="お店" />
+  <param name="shop_item_name4" desc="店にあるアイテム(4)" type="string" value="ヘルメット" category="お店" />
+  <param name="shop_item_teika4" desc="アイテムの値段(4)[0で無くなる]" type="int" value="100" category="お店" />
+  <param name="shop_item_name5" desc="店にあるアイテム(5)" type="string" value="しっぽ" category="お店" />
+  <param name="shop_item_teika5" desc="アイテムの値段(5)[0で無くなる]" type="int" value="250" category="お店" />
+  <param name="shop_item_name6" desc="店にあるアイテム(6)" type="string" value="バリア" category="お店" />
+  <param name="shop_item_teika6" desc="アイテムの値段(6)[0で無くなる]" type="int" value="80" category="お店" />
+  <param name="shop_item_name7" desc="店にあるアイテム(7)" type="string" value="ファイヤーボール" category="お店" />
+  <param name="shop_item_teika7" desc="アイテムの値段(7)[0で無くなる]" type="int" value="80" category="お店" />
+  <param name="shop_item_name8" desc="店にあるアイテム(8)" type="string" value="１ｕｐ" category="お店" />
+  <param name="shop_item_teika8" desc="アイテムの値段(8)[0で無くなる]" type="int" value="980" category="お店" />
+  <param name="shop_item_name9" desc="店にあるアイテム(9)" type="string" value="制限時間増加" category="お店" />
+  <param name="shop_item_teika9" desc="アイテムの値段(9)[0で無くなる]" type="int" value="1" category="お店" />
+  <param name="mes1_name" desc="ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人,ﾒｯｾｰｼﾞの人1の名前" type="string" value="お姫様" category="お店" />
+  <param name="serifu1" desc="ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人,ﾒｯｾｰｼﾞの人1のｾﾘﾌ1" type="text" value="勇者のヘルメットか、工事現場のドリル。&#xD;&#xA;どちらか１つを、あなたにプレゼントします。&#xD;&#xA;0" category="お店" row="3" />
+  <param name="serifu2" desc="ﾍﾙﾒｯﾄかﾄﾞﾘﾙをくれる人,ﾒｯｾｰｼﾞの人1のｾﾘﾌ2" type="text" value="あなたへのプレゼントは、１つだけです。&#xD;&#xA;欲張らないでくださいね。&#xD;&#xA;0" category="お店" row="3" />
+  <param name="mes2_name" desc="ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人,ﾒｯｾｰｼﾞの人2の名前" type="string" value="ザトシ" category="お店" row="3" />
+  <param name="serifu3" desc="ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人,ﾒｯｾｰｼﾞの人2のｾﾘﾌ1" type="text" value="アメリカ陸軍のグレネード３発と、 &#xD;&#xA;鉄腕アトムのジェット。どちらが欲しい？&#xD;&#xA;0" category="お店" row="3" />
+  <param name="serifu4" desc="ｸﾞﾚﾈｰﾄﾞかｼﾞｪｯﾄをくれる人,ﾒｯｾｰｼﾞの人2のｾﾘﾌ2" type="text" value="そのアイテムは、オレの宝物だったんだ。&#xD;&#xA;有効に使ってくれよな。&#xD;&#xA;0" category="お店" row="3" />
+  
+  <param name="fs_name" desc="ファイヤーボールセレクトの人の名前" type="string" value="ファイヤーボールセレクトの人" category="お店" />
+  <param name="serifu7" desc="ファイヤーボールセレクトの人のセリフ" type="text" value="好きなファイヤーボールを、３種類から&#xD;&#xA;選んで下さい。私はサービスが良いので、&#xD;&#xA;何度でも選べますよ。" category="お店" row="3" />
+  <param name="fs_serifu1" desc="ファイヤーボールセレクトの人のセリフ２" type="string" value="どのファイヤーボールにしますか？" category="お店" />
+  <param name="fs_serifu2" desc="ファイヤーボールセレクトの人のセリフ３" type="string" value="を装備しました。" category="お店" />
+  <param name="fs_item_name1" desc="ファイヤーボールセレクトの人の選択肢の名前１" type="string" value="バウンド" category="お店" />
+  <param name="fs_item_name2" desc="ファイヤーボールセレクトの人の選択肢の名前２" type="string" value="ストレート" category="お店" />
+  <param name="fs_item_name3" desc="ファイヤーボールセレクトの人の選択肢の名前３" type="string" value="ダブル" category="お店" />
+
+  <param name="serifu_key1_on_name" desc="ＫＥＹ１が３つでＯＮの動作の人の名前" type="string" value="お姫様" category="仕掛け" />
+  <param name="serifu_key1_on" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ" type="text" value="ここから先へ進むには、&#xD;&#xA;３つのＫＥＹ１が必要です。&#xD;&#xA;この世界のどこかに、あるはず。" category="仕掛け" row="3" />
+  <param name="serifu_key1_on-4" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ2" type="string" value="ＫＥＹ１を３つ、わたしますか？" category="仕掛け" />
+  <param name="serifu_key1_on-5" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ3" type="string" value="はい" category="仕掛け" />
+  <param name="serifu_key1_on-6" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ4" type="string" value="いいえ" category="仕掛け" />
+  <param name="serifu_key1_on-7" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ5" type="string" value="ＫＥＹ１を３つ、持っていません。" category="仕掛け" />
+  <param name="serifu_key1_on-8" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ6" type="string" value="先へ進む道が、開けました。" category="仕掛け" />
+  <param name="serifu_key1_on-9" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ7" type="string" value="勇者殿、" category="仕掛け" />
+  <param name="serifu_key1_on-10" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ8" type="string" value="お気を付けて。" category="仕掛け" />
+  <param name="key1_on_count" desc="必要なＫＥＹ１の数（1-5）" type="int" value="3" category="仕掛け" />
+
+  <param name="serifu_key2_on_name" desc="ＫＥＹ２が３つでＯＮの動作の人の名前" type="string" value="ザトシ" category="仕掛け" />
+  <param name="serifu_key2_on" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ" type="text" value="３つのＫＥＹ２がないと、&#xD;&#xA;ここから先へは進めないぜ。&#xD;&#xA;どこかで見つけてくれ。" 
+
+category="仕掛け" row="3" />
+  <param name="serifu_key2_on-4" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ2" type="string" value="ＫＥＹ２を３つ、わたしますか？" category="仕掛け" />
+  <param name="serifu_key2_on-5" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ3" type="string" value="はい" category="仕掛け" />
+  <param name="serifu_key2_on-6" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ4" type="string" value="いいえ" category="仕掛け" />
+  <param name="serifu_key2_on-7" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ5" type="string" value="ＫＥＹ２を３つ、持っていません。" category="仕掛け" />
+  <param name="serifu_key2_on-8" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ6" type="string" value="３つのＫＥＹ２、受け取ったぜ。" category="仕掛け" />
+  <param name="serifu_key2_on-9" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ7" type="string" value="これで、先へ進めるようになったな。" category="仕掛け" />
+  <param name="serifu_key2_on-10" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ8" type="string" value="0" category="仕掛け" />
+  <param name="key2_on_count" desc="必要なＫＥＹ２の数（1-5）" type="int" value="3" category="仕掛け" />
+
+  <param name="serifu_grenade_shop_name" desc="得点でグレネードを売る人の名前" type="string" value="クリス" category="お店" />
+  <param name="serifu_grenade_shop" desc="得点でグレネードを売る人のセリフ" type="text" value="グレネード１発を、&#xD;&#xA;２０点で売りますよ。&#xD;&#xA;0" category="お店" row="3" />
+  <param name="serifu_grenade_shop-4" desc="得点でグレネードを売る人のセリフ2" type="string" value="何発にしますか？" category="お店" />
+  <param name="serifu_grenade_shop-5" desc="得点でグレネードを売る人のセリフ3" type="string" value="得点が、足りません。" category="お店" />
+  <param name="serifu_grenade_shop-6" desc="得点でグレネードを売る人のセリフ4" type="string" value="グレネードを手に入れた。" category="お店" />
+  <param name="grenade_shop_score" desc="グレネード１発に必要な得点(1-）" type="int" value="20" category="お店" />
+
+  <param name="oriboss_v" desc="オリジナルボス" type="list" value="1" category="オリジナルボス">
+    <list>なし</list>
+    <list>座標指定で設置する</list><list>ｾﾝｸｳｻﾞの文字Zの位置へ設置</list>
+  </param>
+  <param name="oriboss_name" desc="オリジナルボスの名前" type="string" value="ボスのHP" category="オリジナルボス" />
+  <param name="oriboss_hp" desc="オリジナルボスのHP（1-）" type="int" value="20" category="オリジナルボス" />
+  <param name="oriboss_speed" desc="オリジナルボスの速度（1-）" type="int" value="4" category="オリジナルボス" />
+  <param name="oriboss_x" desc="オリジナルボスの設置Ｘ座標（0-179）" type="int" value="20" category="オリジナルボス" />
+  <param name="oriboss_y" desc="オリジナルボスの設置Ｙ座標（0-29）" type="int" value="24" category="オリジナルボス" />
+  <param name="oriboss_width" desc="オリジナルボスの幅（32-）" type="int" value="64" category="オリジナルボス" />
+  <param name="oriboss_height" desc="オリジナルボスの高さ（32-）" type="int" value="64" category="オリジナルボス" />
+  <param name="oriboss_ugoki" desc="オリジナルボスの動き方" type="list" value="1" category="オリジナルボス">
+    <list>停止</list><list>左右移動</list><list>上下移動</list><list>左回り</list><list>右回り</list><list>四角形左回り</list><list>四角形右回り</list>
+    <list>HPが半分になると左へ移動</list><list>HPが減ると左と右へ移動</list><list>HPが半分になると上へ移動</list>
+    <list>HPが減ると上と下へ移動</list><list>HPが半分になると下へ移動</list><list>HPが減ると下と上へ移動</list><list>画面の端で方向転換</list>
+    <list>ジグザグ移動</list><list>画面の内側を左回り</list><list>画面の内側を右回り</list><list>HPが半分以下になると左右移動</list>
+    <list>HPが1/3以下になると左右移動</list><list>HPが半分以下になると左回り</list><list>HPが1/3以下になると左回り</list>
+    <list>斜め上へ往復</list><list>斜め下へ往復</list><list>中央で停止</list><list>中央で停止 主人公の方を向く</list>
+    <list>巨大化  中央から</list><list>巨大化  右から</list>
+  </param>
+  <param name="oriboss_waza_select" desc="オリジナルボスの技の使い方" type="list" value="1" category="オリジナルボス">
+    <list>技１のみ</list><list>技1と技2を交互に使う</list><list>技1と技2と技3を順番に使う</list>
+    <list>最初は技1 HPが半分になると技2</list><list>最初は技1 HPが減ると技2技3</list>
+    <list>技1を3回の後 技2</list><list>技1を3回の後 技2と技3を交互</list>
+    <list>左向きでは技1 右では技2</list><list>中央では技1 上では技2 下では技3</list>
+    <list>中央では技1 右では技2 左では技3</list>
+  </param>
+  <param name="oriboss_waza_select_option" desc="ｵﾘｼﾞﾅﾙﾎﾞｽの技の使い方で6か7を指定した場合の、技1の使用回数" type="int" value="1" category="オリジナルボス" />
+  <param name="oriboss_waza1" desc="オリジナルボスの技1" type="list" value="1" category="オリジナルボス">
+    <list>なし</list><list>電撃</list><list>電撃３連射</list><list>はっぱカッター</list><list>はっぱカッター３連射</list>
+    <list>火の粉</list><list>火の粉２連射</list><list>水鉄砲</list><list>爆撃</list><list>ﾊﾞﾌﾞﾙ光線 扇型に発射</list>
+    <list>ﾊﾞﾌﾞﾙ光線 放射状に発射</list><list>前へ亀を投げる</list><list>後へ亀を投げる</list><list>前へﾋﾉﾗﾗｼを投げる</list>
+    <list>後へﾋﾉﾗﾗｼを投げる</list><list>前へマリリを投げる</list><list>後へマリリを投げる</list><list>ハリケンブラスト</list>
+    <list>ﾊﾞﾌﾞﾙ光線 扇型発射 少なめ</list><list>ﾊﾞﾌﾞﾙ光線 上へ扇型発射</list><list>ﾊﾞﾌﾞﾙ光線 下へ扇型発射</list><list>はっぱｶｯﾀｰ 斜め上へ連射</list>
+    <list>はっぱｶｯﾀｰ 斜め下へ連射</list><list>水の波動</list><list>グレネード  短射程</list><list>グレネード  中射程</list><list>グレネード  長射程</list>
+    <list>プラズマ砲</list><list>破壊光線</list><list>ソーラービーム</list><list>うずしお</list><list>はっぱｶｯﾀｰ 左へ3連射</list>
+    <list>はっぱｶｯﾀｰ 右へ3連射</list><list>はっぱｶｯﾀｰ 水平発射</list><list>はっぱｶｯﾀｰ 左へ水平発射</list><list>はっぱｶｯﾀｰ 右へ水平発射</list>
+    <list>ﾊﾞﾌﾞﾙ光線 左へ4発発射</list><list>ﾊﾞﾌﾞﾙ光線 右へ4発発射</list><list>バブル光線 上へ発射</list><list>バブル光線 下へ発射</list>
+    <list>ﾊﾞﾌﾞﾙ光線 上へ4発発射</list><list>ﾊﾞﾌﾞﾙ光線 下へ4発発射</list><list>はっぱｶｯﾀｰ 2発水平発射</list><list>水の波動 水平発射</list>
+    <list>水の波動 左へ発射</list><list>水の波動 右へ発射</list>
+  </param>
+  <param name="oriboss_waza2" desc="オリジナルボスの技2" type="list" value="1" category="オリジナルボス">
+    <list>なし</list><list>電撃</list><list>電撃３連射</list><list>はっぱカッター</list><list>はっぱカッター３連射</list>
+    <list>火の粉</list><list>火の粉２連射</list><list>水鉄砲</list><list>爆撃</list><list>ﾊﾞﾌﾞﾙ光線 扇型に発射</list>
+    <list>ﾊﾞﾌﾞﾙ光線 放射状に発射</list><list>前へ亀を投げる</list><list>後へ亀を投げる</list><list>前へﾋﾉﾗﾗｼを投げる</list>
+    <list>後へﾋﾉﾗﾗｼを投げる</list><list>前へマリリを投げる</list><list>後へマリリを投げる</list><list>ハリケンブラスト</list>
+    <list>ﾊﾞﾌﾞﾙ光線 扇型発射 少なめ</list><list>ﾊﾞﾌﾞﾙ光線 上へ扇型発射</list><list>ﾊﾞﾌﾞﾙ光線 下へ扇型発射</list><list>はっぱｶｯﾀｰ 斜め上へ連射</list>
+    <list>はっぱｶｯﾀｰ 斜め下へ連射</list><list>水の波動</list><list>グレネード  短射程</list><list>グレネード  中射程</list><list>グレネード  長射程</list>
+    <list>プラズマ砲</list><list>破壊光線</list><list>ソーラービーム</list><list>うずしお</list><list>はっぱｶｯﾀｰ 左へ3連射</list>
+    <list>はっぱｶｯﾀｰ 右へ3連射</list><list>はっぱｶｯﾀｰ 水平発射</list><list>はっぱｶｯﾀｰ 左へ水平発射</list><list>はっぱｶｯﾀｰ 右へ水平発射</list>
+    <list>ﾊﾞﾌﾞﾙ光線 左へ4発発射</list><list>ﾊﾞﾌﾞﾙ光線 右へ4発発射</list><list>バブル光線 上へ発射</list><list>バブル光線 下へ発射</list>
+    <list>ﾊﾞﾌﾞﾙ光線 上へ4発発射</list><list>ﾊﾞﾌﾞﾙ光線 下へ4発発射</list><list>はっぱｶｯﾀｰ 2発水平発射</list><list>水の波動 水平発射</list>
+    <list>水の波動 左へ発射</list><list>水の波動 右へ発射</list>
+  </param>
+  <param name="oriboss_waza3" desc="オリジナルボスの技3" type="list" value="1" category="オリジナルボス">
+    <list>なし</list><list>電撃</list><list>電撃３連射</list><list>はっぱカッター</list><list>はっぱカッター３連射</list>
+    <list>火の粉</list><list>火の粉２連射</list><list>水鉄砲</list><list>爆撃</list><list>ﾊﾞﾌﾞﾙ光線 扇型に発射</list>
+    <list>ﾊﾞﾌﾞﾙ光線 放射状に発射</list><list>前へ亀を投げる</list><list>後へ亀を投げる</list><list>前へﾋﾉﾗﾗｼを投げる</list>
+    <list>後へﾋﾉﾗﾗｼを投げる</list><list>前へマリリを投げる</list><list>後へマリリを投げる</list><list>ハリケンブラスト</list>
+    <list>ﾊﾞﾌﾞﾙ光線 扇型発射 少なめ</list><list>ﾊﾞﾌﾞﾙ光線 上へ扇型発射</list><list>ﾊﾞﾌﾞﾙ光線 下へ扇型発射</list><list>はっぱｶｯﾀｰ 斜め上へ連射</list>
+    <list>はっぱｶｯﾀｰ 斜め下へ連射</list><list>水の波動</list><list>グレネード  短射程</list><list>グレネード  中射程</list><list>グレネード  長射程</list>
+    <list>プラズマ砲</list><list>破壊光線</list><list>ソーラービーム</list><list>うずしお</list><list>はっぱｶｯﾀｰ 左へ3連射</list>
+    <list>はっぱｶｯﾀｰ 右へ3連射</list><list>はっぱｶｯﾀｰ 水平発射</list><list>はっぱｶｯﾀｰ 左へ水平発射</list><list>はっぱｶｯﾀｰ 右へ水平発射</list>
+    <list>ﾊﾞﾌﾞﾙ光線 左へ4発発射</list><list>ﾊﾞﾌﾞﾙ光線 右へ4発発射</list><list>バブル光線 上へ発射</list><list>バブル光線 下へ発射</list>
+    <list>ﾊﾞﾌﾞﾙ光線 上へ4発発射</list><list>ﾊﾞﾌﾞﾙ光線 下へ4発発射</list><list>はっぱｶｯﾀｰ 2発水平発射</list><list>水の波動 水平発射</list>
+    <list>水の波動 左へ発射</list><list>水の波動 右へ発射</list>
+  </param>
+  <param name="oriboss_waza1_wait" desc="オリジナルボス1の技の使用後の待機時間（1-）" type="int" value="1" category="オリジナルボス" />
+  <param name="oriboss_waza2_wait" desc="オリジナルボス2の技の使用後の待機時間（1-）" type="int" value="1" category="オリジナルボス" />
+  <param name="oriboss_waza3_wait" desc="オリジナルボス3の技の使用後の待機時間（1-）" type="int" value="1" category="オリジナルボス" />
+  <param name="oriboss_fumeru_f" desc="オリジナルボス　主人公と重なった場合" type="list" value="1" category="オリジナルボス">
+    <list>主人公がﾀﾞﾒｰｼﾞを受ける</list><list>主人公に踏まれる</list><list>重なっても何も起きない</list><list>主人公が即死する</list>
+  </param>
+  <param name="oriboss_tail_f" desc="オリジナルボス　主人公のしっぽ攻撃を有効にする" type="bool" value="true" category="オリジナルボス" />
+  <param name="oriboss_destroy" desc="オリジナルボスを倒した場合" type="list" value="1" category="オリジナルボス">
+    <list>星が出る</list><list>ステージクリアー</list>
+  </param>
+  <param name="oriboss_anime_type" desc="オリジナルボスの戦闘中のアニメ" type="list" value="1" category="オリジナルボス">
+    <list>２パターン</list><list>なし</list>
+  </param>
+  <param name="filename_oriboss_left1" desc="オリジナルボスの画像　左向き1" type="file" value="boss2_l.gif" category="オリジナルボス" />
+  <param name="filename_oriboss_left2" desc="オリジナルボスの画像　左向き2" type="file" value="boss2_l2.gif" category="オリジナルボス" />
+  <param name="filename_oriboss_tubure_left" desc="オリジナルボスの画像 潰れた左向き" type="file" value="boss2_lt.gif" category="オリジナルボス" />
+  <param name="filename_oriboss_right1" desc="オリジナルボスの画像　右向き1" type="file" value="boss2_r.gif" category="オリジナルボス" />
+  <param name="filename_oriboss_right2" desc="オリジナルボスの画像　右向き2" type="file" value="boss2_r2.gif" category="オリジナルボス" />
+  <param name="filename_oriboss_tubure_right" desc="オリジナルボスの画像 潰れた右向き" type="file" value="boss2_rt.gif" category="オリジナルボス" />
+  <param name="x_backimage1_view_x" desc="X座標指定背景画像1 表示開始X座標(0-164)" type="int" value="0" category="画像" />
+  <param name="x_backimage1_filename" desc="X座標指定背景画像1のファイル名" type="file" value="haikei_w1024.gif" category="画像" />
+  <param name="x_backimage2_view_x" desc="X座標指定背景画像2 表示開始X座標(0-164)" type="int" value="0" category="画像" />
+  <param name="x_backimage2_filename" desc="X座標指定背景画像2のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="x_backimage3_view_x" desc="X座標指定背景画像3 表示開始X座標(0-164)" type="int" value="0" category="画像" />
+  <param name="x_backimage3_filename" desc="X座標指定背景画像3のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="x_backimage4_view_x" desc="X座標指定背景画像4 表示開始X座標(0-164)" type="int" value="0" category="画像" />
+  <param name="x_backimage4_filename" desc="X座標指定背景画像4のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="ximage1_view_x" desc="Ｘ座標指定画像１ 表示開始Ｘ座標(0-164)" type="int" value="0" category="画像" />
+  <param name="filename_ximage1" desc="Ｘ座標指定画像１のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="ximage1_x" desc="Ｘ座標指定画像１ 表示位置Ｘ座標  (0-511) " type="int" value="0" category="画像" />
+  <param name="ximage1_y" desc="Ｘ座標指定画像１ 表示位置Ｙ座標  (0-319) " type="int" value="0" category="画像" />
+  <param name="ximage2_view_x" desc="Ｘ座標指定画像２　表示開始Ｘ座標  (0-164) " type="int" value="0" category="画像" />
+  <param name="filename_ximage2" desc="Ｘ座標指定画像２のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="ximage2_x" desc="Ｘ座標指定画像２ 表示位置Ｘ座標  (0-511) " type="int" value="0" category="画像" />
+  <param name="ximage2_y" desc="Ｘ座標指定画像２ 表示位置Ｙ座標  (0-319) " type="int" value="0" category="画像" />
+  <param name="ximage3_view_x" desc="Ｘ座標指定画像３　表示開始Ｘ座標  (0-164) " type="int" value="0" category="画像" />
+  <param name="filename_ximage3" desc="Ｘ座標指定画像３のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="ximage3_x" desc="Ｘ座標指定画像３ 表示位置Ｘ座標  (0-511) " type="int" value="0" category="画像" />
+  <param name="ximage3_y" desc="Ｘ座標指定画像３ 表示位置Ｙ座標  (0-319) " type="int" value="0" category="画像" />
+  <param name="ximage4_view_x" desc="Ｘ座標指定画像４　表示開始Ｘ座標  (0-164) " type="int" value="0" category="画像" />
+  <param name="filename_ximage4" desc="Ｘ座標指定画像４のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="ximage4_x" desc="Ｘ座標指定画像４ 表示位置Ｘ座標  (0-511) " type="int" value="0" category="画像" />
+  <param name="ximage4_y" desc="Ｘ座標指定画像４ 表示位置Ｙ座標  (0-319) " type="int" value="0" category="画像" />
+  <param name="door_score" desc="地図や仕掛けの「得点で開く扉」の基準得点(10-)" type="int" value="30" category="仕掛け" />
+  <param name="dokan_mode" desc="リンク土管の動作" type="list" value="2" category="リンク土管" chip="DokanM"><list>リンク土管</list><list>ワープ土管</list></param>
+  <param name="url1" desc="リンク土管1の移動先" type="string" value="http://www.t3.rim.or.jp/~naoto/naoto.html" category="リンク土管" />
+  <param name="url2" desc="リンク土管2の移動先" type="string" value="http://www.t3.rim.or.jp/~naoto/j_con/index.html" category="リンク土管" />
+  <param name="url3" desc="リンク土管3の移動先" type="string" value="http://www.t3.rim.or.jp/~naoto/naoto.html" category="リンク土管" />
+  <param name="url4" desc="リンク土管4の移動先" type="string" value="http://www.t3.rim.or.jp/~naoto/j_con/index.html" category="リンク土管" />
+  <param name="hitokoto1_name" desc="一言メッセージ1 名前" type="string" value="浩二" category="メッセージ" />
+  <param name="hitokoto1" desc="一言メッセージ1 セリフ" type="text" value="今日は、いい天気だなあ、なんてね。&#xD;&#xA;プレイ画面でも、こんなセリフを、&#xD;&#xA;入れられるように、なったんだ。" category="メッセージ" row="3" />
+  <param name="hitokoto2_name" desc="一言メッセージ2 名前" type="string" value="お姫様" category="メッセージ" />
+  <param name="hitokoto2" desc="一言メッセージ2 セリフ" type="text" value="ついに、ここまで来ましたね。&#xD;&#xA;ゆうきの証、ミレニアム人面星が&#xD;&#xA;あなたを、待っていますよ。" category="メッセージ" row="3" />
+  <param name="hitokoto3_name" desc="一言メッセージ3 名前" type="string" value="ザトシ" category="メッセージ" />
+  <param name="hitokoto3" desc="一言メッセージ3 セリフ" type="text" value="俺は、世界一になる男だ。&#xD;&#xA;ぜったい、なってやるーー。&#xD;&#xA;0" category="メッセージ" row="3" />
+  <param name="hitokoto4_name" desc="一言メッセージ4 名前" type="string" value="クリス" category="メッセージ" />
+  <param name="hitokoto4" desc="一言メッセージ4 セリフ" type="text" value="あたし、クリス。ペットのピカチーが、&#xD;&#xA;どこかに行っちゃったの。&#xD;&#xA;こまったわね、ぐすん。" category="メッセージ" row="3" />
+  <param name="setumei_name" desc="説明する人(地図)" type="string" value="キドはかせ" category="地図" stage="5" />
+  <param name="serifu9" desc="説明する人セリフ1" type="text" value="よく来た。わしは、キドはかせ。&#xD;&#xA;アイテムの研究をしており、みんなから、&#xD;&#xA;アイテムはかせと呼ばれて、したわれておるよ。" category="地図" row="3" stage="5" />
+  <param name="setumei_menu1" desc="説明する人メニュー前置き" type="string" value="なんでも、質問してくれたまえよ。" category="地図" stage="5" />
+  <param name="setumei_menu2" desc="説明する人メニュー1" type="string" value="ファイヤーボール" category="地図" stage="5" />
+  <param name="setumei_menu3" desc="説明する人メニュー2" type="string" value="バリア" category="地図" stage="5" />
+  <param name="setumei_menu4" desc="説明する人メニュー3" type="string" value="ジェット" category="地図" stage="5" />
+  <param name="serifu10" desc="説明する人セリフ2" type="text" value="黄色いチューリップのアイテムと言えば、&#xD;&#xA;そう、ファイヤーボールじゃな。はなれた&#xD;&#xA;敵を攻撃できるという、大変便利なものじゃ。" category="地図" row="3" stage="5" />
+  <param name="serifu11" desc="説明する人セリフ3" type="text" value="ピンクのキノコのアイテムと言えば、そう、&#xD;&#xA;バリアじゃな。体当たりで敵を倒せるが、うっかり&#xD;&#xA;して、時間切れを忘れぬよう、注意が必要じゃ。" category="地図" row="3" stage="5" />
+  <param name="serifu12" desc="説明する人セリフ4" type="text" value="ロケットの形のアイテムと言えば、そう、ジェット&#xD;&#xA;じゃな。空中で、スペースキーを押せば、さらに&#xD;&#xA;上昇できる。燃料切れには、気を付けるのじゃぞ。" category="地図" row="3" stage="5" />
+  <param name="backcolor_@" desc="背景色" type="color" value="0,255,255" rel="BACKGROUND" category="表示" />
+  <param name="backcolor_@_s" desc="背景色(ステージ2)" type="color" value="0,255,255" rel="BACKGROUND2" category="表示" stage="2" />
+  <param name="backcolor_@_t" desc="背景色(ステージ3)" type="color" value="0,255,255" rel="BACKGROUND3" category="表示" stage="3" />
+  <param name="backcolor_@_f" desc="背景色(ステージ4)" type="color" value="0,255,255" rel="BACKGROUND4" category="表示" stage="4" />
+  <param name="kaishi_@" desc="ステージ番号画面の背景色" type="color" value="0,0,0" rel="BACKGROUNDM" category="表示" />
+  <param name="scorecolor_@" desc="文字色" type="color" value="0,0,255" category="表示" />
+  <param name="grenade_@1" desc="ｸﾞﾚﾈｰﾄﾞ,ｿｰﾗｰﾋﾞｰﾑ,ﾄﾞｯｽﾝｽﾝのｺﾞｰﾙの色1,破壊光線の色" type="color" value="255,255,255" category="表示" />
+  <param name="grenade_@2" desc="ｸﾞﾚﾈｰﾄﾞ,ｿｰﾗｰﾋﾞｰﾑ,ﾄﾞｯｽﾝｽﾝのｺﾞｰﾙの色2" type="color" value="255,255,0" category="表示" />
+  <param name="mizunohadou_@" desc="水の波動,人間大砲(本体)の色" type="color" value="0,32,255" category="表示" />
+  <param name="firebar_@1" desc="ﾌｧｲﾔｰ系の外側,ｼｰｿｰと動くT字型の支柱,ﾌﾞﾗﾝｺの鎖の色" type="color" value="255,0,0" category="表示" />
+  <param name="firebar_@2" desc="ﾌｧｲﾔｰ系の内側,ｼｰｿｰと動くT字型とｽｳｨﾝｸﾞﾊﾞｰとﾌﾞﾗﾝｺの板,ﾛｰﾌﾟ,ゆれる棒,人間大砲の台座の色" type="color" value="255,192,0" category="表示" />
+  <param name="moji_score" desc="SCORE の文字" type="string" value="SCORE" category="表示" />
+  <param name="moji_highscore" desc="HIGHSCORE の文字" type="string" value="HIGHSCORE" category="表示" />
+  <param name="moji_time" desc="TIME の文字" type="string" value="TIME" category="表示" />
+  <param name="moji_jet" desc="JET の文字" type="string" value="JET" category="表示" />
+  <param name="moji_grenade" desc="GRENADE の文字" type="string" value="GRENADE" category="表示" />
+  <param name="moji_left" desc="LEFT の文字" type="string" value="LEFT" category="表示" />
+  <param name="moji_size" desc="文字の大きさ(8-30)" type="int" value="14" category="表示" />
+  <param name="font_score" desc="スコアのフォント" type="string" value="Helvetica,Arial,ＭＳ ゴシック,HG ゴシックB Sun,HG ゴシックB,monospace" category="表示" />
+  <param name="font_message" desc="一言メッセージのフォント" type="string" value="Helvetica,Arial,ＭＳ ゴシック,HG ゴシックB Sun,HG ゴシックB,monospace" category="表示" />
+  <param name="filename_title" desc="タイトル画面のファイル名" type="file" value="title.png" rel="TITLE" category="画像" />
+  <param name="filename_ending" desc="エンディング画面のファイル名" type="file" value="ending.png" rel="ENDING" category="画像" />
+  <param name="filename_gameover" desc="ゲームオーバー画面のファイル名" type="file" value="gameover.png" rel="GAMEOVER" category="画像" />
+  <param name="filename_pattern" desc="キャラクターパターンのファイル名" type="file" value="pattern.gif" rel="PATTERN" category="画像" />
+  <param name="filename_chizu" desc="地図画面の背景のファイル名" type="file" value="chizu.png" category="画像" stage="5" />
+  <param name="game_speed" desc="ゲームの進行スピード(10-300,小さいほど早い)" type="int" value="70" category="システム" />
+  <param name="fx_bgm_loop" desc="BGMのループ再生" type="bool" value="true" category="BGM" />
+  <param name="audio_bgm_switch_wave" desc="Wave形式の音声ファイルをBGMに使う" type="bool" value="false" category="BGM" />
+  <param name="audio_bgm_switch_mp3" desc="MP3形式の音声ファイルをBGMに使う" type="bool" value="true" category="BGM" />
+  <param name="audio_bgm_switch_ogg" desc="Ogg形式の音声ファイルをBGMに使う" type="bool" value="true" category="BGM" />
+  <param name="filename_fx_bgm_stage1" desc="ステージ１のBGM" type="file" value="stage1.mp3" category="BGM" />
+  <param name="filename_fx_bgm_stage2" desc="ステージ2のBGM" type="file" value="stage2.mp3" category="BGM" stage="2" />
+  <param name="filename_fx_bgm_stage3" desc="ステージ3のBGM" type="file" value="stage3.mp3" category="BGM" stage="3" />
+  <param name="filename_fx_bgm_stage4" desc="ステージ4のBGM" type="file" value="stage4.mp3" category="BGM" stage="4" />
+  <param name="filename_fx_bgm_boss" desc="ボスBGM" type="file" value="boss.mp3" category="BGM" />
+  <param name="filename_fx_bgm_title" desc="タイトル画面のBGM" type="file" value="title.mp3" category="BGM" />
+  <param name="filename_fx_bgm_ending" desc="エンディング画面のBGM" type="file" value="ending.mp3" category="BGM" />
+  <param name="filename_fx_bgm_chizu" desc="地図画面のBGM" type="file" value="chizu.mp3" category="BGM" stage="5" />
+  <param name="se_filename" desc="効果音のファイル名を指定する" type="bool" value="true" category="効果音" />
+  <param name="audio_se_switch_wave" desc="Wave形式の音声ファイルを効果音に使う" type="bool" value="true" category="効果音" />
+  <param name="audio_se_switch_mp3" desc="MP3形式の音声ファイルを効果音に使う" type="bool" value="true" category="効果音" />
+  <param name="audio_se_switch_ogg" desc="Ogg形式の音声ファイルを効果音に使う" type="bool" value="true" category="効果音" />
+  <param name="filename_se_start" desc="ゲームスタート" type="file" value="item.wav" category="効果音" />
+  <param name="filename_se_gameover" desc="ゲームオーバー" type="file" value="gameover.wav" category="効果音" />
+  <param name="filename_se_clear" desc="ステージクリア" type="file" value="clear.wav" category="効果音" />
+  <param name="filename_se_coin" desc="コインを取る、？ブロックからコインが出る" type="file" value="coin.wav" category="効果音" />
+  <param name="filename_se_get" desc="アイテムを取る、扉が開く" type="file" value="get.wav" category="効果音" />
+  <param name="filename_se_item" desc="？ブロックからアイテムが出る" type="file" value="item.wav" category="効果音" />
+  <param name="filename_se_jump" desc="ジャンプ" type="file" value="jump.wav" category="効果音" />
+  <param name="filename_se_sjump" desc="ｽｰﾊﾟｰｼﾞｬﾝﾌﾟ、ｼﾞｬﾝﾌﾟ台でｼﾞｬﾝﾌﾟ、横へ飛ばすﾊﾞﾈ" type="file" value="sjump.wav" category="効果音" />
+  <param name="filename_se_kiki" desc="滑る" type="file" value="kiki.wav" category="効果音" />
+  <param name="filename_se_fumu" desc="敵を踏む" type="file" value="fumu.wav" category="効果音" />
+  <param name="filename_se_tobasu" desc="ファイヤーボール等で敵を倒す" type="file" value="tobasu.wav" category="効果音" />
+  <param name="filename_se_fireball" desc="ファイヤーボール発射、スイッチ、ﾛｹｯﾄ頭突き、ｽｶｲｱｯﾊﾟｰ" type="file" value="shot.wav" category="効果音" />
+  <param name="filename_se_jet" desc="ジェット、昇龍拳" type="file" value="mgan.wav" category="効果音" />
+  <param name="filename_se_miss" desc="自分が死んだ" type="file" value="dosun.wav" category="効果音" />
+  <param name="filename_se_block" desc="ブロックを破壊" type="file" value="bakuhatu.wav" category="効果音" />
+  <param name="filename_se_mizu" desc="水しぶき" type="file" value="mizu.wav" category="効果音" />
+  <param name="filename_se_dengeki" desc="ピカチーの電撃" type="file" value="mgan.wav" category="効果音" />
+  <param name="filename_se_happa" desc="はっぱカッター、ソーラービーム" type="file" value="happa.wav" category="効果音" />
+  <param name="filename_se_hinoko" desc="火の粉、破壊光線" type="file" value="mgan.wav" category="効果音" />
+  <param name="filename_se_mizudeppo" desc="水鉄砲" type="file" value="happa.wav" category="効果音" />
+  <param name="filename_se_bomb" desc="エアームズの爆弾" type="file" value="shot.wav" category="効果音" />
+  <param name="filename_se_dosun" desc="ドッスンスンが落ちる" type="file" value="dosun.wav" category="効果音" />
+  <param name="filename_se_grounder" desc="噴火、ｻｲｺｸﾗｯｼｬｰｱﾀｯｸ" type="file" value="mgan.wav" category="効果音" />
+  <param name="filename_se_kaiole" desc="水の波動、流星キック" type="file" value="happa.wav" category="効果音" />
+  <param name="filename_se_senkuuza" desc="ｸﾞﾚﾈｰﾄﾞ、りゅうせいぐん" type="file" value="shot.wav" category="効果音" />
+  <param name="filename_se_dokan" desc="土管に入る" type="file" value="get.wav" category="効果音" />
+  <param name="filename_se_chizugamen" desc="地図画面からステージへ入る" type="file" value="get.wav" category="効果音" stage="5" />
+</Configurations>

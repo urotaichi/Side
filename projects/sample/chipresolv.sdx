@@ -1,0 +1,1023 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ChipDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mapchip>
+    <!-- 先頭コード0 -->
+    <!-- ここから 0A ～　0Z -->
+    <chips char="." color="black">
+      <chip>
+        <pattern>
+          <X>0</X>
+          <Y>0</Y>
+        </pattern>
+        <name>空白</name>
+        <description>何もなし</description>
+      </chip>
+    </chips>
+    <chips char="A" rel="tokugi" color="orange">
+      <chip value="false"><pattern><X>0</X><Y>320</Y></pattern><name>自分</name><description>プレイヤー しっぽを初期装備</description></chip>
+      <chip value="true"><pattern><X>0</X><Y>320</Y></pattern><name>自分</name><description>プレイヤー</description></chip>
+    </chips>
+    <chips char="B" color="magenta">
+      <chip>
+        <pattern>
+          <X>0</X>
+          <Y>448</Y>
+        </pattern>
+        <xdraw>
+          <X>96</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>亀</name>
+        <description>足元に空白があると向きを変える</description>
+      </chip>
+    </chips>
+    <chips char="C" color="magenta">
+      <chip>
+        <pattern>
+          <X>0</X>
+          <Y>448</Y>
+        </pattern>
+        <name>亀</name>
+        <description>足元に空白があると落ちる</description>
+      </chip>
+    </chips>
+    <chips char="D" color="magenta">
+      <chip>
+        <pattern>
+          <X>0</X>
+          <Y>448</Y>
+        </pattern>
+        <xdraw>
+          <X>352</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>亀</name>
+        <description>足元に空白があると落ちる  ３匹連続</description>
+      </chip>
+    </chips>
+    <chips char="E" rel="PikachiA" color="magenta">
+      <chip value="false"><pattern><X>96</X><Y>448</Y></pattern><name>ピカチー</name><description>電撃　水中でも使える</description></chip>
+      <chip value="true"><pattern><X>96</X><Y>448</Y></pattern><name>ピカチー</name><description>電撃　水中で消える</description></chip>
+    </chips>
+    <chips char="F" color="magenta">
+      <chip>
+        <pattern>
+          <X>0</X>
+          <Y>480</Y>
+        </pattern>
+        <name>チコリン</name>
+        <description>はっぱカッター</description>
+      </chip>
+    </chips>
+    <chips char="G" color="magenta">
+      <chip>
+        <pattern>
+          <X>64</X>
+          <Y>480</Y>
+        </pattern>
+        <name>ヒノララシ</name>
+        <description>踏めません</description>
+      </chip>
+    </chips>
+    <chips char="H" color="magenta">
+      <chip>
+        <pattern>
+          <X>224</X>
+          <Y>448</Y>
+        </pattern>
+        <xdraw>
+          <X>64</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>ポッピー</name>
+        <description>上下移動</description>
+      </chip>
+    </chips>
+    <chips char="I" color="magenta">
+      <chip>
+        <pattern>
+          <X>224</X>
+          <Y>448</Y>
+        </pattern>
+        <name>ポッピー</name>
+        <description>直進</description>
+      </chip>
+    </chips>
+    <chips char="J" color="magenta">
+      <chip>
+        <pattern>
+          <X>224</X>
+          <Y>448</Y>
+        </pattern>
+        <xdraw>
+          <X>352</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>ポッピー</name>
+        <description>直進　３羽連続</description>
+      </chip>
+    </chips>
+    <chips char="K" rel="VMovFloor" color="yellow">
+      <chip value="1">
+        <pattern>
+          <X>0</X>
+          <Y>608</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <xdraw>
+          <X>64</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>動く床</name>
+        <description>上下移動</description>
+      </chip>
+      <chip value="2">
+        <pattern>
+          <X>0</X>
+          <Y>576</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <name>落ちる床</name>
+        <description>乗ると落ちる</description>
+      </chip>
+      <chip value="3">
+        <pattern>
+          <X>0</X>
+          <Y>576</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <name>落ちる床</name>
+        <description>ずっと乗っていると落ちる</description>
+      </chip>
+      <chip value="4">
+        <pattern>
+          <X>0</X>
+          <Y>608</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <xdraw>
+          <X>256</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>動く床</name>
+        <description>左回り</description>
+      </chip>
+      <chip value="5">
+        <pattern>
+          <X>0</X>
+          <Y>608</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <xdraw>
+          <X>288</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>動く床</name>
+        <description>右回り</description>
+      </chip>
+      <chip value="6">
+        <pattern>
+          <X>256</X>
+          <Y>576</Y>
+        </pattern>
+        <size>
+          <Width>64</Width>
+          <Height>64</Height>
+        </size>
+        <center>
+          <X>0</X>
+          <Y>32</Y>
+        </center>
+        <name>乗れるカイオール</name>
+        <description>乗ると右へ進みます</description>
+      </chip>
+      <chip value="7">
+        <pattern>
+          <X>64</X>
+          <Y>96</Y>
+        </pattern>
+        <name>ジャンプ台</name>
+        <description>高くジャンプできます</description>
+      </chip>
+    </chips>
+    <chips char="L" rel="HMovFloor">
+      <chip value="1">
+        <pattern>
+          <X>0</X>
+          <Y>608</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <xdraw>
+          <X>96</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>動く床</name>
+        <description>左右移動</description>
+      </chip>
+      <chip value="2">
+        <pattern>
+          <X>0</X>
+          <Y>576</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <name>落ちる床</name>
+        <description>乗ると落ちる</description>
+      </chip>
+      <chip value="3">
+        <pattern>
+          <X>0</X>
+          <Y>576</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <name>落ちる床</name>
+        <description>ずっと乗っていると落ちる</description>
+      </chip>
+      <chip value="4">
+        <pattern>
+          <X>0</X>
+          <Y>608</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <xdraw>
+          <X>256</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>動く床</name>
+        <description>左回り</description>
+      </chip>
+      <chip value="5">
+        <pattern>
+          <X>0</X>
+          <Y>608</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <xdraw>
+          <X>288</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>動く床</name>
+        <description>右回り</description>
+      </chip>
+      <chip value="6">
+        <pattern>
+          <X>256</X>
+          <Y>576</Y>
+        </pattern>
+        <size>
+          <Width>64</Width>
+          <Height>64</Height>
+        </size>
+        <center>
+          <X>0</X>
+          <Y>32</Y>
+        </center>
+        <name>乗れるカイオール</name>
+        <description>乗ると右へ進みます</description>
+      </chip>
+      <chip value="7">
+        <pattern>
+          <X>64</X>
+          <Y>96</Y>
+        </pattern>
+        <name>ジャンプ台</name>
+        <description>高くジャンプできます</description>
+      </chip>
+    </chips>
+    <chips char="M" rel="DMovFloor" color="yellow">
+      <chip value="1">
+        <pattern>
+          <X>0</X>
+          <Y>608</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <xdraw>
+          <X>128</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>動く床</name>
+        <description>左右移動　2個連続</description>
+      </chip>
+      <chip value="2">
+        <pattern>
+          <X>0</X>
+          <Y>576</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <name>落ちる床</name>
+        <description>乗ると落ちる</description>
+      </chip>
+      <chip value="3">
+        <pattern>
+          <X>0</X>
+          <Y>576</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <name>落ちる床</name>
+        <description>ずっと乗っていると落ちる</description>
+      </chip>
+      <chip value="4">
+        <pattern>
+          <X>0</X>
+          <Y>608</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <xdraw>
+          <X>256</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>動く床</name>
+        <description>左回り</description>
+      </chip>
+      <chip value="5">
+        <pattern>
+          <X>0</X>
+          <Y>608</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>32</Height>
+        </size>
+        <xdraw>
+          <X>288</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>動く床</name>
+        <description>右回り</description>
+      </chip>
+      <chip value="6">
+        <pattern>
+          <X>256</X>
+          <Y>576</Y>
+        </pattern>
+        <size>
+          <Width>64</Width>
+          <Height>64</Height>
+        </size>
+        <center>
+          <X>0</X>
+          <Y>32</Y>
+        </center>
+        <name>乗れるカイオール</name>
+        <description>乗ると右へ進みます</description>
+      </chip>
+      <chip value="7">
+        <pattern>
+          <X>64</X>
+          <Y>96</Y>
+        </pattern>
+        <name>ジャンプ台</name>
+        <description>高くジャンプできます</description>
+      </chip>
+    </chips>
+    <chips char="N" color="red">
+      <chip>
+        <pattern>
+          <X>96</X>
+          <Y>576</Y>
+        </pattern>
+        <size>
+          <Width>96</Width>
+          <Height>64</Height>
+        </size>
+        <center>
+          <X>32</X>
+          <Y>0</Y>
+        </center>
+        <name>ドッスンスン</name>
+        <description>落ちてくる　下に空白が５ブロック必要</description>
+      </chip>
+    </chips>
+    <chips char="O" color="magenta">
+      <chip>
+        <pattern>
+          <X>128</X>
+          <Y>480</Y>
+        </pattern>
+        <name>マリリ</name>
+        <description>跳ねる</description>
+      </chip>
+    </chips>
+    <chips char="P" rel="YachamoA" color="magenta">
+      <chip value="false"><pattern><X>256</X><Y>480</Y></pattern><name>ヤチャモ</name><description>何もしない</description></chip>
+      <chip value="true"><pattern><X>256</X><Y>480</Y></pattern><name>ヤチャモ</name><description>火の粉</description></chip>
+    </chips>
+    <chips char="Q" color="magenta">
+      <chip>
+        <pattern>
+          <X>0</X>
+          <Y>512</Y>
+        </pattern>
+
+        <name>ミズタロウ</name>
+        <description>水鉄砲</description>
+      </chip>
+    </chips>
+    <chips char="R" rel="AirmsA" color="magenta">
+      <chip value="false"><pattern><X>128</X><Y>512</Y></pattern><name>エアームズ</name><description>爆弾投下 壁に当たると向きを変える</description></chip>
+      <chip value="true"><pattern><X>128</X><Y>512</Y></pattern><name>エアームズ</name><description>爆弾投下 壁に当たると止まる</description></chip>
+    </chips>
+    <chips char="S" rel="GrounderA" color="magenta">
+      <chip value="1"><pattern><X>192</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <center><X>0</X><Y>32</Y></center><name>グラーダ</name><description>ボス　噴火</description>
+      </chip>
+      <chip value="2"><pattern><X>192</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <center><X>0</X><Y>32</Y></center><name>グラーダ</name><description>ボス　亀を投げる</description>
+      </chip>
+      <chip value="3"><pattern><X>192</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <center><X>0</X><Y>32</Y></center><name>グラーダ</name><description>ボス　ヒノララシを投げる</description>
+      </chip>
+      <chip value="4"><pattern><X>192</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <center><X>0</X><Y>32</Y></center><name>グラーダ</name><description>ボス　マリリを投げる</description>
+      </chip>
+    </chips>
+    <chips char="T" rel="KaioleA" color="magenta">
+      <chip value="1"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <center><X>0</X><Y>32</Y></center><name>カイオール</name><description>ボス　水の波動 自機狙い</description>
+      </chip>
+      <chip value="2"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <center><X>0</X><Y>32</Y></center><name>カイオール</name><description>ボス　バブル光線８方向</description>
+      </chip>
+    </chips>
+    <chips char="U" color="yellow">
+      <chip>
+        <pattern>
+          <X>0</X>
+          <Y>160</Y>
+        </pattern>
+        <xdraw>
+          <X>256</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>ファイアーバー</name>
+        <description>左回り</description>
+      </chip>
+    </chips>
+    <chips char="V" color="yellow">
+      <chip>
+        <pattern>
+          <X>0</X>
+          <Y>160</Y>
+        </pattern>
+
+        <xdraw>
+          <X>288</X>
+          <Y>0</Y>
+        </xdraw>
+        <name>ファイアーバー</name>
+        <description>右回り</description>
+      </chip>
+    </chips>
+    <chips char="W" color="magenta">
+      <chip>
+        <pattern>
+          <X>192</X>
+          <Y>512</Y>
+        </pattern>
+        <xdraw>
+          <X>224</X>
+          <Y>0</Y>
+        </xdraw>
+        <xdbackgrnd>true</xdbackgrnd>
+        <name>タイキング</name>
+        <description>左右移動　水中専用</description>
+      </chip>
+    </chips>
+    <chips char="X" color="magenta">
+      <chip>
+        <pattern>
+          <X>224</X>
+          <Y>512</Y>
+        </pattern>
+        <xdraw>
+          <X>224</X>
+          <Y>0</Y>
+        </xdraw>
+        <xdbackgrnd>true</xdbackgrnd>
+        <name>クラゲッソ</name>
+        <description>バブル光線　水中専用</description>
+      </chip>
+    </chips>
+    <chips char="Y" color="magenta">
+      <chip>
+        <pattern>
+          <X>192</X>
+          <Y>224</Y>
+        </pattern>
+        <size>
+          <Width>64</Width>
+          <Height>64</Height>
+        </size>
+        <name>水草</name>
+        <description>ただの背景</description>
+      </chip>
+    </chips>
+    <chips char="Z" rel="SenkuuzaA" color="magenta">
+      <chip value="1"><pattern><X>256</X><Y>736</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <center><X>0</X><Y>32</Y></center><name>センクウザ</name><description>ボス　グレネード</description>
+      </chip>
+      <chip value="2"><pattern><X>256</X><Y>736</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <center><X>0</X><Y>32</Y></center><name>センクウザ</name><description>ボス　バリアを張って体当たり</description>
+      </chip>
+      <chip value="3"><pattern><X>256</X><Y>736</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <center><X>0</X><Y>32</Y></center><name>センクウザ</name><description>ボス　バリアを張って高速体当たり</description>
+      </chip>
+      <chip value="4"><pattern><X>256</X><Y>736</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <center><X>0</X><Y>32</Y></center><name>センクウザ</name><description>ボス　バリアを張ってジャンプ</description>
+      </chip>
+    </chips>
+    <!-- ここまで 0A ～　0Z -->
+
+    <!-- ここから 0a ～　0z -->
+    <chips char="a" color="cyan">
+      <chip>
+        <pattern>
+          <X>0</X>
+          <Y>64</Y>
+        </pattern>
+        <name>ブロック１</name>
+        <description>レンガ</description>
+      </chip>
+    </chips>
+    <chips char="b" color="cyan">
+      <chip>
+        <pattern>
+          <X>32</X>
+          <Y>64</Y>
+        </pattern>
+        <name>ブロック２</name>
+        <description>岩</description>
+      </chip>
+    </chips>
+    <chips char="c" color="cyan">
+      <chip>
+        <pattern>
+          <X>64</X>
+          <Y>64</Y>
+        </pattern>
+        <name>ブロック３</name>
+        <description>水色のレンガ</description>
+      </chip>
+    </chips>
+    <chips char="d" color="cyan">
+      <chip>
+        <pattern>
+          <X>96</X>
+          <Y>64</Y>
+        </pattern>
+        <name>ブロック４</name>
+        <description>鉄</description>
+      </chip>
+    </chips>
+    <chips char="e" color="cyan">
+      <chip>
+        <pattern>
+          <X>128</X>
+          <Y>64</Y>
+        </pattern>
+        <name>ブロック５</name>
+        <description>鉄の柱１</description>
+      </chip>
+    </chips>
+    <chips char="f" color="cyan">
+      <chip>
+        <pattern>
+          <X>160</X>
+          <Y>64</Y>
+        </pattern>
+        <name>ブロック６</name>
+        <description>鉄の柱２</description>
+      </chip>
+    </chips>
+    <chips char="g" color="cyan">
+      <chip>
+        <pattern>
+          <X>192</X>
+          <Y>64</Y>
+        </pattern>
+        <name>ブロック７</name>
+        <description>土</description>
+      </chip>
+    </chips>
+    <chips char="h" color="cyan">
+      <chip>
+        <pattern>
+          <X>224</X>
+          <Y>64</Y>
+        </pattern>
+        <name>ブロック８</name>
+        <description>城の壁</description>
+      </chip>
+    </chips>
+    <chips char="i" color="cyan">
+      <chip>
+        <pattern>
+          <X>256</X>
+          <Y>64</Y>
+        </pattern>
+        <name>ブロック９</name>
+        <description>黄色のブロック</description>
+      </chip>
+    </chips>
+    <chips char="j" color="cyan">
+      <chip>
+        <pattern>
+          <X>288</X>
+          <Y>64</Y>
+        </pattern>
+        <name>ブロック１０</name>
+        <description>緑色のブロック</description>
+      </chip>
+    </chips>
+    <chips char="k" color="cyan">
+      <chip>
+        <pattern>
+          <X>0</X>
+          <Y>288</Y>
+        </pattern>
+        <xdraw>
+          <X>160</X>
+          <Y>0</Y>
+        </xdraw>
+        <xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック</name>
+        <description>コイン</description>
+      </chip>
+    </chips>
+    <chips char="l" color="cyan">
+      <chip>
+        <pattern>
+          <X>0</X>
+          <Y>288</Y>
+        </pattern>
+        <xdraw>
+          <X>192</X>
+          <Y>0</Y>
+        </xdraw>
+        <xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック</name>
+        <description>コイン3枚</description>
+      </chip>
+    </chips>
+    <chips char="m" rel="FireT" color="cyan">
+      <chip value="false"><pattern><X>64</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[水中で使えるファイアーボール]</name><description>スペースキーでファイアーボール発射</description>
+      </chip>
+      <chip value="true"><pattern><X>64</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[水中で消えるファイアーボール]</name><description>スペースキーでファイアーボール発射</description>
+      </chip>
+    </chips>
+    <chips char="n" color="cyan">
+      <chip>
+        <pattern>
+          <X>96</X>
+          <Y>128</Y>
+        </pattern>
+        <xdraw>
+          <X>160</X>
+          <Y>0</Y>
+        </xdraw>
+        <xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[バリア]</name>
+        <description>一定時間無敵</description>
+      </chip>
+    </chips>
+    <chips char="o" color="cyan">
+      <chip>
+        <pattern>
+          <X>128</X>
+          <Y>128</Y>
+        </pattern>
+        <xdraw>
+          <X>160</X>
+          <Y>0</Y>
+        </xdraw>
+        <xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[タイム]</name>
+        <description>制限時間延長</description>
+      </chip>
+    </chips>
+    <chips char="p" color="cyan">
+      <chip>
+        <pattern>
+          <X>160</X>
+          <Y>128</Y>
+        </pattern>
+        <xdraw>
+          <X>160</X>
+          <Y>0</Y>
+        </xdraw>
+        <xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[ジェット]</name>
+        <description>空中でスペースキーを押すと上昇</description>
+      </chip>
+    </chips>
+    <chips char="q" rel="Suberuyuka" color="cyan">
+      <chip value="false"><pattern><X>192</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[ヘルメット]</name><description>頭突きでブロック１を破壊</description></chip>
+      <chip value="true"><pattern><X>192</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[ヘルメット]</name><description>頭突きでブロック１、すべる床を破壊</description></chip>
+    </chips>
+    <chips char="r" rel="TailT" color="cyan">
+      <chip value="1"><pattern><X>224</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[しっぽ]</name><description>Ｘキーで前方の敵を攻撃</description>
+      </chip>
+      <chip value="2"><pattern><X>224</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[しっぽ]</name><description>Ｘキーでブロック１を壊せる</description>
+      </chip>
+      <chip value="3"><pattern><X>224</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[しっぽ]</name><description>Ｘキーで前方の敵を攻撃、ブロック１を壊せる</description>
+      </chip>
+    </chips>
+    <chips char="s" rel="Suberuyuka" color="cyan">
+      <chip value="false"><pattern><X>256</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[ドリル]</name><description>Ｘキーで下のブロック１を破壊</description></chip>
+      <chip value="true"><pattern><X>256</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[ドリル]</name><description>Ｘキーで下のブロック１、すべる床を破壊</description></chip>
+    </chips>
+    <chips char="t" rel="GrenadeT" color="cyan">
+      <chip value="1"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[グレネード（ボスを倒せる）]</name><description>Ｘキーで強力な弾を一発発射</description>
+      </chip>
+      <chip value="2"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[グレネード（ボスには効かない）]</name><description>Ｘキーで強力な弾を一発発射</description>
+      </chip>
+      <chip value="3"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[エネルギー砲（ボスを倒せる）]</name><description>Ｘキーで強力な弾を一発発射</description>
+      </chip>
+      <chip value="4"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[エネルギー砲（ボスには効かない）]</name><description>Ｘキーで強力な弾を一発発射</description>
+      </chip>
+      <chip value="5"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[プラズマ砲（ボスを倒せる）]</name><description>Ｘキーで強力な弾を一発発射</description>
+      </chip>
+      <chip value="6"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[プラズマ砲（ボスには効かない）]</name><description>Ｘキーで強力な弾を一発発射</description>
+      </chip>
+    </chips>
+    <chips char="u" rel="DokanM" color="forestgreen">
+      <chip value="1"><pattern><X>0</X><Y>192</Y></pattern><size><Width>64</Width><Height>32</Height></size>
+        <name>リンク土管１</name><description>他の Web ページへ移動します</description>
+      </chip>
+      <chip value="2"><pattern><X>0</X><Y>192</Y></pattern><size><Width>64</Width><Height>32</Height></size>
+        <name>ワープ土管１</name><description>同じ番号の土管が、つながります。２つずつ設置して下さい。</description>
+      </chip>
+    </chips>
+    <chips char="v" rel="DokanM" color="forestgreen">
+      <chip value="1"><pattern><X>64</X><Y>192</Y></pattern><size><Width>64</Width><Height>32</Height></size>
+        <name>リンク土管２</name><description>他の Web ページへ移動します</description>
+      </chip>
+      <chip value="2"><pattern><X>64</X><Y>192</Y></pattern><size><Width>64</Width><Height>32</Height></size>
+        <name>ワープ土管２</name><description>同じ番号の土管が、つながります。２つずつ設置して下さい。</description>
+      </chip>
+    </chips>
+    <chips char="w" rel="DokanM" color="forestgreen">
+      <chip value="1"><pattern><X>128</X><Y>192</Y></pattern><size><Width>64</Width><Height>32</Height></size>
+        <name>リンク土管３</name><description>他の Web ページへ移動します</description>
+      </chip>
+      <chip value="2"><pattern><X>128</X><Y>192</Y></pattern><size><Width>64</Width><Height>32</Height></size>
+        <name>ワープ土管３</name><description>同じ番号の土管が、つながります。２つずつ設置して下さい。</description>
+      </chip>
+    </chips>
+    <chips char="x" rel="DokanM" color="forestgreen">
+      <chip value="1"><pattern><X>192</X><Y>192</Y></pattern><size><Width>64</Width><Height>32</Height></size>
+        <name>リンク土管４</name><description>他の Web ページへ移動します</description>
+      </chip>
+      <chip value="2"><pattern><X>192</X><Y>192</Y></pattern><size><Width>64</Width><Height>32</Height></size>
+        <name>ワープ土管４</name><description>同じ番号の土管が、つながります。２つずつ設置して下さい。</description>
+      </chip>
+    </chips>
+    <chips char="y" color="cyan">
+      <chip>
+        <pattern>
+          <X>288</X>
+          <Y>160</Y>
+        </pattern>
+        <xdraw>
+          <X>160</X>
+          <Y>0</Y>
+        </xdraw>
+        <xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[１ｕｐキノコ]</name>
+        <description>残りの人数が１人増える</description>
+      </chip>
+    </chips>
+    <chips char="z" rel="Suberuyuka" color="cyan">
+      <chip value="false"><pattern><X>288</X><Y>192</Y></pattern><name>すべる床</name><description>ドリル等で破壊できない</description></chip>
+      <chip value="true"><pattern><X>288</X><Y>192</Y></pattern><name>すべる床</name><description>ドリル等で破壊できる</description></chip>
+    </chips>
+    <!-- ここまで 0a ～ 0z -->
+
+    <!-- ここから 0+ ～ 0/-->
+    <chips char="+" color="brown">
+      <chip>
+        <pattern>
+          <X>192</X>
+          <Y>96</Y>
+        </pattern>
+        <name>一言メッセージ１</name>
+        <description></description>
+      </chip>
+    </chips>
+    <chips char="-" color="brown">
+      <chip>
+        <pattern>
+          <X>224</X>
+          <Y>96</Y>
+        </pattern>
+        <name>一言メッセージ２</name>
+        <description></description>
+      </chip>
+    </chips>
+    <chips char="*" color="brown">
+      <chip>
+        <pattern>
+          <X>256</X>
+          <Y>96</Y>
+        </pattern>
+        <name>一言メッセージ３</name>
+        <description></description>
+      </chip>
+    </chips>
+    <chips char="/" color="brown">
+      <chip>
+        <pattern>
+          <X>288</X>
+          <Y>96</Y>
+        </pattern>
+        <name>一言メッセージ４</name>
+        <description></description>
+      </chip>
+    </chips>
+    <!-- ここまで 0+ ～ 0/-->
+
+    <!-- ここから 01 ～ 09-->
+    <chips char="1" color="gray">
+      <chip>
+        <pattern>
+          <X>32</X>
+          <Y>0</Y>
+        </pattern>
+        <name>雲の左側</name>
+        <description></description>
+      </chip>
+    </chips>
+    <chips char="2" color="gray">
+      <chip>
+        <pattern>
+          <X>64</X>
+          <Y>0</Y>
+        </pattern>
+        <name>雲の右側</name>
+        <description></description>
+      </chip>
+    </chips>
+    <chips char="3" color="gray">
+      <chip>
+        <pattern>
+          <X>96</X>
+          <Y>0</Y>
+        </pattern>
+        <name>草</name>
+        <description></description>
+      </chip>
+    </chips>
+    <chips char="4" color="blue">
+      <chip>
+        <pattern>
+          <X>128</X>
+          <Y>0</Y>
+        </pattern>
+        <name>水中</name>
+        <description>左に敵やコインを設置するとそこも水中になる</description>
+      </chip>
+    </chips>
+    <chips char="5" color="red">
+      <chip>
+        <pattern>
+          <X>160</X>
+          <Y>0</Y>
+        </pattern>
+        <name>上向きのトゲ</name>
+        <description></description>
+      </chip>
+    </chips>
+    <chips char="6" color="red">
+      <chip>
+        <pattern>
+          <X>192</X>
+          <Y>0</Y>
+        </pattern>
+        <name>下向きのトゲ</name>
+        <description></description>
+      </chip>
+    </chips>
+    <chips char="7" color="gray">
+      <chip>
+        <pattern>
+          <X>192</X>
+          <Y>288</Y>
+        </pattern>
+        <name>ろうそく</name>
+        <description></description>
+      </chip>
+    </chips>
+    <chips char="8" color="orange">
+      <chip>
+        <pattern>
+          <X>128</X>
+          <Y>288</Y>
+        </pattern>
+        <name>星</name>
+        <description>取るとステージクリア</description>
+      </chip>
+    </chips>
+    <chips char="9" color="orange">
+      <chip>
+        <pattern>
+          <X>0</X>
+          <Y>288</Y>
+        </pattern>
+        <name>コイン</name>
+        <description></description>
+      </chip>
+    </chips>
+    <!-- ここまで 01 ～ 09 -->
+  </Mapchip>
+  <WorldChip>
+    <chips char="." color="black"><chip><pattern><X>0</X><Y>0</Y></pattern><name>空白</name><description>何もなし</description></chip></chips>
+    <chips char="A" color="red"><chip><pattern><X>0</X><Y>320</Y></pattern><name>正男</name><description>初期位置</description></chip></chips>
+    <chips char="B" color="brown"><chip><pattern><X>192</X><Y>672</Y></pattern><name>メッセージの人1</name><description>ダケシ</description></chip></chips>
+    <chips char="C" color="brown"><chip><pattern><X>224</X><Y>672</Y></pattern><name>メッセージの人2</name><description>エリコ</description></chip></chips>
+    <chips char="D" color="brown"><chip><pattern><X>256</X><Y>672</Y></pattern><name>店</name><description>得点とアイテムの交換が行える</description></chip></chips>
+    <chips char="E" color="brown"><chip><pattern><X>288</X><Y>672</Y></pattern><name>説明する人</name></chip></chips>
+    <chips char="a" color="red"><chip><pattern><X>96</X><Y>704</Y></pattern><name>ステージ1</name></chip></chips>
+    <chips char="b" color="red"><chip><pattern><X>128</X><Y>704</Y></pattern><name>ステージ2</name></chip></chips>
+    <chips char="c" color="red"><chip><pattern><X>160</X><Y>704</Y></pattern><name>ステージ3</name></chip></chips>
+    <chips char="d" color="red"><chip><pattern><X>192</X><Y>704</Y></pattern><name>ラストステージ</name><description>このステージをクリアするとエンディング</description></chip></chips>
+    <chips char="e" color="yellow"><chip><pattern><X>96</X><Y>672</Y></pattern><name>人面星1つで開く扉</name><description>横の道と接続してください</description></chip></chips>
+    <chips char="f" color="yellow"><chip><pattern><X>128</X><Y>672</Y></pattern><name>人面星2つで開く扉</name><description>横の道と接続してください</description></chip></chips>
+    <chips char="g" color="yellow"><chip><pattern><X>160</X><Y>672</Y></pattern><name>人面星3つで開く扉</name><description>横の道と接続してください</description></chip></chips>
+    <chips char="h" color="yellow"><chip><pattern><X>64</X><Y>672</Y></pattern><name>得点で開く扉</name><description>横の道と接続してください</description></chip></chips>
+    <chips char="i" rel="DokanM" color="forestgreen">
+      <chip value="1"><pattern><X>192</X><Y>640</Y></pattern><name>リンク土管1</name><description>他のWebページへジャンプします</description></chip>
+      <chip value="2"><pattern><X>192</X><Y>640</Y></pattern><name>ワープ土管1</name><description>もう片方のワープ土管1につながります</description></chip>
+    </chips>
+    <chips char="j" rel="DokanM" color="forestgreen">
+      <chip value="1"><pattern><X>224</X><Y>640</Y></pattern><name>リンク土管2</name><description>他のWebページへジャンプします</description></chip>
+      <chip value="2"><pattern><X>224</X><Y>640</Y></pattern><name>ワープ土管2</name><description>もう片方のワープ土管2につながります</description></chip>
+    </chips>
+    <chips char="k" rel="DokanM" color="forestgreen">
+      <chip value="1"><pattern><X>256</X><Y>640</Y></pattern><name>リンク土管3</name><description>他のWebページへジャンプします</description></chip>
+      <chip value="2"><pattern><X>256</X><Y>640</Y></pattern><name>ワープ土管3</name><description>もう片方のワープ土管3につながります</description></chip>
+    </chips>
+    <chips char="l" rel="DokanM" color="forestgreen">
+      <chip value="1"><pattern><X>288</X><Y>640</Y></pattern><name>リンク土管4</name><description>他のWebページへジャンプします</description></chip>
+      <chip value="2"><pattern><X>288</X><Y>640</Y></pattern><name>ワープ土管4</name><description>もう片方のワープ土管4につながります</description></chip>
+    </chips>
+    <chips char="1" color="cyan"><chip><pattern><X>0</X><Y>704</Y></pattern><name>中継地点</name></chip></chips>
+    <chips char="2" color="cyan"><chip><pattern><X>32</X><Y>704</Y></pattern><name>縦の道</name></chip></chips>
+    <chips char="3" color="cyan"><chip><pattern><X>64</X><Y>704</Y></pattern><name>横の道</name></chip></chips>
+  </WorldChip>
+</ChipDefinition>
