@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<MasaoRuntime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Definitions>
+    <Name>普通の正男</Name>
+    <DefVersion>3.32</DefVersion>
+    <RequireLower>1.01</RequireLower>
+    <Author>RYO</Author>
+    <Update></Update>
+    <!--各種ファイルの指定-->
+    <Package>CanvasMasao.js</Package>
+    <Configurations>config.sdx</Configurations>
+    <ChipDefinition>chipresolv.sdx</ChipDefinition>
+    <ChipExtender>ex.png</ChipExtender>
+    <!--マップシステムの設定-->
+    <StageSize x="180" y="30" bytesize="1"/>
+    <!--レイヤーに対応していない場合はbytesizeに0をセットしてください-->
+    <LayerSize x="180" y="30" bytesize="2" />
+    <MapSize x="15" y="9" bytesize="1" />
+    <ChipSize>
+      <Width>32</Width>
+      <Height>32</Height>
+    </ChipSize>
+    <!--ステージ吐き出し処理の設定-->
+    <!--ステージ横方向分割数、3つに分けるなら2。-->
+    <StageSplit>2</StageSplit>
+    <!--ステージの解析パラメータ名(大文字小文字は無視されます) {0}に横分割数 {1}に行数が代入されます-->
+    <ParamName>map{0}-{1}</ParamName>
+    <ParamName2>map{0}-{1}-s</ParamName2>
+    <ParamName3>map{0}-{1}-t</ParamName3>
+    <ParamName4>map{0}-{1}-f</ParamName4>
+
+    <!--レイヤー吐き出し処理の設定-->
+    <!--レイヤー横方向分割数、3つに分けるなら2。-->
+    <LayerSplit>2</LayerSplit>
+    <!--レイヤーの解析パラメータ名(大文字小文字は無視されます) {0}に横分割数 {1}に行数が代入されます-->
+    <LayerName>layer{0}-{1}</LayerName>
+    <LayerName2>layer{0}-{1}-s</LayerName2>
+    <LayerName3>layer{0}-{1}-t</LayerName3>
+    <LayerName4>layer{0}-{1}-f</LayerName4>
+
+    <!--地図吐き出し処理の設定-->
+    <!--地図の解析パラメータ名(大文字小文字は無視されます) {0}に横分割数 {1}に行数が代入されます-->
+    <MapName>map{0}-{1}</MapName>
+    
+  </Definitions>
+  <DefaultConfigurations>
+    <!--デフォルト ヘッダ/フッタの指定(CDATA)-->
+    <HeaderHTML><![CDATA[<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="UTF-8">
+<title><?タイトル></title>
+
+<script src="CanvasMasao.js"></script>
+<script src="MasaoKani2.js"></script>
+<script>
+	JSMasao.replaceAll({'bc-use-rounddown': true});
+</script>
+</head>
+
+<body style="background-color: <?背景の色>;color: <?文字の色>">
+
+<div style="text-align: center">
+<applet code="MasaoConstruction.class" width="512" height="320" archive="mc_c.jar">]]></HeaderHTML>
+    <FooterHTML><![CDATA[</applet>
+</div>
+
+
+<hr>
+
+<h2>キーボード操作</h2>
+
+<dl>
+<dt>（←），（４）</dt>
+<dd>左へ歩く。素早く２回押すと走る。</dd>
+<dt>（→），（６）</dt>
+<dd>右へ歩く。素早く２回押すと走る。</dd>
+<dt>（スペース），（Ｚ）</dt>
+<dd>ジャンプする。</dd>
+<dt>（Ｐ）</dt>
+<dd>ポーズ機能／解除。</dd>
+<dt>（Ｔ）</dt>
+<dd>タイトル画面に戻る。</dd>
+</dl>
+
+<p>ゲーム画面をマウスでクリックすると、ゲーム開始です。</p>
+
+<hr>
+
+<h2>遊び方</h2>
+
+<p>ゲーム画面をマウスでクリックすると、ゲーム開始です。赤い人は正義の味方で、主人公です。カーソルキーまたはテンキーで、左右に動きます。素早く２回押すと、走ります。スペースキーで、ジャンプします。彼の趣味は、お金を拾う事です。それと、亀を踏んづける事です。彼の夢は、マップの右の方にある星を取る事です。</p>
+
+<hr>
+
+<p><a href="http://www.t3.rim.or.jp/~naoto/naoto.html">サポートページ</a>へ移動する。</p>
+
+</body>
+
+</html>]]></FooterHTML>
+    <!--ヘッダ/フッタリプレース処理の設定-->
+    <!--ヘッダ及びフッタで<?name>と指定した部分がvalueと置き換えられます。-->
+    <OutputReplace>
+      <repl name="タイトル" value="まさおコンストラクション" />
+      <repl name="背景の色" value="silver" />
+      <repl name="文字の色" value="black" />
+    </OutputReplace>
+    <!--出力フォーマット-->
+    <!--{0}に横分割インデックス、{1}に行数、{2}にマップ本体データが代入されます-->
+    <StageParam>&lt;param name="map{0}-{1}" value="{2}"&gt;</StageParam>
+    <StageParam2>&lt;param name="map{0}-{1}-s" value="{2}"&gt;</StageParam2>
+    <StageParam3>&lt;param name="map{0}-{1}-t" value="{2}"&gt;</StageParam3>
+    <StageParam4>&lt;param name="map{0}-{1}-f" value="{2}"&gt;</StageParam4>
+    <!--{0}に横分割インデックス、{1}に行数、{2}にレイヤー本体データが代入されます-->
+    <LayerParam>&lt;param name="layer{0}-{1}" value="{2}"&gt;</LayerParam>
+    <LayerParam2>&lt;param name="layer{0}-{1}-s" value="{2}"&gt;</LayerParam2>
+    <LayerParam3>&lt;param name="layer{0}-{1}-t" value="{2}"&gt;</LayerParam3>
+    <LayerParam4>&lt;param name="layer{0}-{1}-f" value="{2}"&gt;</LayerParam4>
+    <!--{0}に行数、{1}に地図本体データが代入されます-->
+    <MapParam>&lt;param name="chizu-{0}" value="{1}"&gt;</MapParam>
+    <!--パラメータの指定 {0}にパラメータ名、{1}に値が代入されます。<>は&lt;&gt;でエスケープしてください-->
+    <Parameter>&lt;param name="{0}" value="{1}"&gt;</Parameter>
+    <!--吐き出すファイルの拡張子-->
+    <FileExt>html</FileExt>
+    <!--ファイルを吐き出すディレクトリ(空白でプロジェクトディレクトリルート)-->
+    <OutputDir></OutputDir>
+    <!--実行するファイル(空白で吐き出すファイルと同一)-->
+    <RunFile></RunFile>
+  </DefaultConfigurations>
+</MasaoRuntime>
