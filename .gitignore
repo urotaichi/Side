@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 side.xml
 side.exe
+~temp.html
+projects/NewProject

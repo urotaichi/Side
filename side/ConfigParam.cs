@@ -20,6 +20,10 @@ namespace MasaoPlus
 				{
 				case "bool":
 					return ConfigParam.Types.b;
+				case "bool21":
+					return ConfigParam.Types.b2;
+				case "bool10":
+					return ConfigParam.Types.b0;
 				case "int":
 					return ConfigParam.Types.i;
 				case "string":
@@ -81,7 +85,7 @@ namespace MasaoPlus
 		public enum Types
 		{
 			// Token: 0x04000159 RID: 345
-			b,
+			b,b2,b0,
 			// Token: 0x0400015A RID: 346
 			s,
 			// Token: 0x0400015B RID: 347

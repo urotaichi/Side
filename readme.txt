@@ -142,6 +142,16 @@ GMSの連絡・報告掲示板（http://masao.kame33.com/tmsky/renraku-4.php）
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 ■修正点
+□1.1.2
+　2020/06/
+	mcs_haikei_visible、fx_bgm_loop、fx_bgm_switchにおいて
+	仕様上存在しない値（"2"）が出力されていたのを修正。
+	control_parts_visible、layer_mode、second_gazou_visible、water_clear_switch、pause_switch、j_tail_hf、j_fire_equip、
+	の説明を否定表現から肯定表現に改めた。
+
+	j_fire_mkfの説明を水中でファイアボールが使えない→水中でファイアボールが消えるに変更。
+	その他にも一部分かりにくい表現を改めた。
+
 □1.1.1
 　2020/06/15
 	自動アップデートを再有効化。

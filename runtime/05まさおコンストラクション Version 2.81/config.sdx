@@ -21,7 +21,7 @@
     <list>強制スクロール</list>
     <list>高速強制スクロール</list>
   </param>
-  <param name="score_v" desc="得点の表示" type="bool" value="true"  category="表示" />
+  <param name="score_v" desc="得点を表示する" type="bool" value="true"  category="表示" />
   <param name="stage_max" desc="ステージ数" type="int" value="1"  category="システム" rel="STAGENUM" stage="2" />
   <param name="stage_kaishi" desc="開始ステージ(デバッグ用)" type="int" value="1"  category="システム" rel="STAGESTART" stage="2" />
   <param name="jibun_left_shoki" desc="残り人数(複数マップ時有効、1以上)" type="int" value="1" category="システム" stage="2" />
@@ -34,8 +34,8 @@
   <param name="j_tail_type" desc="しっぽの特徴" type="list" value="1" category="装備" chip="TailT">
     <list>敵を倒せる</list><list>ブロック１を壊せる</list><list>敵を倒せてブロック１を壊せる</list>
   </param>
-  <param name="j_tail_hf" desc="しっぽの標準装備をしない" type="bool" value="true" category="装備" chip="tokugi" />
-  <param name="j_fire_mkf" desc="水中でファイアボールが使えない" type="bool" value="false"  category="装備" chip="FireT" />
+  <param name="j_tail_hf" desc="しっぽの標準装備をする" type="bool21" value="false" category="装備" />
+  <param name="j_fire_mkf" desc="水中でファイアボールが消える" type="bool" value="false" category="装備" chip="FireT" />
   <param name="grenade_type" desc="グレネードの種類" type="list" value="1" category="装備" chip="GrenadeT" >
     <list>グレネード(ボスを倒せる)</list>
     <list>グレネード(ボスには効かない)</list>
@@ -44,7 +44,7 @@
     <list>プラズマ砲(ボスを倒せる)</list>
     <list>プラズマ砲(ボスには効かない)</list>
   </param>
-  <param name="suberuyuka_hkf" desc="ドリルで滑る床を破壊できるか" type="bool" value="true" category="装備" chip="Suberuyuka" />
+  <param name="suberuyuka_hkf" desc="ドリル等ですべる床を破壊できる" type="bool" value="true" category="装備" chip="Suberuyuka" />
   <param name="dengeki_mkf" desc="ピカチーの電撃が水中でも使えるか" type="bool" value="true" category="敵" chip="PikachiA" />
   <param name="yachamo_kf" desc="ヤチャモが火の粉で攻撃するか" type="bool" value="true" category="敵" chip="YachamoA" />
   <param name="airms_kf" desc="エアームズが壁に当たったときに止まるか" type="bool" value="true" category="敵" chip="AirmsA" />

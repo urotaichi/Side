@@ -2,8 +2,8 @@
 <MasaoRuntime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Definitions>
     <Name>普通の正男</Name>
-    <DefVersion>3.32</DefVersion>
-    <RequireLower>1.01</RequireLower>
+    <DefVersion>3.33</DefVersion>
+    <RequireLower>1.12</RequireLower>
     <Author>RYO</Author>
     <Update></Update>
     <!--各種ファイルの指定-->

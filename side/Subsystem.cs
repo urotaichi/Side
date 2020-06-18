@@ -135,6 +135,9 @@ namespace MasaoPlus
 				case "bool21":
 					stringBuilder.AppendLine(string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "2" : "1"));
 					goto IL_718;
+				case "bool10":
+					stringBuilder.AppendLine(string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "1" : "0"));
+					goto IL_718;
 				case "int":
 				case "list":
 				case "string":
