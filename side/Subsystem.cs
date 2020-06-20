@@ -130,10 +130,8 @@ namespace MasaoPlus
 				switch (typestr = configParam.Typestr)
 				{
 				case "bool":
-					stringBuilder.AppendLine(string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "1" : "2"));
-					goto IL_718;
 				case "bool21":
-					stringBuilder.AppendLine(string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "2" : "1"));
+					stringBuilder.AppendLine(string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "1" : "2"));
 					goto IL_718;
 				case "bool10":
 					stringBuilder.AppendLine(string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "1" : "0"));

@@ -34,7 +34,7 @@
   <param name="j_tail_type" desc="しっぽの特徴" type="list" value="1" category="装備" chip="TailT">
     <list>敵を倒せる</list><list>ブロック１を壊せる</list><list>敵を倒せてブロック１を壊せる</list>
   </param>
-  <param name="j_tail_hf" desc="しっぽの標準装備をする" type="bool21" value="false" category="装備" />
+  <param name="j_tail_hf" desc="しっぽの標準装備をする" type="bool21" value="true" category="装備" />
   <param name="j_fire_mkf" desc="水中でファイアボールが消える" type="bool" value="false" category="装備" chip="FireT" />
   <param name="grenade_type" desc="グレネードの種類" type="list" value="1" category="装備" chip="GrenadeT" >
     <list>グレネード(ボスを倒せる)</list>

@@ -3458,9 +3458,9 @@
 
   <!-- リンク土管４の設定ポイントここまで -->
 
-  <param name="control_parts_visible" desc="スクロール制御パーツを表示をする（デバッグ用）" type="bool21" value="false" category="システム" />
+  <param name="control_parts_visible" desc="スクロール制御パーツを表示をする（デバッグ用）" type="bool21" value="true" category="システム" />
   <param name="mcs_haikei_visible" desc="レイヤーモードでなくても背景画像を表示する" type="bool10" value="true" category="画像" />
-  <param name="layer_mode" desc="背景レイヤーの表示をする" type="bool21" value="false" category="システム" chip="InvisLayer" />
+  <param name="layer_mode" desc="背景レイヤーの表示をする" type="bool21" value="true" category="システム" chip="InvisLayer" />
   <param name="filename_mapchip" desc="背景レイヤーチップのファイル名" type="file" value="mapchip.gif" rel="LAYERCHIP" category="画像" />
   <param name="filename_haikei" desc="ステージ1背景のファイル名" type="file" value="haikei.gif" category="画像" />
   <param name="filename_haikei2" desc="ステージ2背景のファイル名" type="file" value="haikei.gif" category="画像" stage="2" />
@@ -3483,7 +3483,7 @@
   <param name="gazou_scroll_speed_y" desc="上の設定が&quot;指定速度で強制ｽｸﾛｰﾙ&quot;の場合のY方向指定速度(-32-32)" type="int" value="-8" category="画像" />
   <param name="gazou_scroll_x" desc="上の設定が&quot;ﾏｯﾌﾟの指定座標に設置&quot;の場合のX座標" type="int" value="0" category="画像" />
   <param name="gazou_scroll_y" desc="上の設定が&quot;ﾏｯﾌﾟの指定座標に設置&quot;の場合のY座標" type="int" value="0" category="画像" />
-  <param name="second_gazou_visible" desc="セカンド画像を使用する" type="bool21" value="false" category="画像" />
+  <param name="second_gazou_visible" desc="セカンド画像を使用する" type="bool21" value="true" category="画像" />
   <param name="filename_second_haikei" desc="ステージ1セカンド画像のファイル名" type="file" value="haikei_second.gif" category="画像" />
   <param name="filename_second_haikei2" desc="ステージ2セカンド画像のファイル名" type="file" value="haikei_second.gif" category="画像" stage="2" />
   <param name="filename_second_haikei3" desc="ステージ3セカンド画像のファイル名" type="file" value="haikei_second.gif" category="画像" stage="3" />
@@ -3510,7 +3510,7 @@
     <list>ﾚｲﾔｰ使用時は表示しない</list>
     <list>常に表示する</list>
   </param>
-  <param name="water_clear_switch" desc="水の半透明表示をする" type="bool21" value="false" category="画像" />
+  <param name="water_clear_switch" desc="水の半透明表示をする" type="bool21" value="true" category="画像" />
   <param name="water_clear_level" desc="水の透明度(0-255)" type="int" value="128" category="画像" />
   <param name="now_loading" desc="起動中メッセージ" type="string" value="ただいまファイルを読み込み中。しばらくお待ち下さい。" category="表示" />
   <param name="easy_mode" desc="イージーモードにするか" type="list" value="1" category="システム">
@@ -3527,15 +3527,15 @@
     <list>順番にクリア</list>
     <list>地図画面を利用</list>
   </param>
-  <param name="pause_switch" desc="ポーズ機能を使う" type="bool21" value="true" category="システム" />
+  <param name="pause_switch" desc="ポーズ機能を使う" type="bool21" value="false" category="システム" />
   <param name="j_equip_grenade" desc="グレネード装備数" type="int" value="0" category="装備" />
-  <param name="j_tail_hf" desc="しっぽの標準装備をする" type="bool21" value="false" category="装備" />
+  <param name="j_tail_hf" desc="しっぽの標準装備をする" type="bool21" value="true" category="装備" />
   <param name="j_tail_type" desc="しっぽの特徴" type="list" value="3" category="装備" chip="TailT">
     <list>敵を倒せる</list>
     <list>ブロック１を壊せる</list>
     <list>敵を倒せてﾌﾞﾛｯｸ1を壊せる</list>
   </param>
-  <param name="j_fire_equip" desc="ファイヤーボールの標準装備をする" type="bool21" value="false" category="装備" />
+  <param name="j_fire_equip" desc="ファイヤーボールの標準装備をする" type="bool21" value="true" category="装備" />
   <param name="j_fire_type" desc="ファイヤーボールの種類（初期値）" type="list" value="1" category="装備">
     <list>跳ねる</list>
     <list>水平に飛ぶ</list>
