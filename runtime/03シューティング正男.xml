@@ -2,7 +2,7 @@
 <MasaoRuntime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Definitions>
     <Name>シューティング正男</Name>
-    <DefVersion>3.33</DefVersion>
+    <DefVersion>3.4</DefVersion>
     <RequireLower>1.12</RequireLower>
     <Author>RYO</Author>
     <Update></Update>
