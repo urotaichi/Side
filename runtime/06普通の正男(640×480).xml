@@ -5,7 +5,7 @@
     <DefVersion>3.4</DefVersion>
     <RequireLower>1.12</RequireLower>
     <Author>RYO</Author>
-    <Update></Update>
+    <Update>http://urotaichi.stars.ne.jp/side/mc_w.xml</Update>
     <!--各種ファイルの指定-->
     <Package>CanvasMasao.js</Package>
     <Configurations>config.sdx</Configurations>
