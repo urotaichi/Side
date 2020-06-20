@@ -63,13 +63,13 @@ namespace MasaoPlus
 		public int ZipExtractBufferLength = 10240;
 
 		// Token: 0x04000271 RID: 625
-		public string Version = "1.1.1";
+		public string Version = "1.1.2";
 
 		// Token: 0x04000272 RID: 626
-		public double CheckVersion = 1.11;
+		public double CheckVersion = 1.12;
 
 		// Token: 0x04000273 RID: 627
-		public string EditorIdStr = "<!-- [MI]Created By:Side - the Supermasao Integrated Development Environment v1.1.1[/MI] -->";
+		public string EditorIdStr = "<!-- [MI]Created By:Side - the Supermasao Integrated Development Environment v1.1.2[/MI] -->";
 
 		// Token: 0x04000274 RID: 628
 		public bool IsAutoUpdateEnabled = true;
