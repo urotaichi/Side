@@ -207,7 +207,7 @@ namespace MasaoPlus
 		// Token: 0x06000135 RID: 309 RVA: 0x00019044 File Offset: 0x00017244
 		private void BPSelect_Click(object sender, EventArgs e)
 		{
-			using (OpenFileDialog openFileDialog = new OpenFileDialog())
+			using (System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog())
 			{
 				openFileDialog.CheckFileExists = true;
 				openFileDialog.Filter = "アプリケーション(*.exe)|*.exe";
