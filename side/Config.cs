@@ -126,7 +126,7 @@ namespace MasaoPlus
 			public bool ShiftFocusShift = true;
 
 			// Token: 0x040002FB RID: 763
-			public string UpdateServer = "http://urotaichi.stars.ne.jp/side/side.xml";
+			public string UpdateServer = "https://urotaichi.com/other/side/side.xml";
 
 			// Token: 0x040002FC RID: 764
 			public bool ReverseTabView;
