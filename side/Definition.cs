@@ -75,6 +75,6 @@ namespace MasaoPlus
 		public bool IsAutoUpdateEnabled = true;
 
 		// Token: 0x04000275 RID: 629
-		public string BaseUpdateServer = "http://urotaichi.stars.ne.jp/side/side.xml";
+		public string BaseUpdateServer = "https://urotaichi.com/other/side/side.xml";
 	}
 }
