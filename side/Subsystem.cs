@@ -51,6 +51,8 @@ namespace MasaoPlus
 		{
 			Global.cpd.project.Config.StageStart = StartStage + 1;
 			StringBuilder stringBuilder = new StringBuilder();
+
+			// ヘッダーを出力
 			string text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
 			if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
 			{
@@ -68,10 +70,14 @@ namespace MasaoPlus
 			{
 				stringBuilder.AppendLine(value);
 			}
+
+			//エデイタ識別コードを出力
 			if (Global.config.localSystem.IntegrateEditorId)
 			{
 				stringBuilder.AppendLine(Global.definition.EditorIdStr);
 			}
+
+			//パラメータを出力
 			stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData));
 			if (Global.cpd.project.Config.StageNum >= 2)
 			{
@@ -85,6 +91,7 @@ namespace MasaoPlus
 			{
 				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4));
 			}
+
 			if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
 			{
 				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData));
@@ -101,10 +108,12 @@ namespace MasaoPlus
 					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4));
 				}
 			}
+
 			if (Global.cpd.project.Config.UseWorldmap)
 			{
 				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.MapParam, 0, Global.cpd.project.MapData));
 			}
+
 			string parameter = Global.cpd.runtime.DefaultConfigurations.Parameter;
 			ConfigParam[] configurations = Global.cpd.project.Config.Configurations;
 			int k = 0;
@@ -167,6 +176,8 @@ namespace MasaoPlus
 				}
 				throw new Exception("不明な型が含まれています:" + configParam.Typestr);
 			}
+
+			//フッターを出力
 			text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.FooterHTML);
 			if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
 			{
@@ -184,7 +195,11 @@ namespace MasaoPlus
 			{
 				stringBuilder.AppendLine(value2);
 			}
-			return stringBuilder.ToString();
+
+			//末尾の,を除去（文法的にはセーフだが）
+			string result = new System.Text.RegularExpressions.Regex(@",(\s*?)}").Replace(stringBuilder.ToString(), "$1}");
+
+			return result;
 		}
 
 		// Token: 0x060001FF RID: 511 RVA: 0x000035D5 File Offset: 0x000017D5

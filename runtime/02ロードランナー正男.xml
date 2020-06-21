@@ -2,8 +2,8 @@
 <MasaoRuntime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Definitions>
     <Name>ロードランナー正男</Name>
-    <DefVersion>3.4</DefVersion>
-    <RequireLower>1.12</RequireLower>
+    <DefVersion>4.0</DefVersion>
+    <RequireLower>2.0</RequireLower>
     <Author>RYO</Author>
     <Update>https://urotaichi.com/other/side/mc_r.xml</Update>
     <!--各種ファイルの指定-->
@@ -54,16 +54,17 @@
 
 <script src="CanvasMasao.js"></script>
 <script src="MasaoKani2.js"></script>
-<script>
-	JSMasao.replaceAll({'bc-use-rounddown': true});
-</script>
 </head>
 
 <body style="background-color: <?背景の色>;color: <?文字の色>">
 
 <div style="text-align: center">
-<applet code="MasaoConstruction.class" width="512" height="320" archive="mc_c.jar">]]></HeaderHTML>
-    <FooterHTML><![CDATA[</applet>
+<script>
+new JSMasao({]]></HeaderHTML>
+    <FooterHTML><![CDATA[}, null, {
+	'bc-use-rounddown': true
+});
+</script>
 </div>
 
 
@@ -116,19 +117,19 @@
     </OutputReplace>
     <!--出力フォーマット-->
     <!--{0}に横分割インデックス、{1}に行数、{2}にマップ本体データが代入されます-->
-    <StageParam>&lt;param name="map{0}-{1}" value="{2}"&gt;</StageParam>
-    <StageParam2>&lt;param name="map{0}-{1}-s" value="{2}"&gt;</StageParam2>
-    <StageParam3>&lt;param name="map{0}-{1}-t" value="{2}"&gt;</StageParam3>
-    <StageParam4>&lt;param name="map{0}-{1}-f" value="{2}"&gt;</StageParam4>
+    <StageParam>	"map{0}-{1}": "{2}",</StageParam>
+    <StageParam2>	"map{0}-{1}-s": "{2}",</StageParam2>
+    <StageParam3>	"map{0}-{1}-t": "{2}",</StageParam3>
+    <StageParam4>	"map{0}-{1}-f": "{2}",</StageParam4>
     <!--{0}に横分割インデックス、{1}に行数、{2}にレイヤー本体データが代入されます-->
-    <LayerParam>&lt;param name="layer{0}-{1}" value="{2}"&gt;</LayerParam>
-    <LayerParam2>&lt;param name="layer{0}-{1}-s" value="{2}"&gt;</LayerParam2>
-    <LayerParam3>&lt;param name="layer{0}-{1}-t" value="{2}"&gt;</LayerParam3>
-    <LayerParam4>&lt;param name="layer{0}-{1}-f" value="{2}"&gt;</LayerParam4>
+    <LayerParam>	"layer{0}-{1}": "{2}",</LayerParam>
+    <LayerParam2>	"layer{0}-{1}-s": "{2}",</LayerParam2>
+    <LayerParam3>	"layer{0}-{1}-t": "{2}",</LayerParam3>
+    <LayerParam4>	"layer{0}-{1}-f": "{2}",</LayerParam4>
     <!--{0}に行数、{1}に地図本体データが代入されます-->
-    <MapParam>&lt;param name="chizu-{0}" value="{1}"&gt;</MapParam>
+    <MapParam>	"chizu-{0}": "{1}",</MapParam>
     <!--パラメータの指定 {0}にパラメータ名、{1}に値が代入されます。<>は&lt;&gt;でエスケープしてください-->
-    <Parameter>&lt;param name="{0}" value="{1}"&gt;</Parameter>
+    <Parameter>	"{0}": "{1}",</Parameter>
     <!--吐き出すファイルの拡張子-->
     <FileExt>html</FileExt>
     <!--ファイルを吐き出すディレクトリ(空白でプロジェクトディレクトリルート)-->
