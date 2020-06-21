@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using MasaoPlus.Properties;
+using Microsoft.Toolkit.Forms.UI.Controls;
 
 namespace MasaoPlus
 {
@@ -14,13 +15,13 @@ namespace MasaoPlus
 		public IntegratedBrowser()
 		{
 			this.InitializeComponent();
-			this.Browser.StatusTextChanged += this.Browser_StatusTextChanged;
+			//this.Browser.StatusTextChanged += this.Browser_StatusTextChanged;
 		}
 
 		// Token: 0x0600000B RID: 11 RVA: 0x000020D9 File Offset: 0x000002D9
 		private void Browser_StatusTextChanged(object sender, EventArgs e)
 		{
-			this.Status.Text = this.Browser.StatusText;
+			//this.Status.Text = this.Browser.StatusText;
 		}
 
 		// Token: 0x0600000C RID: 12 RVA: 0x00004168 File Offset: 0x00002368
@@ -51,6 +52,7 @@ namespace MasaoPlus
 			}
 			base.Enabled = true;
 			this.Browser.Navigate(str);
+			//this.Browser.Source = new Uri(str);
 			return true;
 		}
 
@@ -94,7 +96,7 @@ namespace MasaoPlus
 		// Token: 0x06000013 RID: 19 RVA: 0x00002181 File Offset: 0x00000381
 		private void Reload_Click(object sender, EventArgs e)
 		{
-			this.Browser.Refresh(WebBrowserRefreshOption.Completely);
+			this.Browser.Refresh();
 		}
 
 		// Token: 0x06000014 RID: 20 RVA: 0x0000218F File Offset: 0x0000038F
@@ -114,11 +116,13 @@ namespace MasaoPlus
 			{
 				if (Global.config.localSystem.UsingWebBrowser != "" && Global.config.localSystem.UsingWebBrowser != null)
 				{
-					Global.state.Testrun = Process.Start(Global.config.localSystem.UsingWebBrowser, this.Browser.Url.ToString());
+					//Global.state.Testrun = Process.Start(Global.config.localSystem.UsingWebBrowser, this.Browser.Url.ToString());
+					Global.state.Testrun = Process.Start(Global.config.localSystem.UsingWebBrowser, this.Browser.Source.ToString());
 				}
 				else
 				{
-					Global.state.Testrun = Process.Start(this.Browser.Url.ToString());
+					//Global.state.Testrun = Process.Start(this.Browser.Url.ToString());
+					Global.state.Testrun = Process.Start(this.Browser.Source.ToString());
 				}
 			}
 			catch (Exception ex)
@@ -153,7 +157,8 @@ namespace MasaoPlus
 			this.MainStatusStrip = new StatusStrip();
 			this.Status = new ToolStripStatusLabel();
 			this.Progress = new ToolStripProgressBar();
-			this.Browser = new WebBrowser();
+			this.Browser = new WebView();
+			//this.Browser = new WebBrowser();
 			this.contextMenuStrip1 = new ContextMenuStrip(this.components);
 			this.testToolStripMenuItem = new ToolStripMenuItem();
 			this.MainToolStrip.SuspendLayout();
@@ -244,10 +249,10 @@ namespace MasaoPlus
 			this.Browser.Name = "Browser";
 			this.Browser.Size = new Size(414, 172);
 			this.Browser.TabIndex = 2;
-			this.Browser.ProgressChanged += this.Browser_ProgressChanged;
-			this.Browser.Navigating += this.Browser_Navigating;
-			this.Browser.DocumentCompleted += this.Browser_DocumentCompleted;
-			this.Browser.Navigated += this.Browser_Navigated;
+			//this.Browser.ProgressChanged += this.Browser_ProgressChanged;
+			//this.Browser.Navigating += this.Browser_Navigating;
+			//this.Browser.DocumentCompleted += this.Browser_DocumentCompleted;
+			//this.Browser.Navigated += this.Browser_Navigated;
 			this.contextMenuStrip1.Items.AddRange(new ToolStripItem[]
 			{
 				this.testToolStripMenuItem
@@ -310,7 +315,8 @@ namespace MasaoPlus
 		private ToolStripProgressBar Progress;
 
 		// Token: 0x04000015 RID: 21
-		private WebBrowser Browser;
+		private WebView Browser;
+		//private WebBrowser Browser;
 
 		// Token: 0x04000016 RID: 22
 		private ToolStripLabel URL;
