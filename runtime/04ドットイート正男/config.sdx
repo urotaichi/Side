@@ -108,7 +108,7 @@
   <param name="se_switch" desc="効果音を利用する" type="bool" value="true" category="効果音" />
   <!-- ドッスンスンの設定ここから -->
   
-  <param name="dossunsun_type" desc="ドッスンスンのタイプ" type="list" value="1" category="仕掛け" chip="Dossunsun">
+  <param name="dossunsun_type" desc="ドッスンスンのタイプ" type="list_athletic" value="1" category="仕掛け" chip="Dossunsun">
     <list>ドッスンスン</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
     <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
     <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
@@ -201,13 +201,39 @@
     <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+
+    <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
+    <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
+    <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
+    <list>仕掛け用ブロック</list><list>空きブロック1</list><list>LASTの左側</list><list>LASTの中間</list><list>LASTの右側</list><list>STAGEの左側1</list><list>STAGEの中間1</list><list>STAGEの右側1</list><list>空きブロック2</list><list>1ｕｐキノコ</list>
+    <list>リンク土管１の左側</list><list>リンク土管１の右側</list><list>リンク土管２の左側</list><list>リンク土管２の右側</list><list>リンク土管３の左側</list><list>リンク土管３の右側</list><list>リンク土管４の左側</list><list>リンク土管４の右側</list><list>空きブロック3</list><list>すべる床</list>
+    <list>STAGEの左側2</list><list>STAGEの中間2</list><list>STAGEの右側2</list><list>１</list><list>２</list><list>３</list><list>水草１の左上</list><list>水草１の右上</list><list>水草２の左上</list><list>水草２の右上</list>
+    <list>水しぶき１</list><list>水しぶき２</list><list>水しぶき３</list><list>自分（泳ぐ１）</list><list>自分（泳ぐ２）</list><list>水中で出す泡</list><list>水草１の左下</list><list>水草１の右下</list><list>水草２の左下</list><list>水草２の右下</list>
+    <list>コイン１</list><list>コイン２</list><list>コイン３</list><list>コイン４</list><list>星１</list><list>星２</list><list>ろうそく１</list><list>ろうそく２</list><list>ミレニアム人面星１</list><list>ミレニアム人面星２</list>
+    <list>自分</list><list>自分（ジャンプ）</list><list>自分（滞空）</list><list>自分（横に歩く１）</list><list>自分（横に歩く２）</list><list>自分（走る１）</list><list>自分（走る２）</list><list>自分（ブレーキ）</list><list>自分（振り向く）</list><list>自分（踏む）</list>
+    <list>自分（死亡１）</list><list>自分（死亡２）</list><list>自分（死亡３）</list><list>自分（死亡４）</list><list>自分（上から潰れて死亡）</list><list>自分（横から潰れて死亡）</list><list>自分（しっぽ１）</list><list>自分（しっぽ２の左側）</list><list>自分（しっぽ２の右側）</list><list>自分（ドリル）</list>
+    <list>電撃１</list><list>電撃２</list><list>はっぱカッター１</list><list>はっぱカッター２</list><list>はっぱカッター３</list><list>はっぱカッター４</list><list>火の粉１</list><list>火の粉２</list><list>みずでっぽう１</list><list>みずでっぽう２</list>
+    <list>ファイヤーボール１</list><list>ファイヤーボール２</list><list>ファイヤーボール３</list><list>ファイヤーボール４</list><list>ジェット１</list><list>ジェット２</list><list>ブロックの破片</list><list>グレネード１</list><list>グレネード２</list><list>噴火</list>
+    <list>亀１</list><list>亀２</list><list>亀（潰れ）</list><list>ピカチー１</list><list>ピカチー２</list><list>ピカチー３</list><list>ピカチー（潰れ）</list><list>ポッピー１</list><list>ポッピー２</list><list>ポッピー（潰れ）</list>
+    <list>チコリン</list><list>チコリン（潰れ）</list><list>ヒノララシ１</list><list>ヒノララシ２</list><list>マリリ１</list><list>マリリ２</list><list>マリリ３</list><list>マリリ（潰れ）</list><list>ヤチャモ</list><list>ヤチャモ（潰れ）</list>
+    <list>ミズタロウ１</list><list>ミズタロウ２</list><list>ミズタロウ３</list><list>ミズタロウ（潰れ）</list><list>エアームズ</list><list>エアームズ（潰れ）</list><list>タイキング</list><list>クラゲッソ</list><list>バブル光線１</list><list>バブル光線２</list>
+    <list>爆弾１</list><list>爆弾２</list><list>爆発１</list><list>爆発２</list><list>爆発３</list><list>空きブロック4</list><list>グラーダ（潰れ）の左側</list><list>グラーダ（潰れ）の右側</list><list>カイオール（潰れ）の左側</list><list>カイオール（潰れ）の右側</list>
+    <list>乗ると落ちる床の左側</list><list>乗ると落ちる床の中間</list><list>乗ると落ちる床の右側</list><list>ドッスンスンの左上</list><list>ドッスンスンの中上</list><list>ドッスンスンの右上</list><list>グラーダの左上</list><list>グラーダの右上</list><list>カイオールの左上</list><list>カイオールの右上</list>
+    <list>動く床の左側</list><list>動く床の中間</list><list>動く床の右側</list><list>ドッスンスンの左下</list><list>ドッスンスンの中下</list><list>ドッスンスンの右下</list><list>グラーダの左下</list><list>グラーダの右下</list><list>カイオールの左下</list><list>カイオールの右下</list>
+    <list>カーソル（横）</list><list>カーソル（縦）</list><list>自分（下に歩く１）</list><list>自分（下に歩く２）</list><list>自分（上に歩く１）</list><list>自分（上に歩く２）</list><list>リンク土管１（小）</list><list>リンク土管２（小）</list><list>リンク土管３（小）</list><list>リンク土管４（小）</list>
+    <list>自分（掴まる１）</list><list>自分（掴まる２）</list><list>得点で開く扉（ブロック）</list><list>扉１</list><list>扉２</list><list>扉３</list><list>家</list><list>城</list><list>店</list><list>説明する人の家</list>
+    <list>中継地点</list><list>縦の道</list><list>横の道</list><list>ステージ１</list><list>ステージ２</list><list>ステージ３</list><list>ラストステージ</list><list>クリア済みステージ</list><list>センクウザ（潰れ）の左側</list><list>センクウザ（潰れ）の右側</list>
+    <list>メッセージの人1の左上</list><list>メッセージの人1の右上</list><list>メッセージの人2の左上</list><list>メッセージの人2の右上</list><list>店員さんの左上</list><list>店員さんの右上</list><list>説明する人の左上</list><list>説明する人の右上</list><list>センクウザの左上</list><list>センクウザの右上</list>
+    <list>メッセージの人1の左下</list><list>メッセージの人1の右下</list><list>メッセージの人2の左下</list><list>メッセージの人2の右下</list><list>店員さんの左下</list><list>店員さんの右下</list><list>説明する人の左下</list><list>説明する人の右下</list><list>センクウザの左下</list><list>センクウザの右下</list>
   </param>
 
    <!-- ドッスンスンの設定ポイントここまで -->
 
    <!-- ファイヤーバー1の設定ここから　ポイント２ -->
    
-  <param name="firebar1_type" desc="ファイヤーバー（左回り）のタイプ" type="list" value="1" category="仕掛け" chip="Fire1">
+  <param name="firebar1_type" desc="ファイヤーバー（左回り）のタイプ" type="list_athletic" value="1" category="仕掛け" chip="Fire1">
     <list>ファイヤーバー 左回り</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
     <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
     <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
@@ -300,13 +326,39 @@
     <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+
+    <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
+    <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
+    <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
+    <list>仕掛け用ブロック</list><list>空きブロック1</list><list>LASTの左側</list><list>LASTの中間</list><list>LASTの右側</list><list>STAGEの左側1</list><list>STAGEの中間1</list><list>STAGEの右側1</list><list>空きブロック2</list><list>1ｕｐキノコ</list>
+    <list>リンク土管１の左側</list><list>リンク土管１の右側</list><list>リンク土管２の左側</list><list>リンク土管２の右側</list><list>リンク土管３の左側</list><list>リンク土管３の右側</list><list>リンク土管４の左側</list><list>リンク土管４の右側</list><list>空きブロック3</list><list>すべる床</list>
+    <list>STAGEの左側2</list><list>STAGEの中間2</list><list>STAGEの右側2</list><list>１</list><list>２</list><list>３</list><list>水草１の左上</list><list>水草１の右上</list><list>水草２の左上</list><list>水草２の右上</list>
+    <list>水しぶき１</list><list>水しぶき２</list><list>水しぶき３</list><list>自分（泳ぐ１）</list><list>自分（泳ぐ２）</list><list>水中で出す泡</list><list>水草１の左下</list><list>水草１の右下</list><list>水草２の左下</list><list>水草２の右下</list>
+    <list>コイン１</list><list>コイン２</list><list>コイン３</list><list>コイン４</list><list>星１</list><list>星２</list><list>ろうそく１</list><list>ろうそく２</list><list>ミレニアム人面星１</list><list>ミレニアム人面星２</list>
+    <list>自分</list><list>自分（ジャンプ）</list><list>自分（滞空）</list><list>自分（横に歩く１）</list><list>自分（横に歩く２）</list><list>自分（走る１）</list><list>自分（走る２）</list><list>自分（ブレーキ）</list><list>自分（振り向く）</list><list>自分（踏む）</list>
+    <list>自分（死亡１）</list><list>自分（死亡２）</list><list>自分（死亡３）</list><list>自分（死亡４）</list><list>自分（上から潰れて死亡）</list><list>自分（横から潰れて死亡）</list><list>自分（しっぽ１）</list><list>自分（しっぽ２の左側）</list><list>自分（しっぽ２の右側）</list><list>自分（ドリル）</list>
+    <list>電撃１</list><list>電撃２</list><list>はっぱカッター１</list><list>はっぱカッター２</list><list>はっぱカッター３</list><list>はっぱカッター４</list><list>火の粉１</list><list>火の粉２</list><list>みずでっぽう１</list><list>みずでっぽう２</list>
+    <list>ファイヤーボール１</list><list>ファイヤーボール２</list><list>ファイヤーボール３</list><list>ファイヤーボール４</list><list>ジェット１</list><list>ジェット２</list><list>ブロックの破片</list><list>グレネード１</list><list>グレネード２</list><list>噴火</list>
+    <list>亀１</list><list>亀２</list><list>亀（潰れ）</list><list>ピカチー１</list><list>ピカチー２</list><list>ピカチー３</list><list>ピカチー（潰れ）</list><list>ポッピー１</list><list>ポッピー２</list><list>ポッピー（潰れ）</list>
+    <list>チコリン</list><list>チコリン（潰れ）</list><list>ヒノララシ１</list><list>ヒノララシ２</list><list>マリリ１</list><list>マリリ２</list><list>マリリ３</list><list>マリリ（潰れ）</list><list>ヤチャモ</list><list>ヤチャモ（潰れ）</list>
+    <list>ミズタロウ１</list><list>ミズタロウ２</list><list>ミズタロウ３</list><list>ミズタロウ（潰れ）</list><list>エアームズ</list><list>エアームズ（潰れ）</list><list>タイキング</list><list>クラゲッソ</list><list>バブル光線１</list><list>バブル光線２</list>
+    <list>爆弾１</list><list>爆弾２</list><list>爆発１</list><list>爆発２</list><list>爆発３</list><list>空きブロック4</list><list>グラーダ（潰れ）の左側</list><list>グラーダ（潰れ）の右側</list><list>カイオール（潰れ）の左側</list><list>カイオール（潰れ）の右側</list>
+    <list>乗ると落ちる床の左側</list><list>乗ると落ちる床の中間</list><list>乗ると落ちる床の右側</list><list>ドッスンスンの左上</list><list>ドッスンスンの中上</list><list>ドッスンスンの右上</list><list>グラーダの左上</list><list>グラーダの右上</list><list>カイオールの左上</list><list>カイオールの右上</list>
+    <list>動く床の左側</list><list>動く床の中間</list><list>動く床の右側</list><list>ドッスンスンの左下</list><list>ドッスンスンの中下</list><list>ドッスンスンの右下</list><list>グラーダの左下</list><list>グラーダの右下</list><list>カイオールの左下</list><list>カイオールの右下</list>
+    <list>カーソル（横）</list><list>カーソル（縦）</list><list>自分（下に歩く１）</list><list>自分（下に歩く２）</list><list>自分（上に歩く１）</list><list>自分（上に歩く２）</list><list>リンク土管１（小）</list><list>リンク土管２（小）</list><list>リンク土管３（小）</list><list>リンク土管４（小）</list>
+    <list>自分（掴まる１）</list><list>自分（掴まる２）</list><list>得点で開く扉（ブロック）</list><list>扉１</list><list>扉２</list><list>扉３</list><list>家</list><list>城</list><list>店</list><list>説明する人の家</list>
+    <list>中継地点</list><list>縦の道</list><list>横の道</list><list>ステージ１</list><list>ステージ２</list><list>ステージ３</list><list>ラストステージ</list><list>クリア済みステージ</list><list>センクウザ（潰れ）の左側</list><list>センクウザ（潰れ）の右側</list>
+    <list>メッセージの人1の左上</list><list>メッセージの人1の右上</list><list>メッセージの人2の左上</list><list>メッセージの人2の右上</list><list>店員さんの左上</list><list>店員さんの右上</list><list>説明する人の左上</list><list>説明する人の右上</list><list>センクウザの左上</list><list>センクウザの右上</list>
+    <list>メッセージの人1の左下</list><list>メッセージの人1の右下</list><list>メッセージの人2の左下</list><list>メッセージの人2の右下</list><list>店員さんの左下</list><list>店員さんの右下</list><list>説明する人の左下</list><list>説明する人の右下</list><list>センクウザの左下</list><list>センクウザの右下</list>
   </param>
   
    <!-- ファイヤーバー1の設定ポイントここまで -->
 
    <!-- ファイヤーバー2の設定ここから　ポイント３ -->
    
-  <param name="firebar2_type" desc="ファイヤーバー（右回り）のタイプ" type="list" value="1" category="仕掛け" chip="Fire2">
+  <param name="firebar2_type" desc="ファイヤーバー（右回り）のタイプ" type="list_athletic" value="1" category="仕掛け" chip="Fire2">
     <list>ファイヤーバー 右回り</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
     <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
     <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
@@ -399,13 +451,39 @@
     <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+
+    <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
+    <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
+    <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
+    <list>仕掛け用ブロック</list><list>空きブロック1</list><list>LASTの左側</list><list>LASTの中間</list><list>LASTの右側</list><list>STAGEの左側1</list><list>STAGEの中間1</list><list>STAGEの右側1</list><list>空きブロック2</list><list>1ｕｐキノコ</list>
+    <list>リンク土管１の左側</list><list>リンク土管１の右側</list><list>リンク土管２の左側</list><list>リンク土管２の右側</list><list>リンク土管３の左側</list><list>リンク土管３の右側</list><list>リンク土管４の左側</list><list>リンク土管４の右側</list><list>空きブロック3</list><list>すべる床</list>
+    <list>STAGEの左側2</list><list>STAGEの中間2</list><list>STAGEの右側2</list><list>１</list><list>２</list><list>３</list><list>水草１の左上</list><list>水草１の右上</list><list>水草２の左上</list><list>水草２の右上</list>
+    <list>水しぶき１</list><list>水しぶき２</list><list>水しぶき３</list><list>自分（泳ぐ１）</list><list>自分（泳ぐ２）</list><list>水中で出す泡</list><list>水草１の左下</list><list>水草１の右下</list><list>水草２の左下</list><list>水草２の右下</list>
+    <list>コイン１</list><list>コイン２</list><list>コイン３</list><list>コイン４</list><list>星１</list><list>星２</list><list>ろうそく１</list><list>ろうそく２</list><list>ミレニアム人面星１</list><list>ミレニアム人面星２</list>
+    <list>自分</list><list>自分（ジャンプ）</list><list>自分（滞空）</list><list>自分（横に歩く１）</list><list>自分（横に歩く２）</list><list>自分（走る１）</list><list>自分（走る２）</list><list>自分（ブレーキ）</list><list>自分（振り向く）</list><list>自分（踏む）</list>
+    <list>自分（死亡１）</list><list>自分（死亡２）</list><list>自分（死亡３）</list><list>自分（死亡４）</list><list>自分（上から潰れて死亡）</list><list>自分（横から潰れて死亡）</list><list>自分（しっぽ１）</list><list>自分（しっぽ２の左側）</list><list>自分（しっぽ２の右側）</list><list>自分（ドリル）</list>
+    <list>電撃１</list><list>電撃２</list><list>はっぱカッター１</list><list>はっぱカッター２</list><list>はっぱカッター３</list><list>はっぱカッター４</list><list>火の粉１</list><list>火の粉２</list><list>みずでっぽう１</list><list>みずでっぽう２</list>
+    <list>ファイヤーボール１</list><list>ファイヤーボール２</list><list>ファイヤーボール３</list><list>ファイヤーボール４</list><list>ジェット１</list><list>ジェット２</list><list>ブロックの破片</list><list>グレネード１</list><list>グレネード２</list><list>噴火</list>
+    <list>亀１</list><list>亀２</list><list>亀（潰れ）</list><list>ピカチー１</list><list>ピカチー２</list><list>ピカチー３</list><list>ピカチー（潰れ）</list><list>ポッピー１</list><list>ポッピー２</list><list>ポッピー（潰れ）</list>
+    <list>チコリン</list><list>チコリン（潰れ）</list><list>ヒノララシ１</list><list>ヒノララシ２</list><list>マリリ１</list><list>マリリ２</list><list>マリリ３</list><list>マリリ（潰れ）</list><list>ヤチャモ</list><list>ヤチャモ（潰れ）</list>
+    <list>ミズタロウ１</list><list>ミズタロウ２</list><list>ミズタロウ３</list><list>ミズタロウ（潰れ）</list><list>エアームズ</list><list>エアームズ（潰れ）</list><list>タイキング</list><list>クラゲッソ</list><list>バブル光線１</list><list>バブル光線２</list>
+    <list>爆弾１</list><list>爆弾２</list><list>爆発１</list><list>爆発２</list><list>爆発３</list><list>空きブロック4</list><list>グラーダ（潰れ）の左側</list><list>グラーダ（潰れ）の右側</list><list>カイオール（潰れ）の左側</list><list>カイオール（潰れ）の右側</list>
+    <list>乗ると落ちる床の左側</list><list>乗ると落ちる床の中間</list><list>乗ると落ちる床の右側</list><list>ドッスンスンの左上</list><list>ドッスンスンの中上</list><list>ドッスンスンの右上</list><list>グラーダの左上</list><list>グラーダの右上</list><list>カイオールの左上</list><list>カイオールの右上</list>
+    <list>動く床の左側</list><list>動く床の中間</list><list>動く床の右側</list><list>ドッスンスンの左下</list><list>ドッスンスンの中下</list><list>ドッスンスンの右下</list><list>グラーダの左下</list><list>グラーダの右下</list><list>カイオールの左下</list><list>カイオールの右下</list>
+    <list>カーソル（横）</list><list>カーソル（縦）</list><list>自分（下に歩く１）</list><list>自分（下に歩く２）</list><list>自分（上に歩く１）</list><list>自分（上に歩く２）</list><list>リンク土管１（小）</list><list>リンク土管２（小）</list><list>リンク土管３（小）</list><list>リンク土管４（小）</list>
+    <list>自分（掴まる１）</list><list>自分（掴まる２）</list><list>得点で開く扉（ブロック）</list><list>扉１</list><list>扉２</list><list>扉３</list><list>家</list><list>城</list><list>店</list><list>説明する人の家</list>
+    <list>中継地点</list><list>縦の道</list><list>横の道</list><list>ステージ１</list><list>ステージ２</list><list>ステージ３</list><list>ラストステージ</list><list>クリア済みステージ</list><list>センクウザ（潰れ）の左側</list><list>センクウザ（潰れ）の右側</list>
+    <list>メッセージの人1の左上</list><list>メッセージの人1の右上</list><list>メッセージの人2の左上</list><list>メッセージの人2の右上</list><list>店員さんの左上</list><list>店員さんの右上</list><list>説明する人の左上</list><list>説明する人の右上</list><list>センクウザの左上</list><list>センクウザの右上</list>
+    <list>メッセージの人1の左下</list><list>メッセージの人1の右下</list><list>メッセージの人2の左下</list><list>メッセージの人2の右下</list><list>店員さんの左下</list><list>店員さんの右下</list><list>説明する人の左下</list><list>説明する人の右下</list><list>センクウザの左下</list><list>センクウザの右下</list>
   </param>
   
    <!-- ファイヤーバー2の設定ポイントここまで -->
 
    <!-- 動く床(上下移動)の設定ここから　ポイント４  -->
    
-  <param name="ugokuyuka1_type" desc="動く床(上下移動)のタイプ" type="list" value="1" category="仕掛け" chip="VMovFloor">
+  <param name="ugokuyuka1_type" desc="動く床(上下移動)のタイプ" type="list_athletic" value="1" category="仕掛け" chip="VMovFloor">
     <list>動く床　上下移動</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
     <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
     <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
@@ -498,13 +576,39 @@
     <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+
+    <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
+    <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
+    <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
+    <list>仕掛け用ブロック</list><list>空きブロック1</list><list>LASTの左側</list><list>LASTの中間</list><list>LASTの右側</list><list>STAGEの左側1</list><list>STAGEの中間1</list><list>STAGEの右側1</list><list>空きブロック2</list><list>1ｕｐキノコ</list>
+    <list>リンク土管１の左側</list><list>リンク土管１の右側</list><list>リンク土管２の左側</list><list>リンク土管２の右側</list><list>リンク土管３の左側</list><list>リンク土管３の右側</list><list>リンク土管４の左側</list><list>リンク土管４の右側</list><list>空きブロック3</list><list>すべる床</list>
+    <list>STAGEの左側2</list><list>STAGEの中間2</list><list>STAGEの右側2</list><list>１</list><list>２</list><list>３</list><list>水草１の左上</list><list>水草１の右上</list><list>水草２の左上</list><list>水草２の右上</list>
+    <list>水しぶき１</list><list>水しぶき２</list><list>水しぶき３</list><list>自分（泳ぐ１）</list><list>自分（泳ぐ２）</list><list>水中で出す泡</list><list>水草１の左下</list><list>水草１の右下</list><list>水草２の左下</list><list>水草２の右下</list>
+    <list>コイン１</list><list>コイン２</list><list>コイン３</list><list>コイン４</list><list>星１</list><list>星２</list><list>ろうそく１</list><list>ろうそく２</list><list>ミレニアム人面星１</list><list>ミレニアム人面星２</list>
+    <list>自分</list><list>自分（ジャンプ）</list><list>自分（滞空）</list><list>自分（横に歩く１）</list><list>自分（横に歩く２）</list><list>自分（走る１）</list><list>自分（走る２）</list><list>自分（ブレーキ）</list><list>自分（振り向く）</list><list>自分（踏む）</list>
+    <list>自分（死亡１）</list><list>自分（死亡２）</list><list>自分（死亡３）</list><list>自分（死亡４）</list><list>自分（上から潰れて死亡）</list><list>自分（横から潰れて死亡）</list><list>自分（しっぽ１）</list><list>自分（しっぽ２の左側）</list><list>自分（しっぽ２の右側）</list><list>自分（ドリル）</list>
+    <list>電撃１</list><list>電撃２</list><list>はっぱカッター１</list><list>はっぱカッター２</list><list>はっぱカッター３</list><list>はっぱカッター４</list><list>火の粉１</list><list>火の粉２</list><list>みずでっぽう１</list><list>みずでっぽう２</list>
+    <list>ファイヤーボール１</list><list>ファイヤーボール２</list><list>ファイヤーボール３</list><list>ファイヤーボール４</list><list>ジェット１</list><list>ジェット２</list><list>ブロックの破片</list><list>グレネード１</list><list>グレネード２</list><list>噴火</list>
+    <list>亀１</list><list>亀２</list><list>亀（潰れ）</list><list>ピカチー１</list><list>ピカチー２</list><list>ピカチー３</list><list>ピカチー（潰れ）</list><list>ポッピー１</list><list>ポッピー２</list><list>ポッピー（潰れ）</list>
+    <list>チコリン</list><list>チコリン（潰れ）</list><list>ヒノララシ１</list><list>ヒノララシ２</list><list>マリリ１</list><list>マリリ２</list><list>マリリ３</list><list>マリリ（潰れ）</list><list>ヤチャモ</list><list>ヤチャモ（潰れ）</list>
+    <list>ミズタロウ１</list><list>ミズタロウ２</list><list>ミズタロウ３</list><list>ミズタロウ（潰れ）</list><list>エアームズ</list><list>エアームズ（潰れ）</list><list>タイキング</list><list>クラゲッソ</list><list>バブル光線１</list><list>バブル光線２</list>
+    <list>爆弾１</list><list>爆弾２</list><list>爆発１</list><list>爆発２</list><list>爆発３</list><list>空きブロック4</list><list>グラーダ（潰れ）の左側</list><list>グラーダ（潰れ）の右側</list><list>カイオール（潰れ）の左側</list><list>カイオール（潰れ）の右側</list>
+    <list>乗ると落ちる床の左側</list><list>乗ると落ちる床の中間</list><list>乗ると落ちる床の右側</list><list>ドッスンスンの左上</list><list>ドッスンスンの中上</list><list>ドッスンスンの右上</list><list>グラーダの左上</list><list>グラーダの右上</list><list>カイオールの左上</list><list>カイオールの右上</list>
+    <list>動く床の左側</list><list>動く床の中間</list><list>動く床の右側</list><list>ドッスンスンの左下</list><list>ドッスンスンの中下</list><list>ドッスンスンの右下</list><list>グラーダの左下</list><list>グラーダの右下</list><list>カイオールの左下</list><list>カイオールの右下</list>
+    <list>カーソル（横）</list><list>カーソル（縦）</list><list>自分（下に歩く１）</list><list>自分（下に歩く２）</list><list>自分（上に歩く１）</list><list>自分（上に歩く２）</list><list>リンク土管１（小）</list><list>リンク土管２（小）</list><list>リンク土管３（小）</list><list>リンク土管４（小）</list>
+    <list>自分（掴まる１）</list><list>自分（掴まる２）</list><list>得点で開く扉（ブロック）</list><list>扉１</list><list>扉２</list><list>扉３</list><list>家</list><list>城</list><list>店</list><list>説明する人の家</list>
+    <list>中継地点</list><list>縦の道</list><list>横の道</list><list>ステージ１</list><list>ステージ２</list><list>ステージ３</list><list>ラストステージ</list><list>クリア済みステージ</list><list>センクウザ（潰れ）の左側</list><list>センクウザ（潰れ）の右側</list>
+    <list>メッセージの人1の左上</list><list>メッセージの人1の右上</list><list>メッセージの人2の左上</list><list>メッセージの人2の右上</list><list>店員さんの左上</list><list>店員さんの右上</list><list>説明する人の左上</list><list>説明する人の右上</list><list>センクウザの左上</list><list>センクウザの右上</list>
+    <list>メッセージの人1の左下</list><list>メッセージの人1の右下</list><list>メッセージの人2の左下</list><list>メッセージの人2の右下</list><list>店員さんの左下</list><list>店員さんの右下</list><list>説明する人の左下</list><list>説明する人の右下</list><list>センクウザの左下</list><list>センクウザの右下</list>
   </param>
   
    <!-- 動く床(上下移動)の設定ポイントここまで  -->
 
    <!-- 動く床(左右移動)の設定ここから　ポイント５  -->
    
-  <param name="ugokuyuka2_type" desc="動く床(左右移動)のタイプ" type="list" value="1" category="仕掛け" chip="HMovFloor">
+  <param name="ugokuyuka2_type" desc="動く床(左右移動)のタイプ" type="list_athletic" value="1" category="仕掛け" chip="HMovFloor">
     <list>動く床　左右移動</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
     <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
     <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
@@ -597,13 +701,39 @@
     <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+
+    <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
+    <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
+    <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
+    <list>仕掛け用ブロック</list><list>空きブロック1</list><list>LASTの左側</list><list>LASTの中間</list><list>LASTの右側</list><list>STAGEの左側1</list><list>STAGEの中間1</list><list>STAGEの右側1</list><list>空きブロック2</list><list>1ｕｐキノコ</list>
+    <list>リンク土管１の左側</list><list>リンク土管１の右側</list><list>リンク土管２の左側</list><list>リンク土管２の右側</list><list>リンク土管３の左側</list><list>リンク土管３の右側</list><list>リンク土管４の左側</list><list>リンク土管４の右側</list><list>空きブロック3</list><list>すべる床</list>
+    <list>STAGEの左側2</list><list>STAGEの中間2</list><list>STAGEの右側2</list><list>１</list><list>２</list><list>３</list><list>水草１の左上</list><list>水草１の右上</list><list>水草２の左上</list><list>水草２の右上</list>
+    <list>水しぶき１</list><list>水しぶき２</list><list>水しぶき３</list><list>自分（泳ぐ１）</list><list>自分（泳ぐ２）</list><list>水中で出す泡</list><list>水草１の左下</list><list>水草１の右下</list><list>水草２の左下</list><list>水草２の右下</list>
+    <list>コイン１</list><list>コイン２</list><list>コイン３</list><list>コイン４</list><list>星１</list><list>星２</list><list>ろうそく１</list><list>ろうそく２</list><list>ミレニアム人面星１</list><list>ミレニアム人面星２</list>
+    <list>自分</list><list>自分（ジャンプ）</list><list>自分（滞空）</list><list>自分（横に歩く１）</list><list>自分（横に歩く２）</list><list>自分（走る１）</list><list>自分（走る２）</list><list>自分（ブレーキ）</list><list>自分（振り向く）</list><list>自分（踏む）</list>
+    <list>自分（死亡１）</list><list>自分（死亡２）</list><list>自分（死亡３）</list><list>自分（死亡４）</list><list>自分（上から潰れて死亡）</list><list>自分（横から潰れて死亡）</list><list>自分（しっぽ１）</list><list>自分（しっぽ２の左側）</list><list>自分（しっぽ２の右側）</list><list>自分（ドリル）</list>
+    <list>電撃１</list><list>電撃２</list><list>はっぱカッター１</list><list>はっぱカッター２</list><list>はっぱカッター３</list><list>はっぱカッター４</list><list>火の粉１</list><list>火の粉２</list><list>みずでっぽう１</list><list>みずでっぽう２</list>
+    <list>ファイヤーボール１</list><list>ファイヤーボール２</list><list>ファイヤーボール３</list><list>ファイヤーボール４</list><list>ジェット１</list><list>ジェット２</list><list>ブロックの破片</list><list>グレネード１</list><list>グレネード２</list><list>噴火</list>
+    <list>亀１</list><list>亀２</list><list>亀（潰れ）</list><list>ピカチー１</list><list>ピカチー２</list><list>ピカチー３</list><list>ピカチー（潰れ）</list><list>ポッピー１</list><list>ポッピー２</list><list>ポッピー（潰れ）</list>
+    <list>チコリン</list><list>チコリン（潰れ）</list><list>ヒノララシ１</list><list>ヒノララシ２</list><list>マリリ１</list><list>マリリ２</list><list>マリリ３</list><list>マリリ（潰れ）</list><list>ヤチャモ</list><list>ヤチャモ（潰れ）</list>
+    <list>ミズタロウ１</list><list>ミズタロウ２</list><list>ミズタロウ３</list><list>ミズタロウ（潰れ）</list><list>エアームズ</list><list>エアームズ（潰れ）</list><list>タイキング</list><list>クラゲッソ</list><list>バブル光線１</list><list>バブル光線２</list>
+    <list>爆弾１</list><list>爆弾２</list><list>爆発１</list><list>爆発２</list><list>爆発３</list><list>空きブロック4</list><list>グラーダ（潰れ）の左側</list><list>グラーダ（潰れ）の右側</list><list>カイオール（潰れ）の左側</list><list>カイオール（潰れ）の右側</list>
+    <list>乗ると落ちる床の左側</list><list>乗ると落ちる床の中間</list><list>乗ると落ちる床の右側</list><list>ドッスンスンの左上</list><list>ドッスンスンの中上</list><list>ドッスンスンの右上</list><list>グラーダの左上</list><list>グラーダの右上</list><list>カイオールの左上</list><list>カイオールの右上</list>
+    <list>動く床の左側</list><list>動く床の中間</list><list>動く床の右側</list><list>ドッスンスンの左下</list><list>ドッスンスンの中下</list><list>ドッスンスンの右下</list><list>グラーダの左下</list><list>グラーダの右下</list><list>カイオールの左下</list><list>カイオールの右下</list>
+    <list>カーソル（横）</list><list>カーソル（縦）</list><list>自分（下に歩く１）</list><list>自分（下に歩く２）</list><list>自分（上に歩く１）</list><list>自分（上に歩く２）</list><list>リンク土管１（小）</list><list>リンク土管２（小）</list><list>リンク土管３（小）</list><list>リンク土管４（小）</list>
+    <list>自分（掴まる１）</list><list>自分（掴まる２）</list><list>得点で開く扉（ブロック）</list><list>扉１</list><list>扉２</list><list>扉３</list><list>家</list><list>城</list><list>店</list><list>説明する人の家</list>
+    <list>中継地点</list><list>縦の道</list><list>横の道</list><list>ステージ１</list><list>ステージ２</list><list>ステージ３</list><list>ラストステージ</list><list>クリア済みステージ</list><list>センクウザ（潰れ）の左側</list><list>センクウザ（潰れ）の右側</list>
+    <list>メッセージの人1の左上</list><list>メッセージの人1の右上</list><list>メッセージの人2の左上</list><list>メッセージの人2の右上</list><list>店員さんの左上</list><list>店員さんの右上</list><list>説明する人の左上</list><list>説明する人の右上</list><list>センクウザの左上</list><list>センクウザの右上</list>
+    <list>メッセージの人1の左下</list><list>メッセージの人1の右下</list><list>メッセージの人2の左下</list><list>メッセージの人2の右下</list><list>店員さんの左下</list><list>店員さんの右下</list><list>説明する人の左下</list><list>説明する人の右下</list><list>センクウザの左下</list><list>センクウザの右下</list>
   </param>
   
    <!-- 動く床(左右移動)の設定ポイントここまで  -->
 
    <!-- 動く床(左右移動x2)の設定ここから　ポイント６ -->
    
-  <param name="ugokuyuka3_type" desc="動く床(左右移動x2)のタイプ" type="list" value="1" category="仕掛け" chip="DMovFloor">
+  <param name="ugokuyuka3_type" desc="動く床(左右移動x2)のタイプ" type="list_athletic" value="1" category="仕掛け" chip="DMovFloor">
     <list>動く床 左右移動 2個連続</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
     <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
     <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
@@ -696,13 +826,39 @@
     <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+
+    <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
+    <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
+    <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
+    <list>仕掛け用ブロック</list><list>空きブロック1</list><list>LASTの左側</list><list>LASTの中間</list><list>LASTの右側</list><list>STAGEの左側1</list><list>STAGEの中間1</list><list>STAGEの右側1</list><list>空きブロック2</list><list>1ｕｐキノコ</list>
+    <list>リンク土管１の左側</list><list>リンク土管１の右側</list><list>リンク土管２の左側</list><list>リンク土管２の右側</list><list>リンク土管３の左側</list><list>リンク土管３の右側</list><list>リンク土管４の左側</list><list>リンク土管４の右側</list><list>空きブロック3</list><list>すべる床</list>
+    <list>STAGEの左側2</list><list>STAGEの中間2</list><list>STAGEの右側2</list><list>１</list><list>２</list><list>３</list><list>水草１の左上</list><list>水草１の右上</list><list>水草２の左上</list><list>水草２の右上</list>
+    <list>水しぶき１</list><list>水しぶき２</list><list>水しぶき３</list><list>自分（泳ぐ１）</list><list>自分（泳ぐ２）</list><list>水中で出す泡</list><list>水草１の左下</list><list>水草１の右下</list><list>水草２の左下</list><list>水草２の右下</list>
+    <list>コイン１</list><list>コイン２</list><list>コイン３</list><list>コイン４</list><list>星１</list><list>星２</list><list>ろうそく１</list><list>ろうそく２</list><list>ミレニアム人面星１</list><list>ミレニアム人面星２</list>
+    <list>自分</list><list>自分（ジャンプ）</list><list>自分（滞空）</list><list>自分（横に歩く１）</list><list>自分（横に歩く２）</list><list>自分（走る１）</list><list>自分（走る２）</list><list>自分（ブレーキ）</list><list>自分（振り向く）</list><list>自分（踏む）</list>
+    <list>自分（死亡１）</list><list>自分（死亡２）</list><list>自分（死亡３）</list><list>自分（死亡４）</list><list>自分（上から潰れて死亡）</list><list>自分（横から潰れて死亡）</list><list>自分（しっぽ１）</list><list>自分（しっぽ２の左側）</list><list>自分（しっぽ２の右側）</list><list>自分（ドリル）</list>
+    <list>電撃１</list><list>電撃２</list><list>はっぱカッター１</list><list>はっぱカッター２</list><list>はっぱカッター３</list><list>はっぱカッター４</list><list>火の粉１</list><list>火の粉２</list><list>みずでっぽう１</list><list>みずでっぽう２</list>
+    <list>ファイヤーボール１</list><list>ファイヤーボール２</list><list>ファイヤーボール３</list><list>ファイヤーボール４</list><list>ジェット１</list><list>ジェット２</list><list>ブロックの破片</list><list>グレネード１</list><list>グレネード２</list><list>噴火</list>
+    <list>亀１</list><list>亀２</list><list>亀（潰れ）</list><list>ピカチー１</list><list>ピカチー２</list><list>ピカチー３</list><list>ピカチー（潰れ）</list><list>ポッピー１</list><list>ポッピー２</list><list>ポッピー（潰れ）</list>
+    <list>チコリン</list><list>チコリン（潰れ）</list><list>ヒノララシ１</list><list>ヒノララシ２</list><list>マリリ１</list><list>マリリ２</list><list>マリリ３</list><list>マリリ（潰れ）</list><list>ヤチャモ</list><list>ヤチャモ（潰れ）</list>
+    <list>ミズタロウ１</list><list>ミズタロウ２</list><list>ミズタロウ３</list><list>ミズタロウ（潰れ）</list><list>エアームズ</list><list>エアームズ（潰れ）</list><list>タイキング</list><list>クラゲッソ</list><list>バブル光線１</list><list>バブル光線２</list>
+    <list>爆弾１</list><list>爆弾２</list><list>爆発１</list><list>爆発２</list><list>爆発３</list><list>空きブロック4</list><list>グラーダ（潰れ）の左側</list><list>グラーダ（潰れ）の右側</list><list>カイオール（潰れ）の左側</list><list>カイオール（潰れ）の右側</list>
+    <list>乗ると落ちる床の左側</list><list>乗ると落ちる床の中間</list><list>乗ると落ちる床の右側</list><list>ドッスンスンの左上</list><list>ドッスンスンの中上</list><list>ドッスンスンの右上</list><list>グラーダの左上</list><list>グラーダの右上</list><list>カイオールの左上</list><list>カイオールの右上</list>
+    <list>動く床の左側</list><list>動く床の中間</list><list>動く床の右側</list><list>ドッスンスンの左下</list><list>ドッスンスンの中下</list><list>ドッスンスンの右下</list><list>グラーダの左下</list><list>グラーダの右下</list><list>カイオールの左下</list><list>カイオールの右下</list>
+    <list>カーソル（横）</list><list>カーソル（縦）</list><list>自分（下に歩く１）</list><list>自分（下に歩く２）</list><list>自分（上に歩く１）</list><list>自分（上に歩く２）</list><list>リンク土管１（小）</list><list>リンク土管２（小）</list><list>リンク土管３（小）</list><list>リンク土管４（小）</list>
+    <list>自分（掴まる１）</list><list>自分（掴まる２）</list><list>得点で開く扉（ブロック）</list><list>扉１</list><list>扉２</list><list>扉３</list><list>家</list><list>城</list><list>店</list><list>説明する人の家</list>
+    <list>中継地点</list><list>縦の道</list><list>横の道</list><list>ステージ１</list><list>ステージ２</list><list>ステージ３</list><list>ラストステージ</list><list>クリア済みステージ</list><list>センクウザ（潰れ）の左側</list><list>センクウザ（潰れ）の右側</list>
+    <list>メッセージの人1の左上</list><list>メッセージの人1の右上</list><list>メッセージの人2の左上</list><list>メッセージの人2の右上</list><list>店員さんの左上</list><list>店員さんの右上</list><list>説明する人の左上</list><list>説明する人の右上</list><list>センクウザの左上</list><list>センクウザの右上</list>
+    <list>メッセージの人1の左下</list><list>メッセージの人1の右下</list><list>メッセージの人2の左下</list><list>メッセージの人2の右下</list><list>店員さんの左下</list><list>店員さんの右下</list><list>説明する人の左下</list><list>説明する人の右下</list><list>センクウザの左下</list><list>センクウザの右下</list>
   </param>
   
   <!-- 動く床(左右移動x2)の設定ポイントここまで -->
    
   <!-- コインが出る？ブロックの設定ここから　ポイント７ -->
       
-  <param name="coin1_type" desc="コインが出る？ブロックのタイプ" type="list" value="1" category="仕掛け" chip="coin1">
+  <param name="coin1_type" desc="コインが出る？ブロックのタイプ" type="list_athletic" value="1" category="仕掛け" chip="coin1">
     <list>コインが出る？ブロック</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
     <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
     <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
@@ -795,13 +951,39 @@
     <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+
+    <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
+    <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
+    <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
+    <list>仕掛け用ブロック</list><list>空きブロック1</list><list>LASTの左側</list><list>LASTの中間</list><list>LASTの右側</list><list>STAGEの左側1</list><list>STAGEの中間1</list><list>STAGEの右側1</list><list>空きブロック2</list><list>1ｕｐキノコ</list>
+    <list>リンク土管１の左側</list><list>リンク土管１の右側</list><list>リンク土管２の左側</list><list>リンク土管２の右側</list><list>リンク土管３の左側</list><list>リンク土管３の右側</list><list>リンク土管４の左側</list><list>リンク土管４の右側</list><list>空きブロック3</list><list>すべる床</list>
+    <list>STAGEの左側2</list><list>STAGEの中間2</list><list>STAGEの右側2</list><list>１</list><list>２</list><list>３</list><list>水草１の左上</list><list>水草１の右上</list><list>水草２の左上</list><list>水草２の右上</list>
+    <list>水しぶき１</list><list>水しぶき２</list><list>水しぶき３</list><list>自分（泳ぐ１）</list><list>自分（泳ぐ２）</list><list>水中で出す泡</list><list>水草１の左下</list><list>水草１の右下</list><list>水草２の左下</list><list>水草２の右下</list>
+    <list>コイン１</list><list>コイン２</list><list>コイン３</list><list>コイン４</list><list>星１</list><list>星２</list><list>ろうそく１</list><list>ろうそく２</list><list>ミレニアム人面星１</list><list>ミレニアム人面星２</list>
+    <list>自分</list><list>自分（ジャンプ）</list><list>自分（滞空）</list><list>自分（横に歩く１）</list><list>自分（横に歩く２）</list><list>自分（走る１）</list><list>自分（走る２）</list><list>自分（ブレーキ）</list><list>自分（振り向く）</list><list>自分（踏む）</list>
+    <list>自分（死亡１）</list><list>自分（死亡２）</list><list>自分（死亡３）</list><list>自分（死亡４）</list><list>自分（上から潰れて死亡）</list><list>自分（横から潰れて死亡）</list><list>自分（しっぽ１）</list><list>自分（しっぽ２の左側）</list><list>自分（しっぽ２の右側）</list><list>自分（ドリル）</list>
+    <list>電撃１</list><list>電撃２</list><list>はっぱカッター１</list><list>はっぱカッター２</list><list>はっぱカッター３</list><list>はっぱカッター４</list><list>火の粉１</list><list>火の粉２</list><list>みずでっぽう１</list><list>みずでっぽう２</list>
+    <list>ファイヤーボール１</list><list>ファイヤーボール２</list><list>ファイヤーボール３</list><list>ファイヤーボール４</list><list>ジェット１</list><list>ジェット２</list><list>ブロックの破片</list><list>グレネード１</list><list>グレネード２</list><list>噴火</list>
+    <list>亀１</list><list>亀２</list><list>亀（潰れ）</list><list>ピカチー１</list><list>ピカチー２</list><list>ピカチー３</list><list>ピカチー（潰れ）</list><list>ポッピー１</list><list>ポッピー２</list><list>ポッピー（潰れ）</list>
+    <list>チコリン</list><list>チコリン（潰れ）</list><list>ヒノララシ１</list><list>ヒノララシ２</list><list>マリリ１</list><list>マリリ２</list><list>マリリ３</list><list>マリリ（潰れ）</list><list>ヤチャモ</list><list>ヤチャモ（潰れ）</list>
+    <list>ミズタロウ１</list><list>ミズタロウ２</list><list>ミズタロウ３</list><list>ミズタロウ（潰れ）</list><list>エアームズ</list><list>エアームズ（潰れ）</list><list>タイキング</list><list>クラゲッソ</list><list>バブル光線１</list><list>バブル光線２</list>
+    <list>爆弾１</list><list>爆弾２</list><list>爆発１</list><list>爆発２</list><list>爆発３</list><list>空きブロック4</list><list>グラーダ（潰れ）の左側</list><list>グラーダ（潰れ）の右側</list><list>カイオール（潰れ）の左側</list><list>カイオール（潰れ）の右側</list>
+    <list>乗ると落ちる床の左側</list><list>乗ると落ちる床の中間</list><list>乗ると落ちる床の右側</list><list>ドッスンスンの左上</list><list>ドッスンスンの中上</list><list>ドッスンスンの右上</list><list>グラーダの左上</list><list>グラーダの右上</list><list>カイオールの左上</list><list>カイオールの右上</list>
+    <list>動く床の左側</list><list>動く床の中間</list><list>動く床の右側</list><list>ドッスンスンの左下</list><list>ドッスンスンの中下</list><list>ドッスンスンの右下</list><list>グラーダの左下</list><list>グラーダの右下</list><list>カイオールの左下</list><list>カイオールの右下</list>
+    <list>カーソル（横）</list><list>カーソル（縦）</list><list>自分（下に歩く１）</list><list>自分（下に歩く２）</list><list>自分（上に歩く１）</list><list>自分（上に歩く２）</list><list>リンク土管１（小）</list><list>リンク土管２（小）</list><list>リンク土管３（小）</list><list>リンク土管４（小）</list>
+    <list>自分（掴まる１）</list><list>自分（掴まる２）</list><list>得点で開く扉（ブロック）</list><list>扉１</list><list>扉２</list><list>扉３</list><list>家</list><list>城</list><list>店</list><list>説明する人の家</list>
+    <list>中継地点</list><list>縦の道</list><list>横の道</list><list>ステージ１</list><list>ステージ２</list><list>ステージ３</list><list>ラストステージ</list><list>クリア済みステージ</list><list>センクウザ（潰れ）の左側</list><list>センクウザ（潰れ）の右側</list>
+    <list>メッセージの人1の左上</list><list>メッセージの人1の右上</list><list>メッセージの人2の左上</list><list>メッセージの人2の右上</list><list>店員さんの左上</list><list>店員さんの右上</list><list>説明する人の左上</list><list>説明する人の右上</list><list>センクウザの左上</list><list>センクウザの右上</list>
+    <list>メッセージの人1の左下</list><list>メッセージの人1の右下</list><list>メッセージの人2の左下</list><list>メッセージの人2の右下</list><list>店員さんの左下</list><list>店員さんの右下</list><list>説明する人の左下</list><list>説明する人の右下</list><list>センクウザの左下</list><list>センクウザの右下</list>
   </param>
   
   <!-- コインが出る？ブロックの設定ポイントここまで -->
   
   <!-- コイン３枚が出る？ブロックの設定ここから　ポイント８ -->
   
-  <param name="coin3_type" desc="コイン３枚が出る？ブロックのタイプ" type="list" value="1" category="仕掛け" chip="coin3">
+  <param name="coin3_type" desc="コイン３枚が出る？ブロックのタイプ" type="list_athletic" value="1" category="仕掛け" chip="coin3">
     <list>コイン３枚が出る？ブロック</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
     <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
     <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
@@ -894,13 +1076,39 @@
     <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+
+    <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
+    <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
+    <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
+    <list>仕掛け用ブロック</list><list>空きブロック1</list><list>LASTの左側</list><list>LASTの中間</list><list>LASTの右側</list><list>STAGEの左側1</list><list>STAGEの中間1</list><list>STAGEの右側1</list><list>空きブロック2</list><list>1ｕｐキノコ</list>
+    <list>リンク土管１の左側</list><list>リンク土管１の右側</list><list>リンク土管２の左側</list><list>リンク土管２の右側</list><list>リンク土管３の左側</list><list>リンク土管３の右側</list><list>リンク土管４の左側</list><list>リンク土管４の右側</list><list>空きブロック3</list><list>すべる床</list>
+    <list>STAGEの左側2</list><list>STAGEの中間2</list><list>STAGEの右側2</list><list>１</list><list>２</list><list>３</list><list>水草１の左上</list><list>水草１の右上</list><list>水草２の左上</list><list>水草２の右上</list>
+    <list>水しぶき１</list><list>水しぶき２</list><list>水しぶき３</list><list>自分（泳ぐ１）</list><list>自分（泳ぐ２）</list><list>水中で出す泡</list><list>水草１の左下</list><list>水草１の右下</list><list>水草２の左下</list><list>水草２の右下</list>
+    <list>コイン１</list><list>コイン２</list><list>コイン３</list><list>コイン４</list><list>星１</list><list>星２</list><list>ろうそく１</list><list>ろうそく２</list><list>ミレニアム人面星１</list><list>ミレニアム人面星２</list>
+    <list>自分</list><list>自分（ジャンプ）</list><list>自分（滞空）</list><list>自分（横に歩く１）</list><list>自分（横に歩く２）</list><list>自分（走る１）</list><list>自分（走る２）</list><list>自分（ブレーキ）</list><list>自分（振り向く）</list><list>自分（踏む）</list>
+    <list>自分（死亡１）</list><list>自分（死亡２）</list><list>自分（死亡３）</list><list>自分（死亡４）</list><list>自分（上から潰れて死亡）</list><list>自分（横から潰れて死亡）</list><list>自分（しっぽ１）</list><list>自分（しっぽ２の左側）</list><list>自分（しっぽ２の右側）</list><list>自分（ドリル）</list>
+    <list>電撃１</list><list>電撃２</list><list>はっぱカッター１</list><list>はっぱカッター２</list><list>はっぱカッター３</list><list>はっぱカッター４</list><list>火の粉１</list><list>火の粉２</list><list>みずでっぽう１</list><list>みずでっぽう２</list>
+    <list>ファイヤーボール１</list><list>ファイヤーボール２</list><list>ファイヤーボール３</list><list>ファイヤーボール４</list><list>ジェット１</list><list>ジェット２</list><list>ブロックの破片</list><list>グレネード１</list><list>グレネード２</list><list>噴火</list>
+    <list>亀１</list><list>亀２</list><list>亀（潰れ）</list><list>ピカチー１</list><list>ピカチー２</list><list>ピカチー３</list><list>ピカチー（潰れ）</list><list>ポッピー１</list><list>ポッピー２</list><list>ポッピー（潰れ）</list>
+    <list>チコリン</list><list>チコリン（潰れ）</list><list>ヒノララシ１</list><list>ヒノララシ２</list><list>マリリ１</list><list>マリリ２</list><list>マリリ３</list><list>マリリ（潰れ）</list><list>ヤチャモ</list><list>ヤチャモ（潰れ）</list>
+    <list>ミズタロウ１</list><list>ミズタロウ２</list><list>ミズタロウ３</list><list>ミズタロウ（潰れ）</list><list>エアームズ</list><list>エアームズ（潰れ）</list><list>タイキング</list><list>クラゲッソ</list><list>バブル光線１</list><list>バブル光線２</list>
+    <list>爆弾１</list><list>爆弾２</list><list>爆発１</list><list>爆発２</list><list>爆発３</list><list>空きブロック4</list><list>グラーダ（潰れ）の左側</list><list>グラーダ（潰れ）の右側</list><list>カイオール（潰れ）の左側</list><list>カイオール（潰れ）の右側</list>
+    <list>乗ると落ちる床の左側</list><list>乗ると落ちる床の中間</list><list>乗ると落ちる床の右側</list><list>ドッスンスンの左上</list><list>ドッスンスンの中上</list><list>ドッスンスンの右上</list><list>グラーダの左上</list><list>グラーダの右上</list><list>カイオールの左上</list><list>カイオールの右上</list>
+    <list>動く床の左側</list><list>動く床の中間</list><list>動く床の右側</list><list>ドッスンスンの左下</list><list>ドッスンスンの中下</list><list>ドッスンスンの右下</list><list>グラーダの左下</list><list>グラーダの右下</list><list>カイオールの左下</list><list>カイオールの右下</list>
+    <list>カーソル（横）</list><list>カーソル（縦）</list><list>自分（下に歩く１）</list><list>自分（下に歩く２）</list><list>自分（上に歩く１）</list><list>自分（上に歩く２）</list><list>リンク土管１（小）</list><list>リンク土管２（小）</list><list>リンク土管３（小）</list><list>リンク土管４（小）</list>
+    <list>自分（掴まる１）</list><list>自分（掴まる２）</list><list>得点で開く扉（ブロック）</list><list>扉１</list><list>扉２</list><list>扉３</list><list>家</list><list>城</list><list>店</list><list>説明する人の家</list>
+    <list>中継地点</list><list>縦の道</list><list>横の道</list><list>ステージ１</list><list>ステージ２</list><list>ステージ３</list><list>ラストステージ</list><list>クリア済みステージ</list><list>センクウザ（潰れ）の左側</list><list>センクウザ（潰れ）の右側</list>
+    <list>メッセージの人1の左上</list><list>メッセージの人1の右上</list><list>メッセージの人2の左上</list><list>メッセージの人2の右上</list><list>店員さんの左上</list><list>店員さんの右上</list><list>説明する人の左上</list><list>説明する人の右上</list><list>センクウザの左上</list><list>センクウザの右上</list>
+    <list>メッセージの人1の左下</list><list>メッセージの人1の右下</list><list>メッセージの人2の左下</list><list>メッセージの人2の右下</list><list>店員さんの左下</list><list>店員さんの右下</list><list>説明する人の左下</list><list>説明する人の右下</list><list>センクウザの左下</list><list>センクウザの右下</list>
   </param>
   
   <!-- コイン３枚が出る？ブロックの設定ポイントここまで -->
   
   <!-- リンク土管１の設定ここから　ポイント９ -->
   
-  <param name="dokan1_type" desc="リンク土管１のタイプ" type="list" value="1" category="仕掛け" chip="dokan1">
+  <param name="dokan1_type" desc="リンク土管１のタイプ" type="list_athletic" value="1" category="仕掛け" chip="dokan1">
     <list>リンク土管１</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
     <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
     <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
@@ -993,13 +1201,39 @@
     <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+
+    <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
+    <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
+    <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
+    <list>仕掛け用ブロック</list><list>空きブロック1</list><list>LASTの左側</list><list>LASTの中間</list><list>LASTの右側</list><list>STAGEの左側1</list><list>STAGEの中間1</list><list>STAGEの右側1</list><list>空きブロック2</list><list>1ｕｐキノコ</list>
+    <list>リンク土管１の左側</list><list>リンク土管１の右側</list><list>リンク土管２の左側</list><list>リンク土管２の右側</list><list>リンク土管３の左側</list><list>リンク土管３の右側</list><list>リンク土管４の左側</list><list>リンク土管４の右側</list><list>空きブロック3</list><list>すべる床</list>
+    <list>STAGEの左側2</list><list>STAGEの中間2</list><list>STAGEの右側2</list><list>１</list><list>２</list><list>３</list><list>水草１の左上</list><list>水草１の右上</list><list>水草２の左上</list><list>水草２の右上</list>
+    <list>水しぶき１</list><list>水しぶき２</list><list>水しぶき３</list><list>自分（泳ぐ１）</list><list>自分（泳ぐ２）</list><list>水中で出す泡</list><list>水草１の左下</list><list>水草１の右下</list><list>水草２の左下</list><list>水草２の右下</list>
+    <list>コイン１</list><list>コイン２</list><list>コイン３</list><list>コイン４</list><list>星１</list><list>星２</list><list>ろうそく１</list><list>ろうそく２</list><list>ミレニアム人面星１</list><list>ミレニアム人面星２</list>
+    <list>自分</list><list>自分（ジャンプ）</list><list>自分（滞空）</list><list>自分（横に歩く１）</list><list>自分（横に歩く２）</list><list>自分（走る１）</list><list>自分（走る２）</list><list>自分（ブレーキ）</list><list>自分（振り向く）</list><list>自分（踏む）</list>
+    <list>自分（死亡１）</list><list>自分（死亡２）</list><list>自分（死亡３）</list><list>自分（死亡４）</list><list>自分（上から潰れて死亡）</list><list>自分（横から潰れて死亡）</list><list>自分（しっぽ１）</list><list>自分（しっぽ２の左側）</list><list>自分（しっぽ２の右側）</list><list>自分（ドリル）</list>
+    <list>電撃１</list><list>電撃２</list><list>はっぱカッター１</list><list>はっぱカッター２</list><list>はっぱカッター３</list><list>はっぱカッター４</list><list>火の粉１</list><list>火の粉２</list><list>みずでっぽう１</list><list>みずでっぽう２</list>
+    <list>ファイヤーボール１</list><list>ファイヤーボール２</list><list>ファイヤーボール３</list><list>ファイヤーボール４</list><list>ジェット１</list><list>ジェット２</list><list>ブロックの破片</list><list>グレネード１</list><list>グレネード２</list><list>噴火</list>
+    <list>亀１</list><list>亀２</list><list>亀（潰れ）</list><list>ピカチー１</list><list>ピカチー２</list><list>ピカチー３</list><list>ピカチー（潰れ）</list><list>ポッピー１</list><list>ポッピー２</list><list>ポッピー（潰れ）</list>
+    <list>チコリン</list><list>チコリン（潰れ）</list><list>ヒノララシ１</list><list>ヒノララシ２</list><list>マリリ１</list><list>マリリ２</list><list>マリリ３</list><list>マリリ（潰れ）</list><list>ヤチャモ</list><list>ヤチャモ（潰れ）</list>
+    <list>ミズタロウ１</list><list>ミズタロウ２</list><list>ミズタロウ３</list><list>ミズタロウ（潰れ）</list><list>エアームズ</list><list>エアームズ（潰れ）</list><list>タイキング</list><list>クラゲッソ</list><list>バブル光線１</list><list>バブル光線２</list>
+    <list>爆弾１</list><list>爆弾２</list><list>爆発１</list><list>爆発２</list><list>爆発３</list><list>空きブロック4</list><list>グラーダ（潰れ）の左側</list><list>グラーダ（潰れ）の右側</list><list>カイオール（潰れ）の左側</list><list>カイオール（潰れ）の右側</list>
+    <list>乗ると落ちる床の左側</list><list>乗ると落ちる床の中間</list><list>乗ると落ちる床の右側</list><list>ドッスンスンの左上</list><list>ドッスンスンの中上</list><list>ドッスンスンの右上</list><list>グラーダの左上</list><list>グラーダの右上</list><list>カイオールの左上</list><list>カイオールの右上</list>
+    <list>動く床の左側</list><list>動く床の中間</list><list>動く床の右側</list><list>ドッスンスンの左下</list><list>ドッスンスンの中下</list><list>ドッスンスンの右下</list><list>グラーダの左下</list><list>グラーダの右下</list><list>カイオールの左下</list><list>カイオールの右下</list>
+    <list>カーソル（横）</list><list>カーソル（縦）</list><list>自分（下に歩く１）</list><list>自分（下に歩く２）</list><list>自分（上に歩く１）</list><list>自分（上に歩く２）</list><list>リンク土管１（小）</list><list>リンク土管２（小）</list><list>リンク土管３（小）</list><list>リンク土管４（小）</list>
+    <list>自分（掴まる１）</list><list>自分（掴まる２）</list><list>得点で開く扉（ブロック）</list><list>扉１</list><list>扉２</list><list>扉３</list><list>家</list><list>城</list><list>店</list><list>説明する人の家</list>
+    <list>中継地点</list><list>縦の道</list><list>横の道</list><list>ステージ１</list><list>ステージ２</list><list>ステージ３</list><list>ラストステージ</list><list>クリア済みステージ</list><list>センクウザ（潰れ）の左側</list><list>センクウザ（潰れ）の右側</list>
+    <list>メッセージの人1の左上</list><list>メッセージの人1の右上</list><list>メッセージの人2の左上</list><list>メッセージの人2の右上</list><list>店員さんの左上</list><list>店員さんの右上</list><list>説明する人の左上</list><list>説明する人の右上</list><list>センクウザの左上</list><list>センクウザの右上</list>
+    <list>メッセージの人1の左下</list><list>メッセージの人1の右下</list><list>メッセージの人2の左下</list><list>メッセージの人2の右下</list><list>店員さんの左下</list><list>店員さんの右下</list><list>説明する人の左下</list><list>説明する人の右下</list><list>センクウザの左下</list><list>センクウザの右下</list>
   </param>
   
   <!-- リンク土管１の設定ポイントここまで -->
   
   <!-- リンク土管２の設定ここから　ポイント１０ -->
   
-  <param name="dokan2_type" desc="リンク土管２のタイプ" type="list" value="1" category="仕掛け" chip="dokan2">
+  <param name="dokan2_type" desc="リンク土管２のタイプ" type="list_athletic" value="1" category="仕掛け" chip="dokan2">
     <list>リンク土管２</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
     <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
     <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
@@ -1092,13 +1326,39 @@
     <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+
+    <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
+    <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
+    <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
+    <list>仕掛け用ブロック</list><list>空きブロック1</list><list>LASTの左側</list><list>LASTの中間</list><list>LASTの右側</list><list>STAGEの左側1</list><list>STAGEの中間1</list><list>STAGEの右側1</list><list>空きブロック2</list><list>1ｕｐキノコ</list>
+    <list>リンク土管１の左側</list><list>リンク土管１の右側</list><list>リンク土管２の左側</list><list>リンク土管２の右側</list><list>リンク土管３の左側</list><list>リンク土管３の右側</list><list>リンク土管４の左側</list><list>リンク土管４の右側</list><list>空きブロック3</list><list>すべる床</list>
+    <list>STAGEの左側2</list><list>STAGEの中間2</list><list>STAGEの右側2</list><list>１</list><list>２</list><list>３</list><list>水草１の左上</list><list>水草１の右上</list><list>水草２の左上</list><list>水草２の右上</list>
+    <list>水しぶき１</list><list>水しぶき２</list><list>水しぶき３</list><list>自分（泳ぐ１）</list><list>自分（泳ぐ２）</list><list>水中で出す泡</list><list>水草１の左下</list><list>水草１の右下</list><list>水草２の左下</list><list>水草２の右下</list>
+    <list>コイン１</list><list>コイン２</list><list>コイン３</list><list>コイン４</list><list>星１</list><list>星２</list><list>ろうそく１</list><list>ろうそく２</list><list>ミレニアム人面星１</list><list>ミレニアム人面星２</list>
+    <list>自分</list><list>自分（ジャンプ）</list><list>自分（滞空）</list><list>自分（横に歩く１）</list><list>自分（横に歩く２）</list><list>自分（走る１）</list><list>自分（走る２）</list><list>自分（ブレーキ）</list><list>自分（振り向く）</list><list>自分（踏む）</list>
+    <list>自分（死亡１）</list><list>自分（死亡２）</list><list>自分（死亡３）</list><list>自分（死亡４）</list><list>自分（上から潰れて死亡）</list><list>自分（横から潰れて死亡）</list><list>自分（しっぽ１）</list><list>自分（しっぽ２の左側）</list><list>自分（しっぽ２の右側）</list><list>自分（ドリル）</list>
+    <list>電撃１</list><list>電撃２</list><list>はっぱカッター１</list><list>はっぱカッター２</list><list>はっぱカッター３</list><list>はっぱカッター４</list><list>火の粉１</list><list>火の粉２</list><list>みずでっぽう１</list><list>みずでっぽう２</list>
+    <list>ファイヤーボール１</list><list>ファイヤーボール２</list><list>ファイヤーボール３</list><list>ファイヤーボール４</list><list>ジェット１</list><list>ジェット２</list><list>ブロックの破片</list><list>グレネード１</list><list>グレネード２</list><list>噴火</list>
+    <list>亀１</list><list>亀２</list><list>亀（潰れ）</list><list>ピカチー１</list><list>ピカチー２</list><list>ピカチー３</list><list>ピカチー（潰れ）</list><list>ポッピー１</list><list>ポッピー２</list><list>ポッピー（潰れ）</list>
+    <list>チコリン</list><list>チコリン（潰れ）</list><list>ヒノララシ１</list><list>ヒノララシ２</list><list>マリリ１</list><list>マリリ２</list><list>マリリ３</list><list>マリリ（潰れ）</list><list>ヤチャモ</list><list>ヤチャモ（潰れ）</list>
+    <list>ミズタロウ１</list><list>ミズタロウ２</list><list>ミズタロウ３</list><list>ミズタロウ（潰れ）</list><list>エアームズ</list><list>エアームズ（潰れ）</list><list>タイキング</list><list>クラゲッソ</list><list>バブル光線１</list><list>バブル光線２</list>
+    <list>爆弾１</list><list>爆弾２</list><list>爆発１</list><list>爆発２</list><list>爆発３</list><list>空きブロック4</list><list>グラーダ（潰れ）の左側</list><list>グラーダ（潰れ）の右側</list><list>カイオール（潰れ）の左側</list><list>カイオール（潰れ）の右側</list>
+    <list>乗ると落ちる床の左側</list><list>乗ると落ちる床の中間</list><list>乗ると落ちる床の右側</list><list>ドッスンスンの左上</list><list>ドッスンスンの中上</list><list>ドッスンスンの右上</list><list>グラーダの左上</list><list>グラーダの右上</list><list>カイオールの左上</list><list>カイオールの右上</list>
+    <list>動く床の左側</list><list>動く床の中間</list><list>動く床の右側</list><list>ドッスンスンの左下</list><list>ドッスンスンの中下</list><list>ドッスンスンの右下</list><list>グラーダの左下</list><list>グラーダの右下</list><list>カイオールの左下</list><list>カイオールの右下</list>
+    <list>カーソル（横）</list><list>カーソル（縦）</list><list>自分（下に歩く１）</list><list>自分（下に歩く２）</list><list>自分（上に歩く１）</list><list>自分（上に歩く２）</list><list>リンク土管１（小）</list><list>リンク土管２（小）</list><list>リンク土管３（小）</list><list>リンク土管４（小）</list>
+    <list>自分（掴まる１）</list><list>自分（掴まる２）</list><list>得点で開く扉（ブロック）</list><list>扉１</list><list>扉２</list><list>扉３</list><list>家</list><list>城</list><list>店</list><list>説明する人の家</list>
+    <list>中継地点</list><list>縦の道</list><list>横の道</list><list>ステージ１</list><list>ステージ２</list><list>ステージ３</list><list>ラストステージ</list><list>クリア済みステージ</list><list>センクウザ（潰れ）の左側</list><list>センクウザ（潰れ）の右側</list>
+    <list>メッセージの人1の左上</list><list>メッセージの人1の右上</list><list>メッセージの人2の左上</list><list>メッセージの人2の右上</list><list>店員さんの左上</list><list>店員さんの右上</list><list>説明する人の左上</list><list>説明する人の右上</list><list>センクウザの左上</list><list>センクウザの右上</list>
+    <list>メッセージの人1の左下</list><list>メッセージの人1の右下</list><list>メッセージの人2の左下</list><list>メッセージの人2の右下</list><list>店員さんの左下</list><list>店員さんの右下</list><list>説明する人の左下</list><list>説明する人の右下</list><list>センクウザの左下</list><list>センクウザの右下</list>
   </param>
   
   <!-- リンク土管２の設定ポイントここまで -->
   
   <!-- リンク土管３の設定ここから　ポイント１１ -->
   
-  <param name="dokan3_type" desc="リンク土管３のタイプ" type="list" value="1" category="仕掛け" chip="dokan3">
+  <param name="dokan3_type" desc="リンク土管３のタイプ" type="list_athletic" value="1" category="仕掛け" chip="dokan3">
     <list>リンク土管３</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
     <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
     <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
@@ -1191,13 +1451,39 @@
     <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+
+    <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
+    <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
+    <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
+    <list>仕掛け用ブロック</list><list>空きブロック1</list><list>LASTの左側</list><list>LASTの中間</list><list>LASTの右側</list><list>STAGEの左側1</list><list>STAGEの中間1</list><list>STAGEの右側1</list><list>空きブロック2</list><list>1ｕｐキノコ</list>
+    <list>リンク土管１の左側</list><list>リンク土管１の右側</list><list>リンク土管２の左側</list><list>リンク土管２の右側</list><list>リンク土管３の左側</list><list>リンク土管３の右側</list><list>リンク土管４の左側</list><list>リンク土管４の右側</list><list>空きブロック3</list><list>すべる床</list>
+    <list>STAGEの左側2</list><list>STAGEの中間2</list><list>STAGEの右側2</list><list>１</list><list>２</list><list>３</list><list>水草１の左上</list><list>水草１の右上</list><list>水草２の左上</list><list>水草２の右上</list>
+    <list>水しぶき１</list><list>水しぶき２</list><list>水しぶき３</list><list>自分（泳ぐ１）</list><list>自分（泳ぐ２）</list><list>水中で出す泡</list><list>水草１の左下</list><list>水草１の右下</list><list>水草２の左下</list><list>水草２の右下</list>
+    <list>コイン１</list><list>コイン２</list><list>コイン３</list><list>コイン４</list><list>星１</list><list>星２</list><list>ろうそく１</list><list>ろうそく２</list><list>ミレニアム人面星１</list><list>ミレニアム人面星２</list>
+    <list>自分</list><list>自分（ジャンプ）</list><list>自分（滞空）</list><list>自分（横に歩く１）</list><list>自分（横に歩く２）</list><list>自分（走る１）</list><list>自分（走る２）</list><list>自分（ブレーキ）</list><list>自分（振り向く）</list><list>自分（踏む）</list>
+    <list>自分（死亡１）</list><list>自分（死亡２）</list><list>自分（死亡３）</list><list>自分（死亡４）</list><list>自分（上から潰れて死亡）</list><list>自分（横から潰れて死亡）</list><list>自分（しっぽ１）</list><list>自分（しっぽ２の左側）</list><list>自分（しっぽ２の右側）</list><list>自分（ドリル）</list>
+    <list>電撃１</list><list>電撃２</list><list>はっぱカッター１</list><list>はっぱカッター２</list><list>はっぱカッター３</list><list>はっぱカッター４</list><list>火の粉１</list><list>火の粉２</list><list>みずでっぽう１</list><list>みずでっぽう２</list>
+    <list>ファイヤーボール１</list><list>ファイヤーボール２</list><list>ファイヤーボール３</list><list>ファイヤーボール４</list><list>ジェット１</list><list>ジェット２</list><list>ブロックの破片</list><list>グレネード１</list><list>グレネード２</list><list>噴火</list>
+    <list>亀１</list><list>亀２</list><list>亀（潰れ）</list><list>ピカチー１</list><list>ピカチー２</list><list>ピカチー３</list><list>ピカチー（潰れ）</list><list>ポッピー１</list><list>ポッピー２</list><list>ポッピー（潰れ）</list>
+    <list>チコリン</list><list>チコリン（潰れ）</list><list>ヒノララシ１</list><list>ヒノララシ２</list><list>マリリ１</list><list>マリリ２</list><list>マリリ３</list><list>マリリ（潰れ）</list><list>ヤチャモ</list><list>ヤチャモ（潰れ）</list>
+    <list>ミズタロウ１</list><list>ミズタロウ２</list><list>ミズタロウ３</list><list>ミズタロウ（潰れ）</list><list>エアームズ</list><list>エアームズ（潰れ）</list><list>タイキング</list><list>クラゲッソ</list><list>バブル光線１</list><list>バブル光線２</list>
+    <list>爆弾１</list><list>爆弾２</list><list>爆発１</list><list>爆発２</list><list>爆発３</list><list>空きブロック4</list><list>グラーダ（潰れ）の左側</list><list>グラーダ（潰れ）の右側</list><list>カイオール（潰れ）の左側</list><list>カイオール（潰れ）の右側</list>
+    <list>乗ると落ちる床の左側</list><list>乗ると落ちる床の中間</list><list>乗ると落ちる床の右側</list><list>ドッスンスンの左上</list><list>ドッスンスンの中上</list><list>ドッスンスンの右上</list><list>グラーダの左上</list><list>グラーダの右上</list><list>カイオールの左上</list><list>カイオールの右上</list>
+    <list>動く床の左側</list><list>動く床の中間</list><list>動く床の右側</list><list>ドッスンスンの左下</list><list>ドッスンスンの中下</list><list>ドッスンスンの右下</list><list>グラーダの左下</list><list>グラーダの右下</list><list>カイオールの左下</list><list>カイオールの右下</list>
+    <list>カーソル（横）</list><list>カーソル（縦）</list><list>自分（下に歩く１）</list><list>自分（下に歩く２）</list><list>自分（上に歩く１）</list><list>自分（上に歩く２）</list><list>リンク土管１（小）</list><list>リンク土管２（小）</list><list>リンク土管３（小）</list><list>リンク土管４（小）</list>
+    <list>自分（掴まる１）</list><list>自分（掴まる２）</list><list>得点で開く扉（ブロック）</list><list>扉１</list><list>扉２</list><list>扉３</list><list>家</list><list>城</list><list>店</list><list>説明する人の家</list>
+    <list>中継地点</list><list>縦の道</list><list>横の道</list><list>ステージ１</list><list>ステージ２</list><list>ステージ３</list><list>ラストステージ</list><list>クリア済みステージ</list><list>センクウザ（潰れ）の左側</list><list>センクウザ（潰れ）の右側</list>
+    <list>メッセージの人1の左上</list><list>メッセージの人1の右上</list><list>メッセージの人2の左上</list><list>メッセージの人2の右上</list><list>店員さんの左上</list><list>店員さんの右上</list><list>説明する人の左上</list><list>説明する人の右上</list><list>センクウザの左上</list><list>センクウザの右上</list>
+    <list>メッセージの人1の左下</list><list>メッセージの人1の右下</list><list>メッセージの人2の左下</list><list>メッセージの人2の右下</list><list>店員さんの左下</list><list>店員さんの右下</list><list>説明する人の左下</list><list>説明する人の右下</list><list>センクウザの左下</list><list>センクウザの右下</list>
   </param>
   
   <!-- リンク土管３の設定ポイントここまで -->
   
   <!-- リンク土管４の設定ここから　ポイント１２ -->
   
-  <param name="dokan4_type" desc="リンク土管４のタイプ" type="list" value="1" category="仕掛け" chip="dokan4">
+  <param name="dokan4_type" desc="リンク土管４のタイプ" type="list_athletic" value="1" category="仕掛け" chip="dokan4">
     <list>リンク土管４</list><list>乗ると落ちる床</list><list>ずっと乗っていると落ちる床</list>
     <list>動く床　左回り</list><list>動く床　右回り</list><list>乗れるカイオール</list>
     <list>ジャンプ台</list><list>上ドッスンスン</list><list>左ドッスンスン</list>
@@ -1290,6 +1576,32 @@
     <list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作</list><list>ﾌｧｲﾔﾎﾞｰﾙ等で破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>しっぽで破壊 ONの動作</list><list>しっぽで破壊 ONの動作(周囲5ﾌﾞﾛｯｸ以内に影響)</list>
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
+
+    <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
+    <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
+    <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
+    <list>仕掛け用ブロック</list><list>空きブロック1</list><list>LASTの左側</list><list>LASTの中間</list><list>LASTの右側</list><list>STAGEの左側1</list><list>STAGEの中間1</list><list>STAGEの右側1</list><list>空きブロック2</list><list>1ｕｐキノコ</list>
+    <list>リンク土管１の左側</list><list>リンク土管１の右側</list><list>リンク土管２の左側</list><list>リンク土管２の右側</list><list>リンク土管３の左側</list><list>リンク土管３の右側</list><list>リンク土管４の左側</list><list>リンク土管４の右側</list><list>空きブロック3</list><list>すべる床</list>
+    <list>STAGEの左側2</list><list>STAGEの中間2</list><list>STAGEの右側2</list><list>１</list><list>２</list><list>３</list><list>水草１の左上</list><list>水草１の右上</list><list>水草２の左上</list><list>水草２の右上</list>
+    <list>水しぶき１</list><list>水しぶき２</list><list>水しぶき３</list><list>自分（泳ぐ１）</list><list>自分（泳ぐ２）</list><list>水中で出す泡</list><list>水草１の左下</list><list>水草１の右下</list><list>水草２の左下</list><list>水草２の右下</list>
+    <list>コイン１</list><list>コイン２</list><list>コイン３</list><list>コイン４</list><list>星１</list><list>星２</list><list>ろうそく１</list><list>ろうそく２</list><list>ミレニアム人面星１</list><list>ミレニアム人面星２</list>
+    <list>自分</list><list>自分（ジャンプ）</list><list>自分（滞空）</list><list>自分（横に歩く１）</list><list>自分（横に歩く２）</list><list>自分（走る１）</list><list>自分（走る２）</list><list>自分（ブレーキ）</list><list>自分（振り向く）</list><list>自分（踏む）</list>
+    <list>自分（死亡１）</list><list>自分（死亡２）</list><list>自分（死亡３）</list><list>自分（死亡４）</list><list>自分（上から潰れて死亡）</list><list>自分（横から潰れて死亡）</list><list>自分（しっぽ１）</list><list>自分（しっぽ２の左側）</list><list>自分（しっぽ２の右側）</list><list>自分（ドリル）</list>
+    <list>電撃１</list><list>電撃２</list><list>はっぱカッター１</list><list>はっぱカッター２</list><list>はっぱカッター３</list><list>はっぱカッター４</list><list>火の粉１</list><list>火の粉２</list><list>みずでっぽう１</list><list>みずでっぽう２</list>
+    <list>ファイヤーボール１</list><list>ファイヤーボール２</list><list>ファイヤーボール３</list><list>ファイヤーボール４</list><list>ジェット１</list><list>ジェット２</list><list>ブロックの破片</list><list>グレネード１</list><list>グレネード２</list><list>噴火</list>
+    <list>亀１</list><list>亀２</list><list>亀（潰れ）</list><list>ピカチー１</list><list>ピカチー２</list><list>ピカチー３</list><list>ピカチー（潰れ）</list><list>ポッピー１</list><list>ポッピー２</list><list>ポッピー（潰れ）</list>
+    <list>チコリン</list><list>チコリン（潰れ）</list><list>ヒノララシ１</list><list>ヒノララシ２</list><list>マリリ１</list><list>マリリ２</list><list>マリリ３</list><list>マリリ（潰れ）</list><list>ヤチャモ</list><list>ヤチャモ（潰れ）</list>
+    <list>ミズタロウ１</list><list>ミズタロウ２</list><list>ミズタロウ３</list><list>ミズタロウ（潰れ）</list><list>エアームズ</list><list>エアームズ（潰れ）</list><list>タイキング</list><list>クラゲッソ</list><list>バブル光線１</list><list>バブル光線２</list>
+    <list>爆弾１</list><list>爆弾２</list><list>爆発１</list><list>爆発２</list><list>爆発３</list><list>空きブロック4</list><list>グラーダ（潰れ）の左側</list><list>グラーダ（潰れ）の右側</list><list>カイオール（潰れ）の左側</list><list>カイオール（潰れ）の右側</list>
+    <list>乗ると落ちる床の左側</list><list>乗ると落ちる床の中間</list><list>乗ると落ちる床の右側</list><list>ドッスンスンの左上</list><list>ドッスンスンの中上</list><list>ドッスンスンの右上</list><list>グラーダの左上</list><list>グラーダの右上</list><list>カイオールの左上</list><list>カイオールの右上</list>
+    <list>動く床の左側</list><list>動く床の中間</list><list>動く床の右側</list><list>ドッスンスンの左下</list><list>ドッスンスンの中下</list><list>ドッスンスンの右下</list><list>グラーダの左下</list><list>グラーダの右下</list><list>カイオールの左下</list><list>カイオールの右下</list>
+    <list>カーソル（横）</list><list>カーソル（縦）</list><list>自分（下に歩く１）</list><list>自分（下に歩く２）</list><list>自分（上に歩く１）</list><list>自分（上に歩く２）</list><list>リンク土管１（小）</list><list>リンク土管２（小）</list><list>リンク土管３（小）</list><list>リンク土管４（小）</list>
+    <list>自分（掴まる１）</list><list>自分（掴まる２）</list><list>得点で開く扉（ブロック）</list><list>扉１</list><list>扉２</list><list>扉３</list><list>家</list><list>城</list><list>店</list><list>説明する人の家</list>
+    <list>中継地点</list><list>縦の道</list><list>横の道</list><list>ステージ１</list><list>ステージ２</list><list>ステージ３</list><list>ラストステージ</list><list>クリア済みステージ</list><list>センクウザ（潰れ）の左側</list><list>センクウザ（潰れ）の右側</list>
+    <list>メッセージの人1の左上</list><list>メッセージの人1の右上</list><list>メッセージの人2の左上</list><list>メッセージの人2の右上</list><list>店員さんの左上</list><list>店員さんの右上</list><list>説明する人の左上</list><list>説明する人の右上</list><list>センクウザの左上</list><list>センクウザの右上</list>
+    <list>メッセージの人1の左下</list><list>メッセージの人1の右下</list><list>メッセージの人2の左下</list><list>メッセージの人2の右下</list><list>店員さんの左下</list><list>店員さんの右下</list><list>説明する人の左下</list><list>説明する人の右下</list><list>センクウザの左下</list><list>センクウザの右下</list>
   </param>
   
   <!-- リンク土管４の設定ポイントここまで -->

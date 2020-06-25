@@ -39,6 +39,8 @@ namespace MasaoPlus.Controls
 		}
 
 		// Token: 0x06000045 RID: 69 RVA: 0x00009DEC File Offset: 0x00007FEC
+
+		// 表示を変える
 		private void ConfigSelector_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (this.ConfigSelector.Items.Count < 1)
@@ -145,6 +147,30 @@ namespace MasaoPlus.Controls
 						this.ConfView[1, this.OrigIdx.Count - 1] = dataGridViewComboBoxCell;
 						break;
 					}
+					case ConfigParam.Types.l_a:
+					{
+						DataGridViewComboBoxCell dataGridViewComboBoxCell = new DataGridViewComboBoxCell();
+						dataGridViewComboBoxCell.Items.AddRange(configParam.ListItems);
+						dataGridViewComboBoxCell.FlatStyle = FlatStyle.Popup;
+						int num, MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
+						if (int.TryParse(configParam.Value, out num) && ( num > 0 && num <= MaxAthleticNumber || num >= 1001 && num <= 1249) )
+						{
+								if (num <= MaxAthleticNumber)
+								{
+									dataGridViewComboBoxCell.Value = configParam.ListItems[num - 1];
+								}
+								else
+								{
+									dataGridViewComboBoxCell.Value = configParam.ListItems[num  - (1001 - MaxAthleticNumber)];
+								}
+						}
+						else
+						{
+							dataGridViewComboBoxCell.Value = configParam.ListItems[0];
+						}
+						this.ConfView[1, this.OrigIdx.Count - 1] = dataGridViewComboBoxCell;
+						break;
+					}
 					case ConfigParam.Types.c:
 					{
 						DataGridViewButtonCell dataGridViewButtonCell3 = new DataGridViewButtonCell();
@@ -187,6 +213,7 @@ namespace MasaoPlus.Controls
 			case ConfigParam.Types.f:
 				break;
 			case ConfigParam.Types.l:
+			case ConfigParam.Types.l_a:
 				return;
 			case ConfigParam.Types.c:
 				using (ColorDialog colorDialog = new ColorDialog())
@@ -473,6 +500,17 @@ namespace MasaoPlus.Controls
 				}
 				Global.cpd.project.Config.Configurations[num].Value = (((DataGridViewComboBoxCell)this.ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(this.ConfView[e.ColumnIndex, e.RowIndex].Value) + 1).ToString();
 				break;
+			case ConfigParam.Types.l_a:
+			{
+				int configParam_num = ((DataGridViewComboBoxCell)this.ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(this.ConfView[e.ColumnIndex, e.RowIndex].Value) + 1;
+				int MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
+				if (configParam_num <= MaxAthleticNumber && configParam.Value == configParam_num.ToString() || configParam_num > MaxAthleticNumber && configParam.Value == (configParam_num - 1 - MaxAthleticNumber + 1001).ToString())
+				{
+					return;
+				}
+				Global.cpd.project.Config.Configurations[num].Value = ((configParam_num <= MaxAthleticNumber)?configParam_num:configParam_num - 1 - MaxAthleticNumber + 1001).ToString();
+				break;
+			}
 			default:
 				return;
 			}

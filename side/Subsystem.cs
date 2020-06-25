@@ -147,6 +147,7 @@ namespace MasaoPlus
 					goto IL_718;
 				case "int":
 				case "list":
+				case "list_athletic":
 				case "string":
 				case "file":
 					stringBuilder.AppendLine(string.Format(parameter, configParam.Name, configParam.Value));

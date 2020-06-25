@@ -42,6 +42,8 @@
     <!--地図の解析パラメータ名(大文字小文字は無視されます) {0}に横分割数 {1}に行数が代入されます-->
     <MapName>map{0}-{1}</MapName>
     
+    <!--仕掛け設定値の最大値（1001未満のとき）-->
+    <MaxAthleticNumber>264</MaxAthleticNumber>
   </Definitions>
   <DefaultConfigurations>
     <!--デフォルト ヘッダ/フッタの指定(CDATA)-->

@@ -34,6 +34,8 @@ namespace MasaoPlus
 					return ConfigParam.Types.f;
 				case "list":
 					return ConfigParam.Types.l;
+				case "list_athletic":
+					return ConfigParam.Types.l_a;
 				case "color":
 					return ConfigParam.Types.c;
 				}
@@ -94,8 +96,8 @@ namespace MasaoPlus
 			t,
 			// Token: 0x0400015D RID: 349
 			f,
-			// Token: 0x0400015E RID: 350
-			l,
+            // Token: 0x0400015E RID: 350
+            l, l_a,
 			// Token: 0x0400015F RID: 351
 			c,
 			// Token: 0x04000160 RID: 352

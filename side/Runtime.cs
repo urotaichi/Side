@@ -152,6 +152,8 @@ namespace MasaoPlus
 			// Token: 0x04000119 RID: 281
 			public Runtime.DefinedData.StageSizeData MapSize = new Runtime.DefinedData.StageSizeData();
 
+			public int MaxAthleticNumber;
+
 			// Token: 0x0200001E RID: 30
 			[Serializable]
 			public class StageSizeData
