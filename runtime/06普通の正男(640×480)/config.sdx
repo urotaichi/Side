@@ -1775,22 +1775,16 @@
   <param name="serifu_key1_on-5" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ3" type="string" value="はい" category="仕掛け" />
   <param name="serifu_key1_on-6" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ4" type="string" value="いいえ" category="仕掛け" />
   <param name="serifu_key1_on-7" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ5" type="string" value="ＫＥＹ１を３つ、持っていません。" category="仕掛け" />
-  <param name="serifu_key1_on-8" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ6" type="string" value="先へ進む道が、開けました。" category="仕掛け" />
-  <param name="serifu_key1_on-9" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ7" type="string" value="勇者殿、" category="仕掛け" />
-  <param name="serifu_key1_on-10" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ8" type="string" value="お気を付けて。" category="仕掛け" />
+  <param name="serifu_key1_on-8" desc="ＫＥＹ１が３つでＯＮの動作の人のセリフ6" type="text" value="先へ進む道が、開けました。&#xD;&#xA;勇者殿、&#xD;&#xA;お気を付けて。" category="仕掛け" />
   <param name="key1_on_count" desc="必要なＫＥＹ１の数（1-5）" type="int" value="3" category="仕掛け" />
 
   <param name="serifu_key2_on_name" desc="ＫＥＹ２が３つでＯＮの動作の人の名前" type="string" value="ザトシ" category="仕掛け" />
-  <param name="serifu_key2_on" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ" type="text" value="３つのＫＥＹ２がないと、&#xD;&#xA;ここから先へは進めないぜ。&#xD;&#xA;どこかで見つけてくれ。" 
-
-category="仕掛け" row="3" />
+  <param name="serifu_key2_on" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ" type="text" value="３つのＫＥＹ２がないと、&#xD;&#xA;ここから先へは進めないぜ。&#xD;&#xA;どこかで見つけてくれ。" category="仕掛け" row="3" />
   <param name="serifu_key2_on-4" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ2" type="string" value="ＫＥＹ２を３つ、わたしますか？" category="仕掛け" />
   <param name="serifu_key2_on-5" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ3" type="string" value="はい" category="仕掛け" />
   <param name="serifu_key2_on-6" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ4" type="string" value="いいえ" category="仕掛け" />
   <param name="serifu_key2_on-7" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ5" type="string" value="ＫＥＹ２を３つ、持っていません。" category="仕掛け" />
-  <param name="serifu_key2_on-8" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ6" type="string" value="３つのＫＥＹ２、受け取ったぜ。" category="仕掛け" />
-  <param name="serifu_key2_on-9" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ7" type="string" value="これで、先へ進めるようになったな。" category="仕掛け" />
-  <param name="serifu_key2_on-10" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ8" type="string" value="0" category="仕掛け" />
+  <param name="serifu_key2_on-8" desc="ＫＥＹ２が３つでＯＮの動作の人のセリフ6" type="text" value="３つのＫＥＹ２、受け取ったぜ。&#xD;&#xA;これで、先へ進めるようになったな。&#xD;&#xA;0" category="仕掛け" />
   <param name="key2_on_count" desc="必要なＫＥＹ２の数（1-5）" type="int" value="3" category="仕掛け" />
 
   <param name="serifu_grenade_shop_name" desc="得点でグレネードを売る人の名前" type="string" value="クリス" category="お店" />

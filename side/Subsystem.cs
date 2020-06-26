@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 using ICSharpCode.SharpZipLib.Zip;
 using MasaoPlus.Dialogs;
+using System.Text.RegularExpressions;
 
 namespace MasaoPlus
 {
@@ -159,6 +160,14 @@ namespace MasaoPlus
 						Environment.NewLine
 					}, StringSplitOptions.None);
 					int num2 = 1;
+
+					Regex text_name_regx = new Regex(@"-(\d+)$");
+					Match text_name_match = text_name_regx.Match(configParam.Name);
+					if(text_name_match.Success){
+						num2 = int.Parse(text_name_match.Groups[1].Value);
+						configParam.Name = text_name_regx.Replace(configParam.Name, string.Empty);
+					}
+
 					foreach (string arg in array2)
 					{
 						stringBuilder.AppendLine(string.Format(parameter, configParam.Name + "-" + num2.ToString(), arg));
@@ -198,7 +207,7 @@ namespace MasaoPlus
 			}
 
 			//末尾の,を除去（文法的にはセーフだが）
-			string result = new System.Text.RegularExpressions.Regex(@",(\s*?)}").Replace(stringBuilder.ToString(), "$1}");
+			string result = new Regex(@",(\s*?)}").Replace(stringBuilder.ToString(), "$1}");
 
 			return result;
 		}
