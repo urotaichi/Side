@@ -151,6 +151,8 @@ namespace MasaoPlus
 				case "list_athletic":
 				case "string":
 				case "file":
+				case "file_img":
+				case "file_audio":
 					stringBuilder.AppendLine(string.Format(parameter, configParam.Name, configParam.Value));
 					goto IL_718;
 				case "text":

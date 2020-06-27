@@ -123,6 +123,8 @@ namespace MasaoPlus.Controls
 						}
 						break;
 					case ConfigParam.Types.f:
+					case ConfigParam.Types.f_i:
+					case ConfigParam.Types.f_a:
 					{
 						DataGridViewButtonCell dataGridViewButtonCell2 = new DataGridViewButtonCell();
 						dataGridViewButtonCell2.Value = configParam.Value + "...";
@@ -211,6 +213,8 @@ namespace MasaoPlus.Controls
 			case ConfigParam.Types.t:
 				goto IL_65D;
 			case ConfigParam.Types.f:
+			case ConfigParam.Types.f_i:
+			case ConfigParam.Types.f_a:
 				break;
 			case ConfigParam.Types.l:
 			case ConfigParam.Types.l_a:
@@ -262,6 +266,10 @@ namespace MasaoPlus.Controls
 			{
 				openFileDialog.InitialDirectory = Global.cpd.where;
 				openFileDialog.FileName = configParam.Value;
+				if(configParam.Type == ConfigParam.Types.f_i)
+					openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
+				else if(configParam.Type == ConfigParam.Types.f_a)
+					openFileDialog.Filter = "音声(*.wav;*.mp3;*.ogg)|*.wav;*.mp3;*.ogg|全てのファイル (*.*)|*.*";
 				if (openFileDialog.ShowDialog() != DialogResult.OK)
 				{
 					return;
@@ -492,6 +500,8 @@ namespace MasaoPlus.Controls
 				break;
 			}
 			case ConfigParam.Types.f:
+			case ConfigParam.Types.f_i:
+			case ConfigParam.Types.f_a:
 				return;
 			case ConfigParam.Types.l:
 				if (configParam.Value == (((DataGridViewComboBoxCell)this.ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(this.ConfView[e.ColumnIndex, e.RowIndex].Value) + 1).ToString())

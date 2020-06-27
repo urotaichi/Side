@@ -1609,11 +1609,11 @@
   <param name="control_parts_visible" desc="スクロール制御パーツを表示をする（デバッグ用）" type="bool21" value="true" category="システム" />
   <param name="mcs_haikei_visible" desc="レイヤーモードでなくても背景画像を表示する" type="bool10" value="true" category="画像" />
   <param name="layer_mode" desc="背景レイヤーの表示をする" type="bool21" value="true" category="システム" chip="InvisLayer" />
-  <param name="filename_mapchip" desc="背景レイヤーチップのファイル名" type="file" value="mapchip.gif" rel="LAYERCHIP" category="画像" />
-  <param name="filename_haikei" desc="ステージ1背景のファイル名" type="file" value="haikei.gif" category="画像" />
-  <param name="filename_haikei2" desc="ステージ2背景のファイル名" type="file" value="haikei.gif" category="画像" stage="2" />  
-  <param name="filename_haikei3" desc="ステージ3背景のファイル名" type="file" value="haikei.gif" category="画像" stage="3" />  
-  <param name="filename_haikei4" desc="ステージ4背景のファイル名" type="file" value="haikei.gif" category="画像" stage="4" />  
+  <param name="filename_mapchip" desc="背景レイヤーチップのファイル名" type="file_img" value="mapchip.gif" rel="LAYERCHIP" category="画像" />
+  <param name="filename_haikei" desc="ステージ1背景のファイル名" type="file_img" value="haikei.gif" category="画像" />
+  <param name="filename_haikei2" desc="ステージ2背景のファイル名" type="file_img" value="haikei.gif" category="画像" stage="2" />  
+  <param name="filename_haikei3" desc="ステージ3背景のファイル名" type="file_img" value="haikei.gif" category="画像" stage="3" />  
+  <param name="filename_haikei4" desc="ステージ4背景のファイル名" type="file_img" value="haikei.gif" category="画像" stage="4" />  
   <param name="gazou_scroll" desc="背景画像のスクロール" type="list" value="2" category="画像">
     <list>しない</list><list>左右ｽｸﾛｰﾙ 速度1/4</list><list>左へ強制スクロール</list><list>指定速度で強制ｽｸﾛｰﾙ</list>
     <list>上下スクロール</list><list>全方向ｽｸﾛｰﾙ 速度1/2</list><list>全方向ｽｸﾛｰﾙ 速度1/1</list><list>画像ｻｲｽﾞ 512×640専用</list>
@@ -1624,10 +1624,10 @@
   <param name="gazou_scroll_x" desc="上の設定が&quot;ﾏｯﾌﾟの指定座標に設置&quot;の場合のX座標" type="int" value="0" category="画像" />
   <param name="gazou_scroll_y" desc="上の設定が&quot;ﾏｯﾌﾟの指定座標に設置&quot;の場合のY座標" type="int" value="0" category="画像" />
   <param name="second_gazou_visible" desc="セカンド画像を使用する" type="bool21" value="true" category="画像" />
-  <param name="filename_second_haikei" desc="ステージ1セカンド画像のファイル名" type="file" value="haikei_second.gif" category="画像" />
-  <param name="filename_second_haikei2" desc="ステージ2セカンド画像のファイル名" type="file" value="haikei_second.gif" category="画像" stage="2" />
-  <param name="filename_second_haikei3" desc="ステージ3セカンド画像のファイル名" type="file" value="haikei_second.gif" category="画像" stage="3" />
-  <param name="filename_second_haikei4" desc="ステージ4セカンド画像のファイル名" type="file" value="haikei_second.gif" category="画像" stage="4" />
+  <param name="filename_second_haikei" desc="ステージ1セカンド画像のファイル名" type="file_img" value="haikei_second.gif" category="画像" />
+  <param name="filename_second_haikei2" desc="ステージ2セカンド画像のファイル名" type="file_img" value="haikei_second.gif" category="画像" stage="2" />
+  <param name="filename_second_haikei3" desc="ステージ3セカンド画像のファイル名" type="file_img" value="haikei_second.gif" category="画像" stage="3" />
+  <param name="filename_second_haikei4" desc="ステージ4セカンド画像のファイル名" type="file_img" value="haikei_second.gif" category="画像" stage="4" />
   <param name="second_gazou_scroll" desc="セカンド画像のスクロール" type="list" value="1" category="画像">
     <list>しない</list><list>左右ｽｸﾛｰﾙ 速度1/4</list><list>左右ｽｸﾛｰﾙ 速度1/2</list>
     <list>指定速度で強制ｽｸﾛｰﾙ</list><list>左右ｽｸﾛｰﾙ 速度3/2</list><list>画像ｻｲｽﾞ 512×960</list>
@@ -1874,34 +1874,34 @@
   <param name="oriboss_anime_type" desc="オリジナルボスの戦闘中のアニメ" type="list" value="1" category="オリジナルボス">
     <list>２パターン</list><list>なし</list>
   </param>
-  <param name="filename_oriboss_left1" desc="オリジナルボスの画像　左向き1" type="file" value="boss2_l.gif" category="オリジナルボス" />
-  <param name="filename_oriboss_left2" desc="オリジナルボスの画像　左向き2" type="file" value="boss2_l2.gif" category="オリジナルボス" />
-  <param name="filename_oriboss_tubure_left" desc="オリジナルボスの画像 潰れた左向き" type="file" value="boss2_lt.gif" category="オリジナルボス" />
-  <param name="filename_oriboss_right1" desc="オリジナルボスの画像　右向き1" type="file" value="boss2_r.gif" category="オリジナルボス" />
-  <param name="filename_oriboss_right2" desc="オリジナルボスの画像　右向き2" type="file" value="boss2_r2.gif" category="オリジナルボス" />
-  <param name="filename_oriboss_tubure_right" desc="オリジナルボスの画像 潰れた右向き" type="file" value="boss2_rt.gif" category="オリジナルボス" />
+  <param name="filename_oriboss_left1" desc="オリジナルボスの画像　左向き1" type="file_img" value="boss2_l.gif" category="オリジナルボス" />
+  <param name="filename_oriboss_left2" desc="オリジナルボスの画像　左向き2" type="file_img" value="boss2_l2.gif" category="オリジナルボス" />
+  <param name="filename_oriboss_tubure_left" desc="オリジナルボスの画像 潰れた左向き" type="file_img" value="boss2_lt.gif" category="オリジナルボス" />
+  <param name="filename_oriboss_right1" desc="オリジナルボスの画像　右向き1" type="file_img" value="boss2_r.gif" category="オリジナルボス" />
+  <param name="filename_oriboss_right2" desc="オリジナルボスの画像　右向き2" type="file_img" value="boss2_r2.gif" category="オリジナルボス" />
+  <param name="filename_oriboss_tubure_right" desc="オリジナルボスの画像 潰れた右向き" type="file_img" value="boss2_rt.gif" category="オリジナルボス" />
   <param name="x_backimage1_view_x" desc="X座標指定背景画像1 表示開始X座標(0-164)" type="int" value="0" category="画像" />
-  <param name="x_backimage1_filename" desc="X座標指定背景画像1のファイル名" type="file" value="haikei_w1024.gif" category="画像" />
+  <param name="x_backimage1_filename" desc="X座標指定背景画像1のファイル名" type="file_img" value="haikei_w1024.gif" category="画像" />
   <param name="x_backimage2_view_x" desc="X座標指定背景画像2 表示開始X座標(0-164)" type="int" value="0" category="画像" />
-  <param name="x_backimage2_filename" desc="X座標指定背景画像2のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="x_backimage2_filename" desc="X座標指定背景画像2のファイル名" type="file_img" value="ximg1.gif" category="画像" />
   <param name="x_backimage3_view_x" desc="X座標指定背景画像3 表示開始X座標(0-164)" type="int" value="0" category="画像" />
-  <param name="x_backimage3_filename" desc="X座標指定背景画像3のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="x_backimage3_filename" desc="X座標指定背景画像3のファイル名" type="file_img" value="ximg1.gif" category="画像" />
   <param name="x_backimage4_view_x" desc="X座標指定背景画像4 表示開始X座標(0-164)" type="int" value="0" category="画像" />
-  <param name="x_backimage4_filename" desc="X座標指定背景画像4のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="x_backimage4_filename" desc="X座標指定背景画像4のファイル名" type="file_img" value="ximg1.gif" category="画像" />
   <param name="ximage1_view_x" desc="Ｘ座標指定画像１ 表示開始Ｘ座標(0-164)" type="int" value="0" category="画像" />
-  <param name="filename_ximage1" desc="Ｘ座標指定画像１のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="filename_ximage1" desc="Ｘ座標指定画像１のファイル名" type="file_img" value="ximg1.gif" category="画像" />
   <param name="ximage1_x" desc="Ｘ座標指定画像１ 表示位置Ｘ座標  (0-511) " type="int" value="0" category="画像" />
   <param name="ximage1_y" desc="Ｘ座標指定画像１ 表示位置Ｙ座標  (0-319) " type="int" value="0" category="画像" />
   <param name="ximage2_view_x" desc="Ｘ座標指定画像２　表示開始Ｘ座標  (0-164) " type="int" value="0" category="画像" />
-  <param name="filename_ximage2" desc="Ｘ座標指定画像２のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="filename_ximage2" desc="Ｘ座標指定画像２のファイル名" type="file_img" value="ximg1.gif" category="画像" />
   <param name="ximage2_x" desc="Ｘ座標指定画像２ 表示位置Ｘ座標  (0-511) " type="int" value="0" category="画像" />
   <param name="ximage2_y" desc="Ｘ座標指定画像２ 表示位置Ｙ座標  (0-319) " type="int" value="0" category="画像" />
   <param name="ximage3_view_x" desc="Ｘ座標指定画像３　表示開始Ｘ座標  (0-164) " type="int" value="0" category="画像" />
-  <param name="filename_ximage3" desc="Ｘ座標指定画像３のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="filename_ximage3" desc="Ｘ座標指定画像３のファイル名" type="file_img" value="ximg1.gif" category="画像" />
   <param name="ximage3_x" desc="Ｘ座標指定画像３ 表示位置Ｘ座標  (0-511) " type="int" value="0" category="画像" />
   <param name="ximage3_y" desc="Ｘ座標指定画像３ 表示位置Ｙ座標  (0-319) " type="int" value="0" category="画像" />
   <param name="ximage4_view_x" desc="Ｘ座標指定画像４　表示開始Ｘ座標  (0-164) " type="int" value="0" category="画像" />
-  <param name="filename_ximage4" desc="Ｘ座標指定画像４のファイル名" type="file" value="ximg1.gif" category="画像" />
+  <param name="filename_ximage4" desc="Ｘ座標指定画像４のファイル名" type="file_img" value="ximg1.gif" category="画像" />
   <param name="ximage4_x" desc="Ｘ座標指定画像４ 表示位置Ｘ座標  (0-511) " type="int" value="0" category="画像" />
   <param name="ximage4_y" desc="Ｘ座標指定画像４ 表示位置Ｙ座標  (0-319) " type="int" value="0" category="画像" />
   <param name="door_score" desc="地図や仕掛けの「得点で開く扉」の基準得点(10-)" type="int" value="30" category="仕掛け" />
@@ -1947,53 +1947,53 @@
   <param name="moji_size" desc="文字の大きさ(8-30)" type="int" value="14" category="表示" />
   <param name="font_score" desc="スコアのフォント" type="string" value="Helvetica,Arial,ＭＳ ゴシック,HG ゴシックB Sun,HG ゴシックB,monospace" category="表示" />
   <param name="font_message" desc="一言メッセージのフォント" type="string" value="Helvetica,Arial,ＭＳ ゴシック,HG ゴシックB Sun,HG ゴシックB,monospace" category="表示" />
-  <param name="filename_title" desc="タイトル画面のファイル名" type="file" value="title.png" rel="TITLE" category="画像" />
-  <param name="filename_ending" desc="エンディング画面のファイル名" type="file" value="ending.png" rel="ENDING" category="画像" />
-  <param name="filename_gameover" desc="ゲームオーバー画面のファイル名" type="file" value="gameover.png" rel="GAMEOVER" category="画像" />
-  <param name="filename_pattern" desc="キャラクターパターンのファイル名" type="file" value="pattern.gif" rel="PATTERN" category="画像" />
-  <param name="filename_chizu" desc="地図画面の背景のファイル名" type="file" value="chizu.png" category="画像" stage="5" />
+  <param name="filename_title" desc="タイトル画面のファイル名" type="file_img" value="title.png" rel="TITLE" category="画像" />
+  <param name="filename_ending" desc="エンディング画面のファイル名" type="file_img" value="ending.png" rel="ENDING" category="画像" />
+  <param name="filename_gameover" desc="ゲームオーバー画面のファイル名" type="file_img" value="gameover.png" rel="GAMEOVER" category="画像" />
+  <param name="filename_pattern" desc="キャラクターパターンのファイル名" type="file_img" value="pattern.gif" rel="PATTERN" category="画像" />
+  <param name="filename_chizu" desc="地図画面の背景のファイル名" type="file_img" value="chizu.png" category="画像" stage="5" />
   <param name="game_speed" desc="ゲームの進行スピード(10-300,小さいほど早い)" type="int" value="70" category="システム" />
   <param name="fx_bgm_loop" desc="BGMのループ再生をする" type="bool10" value="true" category="BGM" />
   <param name="audio_bgm_switch_wave" desc="Wave形式の音声ファイルをBGMに使う" type="bool" value="false" category="BGM" />
   <param name="audio_bgm_switch_mp3" desc="MP3形式の音声ファイルをBGMに使う" type="bool" value="true" category="BGM" />
   <param name="audio_bgm_switch_ogg" desc="Ogg形式の音声ファイルをBGMに使う" type="bool" value="true" category="BGM" />
-  <param name="filename_fx_bgm_stage1" desc="ステージ１のBGM" type="file" value="stage1.mp3" category="BGM" />
-  <param name="filename_fx_bgm_stage2" desc="ステージ2のBGM" type="file" value="stage2.mp3" category="BGM" stage="2" />
-  <param name="filename_fx_bgm_stage3" desc="ステージ3のBGM" type="file" value="stage3.mp3" category="BGM" stage="3" />
-  <param name="filename_fx_bgm_stage4" desc="ステージ4のBGM" type="file" value="stage4.mp3" category="BGM" stage="4" />
-  <param name="filename_fx_bgm_boss" desc="ボスBGM" type="file" value="boss.mp3" category="BGM" />
-  <param name="filename_fx_bgm_title" desc="タイトル画面のBGM" type="file" value="title.mp3" category="BGM" />
-  <param name="filename_fx_bgm_ending" desc="エンディング画面のBGM" type="file" value="ending.mp3" category="BGM" />
-  <param name="filename_fx_bgm_chizu" desc="地図画面のBGM" type="file" value="chizu.mp3" category="BGM" stage="5" />
+  <param name="filename_fx_bgm_stage1" desc="ステージ１のBGM" type="file_audio" value="stage1.mp3" category="BGM" />
+  <param name="filename_fx_bgm_stage2" desc="ステージ2のBGM" type="file_audio" value="stage2.mp3" category="BGM" stage="2" />
+  <param name="filename_fx_bgm_stage3" desc="ステージ3のBGM" type="file_audio" value="stage3.mp3" category="BGM" stage="3" />
+  <param name="filename_fx_bgm_stage4" desc="ステージ4のBGM" type="file_audio" value="stage4.mp3" category="BGM" stage="4" />
+  <param name="filename_fx_bgm_boss" desc="ボスBGM" type="file_audio" value="boss.mp3" category="BGM" />
+  <param name="filename_fx_bgm_title" desc="タイトル画面のBGM" type="file_audio" value="title.mp3" category="BGM" />
+  <param name="filename_fx_bgm_ending" desc="エンディング画面のBGM" type="file_audio" value="ending.mp3" category="BGM" />
+  <param name="filename_fx_bgm_chizu" desc="地図画面のBGM" type="file_audio" value="chizu.mp3" category="BGM" stage="5" />
   <param name="se_filename" desc="効果音のファイル名を指定する" type="bool" value="true" category="効果音" />
   <param name="audio_se_switch_wave" desc="Wave形式の音声ファイルを効果音に使う" type="bool" value="true" category="効果音" />
   <param name="audio_se_switch_mp3" desc="MP3形式の音声ファイルを効果音に使う" type="bool" value="true" category="効果音" />
   <param name="audio_se_switch_ogg" desc="Ogg形式の音声ファイルを効果音に使う" type="bool" value="true" category="効果音" />
-  <param name="filename_se_start" desc="ゲームスタート" type="file" value="item.wav" category="効果音" />
-  <param name="filename_se_gameover" desc="ゲームオーバー" type="file" value="gameover.wav" category="効果音" />
-  <param name="filename_se_clear" desc="ステージクリア" type="file" value="clear.wav" category="効果音" />
-  <param name="filename_se_coin" desc="コインを取る、？ブロックからコインが出る" type="file" value="coin.wav" category="効果音" />
-  <param name="filename_se_get" desc="アイテムを取る、扉が開く" type="file" value="get.wav" category="効果音" />
-  <param name="filename_se_item" desc="？ブロックからアイテムが出る" type="file" value="item.wav" category="効果音" />
-  <param name="filename_se_jump" desc="ジャンプ" type="file" value="jump.wav" category="効果音" />
-  <param name="filename_se_sjump" desc="ｽｰﾊﾟｰｼﾞｬﾝﾌﾟ、ｼﾞｬﾝﾌﾟ台でｼﾞｬﾝﾌﾟ、横へ飛ばすﾊﾞﾈ" type="file" value="sjump.wav" category="効果音" />
-  <param name="filename_se_kiki" desc="滑る" type="file" value="kiki.wav" category="効果音" />
-  <param name="filename_se_fumu" desc="敵を踏む" type="file" value="fumu.wav" category="効果音" />
-  <param name="filename_se_tobasu" desc="ファイヤーボール等で敵を倒す" type="file" value="tobasu.wav" category="効果音" />
-  <param name="filename_se_fireball" desc="ファイヤーボール発射、スイッチ、ﾛｹｯﾄ頭突き、ｽｶｲｱｯﾊﾟｰ" type="file" value="shot.wav" category="効果音" />
-  <param name="filename_se_jet" desc="ジェット、昇龍拳" type="file" value="mgan.wav" category="効果音" />
-  <param name="filename_se_miss" desc="自分が死んだ" type="file" value="dosun.wav" category="効果音" />
-  <param name="filename_se_block" desc="ブロックを破壊" type="file" value="bakuhatu.wav" category="効果音" />
-  <param name="filename_se_mizu" desc="水しぶき" type="file" value="mizu.wav" category="効果音" />
-  <param name="filename_se_dengeki" desc="ピカチーの電撃" type="file" value="mgan.wav" category="効果音" />
-  <param name="filename_se_happa" desc="はっぱカッター、ソーラービーム" type="file" value="happa.wav" category="効果音" />
-  <param name="filename_se_hinoko" desc="火の粉、破壊光線" type="file" value="mgan.wav" category="効果音" />
-  <param name="filename_se_mizudeppo" desc="水鉄砲" type="file" value="happa.wav" category="効果音" />
-  <param name="filename_se_bomb" desc="エアームズの爆弾" type="file" value="shot.wav" category="効果音" />
-  <param name="filename_se_dosun" desc="ドッスンスンが落ちる" type="file" value="dosun.wav" category="効果音" />
-  <param name="filename_se_grounder" desc="噴火、ｻｲｺｸﾗｯｼｬｰｱﾀｯｸ" type="file" value="mgan.wav" category="効果音" />
-  <param name="filename_se_kaiole" desc="水の波動、流星キック" type="file" value="happa.wav" category="効果音" />
-  <param name="filename_se_senkuuza" desc="ｸﾞﾚﾈｰﾄﾞ、りゅうせいぐん" type="file" value="shot.wav" category="効果音" />
-  <param name="filename_se_dokan" desc="土管に入る" type="file" value="get.wav" category="効果音" />
-  <param name="filename_se_chizugamen" desc="地図画面からステージへ入る" type="file" value="get.wav" category="効果音" stage="5" />
+  <param name="filename_se_start" desc="ゲームスタート" type="file_audio" value="item.wav" category="効果音" />
+  <param name="filename_se_gameover" desc="ゲームオーバー" type="file_audio" value="gameover.wav" category="効果音" />
+  <param name="filename_se_clear" desc="ステージクリア" type="file_audio" value="clear.wav" category="効果音" />
+  <param name="filename_se_coin" desc="コインを取る、？ブロックからコインが出る" type="file_audio" value="coin.wav" category="効果音" />
+  <param name="filename_se_get" desc="アイテムを取る、扉が開く" type="file_audio" value="get.wav" category="効果音" />
+  <param name="filename_se_item" desc="？ブロックからアイテムが出る" type="file_audio" value="item.wav" category="効果音" />
+  <param name="filename_se_jump" desc="ジャンプ" type="file_audio" value="jump.wav" category="効果音" />
+  <param name="filename_se_sjump" desc="ｽｰﾊﾟｰｼﾞｬﾝﾌﾟ、ｼﾞｬﾝﾌﾟ台でｼﾞｬﾝﾌﾟ、横へ飛ばすﾊﾞﾈ" type="file_audio" value="sjump.wav" category="効果音" />
+  <param name="filename_se_kiki" desc="滑る" type="file_audio" value="kiki.wav" category="効果音" />
+  <param name="filename_se_fumu" desc="敵を踏む" type="file_audio" value="fumu.wav" category="効果音" />
+  <param name="filename_se_tobasu" desc="ファイヤーボール等で敵を倒す" type="file_audio" value="tobasu.wav" category="効果音" />
+  <param name="filename_se_fireball" desc="ファイヤーボール発射、スイッチ、ﾛｹｯﾄ頭突き、ｽｶｲｱｯﾊﾟｰ" type="file_audio" value="shot.wav" category="効果音" />
+  <param name="filename_se_jet" desc="ジェット、昇龍拳" type="file_audio" value="mgan.wav" category="効果音" />
+  <param name="filename_se_miss" desc="自分が死んだ" type="file_audio" value="dosun.wav" category="効果音" />
+  <param name="filename_se_block" desc="ブロックを破壊" type="file_audio" value="bakuhatu.wav" category="効果音" />
+  <param name="filename_se_mizu" desc="水しぶき" type="file_audio" value="mizu.wav" category="効果音" />
+  <param name="filename_se_dengeki" desc="ピカチーの電撃" type="file_audio" value="mgan.wav" category="効果音" />
+  <param name="filename_se_happa" desc="はっぱカッター、ソーラービーム" type="file_audio" value="happa.wav" category="効果音" />
+  <param name="filename_se_hinoko" desc="火の粉、破壊光線" type="file_audio" value="mgan.wav" category="効果音" />
+  <param name="filename_se_mizudeppo" desc="水鉄砲" type="file_audio" value="happa.wav" category="効果音" />
+  <param name="filename_se_bomb" desc="エアームズの爆弾" type="file_audio" value="shot.wav" category="効果音" />
+  <param name="filename_se_dosun" desc="ドッスンスンが落ちる" type="file_audio" value="dosun.wav" category="効果音" />
+  <param name="filename_se_grounder" desc="噴火、ｻｲｺｸﾗｯｼｬｰｱﾀｯｸ" type="file_audio" value="mgan.wav" category="効果音" />
+  <param name="filename_se_kaiole" desc="水の波動、流星キック" type="file_audio" value="happa.wav" category="効果音" />
+  <param name="filename_se_senkuuza" desc="ｸﾞﾚﾈｰﾄﾞ、りゅうせいぐん" type="file_audio" value="shot.wav" category="効果音" />
+  <param name="filename_se_dokan" desc="土管に入る" type="file_audio" value="get.wav" category="効果音" />
+  <param name="filename_se_chizugamen" desc="地図画面からステージへ入る" type="file_audio" value="get.wav" category="効果音" stage="5" />
 </Configurations>

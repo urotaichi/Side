@@ -168,10 +168,10 @@
   <param name="moji_grenade" desc="GRENADE の文字" type="string" value="GRENADE" category="表示" />
   <param name="moji_left" desc="LEFT の文字" type="string" value="LEFT" category="表示" />
   <param name="moji_size" desc="文字の大きさ(8-30)" type="int" value="14" category="表示" />
-  <param name="filename_title" desc="タイトル画面のファイル名" type="file" value="title.gif" rel="TITLE" category="画像" />
-  <param name="filename_ending" desc="エンディング画面のファイル名" type="file" value="ending.gif" rel="ENDING" category="画像" />
-  <param name="filename_gameover" desc="ゲームオーバー画面のファイル名" type="file" value="gameover.gif" rel="GAMEOVER" category="画像" />
-  <param name="filename_pattern" desc="キャラクターパターンのファイル名" type="file" value="pattern.gif" rel="PATTERN" category="画像" />
-  <param name="filename_chizu" desc="地図画面の背景のファイル名" type="file" value="chizu.gif" category="画像" stage="5" />
+  <param name="filename_title" desc="タイトル画面のファイル名" type="file_img" value="title.gif" rel="TITLE" category="画像" />
+  <param name="filename_ending" desc="エンディング画面のファイル名" type="file_img" value="ending.gif" rel="ENDING" category="画像" />
+  <param name="filename_gameover" desc="ゲームオーバー画面のファイル名" type="file_img" value="gameover.gif" rel="GAMEOVER" category="画像" />
+  <param name="filename_pattern" desc="キャラクターパターンのファイル名" type="file_img" value="pattern.gif" rel="PATTERN" category="画像" />
+  <param name="filename_chizu" desc="地図画面の背景のファイル名" type="file_img" value="chizu.gif" category="画像" stage="5" />
   <param name="game_speed" desc="ゲームの進行スピード(10-300,小さいほど早い)" type="int" value="70" category="システム" />
 </Configurations>

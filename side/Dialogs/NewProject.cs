@@ -233,7 +233,7 @@ namespace MasaoPlus.Dialogs
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
 			{
 				openFileDialog.DefaultExt = "*.gif";
-				openFileDialog.Filter = "画像(*.gif;*.png;*.bmp)|*.gif;*.png;*.bmp|全てのファイル (*.*)|*.*";
+				openFileDialog.Filter = "画像(*.gif;*.png;*.webp;*.bmp)|*.gif;*.png;*.webp;*.bmp|全てのファイル (*.*)|*.*";
 				if (this.MapChip.Text != "")
 				{
 					openFileDialog.FileName = this.MapChip.Text;
@@ -255,7 +255,7 @@ namespace MasaoPlus.Dialogs
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
 			{
 				openFileDialog.DefaultExt = "*.gif";
-				openFileDialog.Filter = "画像(*.gif;*.png;*.bmp)|*.gif;*.png;*.bmp|全てのファイル (*.*)|*.*";
+				openFileDialog.Filter = "画像(*.gif;*.png;*.webp;*.bmp)|*.gif;*.png;*.webp;*.bmp|全てのファイル (*.*)|*.*";
 				if (this.MapChip.Text != "")
 				{
 					openFileDialog.FileName = this.LayerPattern.Text;
@@ -277,7 +277,7 @@ namespace MasaoPlus.Dialogs
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
 			{
 				openFileDialog.DefaultExt = "*.gif";
-				openFileDialog.Filter = "画像(*.gif;*.png;*.bmp)|*.gif;*.png;*.bmp|全てのファイル (*.*)|*.*";
+				openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
 				if (this.TitleImage.Text != "")
 				{
 					openFileDialog.FileName = this.TitleImage.Text;
@@ -299,7 +299,7 @@ namespace MasaoPlus.Dialogs
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
 			{
 				openFileDialog.DefaultExt = "*.gif";
-				openFileDialog.Filter = "画像(*.gif;*.png;*.bmp)|*.gif;*.png;*.bmp|全てのファイル (*.*)|*.*";
+				openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
 				if (this.EndingImage.Text != "")
 				{
 					openFileDialog.FileName = this.EndingImage.Text;
@@ -321,7 +321,7 @@ namespace MasaoPlus.Dialogs
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
 			{
 				openFileDialog.DefaultExt = "*.gif";
-				openFileDialog.Filter = "画像(*.gif;*.png;*.bmp)|*.gif;*.png;*.bmp|全てのファイル (*.*)|*.*";
+				openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
 				if (this.GameoverImage.Text != "")
 				{
 					openFileDialog.FileName = this.GameoverImage.Text;
