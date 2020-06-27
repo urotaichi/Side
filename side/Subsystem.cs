@@ -511,86 +511,86 @@ namespace MasaoPlus
 							else break;
 						case "filename_se_start":
 						case "filename_se_item":
-							if (configParam.Value == "item.au") goto IL_718;
+							if (new Regex(@"^item\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_gameover":
-							if (configParam.Value == "gameover.au") goto IL_718;
+							if (new Regex(@"^gameover\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_clear":
-							if (configParam.Value == "clear.au") goto IL_718;
+							if (new Regex(@"^clear\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_coin":
-							if (configParam.Value == "coin.au") goto IL_718;
+							if (new Regex(@"^coin\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_get":
 						case "filename_se_dokan":
 						case "filename_se_chizugamen":
-							if (configParam.Value == "get.au") goto IL_718;
+							if (new Regex(@"^get\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_jump":
-							if (configParam.Value == "jump.au") goto IL_718;
+							if (new Regex(@"^jump\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_sjump":
-							if (configParam.Value == "sjump.au") goto IL_718;
+							if (new Regex(@"^sjump\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_kiki":
-							if (configParam.Value == "kiki.au") goto IL_718;
+							if (new Regex(@"^kiki\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_fumu":
-							if (configParam.Value == "fumu.au") goto IL_718;
+							if (new Regex(@"^fumu\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_tobasu":
-							if (configParam.Value == "tobasu.au") goto IL_718;
+							if (new Regex(@"^tobasu\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_fireball":
 						case "filename_se_bomb":
 						case "filename_se_senkuuza":
-							if (configParam.Value == "shot.au") goto IL_718;
+							if (new Regex(@"^shot\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_jet":
 						case "filename_se_dengeki":
 						case "filename_se_hinoko":
 						case "filename_se_grounder":
-							if (configParam.Value == "mgan.au") goto IL_718;
+							if (new Regex(@"^mgan\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_miss":
 						case "filename_se_dosun":
-							if (configParam.Value == "dosun.au") goto IL_718;
+							if (new Regex(@"^dosun\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_block":
-							if (configParam.Value == "bakuhatu.au") goto IL_718;
+							if (new Regex(@"^bakuhatu\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_mizu":
-							if (configParam.Value == "mizu.au") goto IL_718;
+							if (new Regex(@"^mizu\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_se_happa":
 						case "filename_se_mizudeppo":
 						case "filename_se_kaiole":
-							if (configParam.Value == "happa.au") goto IL_718;
+							if (new Regex(@"^happa\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_fx_bgm_stage1":
-							if (configParam.Value == "stage1.mid") goto IL_718;
+							if (new Regex(@"^stage1\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_fx_bgm_stage2":
-							if (configParam.Value == "stage2.mid") goto IL_718;
+							if (new Regex(@"^stage2\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_fx_bgm_stage3":
-							if (configParam.Value == "stage3.mid") goto IL_718;
+							if (new Regex(@"^stage3\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_fx_bgm_stage4":
-							if (configParam.Value == "stage4.mid") goto IL_718;
+							if (new Regex(@"^stage4\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_fx_bgm_boss":
-							if (configParam.Value == "boss.mid") goto IL_718;
+							if (new Regex(@"^boss\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_fx_bgm_title":
-							if (configParam.Value == "title.mid") goto IL_718;
+							if (new Regex(@"^title\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_fx_bgm_ending":
-							if (configParam.Value == "ending.mid") goto IL_718;
+							if (new Regex(@"^ending\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "filename_fx_bgm_chizu":
-							if (configParam.Value == "chizu.mid") goto IL_718;
+							if (new Regex(@"^chizu\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
 							else break;
 						case "gazou_scroll_speed_x":
 						case "gazou_scroll_speed_y":
