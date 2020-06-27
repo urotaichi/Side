@@ -121,6 +121,8 @@ namespace MasaoPlus
 			while (k < configurations.Length)
 			{
 				ConfigParam configParam = configurations[k];
+				if (configParam.Category == "オプション") goto IL_718;
+
 				if (configParam.RequireStages > 1 && configParam.RequireStages < 5)
 				{
 					if (configParam.RequireStages <= Global.cpd.project.Config.StageNum)
@@ -772,6 +774,63 @@ namespace MasaoPlus
 				}
 				}
 				throw new Exception("不明な型が含まれています:" + configParam.Typestr);
+			}
+
+			// 中間を出力
+			text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.MiddleHTML);
+			if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
+			{
+				foreach (HTMLReplaceData htmlreplaceData in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
+				{
+					text = text.Replace("<?" + htmlreplaceData.Name + ">", htmlreplaceData.Value);
+				}
+			}
+			foreach (string value in text.Split(new string[]
+			{
+				Environment.NewLine,
+				"\r",
+				"\n"
+			}, StringSplitOptions.None))
+			{
+				stringBuilder.AppendLine(value);
+			}
+
+			// オプションを出力
+			bool flag1 = false, flag2 = false;
+			for (k = 0; k < configurations.Length; k++)
+			{
+				ConfigParam configParam = configurations[k];
+				if (configParam.Name == "mcs_screen_size")
+				{ 
+					if(configParam.Value == "1") flag1 = true;
+					else if (configParam.Value == "2") flag2 = true;
+				}
+
+				if (configParam.Name == "width" || configParam.Name == "height" ||
+					configParam.Category != "オプション" ||
+					!Global.config.localSystem.OutPutInititalSourceCode && configParam.Value == "false") continue;
+
+				stringBuilder.AppendLine(string.Format(parameter, configParam.Name, configParam.Value));
+			}
+			for (k = 0; k < configurations.Length; k++)
+			{
+				ConfigParam configParam = configurations[k];
+				if (configParam.Name != "width" && configParam.Name != "height" ||
+					(
+						(flag1 &&
+							(
+								(configParam.Name == "width" && configParam.Value == "640") || (configParam.Name == "height" && configParam.Value == "480")
+							)
+						) ||
+						(flag2 &&
+							(
+								(configParam.Name == "width" && configParam.Value == "512") || (configParam.Name == "height" && configParam.Value == "320")
+							)
+						)
+					) &&
+					!Global.config.localSystem.OutPutInititalSourceCode) continue;
+
+				stringBuilder.AppendLine(string.Format(parameter, configParam.Name, configParam.Value));
 			}
 
 			//フッターを出力

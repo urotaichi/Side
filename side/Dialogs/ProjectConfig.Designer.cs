@@ -52,18 +52,26 @@
 			this.label4 = new global::System.Windows.Forms.Label();
 			this.label3 = new global::System.Windows.Forms.Label();
 			this.StageF = new global::System.Windows.Forms.TextBox();
+
 			this.OH = new global::System.Windows.Forms.TabPage();
 			this.panel1 = new global::System.Windows.Forms.Panel();
 			this.OutHeader = new global::System.Windows.Forms.RichTextBox();
+
 			this.EditContext = new global::System.Windows.Forms.ContextMenuStrip(this.components);
 			this.TextUndo = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem1 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.TextCut = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.TextCopy = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.TextPaste = new global::System.Windows.Forms.ToolStripMenuItem();
+
 			this.OF = new global::System.Windows.Forms.TabPage();
 			this.panel2 = new global::System.Windows.Forms.Panel();
 			this.OutFooter = new global::System.Windows.Forms.RichTextBox();
+
+			this.OM = new global::System.Windows.Forms.TabPage();
+			this.panel3 = new global::System.Windows.Forms.Panel();
+			this.OutMiddle = new global::System.Windows.Forms.RichTextBox();
+
 			this.OutputReplace = new global::System.Windows.Forms.TabPage();
 			this.OutputReplaceView = new global::System.Windows.Forms.DataGridView();
 			this.ReplName = new global::System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,11 +83,18 @@
 			this.A.SuspendLayout();
 			((global::System.ComponentModel.ISupportInitialize)this.ProjNum).BeginInit();
 			this.Fom.SuspendLayout();
+
 			this.OH.SuspendLayout();
 			this.panel1.SuspendLayout();
+
 			this.EditContext.SuspendLayout();
+
 			this.OF.SuspendLayout();
 			this.panel2.SuspendLayout();
+
+			this.OM.SuspendLayout();
+			this.panel3.SuspendLayout();
+
 			this.OutputReplace.SuspendLayout();
 			((global::System.ComponentModel.ISupportInitialize)this.OutputReplaceView).BeginInit();
 			base.SuspendLayout();
@@ -101,6 +116,7 @@
 			this.MainTab.Controls.Add(this.A);
 			this.MainTab.Controls.Add(this.Fom);
 			this.MainTab.Controls.Add(this.OH);
+			this.MainTab.Controls.Add(this.OM);
 			this.MainTab.Controls.Add(this.OF);
 			this.MainTab.Controls.Add(this.OutputReplace);
 			this.MainTab.Location = new global::System.Drawing.Point(12, 12);
@@ -320,6 +336,7 @@
 			this.StageF.Name = "StageF";
 			this.StageF.Size = new global::System.Drawing.Size(450, 19);
 			this.StageF.TabIndex = 2;
+
 			this.OH.Controls.Add(this.panel1);
 			this.OH.Location = new global::System.Drawing.Point(4, 22);
 			this.OH.Name = "OH";
@@ -347,6 +364,7 @@
 			this.OutHeader.Size = new global::System.Drawing.Size(506, 258);
 			this.OutHeader.TabIndex = 0;
 			this.OutHeader.Text = "";
+
 			this.EditContext.Items.AddRange(new global::System.Windows.Forms.ToolStripItem[]
 			{
 				this.TextUndo,
@@ -383,12 +401,41 @@
 			this.TextPaste.Size = new global::System.Drawing.Size(190, 22);
 			this.TextPaste.Text = "貼り付け(&V)";
 			this.TextPaste.Click += new global::System.EventHandler(this.TextPaste_Click);
+
+			this.OM.Controls.Add(this.panel3);
+			this.OM.Location = new global::System.Drawing.Point(4, 22);
+			this.OM.Name = "OM";
+			this.OM.Padding = new global::System.Windows.Forms.Padding(3);
+			this.OM.Size = new global::System.Drawing.Size(514, 266);
+			this.OM.TabIndex = 2;
+			this.OM.Text = "出力中間";
+			this.OM.UseVisualStyleBackColor = true;
+			this.panel3.BackColor = global::System.Drawing.Color.CornflowerBlue;
+			this.panel3.Controls.Add(this.OutMiddle);
+			this.panel3.Dock = global::System.Windows.Forms.DockStyle.Fill;
+			this.panel3.Location = new global::System.Drawing.Point(3, 3);
+			this.panel3.Name = "panel3";
+			this.panel3.Padding = new global::System.Windows.Forms.Padding(1);
+			this.panel3.Size = new global::System.Drawing.Size(508, 260);
+			this.panel3.TabIndex = 1;
+			this.OutMiddle.AcceptsTab = true;
+			this.OutMiddle.BorderStyle = global::System.Windows.Forms.BorderStyle.None;
+			this.OutMiddle.ContextMenuStrip = this.EditContext;
+			this.OutMiddle.DetectUrls = false;
+			this.OutMiddle.Dock = global::System.Windows.Forms.DockStyle.Fill;
+			this.OutMiddle.Font = new global::System.Drawing.Font("ＭＳ ゴシック", 9f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 128);
+			this.OutMiddle.Location = new global::System.Drawing.Point(1, 1);
+			this.OutMiddle.Name = "OutMiddle";
+			this.OutMiddle.Size = new global::System.Drawing.Size(506, 258);
+			this.OutMiddle.TabIndex = 0;
+			this.OutMiddle.Text = "";
+
 			this.OF.Controls.Add(this.panel2);
 			this.OF.Location = new global::System.Drawing.Point(4, 22);
 			this.OF.Name = "OF";
 			this.OF.Padding = new global::System.Windows.Forms.Padding(3);
 			this.OF.Size = new global::System.Drawing.Size(514, 266);
-			this.OF.TabIndex = 2;
+			this.OF.TabIndex = 3;
 			this.OF.Text = "出力フッタ";
 			this.OF.UseVisualStyleBackColor = true;
 			this.panel2.BackColor = global::System.Drawing.Color.CornflowerBlue;
@@ -398,7 +445,7 @@
 			this.panel2.Name = "panel2";
 			this.panel2.Padding = new global::System.Windows.Forms.Padding(1);
 			this.panel2.Size = new global::System.Drawing.Size(508, 260);
-			this.panel2.TabIndex = 1;
+			this.panel2.TabIndex = 2;
 			this.OutFooter.AcceptsTab = true;
 			this.OutFooter.BorderStyle = global::System.Windows.Forms.BorderStyle.None;
 			this.OutFooter.ContextMenuStrip = this.EditContext;
@@ -410,6 +457,7 @@
 			this.OutFooter.Size = new global::System.Drawing.Size(506, 258);
 			this.OutFooter.TabIndex = 0;
 			this.OutFooter.Text = "";
+
 			this.OutputReplace.Controls.Add(this.OutputReplaceView);
 			this.OutputReplace.Controls.Add(this.label9);
 			this.OutputReplace.Location = new global::System.Drawing.Point(4, 22);
@@ -483,11 +531,18 @@
 			((global::System.ComponentModel.ISupportInitialize)this.ProjNum).EndInit();
 			this.Fom.ResumeLayout(false);
 			this.Fom.PerformLayout();
+
 			this.OH.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
+
 			this.EditContext.ResumeLayout(false);
+
 			this.OF.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
+
+			this.OM.ResumeLayout(false);
+			this.panel3.ResumeLayout(false);
+
 			this.OutputReplace.ResumeLayout(false);
 			this.OutputReplace.PerformLayout();
 			((global::System.ComponentModel.ISupportInitialize)this.OutputReplaceView).EndInit();
@@ -512,6 +567,7 @@
 		// Token: 0x0400003C RID: 60
 		private global::System.Windows.Forms.TabPage OH;
 
+		private global::System.Windows.Forms.TabPage OM;
 		// Token: 0x0400003D RID: 61
 		private global::System.Windows.Forms.TabPage OF;
 
@@ -526,6 +582,12 @@
 
 		// Token: 0x04000041 RID: 65
 		private global::System.Windows.Forms.RichTextBox OutFooter;
+
+		// Token: 0x04000040 RID: 64
+		private global::System.Windows.Forms.Panel panel3;
+
+		// Token: 0x04000041 RID: 65
+		private global::System.Windows.Forms.RichTextBox OutMiddle;
 
 		// Token: 0x04000042 RID: 66
 		private global::System.Windows.Forms.TextBox OutExt;

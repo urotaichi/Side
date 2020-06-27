@@ -1996,4 +1996,12 @@
   <param name="filename_se_senkuuza" desc="ｸﾞﾚﾈｰﾄﾞ、りゅうせいぐん" type="file_audio" value="shot.wav" category="効果音" />
   <param name="filename_se_dokan" desc="土管に入る" type="file_audio" value="get.wav" category="効果音" />
   <param name="filename_se_chizugamen" desc="地図画面からステージへ入る" type="file_audio" value="get.wav" category="効果音" stage="5" />
+  <param name="width" desc="ゲーム画面の幅" type="int" value="512" category="オプション" />
+  <param name="height" desc="ゲーム画面の高さ" type="int" value="320" category="オプション" />
+  <param name="bc-enemy-number" desc="敵の数に上限をつける" type="bool" value="false" category="オプション" />
+  <param name="bc-loop-setinterval" desc="ループに必ずsetIntervalを使う" type="bool" value="false" category="オプション" />
+  <param name="bc-no-webaudio" desc="Web Audio APIを使わない音声再生を行う" type="bool" value="false" category="オプション" />
+  <param name="bc-no-overlap-sound" desc="Web Audio APIを使う場合でも同じ効果音を重複して再生しない" type="bool" value="false" category="オプション" />
+  <param name="bc-case-insensitive" desc="拡張JSのメソッドの大文字小文字を区別しない" type="bool" value="false" category="オプション" />
+  <param name="bc-use-rounddown" desc="小数切り捨て処理をJava版の挙動にする" type="bool" value="true" category="オプション" />
 </Configurations>

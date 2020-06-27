@@ -193,6 +193,8 @@ namespace MasaoPlus
 			// Token: 0x0400011E RID: 286
 			public string HeaderHTML = "";
 
+			public string MiddleHTML = "";
+
 			// Token: 0x0400011F RID: 287
 			public string FooterHTML = "";
 

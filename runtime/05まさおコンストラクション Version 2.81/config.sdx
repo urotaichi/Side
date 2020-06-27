@@ -174,4 +174,8 @@
   <param name="filename_pattern" desc="キャラクターパターンのファイル名" type="file_img" value="pattern.gif" rel="PATTERN" category="画像" />
   <param name="filename_chizu" desc="地図画面の背景のファイル名" type="file_img" value="chizu.gif" category="画像" stage="5" />
   <param name="game_speed" desc="ゲームの進行スピード(10-300,小さいほど早い)" type="int" value="70" category="システム" />
+  <param name="width" desc="ゲーム画面の幅" type="int" value="512" category="オプション" />
+  <param name="height" desc="ゲーム画面の高さ" type="int" value="320" category="オプション" />
+  <param name="bc-loop-setinterval" desc="ループに必ずsetIntervalを使う" type="bool" value="false" category="オプション" />
+  <param name="bc-use-rounddown" desc="小数切り捨て処理をJava版の挙動にする" type="bool" value="true" category="オプション" />
 </Configurations>

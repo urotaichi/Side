@@ -63,9 +63,8 @@
 <div style="text-align: center">
 <script>
 new JSMasao({]]></HeaderHTML>
-    <FooterHTML><![CDATA[}, null, {
-	'bc-use-rounddown': true
-});
+    <MiddleHTML><![CDATA[}, null, {]]></MiddleHTML>
+    <FooterHTML><![CDATA[});
 </script>
 </div>
 

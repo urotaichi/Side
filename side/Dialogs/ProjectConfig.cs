@@ -16,6 +16,7 @@ namespace MasaoPlus.Dialogs
 		{
 			this.InitializeComponent();
 			this.OutHeader.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
+			this.OutMiddle.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
 			this.OutFooter.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
 		}
 
@@ -36,8 +37,11 @@ namespace MasaoPlus.Dialogs
 			this.MapF.Text = Global.cpd.runtime.DefaultConfigurations.MapParam;
 			this.ProjNum.Value = Global.cpd.project.Config.StageNum;
 			this.UseWorldmap.Checked = Global.cpd.project.Config.UseWorldmap;
+
 			this.OutHeader.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
+			this.OutMiddle.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.MiddleHTML);
 			this.OutFooter.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.FooterHTML);
+
 			if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
 			{
 				foreach (HTMLReplaceData htmlreplaceData in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
@@ -67,8 +71,11 @@ namespace MasaoPlus.Dialogs
 			Global.cpd.runtime.DefaultConfigurations.LayerParam4 = this.LayerF4.Text;
 			Global.cpd.runtime.DefaultConfigurations.MapParam = this.MapF.Text;
 			Global.cpd.project.Config.StageNum = (int)this.ProjNum.Value;
+
 			Global.cpd.runtime.DefaultConfigurations.HeaderHTML = Subsystem.EncodeBase64(this.OutHeader.Text);
+			Global.cpd.runtime.DefaultConfigurations.MiddleHTML = Subsystem.EncodeBase64(this.OutMiddle.Text);
 			Global.cpd.runtime.DefaultConfigurations.FooterHTML = Subsystem.EncodeBase64(this.OutFooter.Text);
+
 			Global.cpd.project.Config.UseWorldmap = this.UseWorldmap.Checked;
 			Global.state.EditFlag = true;
 			List<HTMLReplaceData> list = new List<HTMLReplaceData>();
