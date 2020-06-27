@@ -4,7 +4,7 @@
     <list>６４０×４８０</list>
     <list>５１２×３２０</list>
   </param>
-  <param name="j_hp" desc="HP" type="int" value="0" category="システム" />
+  <param name="j_hp" desc="HP" type="int" value="1" category="システム" />
   <param name="j_hp_name" desc="HPの名前" type="string" value="HP" category="表示" />
   <param name="j_tokugi" desc="主人公の特技" type="list" value="15" category="システム" chip="tokugi"><!-- 変更されています：15 -->
     <list>なし</list><list>落ちるのが遅い</list><list>空中で下ｷｰを押すと急降下</list>
@@ -1821,7 +1821,7 @@
     <list>左向きでは技1 右では技2</list><list>中央では技1 上では技2 下では技3</list>
     <list>中央では技1 右では技2 左では技3</list>
   </param>
-  <param name="oriboss_waza_select_option" desc="ｵﾘｼﾞﾅﾙﾎﾞｽの技の使い方で6か7を指定した場合の、技1の使用回数" type="int" value="1" category="オリジナルボス" />
+  <param name="oriboss_waza_select_option" desc="ｵﾘｼﾞﾅﾙﾎﾞｽの技の使い方で6か7を指定した場合の、技1の使用回数" type="int" value="3" category="オリジナルボス" />
   <param name="oriboss_waza1" desc="オリジナルボスの技1" type="list" value="1" category="オリジナルボス">
     <list>なし</list><list>電撃</list><list>電撃３連射</list><list>はっぱカッター</list><list>はっぱカッター３連射</list>
     <list>火の粉</list><list>火の粉２連射</list><list>水鉄砲</list><list>爆撃</list><list>ﾊﾞﾌﾞﾙ光線 扇型に発射</list>

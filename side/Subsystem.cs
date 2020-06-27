@@ -117,7 +117,7 @@ namespace MasaoPlus
 
 			string parameter = Global.cpd.runtime.DefaultConfigurations.Parameter;
 			ConfigParam[] configurations = Global.cpd.project.Config.Configurations;
-			int k = 0;
+			int k = 0;//現在読み込まれている行
 			while (k < configurations.Length)
 			{
 				ConfigParam configParam = configurations[k];
@@ -132,10 +132,595 @@ namespace MasaoPlus
 				{
 					goto IL_4DB;
 				}
+
 				IL_718:
 				k++;
 				continue;
+
 				IL_4DB:
+                if (!Global.config.localSystem.OutPutInititalSourceCode) {
+					// 値を調べ、初期値だったら出力しない（参考：Canvas正男のTagDataBase.js）
+					switch (configParam.Name)
+					{
+						case "mes1_name":
+							if (configParam.Value == "ダケシ") goto IL_718;
+							else break;
+						case "serifu1":
+							if (configParam.Value ==
+								"人の命は、お金では買えないと言われています。\r\nしかし、お店へ行けば、ＳＣＯＲＥで買えます。\r\n0") goto IL_718;
+							else break;
+						case "serifu2":
+							if (configParam.Value ==
+								"時は金なりと、言われています。しかし、\r\nお店なら、時間も買えます。\r\n店員さんて、グレートですね。") goto IL_718;
+							else break;
+						case "mes2_name":
+							if (configParam.Value == "エリコ") goto IL_718;
+							else break;
+						case "serifu3":
+							if (configParam.Value ==
+								"おはようございます。星と数字が付いた扉が、\r\nありますよね。あれは、ですねえ、その数だけ\r\n人面星を取ると、開くので、ございます。") goto IL_718;
+							else break;
+						case "serifu4":
+							if (configParam.Value ==
+								"LAST STAGEというのは、最終面の事ですわ。\r\nこれをクリアーすると、エンディングに、\r\n行けますのよ。がんばって下さいね。") goto IL_718;
+							else break;
+						case "shop_name":
+							if (configParam.Value == "店員さん") goto IL_718;
+							else break;
+						case "serifu5":
+							if (configParam.Value ==
+								"いらっしゃいませ。\r\n当店では、ＳＣＯＲＥと、アイテムを、\r\n交換いたします。") goto IL_718;
+							else break;
+						case "serifu8":
+							if (configParam.Value ==
+								"本日の営業は、終了いたしました。\r\nまたのご来店を、\r\nこころより、お待ちしております。") goto IL_718;
+							else break;
+						case "shop_serifu1":
+							if (configParam.Value == "どれになさいますか？") goto IL_718;
+							else break;
+						case "shop_serifu2":
+							if (configParam.Value == "で、よろしいですか？") goto IL_718;
+							else break;
+						case "shop_serifu3":
+						case "serifu_key1_on-5":
+						case "serifu_key2_on-5":
+							if (configParam.Value == "はい") goto IL_718;
+							else break;
+						case "shop_serifu4":
+						case "serifu_key1_on-6":
+						case "serifu_key2_on-6":
+							if (configParam.Value == "いいえ") goto IL_718;
+							else break;
+						case "shop_serifu5":
+							if (configParam.Value == "を、装備した。") goto IL_718;
+							else break;
+						case "shop_serifu6":
+							if (configParam.Value == "ＳＣＯＲＥが、足りません。") goto IL_718;
+							else break;
+						case "shop_item_name1":
+							if (configParam.Value == "グレネード３発") goto IL_718;
+							else break;
+						case "shop_item_name2":
+						case "setumei_menu4":
+							if (configParam.Value == "ジェット") goto IL_718;
+							else break;
+						case "shop_item_name3":
+							if (configParam.Value == "ドリル") goto IL_718;
+							else break;
+						case "shop_item_name4":
+							if (configParam.Value == "ヘルメット") goto IL_718;
+							else break;
+						case "shop_item_name5":
+							if (configParam.Value == "しっぽ") goto IL_718;
+							else break;
+						case "shop_item_name6":
+						case "setumei_menu3":
+							if (configParam.Value == "バリア") goto IL_718;
+							else break;
+						case "shop_item_name7":
+						case "setumei_menu2":
+							if (configParam.Value == "ファイヤーボール") goto IL_718;
+							else break;
+						case "shop_item_name8":
+							if (configParam.Value == "１ｕｐ") goto IL_718;
+							else break;
+						case "shop_item_name9":
+							if (configParam.Value == "制限時間増加") goto IL_718;
+							else break;
+						case "shop_item_teika1":
+							if (configParam.Value == "200") goto IL_718;
+							else break;
+						case "shop_item_teika2":
+							if (configParam.Value == "150") goto IL_718;
+							else break;
+						case "shop_item_teika3":
+						case "shop_item_teika4":
+							if (configParam.Value == "100") goto IL_718;
+							else break;
+						case "shop_item_teika5":
+							if (configParam.Value == "250") goto IL_718;
+							else break;
+						case "shop_item_teika6":
+							if (configParam.Value == "80") goto IL_718;
+							else break;
+						case "shop_item_teika7":
+						case "time_max":
+							if (configParam.Value == "300") goto IL_718;
+							else break;
+						case "shop_item_teika8":
+							if (configParam.Value == "980") goto IL_718;
+							else break;
+						case "shop_item_teika9":
+						case "easy_mode":
+						case "scroll_mode":
+						case "scroll_mode_s":
+						case "scroll_mode_t":
+						case "scroll_mode_f":
+						case "stage_max":
+						case "stage_kaishi":
+						case "jibun_left_shoki":
+						case "stage_select":
+						case "j_tail_type":
+						case "grenade_type":
+						case "dengeki_mkf":
+						case "yachamo_kf":
+						case "airms_kf":
+						case "ugokuyuka1_type":
+						case "ugokuyuka2_type":
+						case "ugokuyuka3_type":
+						case "boss_type":
+						case "boss2_type":
+						case "boss3_type":
+						case "dokan_mode":
+						case "j_tokugi":
+						case "scroll_area":
+						case "clear_type":
+						case "firebar1_type":
+						case "firebar2_type":
+						case "dossunsun_type":
+						case "mizutaro_attack":
+						case "poppie_attack":
+						case "mariri_attack":
+						case "chikorin_attack":
+						case "taiking_attack":
+						case "kuragesso_attack":
+						case "coin1_type":
+						case "coin3_type":
+						case "dokan1_type":
+						case "dokan2_type":
+						case "dokan3_type":
+						case "dokan4_type":
+						case "view_move_type":
+						case "j_fire_type":
+						case "j_enemy_press":
+						case "boss_destroy_type":
+						case "j_add_tokugi":
+						case "j_add_tokugi2":
+						case "j_add_tokugi3":
+						case "j_add_tokugi4":
+						case "second_gazou_scroll":
+						case "second_gazou_priority":
+						case "water_visible":
+						case "j_hp":
+						case "oriboss_v":
+						case "oriboss_anime_type":
+						case "oriboss_hp":
+						case "oriboss_speed":
+						case "oriboss_ugoki":
+						case "oriboss_waza_select":
+						case "oriboss_waza1":
+						case "oriboss_waza2":
+						case "oriboss_waza3":
+						case "oriboss_waza1_wait":
+						case "oriboss_waza2_wait":
+						case "oriboss_waza3_wait":
+						case "oriboss_fumeru_f":
+						case "oriboss_destroy":
+							if (configParam.Value == "1") goto IL_718;
+							else break;
+						case "setumei_name":
+							if (configParam.Value == "キドはかせ") goto IL_718;
+							else break;
+						case "serifu9":
+							if (configParam.Value ==
+								"よく来た。わしは、キドはかせ。\r\nアイテムの研究をしており、みんなから、\r\nアイテムはかせと呼ばれて、したわれておるよ。") goto IL_718;
+							else break;
+						case "setumei_menu1":
+							if (configParam.Value == "なんでも、質問してくれたまえよ。") goto IL_718;
+							else break;
+						case "serifu10":
+							if (configParam.Value ==
+								"黄色いチューリップのアイテムと言えば、\r\nそう、ファイヤーボールじゃな。はなれた\r\n敵を攻撃できるという、大変便利なものじゃ。") goto IL_718;
+							else break;
+						case "serifu11":
+							if (configParam.Value ==
+								"ピンクのキノコのアイテムと言えば、そう、\r\nバリアじゃな。体当たりで敵を倒せるが、うっかり\r\nして、時間切れを忘れぬよう、注意が必要じゃ。") goto IL_718;
+							else break;
+						case "serifu12":
+							if (configParam.Value ==
+								"ロケットの形のアイテムと言えば、そう、ジェット\r\nじゃな。空中で、スペースキーを押せば、さらに\r\n上昇できる。燃料切れには、気を付けるのじゃぞ。") goto IL_718;
+							else break;
+						case "door_score":
+							if (configParam.Value == "800") goto IL_718;
+							else break;
+						case "layer_mode":
+						case "score_v":
+						case "j_tail_hf":
+						case "j_fire_mkf":
+						case "suberuyuka_hkf":
+						case "variable_sleep_time":
+						case "pause_switch":
+						case "control_parts_visible":
+						case "j_fire_equip":
+						case "second_gazou_visible":
+						case "water_clear_switch":
+						case "audio_se_switch_wave":
+						case "audio_se_switch_mp3":
+						case "audio_se_switch_ogg":
+						case "audio_bgm_switch_mp3":
+						case "audio_bgm_switch_ogg":
+						case "oriboss_tail_f":
+							if (configParam.Value == "true") goto IL_718;
+							else break;
+						case "filename_mapchip":
+							if (configParam.Value == "mapchip.gif") goto IL_718;
+							else break;
+						case "filename_haikei":
+						case "filename_haikei2":
+						case "filename_haikei3":
+						case "filename_haikei4":
+							if (configParam.Value == "haikei.gif") goto IL_718;
+							else break;
+						case "gazou_scroll":
+						case "mcs_screen_size":
+							if (configParam.Value == "2") goto IL_718;
+							else break;
+						case "now_loading":
+						case "j_hp_name":
+						case "filename_oriboss_left1":
+						case "filename_oriboss_right1":
+						case "filename_oriboss_tubure_left":
+						case "filename_oriboss_tubure_right":
+						case "filename_oriboss_left2":
+						case "filename_oriboss_right2":
+						case "filename_ximage1":
+						case "filename_ximage2":
+						case "filename_ximage3":
+						case "filename_ximage4":
+						case "x_backimage1_filename":
+						case "x_backimage2_filename":
+						case "x_backimage3_filename":
+						case "x_backimage4_filename":
+							if (configParam.Value == string.Empty) goto IL_718;
+							else break;
+						case "score_1up_1":
+							if (configParam.Value == "500") goto IL_718;
+							else break;
+						case "score_1up_2":
+							if (configParam.Value == "1000") goto IL_718;
+							else break;
+						case "url1":
+						case "url2":
+						case "url3":
+							if (configParam.Value == "http://www.yahoo.co.jp/") goto IL_718;
+							else break;
+						case "url4":
+							if (configParam.Value == "http://www.t3.rim.or.jp/~naoto/naoto.html") goto IL_718;
+							else break;
+						case "hitokoto1_name":
+							if (configParam.Value == "浩二") goto IL_718;
+							else break;
+						case "hitokoto1":
+							if (configParam.Value == "今日は、いい天気だね。\r\n0\r\n0") goto IL_718;
+							else break;
+						case "hitokoto2_name":
+						case "serifu_key1_on_name":
+							if (configParam.Value == "お姫様") goto IL_718;
+							else break;
+						case "hitokoto2":
+							if (configParam.Value == "ついに、ここまで来ましたね。\r\n0\r\n0") goto IL_718;
+							else break;
+						case "hitokoto3_name":
+						case "serifu_key2_on_name":
+							if (configParam.Value == "ザトシ") goto IL_718;
+							else break;
+						case "hitokoto3":
+							if (configParam.Value == "オレは、世界一になる男だ。\r\n0\r\n0") goto IL_718;
+							else break;
+						case "hitokoto4_name":
+						case "serifu_grenade_shop_name":
+							if (configParam.Value == "クリス") goto IL_718;
+							else break;
+						case "hitokoto4":
+							if (configParam.Value == "んちゃ！\r\n0\r\n0") goto IL_718;
+							else break;
+						case "backcolor_@":
+						case "backcolor_@_s":
+						case "backcolor_@_t":
+						case "backcolor_@_f":
+							if (configParam.Value == "0,255,255") goto IL_718;
+							else break;
+						case "kaishi_@":
+							if (configParam.Value == "0,0,0") goto IL_718;
+							else break;
+						case "scorecolor_@":
+							if (configParam.Value == "0,0,255") goto IL_718;
+							else break;
+						case "grenade_@1":
+							if (configParam.Value == "255,255,255") goto IL_718;
+							else break;
+						case "grenade_@2":
+							if (configParam.Value == "255,255,0") goto IL_718;
+							else break;
+						case "mizunohadou_@":
+							if (configParam.Value == "0,32,255") goto IL_718;
+							else break;
+						case "firebar_@1":
+							if (configParam.Value == "255,0,0") goto IL_718;
+							else break;
+						case "firebar_@2":
+							if (configParam.Value == "255,192,0") goto IL_718;
+							else break;
+						case "moji_score":
+							if (configParam.Value == "SCORE") goto IL_718;
+							else break;
+						case "moji_highscore":
+							if (configParam.Value == "HIGHSCORE") goto IL_718;
+							else break;
+						case "moji_time":
+							if (configParam.Value == "TIME") goto IL_718;
+							else break;
+						case "moji_jet":
+							if (configParam.Value == "JET") goto IL_718;
+							else break;
+						case "moji_grenade":
+							if (configParam.Value == "GRENADE") goto IL_718;
+							else break;
+						case "moji_left":
+							if (configParam.Value == "LEFT") goto IL_718;
+							else break;
+						case "moji_size":
+							if (configParam.Value == "14") goto IL_718;
+							else break;
+						case "filename_title":
+							if (configParam.Value == "title.gif") goto IL_718;
+							else break;
+						case "filename_ending":
+							if (configParam.Value == "ending.gif") goto IL_718;
+							else break;
+						case "filename_gameover":
+							if (configParam.Value == "gameover.gif") goto IL_718;
+							else break;
+						case "filename_pattern":
+							if (configParam.Value == "pattern.gif") goto IL_718;
+							else break;
+						case "filename_chizu":
+							if (configParam.Value == "chizu.gif") goto IL_718;
+							else break;
+						case "game_speed":
+							if (configParam.Value == "70") goto IL_718;
+							else break;
+						case "se_switch":
+						case "se_filename":
+						case "fx_bgm_switch":
+						case "fx_bgm_loop":
+						case "sleep_time_visible":
+						case "mcs_haikei_visible":
+						case "audio_bgm_switch_wave":
+							if (configParam.Value == "false") goto IL_718;
+							else break;
+						case "filename_se_start":
+						case "filename_se_item":
+							if (configParam.Value == "item.au") goto IL_718;
+							else break;
+						case "filename_se_gameover":
+							if (configParam.Value == "gameover.au") goto IL_718;
+							else break;
+						case "filename_se_clear":
+							if (configParam.Value == "clear.au") goto IL_718;
+							else break;
+						case "filename_se_coin":
+							if (configParam.Value == "coin.au") goto IL_718;
+							else break;
+						case "filename_se_get":
+						case "filename_se_dokan":
+						case "filename_se_chizugamen":
+							if (configParam.Value == "get.au") goto IL_718;
+							else break;
+						case "filename_se_jump":
+							if (configParam.Value == "jump.au") goto IL_718;
+							else break;
+						case "filename_se_sjump":
+							if (configParam.Value == "sjump.au") goto IL_718;
+							else break;
+						case "filename_se_kiki":
+							if (configParam.Value == "kiki.au") goto IL_718;
+							else break;
+						case "filename_se_fumu":
+							if (configParam.Value == "fumu.au") goto IL_718;
+							else break;
+						case "filename_se_tobasu":
+							if (configParam.Value == "tobasu.au") goto IL_718;
+							else break;
+						case "filename_se_fireball":
+						case "filename_se_bomb":
+						case "filename_se_senkuuza":
+							if (configParam.Value == "shot.au") goto IL_718;
+							else break;
+						case "filename_se_jet":
+						case "filename_se_dengeki":
+						case "filename_se_hinoko":
+						case "filename_se_grounder":
+							if (configParam.Value == "mgan.au") goto IL_718;
+							else break;
+						case "filename_se_miss":
+						case "filename_se_dosun":
+							if (configParam.Value == "dosun.au") goto IL_718;
+							else break;
+						case "filename_se_block":
+							if (configParam.Value == "bakuhatu.au") goto IL_718;
+							else break;
+						case "filename_se_mizu":
+							if (configParam.Value == "mizu.au") goto IL_718;
+							else break;
+						case "filename_se_happa":
+						case "filename_se_mizudeppo":
+						case "filename_se_kaiole":
+							if (configParam.Value == "happa.au") goto IL_718;
+							else break;
+						case "filename_fx_bgm_stage1":
+							if (configParam.Value == "stage1.mid") goto IL_718;
+							else break;
+						case "filename_fx_bgm_stage2":
+							if (configParam.Value == "stage2.mid") goto IL_718;
+							else break;
+						case "filename_fx_bgm_stage3":
+							if (configParam.Value == "stage3.mid") goto IL_718;
+							else break;
+						case "filename_fx_bgm_stage4":
+							if (configParam.Value == "stage4.mid") goto IL_718;
+							else break;
+						case "filename_fx_bgm_boss":
+							if (configParam.Value == "boss.mid") goto IL_718;
+							else break;
+						case "filename_fx_bgm_title":
+							if (configParam.Value == "title.mid") goto IL_718;
+							else break;
+						case "filename_fx_bgm_ending":
+							if (configParam.Value == "ending.mid") goto IL_718;
+							else break;
+						case "filename_fx_bgm_chizu":
+							if (configParam.Value == "chizu.mid") goto IL_718;
+							else break;
+						case "gazou_scroll_speed_x":
+						case "gazou_scroll_speed_y":
+						case "second_gazou_scroll_speed_x":
+						case "second_gazou_scroll_speed_y":
+						case "second_gazou_scroll_x":
+						case "second_gazou_scroll_y":
+						case "gazou_scroll_x":
+						case "gazou_scroll_y":
+						case "j_equip_grenade":
+						case "oriboss_x":
+						case "oriboss_y":
+						case "ximage1_view_x":
+						case "ximage2_view_x":
+						case "ximage3_view_x":
+						case "ximage4_view_x":
+						case "ximage1_x":
+						case "ximage1_y":
+						case "ximage2_x":
+						case "ximage2_y":
+						case "ximage3_x":
+						case "ximage3_y":
+						case "ximage4_x":
+						case "ximage4_y":
+						case "x_backimage1_view_x":
+						case "x_backimage2_view_x":
+						case "x_backimage3_view_x":
+						case "x_backimage4_view_x":
+							if (configParam.Value == "0") goto IL_718;
+							else break;
+						case "boss_hp_max":
+						case "grenade_shop_score":
+							if (configParam.Value == "20") goto IL_718;
+							else break;
+						case "j_tail_ap_boss":
+							if (configParam.Value == "4") goto IL_718;
+							else break;
+						case "boss_name":
+						case "boss2_name":
+						case "boss3_name":
+							if (configParam.Value == "BOSS") goto IL_718;
+							else break;
+						case "fs_name":
+							if (configParam.Value == "ファイヤーボールセレクトの人") goto IL_718;
+							else break;
+						case "serifu7":
+							if (configParam.Value ==
+								"好きなファイヤーボールを、３種類から\r\n選んで下さい。私はサービスが良いので、\r\n何度でも選べますよ。") goto IL_718;
+							else break;
+						case "fs_serifu1":
+							if (configParam.Value == "どのファイヤーボールにしますか？") goto IL_718;
+							else break;
+						case "fs_item_name1":
+							if (configParam.Value == "バウンド") goto IL_718;
+							else break;
+						case "fs_item_name2":
+							if (configParam.Value == "ストレート") goto IL_718;
+							else break;
+						case "fs_item_name3":
+							if (configParam.Value == "ダブル") goto IL_718;
+							else break;
+						case "fs_serifu2":
+							if (configParam.Value == "を装備しました。") goto IL_718;
+							else break;
+						case "filename_second_haikei":
+						case "filename_second_haikei2":
+						case "filename_second_haikei3":
+						case "filename_second_haikei4":
+							if (configParam.Value == "haikei_second.gif") goto IL_718;
+							else break;
+						case "serifu_key1_on":
+							if (configParam.Value ==
+								"ここから先へ進むには、\r\n３つのＫＥＹ１が必要です。\r\nこの世界のどこかに、あるはず。") goto IL_718;
+							else break;
+						case "serifu_key1_on-4":
+							if (configParam.Value == "ＫＥＹ１を３つ、わたしますか？") goto IL_718;
+							else break;
+						case "serifu_key1_on-7":
+							if (configParam.Value == "ＫＥＹ１を３つ、持っていません。") goto IL_718;
+							else break;
+						case "serifu_key1_on-8":
+							if (configParam.Value ==
+								"先へ進む道が、開けました。\r\n勇者殿、\r\nお気を付けて。") goto IL_718;
+							else break;
+						case "key1_on_count":
+						case "key2_on_count":
+						case "oriboss_waza_select_option":
+							if (configParam.Value == "3") goto IL_718;
+							else break;
+						case "serifu_key2_on":
+							if (configParam.Value ==
+								"３つのＫＥＹ２がないと、\r\nここから先へは進めないぜ。\r\nどこかで見つ付けてくれ。") goto IL_718;
+							else break;
+						case "serifu_key2_on-4":
+							if (configParam.Value == "ＫＥＹ２を３つ、わたしますか？") goto IL_718;
+							else break;
+						case "serifu_key2_on-7":
+							if (configParam.Value == "ＫＥＹ２を３つ、持っていません。") goto IL_718;
+							else break;
+						case "serifu_key2_on-8":
+							if (configParam.Value ==
+								"３つのＫＥＹ２、受け取ったぜ。\r\nこれで、先へ進めるようになったな。\r\n0") goto IL_718;
+							else break;
+						case "water_clear_level":
+							if (configParam.Value == "128") goto IL_718;
+							else break;
+						case "serifu_grenade_shop":
+							if (configParam.Value ==
+								"グレネード１発を、\r\n２０点で売りますよ。\r\n0") goto IL_718;
+							else break;
+						case "serifu_grenade_shop-4":
+							if (configParam.Value == "何発にしますか？") goto IL_718;
+							else break;
+						case "serifu_grenade_shop-5":
+							if (configParam.Value == "得点が、足りません。") goto IL_718;
+							else break;
+						case "serifu_grenade_shop-6":
+							if (configParam.Value == "グレネードを手に入れた。") goto IL_718;
+							else break;
+						case "font_score":
+						case "font_message":
+							if (configParam.Value == "Helvetica,Arial,ＭＳ ゴシック,HG ゴシックB Sun,HG ゴシックB,monospace") goto IL_718;
+							else break;
+						case "oriboss_width":
+						case "oriboss_height":
+							if (configParam.Value == "32") goto IL_718;
+							else break;
+					}
+				}
+
 				string typestr;
 				switch (typestr = configParam.Typestr)
 				{

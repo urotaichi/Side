@@ -67,6 +67,7 @@ namespace MasaoPlus.Controls
 					{
 						DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new DataGridViewCheckBoxCell();
 						dataGridViewCheckBoxCell.TrueValue = "true";
+						dataGridViewCheckBoxCell.FalseValue = "false";
 						bool flag;
 						if (bool.TryParse(configParam.Value, out flag))
 						{
@@ -82,6 +83,7 @@ namespace MasaoPlus.Controls
 					case ConfigParam.Types.b2:
 					{
 						DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new DataGridViewCheckBoxCell();
+						dataGridViewCheckBoxCell.TrueValue = "false";
 						dataGridViewCheckBoxCell.FalseValue = "true";
 						bool flag;
 						if (bool.TryParse(configParam.Value, out flag))

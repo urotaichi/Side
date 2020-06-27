@@ -145,6 +145,9 @@ namespace MasaoPlus
 
 			// Token: 0x04000301 RID: 769
 			public bool WrapPropText;
+
+			//初期値を出力するかどうか　デフォルトでは出力しない
+			public bool OutPutInititalSourceCode;
 		}
 
 		// Token: 0x02000046 RID: 70

@@ -21,6 +21,7 @@
 			this.tabControl1 = new global::System.Windows.Forms.TabControl();
 			this.tabPage1 = new global::System.Windows.Forms.TabPage();
 			this.UsePropTextDialog = new global::System.Windows.Forms.CheckBox();
+			this.OutPutInititalSourceCode = new global::System.Windows.Forms.CheckBox();
 			this.IntegrateEditorId = new global::System.Windows.Forms.CheckBox();
 			this.EnableAutoUpdate = new global::System.Windows.Forms.CheckBox();
 			this.ReversePosition = new global::System.Windows.Forms.CheckBox();
@@ -88,6 +89,7 @@
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new global::System.Drawing.Size(555, 265);
 			this.tabControl1.TabIndex = 0;
+			this.tabPage1.Controls.Add(this.OutPutInititalSourceCode);
 			this.tabPage1.Controls.Add(this.UsePropTextDialog);
 			this.tabPage1.Controls.Add(this.IntegrateEditorId);
 			this.tabPage1.Controls.Add(this.EnableAutoUpdate);
@@ -101,6 +103,13 @@
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "システム";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			this.OutPutInititalSourceCode.AutoSize = true;
+			this.OutPutInititalSourceCode.Location = new global::System.Drawing.Point(6, 120);
+			this.OutPutInititalSourceCode.Name = "OutPutInititalSourceCode";
+			this.OutPutInititalSourceCode.Size = new global::System.Drawing.Size(212, 16);//?
+			this.OutPutInititalSourceCode.TabIndex = 6;
+			this.OutPutInititalSourceCode.Text = "初期値のパラメータを出力する(&P)";
+			this.OutPutInititalSourceCode.UseVisualStyleBackColor = true;
 			this.UsePropTextDialog.AutoSize = true;
 			this.UsePropTextDialog.Location = new global::System.Drawing.Point(6, 98);
 			this.UsePropTextDialog.Name = "UsePropTextDialog";
@@ -533,6 +542,8 @@
 
 		// Token: 0x04000195 RID: 405
 		private global::System.Windows.Forms.CheckBox UsePropTextDialog;
+
+		private global::System.Windows.Forms.CheckBox OutPutInititalSourceCode;
 
 		// Token: 0x04000196 RID: 406
 		private global::System.Windows.Forms.CheckBox StartWithCL;
