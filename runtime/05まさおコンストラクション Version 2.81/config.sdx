@@ -176,6 +176,6 @@
   <param name="game_speed" desc="ゲームの進行スピード(10-300,小さいほど早い)" type="int" value="70" category="システム" />
   <param name="width" desc="ゲーム画面の幅" type="int" value="512" category="オプション" />
   <param name="height" desc="ゲーム画面の高さ" type="int" value="320" category="オプション" />
-  <param name="bc-loop-setinterval" desc="ループに必ずsetIntervalを使う" type="bool" value="false" category="オプション" />
-  <param name="bc-use-rounddown" desc="小数切り捨て処理をJava版の挙動にする" type="bool" value="true" category="オプション" />
+  <param name="&apos;bc-loop-setinterval&apos;" desc="ループに必ずsetIntervalを使う" type="bool" value="false" category="オプション" />
+  <param name="&apos;bc-use-rounddown&apos;" desc="小数切り捨て処理をJava版の挙動にする" type="bool" value="true" category="オプション" />
 </Configurations>

@@ -118,9 +118,13 @@ namespace MasaoPlus
 			string parameter = Global.cpd.runtime.DefaultConfigurations.Parameter;
 			ConfigParam[] configurations = Global.cpd.project.Config.Configurations;
 			int k = 0;//現在読み込まれている行
+			int mcs_screen_size = 0;
 			while (k < configurations.Length)
 			{
 				ConfigParam configParam = configurations[k];
+
+				if (configParam.Name == "mcs_screen_size") mcs_screen_size = int.Parse(configParam.Value);
+
 				if (configParam.Category == "オプション") goto IL_718;
 
 				if (configParam.RequireStages > 1 && configParam.RequireStages < 5)
@@ -796,39 +800,25 @@ namespace MasaoPlus
 			}
 
 			// オプションを出力
-			bool flag1 = false, flag2 = false;
+			parameter = "\t{0}: {1},";
 			for (k = 0; k < configurations.Length; k++)
 			{
 				ConfigParam configParam = configurations[k];
-				if (configParam.Name == "mcs_screen_size")
-				{ 
-					if(configParam.Value == "1") flag1 = true;
-					else if (configParam.Value == "2") flag2 = true;
-				}
 
-				if (configParam.Name == "width" || configParam.Name == "height" ||
-					configParam.Category != "オプション" ||
-					!Global.config.localSystem.OutPutInititalSourceCode && configParam.Value == "false") continue;
-
-				stringBuilder.AppendLine(string.Format(parameter, configParam.Name, configParam.Value));
-			}
-			for (k = 0; k < configurations.Length; k++)
-			{
-				ConfigParam configParam = configurations[k];
-				if (configParam.Name != "width" && configParam.Name != "height" ||
-					(
-						(flag1 &&
+				if (configParam.Category != "オプション" ||
+					!Global.config.localSystem.OutPutInititalSourceCode && ( // 初期値を出力しない
+						configParam.Value == "false" || // 値が "false" である
+						(mcs_screen_size == 1 && // スクリーンサイズが640×480である
 							(
 								(configParam.Name == "width" && configParam.Value == "640") || (configParam.Name == "height" && configParam.Value == "480")
 							)
 						) ||
-						(flag2 &&
+						(mcs_screen_size == 2 && // スクリーンサイズが512×320である
 							(
 								(configParam.Name == "width" && configParam.Value == "512") || (configParam.Name == "height" && configParam.Value == "320")
 							)
 						)
-					) &&
-					!Global.config.localSystem.OutPutInititalSourceCode) continue;
+					)) continue;
 
 				stringBuilder.AppendLine(string.Format(parameter, configParam.Name, configParam.Value));
 			}
