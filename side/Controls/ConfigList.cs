@@ -54,6 +54,9 @@ namespace MasaoPlus.Controls
 				ConfigParam configParam = Global.cpd.project.Config.Configurations[i];
 				if ((this.ConfigSelector.SelectedIndex == 0 || configParam.Category == Global.cpd.project.Config.Categories[this.ConfigSelector.SelectedIndex - 1]) && !(configParam.Relation == "STAGENUM") && !(configParam.Relation == "STAGESTART") && !(configParam.Relation == "STAGESELECT"))
 				{
+					if (configParam.Name == "width") this.width_index = i;
+					else if (configParam.Name == "height") this.height_index = i;
+
 					this.OrigIdx.Add(i);
 					this.ConfView.Rows.Add(new string[]
 					{
@@ -511,6 +514,16 @@ namespace MasaoPlus.Controls
 					return;
 				}
 				Global.cpd.project.Config.Configurations[num].Value = (((DataGridViewComboBoxCell)this.ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(this.ConfView[e.ColumnIndex, e.RowIndex].Value) + 1).ToString();
+				if (Global.cpd.project.Config.Configurations[num].Name == "mcs_screen_size"){
+					if(Global.cpd.project.Config.Configurations[num].Value == "1") {
+							Global.cpd.project.Config.Configurations[this.width_index].Value = "640";
+							Global.cpd.project.Config.Configurations[this.height_index].Value = "480";
+					}
+					else if(Global.cpd.project.Config.Configurations[num].Value == "2") {
+							Global.cpd.project.Config.Configurations[this.width_index].Value = "512";
+							Global.cpd.project.Config.Configurations[this.height_index].Value = "320";
+					}
+				}
 				break;
 			case ConfigParam.Types.l_a:
 			{
@@ -633,5 +646,7 @@ namespace MasaoPlus.Controls
 
 		// Token: 0x04000073 RID: 115
 		private DataGridViewTextBoxColumn CValues;
+
+		private int width_index, height_index;
 	}
 }
