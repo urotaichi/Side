@@ -2112,7 +2112,7 @@ namespace MasaoPlus
 			using (SaveFileDialog saveFileDialog = new SaveFileDialog())
 			{
 				saveFileDialog.Filter = "PNG画像(*.png)|*.png|GIF画像(*.gif)|*.gif|JPEG画像(*.jpg)|*.jpg|ビットマップ(*.bmp)|*.bmp";
-				saveFileDialog.DefaultExt = ".jpg";
+				saveFileDialog.DefaultExt = ".png";
 				saveFileDialog.FileName = "無題";
 				if (saveFileDialog.ShowDialog() != DialogResult.OK)
 				{

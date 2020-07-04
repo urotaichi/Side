@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -265,55 +266,66 @@ namespace MasaoPlus.Dialogs
 				}
 				this.StatusText.Text = "HTMLデータ取得中...";
 				this.StatusText.Refresh();
-				Regex regex2 = new Regex("<[ ]*PARAM[ ]+NAME=\"(?<name>.*?)\"[ ]+VALUE=\"(?<value>.*?)\".*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+
+				Regex regex2 = new Regex(@"<[ ]*PARAM[ ]+NAME=""(?<name>.*?)""[ ]+VALUE=""(?<value>.*?)"".*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+				Regex regex_script = new Regex(@"<[ ]*?script.*?>\s*?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+				if (regex_script.IsMatch(input))
+					regex2 = new Regex(@"""(?<name>.*?)""\s*?:\s*?""(?<value>.*?)(?<!\\)""", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+
 				Dictionary<string, string> dictionary = new Dictionary<string, string>();
 				Match match2 = regex2.Match(input);
 				while (match2.Success)
 				{
-					dictionary.Add(match2.Groups["name"].Value, match2.Groups["value"].Value);
+					dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
 					match2 = match2.NextMatch();
 				}
 				this.StatusText.Text = "マップソース生成中...";
 				this.StatusText.Refresh();
-				this.GetMapSource(ref project.MapData, project.Runtime.Definitions.MapName, project.Runtime.Definitions.MapSize.y, ref dictionary);
+				this.GetMapSource(ref project.MapData, project.Runtime.Definitions.MapName, project.Runtime.Definitions.MapSize, ref dictionary, chipDataClass.WorldChip);
 				this.StatusText.Text = "ステージソース生成中[1/4]...";
 				this.StatusText.Refresh();
-				this.GetMapSource(ref project.StageData, project.Runtime.Definitions.ParamName, project.Runtime.Definitions.StageSize.y, ref dictionary);
+				this.GetMapSource(ref project.StageData, project.Runtime.Definitions.ParamName, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
 				this.StatusText.Text = "ステージソース生成中[2/4]...";
 				this.StatusText.Refresh();
-				this.GetMapSource(ref project.StageData2, project.Runtime.Definitions.ParamName2, project.Runtime.Definitions.StageSize.y, ref dictionary);
+				this.GetMapSource(ref project.StageData2, project.Runtime.Definitions.ParamName2, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
 				this.StatusText.Text = "ステージソース生成中[3/4]...";
 				this.StatusText.Refresh();
-				this.GetMapSource(ref project.StageData3, project.Runtime.Definitions.ParamName3, project.Runtime.Definitions.StageSize.y, ref dictionary);
+				this.GetMapSource(ref project.StageData3, project.Runtime.Definitions.ParamName3, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
 				this.StatusText.Text = "ステージソース生成中[4/4]...";
 				this.StatusText.Refresh();
-				this.GetMapSource(ref project.StageData4, project.Runtime.Definitions.ParamName4, project.Runtime.Definitions.StageSize.y, ref dictionary);
+				this.GetMapSource(ref project.StageData4, project.Runtime.Definitions.ParamName4, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
 				if (project.Runtime.Definitions.LayerSize.bytesize != 0)
 				{
 					this.StatusText.Text = "レイヤーソース生成中[1/4]...";
 					this.StatusText.Refresh();
-					this.GetMapSource(ref project.LayerData, project.Runtime.Definitions.LayerName, project.Runtime.Definitions.LayerSize.y, ref dictionary);
+					this.GetMapSource(ref project.LayerData, project.Runtime.Definitions.LayerName, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
 					this.StatusText.Text = "レイヤーソース生成中[2/4]...";
 					this.StatusText.Refresh();
-					this.GetMapSource(ref project.LayerData2, project.Runtime.Definitions.LayerName2, project.Runtime.Definitions.LayerSize.y, ref dictionary);
+					this.GetMapSource(ref project.LayerData2, project.Runtime.Definitions.LayerName2, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
 					this.StatusText.Text = "レイヤーソース生成中[3/4]...";
 					this.StatusText.Refresh();
-					this.GetMapSource(ref project.LayerData3, project.Runtime.Definitions.LayerName3, project.Runtime.Definitions.LayerSize.y, ref dictionary);
+					this.GetMapSource(ref project.LayerData3, project.Runtime.Definitions.LayerName3, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
 					this.StatusText.Text = "レイヤーソース生成中[4/4]...";
 					this.StatusText.Refresh();
-					this.GetMapSource(ref project.LayerData4, project.Runtime.Definitions.LayerName4, project.Runtime.Definitions.LayerSize.y, ref dictionary);
+					this.GetMapSource(ref project.LayerData4, project.Runtime.Definitions.LayerName4, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
 				}
 				this.StatusText.Text = "パラメータ反映中...";
 				this.StatusText.Refresh();
+
+				var s = string.Join(string.Empty, project.MapData);
+				string Mapdata = new string(s.Except(s.Where(ch => s.Count(c => c == ch) > 1)).ToArray()); // 地図画面データを圧縮
+
 				int num = 0;
 				while (num < project.Config.Configurations.Length)
 				{
 					switch (project.Config.Configurations[num].Type)
 					{
 					case ConfigParam.Types.b:
+					case ConfigParam.Types.b2:
+					case ConfigParam.Types.b0:
 						if (dictionary.ContainsKey(project.Config.Configurations[num].Name))
 						{
-							if (dictionary[project.Config.Configurations[num].Name] == "2")
+							if (dictionary[project.Config.Configurations[num].Name] == "2" || dictionary[project.Config.Configurations[num].Name] == "0")
 							{
 								project.Config.Configurations[num].Value = "false";
 							}
@@ -326,15 +338,26 @@ namespace MasaoPlus.Dialogs
 					case ConfigParam.Types.s:
 					case ConfigParam.Types.i:
 					case ConfigParam.Types.l:
+					case ConfigParam.Types.l_a:
 						goto IL_D9E;
 					case ConfigParam.Types.t:
 					{
 						string name = project.Config.Configurations[num].Name;
 						List<string> list2 = new List<string>();
-						int num2 = 0;
+
+						int num2 = 1;
+
+						Regex text_name_regx = new Regex(@"-(\d+)$");
+						Match text_name_match = text_name_regx.Match(name);
+						if(text_name_match.Success){
+							num2 = int.Parse(text_name_match.Groups[1].Value);
+							name = text_name_regx.Replace(name, string.Empty);
+						}
+
 						while (dictionary.ContainsKey(name + "-" + num2.ToString()))
 						{
 							list2.Add(dictionary[name + "-" + num2.ToString()]);
+							num2++;
 						}
 						if (list2.Count > 0)
 						{
@@ -354,6 +377,8 @@ namespace MasaoPlus.Dialogs
 						break;
 					}
 					case ConfigParam.Types.f:
+					case ConfigParam.Types.f_i:
+					case ConfigParam.Types.f_a:
 						if (dictionary.ContainsKey(project.Config.Configurations[num].Name))
 						{
 							list.Add(dictionary[project.Config.Configurations[num].Name]);
@@ -369,29 +394,59 @@ namespace MasaoPlus.Dialogs
 							"blue"
 						};
 						int[] array2 = new int[3];
-						string name = project.Config.Configurations[num].Name;
-						bool flag = true;
+						string name = project.Config.Configurations[num].Name, param_name;
 						for (int num3 = 0; num3 < 3; num3++)
 						{
-							if (!dictionary.ContainsKey(name + array[num3]))
+							param_name = name.Replace("@", array[num3]);
+
+							// パラメータが存在しない または 数値に変換できない
+							if (!dictionary.ContainsKey(param_name) || !int.TryParse(dictionary[param_name], out array2[num3]))
 							{
-								flag = false;
-								break;
-							}
-							if (!int.TryParse(dictionary[name + array[num3]], out array2[num3]))
-							{
-								flag = false;
-								break;
+								// デフォルト値を代入
+								switch(param_name)
+								{
+									case "backcolor_red":
+									case "scorecolor_red":
+									case "scorecolor_green":
+									case "grenade_blue2":
+									case "mizunohadou_red":
+									case "firebar_green1":
+									case "firebar_blue1":
+									case "firebar_blue2":
+									case "kaishi_red":
+									case "kaishi_blue":
+									case "kaishi_green":
+										array2[num3] = 0;
+										break;
+									case "backcolor_green":
+									case "backcolor_blue":
+									case "scorecolor_blue":
+									case "grenade_red1":
+									case "grenade_green1":
+									case "grenade_blue1":
+									case "grenade_red2":
+									case "grenade_green2":
+									case "mizunohadou_blue":
+									case "firebar_red1":
+									case "firebar_red2":
+										array2[num3] = 255;
+										break;
+									case "mizunohadou_green":
+										array2[num3] = 32;
+										break;
+									case "firebar_green2":
+										array2[num3] = 192;
+										break;
+								}
 							}
 						}
-						if (flag)
-						{
-							Colors colors = default(Colors);
-							colors.r = array2[0];
-							colors.g = array2[1];
-							colors.b = array2[2];
-							project.Config.Configurations[num].Value = colors.ToString();
-						}
+
+						Colors colors = default(Colors);
+						colors.r = array2[0];
+						colors.g = array2[1];
+						colors.b = array2[2];
+						project.Config.Configurations[num].Value = colors.ToString(); // 配列を文字列に変換　[r,g,b] => "r,g,b"
+
 						break;
 					}
 					default:
@@ -401,6 +456,19 @@ namespace MasaoPlus.Dialogs
 					num++;
 					continue;
 					IL_D9E:
+
+					if(project.Config.Configurations[num].Relation == "STAGENUM")
+                    {
+						// アスキーコードで98('b')が地図画面に含まれている場合、ステージ2を選択できるように
+						// ステージ3、4も同様
+						int map_code_ASCII;
+						for (int i = 2; i <= 4; i++) {
+							map_code_ASCII = i + 96;
+							if (Mapdata.Contains(((char)map_code_ASCII).ToString()))
+								project.Config.Configurations[num].Value = i.ToString();
+						}
+					}
+
 					if (dictionary.ContainsKey(project.Config.Configurations[num].Name))
 					{
 						project.Config.Configurations[num].Value = dictionary[project.Config.Configurations[num].Name];
@@ -458,34 +526,50 @@ namespace MasaoPlus.Dialogs
 		}
 
 		// Token: 0x060000D7 RID: 215 RVA: 0x00014750 File Offset: 0x00012950
-		private bool GetMapSource(ref string[] overwrite, string f, int dysize, ref Dictionary<string, string> Params)
+		private bool GetMapSource(ref string[] overwrite, string f, Runtime.DefinedData.StageSizeData StageSizeData, ref Dictionary<string, string> Params, ChipsData[] MapChip, int Split = 0)
 		{
-			List<string> list = new List<string>();
-			int num = 0;
-			for (;;)
-			{
-				int num2 = 0;
-				while (Params.ContainsKey(string.Format(f, num2, num)))
-				{
-					if (list.Count <= num)
-					{
-						list.Add(Params[string.Format(f, num2, num)]);
+			int dxsize = StageSizeData.x, dysize = StageSizeData.y;
+			string[] list = new string[dysize];
+			int num = 0; // 0行目からスタート
+			string NullChar = MapChip[0].character; // 空白文字（マップチップ0番の文字）
+
+			while (num < dysize)
+            {
+				if (Split > 0)
+					for(int num2 = 0; num2 <= Split; num2++)
+                    {
+						if (list[num] == null && Params.ContainsKey(string.Format(f, num2, num)))
+								list[num] = Params[string.Format(f, num2, num)];
+						else if (Params.ContainsKey(string.Format(f, num2, num)))
+								list[num] += Params[string.Format(f, num2, num)];
+						else
+							for (int j = 0; j < dxsize / (Split + 1) / NullChar.Length; j++)
+								list[num] += NullChar;
+
 					}
-					else
-					{
-						list[num] += Params[string.Format(f, num2, num)];
-					}
-					num2++;
-				}
-				if (num2 == 0)
+				else // 地図画面の時
 				{
-					break;
+					if (Params.ContainsKey(string.Format(f, num)))
+						list[num] = Params[string.Format(f, num)];
+					else list[num] = null;
 				}
 				num++;
 			}
+
 			if (num == dysize)
 			{
-				overwrite = list.ToArray();
+				for (int i = 0; i < dysize; i++) // 空行はデフォルトの値を代入（実質地図画面専用化してるけど）
+					if(list[i] != null) overwrite[i] = list[i];
+
+				// 文字数が足りない場合空白文字を追加
+				int k;
+				for (int i = 0; i < dysize; i++)
+				{
+					k = dxsize - overwrite[i].Length / NullChar.Length;
+					for (int j = 0; j < k; j++)
+						overwrite[i] += NullChar;
+				}
+
 				return true;
 			}
 			return false;
