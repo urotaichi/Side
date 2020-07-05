@@ -268,9 +268,9 @@ namespace MasaoPlus.Dialogs
 				this.StatusText.Refresh();
 
 				Regex regex2 = new Regex(@"<[ ]*PARAM[ ]+NAME=""(?<name>.*?)""[ ]+VALUE=""(?<value>.*?)"".*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-				Regex regex_script = new Regex(@"<[ ]*?script.*?>\s*?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+				Regex regex_script = new Regex(@"<[ ]*?script.*?>.*?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 				if (regex_script.IsMatch(input))
-					regex2 = new Regex(@"""(?<name>.*?)""\s*?:\s*?""(?<value>.*?)(?<!\\)""", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+					regex2 = new Regex(@"(""|')(?<name>.*?)(""|')\s*?:\s*?(""|')(?<value>.*?)(?<!\\)(""|')(,|\s*?)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
 				Dictionary<string, string> dictionary = new Dictionary<string, string>();
 				Match match2 = regex2.Match(input);
@@ -334,6 +334,24 @@ namespace MasaoPlus.Dialogs
 								project.Config.Configurations[num].Value = "true";
 							}
 						}
+						else
+						{
+							switch (project.Config.Configurations[num].Name) // 個別に初期値を設定
+							{
+								case "se_switch":
+								case "mcs_haikei_visible":
+								case "fx_bgm_loop":
+								case "se_filename":
+									project.Config.Configurations[num].Value =
+										"false";
+									break;
+								case "pause_switch":
+								case "j_fire_mkf":
+									project.Config.Configurations[num].Value =
+										"true";
+									break;
+							}
+						}
 						break;
 					case ConfigParam.Types.s:
 					case ConfigParam.Types.i:
@@ -343,15 +361,47 @@ namespace MasaoPlus.Dialogs
 					case ConfigParam.Types.t:
 					{
 						string name = project.Config.Configurations[num].Name;
+						
+						switch (name) // 個別に初期値を設定
+						{
+							case "serifu1": project.Config.Configurations[num].Value =
+									"人の命は、お金では買えないと言われています。\r\nしかし、お店へ行けば、ＳＣＯＲＥで買えます。\r\n0";
+								break;
+							case "serifu2": project.Config.Configurations[num].Value =
+									"時は金なりと、言われています。しかし、\r\nお店なら、時間も買えます。\r\n店員さんて、グレートですね。";
+								break;
+							case "serifu3": project.Config.Configurations[num].Value =
+									"おはようございます。星と数字が付いた扉が、\r\nありますよね。あれは、ですねえ、その数だけ\r\n人面星を取ると、開くので、ございます。";
+								break;
+							case "serifu4": project.Config.Configurations[num].Value =
+									"LAST STAGEというのは、最終面の事ですわ。\r\nこれをクリアーすると、エンディングに、\r\n行けますのよ。がんばって下さいね。";
+								break;
+							case "serifu_key2_on": project.Config.Configurations[num].Value =
+									"３つのＫＥＹ２がないと、\r\nここから先へは進めないぜ。\r\nどこかで見つ付けてくれ。";
+								break;
+							case "hitokoto1": project.Config.Configurations[num].Value =
+									"今日は、いい天気だね。\r\n0\r\n0";
+								break;
+							case "hitokoto2": project.Config.Configurations[num].Value =
+									"ついに、ここまで来ましたね。\r\n0\r\n0";
+								break;
+							case "hitokoto3": project.Config.Configurations[num].Value =
+									"オレは、世界一になる男だ。\r\n0\r\n0";
+								break;
+							case "hitokoto4": project.Config.Configurations[num].Value =
+									"んちゃ！\r\n0\r\n0";
+								break;
+						}
+
 						List<string> list2 = new List<string>();
 
 						int num2 = 1;
 
-						Regex text_name_regx = new Regex(@"-(\d+)$");
-						Match text_name_match = text_name_regx.Match(name);
+						Regex text_name_regex = new Regex(@"-(\d+)$");
+						Match text_name_match = text_name_regex.Match(name);
 						if(text_name_match.Success){
-							num2 = int.Parse(text_name_match.Groups[1].Value);
-							name = text_name_regx.Replace(name, string.Empty);
+							num2 = int.Parse(text_name_match.Groups[0].Value);
+							name = text_name_regex.Replace(name, string.Empty);
 						}
 
 						while (dictionary.ContainsKey(name + "-" + num2.ToString()))
@@ -416,6 +466,10 @@ namespace MasaoPlus.Dialogs
 									case "kaishi_red":
 									case "kaishi_blue":
 									case "kaishi_green":
+									case "backcolor_red_s":
+									case "backcolor_blue_s":
+									case "backcolor_green_s":
+									case "backcolor_red_t":
 										array2[num3] = 0;
 										break;
 									case "backcolor_green":
@@ -429,13 +483,20 @@ namespace MasaoPlus.Dialogs
 									case "mizunohadou_blue":
 									case "firebar_red1":
 									case "firebar_red2":
+									case "backcolor_green_t":
+									case "backcolor_blue_t":
 										array2[num3] = 255;
 										break;
 									case "mizunohadou_green":
 										array2[num3] = 32;
 										break;
 									case "firebar_green2":
+									case "backcolor_red_f":
 										array2[num3] = 192;
+										break;
+									case "backcolor_green_f":
+									case "backcolor_blue_f":
+										array2[num3] = 48;
 										break;
 								}
 							}
@@ -456,23 +517,85 @@ namespace MasaoPlus.Dialogs
 					num++;
 					continue;
 					IL_D9E:
-
-					if(project.Config.Configurations[num].Relation == "STAGENUM")
-                    {
+					if (dictionary.ContainsKey(project.Config.Configurations[num].Name))
+					{
+						project.Config.Configurations[num].Value = dictionary[project.Config.Configurations[num].Name];
+						goto IL_DF3;
+					}
+					else if (project.Config.Configurations[num].Relation == "STAGENUM")
+					{
 						// アスキーコードで98('b')が地図画面に含まれている場合、ステージ2を選択できるように
 						// ステージ3、4も同様
 						int map_code_ASCII;
-						for (int i = 2; i <= 4; i++) {
+						for (int i = 2; i <= 4; i++)
+						{
 							map_code_ASCII = i + 96;
 							if (Mapdata.Contains(((char)map_code_ASCII).ToString()))
 								project.Config.Configurations[num].Value = i.ToString();
 						}
 					}
-
-					if (dictionary.ContainsKey(project.Config.Configurations[num].Name))
+                    else
 					{
-						project.Config.Configurations[num].Value = dictionary[project.Config.Configurations[num].Name];
-						goto IL_DF3;
+						switch (project.Config.Configurations[num].Name) // 個別に初期値を設定
+                        {
+							case "j_hp_name":
+							case "now_loading":
+							case "oriboss_name":
+								project.Config.Configurations[num].Value =
+									"";
+								break;
+							case "time_max":
+							case "shop_item_teika7":
+								project.Config.Configurations[num].Value =
+									"300";
+								break;
+							case "gazou_scroll_speed_x":
+							case "gazou_scroll_speed_y":
+							case "second_gazou_scroll_speed_x":
+							case "second_gazou_scroll_speed_y":
+							case "oriboss_x":
+							case "oriboss_y":
+								project.Config.Configurations[num].Value =
+									"0";
+								break;
+							case "water_visible":
+							case "j_tail_type":
+							case "oriboss_hp":
+							case "oriboss_speed":
+							case "dokan_mode":
+								project.Config.Configurations[num].Value =
+									"1";
+								break;
+							case "boss_name":
+							case "boss2_name":
+							case "boss3_name":
+								project.Config.Configurations[num].Value =
+									"BOSS";
+								break;
+							case "mes1_name": project.Config.Configurations[num].Value =
+									"ダケシ";
+								break;
+							case "mes2_name": project.Config.Configurations[num].Value =
+									"エリコ";
+								break;
+							case "oriboss_width":
+                            case "oriboss_height":
+								project.Config.Configurations[num].Value =
+									"32";
+								break;
+							case "door_score": project.Config.Configurations[num].Value =
+									"800";
+								break;
+							case "url1":
+							case "url2":
+							case "url3":
+								project.Config.Configurations[num].Value =
+									"http://www.yahoo.co.jp/";
+								break;
+							case "url4": project.Config.Configurations[num].Value =
+									"http://www.t3.rim.or.jp/~naoto/naoto.html";
+								break;
+						}
 					}
 					goto IL_DF3;
 				}
@@ -536,17 +659,19 @@ namespace MasaoPlus.Dialogs
 			while (num < dysize)
             {
 				if (Split > 0)
-					for(int num2 = 0; num2 <= Split; num2++)
-                    {
+				{
+					for (int num2 = 0; num2 <= Split; num2++)
+					{
 						if (list[num] == null && Params.ContainsKey(string.Format(f, num2, num)))
-								list[num] = Params[string.Format(f, num2, num)];
+							list[num] = Params[string.Format(f, num2, num)];
 						else if (Params.ContainsKey(string.Format(f, num2, num)))
-								list[num] += Params[string.Format(f, num2, num)];
+							list[num] += Params[string.Format(f, num2, num)];
 						else
 							for (int j = 0; j < dxsize / (Split + 1) / NullChar.Length; j++)
 								list[num] += NullChar;
 
 					}
+				}
 				else // 地図画面の時
 				{
 					if (Params.ContainsKey(string.Format(f, num)))

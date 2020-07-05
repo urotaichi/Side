@@ -79,46 +79,46 @@ namespace MasaoPlus
 			}
 
 			//パラメータを出力
-			stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData));
+			stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize.x, true));
 			if (Global.cpd.project.Config.StageNum >= 2)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2));
+				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize.x));
 			}
 			if (Global.cpd.project.Config.StageNum >= 3)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3));
+				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize.x));
 			}
 			if (Global.cpd.project.Config.StageNum >= 4)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4));
+				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize.x));
 			}
 
 			if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData));
+				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize.x));
 				if (Global.cpd.project.Config.StageNum >= 2)
 				{
-					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2));
+					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize.x));
 				}
 				if (Global.cpd.project.Config.StageNum >= 3)
 				{
-					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3));
+					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize.x));
 				}
 				if (Global.cpd.project.Config.StageNum >= 4)
 				{
-					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4));
+					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize.x));
 				}
 			}
 
 			if (Global.cpd.project.Config.UseWorldmap)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.MapParam, 0, Global.cpd.project.MapData));
+				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.MapParam, 0, Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize.x));
 			}
 
 			string parameter = Global.cpd.runtime.DefaultConfigurations.Parameter;
 			ConfigParam[] configurations = Global.cpd.project.Config.Configurations;
 			int k = 0;//現在読み込まれている行
-			int mcs_screen_size = 0;
+			int mcs_screen_size = 2;
 			while (k < configurations.Length)
 			{
 				ConfigParam configParam = configurations[k];
@@ -144,7 +144,7 @@ namespace MasaoPlus
 				continue;
 
 				IL_4DB:
-                if (!Global.config.localSystem.OutPutInititalSourceCode) {
+                if (!Global.config.localSystem.OutPutInititalSourceCode && !Global.cpd.runtime.Definitions.Package.Contains("28")) {
 					// 値を調べ、初期値だったら出力しない（参考：Canvas正男のTagDataBase.js）
 					switch (configParam.Name)
 					{
@@ -383,6 +383,7 @@ namespace MasaoPlus
 							else break;
 						case "now_loading":
 						case "j_hp_name":
+						case "oriboss_name":
 						case "filename_oriboss_left1":
 						case "filename_oriboss_right1":
 						case "filename_oriboss_tubure_left":
@@ -771,9 +772,31 @@ namespace MasaoPlus
 				case "color":
 				{
 					Colors colors = new Colors(configParam.Value);
+					string param  = configParam.Name;
+
+					if (Global.config.localSystem.OutPutInititalSourceCode || Global.cpd.runtime.Definitions.Package.Contains("28")
+					   || !((param == "backcolor_@" || param == "scorecolor_@" || param == "mizunohadou_@" || param == "kaishi_@" || param == "backcolor_@_s" || param == "backcolor_@_t") && colors.r == 0
+					   || (param == "grenade_@1" || param == "grenade_@2" || param == "firebar_@1" || param == "firebar_@2") && colors.r == 255
+					   || param == "backcolor_@_f" && colors.r == 192
+					))
 					stringBuilder.AppendLine(string.Format(parameter, configParam.Name.Replace("@", "red"), colors.r.ToString()));
+					
+					if (Global.config.localSystem.OutPutInititalSourceCode || Global.cpd.runtime.Definitions.Package.Contains("28")
+					   || !((param == "scorecolor_@" || param == "kaishi_@" || param == "firebar_@1" || param == "backcolor_@_s") && colors.g == 0
+					   || (param == "backcolor_@" || param == "grenade_@1" || param == "grenade_@2" || param == "backcolor_@_t") && colors.g == 255
+					   || param == "mizunohadou_@" && colors.g == 32
+					   || param == "firebar_@2" && colors.g == 192
+					   || param == "backcolor_@_f" && colors.g == 48
+					))
 					stringBuilder.AppendLine(string.Format(parameter, configParam.Name.Replace("@", "green"), colors.g.ToString()));
+					
+					if (Global.config.localSystem.OutPutInititalSourceCode || Global.cpd.runtime.Definitions.Package.Contains("28")
+					   || !((param == "grenade_@2" || param == "firebar_@1" || param == "firebar_@2" || param == "kaishi_@" || param == "backcolor_@_s") && colors.b == 0
+					   || (param == "backcolor_@" || param == "scorecolor_@" || param == "grenade_@1" || param == "mizunohadou_@" || param == "backcolor_@_t") && colors.b == 255
+					   || param == "backcolor_@_f" && colors.b == 48
+					))
 					stringBuilder.AppendLine(string.Format(parameter, configParam.Name.Replace("@", "blue"), colors.b.ToString()));
+
 					goto IL_718;
 				}
 				}
@@ -806,7 +829,7 @@ namespace MasaoPlus
 				ConfigParam configParam = configurations[k];
 
 				if (configParam.Category != "オプション" ||
-					!Global.config.localSystem.OutPutInititalSourceCode && ( // 初期値を出力しない
+					!Global.config.localSystem.OutPutInititalSourceCode && ( // 初期値を出力しない(2.8含む)
 						configParam.Value == "false" || // 値が "false" である
 						(mcs_screen_size == 1 && // スクリーンサイズが640×480である
 							(
@@ -845,6 +868,9 @@ namespace MasaoPlus
 			//末尾の,を除去（文法的にはセーフだが）
 			string result = new Regex(@",(\s*?)}").Replace(stringBuilder.ToString(), "$1}");
 
+			//3連続以上の改行を2連続改行に
+			result = new Regex(@"(\r\n){3,}").Replace(result, "\r\n\r\n");
+
 			return result;
 		}
 
@@ -861,10 +887,14 @@ namespace MasaoPlus
 		}
 
 		// Token: 0x06000201 RID: 513 RVA: 0x00026C74 File Offset: 0x00024E74
-		public static string MakeStageParameter(string Parameter, int StageSplit, string[] StageText)
+		public static string MakeStageParameter(string Parameter, int StageSplit, string[] StageText, int dxsize, bool notdefaultparam = false)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			StringBuilder[] array = new StringBuilder[StageSplit + 1];
+
+			StringBuilder null_string = new StringBuilder();
+			for (int j = 0; j < dxsize / (StageSplit + 1); j++)
+				null_string.Append("."); // 空白文字をベタ書きしてるので後で直す？
 			int num = 0;
 			foreach (string text in StageText)
 			{
@@ -879,7 +909,7 @@ namespace MasaoPlus
 					{
 						array[j] = new StringBuilder();
 					}
-					if (StageSplit == 0)
+					if (StageSplit == 0) // 地図画面
 					{
 						array[j].AppendLine(string.Format(Parameter, new object[]
 						{
@@ -889,6 +919,11 @@ namespace MasaoPlus
 					}
 					else
 					{
+						if(!Global.config.localSystem.OutPutInititalSourceCode && !Global.cpd.runtime.Definitions.Package.Contains("28")
+						&& (text.Substring(num2, text.Length / (StageSplit + 1)) == null_string.ToString()
+						|| text.Substring(num2, text.Length / (StageSplit + 1)) == null_string.ToString() + null_string.ToString()) // レイヤー用
+						) continue;// 省略
+
 						array[j].AppendLine(string.Format(Parameter, new object[]
 						{
 							j,
@@ -904,6 +939,11 @@ namespace MasaoPlus
 			{
 				stringBuilder.AppendLine(stringBuilder2.ToString());
 			}
+
+			if(notdefaultparam && new Regex(@"^\s*?$").Match(stringBuilder.ToString()).Success) { // 出力結果が空白のみの場合
+				stringBuilder.AppendLine(string.Format(Parameter, new object[]{0,0,".."}));
+			}
+
 			return stringBuilder.ToString();
 		}
 

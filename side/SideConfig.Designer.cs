@@ -108,7 +108,7 @@
 			this.OutPutInititalSourceCode.Name = "OutPutInititalSourceCode";
 			this.OutPutInititalSourceCode.Size = new global::System.Drawing.Size(212, 16);//?
 			this.OutPutInititalSourceCode.TabIndex = 6;
-			this.OutPutInititalSourceCode.Text = "初期値のパラメータを出力する(&P)";
+			this.OutPutInititalSourceCode.Text = "初期値のパラメータを出力する(2.8ではチェックの有無に関わらず出力)(&P)";
 			this.OutPutInititalSourceCode.UseVisualStyleBackColor = true;
 			this.UsePropTextDialog.AutoSize = true;
 			this.UsePropTextDialog.Location = new global::System.Drawing.Point(6, 98);
