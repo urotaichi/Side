@@ -894,7 +894,7 @@ namespace MasaoPlus
 
 			StringBuilder null_string = new StringBuilder();
 			for (int j = 0; j < dxsize / (StageSplit + 1); j++)
-				null_string.Append("."); // 空白文字をベタ書きしてるので後で直す？
+				null_string.Append("."); // 空白文字をベタ書きしてるので後で直す？　bytesize（文字の長さ）使った方がいいかも
 			int num = 0;
 			foreach (string text in StageText)
 			{
@@ -941,7 +941,7 @@ namespace MasaoPlus
 			}
 
 			if(notdefaultparam && new Regex(@"^\s*?$").Match(stringBuilder.ToString()).Success) { // 出力結果が空白のみの場合
-				stringBuilder.AppendLine(string.Format(Parameter, new object[]{0,0,".."}));
+				stringBuilder.AppendLine(string.Format(Parameter, new object[]{0,0,".."})); //
 			}
 
 			return stringBuilder.ToString();
