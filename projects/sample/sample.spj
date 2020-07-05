@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
-<MasaoProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<MasaoProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Name>sample</Name>
   <ProjVer>1</ProjVer>
   <Runtime>
     <Definitions>
       <Name>まさおコンストラクション Version 2.81</Name>
       <Author>RYO</Author>
-      <Update />
+      <Update>https://urotaichi.com/other/side/mc28.xml</Update>
       <Package>CanvasMasao_v28.js</Package>
       <Configurations>config.sdx</Configurations>
       <ChipDefinition>chipresolv.sdx</ChipDefinition>
       <ChipExtender>ex.png</ChipExtender>
       <Chipset />
-      <DefVersion>3</DefVersion>
-      <RequireLower>1.01</RequireLower>
+      <DefVersion>4</DefVersion>
+      <RequireLower>2</RequireLower>
       <ChipSize>
         <Width>32</Width>
         <Height>32</Height>
@@ -28,10 +28,11 @@
       <LayerName2 />
       <LayerName3 />
       <LayerName4 />
-      <MapName>map{0}-{1}</MapName>
+      <MapName>chizu-{0}</MapName>
       <StageSize x="180" y="30" bytesize="1" />
       <LayerSize x="0" y="0" bytesize="0" />
       <MapSize x="15" y="9" bytesize="1" />
+      <MaxAthleticNumber>0</MaxAthleticNumber>
     </Definitions>
     <DefaultConfigurations>
       <OutputReplace>
@@ -47,16 +48,16 @@
 &lt;title&gt;&lt;?タイトル&gt;&lt;/title&gt;
 
 &lt;script src="CanvasMasao_v28.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-	CanvasMasao.Game.replaceAll({'bc-use-rounddown': true});
-&lt;/script&gt;
 &lt;/head&gt;
 
 &lt;body style="background-color: &lt;?背景の色&gt;;color: &lt;?文字の色&gt;"&gt;
 
 &lt;div style="text-align: center"&gt;
-&lt;applet code="MasaoConstruction.class" width="512" height="320" archive="mc_c.zip"&gt;</HeaderHTML>
-      <FooterHTML>&lt;/applet&gt;
+&lt;script&gt;
+new JSMasao({</HeaderHTML>
+      <MiddleHTML>}, null, {</MiddleHTML>
+      <FooterHTML>});
+&lt;/script&gt;
 &lt;/div&gt;
 
 
@@ -90,16 +91,16 @@
 &lt;/body&gt;
 
 &lt;/html&gt;</FooterHTML>
-      <Parameter>&lt;param name="{0}" value="{1}"&gt;</Parameter>
-      <StageParam>&lt;param name="map{0}-{1}" value="{2}"&gt;</StageParam>
-      <StageParam2>&lt;param name="map{0}-{1}-s" value="{2}"&gt;</StageParam2>
-      <StageParam3>&lt;param name="map{0}-{1}-t" value="{2}"&gt;</StageParam3>
-      <StageParam4>&lt;param name="map{0}-{1}-f" value="{2}"&gt;</StageParam4>
+      <Parameter>	"{0}": "{1}",</Parameter>
+      <StageParam>	"map{0}-{1}": "{2}",</StageParam>
+      <StageParam2>	"map{0}-{1}-s": "{2}",</StageParam2>
+      <StageParam3>	"map{0}-{1}-t": "{2}",</StageParam3>
+      <StageParam4>	"map{0}-{1}-f": "{2}",</StageParam4>
       <LayerParam />
       <LayerParam2 />
       <LayerParam3 />
       <LayerParam4 />
-      <MapParam>&lt;param name="chizu-{0}" value="{1}"&gt;</MapParam>
+      <MapParam>	"chizu-{0}": "{1}",</MapParam>
       <FileExt>html</FileExt>
       <OutputDir />
       <RunFile />
@@ -270,7 +271,7 @@
       <list>強制スクロール</list>
       <list>高速強制スクロール</list>
     </param>
-    <param type="bool" value="true" desc="得点の表示" name="score_v" category="表示" row="0" stage="0" />
+    <param type="bool" value="true" desc="得点を表示する" name="score_v" category="表示" row="0" stage="0" />
     <param type="int" value="1" desc="ステージ数" name="stage_max" rel="STAGENUM" category="システム" row="0" stage="2" />
     <param type="int" value="1" desc="開始ステージ(デバッグ用)" name="stage_kaishi" rel="STAGESTART" category="システム" row="0" stage="2" />
     <param type="int" value="1" desc="残り人数(複数マップ時有効、1以上)" name="jibun_left_shoki" category="システム" row="0" stage="2" />
@@ -285,8 +286,8 @@
       <list>ブロック１を壊せる</list>
       <list>敵を倒せてブロック１を壊せる</list>
     </param>
-    <param type="bool" value="true" desc="しっぽの標準装備をしない" name="j_tail_hf" chip="tokugi" category="装備" row="0" stage="0" />
-    <param type="bool" value="true" desc="水中でファイアボールが使えない" name="j_fire_mkf" chip="FireT" category="装備" row="0" stage="0" />
+    <param type="bool21" value="true" desc="しっぽの標準装備をする" name="j_tail_hf" category="装備" row="0" stage="0" />
+    <param type="bool" value="true" desc="水中でファイアボールが消える" name="j_fire_mkf" chip="FireT" category="装備" row="0" stage="0" />
     <param type="list" value="1" desc="グレネードの種類" name="grenade_type" chip="GrenadeT" category="装備" row="0" stage="0">
       <list>グレネード(ボスを倒せる)</list>
       <list>グレネード(ボスには効かない)</list>
@@ -295,7 +296,7 @@
       <list>プラズマ砲(ボスを倒せる)</list>
       <list>プラズマ砲(ボスには効かない)</list>
     </param>
-    <param type="bool" value="true" desc="ドリルで滑る床を破壊できるか" name="suberuyuka_hkf" chip="Suberuyuka" category="装備" row="0" stage="0" />
+    <param type="bool" value="true" desc="ドリル等ですべる床を破壊できる" name="suberuyuka_hkf" chip="Suberuyuka" category="装備" row="0" stage="0" />
     <param type="bool" value="true" desc="ピカチーの電撃が水中でも使えるか" name="dengeki_mkf" chip="PikachiA" category="敵" row="0" stage="0" />
     <param type="bool" value="true" desc="ヤチャモが火の粉で攻撃するか" name="yachamo_kf" chip="YachamoA" category="敵" row="0" stage="0" />
     <param type="bool" value="true" desc="エアームズが壁に当たったときに止まるか" name="airms_kf" chip="AirmsA" category="敵" row="0" stage="0" />
@@ -419,11 +420,15 @@
     <param type="string" value="GRENADE" desc="GRENADE の文字" name="moji_grenade" category="表示" row="0" stage="0" />
     <param type="string" value="LEFT" desc="LEFT の文字" name="moji_left" category="表示" row="0" stage="0" />
     <param type="int" value="14" desc="文字の大きさ(8-30)" name="moji_size" category="表示" row="0" stage="0" />
-    <param type="file" value="title.gif" desc="タイトル画面のファイル名" name="filename_title" rel="TITLE" category="画像" row="0" stage="0" />
-    <param type="file" value="ending.gif" desc="エンディング画面のファイル名" name="filename_ending" rel="ENDING" category="画像" row="0" stage="0" />
-    <param type="file" value="gameover.gif" desc="ゲームオーバー画面のファイル名" name="filename_gameover" rel="GAMEOVER" category="画像" row="0" stage="0" />
-    <param type="file" value="pattern.gif" desc="キャラクターパターンのファイル名" name="filename_pattern" rel="PATTERN" category="画像" row="0" stage="0" />
-    <param type="file" value="chizu.gif" desc="地図画面の背景のファイル名" name="filename_chizu" category="画像" row="0" stage="5" />
+    <param type="file_img" value="title.gif" desc="タイトル画面のファイル名" name="filename_title" rel="TITLE" category="画像" row="0" stage="0" />
+    <param type="file_img" value="ending.gif" desc="エンディング画面のファイル名" name="filename_ending" rel="ENDING" category="画像" row="0" stage="0" />
+    <param type="file_img" value="gameover.gif" desc="ゲームオーバー画面のファイル名" name="filename_gameover" rel="GAMEOVER" category="画像" row="0" stage="0" />
+    <param type="file_img" value="pattern.gif" desc="キャラクターパターンのファイル名" name="filename_pattern" rel="PATTERN" category="画像" row="0" stage="0" />
+    <param type="file_img" value="chizu.gif" desc="地図画面の背景のファイル名" name="filename_chizu" category="画像" row="0" stage="5" />
     <param type="int" value="70" desc="ゲームの進行スピード(10-300,小さいほど早い)" name="game_speed" category="システム" row="0" stage="0" />
+    <param type="int" value="512" desc="ゲーム画面の幅" name="width" category="オプション" row="0" stage="0" />
+    <param type="int" value="320" desc="ゲーム画面の高さ" name="height" category="オプション" row="0" stage="0" />
+    <param type="bool" value="false" desc="ループに必ずsetIntervalを使う" name="'bc-loop-setinterval'" category="オプション" row="0" stage="0" />
+    <param type="bool" value="true" desc="小数切り捨て処理をJava版の挙動にする" name="'bc-use-rounddown'" category="オプション" row="0" stage="0" />
   </Config>
 </MasaoProject>

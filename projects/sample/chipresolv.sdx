@@ -930,7 +930,7 @@
           <Y>0</Y>
         </pattern>
         <name>水中</name>
-        <description>左に敵やコインを設置するとそこも水中になる</description>
+        <description>右に敵やコインを設置するとそこも水中になる</description>
       </chip>
     </chips>
     <chips char="5" color="red">
