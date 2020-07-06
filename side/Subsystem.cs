@@ -914,7 +914,7 @@ namespace MasaoPlus
 						array[j].AppendLine(string.Format(Parameter, new object[]
 						{
 							num,
-							text.Substring(num2, text.Length / (StageSplit + 1))
+							text.Substring(num2, Global.cpd.runtime.Definitions.MapSize.x / (StageSplit + 1)) // 定義されたマップ幅まで
 						}));
 					}
 					else
@@ -934,6 +934,7 @@ namespace MasaoPlus
 					num2 += text.Length / (StageSplit + 1);
 				}
 				num++;
+				if (StageSplit == 0 && num == Global.cpd.runtime.Definitions.MapSize.y) break; // 定義されたマップ高さから下は省略
 			}
 			foreach (StringBuilder stringBuilder2 in array)
 			{

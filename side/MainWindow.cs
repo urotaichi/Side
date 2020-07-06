@@ -1907,7 +1907,7 @@ namespace MasaoPlus
 				Global.cpd.EditingMap = Global.cpd.project.MapData;
 				this.MEditMap.Checked = true;
 				Global.state.MapEditMode = true;
-				Global.state.Background = Global.cpd.project.Config.BackgroundM;
+				Global.state.Background = Global.cpd.project.Config.BackgroundM; // なぜか複数ステージでステージ開始時画面の背景色を使っている
 				this.LayerState(false);
 				Global.state.EditingForeground = true;
 				break;

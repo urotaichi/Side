@@ -518,11 +518,28 @@ namespace MasaoPlus.Controls
 					if(Global.cpd.project.Config.Configurations[num].Value == "1") {
 							Global.cpd.project.Config.Configurations[this.width_index].Value = "640";
 							Global.cpd.project.Config.Configurations[this.height_index].Value = "480";
+							int tmp_y = Global.cpd.runtime.Definitions.MapSize.y;
+							Global.cpd.runtime.Definitions.MapSize.x = 19;
+							Global.cpd.runtime.Definitions.MapSize.y = 14;
+
+							// 予め地図画面の配列数を多めに取っておけば↓は不要
+							
+							Array.Resize(ref Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize.y);
+							for (int i = 0; i < Global.cpd.runtime.Definitions.MapSize.y; i++)
+                            {
+								int k;
+								if (i < tmp_y) k = Global.cpd.runtime.Definitions.MapSize.x - Global.cpd.project.MapData[i].Length;
+								else k = Global.cpd.runtime.Definitions.MapSize.x;
+								for (int j = 0; j < k; j++)
+									Global.cpd.project.MapData[i] += ".";
+							}
 					}
 					else if(Global.cpd.project.Config.Configurations[num].Value == "2") {
 							Global.cpd.project.Config.Configurations[this.width_index].Value = "512";
 							Global.cpd.project.Config.Configurations[this.height_index].Value = "320";
-					}
+							Global.cpd.runtime.Definitions.MapSize.x = 15;
+							Global.cpd.runtime.Definitions.MapSize.y = 9;
+						}
 				}
 				break;
 			case ConfigParam.Types.l_a:
