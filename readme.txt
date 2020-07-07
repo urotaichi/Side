@@ -2,7 +2,7 @@
 ■	Side
 ■		the Supermasao Integrated Development Environment
 ■
-■	Version 1.1.1
+■	Version 2.0.0
 ■
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
