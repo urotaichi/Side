@@ -30,7 +30,7 @@
     <ParamName4>map{0}-{1}-f</ParamName4>
     
     <!--地図吐き出し処理の設定-->
-    <!--地図の解析パラメータ名(大文字小文字は無視されます) {0}に横分割数 {1}に行数が代入されます-->
+    <!--地図の解析パラメータ名(大文字小文字は無視されます) {0}に行数が代入されます-->
     <MapName>chizu-{0}</MapName>
   </Definitions>
   <DefaultConfigurations>
