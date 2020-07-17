@@ -142,6 +142,10 @@ GMSの連絡・報告掲示板（http://masao.kame33.com/tmsky/renraku-4.php）
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 ■修正点
+□2.0.1
+　2020/07/17
+	CanvasMasao.js、CanvasMasao_v28.jsを最新のもの(v5.2.4)に変更。
+
 □2.0.0
 　2020/07/07
 	mcs_haikei_visible、fx_bgm_loop、fx_bgm_switchにおいて

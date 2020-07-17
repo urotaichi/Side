@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace MasaoPlus
 {
@@ -63,13 +65,13 @@ namespace MasaoPlus
 		public int ZipExtractBufferLength = 10240;
 
 		// Token: 0x04000271 RID: 625
-		public string Version = "2.0.0";
+		public string Version = FileVersionInfo.GetVersionInfo((new Uri(Assembly.GetExecutingAssembly().CodeBase)).LocalPath).FileVersion;
 
 		// Token: 0x04000272 RID: 626
-		public double CheckVersion = 2.0;
+		public double CheckVersion = 2.01;
 
 		// Token: 0x04000273 RID: 627
-		public string EditorIdStr = "/* [MI]Created By:Side - the Supermasao Integrated Development Environment v2.0.0[/MI] */";
+		public string EditorIdStr = "/* [MI]Created By:Side - the Supermasao Integrated Development Environment v2.0.1[/MI] */";
 
 		// Token: 0x04000274 RID: 628
 		public bool IsAutoUpdateEnabled = true;
