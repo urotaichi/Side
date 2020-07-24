@@ -98,15 +98,17 @@ namespace MasaoPlus
 		// Token: 0x06000074 RID: 116 RVA: 0x0000B53C File Offset: 0x0000973C
 		public void PaintStage(Graphics g, bool EnableExDraw) // ステージ全体画像を作成
 		{
+			g.PixelOffsetMode = PixelOffsetMode.Half;
+			g.InterpolationMode = InterpolationMode.NearestNeighbor;
 			bool extendDraw = Global.config.draw.ExtendDraw;
 			Global.config.draw.ExtendDraw = EnableExDraw;
 			if (Global.cpd.UseLayer)
 			{
 				this.UpdateBackgroundBuffer();
-				g.DrawImage(this.BackLayerBmp, new Point(0, 0));
+				g.DrawImage(this.BackLayerBmp, 0, 0, this.ForeLayerBmp.Width / DeviceDpi * 96, this.ForeLayerBmp.Height / DeviceDpi * 96);
 			}
 			this.UpdateForegroundBuffer();
-			g.DrawImage(this.ForeLayerBmp, new Point(0, 0));
+			g.DrawImage(this.ForeLayerBmp, 0, 0, this.ForeLayerBmp.Width / DeviceDpi * 96, this.ForeLayerBmp.Height / DeviceDpi * 96);
 			Global.config.draw.ExtendDraw = extendDraw;
 			this.UpdateForegroundBuffer();
 			this.UpdateBackgroundBuffer();

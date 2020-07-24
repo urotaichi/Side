@@ -38,9 +38,9 @@ namespace MasaoPlus.Controls
 			{
 				if (Global.cpd.runtime == null)
 				{
-					return new Size(180, 30);
+					return new Size(180 * DeviceDpi / 96, 30 * DeviceDpi / 96);
 				}
-				return new Size(this.Source.Size.Width * this.ppb, this.Source.Size.Height * this.ppb);
+				return new Size(this.Source.Size.Width * DeviceDpi / 96 * this.ppb, this.Source.Size.Height * DeviceDpi / 96 * this.ppb);
 			}
 			set
 			{
@@ -148,13 +148,13 @@ namespace MasaoPlus.Controls
 				return;
 			}
 			e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-			e.Graphics.DrawImage(this.Source, new Rectangle(0, 0, this.Source.Width * this.ppb, this.Source.Height * this.ppb));
+			e.Graphics.DrawImage(this.Source, new Rectangle(0, 0, this.Source.Width * DeviceDpi / 96 * this.ppb, this.Source.Height * DeviceDpi / 96 * this.ppb));
 			Point mapPointTranslatedMap = Global.state.MapPointTranslatedMap;
 			mapPointTranslatedMap.X *= this.ppb;
 			mapPointTranslatedMap.Y *= this.ppb;
 
 			// 白枠
-			using (Pen pen = new Pen(Brushes.White, (float)this.ppb))
+			using (Pen pen = new Pen(Brushes.White, (float)this.ppb * DeviceDpi / 96))
 			{
 				e.Graphics.DrawRectangle(pen, new Rectangle(mapPointTranslatedMap,
 					new Size(
