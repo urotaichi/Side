@@ -7,12 +7,12 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Permissions;
 
-[assembly: AssemblyVersion("2.0.1.*")]
+[assembly: AssemblyVersion("2.1.0.*")]
 [assembly: ComVisible(false)]
 [assembly: AssemblyTrademark("Side")]
 [assembly: AssemblyTitle("Side")]
 [assembly: NeutralResourcesLanguage("ja-JP")]
-[assembly: AssemblyFileVersion("2.0.1")]
+[assembly: AssemblyFileVersion("2.1.0")]
 [assembly: Guid("a6fc8342-d888-44eb-b337-d4879f7150f8")]
 [assembly: AssemblyProduct("Supermasao Integrated Development Environment")]
 [assembly: AssemblyDescription("正男エディタ")]

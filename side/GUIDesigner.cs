@@ -96,7 +96,7 @@ namespace MasaoPlus
 		}
 
 		// Token: 0x06000074 RID: 116 RVA: 0x0000B53C File Offset: 0x0000973C
-		public void PaintStage(Graphics g, bool EnableExDraw)
+		public void PaintStage(Graphics g, bool EnableExDraw) // ステージ全体画像を作成
 		{
 			bool extendDraw = Global.config.draw.ExtendDraw;
 			Global.config.draw.ExtendDraw = EnableExDraw;
@@ -338,8 +338,8 @@ namespace MasaoPlus
 				{
 					return result;
 				}
-				result.Width = (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
-				result.Height = (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
+				result.Width = (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex);
+				result.Height = (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96 * Global.config.draw.ZoomIndex);
 				return result;
 			}
 		}
@@ -403,11 +403,11 @@ namespace MasaoPlus
 			{
 				if (Global.state.MapEditMode)
 				{
-					this.ForeLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.MapSize.x * Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.MapSize.y * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb);
+					this.ForeLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.MapSize.x * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.MapSize.y * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96, PixelFormat.Format32bppArgb);
 				}
 				else
 				{
-					this.ForeLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.StageSize.x * Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.StageSize.y * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb);
+					this.ForeLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.StageSize.x * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.StageSize.y * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96, PixelFormat.Format32bppArgb);
 				}
 			}
 			else if (!Global.state.UseBuffered)
@@ -437,7 +437,7 @@ namespace MasaoPlus
 			}
 			if (this.BackLayerBmp == null)
 			{
-				this.BackLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.LayerSize.x * Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.LayerSize.y * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb);
+				this.BackLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.LayerSize.x * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.LayerSize.y * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96, PixelFormat.Format32bppArgb);
 			}
 			else if (!Global.state.UseBuffered)
 			{
@@ -459,6 +459,9 @@ namespace MasaoPlus
 		// Token: 0x06000082 RID: 130 RVA: 0x0000C254 File Offset: 0x0000A454
 		private void MakeDrawBuffer(Graphics g, bool foreground)
 		{
+			g.PixelOffsetMode = PixelOffsetMode.Half;
+			g.InterpolationMode = InterpolationMode.NearestNeighbor;
+
 			ChipsData chipsData = default(ChipsData);
 			ChipData c = default(ChipData);
 			new List<GUIDesigner.KeepDrawData>();
@@ -500,32 +503,46 @@ namespace MasaoPlus
 							chipsData = this.DrawLayerRef[text];
 						}
 						c = chipsData.GetCSChip();
-						if (c.size != default(Size))
+						if (c.size != default(Size)) // 標準サイズより大きい
 						{
 							if (Global.state.UseBuffered)
 							{
 								g.CompositingMode = CompositingMode.SourceCopy;
-								g.FillRectangle(Brushes.Transparent, new Rectangle(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y, c.size.Width, c.size.Height));
+								g.FillRectangle(Brushes.Transparent,
+									new Rectangle((num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X) * DeviceDpi / 96, (num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y) * DeviceDpi / 96,
+										c.size.Width * DeviceDpi / 96, c.size.Height * DeviceDpi / 96));
 								g.CompositingMode = CompositingMode.SourceOver;
 							}
-							if (Global.config.draw.ExtendDraw && c.xdraw != default(Point) && c.xdbackgrnd)
+							if (Global.config.draw.ExtendDraw && c.xdraw != default(Point) && c.xdbackgrnd) // 拡張画像　背面
 							{
-								g.DrawImage(this.DrawExOrig, new Rectangle(new Point(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(c.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+								g.DrawImage(this.DrawExOrig,
+									new Rectangle((num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X) * DeviceDpi / 96, (num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y) * DeviceDpi / 96,
+										Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96),
+									new Rectangle(c.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 							}
-							if (foreground)
+							if (foreground) // 標準パターン画像
 							{
-								g.DrawImage(this.DrawChipOrig, new Rectangle(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y, c.size.Width, c.size.Height), new Rectangle(c.pattern.X, c.pattern.Y, c.size.Width, c.size.Height), GraphicsUnit.Pixel);
+								g.DrawImage(this.DrawChipOrig,
+									new Rectangle((num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X) * DeviceDpi / 96, (num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y) * DeviceDpi / 96,
+										c.size.Width * DeviceDpi / 96, c.size.Height * DeviceDpi / 96),
+									new Rectangle(c.pattern, c.size), GraphicsUnit.Pixel);
 							}
-							else
+							else // 背景レイヤー画像
 							{
-								g.DrawImage(this.DrawLayerOrig, new Rectangle(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y, c.size.Width, c.size.Height), new Rectangle(c.pattern.X, c.pattern.Y, c.size.Width, c.size.Height), GraphicsUnit.Pixel);
+								g.DrawImage(this.DrawLayerOrig,
+									new Rectangle((num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X) * DeviceDpi / 96, (num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y) * DeviceDpi / 96,
+										c.size.Width * DeviceDpi / 96, c.size.Height * DeviceDpi / 96),
+									new Rectangle(c.pattern, c.size), GraphicsUnit.Pixel);
 							}
-							if (Global.config.draw.ExtendDraw && c.xdraw != default(Point) && !c.xdbackgrnd)
+							if (Global.config.draw.ExtendDraw && c.xdraw != default(Point) && !c.xdbackgrnd) // 拡張画像　前面
 							{
-								g.DrawImage(this.DrawExOrig, new Rectangle(new Point(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(c.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+								g.DrawImage(this.DrawExOrig,
+									new Rectangle((num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X) * DeviceDpi / 96, (num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y) * DeviceDpi / 96,
+										Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96),
+									new Rectangle(c.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 							}
 						}
-						else
+						else // 標準サイズの画像はリストに追加後、↓で描画
 						{
 							list.Add(new GUIDesigner.KeepDrawData(c, new Point(num2, num)));
 						}
@@ -540,51 +557,37 @@ namespace MasaoPlus
 				{
 					g.CompositingMode = CompositingMode.SourceCopy;
 					Brush transparent = Brushes.Transparent;
-					Point pos = keepDrawData.pos;
-					int x = pos.X * Global.cpd.runtime.Definitions.ChipSize.Width;
-					Point pos2 = keepDrawData.pos;
-					g.FillRectangle(transparent, new Rectangle(new Point(x, pos2.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize));
+					g.FillRectangle(transparent, new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96,
+						Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96));
 					g.CompositingMode = CompositingMode.SourceOver;
 				}
-				if (Global.config.draw.ExtendDraw && keepDrawData.cd.xdraw != default(Point) && keepDrawData.cd.xdbackgrnd)
+				if (Global.config.draw.ExtendDraw && keepDrawData.cd.xdraw != default(Point) && keepDrawData.cd.xdbackgrnd) // 拡張画像　背面
 				{
-					Image drawExOrig = this.DrawExOrig;
-					Point pos3 = keepDrawData.pos;
-					int x2 = pos3.X * Global.cpd.runtime.Definitions.ChipSize.Width;
-					Point pos4 = keepDrawData.pos;
-					g.DrawImage(drawExOrig, new Rectangle(new Point(x2, pos4.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(keepDrawData.cd.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+					g.DrawImage(this.DrawExOrig,
+						new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96,
+							Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96),
+						new Rectangle(keepDrawData.cd.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 				}
-				if (foreground)
+				if (foreground) // 標準パターン画像
 				{
-					Image drawChipOrig = this.DrawChipOrig;
-					Point pos5 = keepDrawData.pos;
-					int x3 = pos5.X * Global.cpd.runtime.Definitions.ChipSize.Width;
-					Point pos6 = keepDrawData.pos;
-					Rectangle destRect = new Rectangle(x3, pos6.Y * Global.cpd.runtime.Definitions.ChipSize.Height, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height);
-					Point pattern = keepDrawData.cd.pattern;
-					int x4 = pattern.X;
-					Point pattern2 = keepDrawData.cd.pattern;
-					g.DrawImage(drawChipOrig, destRect, new Rectangle(x4, pattern2.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), GraphicsUnit.Pixel);
+					g.DrawImage(this.DrawChipOrig,
+						new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96,
+							Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96),
+						new Rectangle(keepDrawData.cd.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 				}
-				else
+				else // 背景レイヤー画像
 				{
-					Image drawLayerOrig = this.DrawLayerOrig;
-					Point pos7 = keepDrawData.pos;
-					int x5 = pos7.X * Global.cpd.runtime.Definitions.ChipSize.Width;
-					Point pos8 = keepDrawData.pos;
-					Rectangle destRect2 = new Rectangle(x5, pos8.Y * Global.cpd.runtime.Definitions.ChipSize.Height, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height);
-					Point pattern3 = keepDrawData.cd.pattern;
-					int x6 = pattern3.X;
-					Point pattern4 = keepDrawData.cd.pattern;
-					g.DrawImage(drawLayerOrig, destRect2, new Rectangle(x6, pattern4.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), GraphicsUnit.Pixel);
+					g.DrawImage(this.DrawLayerOrig,
+						new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96,
+							Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96),
+						new Rectangle(keepDrawData.cd.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 				}
-				if (Global.config.draw.ExtendDraw && keepDrawData.cd.xdraw != default(Point) && !keepDrawData.cd.xdbackgrnd)
+				if (Global.config.draw.ExtendDraw && keepDrawData.cd.xdraw != default(Point) && !keepDrawData.cd.xdbackgrnd) // 拡張画像　前面
 				{
-					Image drawExOrig2 = this.DrawExOrig;
-					Point pos9 = keepDrawData.pos;
-					int x7 = pos9.X * Global.cpd.runtime.Definitions.ChipSize.Width;
-					Point pos10 = keepDrawData.pos;
-					g.DrawImage(drawExOrig2, new Rectangle(new Point(x7, pos10.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(keepDrawData.cd.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+					g.DrawImage(this.DrawExOrig,
+						new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96,
+							Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96),
+						new Rectangle(keepDrawData.cd.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 				}
 			}
 			if (foreground)
@@ -875,10 +878,10 @@ namespace MasaoPlus
 			if (this.DrawMode != GUIDesigner.DirectDrawMode.None)
 			{
 				Rectangle drawRectangle = this.DrawRectangle;
-				drawRectangle.X *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
-				drawRectangle.Y *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
-				drawRectangle.Width *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
-				drawRectangle.Height *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
+				drawRectangle.X *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex);
+				drawRectangle.Y *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96 * Global.config.draw.ZoomIndex);
+				drawRectangle.Width *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex);
+				drawRectangle.Height *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96 * Global.config.draw.ZoomIndex);
 				drawRectangle.X -= Global.state.MapPoint.X;
 				drawRectangle.Y -= Global.state.MapPoint.Y;
 				using (Brush brush3 = new SolidBrush(Color.FromArgb(Global.config.draw.AlphaBlending ? 160 : 255, DrawEx.GetForegroundColor(Global.state.Background))))
@@ -889,12 +892,12 @@ namespace MasaoPlus
 					}
 					else
 					{
-						using (Pen pen = new Pen(brush3, (float)((int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) / 4)))
+						using (Pen pen = new Pen(brush3, (float)((int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex) / 4)))
 						{
-							drawRectangle.X += (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) / 2;
-							drawRectangle.Y += (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex) / 2;
-							drawRectangle.Width -= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
-							drawRectangle.Height -= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
+							drawRectangle.X += (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex) / 2;
+							drawRectangle.Y += (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96 * Global.config.draw.ZoomIndex) / 2;
+							drawRectangle.Width -= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex);
+							drawRectangle.Height -= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96 * Global.config.draw.ZoomIndex);
 							if (this.DrawMode == GUIDesigner.DirectDrawMode.RevLine)
 							{
 								e.Graphics.DrawLine(pen, new Point(drawRectangle.X, drawRectangle.Bottom), new Point(drawRectangle.Right, drawRectangle.Top));
@@ -907,12 +910,16 @@ namespace MasaoPlus
 					}
 				}
 			}
-			if (Global.config.draw.DrawGrid)
+			if (Global.config.draw.DrawGrid) // グリッドを表示
 			{
-				int num4 = (int)((double)(Global.state.MapPointTranslated.X % Global.cpd.runtime.Definitions.ChipSize.Width) * Global.config.draw.ZoomIndex);
-				int num5 = (int)((double)(Global.state.MapPointTranslated.Y % Global.cpd.runtime.Definitions.ChipSize.Height) * Global.config.draw.ZoomIndex);
-				DrawEx.DrawGridEx(e.Graphics, new Rectangle(0, (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex) - num5, num, num2), new Size(Global.definition.GridInterval, (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex)), Global.state.Background);
-				DrawEx.DrawGridEx(e.Graphics, new Rectangle((int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) - num4, 0, num, num2), new Size((int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex), Global.definition.GridInterval), Global.state.Background);
+				// 横方向のグリッド
+				int num4 = (int)((double)(Global.state.MapPointTranslated.X % (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96)) * Global.config.draw.ZoomIndex);
+				// 縦方向のグリッド
+				int num5 = (int)((double)(Global.state.MapPointTranslated.Y % (Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96)) * Global.config.draw.ZoomIndex);
+
+				DrawEx.DrawGridEx(e.Graphics, new Rectangle(0, (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96 * Global.config.draw.ZoomIndex) - num5, num, num2), new Size(Global.definition.GridInterval, (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), Global.state.Background);
+
+				DrawEx.DrawGridEx(e.Graphics, new Rectangle((int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex) - num4, 0, num, num2), new Size((int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex), Global.definition.GridInterval), Global.state.Background);
 			}
 		}
 
@@ -972,7 +979,7 @@ namespace MasaoPlus
 		{
 			if (e.Button != MouseButtons.Left)
 			{
-				if (e.Button == MouseButtons.Right)
+				if (e.Button == MouseButtons.Right) // 右クリック時
 				{
 					if (this.CopyPaste == GUIDesigner.CopyPasteTool.Paste)
 					{
@@ -1014,15 +1021,15 @@ namespace MasaoPlus
 						if (this.CurrentTool == GUIDesigner.EditTool.Cursor && Global.config.draw.RightClickMenu)
 						{
 							this.MouseStartPoint = default(Point);
-							this.MouseStartPoint.X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex));
-							this.MouseStartPoint.Y = (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex));
+							this.MouseStartPoint.X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex));
+							this.MouseStartPoint.Y = (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96 * Global.config.draw.ZoomIndex));
 							this.CursorContextMenu.Show(this, new Point(e.X, e.Y));
 							return;
 						}
 						string stageChar = GUIDesigner.StageText.GetStageChar(new Point
 						{
-							X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)),
-							Y = (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex))
+							X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)),
+							Y = (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96 * Global.config.draw.ZoomIndex))
 						});
 						if (Global.state.MapEditMode)
 						{
@@ -1047,9 +1054,9 @@ namespace MasaoPlus
 						}
 					}
 				}
-				else if (e.Button == MouseButtons.Middle && Global.config.testRun.QuickTestrun)
+				else if (e.Button == MouseButtons.Middle && Global.config.testRun.QuickTestrun) // 中央クリック時
 				{
-					Point p = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+					Point p = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
 					if (GUIDesigner.StageText.IsOverflow(p))
 					{
 						return;
@@ -1072,7 +1079,7 @@ namespace MasaoPlus
 			{
 			case GUIDesigner.CopyPasteTool.Copy:
 			case GUIDesigner.CopyPasteTool.Cut:
-				this.MouseStartPoint = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+				this.MouseStartPoint = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
 				this.MouseLastPoint = this.MouseStartPoint;
 				return;
 			case GUIDesigner.CopyPasteTool.Paste:
@@ -1123,12 +1130,12 @@ namespace MasaoPlus
 					return;
 				case GUIDesigner.EditTool.Line:
 				case GUIDesigner.EditTool.Rect:
-					this.MouseStartPoint = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+					this.MouseStartPoint = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
 					this.MouseLastPoint = this.MouseStartPoint;
 					return;
 				case GUIDesigner.EditTool.Fill:
 					Global.MainWnd.UpdateStatus("塗り潰しています...");
-					this.FillStart(Global.state.CurrentChip, new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex))));
+					this.FillStart(Global.state.CurrentChip, new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex))));
 					this.StageSourceToDrawBuffer();
 					this.AddBuffer();
 					this.Refresh();
@@ -1265,7 +1272,7 @@ namespace MasaoPlus
 					case GUIDesigner.CopyPasteTool.Cut:
 					{
 						this.EnsureScroll(e.X, e.Y);
-						Point point = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+						Point point = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
 						if (point == this.MouseLastPoint)
 						{
 							return;
@@ -1317,15 +1324,15 @@ namespace MasaoPlus
 						}
 						case GUIDesigner.EditTool.Pen:
 						{
-							Point point2 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+							Point point2 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
 							if (point2 == this.MouseLastPoint)
 							{
 								return;
 							}
 							this.PutItem(new Point
 							{
-								X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)),
-								Y = (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex))
+								X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)),
+								Y = (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96 * Global.config.draw.ZoomIndex))
 							});
 							this.MouseLastPoint = point2;
 							return;
@@ -1333,7 +1340,7 @@ namespace MasaoPlus
 						case GUIDesigner.EditTool.Line:
 						{
 							this.EnsureScroll(e.X, e.Y);
-							Point point3 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+							Point point3 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
 							if (point3 == this.MouseLastPoint)
 							{
 								return;
@@ -1380,7 +1387,7 @@ namespace MasaoPlus
 						case GUIDesigner.EditTool.Rect:
 						{
 							this.EnsureScroll(e.X, e.Y);
-							Point point4 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+							Point point4 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
 							if (point4 == this.MouseLastPoint)
 							{
 								return;
@@ -1423,7 +1430,7 @@ namespace MasaoPlus
 				return;
 			}
 			this.EnsureScroll(e.X, e.Y);
-			Point point5 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+			Point point5 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
 			if (point5 == this.MouseLastPoint)
 			{
 				return;
@@ -1915,7 +1922,7 @@ namespace MasaoPlus
 					Global.cpd.EditingLayer[MapPos.Y] = new string(array2);
 				}
 			}
-			if (Global.state.EditingForeground)
+			if (Global.state.EditingForeground) // 標準レイヤー
 			{
 				Size size = default(Size);
 				if (cd.character != null)
@@ -1944,10 +1951,12 @@ namespace MasaoPlus
 				}
 				Point largerPoint = this.GetLargerPoint(cd.GetCSChip().center, chipData.center);
 				Rectangle rectangle = new Rectangle(MapPos.X * Global.cpd.runtime.Definitions.ChipSize.Width - largerPoint.X, MapPos.Y * Global.cpd.runtime.Definitions.ChipSize.Height - largerPoint.Y, size.Width, size.Height);
-				this.RedrawMap(g, new Rectangle(rectangle.X / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle.Y / Global.cpd.runtime.Definitions.ChipSize.Height, rectangle.Width / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle.Height / Global.cpd.runtime.Definitions.ChipSize.Height));
+				this.RedrawMap(g,
+					new Rectangle(rectangle.X / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle.Y / Global.cpd.runtime.Definitions.ChipSize.Height,
+						rectangle.Width / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle.Height / Global.cpd.runtime.Definitions.ChipSize.Height));
 				return;
 			}
-			else
+			else // 背景レイヤー
 			{
 				ChipData cschip = cd.GetCSChip();
 				Size size2 = cschip.size;
@@ -1972,11 +1981,15 @@ namespace MasaoPlus
 		// Token: 0x0600009E RID: 158 RVA: 0x00010A94 File Offset: 0x0000EC94
 		public void RedrawMap(Graphics g, Rectangle rect)
 		{
-			using (Bitmap bitmap = new Bitmap(rect.Width * Global.cpd.runtime.Definitions.ChipSize.Width, rect.Height * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb))
+			using (Bitmap bitmap = new Bitmap(rect.Width * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, rect.Height * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96, PixelFormat.Format32bppArgb))
 			{
 				using (Graphics graphics = Graphics.FromImage(bitmap))
 				{
 					graphics.FillRectangle(Brushes.Transparent, new Rectangle(new Point(0, 0), bitmap.Size));
+
+					graphics.PixelOffsetMode = PixelOffsetMode.Half;
+					graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+
 					Point point = new Point(-1, -1);
 					for (int i = rect.Y; i < rect.Bottom; i++)
 					{
@@ -2028,19 +2041,31 @@ namespace MasaoPlus
 								{
 									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
 									{
-										graphics.DrawImage(this.DrawExOrig, new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawExOrig,
+											new Rectangle((point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X) * DeviceDpi / 96, (point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y) * DeviceDpi / 96,
+											Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96),
+											new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 									}
 									if (Global.state.EditingForeground)
 									{
-										graphics.DrawImage(this.DrawChipOrig, new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y, cschip.size.Width, cschip.size.Height), new Rectangle(cschip.pattern.X, cschip.pattern.Y, cschip.size.Width, cschip.size.Height), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawChipOrig,
+											new Rectangle((point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X) * DeviceDpi / 96, (point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y) * DeviceDpi / 96,
+											cschip.size.Width * DeviceDpi / 96, cschip.size.Height * DeviceDpi / 96),
+											new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
 									}
 									else
 									{
-										graphics.DrawImage(this.DrawLayerOrig, new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y, cschip.size.Width, cschip.size.Height), new Rectangle(cschip.pattern.X, cschip.pattern.Y, cschip.size.Width, cschip.size.Height), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawLayerOrig,
+											new Rectangle((point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X) * DeviceDpi / 96, (point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y) * DeviceDpi / 96,
+											cschip.size.Width * DeviceDpi / 96, cschip.size.Height * DeviceDpi / 96),
+											new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
 									}
 									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
 									{
-										graphics.DrawImage(this.DrawExOrig, new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawExOrig,
+											new Rectangle((point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X) * DeviceDpi / 96, (point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y) * DeviceDpi / 96,
+											Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96),
+											new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 									}
 								}
 							}
@@ -2098,19 +2123,31 @@ namespace MasaoPlus
 								{
 									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
 									{
-										graphics.DrawImage(this.DrawExOrig, new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawExOrig,
+											new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96,
+											Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96),
+											new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 									}
 									if (Global.state.EditingForeground)
 									{
-										graphics.DrawImage(this.DrawChipOrig, new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), new Rectangle(cschip.pattern.X, cschip.pattern.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawChipOrig,
+											new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96,
+											Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96),
+											new Rectangle(cschip.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 									}
 									else
 									{
-										graphics.DrawImage(this.DrawLayerOrig, new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), new Rectangle(cschip.pattern.X, cschip.pattern.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawLayerOrig,
+											new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96,
+											Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96),
+											new Rectangle(cschip.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 									}
 									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
 									{
-										graphics.DrawImage(this.DrawExOrig, new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawExOrig,
+											new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96,
+											Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96),
+											new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 									}
 								}
 							}
@@ -2119,7 +2156,7 @@ namespace MasaoPlus
 					}
 				}
 				g.CompositingMode = CompositingMode.SourceCopy;
-				g.DrawImage(bitmap, new Point(rect.X * Global.cpd.runtime.Definitions.ChipSize.Width, rect.Y * Global.cpd.runtime.Definitions.ChipSize.Height));
+				g.DrawImage(bitmap, new Point(rect.X * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96, rect.Y * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96));
 				g.CompositingMode = CompositingMode.SourceOver;
 			}
 		}
@@ -2248,6 +2285,8 @@ namespace MasaoPlus
 		// Token: 0x060000A9 RID: 169 RVA: 0x000117B4 File Offset: 0x0000F9B4
 		private void InitializeComponent()
 		{
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.components = new Container();
 			this.CursorContextMenu = new ContextMenuStrip(this.components);
 			this.QuickTestRun = new ToolStripMenuItem();
@@ -2274,54 +2313,54 @@ namespace MasaoPlus
 				this.ProjectConfig
 			});
 			this.CursorContextMenu.Name = "CursorContextMenu";
-			this.CursorContextMenu.Size = new Size(275, 170);
+			this.CursorContextMenu.Size = new Size(275 * DeviceDpi / 96, 170 * DeviceDpi / 96);
 			this.QuickTestRun.Image = Resources.testrunplace;
 			this.QuickTestRun.Name = "QuickTestRun";
 			this.QuickTestRun.ShortcutKeyDisplayString = "MiddleClick";
-			this.QuickTestRun.Size = new Size(274, 22);
+			this.QuickTestRun.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
 			this.QuickTestRun.Text = "ここからテスト実行(&R)";
 			this.QuickTestRun.Click += this.QuickTestRun_Click;
 			this.PickChip.Name = "PickChip";
 			this.PickChip.ShortcutKeyDisplayString = "";
-			this.PickChip.Size = new Size(274, 22);
+			this.PickChip.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
 			this.PickChip.Text = "直下のチップを拾う(&P)";
 			this.PickChip.Click += this.PickChip_Click;
 			this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-			this.toolStripMenuItem3.Size = new Size(271, 6);
+			this.toolStripMenuItem3.Size = new Size(271 * DeviceDpi / 96, 6 * DeviceDpi / 96);
 			this.MenuCut.Image = Resources.cut;
 			this.MenuCut.Name = "MenuCut";
 			this.MenuCut.ShortcutKeyDisplayString = "Ctrl+X";
-			this.MenuCut.Size = new Size(274, 22);
+			this.MenuCut.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
 			this.MenuCut.Text = "切り取り(&X)";
 			this.MenuCut.Click += this.MenuCut_Click;
 			this.MenuCopy.Image = Resources.copy;
 			this.MenuCopy.Name = "MenuCopy";
 			this.MenuCopy.ShortcutKeyDisplayString = "Ctrl+C";
-			this.MenuCopy.Size = new Size(274, 22);
+			this.MenuCopy.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
 			this.MenuCopy.Text = "コピー(&C)";
 			this.MenuCopy.Click += this.MenuCopy_Click;
 			this.MenuPaste.Image = Resources.paste;
 			this.MenuPaste.Name = "MenuPaste";
 			this.MenuPaste.ShortcutKeyDisplayString = "Ctrl+V";
-			this.MenuPaste.Size = new Size(274, 22);
+			this.MenuPaste.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
 			this.MenuPaste.Text = "貼り付け(&V)";
 			this.MenuPaste.Click += this.MenuPaste_Click;
 			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-			this.toolStripMenuItem2.Size = new Size(271, 6);
+			this.toolStripMenuItem2.Size = new Size(271 * DeviceDpi / 96, 6 * DeviceDpi / 96);
 			this.DoTestrun.Image = Resources.testrunstage;
 			this.DoTestrun.Name = "DoTestrun";
 			this.DoTestrun.ShortcutKeyDisplayString = "Ctrl+Space";
-			this.DoTestrun.Size = new Size(274, 22);
+			this.DoTestrun.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
 			this.DoTestrun.Text = "テスト実行(&T)";
 			this.DoTestrun.Click += this.DoTestrun_Click;
 			this.ProjectConfig.Image = Resources.map_edit;
 			this.ProjectConfig.Name = "ProjectConfig";
 			this.ProjectConfig.ShortcutKeyDisplayString = "F2";
-			this.ProjectConfig.Size = new Size(274, 22);
+			this.ProjectConfig.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
 			this.ProjectConfig.Text = "プロジェクト設定(&P)";
 			this.ProjectConfig.Click += this.ProjectConfig_Click;
 			base.Name = "GUIDesigner";
-			base.Size = new Size(315, 177);
+			base.Size = new Size(315 * DeviceDpi / 96, 177 * DeviceDpi / 96);
 			base.MouseCaptureChanged += this.GUIDesigner_MouseCaptureChanged;
 			base.MouseMove += this.GUIDesigner_MouseMove;
 			base.MouseDown += this.GUIDesigner_MouseDown;

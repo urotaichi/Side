@@ -90,8 +90,8 @@ namespace MasaoPlus
 		private void MainWindow_Load(object sender, EventArgs e)
 		{
 			this.MUpdateApp.Enabled = Global.definition.IsAutoUpdateEnabled;
-			base.SetDesktopLocation(Global.config.lastData.WndPoint.X, Global.config.lastData.WndPoint.Y);
-			base.Size = Global.config.lastData.WndSize;
+			base.SetDesktopLocation(Global.config.lastData.WndPoint.X * DeviceDpi / 96, Global.config.lastData.WndPoint.Y * DeviceDpi / 96);
+			base.Size = new Size(Global.config.lastData.WndSize.Width * DeviceDpi / 96, Global.config.lastData.WndSize.Height * DeviceDpi / 96);
 			base.WindowState = Global.config.lastData.WndState;
 			this.MainSplit.SplitterDistance = (int)((double)base.Width * Global.config.lastData.SpliterDist);
 			if (Global.config.localSystem.ReverseTabView)
@@ -434,8 +434,8 @@ namespace MasaoPlus
 		// Token: 0x06000148 RID: 328 RVA: 0x00020604 File Offset: 0x0001E804
 		private void EditorSystemPanel_Resize(object sender, EventArgs e)
 		{
-			this.MainDesigner.Width = this.EditorSystemPanel.Width - 20;
-			this.MainDesigner.Height = this.EditorSystemPanel.Height - 20;
+			this.MainDesigner.Width = this.EditorSystemPanel.Width - 20 * DeviceDpi / 96;
+			this.MainDesigner.Height = this.EditorSystemPanel.Height - 20 * DeviceDpi / 96;
 			this.GVirtScroll.Left = this.MainDesigner.Width;
 			this.GVirtScroll.Height = this.MainDesigner.Height;
 			this.GVirtScroll.Refresh();
@@ -811,30 +811,44 @@ namespace MasaoPlus
 		}
 
 		// Token: 0x06000159 RID: 345 RVA: 0x0002126C File Offset: 0x0001F46C
+		// 左上のチップのサンプル画像　拡張描画画像がなぜか描画されていないので後で追加？
 		private void ChipImage_Paint(object sender, PaintEventArgs e)
 		{
 			if (this.MainDesigner.DrawChipOrig != null)
 			{
-				e.Graphics.InterpolationMode = InterpolationMode.High;
+				e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
 				ChipData cschip = Global.state.CurrentChip.GetCSChip();
-				if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+				if (DeviceDpi / 96 >= 2 && (cschip.size == default(Size) || cschip.size.Width / cschip.size.Height == 1))
 				{
-					if (cschip.size == default(Size))
+					e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+				}
+				else e.Graphics.InterpolationMode = InterpolationMode.High;
+				if (!Global.cpd.UseLayer || Global.state.EditingForeground) // パターン画像
+				{
+					if (cschip.size == default(Size)) // 32×32のチップ
 					{
-						e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(0, 0), this.ChipImage.Size), new Rectangle(cschip.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+						e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig,
+							new Rectangle(new Point(0, 0), this.ChipImage.Size),
+							new Rectangle(cschip.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 						return;
-					}
-					e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(0, 0), this.ChipImage.Size), new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
+					} // 32×32以上のサイズのチップ
+					e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig,
+						new Rectangle(new Point(0, 0), this.ChipImage.Size),
+						new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
 					return;
 				}
-				else
+				else // レイヤー画像
 				{
-					if (cschip.size == default(Size))
+					if (cschip.size == default(Size)) // 32×32のチップ
 					{
-						e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig, new Rectangle(new Point(0, 0), this.ChipImage.Size), new Rectangle(cschip.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+						e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig,
+							new Rectangle(new Point(0, 0), this.ChipImage.Size),
+							new Rectangle(cschip.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 						return;
-					}
-					e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig, new Rectangle(new Point(0, 0), this.ChipImage.Size), new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
+					} // 32×32以上のサイズのチップ　未使用？
+					e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig,
+						new Rectangle(new Point(0, 0), this.ChipImage.Size),
+						new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
 				}
 			}
 		}
@@ -1287,7 +1301,7 @@ namespace MasaoPlus
 			{
 				switch (this.DrawType.SelectedIndex)
 				{
-				case 0:
+				case 0: // サムネイル
 					using (Brush brush = new SolidBrush(e.ForeColor))
 					{
 						if (!Global.cpd.UseLayer || Global.state.EditingForeground)
@@ -1303,11 +1317,15 @@ namespace MasaoPlus
 							}
 							if (cschip.size == default(Size))
 							{
-								e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(e.Bounds.Location, new Size(e.Bounds.Height, e.Bounds.Height)), new Rectangle(cschip.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+								e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig,
+									new Rectangle(e.Bounds.Location, new Size(e.Bounds.Height, e.Bounds.Height)),
+									new Rectangle(cschip.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 							}
 							else
 							{
-								e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(e.Bounds.Location, new Size(e.Bounds.Height, e.Bounds.Height)), new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
+								e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig,
+									new Rectangle(e.Bounds.Location, new Size(e.Bounds.Height, e.Bounds.Height)),
+									new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
 							}
 						}
 						else
@@ -1334,9 +1352,9 @@ namespace MasaoPlus
 						goto IL_6AF;
 					}
 					break;
-				case 1:
+				case 1: // テキスト
 					break;
-				case 2:
+				case 2: // チップ
 					goto IL_3C9;
 				default:
 					goto IL_6AF;
@@ -1408,13 +1426,11 @@ namespace MasaoPlus
 		{
 			switch (this.DrawType.SelectedIndex)
 			{
-			case 0:
+			case 0: // サムネイル
+			case 1: // テキスト
 				e.ItemHeight = this.ChipList.ItemHeight;
 				return;
-			case 1:
-				e.ItemHeight = this.ChipList.ItemHeight;
-				return;
-			case 2:
+			case 2: // チップ
 			{
 				if (Global.state.MapEditMode)
 				{
@@ -1758,9 +1774,7 @@ namespace MasaoPlus
 			{
 				if (Global.state.TransparentUnactiveLayer)
 				{
-					this.TransparentUnactiveLayer.Checked = false;
 					this.TransparentUnactiveLayer.Enabled = false;
-					Global.state.TransparentUnactiveLayer = false;
 					if (Global.state.EditingForeground)
 					{
 						this.MainDesigner.UpdateBackgroundBuffer();
@@ -1770,11 +1784,11 @@ namespace MasaoPlus
 						this.MainDesigner.UpdateForegroundBuffer();
 					}
 				}
-				this.MTUnactiveLayer.Checked = false;
 				this.MTUnactiveLayer.Enabled = false;
 			}
 			else
 			{
+				this.MainDesigner.InitTransparent();
 				this.TransparentUnactiveLayer.Enabled = true;
 				this.MTUnactiveLayer.Enabled = true;
 			}
@@ -2021,8 +2035,8 @@ namespace MasaoPlus
 			{
 				Global.config.lastData.SpliterDist = (double)this.MainSplit.SplitterDistance / (double)base.Width;
 				Rectangle normalWindowLocation = Native.GetNormalWindowLocation(this);
-				Global.config.lastData.WndSize = normalWindowLocation.Size;
-				Global.config.lastData.WndPoint = normalWindowLocation.Location;
+				Global.config.lastData.WndSize = new Size(normalWindowLocation.Size.Width * 96 / DeviceDpi, normalWindowLocation.Size.Height * 96 / DeviceDpi);
+				Global.config.lastData.WndPoint = new Point(normalWindowLocation.Location.X * 96 / DeviceDpi, normalWindowLocation.Location.Y * 96 / DeviceDpi);
 				Global.config.lastData.WndState = base.WindowState;
 				Global.config.SaveXML(Path.Combine(Application.StartupPath, Global.definition.ConfigFile));
 				if (Global.state.RunFile != null)
@@ -2129,7 +2143,8 @@ namespace MasaoPlus
 					{
 						graphics.FillRectangle(brush, new Rectangle(0, 0, bitmap.Width, bitmap.Height));
 					}
-					Global.MainWnd.MainDesigner.PaintStage(graphics, MessageBox.Show("拡張描画画像も一緒に書き込みますか？", "拡張描画の選択", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
+					Global.MainWnd.MainDesigner.PaintStage(graphics,
+						MessageBox.Show("拡張描画画像も一緒に書き込みますか？", "拡張描画の選択", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes);
 				}
 				string a;
 				if ((a = Path.GetExtension(text).ToLower()) != null)
@@ -2314,6 +2329,10 @@ namespace MasaoPlus
 			this.MainDesigner.AddBuffer();
 			this.MainDesigner.UpdateBackgroundBuffer();
 			this.MainDesigner.UpdateForegroundBuffer();
+			if (Global.state.TransparentUnactiveLayer)
+			{
+				this.MainDesigner.InitTransparent();
+			}
 			this.MainDesigner.Refresh();
 			Global.state.EditFlag = true;
 			this.UpdateStatus("完了");

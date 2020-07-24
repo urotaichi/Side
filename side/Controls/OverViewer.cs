@@ -152,9 +152,16 @@ namespace MasaoPlus.Controls
 			Point mapPointTranslatedMap = Global.state.MapPointTranslatedMap;
 			mapPointTranslatedMap.X *= this.ppb;
 			mapPointTranslatedMap.Y *= this.ppb;
+
+			// 白枠
 			using (Pen pen = new Pen(Brushes.White, (float)this.ppb))
 			{
-				e.Graphics.DrawRectangle(pen, new Rectangle(mapPointTranslatedMap, new Size((int)((double)(Global.MainWnd.MainDesigner.Size.Width / Global.cpd.runtime.Definitions.ChipSize.Width * this.ppb) / Global.config.draw.ZoomIndex), (int)((double)(Global.MainWnd.MainDesigner.Size.Height / Global.cpd.runtime.Definitions.ChipSize.Height * this.ppb) / Global.config.draw.ZoomIndex))));
+				e.Graphics.DrawRectangle(pen, new Rectangle(mapPointTranslatedMap,
+					new Size(
+						(int)((double)(Global.MainWnd.MainDesigner.Size.Width / Global.cpd.runtime.Definitions.ChipSize.Width * this.ppb) / Global.config.draw.ZoomIndex),
+					(int)((double)(Global.MainWnd.MainDesigner.Size.Height / Global.cpd.runtime.Definitions.ChipSize.Height * this.ppb) / Global.config.draw.ZoomIndex)
+					)
+					));
 			}
 		}
 

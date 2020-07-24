@@ -204,10 +204,10 @@ namespace MasaoPlus
 		public Color Background = Color.FromArgb(0, 255, 255);
 
 		// Token: 0x04000312 RID: 786
-		public bool DrawUnactiveLayer;
+		public bool DrawUnactiveLayer = true;
 
 		// Token: 0x04000313 RID: 787
-		public bool TransparentUnactiveLayer;
+		public bool TransparentUnactiveLayer = true;
 
 		// Token: 0x04000314 RID: 788
 		public Point MapPoint = default(Point);

@@ -118,6 +118,10 @@ namespace MasaoPlus.Dialogs
 					{
 						Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
 					}
+					if (Global.state.TransparentUnactiveLayer)
+					{
+						Global.MainWnd.MainDesigner.InitTransparent();
+					}
 					this.SetState("チップリストを作成しています...");
 					Global.MainWnd.ChipItemReady();
 					this.SetState("編集を開始します...");
