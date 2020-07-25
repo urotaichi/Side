@@ -963,7 +963,7 @@ namespace MasaoPlus
 			
 			foreach (StringBuilder stringBuilder2 in array)
 			{
-				stringBuilder.AppendLine(stringBuilder2.ToString());
+				if(stringBuilder2 != null) stringBuilder.AppendLine(stringBuilder2.ToString());
 			}
 
 			if(notdefaultparam && new Regex(@"^\s*?$").Match(stringBuilder.ToString()).Success) { // 出力結果が空白のみの場合

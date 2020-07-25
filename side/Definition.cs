@@ -68,10 +68,10 @@ namespace MasaoPlus
 		public string Version = FileVersionInfo.GetVersionInfo((new Uri(Assembly.GetExecutingAssembly().CodeBase)).LocalPath).FileVersion;
 
 		// Token: 0x04000272 RID: 626
-		public double CheckVersion = 2.02;
+		public double CheckVersion = 2.03;
 
 		// Token: 0x04000273 RID: 627
-		public string EditorIdStr = "/* [MI]Created By:Side - the Supermasao Integrated Development Environment v2.0.2[/MI] */";
+		public string EditorIdStr = "/* [MI]Created By:Side - the Supermasao Integrated Development Environment v2.0.3[/MI] */";
 
 		// Token: 0x04000274 RID: 628
 		public bool IsAutoUpdateEnabled = true;
