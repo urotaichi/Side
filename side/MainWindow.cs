@@ -1921,9 +1921,9 @@ namespace MasaoPlus
 		// Token: 0x0600018C RID: 396 RVA: 0x00023160 File Offset: 0x00021360
 		private void UpdateStageSelector()
 		{
-			this.MEditStage2.Enabled = (Global.cpd.project.Config.StageNum >= 2);
-			this.MEditStage3.Enabled = (Global.cpd.project.Config.StageNum >= 3);
-			this.MEditStage4.Enabled = (Global.cpd.project.Config.StageNum >= 4);
+			this.MEditStage2.Enabled = (Global.cpd.project.Config.StageNum >= 2) || Global.cpd.project.Config.UseWorldmap;
+			this.MEditStage3.Enabled = (Global.cpd.project.Config.StageNum >= 3) || Global.cpd.project.Config.UseWorldmap;
+			this.MEditStage4.Enabled = (Global.cpd.project.Config.StageNum >= 4) || Global.cpd.project.Config.UseWorldmap;
 			this.MEditMap.Enabled = Global.cpd.project.Config.UseWorldmap;
 		}
 
