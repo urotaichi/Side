@@ -905,7 +905,7 @@ namespace MasaoPlus
 				{
 					throw new Exception("分割数の設定が異常です。");
 				}
-				if (!Global.config.localSystem.OutPutInititalSourceCode && !Global.cpd.runtime.Definitions.Package.Contains("28")
+				if (StageSplit != 0 && !Global.config.localSystem.OutPutInititalSourceCode && !Global.cpd.runtime.Definitions.Package.Contains("28")
 					   && text == null_string_all.ToString()) goto SKIP1; // 全部空白の行を省略
 				int num2 = 0; // 何文字目から切り取るか
 				for (int j = 0; j <= StageSplit; j++)
