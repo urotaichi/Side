@@ -221,7 +221,7 @@ namespace MasaoPlus
 		// Token: 0x06000078 RID: 120 RVA: 0x0000B9F4 File Offset: 0x00009BF4
 		public void Redo()
 		{
-			if (this.BufferCurrent >= this.StageBuffer.Count)
+			if (this.BufferCurrent >= this.StageBuffer.Count - 1)
 			{
 				return;
 			}
