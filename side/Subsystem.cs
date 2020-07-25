@@ -79,40 +79,40 @@ namespace MasaoPlus
 			}
 
 			//パラメータを出力
-			stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize.x, true));
+			stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize, true));
 			if (Global.cpd.project.Config.StageNum >= 2)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize.x));
+				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize));
 			}
 			if (Global.cpd.project.Config.StageNum >= 3)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize.x));
+				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize));
 			}
 			if (Global.cpd.project.Config.StageNum >= 4)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize.x));
+				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize));
 			}
 
 			if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize.x));
+				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize));
 				if (Global.cpd.project.Config.StageNum >= 2)
 				{
-					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize.x));
+					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize));
 				}
 				if (Global.cpd.project.Config.StageNum >= 3)
 				{
-					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize.x));
+					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize));
 				}
 				if (Global.cpd.project.Config.StageNum >= 4)
 				{
-					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize.x));
+					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize));
 				}
 			}
 
 			if (Global.cpd.project.Config.UseWorldmap)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.MapParam, 0, Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize.x));
+				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.MapParam, 0, Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize));
 			}
 
 			string parameter = Global.cpd.runtime.DefaultConfigurations.Parameter;
@@ -887,22 +887,27 @@ namespace MasaoPlus
 		}
 
 		// Token: 0x06000201 RID: 513 RVA: 0x00026C74 File Offset: 0x00024E74
-		public static string MakeStageParameter(string Parameter, int StageSplit, string[] StageText, int dxsize, bool notdefaultparam = false)
+		public static string MakeStageParameter(string Parameter, int StageSplit, string[] StageText, Runtime.DefinedData.StageSizeData StageSizeData, bool notdefaultparam = false)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
 			StringBuilder[] array = new StringBuilder[StageSplit + 1];
 
-			StringBuilder null_string = new StringBuilder();
-			for (int j = 0; j < dxsize / (StageSplit + 1); j++)
-				null_string.Append("."); // 空白文字をベタ書きしてるので後で直す？　bytesize（文字の長さ）使った方がいいかも
-			int num = 0;
+			StringBuilder null_string = new StringBuilder(), null_string_all = new StringBuilder();
+			for (int j = 0; j < StageSizeData.x / (StageSplit + 1); j++)
+				for(int i = 0; i < StageSizeData.bytesize; i++)
+					null_string.Append("."); // 空白文字をベタ書きしてるので後で直す？
+			for (int i = 0; i <= StageSplit; i++)
+				null_string_all.Append(null_string);
+			int num = 0; // 何行目か
 			foreach (string text in StageText)
 			{
 				if (StageSplit != 0 && text.Length % (StageSplit + 1) != 0)
 				{
 					throw new Exception("分割数の設定が異常です。");
 				}
-				int num2 = 0;
+				if (!Global.config.localSystem.OutPutInititalSourceCode && !Global.cpd.runtime.Definitions.Package.Contains("28")
+					   && text == null_string_all.ToString()) goto SKIP1; // 全部空白の行を省略
+				int num2 = 0; // 何文字目から切り取るか
 				for (int j = 0; j <= StageSplit; j++)
 				{
 					if (array[j] == null)
@@ -919,11 +924,6 @@ namespace MasaoPlus
 					}
 					else
 					{
-						if(!Global.config.localSystem.OutPutInititalSourceCode && !Global.cpd.runtime.Definitions.Package.Contains("28")
-						&& (text.Substring(num2, text.Length / (StageSplit + 1)) == null_string.ToString()
-						|| text.Substring(num2, text.Length / (StageSplit + 1)) == null_string.ToString() + null_string.ToString()) // レイヤー用
-						) continue;// 省略
-
 						array[j].AppendLine(string.Format(Parameter, new object[]
 						{
 							j,
@@ -933,9 +933,34 @@ namespace MasaoPlus
 					}
 					num2 += text.Length / (StageSplit + 1);
 				}
+				if (!Global.config.localSystem.OutPutInititalSourceCode && !Global.cpd.runtime.Definitions.Package.Contains("28"))  // 省略
+				{// マップデータを二次元配列に入れて管理した方がいいかも　要改善
+					array[StageSplit].Replace(string.Format(Parameter, new object[]
+							   {
+								StageSplit,
+								num,
+								null_string.ToString()
+							   }) + "\r\n", string.Empty);
+					for (int j = StageSplit - 1; j > 0; j--)
+					{
+						if (!array[j + 1].ToString().Contains((j + 1).ToString() + "-" + num.ToString()))
+						{
+							array[j].Replace(string.Format(Parameter, new object[]
+							{
+								j,
+								num,
+								null_string.ToString()
+							}) + "\r\n", string.Empty);
+							break;
+						}
+					}
+				}
+						
+				SKIP1:
 				num++;
 				if (StageSplit == 0 && num == Global.cpd.runtime.Definitions.MapSize.y) break; // 定義されたマップ高さから下は省略
 			}
+			
 			foreach (StringBuilder stringBuilder2 in array)
 			{
 				stringBuilder.AppendLine(stringBuilder2.ToString());
