@@ -500,33 +500,47 @@ namespace MasaoPlus
 							chipsData = this.DrawLayerRef[text];
 						}
 						c = chipsData.GetCSChip();
-						if (c.size != default(Size))
+						if (c.size != default(Size)) // 標準サイズより大きい
 						{
 							if (Global.state.UseBuffered)
 							{
 								g.CompositingMode = CompositingMode.SourceCopy;
-								g.FillRectangle(Brushes.Transparent, new Rectangle(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y, c.size.Width, c.size.Height));
+								g.FillRectangle(Brushes.Transparent,
+									new Rectangle(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y,
+									c.size.Width, c.size.Height));
 								g.CompositingMode = CompositingMode.SourceOver;
 							}
 							if (Global.config.draw.ExtendDraw && c.xdraw != default(Point) && c.xdbackgrnd)
-							{
-								g.DrawImage(this.DrawExOrig, new Rectangle(new Point(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(c.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+							{ // 拡張画像　背面
+								g.DrawImage(this.DrawExOrig,
+									new Rectangle(new Point(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y),
+										Global.cpd.runtime.Definitions.ChipSize),
+									new Rectangle(c.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 							}
 							if (foreground)
-							{
-								g.DrawImage(this.DrawChipOrig, new Rectangle(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y, c.size.Width, c.size.Height), new Rectangle(c.pattern.X, c.pattern.Y, c.size.Width, c.size.Height), GraphicsUnit.Pixel);
+							{ // 標準パターン画像
+								g.DrawImage(this.DrawChipOrig,
+									new Rectangle(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y,
+										c.size.Width, c.size.Height),
+									new Rectangle(c.pattern, c.size), GraphicsUnit.Pixel);
 							}
 							else
-							{
-								g.DrawImage(this.DrawLayerOrig, new Rectangle(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y, c.size.Width, c.size.Height), new Rectangle(c.pattern.X, c.pattern.Y, c.size.Width, c.size.Height), GraphicsUnit.Pixel);
+							{ // 背景レイヤー画像
+								g.DrawImage(this.DrawLayerOrig,
+									new Rectangle(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y,
+										c.size.Width, c.size.Height),
+									new Rectangle(c.pattern, c.size), GraphicsUnit.Pixel);
 							}
 							if (Global.config.draw.ExtendDraw && c.xdraw != default(Point) && !c.xdbackgrnd)
-							{
-								g.DrawImage(this.DrawExOrig, new Rectangle(new Point(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(c.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+							{ // 拡張画像　前面
+								g.DrawImage(this.DrawExOrig,
+									new Rectangle(new Point(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y),
+										Global.cpd.runtime.Definitions.ChipSize),
+									new Rectangle(c.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 							}
 						}
 						else
-						{
+						{ // 標準サイズの画像はリストに追加後、↓で描画
 							list.Add(new GUIDesigner.KeepDrawData(c, new Point(num2, num)));
 						}
 					}
@@ -539,52 +553,37 @@ namespace MasaoPlus
 				if (Global.state.UseBuffered)
 				{
 					g.CompositingMode = CompositingMode.SourceCopy;
-					Brush transparent = Brushes.Transparent;
-					Point pos = keepDrawData.pos;
-					int x = pos.X * Global.cpd.runtime.Definitions.ChipSize.Width;
-					Point pos2 = keepDrawData.pos;
-					g.FillRectangle(transparent, new Rectangle(new Point(x, pos2.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize));
+					g.FillRectangle(Brushes.Transparent, new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height,
+						Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height));
 					g.CompositingMode = CompositingMode.SourceOver;
 				}
 				if (Global.config.draw.ExtendDraw && keepDrawData.cd.xdraw != default(Point) && keepDrawData.cd.xdbackgrnd)
-				{
-					Image drawExOrig = this.DrawExOrig;
-					Point pos3 = keepDrawData.pos;
-					int x2 = pos3.X * Global.cpd.runtime.Definitions.ChipSize.Width;
-					Point pos4 = keepDrawData.pos;
-					g.DrawImage(drawExOrig, new Rectangle(new Point(x2, pos4.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(keepDrawData.cd.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+				{ // 拡張画像　背面
+					g.DrawImage(this.DrawExOrig,
+						new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height,
+							Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height),
+						new Rectangle(keepDrawData.cd.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 				}
 				if (foreground)
-				{
-					Image drawChipOrig = this.DrawChipOrig;
-					Point pos5 = keepDrawData.pos;
-					int x3 = pos5.X * Global.cpd.runtime.Definitions.ChipSize.Width;
-					Point pos6 = keepDrawData.pos;
-					Rectangle destRect = new Rectangle(x3, pos6.Y * Global.cpd.runtime.Definitions.ChipSize.Height, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height);
-					Point pattern = keepDrawData.cd.pattern;
-					int x4 = pattern.X;
-					Point pattern2 = keepDrawData.cd.pattern;
-					g.DrawImage(drawChipOrig, destRect, new Rectangle(x4, pattern2.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), GraphicsUnit.Pixel);
+				{ // 標準パターン画像
+					g.DrawImage(this.DrawChipOrig,
+						new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height,
+							Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height),
+						new Rectangle(keepDrawData.cd.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 				}
 				else
-				{
-					Image drawLayerOrig = this.DrawLayerOrig;
-					Point pos7 = keepDrawData.pos;
-					int x5 = pos7.X * Global.cpd.runtime.Definitions.ChipSize.Width;
-					Point pos8 = keepDrawData.pos;
-					Rectangle destRect2 = new Rectangle(x5, pos8.Y * Global.cpd.runtime.Definitions.ChipSize.Height, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height);
-					Point pattern3 = keepDrawData.cd.pattern;
-					int x6 = pattern3.X;
-					Point pattern4 = keepDrawData.cd.pattern;
-					g.DrawImage(drawLayerOrig, destRect2, new Rectangle(x6, pattern4.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), GraphicsUnit.Pixel);
+				{ // 背景レイヤー画像
+					g.DrawImage(this.DrawLayerOrig,
+						new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height,
+							Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height),
+						new Rectangle(keepDrawData.cd.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 				}
 				if (Global.config.draw.ExtendDraw && keepDrawData.cd.xdraw != default(Point) && !keepDrawData.cd.xdbackgrnd)
-				{
-					Image drawExOrig2 = this.DrawExOrig;
-					Point pos9 = keepDrawData.pos;
-					int x7 = pos9.X * Global.cpd.runtime.Definitions.ChipSize.Width;
-					Point pos10 = keepDrawData.pos;
-					g.DrawImage(drawExOrig2, new Rectangle(new Point(x7, pos10.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(keepDrawData.cd.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+				{ // 拡張画像　前面
+					g.DrawImage(this.DrawExOrig,
+						 new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height,
+							 Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height),
+						 new Rectangle(keepDrawData.cd.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 				}
 			}
 			if (foreground)
@@ -908,10 +907,15 @@ namespace MasaoPlus
 				}
 			}
 			if (Global.config.draw.DrawGrid)
-			{
+			{ // グリッドを表示
+
+				// 横方向のグリッド
 				int num4 = (int)((double)(Global.state.MapPointTranslated.X % Global.cpd.runtime.Definitions.ChipSize.Width) * Global.config.draw.ZoomIndex);
+				// 縦方向のグリッド
 				int num5 = (int)((double)(Global.state.MapPointTranslated.Y % Global.cpd.runtime.Definitions.ChipSize.Height) * Global.config.draw.ZoomIndex);
+
 				DrawEx.DrawGridEx(e.Graphics, new Rectangle(0, (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex) - num5, num, num2), new Size(Global.definition.GridInterval, (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex)), Global.state.Background);
+
 				DrawEx.DrawGridEx(e.Graphics, new Rectangle((int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) - num4, 0, num, num2), new Size((int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex), Global.definition.GridInterval), Global.state.Background);
 			}
 		}
@@ -973,7 +977,7 @@ namespace MasaoPlus
 			if (e.Button != MouseButtons.Left)
 			{
 				if (e.Button == MouseButtons.Right)
-				{
+				{ // 右クリック時
 					if (this.CopyPaste == GUIDesigner.CopyPasteTool.Paste)
 					{
 						Global.MainWnd.CopyPasteInit();
@@ -1019,6 +1023,8 @@ namespace MasaoPlus
 							this.CursorContextMenu.Show(this, new Point(e.X, e.Y));
 							return;
 						}
+
+						// チップを拾う
 						string stageChar = GUIDesigner.StageText.GetStageChar(new Point
 						{
 							X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)),
@@ -1048,7 +1054,7 @@ namespace MasaoPlus
 					}
 				}
 				else if (e.Button == MouseButtons.Middle && Global.config.testRun.QuickTestrun)
-				{
+				{ // 中央クリック時
 					Point p = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
 					if (GUIDesigner.StageText.IsOverflow(p))
 					{
@@ -1916,7 +1922,7 @@ namespace MasaoPlus
 				}
 			}
 			if (Global.state.EditingForeground)
-			{
+			{ // 標準レイヤー
 				Size size = default(Size);
 				if (cd.character != null)
 				{
@@ -1944,11 +1950,13 @@ namespace MasaoPlus
 				}
 				Point largerPoint = this.GetLargerPoint(cd.GetCSChip().center, chipData.center);
 				Rectangle rectangle = new Rectangle(MapPos.X * Global.cpd.runtime.Definitions.ChipSize.Width - largerPoint.X, MapPos.Y * Global.cpd.runtime.Definitions.ChipSize.Height - largerPoint.Y, size.Width, size.Height);
-				this.RedrawMap(g, new Rectangle(rectangle.X / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle.Y / Global.cpd.runtime.Definitions.ChipSize.Height, rectangle.Width / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle.Height / Global.cpd.runtime.Definitions.ChipSize.Height));
+				this.RedrawMap(g,
+					new Rectangle(rectangle.X / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle.Y / Global.cpd.runtime.Definitions.ChipSize.Height,
+						rectangle.Width / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle.Height / Global.cpd.runtime.Definitions.ChipSize.Height));
 				return;
 			}
 			else
-			{
+			{ // 背景レイヤー
 				ChipData cschip = cd.GetCSChip();
 				Size size2 = cschip.size;
 				ChipData cschip2 = default(ChipsData).GetCSChip();
@@ -1964,7 +1972,9 @@ namespace MasaoPlus
 				}
 				Point largerPoint2 = this.GetLargerPoint(cschip.center, cschip2.center);
 				Rectangle rectangle2 = new Rectangle(MapPos.X * Global.cpd.runtime.Definitions.ChipSize.Width - largerPoint2.X, MapPos.Y * Global.cpd.runtime.Definitions.ChipSize.Height - largerPoint2.Y, size2.Width, size2.Height);
-				this.RedrawMap(g, new Rectangle(rectangle2.X / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle2.Y / Global.cpd.runtime.Definitions.ChipSize.Height, rectangle2.Width / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle2.Height / Global.cpd.runtime.Definitions.ChipSize.Height));
+				this.RedrawMap(g,
+					new Rectangle(rectangle2.X / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle2.Y / Global.cpd.runtime.Definitions.ChipSize.Height,
+						rectangle2.Width / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle2.Height / Global.cpd.runtime.Definitions.ChipSize.Height));
 				return;
 			}
 		}
@@ -2028,19 +2038,27 @@ namespace MasaoPlus
 								{
 									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
 									{
-										graphics.DrawImage(this.DrawExOrig, new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawExOrig,
+											new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y), Global.cpd.runtime.Definitions.ChipSize),
+											new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 									}
 									if (Global.state.EditingForeground)
 									{
-										graphics.DrawImage(this.DrawChipOrig, new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y, cschip.size.Width, cschip.size.Height), new Rectangle(cschip.pattern.X, cschip.pattern.Y, cschip.size.Width, cschip.size.Height), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawChipOrig,
+											new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y, cschip.size.Width, cschip.size.Height),
+											new Rectangle(cschip.pattern.X, cschip.pattern.Y, cschip.size.Width, cschip.size.Height), GraphicsUnit.Pixel);
 									}
 									else
 									{
-										graphics.DrawImage(this.DrawLayerOrig, new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y, cschip.size.Width, cschip.size.Height), new Rectangle(cschip.pattern.X, cschip.pattern.Y, cschip.size.Width, cschip.size.Height), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawLayerOrig,
+											new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y, cschip.size.Width, cschip.size.Height),
+											new Rectangle(cschip.pattern.X, cschip.pattern.Y, cschip.size.Width, cschip.size.Height), GraphicsUnit.Pixel);
 									}
 									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
 									{
-										graphics.DrawImage(this.DrawExOrig, new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawExOrig,
+											new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y), Global.cpd.runtime.Definitions.ChipSize),
+											new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 									}
 								}
 							}
@@ -2098,19 +2116,27 @@ namespace MasaoPlus
 								{
 									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
 									{
-										graphics.DrawImage(this.DrawExOrig, new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawExOrig,
+											new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize),
+											new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 									}
 									if (Global.state.EditingForeground)
 									{
-										graphics.DrawImage(this.DrawChipOrig, new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), new Rectangle(cschip.pattern.X, cschip.pattern.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawChipOrig,
+											new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height),
+											new Rectangle(cschip.pattern.X, cschip.pattern.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), GraphicsUnit.Pixel);
 									}
 									else
 									{
-										graphics.DrawImage(this.DrawLayerOrig, new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), new Rectangle(cschip.pattern.X, cschip.pattern.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawLayerOrig,
+											new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height),
+											new Rectangle(cschip.pattern.X, cschip.pattern.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), GraphicsUnit.Pixel);
 									}
 									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
 									{
-										graphics.DrawImage(this.DrawExOrig, new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize), new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+										graphics.DrawImage(this.DrawExOrig,
+											new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize),
+											new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
 									}
 								}
 							}
