@@ -51,12 +51,12 @@
 			this.RuntimeName.Text = "ランタイム名";
 			this.RuntimeName.Width = 200;
 			this.Author.Text = "作者";
-			this.Author.Width = 100;
+			this.Author.Width = 70;
 			this.Archive.Text = "実行アーカイブ";
-			this.Archive.Width = 100;
+			this.Archive.Width = 120;
 			this.Layer.Text = "レイヤー";
 			this.Version.Text = "バージョン";
-			this.Version.Width = 100;
+			this.Version.Width = 60;
 			this.button1.DialogResult = global::System.Windows.Forms.DialogResult.OK;
 			this.button1.Location = new global::System.Drawing.Point(486, 219);
 			this.button1.Name = "button1";

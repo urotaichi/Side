@@ -1758,9 +1758,7 @@ namespace MasaoPlus
 			{
 				if (Global.state.TransparentUnactiveLayer)
 				{
-					this.TransparentUnactiveLayer.Checked = false;
 					this.TransparentUnactiveLayer.Enabled = false;
-					Global.state.TransparentUnactiveLayer = false;
 					if (Global.state.EditingForeground)
 					{
 						this.MainDesigner.UpdateBackgroundBuffer();
@@ -1770,11 +1768,11 @@ namespace MasaoPlus
 						this.MainDesigner.UpdateForegroundBuffer();
 					}
 				}
-				this.MTUnactiveLayer.Checked = false;
 				this.MTUnactiveLayer.Enabled = false;
 			}
 			else
 			{
+				this.MainDesigner.InitTransparent();
 				this.TransparentUnactiveLayer.Enabled = true;
 				this.MTUnactiveLayer.Enabled = true;
 			}

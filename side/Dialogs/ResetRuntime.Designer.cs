@@ -57,11 +57,11 @@
 			this.RuntimeView.UseCompatibleStateImageBehavior = false;
 			this.RuntimeView.View = global::System.Windows.Forms.View.Details;
 			this.RTN.Text = "ランタイム名";
-			this.RTN.Width = 300;
+			this.RTN.Width = 250;
 			this.Author.Text = "作者";
 			this.Author.Width = 100;
 			this.ELayer.Text = "レイヤー";
-			this.ELayer.Width = 50;
+			this.ELayer.Width = 60;
 			this.Cancel.DialogResult = global::System.Windows.Forms.DialogResult.Cancel;
 			this.Cancel.Location = new global::System.Drawing.Point(358, 275);
 			this.Cancel.Name = "Cancel";
