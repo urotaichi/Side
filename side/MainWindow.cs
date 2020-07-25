@@ -2314,6 +2314,10 @@ namespace MasaoPlus
 			this.MainDesigner.AddBuffer();
 			this.MainDesigner.UpdateBackgroundBuffer();
 			this.MainDesigner.UpdateForegroundBuffer();
+			if (Global.state.TransparentUnactiveLayer)
+			{
+				this.MainDesigner.InitTransparent();
+			}
 			this.MainDesigner.Refresh();
 			Global.state.EditFlag = true;
 			this.UpdateStatus("完了");
