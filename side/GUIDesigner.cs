@@ -25,14 +25,7 @@ namespace MasaoPlus
 			}
 			set
 			{
-				if (value == GUIDesigner.EditTool.Pen)
-				{
-					this.BufferingDraw = false;
-				}
-				else
-				{
-					this.BufferingDraw = true;
-				}
+				this.BufferingDraw = value != GUIDesigner.EditTool.Pen;
 				this.curTool = value;
 				this.Refresh();
 			}
@@ -51,15 +44,7 @@ namespace MasaoPlus
 			{
 				if (value == GUIDesigner.CopyPasteTool.None)
 				{
-					GUIDesigner.EditTool currentTool = this.CurrentTool;
-					if (currentTool == GUIDesigner.EditTool.Pen)
-					{
-						this.BufferingDraw = false;
-					}
-					else
-					{
-						this.BufferingDraw = true;
-					}
+					this.BufferingDraw = this.CurrentTool != GUIDesigner.EditTool.Pen;
 				}
 				else
 				{
@@ -464,6 +449,9 @@ namespace MasaoPlus
 			new List<GUIDesigner.KeepDrawData>();
 			List<GUIDesigner.KeepDrawData> list = new List<GUIDesigner.KeepDrawData>();
 			int num = 0;
+			GraphicsState transState;
+			g.PixelOffsetMode = PixelOffsetMode.Half;
+			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
 			while (Global.state.MapEditMode ? (num < Global.cpd.runtime.Definitions.MapSize.y) : (num < Global.cpd.runtime.Definitions.StageSize.y))
 			{
 				int num2 = 0;
@@ -505,43 +493,50 @@ namespace MasaoPlus
 							if (Global.state.UseBuffered)
 							{
 								g.CompositingMode = CompositingMode.SourceCopy;
-								g.FillRectangle(Brushes.Transparent,
-									new Rectangle(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y,
-									c.size.Width, c.size.Height));
+								g.FillRectangle(Brushes.Transparent, new Rectangle(num2 * chipsize.Width - c.center.X, num * chipsize.Height - c.center.Y, c.size.Width, c.size.Height));
 								g.CompositingMode = CompositingMode.SourceOver;
 							}
 							if (Global.config.draw.ExtendDraw && c.xdraw != default(Point) && c.xdbackgrnd)
 							{ // 拡張画像　背面
 								g.DrawImage(this.DrawExOrig,
-									new Rectangle(new Point(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y),
-										Global.cpd.runtime.Definitions.ChipSize),
-									new Rectangle(c.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+									new Rectangle(new Point(num2 * chipsize.Width - c.center.X, num * chipsize.Height - c.center.Y), chipsize),
+									new Rectangle(c.xdraw, chipsize), GraphicsUnit.Pixel);
 							}
 							if (foreground)
 							{ // 標準パターン画像
+								transState = g.Save();
+								int rotate_o = default;
+								if (Math.Abs(c.rotate) % 180 == 90 && c.size.Width > c.size.Height)
+								{
+									rotate_o = (c.size.Width - c.size.Height) / (c.size.Width / c.size.Height) * Math.Sign(c.rotate);
+								}
+								g.TranslateTransform(num2 * chipsize.Width - c.center.X + c.size.Width / 2, num * chipsize.Height - c.center.Y + c.size.Height / 2);
+								g.RotateTransform(c.rotate);
+								if (c.scale != default) {
+									g.TranslateTransform(0, -16);
+									g.ScaleTransform(c.scale, c.scale);
+								}
 								g.DrawImage(this.DrawChipOrig,
-									new Rectangle(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y,
-										c.size.Width, c.size.Height),
+									new Rectangle(-c.size.Width / 2 + rotate_o, -c.size.Height / 2 + rotate_o, c.size.Width, c.size.Height),
 									new Rectangle(c.pattern, c.size), GraphicsUnit.Pixel);
+								g.Restore(transState);
 							}
 							else
 							{ // 背景レイヤー画像
 								g.DrawImage(this.DrawLayerOrig,
-									new Rectangle(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y,
-										c.size.Width, c.size.Height),
+									new Rectangle(num2 * chipsize.Width - c.center.X, num * chipsize.Height - c.center.Y, c.size.Width, c.size.Height),
 									new Rectangle(c.pattern, c.size), GraphicsUnit.Pixel);
 							}
 							if (Global.config.draw.ExtendDraw && c.xdraw != default(Point) && !c.xdbackgrnd)
 							{ // 拡張画像　前面
 								g.DrawImage(this.DrawExOrig,
-									new Rectangle(new Point(num2 * Global.cpd.runtime.Definitions.ChipSize.Width - c.center.X, num * Global.cpd.runtime.Definitions.ChipSize.Height - c.center.Y),
-										Global.cpd.runtime.Definitions.ChipSize),
-									new Rectangle(c.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+									new Rectangle(new Point(num2 * chipsize.Width - c.center.X, num * chipsize.Height - c.center.Y), chipsize),
+									new Rectangle(c.xdraw, chipsize), GraphicsUnit.Pixel);
 							}
 						}
 						else
 						{ // 標準サイズの画像はリストに追加後、↓で描画
-							list.Add(new GUIDesigner.KeepDrawData(c, new Point(num2, num)));
+							list.Add(new GUIDesigner.KeepDrawData(c, new Point(num2, num), chipsData.character));
 						}
 					}
 					num2++;
@@ -553,37 +548,75 @@ namespace MasaoPlus
 				if (Global.state.UseBuffered)
 				{
 					g.CompositingMode = CompositingMode.SourceCopy;
-					g.FillRectangle(Brushes.Transparent, new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height,
-						Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height));
+					g.FillRectangle(Brushes.Transparent, new Rectangle(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height,
+						chipsize.Width, chipsize.Height));
 					g.CompositingMode = CompositingMode.SourceOver;
 				}
 				if (Global.config.draw.ExtendDraw && keepDrawData.cd.xdraw != default(Point) && keepDrawData.cd.xdbackgrnd)
 				{ // 拡張画像　背面
 					g.DrawImage(this.DrawExOrig,
-						new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height,
-							Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height),
-						new Rectangle(keepDrawData.cd.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+						new Rectangle(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height, chipsize.Width, chipsize.Height),
+						new Rectangle(keepDrawData.cd.xdraw, chipsize), GraphicsUnit.Pixel);
 				}
 				if (foreground)
 				{ // 標準パターン画像
-					g.DrawImage(this.DrawChipOrig,
-						new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height,
-							Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height),
-						new Rectangle(keepDrawData.cd.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+					transState = g.Save();
+					g.TranslateTransform(keepDrawData.pos.X * chipsize.Width,
+						keepDrawData.pos.Y * chipsize.Height);
+					switch (keepDrawData.cd.name)
+					{
+						case "一方通行":
+							if (keepDrawData.cd.description.Contains("表示なし")) break;
+							Pen p = new Pen(Global.cpd.project.Config.Firebar2, 2);
+							if (keepDrawData.cd.description.Contains("右"))
+								g.DrawLine(p, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height * 4);
+							else if (keepDrawData.cd.description.Contains("左"))
+								g.DrawLine(p, 1, 0, 1, chipsize.Height * 4);
+							else if (keepDrawData.cd.description.Contains("上"))
+								g.DrawLine(p, 0, 1, chipsize.Width * 4, 1);
+							else if (keepDrawData.cd.description.Contains("下"))
+								g.DrawLine(p, 0, chipsize.Height - 1, chipsize.Width * 4, chipsize.Height - 1);
+							p.Dispose();
+							break;
+						default:
+							g.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
+							if (keepDrawData.chara == "A")
+							{
+								g.ScaleTransform(-1, 1); // 基本主人公は逆向き
+								if (Global.state.MapEditMode && keepDrawData.pos.X > Global.cpd.runtime.Definitions.MapSize.x / 2 ||
+									Global.state.ChipRegister.ContainsKey("view_move_type") && int.Parse(Global.state.ChipRegister["view_move_type"]) == 2)
+								{
+									g.ScaleTransform(-1, 1);// 特殊条件下では元の向き
+								}
+							}
+							g.RotateTransform(keepDrawData.cd.rotate);
+							if (keepDrawData.cd.repeat != default)
+							{
+								for (int j = 0; j < keepDrawData.cd.repeat; j++)
+								{
+									g.DrawImage(this.DrawChipOrig,
+										new Rectangle(-chipsize.Width / 2 + j * chipsize.Width * Math.Sign(keepDrawData.cd.rotate), -chipsize.Height / 2, chipsize.Width, chipsize.Height),
+										new Rectangle(keepDrawData.cd.pattern, chipsize), GraphicsUnit.Pixel);
+								}
+							}
+							g.DrawImage(this.DrawChipOrig,
+								new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height),
+								new Rectangle(keepDrawData.cd.pattern, chipsize), GraphicsUnit.Pixel);
+							break;
+					}
+					g.Restore(transState);
 				}
 				else
 				{ // 背景レイヤー画像
 					g.DrawImage(this.DrawLayerOrig,
-						new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height,
-							Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height),
-						new Rectangle(keepDrawData.cd.pattern, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+						new Rectangle(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height, chipsize.Width, chipsize.Height),
+						new Rectangle(keepDrawData.cd.pattern, chipsize), GraphicsUnit.Pixel);
 				}
 				if (Global.config.draw.ExtendDraw && keepDrawData.cd.xdraw != default(Point) && !keepDrawData.cd.xdbackgrnd)
 				{ // 拡張画像　前面
 					g.DrawImage(this.DrawExOrig,
-						 new Rectangle(keepDrawData.pos.X * Global.cpd.runtime.Definitions.ChipSize.Width, keepDrawData.pos.Y * Global.cpd.runtime.Definitions.ChipSize.Height,
-							 Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height),
-						 new Rectangle(keepDrawData.cd.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+						 new Rectangle(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height, chipsize.Width, chipsize.Height),
+						 new Rectangle(keepDrawData.cd.xdraw, chipsize), GraphicsUnit.Pixel);
 				}
 			}
 			if (foreground)
@@ -844,7 +877,7 @@ namespace MasaoPlus
 				}
 				else
 				{
-					e.Graphics.DrawImage(this.ForegroundBuffer, new Rectangle(new Point(0, 0), new Size(num, num2)), new Rectangle(Global.state.MapPoint, new Size(num, num2)), GraphicsUnit.Pixel);
+					e.Graphics.DrawImage(this.ForegroundBuffer, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPoint, new Size(num, num2)), GraphicsUnit.Pixel);
 				}
 			}
 			else
@@ -864,11 +897,11 @@ namespace MasaoPlus
 				double num3 = 1.0 / Global.config.draw.ZoomIndex;
 				if (Global.cpd.UseLayer && (!Global.state.EditingForeground || Global.state.DrawUnactiveLayer))
 				{
-					e.Graphics.DrawImage(this.BackLayerBmp, new Rectangle(new Point(0, 0), new Size(num, num2)), new Rectangle(Global.state.MapPointTranslated, new Size((int)((double)num * num3), (int)((double)num2 * num3))), GraphicsUnit.Pixel);
+					e.Graphics.DrawImage(this.BackLayerBmp, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)((double)num * num3), (int)((double)num2 * num3))), GraphicsUnit.Pixel);
 				}
 				if (!Global.cpd.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
 				{
-					e.Graphics.DrawImage(this.ForeLayerBmp, new Rectangle(new Point(0, 0), new Size(num, num2)), new Rectangle(Global.state.MapPointTranslated, new Size((int)((double)num * num3), (int)((double)num2 * num3))), GraphicsUnit.Pixel);
+					e.Graphics.DrawImage(this.ForeLayerBmp, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)((double)num * num3), (int)((double)num2 * num3))), GraphicsUnit.Pixel);
 				}
 			}
 			if (this.DrawMode != GUIDesigner.DirectDrawMode.None)
@@ -1895,6 +1928,7 @@ namespace MasaoPlus
 		}
 
 		// Token: 0x0600009D RID: 157 RVA: 0x00010644 File Offset: 0x0000E844
+		// チップを置いたとき
 		public void PutItem(Graphics g, Point MapPos, ChipsData cd)
 		{
 			if (GUIDesigner.StageText.IsOverflow(MapPos))
@@ -1921,6 +1955,7 @@ namespace MasaoPlus
 					Global.cpd.EditingLayer[MapPos.Y] = new string(array2);
 				}
 			}
+			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
 			if (Global.state.EditingForeground)
 			{ // 標準レイヤー
 				Size size = default(Size);
@@ -1945,14 +1980,31 @@ namespace MasaoPlus
 				}
 				if (size == default(Size))
 				{
-					this.RedrawMap(g, new Rectangle(MapPos, new Size(1, 1)));
+					if(cd.GetCSChip().name == "一方通行" && (cd.GetCSChip().description.Contains("上") || cd.GetCSChip().description.Contains("下")))
+						this.RedrawMap(g, new Rectangle(MapPos, new Size(cd.GetCSChip().repeat, 1)));
+					else
+						this.RedrawMap(g, new Rectangle(MapPos, new Size(1, (cd.GetCSChip().repeat == default)?1: cd.GetCSChip().repeat)));
 					return;
 				}
 				Point largerPoint = this.GetLargerPoint(cd.GetCSChip().center, chipData.center);
-				Rectangle rectangle = new Rectangle(MapPos.X * Global.cpd.runtime.Definitions.ChipSize.Width - largerPoint.X, MapPos.Y * Global.cpd.runtime.Definitions.ChipSize.Height - largerPoint.Y, size.Width, size.Height);
+				Rectangle rectangle;
+				if (Math.Abs(cd.GetCSChip().rotate) % 180 == 90 && cd.GetCSChip().size.Width > cd.GetCSChip().size.Height)
+				{
+					rectangle = new Rectangle(MapPos.X * chipsize.Height - largerPoint.X, MapPos.Y * chipsize.Width - largerPoint.Y, size.Height, size.Width);
+				}
+				else if(cd.GetCSChip().scale != default)
+				{
+					rectangle = new Rectangle(MapPos.X * chipsize.Width - 32 * (int)Math.Ceiling(((largerPoint.X + chipsize.Width / 2) * cd.GetCSChip().scale - chipsize.Width / 2) / 32),
+						MapPos.Y * chipsize.Height - (int)((largerPoint.Y + 16) * cd.GetCSChip().scale),
+						32 * ((int)Math.Ceiling((size.Width / 2 * cd.GetCSChip().scale - chipsize.Width / 2) / 32) * 2 + 1), (int)(size.Height * cd.GetCSChip().scale));
+				}
+				else
+				{
+					rectangle = new Rectangle(MapPos.X * chipsize.Width - largerPoint.X, MapPos.Y * chipsize.Height - largerPoint.Y, size.Width, size.Height);
+				}
 				this.RedrawMap(g,
-					new Rectangle(rectangle.X / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle.Y / Global.cpd.runtime.Definitions.ChipSize.Height,
-						rectangle.Width / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle.Height / Global.cpd.runtime.Definitions.ChipSize.Height));
+					new Rectangle(rectangle.X / chipsize.Width, rectangle.Y / chipsize.Height,
+						rectangle.Width / chipsize.Width, rectangle.Height / chipsize.Height));
 				return;
 			}
 			else
@@ -1971,10 +2023,10 @@ namespace MasaoPlus
 					return;
 				}
 				Point largerPoint2 = this.GetLargerPoint(cschip.center, cschip2.center);
-				Rectangle rectangle2 = new Rectangle(MapPos.X * Global.cpd.runtime.Definitions.ChipSize.Width - largerPoint2.X, MapPos.Y * Global.cpd.runtime.Definitions.ChipSize.Height - largerPoint2.Y, size2.Width, size2.Height);
+				Rectangle rectangle2 = new Rectangle(MapPos.X * chipsize.Width - largerPoint2.X, MapPos.Y * chipsize.Height - largerPoint2.Y, size2.Width, size2.Height);
 				this.RedrawMap(g,
-					new Rectangle(rectangle2.X / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle2.Y / Global.cpd.runtime.Definitions.ChipSize.Height,
-						rectangle2.Width / Global.cpd.runtime.Definitions.ChipSize.Width, rectangle2.Height / Global.cpd.runtime.Definitions.ChipSize.Height));
+					new Rectangle(rectangle2.X / chipsize.Width, rectangle2.Y / chipsize.Height,
+						rectangle2.Width / chipsize.Width, rectangle2.Height / chipsize.Height));
 				return;
 			}
 		}
@@ -1982,10 +2034,13 @@ namespace MasaoPlus
 		// Token: 0x0600009E RID: 158 RVA: 0x00010A94 File Offset: 0x0000EC94
 		public void RedrawMap(Graphics g, Rectangle rect)
 		{
-			using (Bitmap bitmap = new Bitmap(rect.Width * Global.cpd.runtime.Definitions.ChipSize.Width, rect.Height * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb))
+			GraphicsState transState;
+			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
+			using (Bitmap bitmap = new Bitmap(rect.Width * chipsize.Width, rect.Height * chipsize.Height, PixelFormat.Format32bppArgb))
 			{
 				using (Graphics graphics = Graphics.FromImage(bitmap))
 				{
+					graphics.PixelOffsetMode = PixelOffsetMode.Half;
 					graphics.FillRectangle(Brushes.Transparent, new Rectangle(new Point(0, 0), bitmap.Size));
 					Point point = new Point(-1, -1);
 					for (int i = rect.Y; i < rect.Bottom; i++)
@@ -2039,26 +2094,41 @@ namespace MasaoPlus
 									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
 									{
 										graphics.DrawImage(this.DrawExOrig,
-											new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y), Global.cpd.runtime.Definitions.ChipSize),
-											new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+											new Rectangle(new Point(point.X * chipsize.Width - cschip.center.X, point.Y * chipsize.Height - cschip.center.Y), chipsize),
+											new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
 									}
 									if (Global.state.EditingForeground)
 									{
+										transState = graphics.Save();
+										int rotate_o = default;
+										if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
+										{
+											rotate_o = (cschip.size.Width - cschip.size.Height) / (cschip.size.Width / cschip.size.Height) * Math.Sign(cschip.rotate);
+										}
+										graphics.TranslateTransform(point.X * chipsize.Width - cschip.center.X + cschip.size.Width / 2,
+											point.Y * chipsize.Height - cschip.center.Y + cschip.size.Height / 2);
+										graphics.RotateTransform(cschip.rotate);
+										if (cschip.scale != default)
+										{
+											graphics.TranslateTransform(0, -16);
+											graphics.ScaleTransform(cschip.scale, cschip.scale);
+										}
 										graphics.DrawImage(this.DrawChipOrig,
-											new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y, cschip.size.Width, cschip.size.Height),
-											new Rectangle(cschip.pattern.X, cschip.pattern.Y, cschip.size.Width, cschip.size.Height), GraphicsUnit.Pixel);
+											new Rectangle(-cschip.size.Width / 2 + rotate_o, -cschip.size.Height / 2 + rotate_o, cschip.size.Width, cschip.size.Height),
+											new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
+										graphics.Restore(transState);
 									}
 									else
 									{
 										graphics.DrawImage(this.DrawLayerOrig,
-											new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y, cschip.size.Width, cschip.size.Height),
-											new Rectangle(cschip.pattern.X, cschip.pattern.Y, cschip.size.Width, cschip.size.Height), GraphicsUnit.Pixel);
+											new Rectangle(new Point(point.X * chipsize.Width - cschip.center.X, point.Y * chipsize.Height - cschip.center.Y), chipsize),
+											new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
 									}
 									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
 									{
 										graphics.DrawImage(this.DrawExOrig,
-											new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width - cschip.center.X, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height - cschip.center.Y), Global.cpd.runtime.Definitions.ChipSize),
-											new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+											new Rectangle(new Point(point.X * chipsize.Width - cschip.center.X, point.Y * chipsize.Height - cschip.center.Y), chipsize),
+											new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
 									}
 								}
 							}
@@ -2117,26 +2187,67 @@ namespace MasaoPlus
 									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
 									{
 										graphics.DrawImage(this.DrawExOrig,
-											new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize),
-											new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+											new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize),
+											new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
 									}
 									if (Global.state.EditingForeground)
 									{
-										graphics.DrawImage(this.DrawChipOrig,
-											new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height),
-											new Rectangle(cschip.pattern.X, cschip.pattern.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), GraphicsUnit.Pixel);
+										transState = graphics.Save();
+										graphics.TranslateTransform(point.X * chipsize.Width, point.Y * chipsize.Height);
+										switch (cschip.name)
+										{
+											case "一方通行":
+												if (cschip.description.Contains("表示なし")) break;
+												Pen p = new Pen(Global.cpd.project.Config.Firebar2, 2);
+												if (cschip.description.Contains("右"))
+													graphics.DrawLine(p, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height * cschip.repeat);
+												else if (cschip.description.Contains("左"))
+													graphics.DrawLine(p, 1, 0, 1, chipsize.Height * cschip.repeat);
+												else if (cschip.description.Contains("上"))
+													graphics.DrawLine(p, 0, 1, chipsize.Width * cschip.repeat, 1);
+												else if (cschip.description.Contains("下"))
+													graphics.DrawLine(p, 0, chipsize.Height - 1, chipsize.Width * cschip.repeat, chipsize.Height - 1);
+												p.Dispose();
+												break;
+											default:
+												graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
+												if (chipsData.character == "A")
+												{
+													graphics.ScaleTransform(-1, 1); // 基本主人公は逆向き
+													if (Global.state.MapEditMode && rect.X > Global.cpd.runtime.Definitions.MapSize.x / 2 ||
+														Global.state.ChipRegister.ContainsKey("view_move_type") && int.Parse(Global.state.ChipRegister["view_move_type"]) == 2)
+													{
+														graphics.ScaleTransform(-1, 1);// 特殊条件下では元の向き
+													}
+												}
+												graphics.RotateTransform(cschip.rotate);
+												if (cschip.repeat != default)
+												{
+													for (int j = 0; j < cschip.repeat; j++)
+													{
+														graphics.DrawImage(this.DrawChipOrig,
+															new Rectangle(-chipsize.Width / 2 + j * chipsize.Width * Math.Sign(cschip.rotate), -chipsize.Height / 2, chipsize.Width, chipsize.Height),
+															new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+													}
+												}
+												graphics.DrawImage(this.DrawChipOrig,
+													new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height),
+													new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+												break;
+										}
+										graphics.Restore(transState);
 									}
 									else
 									{
 										graphics.DrawImage(this.DrawLayerOrig,
-											new Rectangle(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height),
-											new Rectangle(cschip.pattern.X, cschip.pattern.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height), GraphicsUnit.Pixel);
+											new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize),
+											new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 									}
 									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
 									{
 										graphics.DrawImage(this.DrawExOrig,
-											new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize),
-											new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+											new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize),
+											new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
 									}
 								}
 							}
@@ -2145,7 +2256,7 @@ namespace MasaoPlus
 					}
 				}
 				g.CompositingMode = CompositingMode.SourceCopy;
-				g.DrawImage(bitmap, new Point(rect.X * Global.cpd.runtime.Definitions.ChipSize.Width, rect.Y * Global.cpd.runtime.Definitions.ChipSize.Height));
+				g.DrawImage(bitmap, rect.X * chipsize.Width, rect.Y * chipsize.Height);
 				g.CompositingMode = CompositingMode.SourceOver;
 			}
 		}
@@ -2559,10 +2670,11 @@ namespace MasaoPlus
 		public struct KeepDrawData
 		{
 			// Token: 0x060000B1 RID: 177 RVA: 0x0000277D File Offset: 0x0000097D
-			public KeepDrawData(ChipData c, Point p)
+			public KeepDrawData(ChipData c, Point p, string chara)
 			{
 				this.cd = c;
 				this.pos = p;
+				this.chara = chara;
 			}
 
 			// Token: 0x040000B5 RID: 181
@@ -2570,6 +2682,8 @@ namespace MasaoPlus
 
 			// Token: 0x040000B6 RID: 182
 			public Point pos;
+
+			public string chara;
 		}
 	}
 }

@@ -20,6 +20,12 @@ namespace MasaoPlus
 		// Token: 0x04000137 RID: 311
 		public Point center;
 
+		public int rotate;
+
+		public float scale;
+
+		public int repeat;
+
 		// Token: 0x04000138 RID: 312
 		public Point xdraw;
 

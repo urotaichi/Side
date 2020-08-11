@@ -35,10 +35,11 @@ namespace MasaoPlus
 		}
 
 		// Token: 0x06000104 RID: 260 RVA: 0x00017978 File Offset: 0x00015B78
+		// パラメータ設定読み込み
 		public void ConfigReady()
 		{
 			this.Categories = new List<string>();
-			this.RelIndex = new int[13];
+			this.RelIndex = new int[18];
 			bool[] array = new bool[12];
 			array[0] = false;
 			array[1] = false;
@@ -70,8 +71,7 @@ namespace MasaoPlus
 						Global.state.ChipRegister.Add(configParam.ChipRelation, configParam.Value);
 					}
 				}
-				string relation;
-				switch (relation = configParam.Relation)
+				switch (configParam.Relation)
 				{
 				case "BACKGROUND":
 					this.RelIndex[0] = i;
@@ -123,6 +123,24 @@ namespace MasaoPlus
 				case "STAGESELECT":
 					this.RelIndex[12] = i;
 					array[11] = true;
+					break;
+				}
+				switch (configParam.Name)
+				{
+				case "grenade_@1":
+					this.RelIndex[13] = i;
+					break;
+				case "grenade_@2":
+					this.RelIndex[14] = i;
+					break;
+				case "mizunohadou_@":
+					this.RelIndex[15] = i;
+					break;
+				case "firebar_@1":
+					this.RelIndex[16] = i;
+					break;
+				case "firebar_@2":
+					this.RelIndex[17] = i;
 					break;
 				}
 			}
@@ -361,6 +379,86 @@ namespace MasaoPlus
 					return;
 				}
 				this.Configurations[this.RelIndex[12]].Value = "1";
+			}
+		}
+
+		[XmlIgnore]
+		public Color Grenade1
+		{
+			get
+			{
+				Colors colors = new Colors(this.Configurations[this.RelIndex[13]].Value);
+				return colors.c;
+			}
+			set
+			{
+				Colors colors = default(Colors);
+				colors.c = value;
+				this.Configurations[this.RelIndex[13]].Value = colors.ToString();
+			}
+		}
+
+		[XmlIgnore]
+		public Color Grenade2
+		{
+			get
+			{
+				Colors colors = new Colors(this.Configurations[this.RelIndex[14]].Value);
+				return colors.c;
+			}
+			set
+			{
+				Colors colors = default(Colors);
+				colors.c = value;
+				this.Configurations[this.RelIndex[14]].Value = colors.ToString();
+			}
+		}
+
+		[XmlIgnore]
+		public Color Mizunohadou
+		{
+			get
+			{
+				Colors colors = new Colors(this.Configurations[this.RelIndex[15]].Value);
+				return colors.c;
+			}
+			set
+			{
+				Colors colors = default(Colors);
+				colors.c = value;
+				this.Configurations[this.RelIndex[15]].Value = colors.ToString();
+			}
+		}
+
+		[XmlIgnore]
+		public Color Firebar1
+		{
+			get
+			{
+				Colors colors = new Colors(this.Configurations[this.RelIndex[16]].Value);
+				return colors.c;
+			}
+			set
+			{
+				Colors colors = default(Colors);
+				colors.c = value;
+				this.Configurations[this.RelIndex[16]].Value = colors.ToString();
+			}
+		}
+
+		[XmlIgnore]
+		public Color Firebar2
+		{
+			get
+			{
+				Colors colors = new Colors(this.Configurations[this.RelIndex[17]].Value);
+				return colors.c;
+			}
+			set
+			{
+				Colors colors = default(Colors);
+				colors.c = value;
+				this.Configurations[this.RelIndex[17]].Value = colors.ToString();
 			}
 		}
 

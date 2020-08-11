@@ -85,7 +85,7 @@
     <list>全部</list><list>左下１画面分</list>
     <list>左下横２画面分</list><list>左下縦２画面分</list><list>左下４画面分</list>
   </param>
-  <param name="view_move_type" desc="表示領域の動き方" type="list" value="1" category="システム">
+  <param name="view_move_type" desc="表示領域の動き方" type="list" value="1" category="システム" chip="view_move_type">
     <list>右進行用の視界</list><list>左進行用の視界</list>
   </param>
   <param name="clear_type" desc="ステージクリア条件" type="list" value="1" category="システム">

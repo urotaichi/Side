@@ -185,6 +185,7 @@ namespace MasaoPlus
 					Point point = default(Point);
 					ChipsData chipsData = default(ChipsData);
 					Rectangle rectangle = default(Rectangle);
+					GraphicsState transState;
 					int num = 0;
 					if (Global.state.MapEditMode)
 					{
@@ -213,7 +214,8 @@ namespace MasaoPlus
 							chipsData = Global.cpd.Layerchip[i];
 						}
 						point = this.GetPosition(i);
-						rectangle = new Rectangle(new Point(point.X * Global.cpd.runtime.Definitions.ChipSize.Width, point.Y * Global.cpd.runtime.Definitions.ChipSize.Height), Global.cpd.runtime.Definitions.ChipSize);
+						Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
+						rectangle = new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize);
 						rectangle.Y -= this.vPosition;
 						if (rectangle.Top > this.MainPanel.Height)
 						{
@@ -224,20 +226,45 @@ namespace MasaoPlus
 							ChipData cschip = chipsData.GetCSChip();
 							if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
 							{
-								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
 							}
 							if (!Global.cpd.UseLayer || Global.state.EditingForeground)
 							{
-								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rectangle, new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
+								e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
+								transState = e.Graphics.Save();
+								e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
+								switch (cschip.name)
+                                {
+									case "一方通行":
+										if (cschip.description.Contains("表示なし")) break;
+										Pen p = new Pen(Global.cpd.project.Config.Firebar2, 2);
+										if(cschip.description.Contains("右"))
+											e.Graphics.DrawLine(p, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
+										else if (cschip.description.Contains("左"))
+											e.Graphics.DrawLine(p, 1, 0, 1, chipsize.Height);
+										else if (cschip.description.Contains("上"))
+											e.Graphics.DrawLine(p, 0, 1, chipsize.Width, 1);
+										else if (cschip.description.Contains("下"))
+											e.Graphics.DrawLine(p, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
+										p.Dispose();
+										break;
+                                    default:
+										e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
+										e.Graphics.RotateTransform(cschip.rotate);
+										e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+										break;
+								}
+								e.Graphics.Restore(transState);
 							}
 							else
 							{
-								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawLayerOrig, rectangle, new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
+								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawLayerOrig, rectangle, new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
 							}
 							if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
 							{
-								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, Global.cpd.runtime.Definitions.ChipSize), GraphicsUnit.Pixel);
+								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
 							}
+							e.Graphics.PixelOffsetMode = default;
 							if (Global.state.CurrentChip.character == chipsData.character)
 							{
 								if (i != this.selectedIndex)
@@ -251,26 +278,24 @@ namespace MasaoPlus
 									{
 										ControlPaint.DrawFocusRectangle(e.Graphics, rectangle);
 										e.Graphics.FillRectangle(brush2, rectangle);
-										goto IL_57E;
+										break;
 									}
-									break;
 								case Config.Draw.SelectionDrawMode.mtpp:
+									ControlPaint.DrawFocusRectangle(e.Graphics, rectangle);
+									ControlPaint.DrawSelectionFrame(e.Graphics, true, rectangle, new Rectangle(0, 0, 0, 0), Color.Blue);
 									break;
 								case Config.Draw.SelectionDrawMode.MTool:
-									e.Graphics.DrawRectangle(Pens.Black, rectangle);
-									e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 1, rectangle.Y + 1, rectangle.Width - 2, rectangle.Height - 2));
-									e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 2, rectangle.Y + 2, rectangle.Width - 4, rectangle.Height - 4));
-									e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 3, rectangle.Y + 3, rectangle.Width - 6, rectangle.Height - 6));
-									e.Graphics.DrawRectangle(Pens.Black, new Rectangle(rectangle.X + 4, rectangle.Y + 4, rectangle.Width - 8, rectangle.Height - 8));
-									goto IL_57E;
+									e.Graphics.DrawRectangle(Pens.Black, new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1));
+									e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 1, rectangle.Y + 1, rectangle.Width - 3, rectangle.Height - 3));
+									e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 2, rectangle.Y + 2, rectangle.Width - 5, rectangle.Height - 5));
+									e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 3, rectangle.Y + 3, rectangle.Width - 7, rectangle.Height - 7));
+									e.Graphics.DrawRectangle(Pens.Black, new Rectangle(rectangle.X + 4, rectangle.Y + 4, rectangle.Width - 9, rectangle.Height - 9));
+									break;
 								default:
-									goto IL_57E;
+									break;
 								}
-								ControlPaint.DrawFocusRectangle(e.Graphics, rectangle);
-								ControlPaint.DrawSelectionFrame(e.Graphics, true, rectangle, new Rectangle(0, 0, 0, 0), Color.Blue);
 							}
 						}
-						IL_57E:;
 					}
 					if (!base.Enabled)
 					{
