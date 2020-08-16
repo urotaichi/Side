@@ -17,6 +17,8 @@ namespace MasaoPlus
 		// Token: 0x04000136 RID: 310
 		public Size size;
 
+		public Size view_size;
+
 		// Token: 0x04000137 RID: 311
 		public Point center;
 

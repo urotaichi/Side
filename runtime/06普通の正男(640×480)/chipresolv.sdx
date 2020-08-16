@@ -296,17 +296,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -423,21 +423,21 @@
         <description>つかまると動く</description></chip>
       <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
         <description>つかまると左から動く</description></chip>
-      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
-      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
       <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ここへ全部持って行くとクリアです。</description></chip>
       <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ロック機能付きです。</description></chip>
-      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
-      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左へ一方通行。縦４つ。</description></chip>
-      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>上へ一方通行。横４つ。</description></chip>
-      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>下へ一方通行。横４つ。</description></chip>
       <chip value="163"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>右へ一方通行。表示なし。縦４つ。</description></chip>
@@ -479,21 +479,21 @@
         <description>残り人数のみ。</description></chip>
       <chip value="182"><pattern><X>0</X><Y>32</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック</name><description>コンティニュー</description></chip>
-      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>左向き。左右１につながる。</description></chip>
-      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>左向き。左右２につながる。</description></chip>
-      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>左向き。左右３につながる。</description></chip>
-      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>左向き。左右４につながる。</description></chip>
-      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>右向き。左右１につながる。</description></chip>
-      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>右向き。左右２につながる。</description></chip>
-      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>右向き。左右３につながる。</description></chip>
-      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>右向き。左右４につながる。</description></chip>
       <chip value="191"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>64</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
         <description>周囲１０ブロック以内に影響</description></chip>
@@ -1124,17 +1124,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -1251,21 +1251,21 @@
         <description>つかまると動く</description></chip>
       <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
         <description>つかまると左から動く</description></chip>
-      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
-      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
       <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ここへ全部持って行くとクリアです。</description></chip>
       <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ロック機能付きです。</description></chip>
-      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
-      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左へ一方通行。縦４つ。</description></chip>
-      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>上へ一方通行。横４つ。</description></chip>
-      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>下へ一方通行。横４つ。</description></chip>
       <chip value="163"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>右へ一方通行。表示なし。縦４つ。</description></chip>
@@ -1307,21 +1307,21 @@
         <description>残り人数のみ。</description></chip>
       <chip value="182"><pattern><X>0</X><Y>32</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック</name><description>コンティニュー</description></chip>
-      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>左向き。左右１につながる。</description></chip>
-      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>左向き。左右２につながる。</description></chip>
-      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>左向き。左右３につながる。</description></chip>
-      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>左向き。左右４につながる。</description></chip>
-      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>右向き。左右１につながる。</description></chip>
-      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>右向き。左右２につながる。</description></chip>
-      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>右向き。左右３につながる。</description></chip>
-      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>右向き。左右４につながる。</description></chip>
       <chip value="191"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>64</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
         <description>周囲１０ブロック以内に影響</description></chip>
@@ -1952,17 +1952,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -2079,21 +2079,21 @@
         <description>つかまると動く</description></chip>
       <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
         <description>つかまると左から動く</description></chip>
-      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
-      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
       <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ここへ全部持って行くとクリアです。</description></chip>
       <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ロック機能付きです。</description></chip>
-      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
-      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左へ一方通行。縦４つ。</description></chip>
-      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>上へ一方通行。横４つ。</description></chip>
-      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>下へ一方通行。横４つ。</description></chip>
       <chip value="163"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>右へ一方通行。表示なし。縦４つ。</description></chip>
@@ -2135,21 +2135,21 @@
         <description>残り人数のみ。</description></chip>
       <chip value="182"><pattern><X>0</X><Y>32</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック</name><description>コンティニュー</description></chip>
-      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>左向き。左右１につながる。</description></chip>
-      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>左向き。左右２につながる。</description></chip>
-      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>左向き。左右３につながる。</description></chip>
-      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>左向き。左右４につながる。</description></chip>
-      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>右向き。左右１につながる。</description></chip>
-      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>右向き。左右２につながる。</description></chip>
-      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>右向き。左右３につながる。</description></chip>
-      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>右向き。左右４につながる。</description></chip>
       <chip value="191"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>64</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
         <description>周囲１０ブロック以内に影響</description></chip>
@@ -2780,17 +2780,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -2907,21 +2907,21 @@
         <description>つかまると動く</description></chip>
       <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
         <description>つかまると左から動く</description></chip>
-      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
-      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
       <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ここへ全部持って行くとクリアです。</description></chip>
       <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ロック機能付きです。</description></chip>
-      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
-      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左へ一方通行。縦４つ。</description></chip>
-      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>上へ一方通行。横４つ。</description></chip>
-      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>下へ一方通行。横４つ。</description></chip>
       <chip value="163"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>右へ一方通行。表示なし。縦４つ。</description></chip>
@@ -2963,21 +2963,21 @@
         <description>残り人数のみ。</description></chip>
       <chip value="182"><pattern><X>0</X><Y>32</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック</name><description>コンティニュー</description></chip>
-      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>左向き。左右１につながる。</description></chip>
-      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>左向き。左右２につながる。</description></chip>
-      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>左向き。左右３につながる。</description></chip>
-      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>左向き。左右４につながる。</description></chip>
-      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>右向き。左右１につながる。</description></chip>
-      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>右向き。左右２につながる。</description></chip>
-      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>右向き。左右３につながる。</description></chip>
-      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>右向き。左右４につながる。</description></chip>
       <chip value="191"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>64</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
         <description>周囲１０ブロック以内に影響</description></chip>
@@ -3608,17 +3608,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -3735,21 +3735,21 @@
         <description>つかまると動く</description></chip>
       <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
         <description>つかまると左から動く</description></chip>
-      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
-      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
       <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ここへ全部持って行くとクリアです。</description></chip>
       <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ロック機能付きです。</description></chip>
-      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
-      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左へ一方通行。縦４つ。</description></chip>
-      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>上へ一方通行。横４つ。</description></chip>
-      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>下へ一方通行。横４つ。</description></chip>
       <chip value="163"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>右へ一方通行。表示なし。縦４つ。</description></chip>
@@ -3791,21 +3791,21 @@
         <description>残り人数のみ。</description></chip>
       <chip value="182"><pattern><X>0</X><Y>32</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック</name><description>コンティニュー</description></chip>
-      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>左向き。左右１につながる。</description></chip>
-      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>左向き。左右２につながる。</description></chip>
-      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>左向き。左右３につながる。</description></chip>
-      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>左向き。左右４につながる。</description></chip>
-      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>右向き。左右１につながる。</description></chip>
-      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>右向き。左右２につながる。</description></chip>
-      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>右向き。左右３につながる。</description></chip>
-      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>右向き。左右４につながる。</description></chip>
       <chip value="191"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>64</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
         <description>周囲１０ブロック以内に影響</description></chip>
@@ -4436,17 +4436,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -4563,21 +4563,21 @@
         <description>つかまると動く</description></chip>
       <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
         <description>つかまると左から動く</description></chip>
-      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
-      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
       <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ここへ全部持って行くとクリアです。</description></chip>
       <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ロック機能付きです。</description></chip>
-      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
-      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左へ一方通行。縦４つ。</description></chip>
-      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>上へ一方通行。横４つ。</description></chip>
-      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>下へ一方通行。横４つ。</description></chip>
       <chip value="163"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>右へ一方通行。表示なし。縦４つ。</description></chip>
@@ -4619,21 +4619,21 @@
         <description>残り人数のみ。</description></chip>
       <chip value="182"><pattern><X>0</X><Y>32</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック</name><description>コンティニュー</description></chip>
-      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>左向き。左右１につながる。</description></chip>
-      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>左向き。左右２につながる。</description></chip>
-      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>左向き。左右３につながる。</description></chip>
-      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>左向き。左右４につながる。</description></chip>
-      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>右向き。左右１につながる。</description></chip>
-      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>右向き。左右２につながる。</description></chip>
-      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>右向き。左右３につながる。</description></chip>
-      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>右向き。左右４につながる。</description></chip>
       <chip value="191"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>64</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
         <description>周囲１０ブロック以内に影響</description></chip>
@@ -5406,17 +5406,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -5533,21 +5533,21 @@
         <description>つかまると動く</description></chip>
       <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
         <description>つかまると左から動く</description></chip>
-      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
-      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
       <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ここへ全部持って行くとクリアです。</description></chip>
       <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ロック機能付きです。</description></chip>
-      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
-      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左へ一方通行。縦４つ。</description></chip>
-      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>上へ一方通行。横４つ。</description></chip>
-      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>下へ一方通行。横４つ。</description></chip>
       <chip value="163"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>右へ一方通行。表示なし。縦４つ。</description></chip>
@@ -5589,21 +5589,21 @@
         <description>残り人数のみ。</description></chip>
       <chip value="182"><pattern><X>0</X><Y>32</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック</name><description>コンティニュー</description></chip>
-      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>左向き。左右１につながる。</description></chip>
-      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>左向き。左右２につながる。</description></chip>
-      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>左向き。左右３につながる。</description></chip>
-      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>左向き。左右４につながる。</description></chip>
-      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>右向き。左右１につながる。</description></chip>
-      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>右向き。左右２につながる。</description></chip>
-      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>右向き。左右３につながる。</description></chip>
-      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>右向き。左右４につながる。</description></chip>
       <chip value="191"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>64</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
         <description>周囲１０ブロック以内に影響</description></chip>
@@ -6234,17 +6234,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -6361,21 +6361,21 @@
         <description>つかまると動く</description></chip>
       <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
         <description>つかまると左から動く</description></chip>
-      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
-      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
       <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ここへ全部持って行くとクリアです。</description></chip>
       <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ロック機能付きです。</description></chip>
-      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
-      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左へ一方通行。縦４つ。</description></chip>
-      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>上へ一方通行。横４つ。</description></chip>
-      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>下へ一方通行。横４つ。</description></chip>
       <chip value="163"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>右へ一方通行。表示なし。縦４つ。</description></chip>
@@ -6417,21 +6417,21 @@
         <description>残り人数のみ。</description></chip>
       <chip value="182"><pattern><X>0</X><Y>32</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック</name><description>コンティニュー</description></chip>
-      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>左向き。左右１につながる。</description></chip>
-      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>左向き。左右２につながる。</description></chip>
-      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>左向き。左右３につながる。</description></chip>
-      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>左向き。左右４につながる。</description></chip>
-      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>右向き。左右１につながる。</description></chip>
-      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>右向き。左右２につながる。</description></chip>
-      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>右向き。左右３につながる。</description></chip>
-      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>右向き。左右４につながる。</description></chip>
       <chip value="191"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>64</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
         <description>周囲１０ブロック以内に影響</description></chip>
@@ -7117,17 +7117,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -7244,21 +7244,21 @@
         <description>つかまると動く</description></chip>
       <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
         <description>つかまると左から動く</description></chip>
-      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
-      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
       <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ここへ全部持って行くとクリアです。</description></chip>
       <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ロック機能付きです。</description></chip>
-      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
-      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左へ一方通行。縦４つ。</description></chip>
-      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>上へ一方通行。横４つ。</description></chip>
-      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>下へ一方通行。横４つ。</description></chip>
       <chip value="163"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>右へ一方通行。表示なし。縦４つ。</description></chip>
@@ -7300,21 +7300,21 @@
         <description>残り人数のみ。</description></chip>
       <chip value="182"><pattern><X>0</X><Y>32</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック</name><description>コンティニュー</description></chip>
-      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>左向き。左右１につながる。</description></chip>
-      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>左向き。左右２につながる。</description></chip>
-      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>左向き。左右３につながる。</description></chip>
-      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>左向き。左右４につながる。</description></chip>
-      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>右向き。左右１につながる。</description></chip>
-      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>右向き。左右２につながる。</description></chip>
-      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>右向き。左右３につながる。</description></chip>
-      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>右向き。左右４につながる。</description></chip>
       <chip value="191"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>64</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
         <description>周囲１０ブロック以内に影響</description></chip>
@@ -7944,17 +7944,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -8071,21 +8071,21 @@
         <description>つかまると動く</description></chip>
       <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
         <description>つかまると左から動く</description></chip>
-      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
-      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
       <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ここへ全部持って行くとクリアです。</description></chip>
       <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ロック機能付きです。</description></chip>
-      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
-      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左へ一方通行。縦４つ。</description></chip>
-      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>上へ一方通行。横４つ。</description></chip>
-      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>下へ一方通行。横４つ。</description></chip>
       <chip value="163"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>右へ一方通行。表示なし。縦４つ。</description></chip>
@@ -8127,21 +8127,21 @@
         <description>残り人数のみ。</description></chip>
       <chip value="182"><pattern><X>0</X><Y>32</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック</name><description>コンティニュー</description></chip>
-      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>左向き。左右１につながる。</description></chip>
-      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>左向き。左右２につながる。</description></chip>
-      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>左向き。左右３につながる。</description></chip>
-      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>左向き。左右４につながる。</description></chip>
-      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>右向き。左右１につながる。</description></chip>
-      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>右向き。左右２につながる。</description></chip>
-      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>右向き。左右３につながる。</description></chip>
-      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>右向き。左右４につながる。</description></chip>
       <chip value="191"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>64</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
         <description>周囲１０ブロック以内に影響</description></chip>
@@ -8771,17 +8771,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -8898,21 +8898,21 @@
         <description>つかまると動く</description></chip>
       <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
         <description>つかまると左から動く</description></chip>
-      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
-      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
       <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ここへ全部持って行くとクリアです。</description></chip>
       <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ロック機能付きです。</description></chip>
-      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
-      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左へ一方通行。縦４つ。</description></chip>
-      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>上へ一方通行。横４つ。</description></chip>
-      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>下へ一方通行。横４つ。</description></chip>
       <chip value="163"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>右へ一方通行。表示なし。縦４つ。</description></chip>
@@ -8954,21 +8954,21 @@
         <description>残り人数のみ。</description></chip>
       <chip value="182"><pattern><X>0</X><Y>32</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック</name><description>コンティニュー</description></chip>
-      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>左向き。左右１につながる。</description></chip>
-      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>左向き。左右２につながる。</description></chip>
-      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>左向き。左右３につながる。</description></chip>
-      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>左向き。左右４につながる。</description></chip>
-      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>右向き。左右１につながる。</description></chip>
-      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>右向き。左右２につながる。</description></chip>
-      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>右向き。左右３につながる。</description></chip>
-      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>右向き。左右４につながる。</description></chip>
       <chip value="191"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>64</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
         <description>周囲１０ブロック以内に影響</description></chip>
@@ -9598,17 +9598,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
+        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size>
-        <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
+        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -9725,21 +9725,21 @@
         <description>つかまると動く</description></chip>
       <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
         <description>つかまると左から動く</description></chip>
-      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
-      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name>
+      <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
       <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ここへ全部持って行くとクリアです。</description></chip>
       <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
         <description>ロック機能付きです。</description></chip>
-      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
-      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="160"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左へ一方通行。縦４つ。</description></chip>
-      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="161"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>上へ一方通行。横４つ。</description></chip>
-      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><repeat>4</repeat><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
+      <chip value="162"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>下へ一方通行。横４つ。</description></chip>
       <chip value="163"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>右へ一方通行。表示なし。縦４つ。</description></chip>
@@ -9781,21 +9781,21 @@
         <description>残り人数のみ。</description></chip>
       <chip value="182"><pattern><X>0</X><Y>32</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック</name><description>コンティニュー</description></chip>
-      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="183"><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>左向き。左右１につながる。</description></chip>
-      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="184"><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>左向き。左右２につながる。</description></chip>
-      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="185"><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>左向き。左右３につながる。</description></chip>
-      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="186"><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>左向き。左右４につながる。</description></chip>
-      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="187"><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管１</name><description>右向き。左右１につながる。</description></chip>
-      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="188"><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管２</name><description>右向き。左右２につながる。</description></chip>
-      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="189"><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管３</name><description>右向き。左右３につながる。</description></chip>
-      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size>
+      <chip value="190"><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
         <name>ワープ土管４</name><description>右向き。左右４につながる。</description></chip>
       <chip value="191"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>64</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
         <description>周囲１０ブロック以内に影響</description></chip>
