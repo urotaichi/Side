@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MasaoPlus.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -7,12 +8,11 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using MasaoPlus.Properties;
 
 namespace MasaoPlus
 {
-	// Token: 0x0200000C RID: 12
-	public class GUIDesigner : UserControl, IDisposable
+    // Token: 0x0200000C RID: 12
+    public class GUIDesigner : UserControl, IDisposable
 	{
 		// Token: 0x17000010 RID: 16
 		// (get) Token: 0x0600006C RID: 108 RVA: 0x0000255B File Offset: 0x0000075B
@@ -495,17 +495,24 @@ namespace MasaoPlus
 							}
 							if (foreground)
 							{ // 標準パターン画像
-								transState = g.Save();
-								if (c.view_size != default)
-									g.TranslateTransform(num2 * chipsize.Width - c.center.X + c.view_size.Width / 2, num * chipsize.Height - c.center.Y + c.view_size.Height / 2);
+								if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
+								{
+									g.DrawImage(this.DrawOribossOrig, num2 * chipsize.Width, num * chipsize.Height);
+								}
 								else
-									g.TranslateTransform(num2 * chipsize.Width - c.center.X + c.size.Width / 2, num * chipsize.Height - c.center.Y + c.size.Height / 2);
-								g.RotateTransform(c.rotate);
-								if (c.scale != default) g.ScaleTransform(c.scale, c.scale);
-								g.DrawImage(this.DrawChipOrig,
-									new Rectangle(-c.size.Width / 2, -c.size.Height / 2, c.size.Width, c.size.Height),
-									new Rectangle(c.pattern, c.size), GraphicsUnit.Pixel);
-								g.Restore(transState);
+								{
+									transState = g.Save();
+									if (c.view_size != default)
+										g.TranslateTransform(num2 * chipsize.Width - c.center.X + c.view_size.Width / 2, num * chipsize.Height - c.center.Y + c.view_size.Height / 2);
+									else
+										g.TranslateTransform(num2 * chipsize.Width - c.center.X + c.size.Width / 2, num * chipsize.Height - c.center.Y + c.size.Height / 2);
+									g.RotateTransform(c.rotate);
+									if (c.scale != default) g.ScaleTransform(c.scale, c.scale);
+									g.DrawImage(this.DrawChipOrig,
+										new Rectangle(-c.size.Width / 2, -c.size.Height / 2, c.size.Width, c.size.Height),
+										new Rectangle(c.pattern, c.size), GraphicsUnit.Pixel);
+									g.Restore(transState);
+								}
 							}
 							else
 							{ // 背景レイヤー画像
@@ -513,7 +520,97 @@ namespace MasaoPlus
 									new Rectangle(num2 * chipsize.Width - c.center.X, num * chipsize.Height - c.center.Y, c.size.Width, c.size.Height),
 									new Rectangle(c.pattern, c.size), GraphicsUnit.Pixel);
 							}
-							if (Global.config.draw.ExtendDraw && c.xdraw != default(Point) && !c.xdbackgrnd)
+							if (chipsData.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 &&
+								Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
+							{
+								Point p = default;
+								switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+								{
+									case 1:
+										p = new Point(352, 256);
+										break;
+									case 2:
+										p = new Point(96, 0);
+										break;
+									case 3:
+										p = new Point(64, 0);
+										break;
+									case 4:
+										p = new Point(256, 0);
+										break;
+									case 5:
+										p = new Point(288, 0);
+										break;
+									case 6:
+										p = new Point(288, 448);
+										break;
+									case 7:
+										p = new Point(320, 448);
+										break;
+									case 8:
+										p = new Point(32, 32);
+										break;
+									case 9:
+										p = new Point(96, 0);
+										break;
+									case 10:
+										p = new Point(0, 32);
+										break;
+									case 11:
+										p = new Point(64, 0);
+										break;
+									case 12:
+										p = new Point(96, 32);
+										break;
+									case 13:
+										p = new Point(64, 0);
+										break;
+									case 14:
+										p = new Point(352, 448);
+										break;
+									case 15:
+										p = new Point(416, 448);
+										break;
+									case 16:
+										p = new Point(288, 448);
+										break;
+									case 17:
+										p = new Point(320, 448);
+										break;
+									case 18:
+										p = new Point(96, 0);
+										break;
+									case 19:
+										p = new Point(96, 0);
+										break;
+									case 20:
+										p = new Point(256, 0);
+										break;
+									case 21:
+										p = new Point(256, 0);
+										break;
+									case 22:
+										p = new Point(352, 448);
+										break;
+									case 23:
+										p = new Point(384, 448);
+										break;
+									case 24:
+										p = new Point(32, 32);
+										break;
+									case 25:
+										p = new Point(32, 32);
+										break;
+									case 26:
+										p = new Point(32, 128);
+										break;
+									case 27:
+										p = new Point(32, 128);
+										break;
+								}
+								g.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, num2 * chipsize.Width, num * chipsize.Height, new Rectangle(p, chipsize), GraphicsUnit.Pixel);
+							}
+							else if (Global.config.draw.ExtendDraw && c.xdraw != default(Point) && !c.xdbackgrnd)
 							{ // 拡張画像　前面
 								g.DrawImage(this.DrawExOrig,
 									new Rectangle(new Point(num2 * chipsize.Width - c.center.X, num * chipsize.Height - c.center.Y), chipsize),
@@ -603,6 +700,103 @@ namespace MasaoPlus
 					g.DrawImage(this.DrawExOrig,
 						 new Rectangle(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height, chipsize.Width, chipsize.Height),
 						 new Rectangle(keepDrawData.cd.xdraw, chipsize), GraphicsUnit.Pixel);
+				}
+			}
+			// オリジナルボスを座標で設置する場合に描画
+			if(Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 2 && foreground)
+			{
+				int oriboss_x = default, oriboss_y = default;
+				if (Global.state.ChipRegister.ContainsKey("oriboss_x")) oriboss_x = int.Parse(Global.state.ChipRegister["oriboss_x"]);
+				if (Global.state.ChipRegister.ContainsKey("oriboss_y")) oriboss_y = int.Parse(Global.state.ChipRegister["oriboss_y"]);
+				g.DrawImage(this.DrawOribossOrig, oriboss_x * chipsize.Width, oriboss_y * chipsize.Height);
+				if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
+				{
+					Point p = default;
+					switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+					{
+						case 1:
+							p = new Point(352, 256);
+							break;
+						case 2:
+							p = new Point(96, 0);
+							break;
+						case 3:
+							p = new Point(64, 0);
+							break;
+						case 4:
+							p = new Point(256, 0);
+							break;
+						case 5:
+							p = new Point(288, 0);
+							break;
+						case 6:
+							p = new Point(288, 448);
+							break;
+						case 7:
+							p = new Point(320, 448);
+							break;
+						case 8:
+							p = new Point(32, 32);
+							break;
+						case 9:
+							p = new Point(96, 0);
+							break;
+						case 10:
+							p = new Point(0, 32);
+							break;
+						case 11:
+							p = new Point(64, 0);
+							break;
+						case 12:
+							p = new Point(96, 32);
+							break;
+						case 13:
+							p = new Point(64, 0);
+							break;
+						case 14:
+							p = new Point(352, 448);
+							break;
+						case 15:
+							p = new Point(416, 448);
+							break;
+						case 16:
+							p = new Point(288, 448);
+							break;
+						case 17:
+							p = new Point(320, 448);
+							break;
+						case 18:
+							p = new Point(96, 0);
+							break;
+						case 19:
+							p = new Point(96, 0);
+							break;
+						case 20:
+							p = new Point(256, 0);
+							break;
+						case 21:
+							p = new Point(256, 0);
+							break;
+						case 22:
+							p = new Point(352, 448);
+							break;
+						case 23:
+							p = new Point(384, 448);
+							break;
+						case 24:
+							p = new Point(32, 32);
+							break;
+						case 25:
+							p = new Point(32, 32);
+							break;
+						case 26:
+							p = new Point(32, 128);
+							break;
+						case 27:
+							p = new Point(32, 128);
+							break;
+					}
+					g.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, oriboss_x * chipsize.Width, oriboss_y * chipsize.Height, new Rectangle(p, chipsize), GraphicsUnit.Pixel);
 				}
 			}
 			if (foreground)
@@ -734,6 +928,16 @@ namespace MasaoPlus
 				this.DrawLayerMask.Dispose();
 				this.DrawLayerMask = null;
 			}
+			if (this.DrawOribossOrig != null)
+			{
+				this.DrawOribossOrig.Dispose();
+				this.DrawOribossOrig = null;
+			}
+			if (this.DrawOribossMask != null)
+			{
+				this.DrawOribossMask.Dispose();
+				this.DrawOribossMask = null;
+			}
 			if (this.DrawExOrig != null)
 			{
 				this.DrawExOrig.Dispose();
@@ -775,6 +979,19 @@ namespace MasaoPlus
 					}
 				}
 			}
+			if (Global.cpd.project.Config.OribossImage != null)//オリジナルボスを使うとき
+			{
+				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.OribossImage);
+				var fs = File.OpenRead(filename);
+
+				this.DrawOribossOrig = Image.FromStream(fs, false, false);
+				this.DrawOribossMask = new Bitmap(this.DrawOribossOrig.Width, this.DrawOribossOrig.Height);
+                using ImageAttributes imageAttributes4 = new ImageAttributes();
+                imageAttributes4.SetRemapTable(remapTable);
+                using Graphics graphics4 = Graphics.FromImage(this.DrawOribossMask);
+                graphics4.FillRectangle(Brushes.White, new Rectangle(0, 0, this.DrawOribossMask.Width, this.DrawOribossMask.Height));
+                graphics4.DrawImage(this.DrawOribossOrig, new Rectangle(0, 0, this.DrawOribossMask.Width, this.DrawOribossMask.Height), 0, 0, this.DrawOribossMask.Width, this.DrawOribossMask.Height, GraphicsUnit.Pixel, imageAttributes4);
+            }
 			filename = Path.Combine(Global.cpd.where, Global.cpd.runtime.Definitions.ChipExtender);
 			this.DrawExOrig = Image.FromFile(filename);
 			this.DrawExMask = new Bitmap(this.DrawExOrig.Width, this.DrawExOrig.Height);
@@ -977,6 +1194,16 @@ namespace MasaoPlus
 			{
 				this.BackLayerBmp.Dispose();
 				this.BackLayerBmp = null;
+			}
+			if (this.DrawOribossMask != null)
+			{
+				this.DrawOribossMask.Dispose();
+				this.DrawOribossMask = null;
+			}
+			if (this.DrawOribossOrig != null)
+			{
+				this.DrawOribossOrig.Dispose();
+				this.DrawOribossOrig = null;
 			}
 			if (this.DrawExOrig != null)
 			{
@@ -1941,25 +2168,35 @@ namespace MasaoPlus
 				Size size = default(Size);
 				if (cd.character != null)
 				{
-					size = (cd.GetCSChip().view_size != default)?cd.GetCSChip().view_size: cd.GetCSChip().size; // 置きたいチップデータのサイズ
+					if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && cd.character == "Z")
+					{
+						size = this.DrawOribossOrig.Size;
+					}
+					else size = (cd.GetCSChip().view_size != default)?cd.GetCSChip().view_size: cd.GetCSChip().size; // 置きたいチップデータのサイズ
 				}
-				ChipsData chipsData; // 置く前から元々あったチップデータのサイズ
+				ChipsData chipsData = default; // 置く前から元々あったチップデータのサイズ
 				ChipData chipData = default(ChipData);
 				if (this.DrawItemRef.ContainsKey(stageChar))
 				{
 					if (Global.state.MapEditMode) chipsData = this.DrawWorldRef[stageChar];
 					else chipsData = this.DrawItemRef[stageChar];
 					chipData = chipsData.GetCSChip();
-					size = this.GetLargerSize(size, (chipData.view_size != default)?chipData.view_size:chipData.size);	//サイズを比較して、大きい方に合わせる
+					if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
+					{
+						size = this.GetLargerSize(size, this.DrawOribossOrig.Size);
+					}
+					else size = this.GetLargerSize(size, (chipData.view_size != default)?chipData.view_size:chipData.size);	//サイズを比較して、大きい方に合わせる
 				}
 				if (size == default(Size)) this.RedrawMap(g, new Rectangle(MapPos, new Size(1, 1)));
 				else
 				{
 					Point largerPoint = this.GetLargerPoint(cd.GetCSChip().center, chipData.center);
+					if(cd.character == "Z") largerPoint = this.GetLargerPoint(new Point(0,0), chipData.center);
+					else if (chipsData.character == "Z") largerPoint = this.GetLargerPoint(cd.GetCSChip().center, new Point(0, 0));
 					Rectangle rectangle = new Rectangle(MapPos.X * chipsize.Width - largerPoint.X, MapPos.Y * chipsize.Height - largerPoint.Y, size.Width, size.Height);
 					this.RedrawMap(g,
-						new Rectangle(rectangle.X / chipsize.Width, rectangle.Y / chipsize.Height,
-							rectangle.Width / chipsize.Width, rectangle.Height / chipsize.Height));
+						new Rectangle((int)Math.Ceiling((decimal)rectangle.X / chipsize.Width), (int)Math.Ceiling((decimal)rectangle.Y / chipsize.Height),
+							(int)Math.Ceiling((decimal)rectangle.Width / chipsize.Width), (int)Math.Ceiling((decimal)rectangle.Height / chipsize.Height)));
 				}
 			}
 			else
@@ -2052,19 +2289,26 @@ namespace MasaoPlus
 									}
 									if (Global.state.EditingForeground)
 									{
-										transState = graphics.Save();
-										if (cschip.view_size != default)
-											graphics.TranslateTransform(point.X * chipsize.Width - cschip.center.X + cschip.view_size.Width / 2,
-											point.Y * chipsize.Height - cschip.center.Y + cschip.view_size.Height / 2);
+										if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
+										{
+											graphics.DrawImage(this.DrawOribossOrig, point.X * chipsize.Width, point.Y * chipsize.Height);
+										}
 										else
-											graphics.TranslateTransform(point.X * chipsize.Width - cschip.center.X + cschip.size.Width / 2,
-											point.Y * chipsize.Height - cschip.center.Y + cschip.size.Height / 2);
-										graphics.RotateTransform(cschip.rotate);
-										if (cschip.scale != default) graphics.ScaleTransform(cschip.scale, cschip.scale);
-										graphics.DrawImage(this.DrawChipOrig,
-											new Rectangle(-cschip.size.Width / 2, -cschip.size.Height / 2, cschip.size.Width, cschip.size.Height),
-											new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
-										graphics.Restore(transState);
+										{
+											transState = graphics.Save();
+											if (cschip.view_size != default)
+												graphics.TranslateTransform(point.X * chipsize.Width - cschip.center.X + cschip.view_size.Width / 2,
+												point.Y * chipsize.Height - cschip.center.Y + cschip.view_size.Height / 2);
+											else
+												graphics.TranslateTransform(point.X * chipsize.Width - cschip.center.X + cschip.size.Width / 2,
+												point.Y * chipsize.Height - cschip.center.Y + cschip.size.Height / 2);
+											graphics.RotateTransform(cschip.rotate);
+											if (cschip.scale != default) graphics.ScaleTransform(cschip.scale, cschip.scale);
+											graphics.DrawImage(this.DrawChipOrig,
+												new Rectangle(-cschip.size.Width / 2, -cschip.size.Height / 2, cschip.size.Width, cschip.size.Height),
+												new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
+											graphics.Restore(transState);
+										}
 									}
 									else
 									{
@@ -2072,7 +2316,98 @@ namespace MasaoPlus
 											new Rectangle(new Point(point.X * chipsize.Width - cschip.center.X, point.Y * chipsize.Height - cschip.center.Y), chipsize),
 											new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
 									}
-									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
+
+									if (chipsData.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 &&
+										Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
+									{
+										Point p = default;
+										switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+										{
+											case 1:
+												p = new Point(352, 256);
+												break;
+											case 2:
+												p = new Point(96, 0);
+												break;
+											case 3:
+												p = new Point(64, 0);
+												break;
+											case 4:
+												p = new Point(256, 0);
+												break;
+											case 5:
+												p = new Point(288, 0);
+												break;
+											case 6:
+												p = new Point(288, 448);
+												break;
+											case 7:
+												p = new Point(320, 448);
+												break;
+											case 8:
+												p = new Point(32, 32);
+												break;
+											case 9:
+												p = new Point(96, 0);
+												break;
+											case 10:
+												p = new Point(0, 32);
+												break;
+											case 11:
+												p = new Point(64, 0);
+												break;
+											case 12:
+												p = new Point(96, 32);
+												break;
+											case 13:
+												p = new Point(64, 0);
+												break;
+											case 14:
+												p = new Point(352, 448);
+												break;
+											case 15:
+												p = new Point(416, 448);
+												break;
+											case 16:
+												p = new Point(288, 448);
+												break;
+											case 17:
+												p = new Point(320, 448);
+												break;
+											case 18:
+												p = new Point(96, 0);
+												break;
+											case 19:
+												p = new Point(96, 0);
+												break;
+											case 20:
+												p = new Point(256, 0);
+												break;
+											case 21:
+												p = new Point(256, 0);
+												break;
+											case 22:
+												p = new Point(352, 448);
+												break;
+											case 23:
+												p = new Point(384, 448);
+												break;
+											case 24:
+												p = new Point(32, 32);
+												break;
+											case 25:
+												p = new Point(32, 32);
+												break;
+											case 26:
+												p = new Point(32, 128);
+												break;
+											case 27:
+												p = new Point(32, 128);
+												break;
+										}
+										graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, point.X * chipsize.Width, point.Y * chipsize.Height, new Rectangle(p, chipsize), GraphicsUnit.Pixel);
+									}
+									else if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
 									{
 										graphics.DrawImage(this.DrawExOrig,
 											new Rectangle(new Point(point.X * chipsize.Width - cschip.center.X, point.Y * chipsize.Height - cschip.center.Y), chipsize),
@@ -2427,6 +2762,10 @@ namespace MasaoPlus
 
 		// Token: 0x0400007C RID: 124
 		public Bitmap DrawLayerMask;
+
+		public Image DrawOribossOrig;
+
+		public Bitmap DrawOribossMask;
 
 		// Token: 0x0400007D RID: 125
 		public Image DrawExOrig;

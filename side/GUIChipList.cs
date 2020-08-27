@@ -163,21 +163,18 @@ namespace MasaoPlus
 			this.MainPanel.Refresh();
 		}
 
-		// Token: 0x06000032 RID: 50 RVA: 0x000070B4 File Offset: 0x000052B4
-		private void MainPanel_Paint(object sender, PaintEventArgs e)
+        // Token: 0x06000032 RID: 50 RVA: 0x000070B4 File Offset: 0x000052B4
+        // クラシックチップリスト
+        private void MainPanel_Paint(object sender, PaintEventArgs e)
 		{
 			try
 			{
 				if (Global.MainWnd.MainDesigner.DrawChipOrig != null && Global.cpd.project != null)
 				{
 					if (Global.config.draw.ClassicChipListInterpolation)
-					{
 						e.Graphics.InterpolationMode = InterpolationMode.High;
-					}
 					else
-					{
 						e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-					}
 					using (Brush brush = new SolidBrush(Global.state.Background))
 					{
 						e.Graphics.FillRectangle(brush, e.ClipRectangle);
@@ -188,39 +185,26 @@ namespace MasaoPlus
 					GraphicsState transState;
 					int num = 0;
 					if (Global.state.MapEditMode)
-					{
 						num = Global.cpd.Worldchip.Length;
-					}
 					else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
-					{
 						num = Global.cpd.Mapchip.Length;
-					}
 					else
-					{
 						num = Global.cpd.Layerchip.Length;
-					}
 					for (int i = 0; i < num; i++)
 					{
 						if (Global.state.MapEditMode)
-						{
 							chipsData = Global.cpd.Worldchip[i];
-						}
 						else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
-						{
 							chipsData = Global.cpd.Mapchip[i];
-						}
 						else
-						{
 							chipsData = Global.cpd.Layerchip[i];
-						}
+
 						point = this.GetPosition(i);
 						Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
 						rectangle = new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize);
 						rectangle.Y -= this.vPosition;
-						if (rectangle.Top > this.MainPanel.Height)
-						{
-							break;
-						}
+						if (rectangle.Top > this.MainPanel.Height) break;
+
 						if (rectangle.Bottom >= 0)
 						{
 							ChipData cschip = chipsData.GetCSChip();
@@ -233,26 +217,33 @@ namespace MasaoPlus
 								e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
 								transState = e.Graphics.Save();
 								e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
-								switch (cschip.name)
-                                {
-									case "一方通行":
-										if (cschip.description.Contains("表示なし")) break;
-										Pen p = new Pen(Global.cpd.project.Config.Firebar2, 2);
-										if(cschip.description.Contains("右"))
-											e.Graphics.DrawLine(p, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
-										else if (cschip.description.Contains("左"))
-											e.Graphics.DrawLine(p, 1, 0, 1, chipsize.Height);
-										else if (cschip.description.Contains("上"))
-											e.Graphics.DrawLine(p, 0, 1, chipsize.Width, 1);
-										else if (cschip.description.Contains("下"))
-											e.Graphics.DrawLine(p, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
-										p.Dispose();
-										break;
-                                    default:
-										e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
-										e.Graphics.RotateTransform(cschip.rotate);
-										e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
-										break;
+								if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
+								{
+									e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, chipsize.Width, chipsize.Height);
+								}
+								else
+								{
+									switch (cschip.name)
+									{
+										case "一方通行":
+											if (cschip.description.Contains("表示なし")) break;
+											Pen p = new Pen(Global.cpd.project.Config.Firebar2, 2);
+											if (cschip.description.Contains("右"))
+												e.Graphics.DrawLine(p, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
+											else if (cschip.description.Contains("左"))
+												e.Graphics.DrawLine(p, 1, 0, 1, chipsize.Height);
+											else if (cschip.description.Contains("上"))
+												e.Graphics.DrawLine(p, 0, 1, chipsize.Width, 1);
+											else if (cschip.description.Contains("下"))
+												e.Graphics.DrawLine(p, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
+											p.Dispose();
+											break;
+										default:
+											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
+											e.Graphics.RotateTransform(cschip.rotate);
+											e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+											break;
+									}
 								}
 								e.Graphics.Restore(transState);
 							}
@@ -260,17 +251,104 @@ namespace MasaoPlus
 							{
 								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawLayerOrig, rectangle, new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
 							}
-							if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
+							if (chipsData.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && 
+								Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
+							{
+								Point p = default;
+								switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+									{
+										case 1:
+											p = new Point(352, 256);
+											break;
+										case 2:
+											p = new Point(96, 0);
+											break;
+										case 3:
+											p = new Point(64, 0);
+											break;
+										case 4:
+											p = new Point(256, 0);
+											break;
+										case 5:
+											p = new Point(288, 0);
+											break;
+										case 6:
+											p = new Point(288, 448);
+											break;
+										case 7:
+											p = new Point(320, 448);
+											break;
+										case 8:
+											p = new Point(32, 32);
+											break;
+										case 9:
+											p = new Point(96, 0);
+											break;
+										case 10:
+											p = new Point(0, 32);
+											break;
+										case 11:
+											p = new Point(64, 0);
+											break;
+										case 12:
+											p = new Point(96, 32);
+											break;
+										case 13:
+											p = new Point(64, 0);
+											break;
+										case 14:
+											p = new Point(352, 448);
+											break;
+										case 15:
+											p = new Point(416, 448);
+											break;
+										case 16:
+											p = new Point(288, 448);
+											break;
+										case 17:
+											p = new Point(320, 448);
+											break;
+										case 18:
+											p = new Point(96, 0);
+											break;
+										case 19:
+											p = new Point(96, 0);
+											break;
+										case 20:
+											p = new Point(256, 0);
+											break;
+										case 21:
+											p = new Point(256, 0);
+											break;
+										case 22:
+											p = new Point(352, 448);
+											break;
+										case 23:
+											p = new Point(384, 448);
+											break;
+										case 24:
+											p = new Point(32, 32);
+											break;
+										case 25:
+											p = new Point(32, 32);
+											break;
+										case 26:
+											p = new Point(32, 128);
+											break;
+										case 27:
+											p = new Point(32, 128);
+											break;
+									}
+								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(p, chipsize), GraphicsUnit.Pixel);
+							}
+							else if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
 							{
 								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
 							}
 							e.Graphics.PixelOffsetMode = default;
 							if (Global.state.CurrentChip.character == chipsData.character)
 							{
-								if (i != this.selectedIndex)
-								{
-									this.selectedIndex = i;
-								}
+								if (i != this.selectedIndex) this.selectedIndex = i;
 								switch (Global.config.draw.SelDrawMode)
 								{
 								case Config.Draw.SelectionDrawMode.SideOriginal:

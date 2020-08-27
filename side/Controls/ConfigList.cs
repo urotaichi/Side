@@ -216,11 +216,119 @@ namespace MasaoPlus.Controls
 			switch (configParam.Type)
 			{
 			case ConfigParam.Types.t:
-				goto IL_65D;
+				if (Global.config.localSystem.UsePropExTextEditor)
+				{
+					using (PropertyTextInputDialog propertyTextInputDialog = new PropertyTextInputDialog())
+					{
+						propertyTextInputDialog.InputStr = configParam.Value;
+						if (propertyTextInputDialog.ShowDialog() != DialogResult.Cancel)
+						{
+							this.ConfView[e.ColumnIndex, e.RowIndex].Value = propertyTextInputDialog.InputStr;
+							Global.cpd.project.Config.Configurations[num].Value = propertyTextInputDialog.InputStr;
+						}
+						break;
+					}
+				}
+				return;
 			case ConfigParam.Types.f:
 			case ConfigParam.Types.f_i:
 			case ConfigParam.Types.f_a:
-				break;
+				using (OpenFileDialog openFileDialog = new OpenFileDialog())
+				{
+					openFileDialog.InitialDirectory = Global.cpd.where;
+					openFileDialog.FileName = configParam.Value;
+					if(configParam.Type == ConfigParam.Types.f_i)
+						openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
+					else if(configParam.Type == ConfigParam.Types.f_a)
+						openFileDialog.Filter = "音声(*.wav;*.mp3;*.ogg)|*.wav;*.mp3;*.ogg|全てのファイル (*.*)|*.*";
+					if (openFileDialog.ShowDialog() != DialogResult.OK)
+					{
+						return;
+					}
+					string fileName = openFileDialog.FileName;
+					string text = Path.Combine(Global.cpd.where, Path.GetFileName(openFileDialog.FileName));
+					if (Path.GetDirectoryName(openFileDialog.FileName) != Global.cpd.where)
+					{
+						if (MessageBox.Show(string.Concat(new string[]
+						{
+							"ファイルはプロジェクトディレクトリに含まれていません。",
+							Environment.NewLine,
+							"プロジェクトディレクトリへコピーします。",
+							Environment.NewLine,
+							"また、同じ名前のファイルがある場合は上書きされます。",
+							Environment.NewLine,
+							"よろしいですか？"
+						}), "ファイルの追加", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+						{
+							return;
+						}
+						try
+						{
+							File.Copy(fileName, text, true);
+						}
+						catch (IOException)
+						{
+							MessageBox.Show("ファイルをコピーできませんでした。" + Environment.NewLine + "ファイルのコピー先を再指定してください。", "コピー失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+							bool flag = false;
+							while (!flag)
+							{
+								using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+								{
+									saveFileDialog.InitialDirectory = Path.GetDirectoryName(text);
+									saveFileDialog.FileName = Path.GetFileName(text);
+									saveFileDialog.Filter = "保存ファイル|*" + Path.GetExtension(fileName);
+									saveFileDialog.AddExtension = true;
+									saveFileDialog.DefaultExt = Path.GetExtension(fileName);
+									if (saveFileDialog.ShowDialog() != DialogResult.OK)
+									{
+										return;
+									}
+									if (File.Exists(saveFileDialog.FileName))
+									{
+										MessageBox.Show("上書きはできません。" + Environment.NewLine + "元のファイルを消すか、別のファイルを指定してください。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+									}
+									else if (Path.GetDirectoryName(saveFileDialog.FileName) != Global.cpd.where)
+									{
+										MessageBox.Show("プロジェクトディレクトリ内に保存してください。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+									}
+									else
+									{
+										text = saveFileDialog.FileName;
+										flag = true;
+									}
+								}
+							}
+						}
+					}
+					this.ConfView[e.ColumnIndex, e.RowIndex].Value = Path.GetFileName(text) + "...";
+					Global.cpd.project.Config.Configurations[num].Value = Path.GetFileName(text);
+					string relation;
+					if (Global.cpd.project.Config.Configurations[num].Relation != null && Global.cpd.project.Config.Configurations[num].Relation != "" && (relation = Global.cpd.project.Config.Configurations[num].Relation) != null)
+					{// バグ　編集していない方のレイヤーを半透明表示にしている際にそのレイヤーの画像を変更すると半透明表示が解除される
+						if (!(relation == "PATTERN"))
+						{
+							if (relation == "LAYERCHIP")
+							{
+								Global.MainWnd.MainDesigner.PrepareImages();
+								Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
+								Global.MainWnd.MainDesigner.Refresh();
+							}
+						}
+						else
+						{
+							Global.MainWnd.MainDesigner.PrepareImages();
+							Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
+							Global.MainWnd.MainDesigner.Refresh();
+						}
+					}
+					if(Global.cpd.project.Config.Configurations[num].Name == "filename_oriboss_left1")
+					{
+						Global.MainWnd.MainDesigner.PrepareImages();
+						Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
+						Global.MainWnd.MainDesigner.Refresh();
+					}
+					break;
+				}
 			case ConfigParam.Types.l:
 			case ConfigParam.Types.l_a:
 				return;
@@ -261,119 +369,11 @@ namespace MasaoPlus.Controls
 							Global.MainWnd.MainDesigner.Refresh();
 						}
 					}
-					goto IL_6E6;
+					break;
 				}
-				break;
 			default:
 				return;
 			}
-			using (OpenFileDialog openFileDialog = new OpenFileDialog())
-			{
-				openFileDialog.InitialDirectory = Global.cpd.where;
-				openFileDialog.FileName = configParam.Value;
-				if(configParam.Type == ConfigParam.Types.f_i)
-					openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
-				else if(configParam.Type == ConfigParam.Types.f_a)
-					openFileDialog.Filter = "音声(*.wav;*.mp3;*.ogg)|*.wav;*.mp3;*.ogg|全てのファイル (*.*)|*.*";
-				if (openFileDialog.ShowDialog() != DialogResult.OK)
-				{
-					return;
-				}
-				string fileName = openFileDialog.FileName;
-				string text = Path.Combine(Global.cpd.where, Path.GetFileName(openFileDialog.FileName));
-				if (Path.GetDirectoryName(openFileDialog.FileName) != Global.cpd.where)
-				{
-					if (MessageBox.Show(string.Concat(new string[]
-					{
-						"ファイルはプロジェクトディレクトリに含まれていません。",
-						Environment.NewLine,
-						"プロジェクトディレクトリへコピーします。",
-						Environment.NewLine,
-						"また、同じ名前のファイルがある場合は上書きされます。",
-						Environment.NewLine,
-						"よろしいですか？"
-					}), "ファイルの追加", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-					{
-						return;
-					}
-					try
-					{
-						File.Copy(fileName, text, true);
-					}
-					catch (IOException)
-					{
-						MessageBox.Show("ファイルをコピーできませんでした。" + Environment.NewLine + "ファイルのコピー先を再指定してください。", "コピー失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-						bool flag = false;
-						while (!flag)
-						{
-							using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-							{
-								saveFileDialog.InitialDirectory = Path.GetDirectoryName(text);
-								saveFileDialog.FileName = Path.GetFileName(text);
-								saveFileDialog.Filter = "保存ファイル|*" + Path.GetExtension(fileName);
-								saveFileDialog.AddExtension = true;
-								saveFileDialog.DefaultExt = Path.GetExtension(fileName);
-								if (saveFileDialog.ShowDialog() != DialogResult.OK)
-								{
-									return;
-								}
-								if (File.Exists(saveFileDialog.FileName))
-								{
-									MessageBox.Show("上書きはできません。" + Environment.NewLine + "元のファイルを消すか、別のファイルを指定してください。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-								}
-								else if (Path.GetDirectoryName(saveFileDialog.FileName) != Global.cpd.where)
-								{
-									MessageBox.Show("プロジェクトディレクトリ内に保存してください。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-								}
-								else
-								{
-									text = saveFileDialog.FileName;
-									flag = true;
-								}
-							}
-						}
-					}
-				}
-				this.ConfView[e.ColumnIndex, e.RowIndex].Value = Path.GetFileName(text) + "...";
-				Global.cpd.project.Config.Configurations[num].Value = Path.GetFileName(text);
-				string relation;
-				if (Global.cpd.project.Config.Configurations[num].Relation != null && Global.cpd.project.Config.Configurations[num].Relation != "" && (relation = Global.cpd.project.Config.Configurations[num].Relation) != null)
-				{
-					if (!(relation == "PATTERN"))
-					{
-						if (relation == "LAYERPATTERN")
-						{
-							Global.MainWnd.MainDesigner.PrepareImages();
-							Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
-							Global.MainWnd.MainDesigner.Refresh();
-						}
-					}
-					else
-					{
-						Global.MainWnd.MainDesigner.PrepareImages();
-						Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
-						Global.MainWnd.MainDesigner.Refresh();
-					}
-				}
-				goto IL_6E6;
-			}
-			IL_65D:
-			if (Global.config.localSystem.UsePropExTextEditor)
-			{
-				using (PropertyTextInputDialog propertyTextInputDialog = new PropertyTextInputDialog())
-				{
-					propertyTextInputDialog.InputStr = configParam.Value;
-					if (propertyTextInputDialog.ShowDialog() != DialogResult.Cancel)
-					{
-						this.ConfView[e.ColumnIndex, e.RowIndex].Value = propertyTextInputDialog.InputStr;
-						Global.cpd.project.Config.Configurations[num].Value = propertyTextInputDialog.InputStr;
-					}
-					goto IL_6E6;
-				}
-				return;
-			}
-			return;
-			IL_6E6:
 			Global.state.EditFlag = true;
 		}
 

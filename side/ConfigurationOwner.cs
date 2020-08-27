@@ -39,7 +39,7 @@ namespace MasaoPlus
 		public void ConfigReady()
 		{
 			this.Categories = new List<string>();
-			this.RelIndex = new int[18];
+			this.RelIndex = new int[19];
 			bool[] array = new bool[12];
 			array[0] = false;
 			array[1] = false;
@@ -141,6 +141,9 @@ namespace MasaoPlus
 					break;
 				case "firebar_@2":
 					this.RelIndex[17] = i;
+					break;
+				case "filename_oriboss_left1":
+					this.RelIndex[18] = i;
 					break;
 				}
 			}
@@ -459,6 +462,20 @@ namespace MasaoPlus
 				Colors colors = default(Colors);
 				colors.c = value;
 				this.Configurations[this.RelIndex[17]].Value = colors.ToString();
+			}
+		}
+
+		[XmlIgnore]
+		public string OribossImage
+		{
+			get
+			{
+				if (this.RelIndex[18] != default) return this.Configurations[this.RelIndex[18]].Value;
+				else return null;
+			}
+			set
+			{
+				this.Configurations[this.RelIndex[18]].Value = value;
 			}
 		}
 

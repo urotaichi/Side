@@ -308,6 +308,8 @@ namespace MasaoPlus
 				}
 				ChipData cschip = chipsData.GetCSChip();
 				Size size = (cschip.size == default(Size)) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size;
+				if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
+					size = this.MainDesigner.DrawOribossOrig.Size;
 				if (this.ChipNavigator.Image != null)
 				{
 					this.ChipNavigator.Image.Dispose();
@@ -326,31 +328,38 @@ namespace MasaoPlus
 				if (Global.state.EditingForeground)
 				{
 					graphics.PixelOffsetMode = PixelOffsetMode.Half;
-					switch (cschip.name)
+					if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
 					{
-						case "一方通行":
-							if (cschip.description.Contains("表示なし")) break;
-							Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
-							if (cschip.description.Contains("右"))
-								graphics.DrawLine(pen, size.Width - 1, 0, size.Width - 1, size.Width);
-							else if (cschip.description.Contains("左"))
-								graphics.DrawLine(pen, 0, 0, 0, size.Width);
-							else if (cschip.description.Contains("上"))
-								graphics.DrawLine(pen, 0, 0, size.Width, 0);
-							else if (cschip.description.Contains("下"))
-								graphics.DrawLine(pen, 0, size.Width - 1, size.Width, size.Width - 1);
-							pen.Dispose();
-							break;
-						default:
-							int rotate_o = default;
-							if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
-							{
-								rotate_o = (cschip.size.Width - cschip.size.Height) / (cschip.size.Width / cschip.size.Height) * Math.Sign(cschip.rotate);
-							}
-							graphics.TranslateTransform(size.Width / 2, size.Height / 2);
-							graphics.RotateTransform(cschip.rotate);
-							graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size), new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
-							break;
+						graphics.DrawImage(this.MainDesigner.DrawOribossOrig, 0, 0, this.MainDesigner.DrawOribossOrig.Size.Width, this.MainDesigner.DrawOribossOrig.Size.Height);
+					}
+					else
+					{
+						switch (cschip.name)
+						{
+							case "一方通行":
+								if (cschip.description.Contains("表示なし")) break;
+								Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
+								if (cschip.description.Contains("右"))
+									graphics.DrawLine(pen, size.Width - 1, 0, size.Width - 1, size.Width);
+								else if (cschip.description.Contains("左"))
+									graphics.DrawLine(pen, 0, 0, 0, size.Width);
+								else if (cschip.description.Contains("上"))
+									graphics.DrawLine(pen, 0, 0, size.Width, 0);
+								else if (cschip.description.Contains("下"))
+									graphics.DrawLine(pen, 0, size.Width - 1, size.Width, size.Width - 1);
+								pen.Dispose();
+								break;
+							default:
+								int rotate_o = default;
+								if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
+								{
+									rotate_o = (cschip.size.Width - cschip.size.Height) / (cschip.size.Width / cschip.size.Height) * Math.Sign(cschip.rotate);
+								}
+								graphics.TranslateTransform(size.Width / 2, size.Height / 2);
+								graphics.RotateTransform(cschip.rotate);
+								graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size), new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
+								break;
+						}
 					}
 				}
 				else
@@ -359,14 +368,117 @@ namespace MasaoPlus
 				}
 				this.ChipNavigator.Image = (Image)bitmap.Clone();
 				bitmap.Dispose();
+				string name, description;
+
+				if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
+				{
+					name = "オリジナルボス";
+                    if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
+                    {
+                        switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+                        {
+							case 1:
+								description = "停止";
+								break;
+							case 2:
+								description = "左右移動";
+								break;
+							case 3:
+								description = "上下移動";
+								break;
+							case 4:
+								description = "左回り";
+								break;
+							case 5:
+								description = "右回り";
+								break;
+							case 6:
+								description = "四角形左回り";
+								break;
+							case 7:
+								description = "四角形右回り";
+								break;
+							case 8:
+								description = "HPが半分になると左へ移動";
+								break;
+							case 9:
+								description = "HPが減ると左と右へ移動";
+								break;
+							case 10:
+								description = "HPが半分になると上へ移動";
+								break;
+							case 11:
+								description = "HPが減ると上と下へ移動";
+								break;
+							case 12:
+								description = "HPが半分になると下へ移動";
+								break;
+							case 13:
+								description = "HPが減ると下と上へ移動";
+								break;
+							case 14:
+								description = "画面の端で方向転換";
+								break;
+							case 15:
+								description = "ジグザグ移動";
+								break;
+							case 16:
+								description = "画面の内側を左回り";
+								break;
+							case 17:
+								description = "画面の内側を右回り";
+								break;
+							case 18:
+								description = "HPが半分以下になると左右移動";
+								break;
+							case 19:
+								description = "HPが1/3以下になると左右移動";
+								break;
+							case 20:
+								description = "HPが半分以下になると左回り";
+								break;
+							case 21:
+								description = "HPが1/3以下になると左回り";
+								break;
+							case 22:
+								description = "斜め上へ往復";
+								break;
+							case 23:
+								description = "斜め下へ往復";
+								break;
+							case 24:
+								description = "中央で停止";
+								break;
+							case 25:
+								description = "中央で停止 主人公の方を向く";
+								break;
+							case 26:
+								description = "巨大化  中央から";
+								break;
+							case 27:
+								description = "巨大化  右から";
+								break;
+							default:
+								description = "";
+								break;
+						}
+                    }
+					else description = "";
+
+				}
+				else {
+					name = cschip.name;
+					description = cschip.description;
+				}
+
 				this.ChipNavigator.Text = string.Concat(new string[]
 				{
 					"[",
 					chipsData.character,
 					"]",
-					cschip.name,
+					name,
 					"/",
-					cschip.description
+					description
 				});
 				this.ChipNavigator.Visible = true;
 			}
@@ -628,6 +740,7 @@ namespace MasaoPlus
 		}
 
 		// Token: 0x0600014D RID: 333 RVA: 0x00020CC8 File Offset: 0x0001EEC8
+		// クラシックチップリスト以外
 		public void ChipItemReadyInvoke()
 		{
 			this.ChipList.BeginUpdate();
@@ -656,7 +769,105 @@ namespace MasaoPlus
 				{
 					this.ChipList.Items.Add(chipData.name);
 				}
-				else
+				else if(Global.state.EditingForeground && chipsData.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+				{
+					string description;
+					if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
+					{
+						switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+						{
+							case 1:
+								description = "停止";
+								break;
+							case 2:
+								description = "左右移動";
+								break;
+							case 3:
+								description = "上下移動";
+								break;
+							case 4:
+								description = "左回り";
+								break;
+							case 5:
+								description = "右回り";
+								break;
+							case 6:
+								description = "四角形左回り";
+								break;
+							case 7:
+								description = "四角形右回り";
+								break;
+							case 8:
+								description = "HPが半分になると左へ移動";
+								break;
+							case 9:
+								description = "HPが減ると左と右へ移動";
+								break;
+							case 10:
+								description = "HPが半分になると上へ移動";
+								break;
+							case 11:
+								description = "HPが減ると上と下へ移動";
+								break;
+							case 12:
+								description = "HPが半分になると下へ移動";
+								break;
+							case 13:
+								description = "HPが減ると下と上へ移動";
+								break;
+							case 14:
+								description = "画面の端で方向転換";
+								break;
+							case 15:
+								description = "ジグザグ移動";
+								break;
+							case 16:
+								description = "画面の内側を左回り";
+								break;
+							case 17:
+								description = "画面の内側を右回り";
+								break;
+							case 18:
+								description = "HPが半分以下になると左右移動";
+								break;
+							case 19:
+								description = "HPが1/3以下になると左右移動";
+								break;
+							case 20:
+								description = "HPが半分以下になると左回り";
+								break;
+							case 21:
+								description = "HPが1/3以下になると左回り";
+								break;
+							case 22:
+								description = "斜め上へ往復";
+								break;
+							case 23:
+								description = "斜め下へ往復";
+								break;
+							case 24:
+								description = "中央で停止";
+								break;
+							case 25:
+								description = "中央で停止 主人公の方を向く";
+								break;
+							case 26:
+								description = "巨大化  中央から";
+								break;
+							case 27:
+								description = "巨大化  右から";
+								break;
+							default:
+								description = "";
+								break;
+						}
+					}
+					else description = "";
+
+					this.ChipList.Items.Add("オリジナルボス" + "/" + description);
+
+				}
+				else 
 				{
 					this.ChipList.Items.Add(chipData.name + "/" + chipData.description);
 				}
@@ -783,13 +994,114 @@ namespace MasaoPlus
 		}
 
 		// Token: 0x06000158 RID: 344 RVA: 0x00021070 File Offset: 0x0001F270
+		// チップリストの左上
 		private void state_UpdateCurrentChipInvoke()
 		{
 			this.ChipImage.Refresh();
-			this.ChipDescription.Text = Global.state.CurrentChip.GetCSChip().name;
+			if (Global.state.CurrentChip.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+				this.ChipDescription.Text = "オリジナルボス";
+			else this.ChipDescription.Text = Global.state.CurrentChip.GetCSChip().name;
 			if (Global.state.CurrentChip.GetCSChip().description != "")
 			{
-				this.ChipChar.Text = "[" + Global.state.CurrentChip.character + "]" + Global.state.CurrentChip.GetCSChip().description;
+				if (Global.state.EditingForeground && Global.state.CurrentChip.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+				{
+					string description;
+					if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
+					{
+						switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+						{
+							case 1:
+								description = "停止";
+								break;
+							case 2:
+								description = "左右移動";
+								break;
+							case 3:
+								description = "上下移動";
+								break;
+							case 4:
+								description = "左回り";
+								break;
+							case 5:
+								description = "右回り";
+								break;
+							case 6:
+								description = "四角形左回り";
+								break;
+							case 7:
+								description = "四角形右回り";
+								break;
+							case 8:
+								description = "HPが半分になると左へ移動";
+								break;
+							case 9:
+								description = "HPが減ると左と右へ移動";
+								break;
+							case 10:
+								description = "HPが半分になると上へ移動";
+								break;
+							case 11:
+								description = "HPが減ると上と下へ移動";
+								break;
+							case 12:
+								description = "HPが半分になると下へ移動";
+								break;
+							case 13:
+								description = "HPが減ると下と上へ移動";
+								break;
+							case 14:
+								description = "画面の端で方向転換";
+								break;
+							case 15:
+								description = "ジグザグ移動";
+								break;
+							case 16:
+								description = "画面の内側を左回り";
+								break;
+							case 17:
+								description = "画面の内側を右回り";
+								break;
+							case 18:
+								description = "HPが半分以下になると左右移動";
+								break;
+							case 19:
+								description = "HPが1/3以下になると左右移動";
+								break;
+							case 20:
+								description = "HPが半分以下になると左回り";
+								break;
+							case 21:
+								description = "HPが1/3以下になると左回り";
+								break;
+							case 22:
+								description = "斜め上へ往復";
+								break;
+							case 23:
+								description = "斜め下へ往復";
+								break;
+							case 24:
+								description = "中央で停止";
+								break;
+							case 25:
+								description = "中央で停止 主人公の方を向く";
+								break;
+							case 26:
+								description = "巨大化  中央から";
+								break;
+							case 27:
+								description = "巨大化  右から";
+								break;
+							default:
+								description = "";
+								break;
+						}
+					}
+					else description = "";
+
+					this.ChipChar.Text = "[Z]" + description;
+
+				}
+				else this.ChipChar.Text = "[" + Global.state.CurrentChip.character + "]" + Global.state.CurrentChip.GetCSChip().description;
 			}
 			else
 			{
@@ -849,26 +1161,33 @@ namespace MasaoPlus
 				if (!Global.cpd.UseLayer || Global.state.EditingForeground)
 				{
 					e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
-					switch (cschip.name)
+					if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.state.CurrentChip.character == "Z")
 					{
-						case "一方通行":
-							if (cschip.description.Contains("表示なし")) break;
-							Pen p = new Pen(Global.cpd.project.Config.Firebar2, 2);
-							if (cschip.description.Contains("右"))
-								e.Graphics.DrawLine(p, this.ChipImage.Width - 1, 0, this.ChipImage.Width - 1, this.ChipImage.Height);
-							else if (cschip.description.Contains("左"))
-								e.Graphics.DrawLine(p, 1, 0, 1, this.ChipImage.Height);
-							else if (cschip.description.Contains("上"))
-								e.Graphics.DrawLine(p, 0, 1, this.ChipImage.Width, 1);
-							else if (cschip.description.Contains("下"))
-								e.Graphics.DrawLine(p, 0, this.ChipImage.Height - 1, this.ChipImage.Width, this.ChipImage.Height - 1);
-							p.Dispose();
-							break;
-						default:
-							e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Height / 2);
-							e.Graphics.RotateTransform(cschip.rotate);
-							e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-this.ChipImage.Width / 2, -this.ChipImage.Height / 2), this.ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
-							break;
+						e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, this.ChipImage.Size.Width, this.ChipImage.Size.Height);
+					}
+					else
+					{
+						switch (cschip.name)
+						{
+							case "一方通行":
+								if (cschip.description.Contains("表示なし")) break;
+								Pen p = new Pen(Global.cpd.project.Config.Firebar2, 2);
+								if (cschip.description.Contains("右"))
+									e.Graphics.DrawLine(p, this.ChipImage.Width - 1, 0, this.ChipImage.Width - 1, this.ChipImage.Height);
+								else if (cschip.description.Contains("左"))
+									e.Graphics.DrawLine(p, 1, 0, 1, this.ChipImage.Height);
+								else if (cschip.description.Contains("上"))
+									e.Graphics.DrawLine(p, 0, 1, this.ChipImage.Width, 1);
+								else if (cschip.description.Contains("下"))
+									e.Graphics.DrawLine(p, 0, this.ChipImage.Height - 1, this.ChipImage.Width, this.ChipImage.Height - 1);
+								p.Dispose();
+								break;
+							default:
+								e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Height / 2);
+								e.Graphics.RotateTransform(cschip.rotate);
+								e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-this.ChipImage.Width / 2, -this.ChipImage.Height / 2), this.ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
+								break;
+						}
 					}
 				}
 				else
@@ -1347,26 +1666,33 @@ namespace MasaoPlus
 						e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
 						transState = e.Graphics.Save();
 						e.Graphics.TranslateTransform(e.Bounds.X, e.Bounds.Y);
-						switch (cschip.name)
+						if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[e.Index].character == "Z")
 						{
-							case "一方通行":
-								if (cschip.description.Contains("表示なし")) break;
-								Pen p = new Pen(Global.cpd.project.Config.Firebar2, 2 / e.Bounds.Height);
-								if (cschip.description.Contains("右"))
-									e.Graphics.DrawLine(p, e.Bounds.Height - 1, 0, e.Bounds.Height - 1, e.Bounds.Height);
-								else if (cschip.description.Contains("左"))
-									e.Graphics.DrawLine(p, 1, 0, 1, e.Bounds.Height);
-								else if (cschip.description.Contains("上"))
-									e.Graphics.DrawLine(p, 0, 1, e.Bounds.Height, 1);
-								else if (cschip.description.Contains("下"))
-									e.Graphics.DrawLine(p, 0, e.Bounds.Height - 1, e.Bounds.Height, e.Bounds.Height - 1);
-								p.Dispose();
-								break;
-							default:
-								e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
-								e.Graphics.RotateTransform(cschip.rotate);
-								e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
-								break;
+							e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, e.Bounds.Height, e.Bounds.Height);
+						}
+						else
+						{
+							switch (cschip.name)
+							{
+								case "一方通行":
+									if (cschip.description.Contains("表示なし")) break;
+									Pen p = new Pen(Global.cpd.project.Config.Firebar2, 2 / e.Bounds.Height);
+									if (cschip.description.Contains("右"))
+										e.Graphics.DrawLine(p, e.Bounds.Height - 1, 0, e.Bounds.Height - 1, e.Bounds.Height);
+									else if (cschip.description.Contains("左"))
+										e.Graphics.DrawLine(p, 1, 0, 1, e.Bounds.Height);
+									else if (cschip.description.Contains("上"))
+										e.Graphics.DrawLine(p, 0, 1, e.Bounds.Height, 1);
+									else if (cschip.description.Contains("下"))
+										e.Graphics.DrawLine(p, 0, e.Bounds.Height - 1, e.Bounds.Height, e.Bounds.Height - 1);
+									p.Dispose();
+									break;
+								default:
+									e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
+									e.Graphics.RotateTransform(cschip.rotate);
+									e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+									break;
+							}
 						}
 						e.Graphics.Restore(transState);
 					}
@@ -1391,10 +1717,10 @@ namespace MasaoPlus
 
 						e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
 						transState = e.Graphics.Save();
-
+							
+						e.Graphics.TranslateTransform(e.Bounds.X, e.Bounds.Y);
 						if (cschip.size == default(Size))
 						{
-							e.Graphics.TranslateTransform(e.Bounds.X, e.Bounds.Y);
 							switch (cschip.name)
 							{
 								case "一方通行":
@@ -1420,21 +1746,29 @@ namespace MasaoPlus
 						}
 						else
 						{
-							int rotate_o = default;
-							if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
-								{
-									rotate_o = (cschip.size.Width - cschip.size.Height) / (cschip.size.Width / cschip.size.Height) * Math.Sign(cschip.rotate);
-									width = cschip.size.Height;
-								}
-                            else
-								{
-									width = cschip.size.Width;
-								}
-							e.Graphics.TranslateTransform(e.Bounds.X + cschip.size.Width / 2, e.Bounds.Y + cschip.size.Height / 2);
-							e.Graphics.RotateTransform(cschip.rotate);
-							e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig,
-								new Rectangle(new Point(-cschip.size.Width / 2 + rotate_o, -cschip.size.Height / 2 + rotate_o), cschip.size),
-								new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
+							if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[e.Index].character == "Z")
+							{
+								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0);
+								width = Global.MainWnd.MainDesigner.DrawOribossOrig.Width;
+							}
+							else
+							{
+								int rotate_o = default;
+								if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
+									{
+										rotate_o = (cschip.size.Width - cschip.size.Height) / (cschip.size.Width / cschip.size.Height) * Math.Sign(cschip.rotate);
+										width = cschip.size.Height;
+									}
+								else
+									{
+										width = cschip.size.Width;
+									}
+								e.Graphics.TranslateTransform(cschip.size.Width / 2, cschip.size.Height / 2);
+								e.Graphics.RotateTransform(cschip.rotate);
+								e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig,
+									new Rectangle(new Point(-cschip.size.Width / 2 + rotate_o, -cschip.size.Height / 2 + rotate_o), cschip.size),
+									new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
+							}
 						}
 
 						e.Graphics.Restore(transState);
@@ -1505,8 +1839,13 @@ namespace MasaoPlus
 							{
 								height = cschip.size.Width;
 							}
-							else {
-								height = cschip.size.Height;
+							else
+							{
+								if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[e.Index].character == "Z")
+								{
+									height = Global.MainWnd.MainDesigner.DrawOribossOrig.Height;
+								}
+								else height = cschip.size.Height;
 							}
 						}
 					e.ItemHeight = height;

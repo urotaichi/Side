@@ -1782,18 +1782,18 @@
   <param name="serifu_grenade_shop-6" desc="得点でグレネードを売る人のセリフ4" type="string" value="グレネードを手に入れた。" category="お店" />
   <param name="grenade_shop_score" desc="グレネード１発に必要な得点(1-）" type="int" value="20" category="お店" />
 
-  <param name="oriboss_v" desc="オリジナルボス" type="list" value="1" category="オリジナルボス">
+  <param name="oriboss_v" desc="オリジナルボス" type="list" value="1" category="オリジナルボス" chip="oriboss_v">
     <list>なし</list>
     <list>座標指定で設置する</list><list>ｾﾝｸｳｻﾞの文字Zの位置へ設置</list>
   </param>
   <param name="oriboss_name" desc="オリジナルボスの名前" type="string" value="ボスのHP" category="オリジナルボス" />
   <param name="oriboss_hp" desc="オリジナルボスのHP（1-）" type="int" value="20" category="オリジナルボス" />
   <param name="oriboss_speed" desc="オリジナルボスの速度（1-）" type="int" value="4" category="オリジナルボス" />
-  <param name="oriboss_x" desc="オリジナルボスの設置Ｘ座標（0-179）" type="int" value="20" category="オリジナルボス" />
-  <param name="oriboss_y" desc="オリジナルボスの設置Ｙ座標（0-29）" type="int" value="24" category="オリジナルボス" />
+  <param name="oriboss_x" desc="オリジナルボスの設置Ｘ座標（0-179）" type="int" value="20" category="オリジナルボス" chip="oriboss_x" />
+  <param name="oriboss_y" desc="オリジナルボスの設置Ｙ座標（0-29）" type="int" value="24" category="オリジナルボス" chip="oriboss_y" />
   <param name="oriboss_width" desc="オリジナルボスの幅（32-）" type="int" value="64" category="オリジナルボス" />
   <param name="oriboss_height" desc="オリジナルボスの高さ（32-）" type="int" value="64" category="オリジナルボス" />
-  <param name="oriboss_ugoki" desc="オリジナルボスの動き方" type="list" value="1" category="オリジナルボス">
+  <param name="oriboss_ugoki" desc="オリジナルボスの動き方" type="list" value="1" category="オリジナルボス" chip="oriboss_ugoki">
     <list>停止</list><list>左右移動</list><list>上下移動</list><list>左回り</list><list>右回り</list><list>四角形左回り</list><list>四角形右回り</list>
     <list>HPが半分になると左へ移動</list><list>HPが減ると左と右へ移動</list><list>HPが半分になると上へ移動</list>
     <list>HPが減ると上と下へ移動</list><list>HPが半分になると下へ移動</list><list>HPが減ると下と上へ移動</list><list>画面の端で方向転換</list>
