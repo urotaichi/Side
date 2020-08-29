@@ -39,7 +39,7 @@ namespace MasaoPlus
 		public void ConfigReady()
 		{
 			this.Categories = new List<string>();
-			this.RelIndex = new int[27];
+			this.RelIndex = new int[28];
 			bool[] array = new bool[12];
 			array[0] = false;
 			array[1] = false;
@@ -168,6 +168,9 @@ namespace MasaoPlus
 					break;
 				case "filename_second_haikei4":
 					this.RelIndex[26] = i;
+					break;
+				case "filename_chizu":
+					this.RelIndex[27] = i;
 					break;
 				}
 			}
@@ -612,6 +615,19 @@ namespace MasaoPlus
 			set
 			{
 				this.Configurations[this.RelIndex[26]].Value = value;
+			}
+		}
+
+		[XmlIgnore]
+		public string ChizuImage
+		{
+			get
+			{
+				return this.Configurations[this.RelIndex[27]].Value;
+			}
+			set
+			{
+				this.Configurations[this.RelIndex[27]].Value = value;
 			}
 		}
 

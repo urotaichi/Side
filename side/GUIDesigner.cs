@@ -474,6 +474,10 @@ namespace MasaoPlus
 					g.DrawImage(HaikeiOrig, gazou_scroll_x, gazou_scroll_y);
 				}
 			}
+            else
+			{
+				g.DrawImage(Global.MainWnd.MainDesigner.DrawChizuOrig, -16, -24);
+			}
 
 			ChipsData chipsData = default(ChipsData);
 			ChipData c = default(ChipData);
@@ -1037,6 +1041,11 @@ namespace MasaoPlus
 				this.DrawSecondHaikei4Orig.Dispose();
 				this.DrawSecondHaikei4Orig = null;
 			}
+			if (this.DrawChizuOrig != null)
+			{
+				this.DrawChizuOrig.Dispose();
+				this.DrawChizuOrig = null;
+			}
 			string filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.PatternImage);
 			FileStream fs;
 			this.DrawChipOrig = Image.FromFile(filename);
@@ -1055,7 +1064,7 @@ namespace MasaoPlus
 				}
 			}
 
-			if (Global.cpd.UseLayer)
+			if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.LayerImage);
 				this.DrawLayerOrig = Image.FromFile(filename);
@@ -1157,6 +1166,11 @@ namespace MasaoPlus
 
 				this.DrawSecondHaikei4Orig = Image.FromStream(fs, false, false);
 			}
+			// 地図画面の背景
+			filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.ChizuImage);
+			fs = File.OpenRead(filename);
+
+			this.DrawChizuOrig = Image.FromStream(fs, false, false);
 		}
 
 		// Token: 0x06000089 RID: 137 RVA: 0x0000D6A4 File Offset: 0x0000B8A4
@@ -1403,6 +1417,11 @@ namespace MasaoPlus
 			{
 				this.DrawSecondHaikei4Orig.Dispose();
 				this.DrawSecondHaikei4Orig = null;
+			}
+			if (this.DrawChizuOrig != null)
+			{
+				this.DrawChizuOrig.Dispose();
+				this.DrawChizuOrig = null;
 			}
 		}
 
@@ -2963,7 +2982,8 @@ namespace MasaoPlus
 		public Bitmap DrawExMask;
 
 		public Image DrawHaikeiOrig, DrawHaikei2Orig, DrawHaikei3Orig, DrawHaikei4Orig, DrawSecondHaikeiOrig,
-			DrawSecondHaikei2Orig, DrawSecondHaikei3Orig, DrawSecondHaikei4Orig;
+			DrawSecondHaikei2Orig, DrawSecondHaikei3Orig, DrawSecondHaikei4Orig,
+			DrawChizuOrig;
 
 		// Token: 0x0400007F RID: 127
 		public Dictionary<string, ChipsData> DrawItemRef = new Dictionary<string, ChipsData>();

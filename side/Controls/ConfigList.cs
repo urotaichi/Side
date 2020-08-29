@@ -328,7 +328,7 @@ namespace MasaoPlus.Controls
 						Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
 						Global.MainWnd.MainDesigner.Refresh();
 					}
-					if(Regex.IsMatch(Global.cpd.project.Config.Configurations[num].Name, "^(filename_haikei|filename_second_haikei)"))
+					if(Regex.IsMatch(Global.cpd.project.Config.Configurations[num].Name, "^(filename_haikei|filename_second_haikei|filename_chizu)"))
 					{
 						Global.MainWnd.MainDesigner.PrepareImages();
 						Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
