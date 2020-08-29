@@ -444,6 +444,37 @@ namespace MasaoPlus
 		// Token: 0x06000082 RID: 130 RVA: 0x0000C254 File Offset: 0x0000A454
 		private void MakeDrawBuffer(Graphics g, bool foreground)
 		{
+			if (!Global.state.MapEditMode)
+			{
+				// セカンド背景画像固定表示
+				if (Global.state.ChipRegister.ContainsKey("second_gazou_scroll") && int.Parse(Global.state.ChipRegister["second_gazou_scroll"]) == 8 &&
+				Global.state.ChipRegister.ContainsKey("second_gazou_priority") && int.Parse(Global.state.ChipRegister["second_gazou_priority"]) == 1)
+				{
+					int second_gazou_scroll_x = default, second_gazou_scroll_y = default;
+					if (Global.state.ChipRegister.ContainsKey("second_gazou_scroll_x")) second_gazou_scroll_x = int.Parse(Global.state.ChipRegister["second_gazou_scroll_x"]);
+					if (Global.state.ChipRegister.ContainsKey("second_gazou_scroll_y")) second_gazou_scroll_y = int.Parse(Global.state.ChipRegister["second_gazou_scroll_y"]);
+
+					Image SecondHaikeiOrig = this.DrawSecondHaikeiOrig;
+					if (Global.state.EdittingStage == 1) SecondHaikeiOrig = this.DrawSecondHaikei2Orig;
+					else if (Global.state.EdittingStage == 2) SecondHaikeiOrig = this.DrawSecondHaikei3Orig;
+					else if (Global.state.EdittingStage == 3) SecondHaikeiOrig = this.DrawSecondHaikei4Orig;
+					g.DrawImage(SecondHaikeiOrig, second_gazou_scroll_x, second_gazou_scroll_y);
+				}
+				// 背景画像固定表示
+				if (Global.state.ChipRegister.ContainsKey("gazou_scroll") && int.Parse(Global.state.ChipRegister["gazou_scroll"]) == 11)
+				{
+					int gazou_scroll_x = default, gazou_scroll_y = default;
+					if (Global.state.ChipRegister.ContainsKey("gazou_scroll_x")) gazou_scroll_x = int.Parse(Global.state.ChipRegister["gazou_scroll_x"]);
+					if (Global.state.ChipRegister.ContainsKey("gazou_scroll_y")) gazou_scroll_y = int.Parse(Global.state.ChipRegister["gazou_scroll_y"]);
+
+					Image HaikeiOrig = this.DrawHaikeiOrig;
+					if (Global.state.EdittingStage == 1) HaikeiOrig = this.DrawHaikei2Orig;
+					else if (Global.state.EdittingStage == 2) HaikeiOrig = this.DrawHaikei3Orig;
+					else if (Global.state.EdittingStage == 3) HaikeiOrig = this.DrawHaikei4Orig;
+					g.DrawImage(HaikeiOrig, gazou_scroll_x, gazou_scroll_y);
+				}
+			}
+
 			ChipsData chipsData = default(ChipsData);
 			ChipData c = default(ChipData);
 			new List<GUIDesigner.KeepDrawData>();
@@ -452,6 +483,7 @@ namespace MasaoPlus
 			GraphicsState transState;
 			g.PixelOffsetMode = PixelOffsetMode.Half;
 			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
+
 			while (Global.state.MapEditMode ? (num < Global.cpd.runtime.Definitions.MapSize.y) : (num < Global.cpd.runtime.Definitions.StageSize.y))
 			{
 				int num2 = 0;
@@ -702,101 +734,118 @@ namespace MasaoPlus
 						 new Rectangle(keepDrawData.cd.xdraw, chipsize), GraphicsUnit.Pixel);
 				}
 			}
-			// オリジナルボスを座標で設置する場合に描画
-			if(Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 2 && foreground)
+			if (!Global.state.MapEditMode)
 			{
-				int oriboss_x = default, oriboss_y = default;
-				if (Global.state.ChipRegister.ContainsKey("oriboss_x")) oriboss_x = int.Parse(Global.state.ChipRegister["oriboss_x"]);
-				if (Global.state.ChipRegister.ContainsKey("oriboss_y")) oriboss_y = int.Parse(Global.state.ChipRegister["oriboss_y"]);
-				g.DrawImage(this.DrawOribossOrig, oriboss_x * chipsize.Width, oriboss_y * chipsize.Height);
-				if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
+				// オリジナルボスを座標で設置する場合に描画
+				if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 2 && foreground)
 				{
-					Point p = default;
-					switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+					int oriboss_x = default, oriboss_y = default;
+					if (Global.state.ChipRegister.ContainsKey("oriboss_x")) oriboss_x = int.Parse(Global.state.ChipRegister["oriboss_x"]);
+					if (Global.state.ChipRegister.ContainsKey("oriboss_y")) oriboss_y = int.Parse(Global.state.ChipRegister["oriboss_y"]);
+					g.DrawImage(this.DrawOribossOrig, oriboss_x * chipsize.Width, oriboss_y * chipsize.Height);
+					if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
 					{
-						case 1:
-							p = new Point(352, 256);
-							break;
-						case 2:
-							p = new Point(96, 0);
-							break;
-						case 3:
-							p = new Point(64, 0);
-							break;
-						case 4:
-							p = new Point(256, 0);
-							break;
-						case 5:
-							p = new Point(288, 0);
-							break;
-						case 6:
-							p = new Point(288, 448);
-							break;
-						case 7:
-							p = new Point(320, 448);
-							break;
-						case 8:
-							p = new Point(32, 32);
-							break;
-						case 9:
-							p = new Point(96, 0);
-							break;
-						case 10:
-							p = new Point(0, 32);
-							break;
-						case 11:
-							p = new Point(64, 0);
-							break;
-						case 12:
-							p = new Point(96, 32);
-							break;
-						case 13:
-							p = new Point(64, 0);
-							break;
-						case 14:
-							p = new Point(352, 448);
-							break;
-						case 15:
-							p = new Point(416, 448);
-							break;
-						case 16:
-							p = new Point(288, 448);
-							break;
-						case 17:
-							p = new Point(320, 448);
-							break;
-						case 18:
-							p = new Point(96, 0);
-							break;
-						case 19:
-							p = new Point(96, 0);
-							break;
-						case 20:
-							p = new Point(256, 0);
-							break;
-						case 21:
-							p = new Point(256, 0);
-							break;
-						case 22:
-							p = new Point(352, 448);
-							break;
-						case 23:
-							p = new Point(384, 448);
-							break;
-						case 24:
-							p = new Point(32, 32);
-							break;
-						case 25:
-							p = new Point(32, 32);
-							break;
-						case 26:
-							p = new Point(32, 128);
-							break;
-						case 27:
-							p = new Point(32, 128);
-							break;
+						Point p = default;
+						switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+						{
+							case 1:
+								p = new Point(352, 256);
+								break;
+							case 2:
+								p = new Point(96, 0);
+								break;
+							case 3:
+								p = new Point(64, 0);
+								break;
+							case 4:
+								p = new Point(256, 0);
+								break;
+							case 5:
+								p = new Point(288, 0);
+								break;
+							case 6:
+								p = new Point(288, 448);
+								break;
+							case 7:
+								p = new Point(320, 448);
+								break;
+							case 8:
+								p = new Point(32, 32);
+								break;
+							case 9:
+								p = new Point(96, 0);
+								break;
+							case 10:
+								p = new Point(0, 32);
+								break;
+							case 11:
+								p = new Point(64, 0);
+								break;
+							case 12:
+								p = new Point(96, 32);
+								break;
+							case 13:
+								p = new Point(64, 0);
+								break;
+							case 14:
+								p = new Point(352, 448);
+								break;
+							case 15:
+								p = new Point(416, 448);
+								break;
+							case 16:
+								p = new Point(288, 448);
+								break;
+							case 17:
+								p = new Point(320, 448);
+								break;
+							case 18:
+								p = new Point(96, 0);
+								break;
+							case 19:
+								p = new Point(96, 0);
+								break;
+							case 20:
+								p = new Point(256, 0);
+								break;
+							case 21:
+								p = new Point(256, 0);
+								break;
+							case 22:
+								p = new Point(352, 448);
+								break;
+							case 23:
+								p = new Point(384, 448);
+								break;
+							case 24:
+								p = new Point(32, 32);
+								break;
+							case 25:
+								p = new Point(32, 32);
+								break;
+							case 26:
+								p = new Point(32, 128);
+								break;
+							case 27:
+								p = new Point(32, 128);
+								break;
+						}
+						g.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, oriboss_x * chipsize.Width, oriboss_y * chipsize.Height, new Rectangle(p, chipsize), GraphicsUnit.Pixel);
 					}
-					g.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, oriboss_x * chipsize.Width, oriboss_y * chipsize.Height, new Rectangle(p, chipsize), GraphicsUnit.Pixel);
+				}
+				// セカンド前景画像固定表示
+				if (Global.state.ChipRegister.ContainsKey("second_gazou_scroll") && int.Parse(Global.state.ChipRegister["second_gazou_scroll"]) == 8 &&
+					Global.state.ChipRegister.ContainsKey("second_gazou_priority") && int.Parse(Global.state.ChipRegister["second_gazou_priority"]) == 2)
+				{
+					int second_gazou_scroll_x = default, second_gazou_scroll_y = default;
+					if (Global.state.ChipRegister.ContainsKey("second_gazou_scroll_x")) second_gazou_scroll_x = int.Parse(Global.state.ChipRegister["second_gazou_scroll_x"]);
+					if (Global.state.ChipRegister.ContainsKey("second_gazou_scroll_y")) second_gazou_scroll_y = int.Parse(Global.state.ChipRegister["second_gazou_scroll_y"]);
+
+					Image SecondHaikeiOrig = this.DrawSecondHaikeiOrig;
+					if (Global.state.EdittingStage == 2) SecondHaikeiOrig = this.DrawSecondHaikei2Orig;
+					else if (Global.state.EdittingStage == 3) SecondHaikeiOrig = this.DrawSecondHaikei3Orig;
+					else if (Global.state.EdittingStage == 4) SecondHaikeiOrig = this.DrawSecondHaikei4Orig;
+					g.DrawImage(SecondHaikeiOrig, second_gazou_scroll_x, second_gazou_scroll_y);
 				}
 			}
 			if (foreground)
@@ -948,7 +997,48 @@ namespace MasaoPlus
 				this.DrawExMask.Dispose();
 				this.DrawExMask = null;
 			}
+			if (this.DrawHaikeiOrig != null)
+			{
+				this.DrawHaikeiOrig.Dispose();
+				this.DrawHaikeiOrig = null;
+			}
+			if (this.DrawHaikei2Orig != null)
+			{
+				this.DrawHaikei2Orig.Dispose();
+				this.DrawHaikei2Orig = null;
+			}
+			if (this.DrawHaikei3Orig != null)
+			{
+				this.DrawHaikei3Orig.Dispose();
+				this.DrawHaikei3Orig = null;
+			}
+			if (this.DrawHaikei4Orig != null)
+			{
+				this.DrawHaikei4Orig.Dispose();
+				this.DrawHaikei4Orig = null;
+			}
+			if (this.DrawSecondHaikeiOrig != null)
+			{
+				this.DrawSecondHaikeiOrig.Dispose();
+				this.DrawSecondHaikeiOrig = null;
+			}
+			if (this.DrawSecondHaikei2Orig != null)
+			{
+				this.DrawSecondHaikei2Orig.Dispose();
+				this.DrawSecondHaikei2Orig = null;
+			}
+			if (this.DrawSecondHaikei3Orig != null)
+			{
+				this.DrawSecondHaikei3Orig.Dispose();
+				this.DrawSecondHaikei3Orig = null;
+			}
+			if (this.DrawSecondHaikei4Orig != null)
+			{
+				this.DrawSecondHaikei4Orig.Dispose();
+				this.DrawSecondHaikei4Orig = null;
+			}
 			string filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.PatternImage);
+			FileStream fs;
 			this.DrawChipOrig = Image.FromFile(filename);
 			this.DrawMask = new Bitmap(this.DrawChipOrig.Width, this.DrawChipOrig.Height);
 			ColorMap[] remapTable = new ColorMap[]
@@ -964,6 +1054,7 @@ namespace MasaoPlus
 					graphics.DrawImage(this.DrawChipOrig, new Rectangle(0, 0, this.DrawMask.Width, this.DrawMask.Height), 0, 0, this.DrawMask.Width, this.DrawMask.Height, GraphicsUnit.Pixel, imageAttributes);
 				}
 			}
+
 			if (Global.cpd.UseLayer)
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.LayerImage);
@@ -979,10 +1070,11 @@ namespace MasaoPlus
 					}
 				}
 			}
+
 			if (Global.cpd.project.Config.OribossImage != null)//オリジナルボスを使うとき
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.OribossImage);
-				var fs = File.OpenRead(filename);
+				fs = File.OpenRead(filename);
 
 				this.DrawOribossOrig = Image.FromStream(fs, false, false);
 				this.DrawOribossMask = new Bitmap(this.DrawOribossOrig.Width, this.DrawOribossOrig.Height);
@@ -992,6 +1084,7 @@ namespace MasaoPlus
                 graphics4.FillRectangle(Brushes.White, new Rectangle(0, 0, this.DrawOribossMask.Width, this.DrawOribossMask.Height));
                 graphics4.DrawImage(this.DrawOribossOrig, new Rectangle(0, 0, this.DrawOribossMask.Width, this.DrawOribossMask.Height), 0, 0, this.DrawOribossMask.Width, this.DrawOribossMask.Height, GraphicsUnit.Pixel, imageAttributes4);
             }
+
 			filename = Path.Combine(Global.cpd.where, Global.cpd.runtime.Definitions.ChipExtender);
 			this.DrawExOrig = Image.FromFile(filename);
 			this.DrawExMask = new Bitmap(this.DrawExOrig.Width, this.DrawExOrig.Height);
@@ -1007,6 +1100,62 @@ namespace MasaoPlus
 			using (Bitmap drawExMask = this.DrawExMask)
 			{
 				this.DrawExMask = DrawEx.MakeMask(drawExMask);
+			}
+			if (Global.cpd.project.Config.HaikeiImage != null)//ステージ1背景画像
+			{
+				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.HaikeiImage);
+				fs = File.OpenRead(filename);
+
+				this.DrawHaikeiOrig = Image.FromStream(fs, false, false);
+			}
+			if (Global.cpd.project.Config.HaikeiImage2 != null)//ステージ2背景画像
+			{
+				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.HaikeiImage2);
+				fs = File.OpenRead(filename);
+
+				this.DrawHaikei2Orig = Image.FromStream(fs, false, false);
+			}
+			if (Global.cpd.project.Config.HaikeiImage3 != null)//ステージ3背景画像
+			{
+				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.HaikeiImage3);
+				fs = File.OpenRead(filename);
+
+				this.DrawHaikei3Orig = Image.FromStream(fs, false, false);
+			}
+			if (Global.cpd.project.Config.HaikeiImage4 != null)//ステージ4背景画像
+			{
+				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.HaikeiImage4);
+				fs = File.OpenRead(filename);
+
+				this.DrawHaikei4Orig = Image.FromStream(fs, false, false);
+			}
+			if (Global.cpd.project.Config.SecondHaikeiImage != null)//ステージ1セカンド背景画像
+			{
+				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.SecondHaikeiImage);
+				fs = File.OpenRead(filename);
+
+				this.DrawSecondHaikeiOrig = Image.FromStream(fs, false, false);
+			}
+			if (Global.cpd.project.Config.SecondHaikeiImage2 != null)//ステージ2セカンド背景画像
+			{
+				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.SecondHaikeiImage2);
+				fs = File.OpenRead(filename);
+
+				this.DrawSecondHaikei2Orig = Image.FromStream(fs, false, false);
+			}
+			if (Global.cpd.project.Config.SecondHaikeiImage3 != null)//ステージ3セカンド背景画像
+			{
+				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.SecondHaikeiImage3);
+				fs = File.OpenRead(filename);
+
+				this.DrawSecondHaikei3Orig = Image.FromStream(fs, false, false);
+			}
+			if (Global.cpd.project.Config.SecondHaikeiImage4 != null)//ステージ4セカンド背景画像
+			{
+				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.SecondHaikeiImage4);
+				fs = File.OpenRead(filename);
+
+				this.DrawSecondHaikei4Orig = Image.FromStream(fs, false, false);
 			}
 		}
 
@@ -1214,6 +1363,46 @@ namespace MasaoPlus
 			{
 				this.DrawExMask.Dispose();
 				this.DrawExMask = null;
+			}
+			if (this.DrawHaikeiOrig != null)
+			{
+				this.DrawHaikeiOrig.Dispose();
+				this.DrawHaikeiOrig = null;
+			}
+			if (this.DrawHaikei2Orig != null)
+			{
+				this.DrawHaikei2Orig.Dispose();
+				this.DrawHaikei2Orig = null;
+			}
+			if (this.DrawHaikei3Orig != null)
+			{
+				this.DrawHaikei3Orig.Dispose();
+				this.DrawHaikei3Orig = null;
+			}
+			if (this.DrawHaikei4Orig != null)
+			{
+				this.DrawHaikei4Orig.Dispose();
+				this.DrawHaikei4Orig = null;
+			}
+			if (this.DrawSecondHaikeiOrig != null)
+			{
+				this.DrawSecondHaikeiOrig.Dispose();
+				this.DrawSecondHaikeiOrig = null;
+			}
+			if (this.DrawSecondHaikei2Orig != null)
+			{
+				this.DrawSecondHaikei2Orig.Dispose();
+				this.DrawSecondHaikei2Orig = null;
+			}
+			if (this.DrawSecondHaikei3Orig != null)
+			{
+				this.DrawSecondHaikei3Orig.Dispose();
+				this.DrawSecondHaikei3Orig = null;
+			}
+			if (this.DrawSecondHaikei4Orig != null)
+			{
+				this.DrawSecondHaikei4Orig.Dispose();
+				this.DrawSecondHaikei4Orig = null;
 			}
 		}
 
@@ -2772,6 +2961,9 @@ namespace MasaoPlus
 
 		// Token: 0x0400007E RID: 126
 		public Bitmap DrawExMask;
+
+		public Image DrawHaikeiOrig, DrawHaikei2Orig, DrawHaikei3Orig, DrawHaikei4Orig, DrawSecondHaikeiOrig,
+			DrawSecondHaikei2Orig, DrawSecondHaikei3Orig, DrawSecondHaikei4Orig;
 
 		// Token: 0x0400007F RID: 127
 		public Dictionary<string, ChipsData> DrawItemRef = new Dictionary<string, ChipsData>();

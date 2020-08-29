@@ -39,7 +39,7 @@ namespace MasaoPlus
 		public void ConfigReady()
 		{
 			this.Categories = new List<string>();
-			this.RelIndex = new int[19];
+			this.RelIndex = new int[27];
 			bool[] array = new bool[12];
 			array[0] = false;
 			array[1] = false;
@@ -144,6 +144,30 @@ namespace MasaoPlus
 					break;
 				case "filename_oriboss_left1":
 					this.RelIndex[18] = i;
+					break;
+				case "filename_haikei":
+					this.RelIndex[19] = i;
+					break;
+				case "filename_haikei2":
+					this.RelIndex[20] = i;
+					break;
+				case "filename_haikei3":
+					this.RelIndex[21] = i;
+					break;
+				case "filename_haikei4":
+					this.RelIndex[22] = i;
+					break;
+				case "filename_second_haikei":
+					this.RelIndex[23] = i;
+					break;
+				case "filename_second_haikei2":
+					this.RelIndex[24] = i;
+					break;
+				case "filename_second_haikei3":
+					this.RelIndex[25] = i;
+					break;
+				case "filename_second_haikei4":
+					this.RelIndex[26] = i;
 					break;
 				}
 			}
@@ -476,6 +500,118 @@ namespace MasaoPlus
 			set
 			{
 				this.Configurations[this.RelIndex[18]].Value = value;
+			}
+		}
+
+		[XmlIgnore]
+		public string HaikeiImage
+		{
+			get
+			{
+				if (this.RelIndex[19] != default) return this.Configurations[this.RelIndex[19]].Value;
+				else return null;
+			}
+			set
+			{
+				this.Configurations[this.RelIndex[19]].Value = value;
+			}
+		}
+
+		[XmlIgnore]
+		public string HaikeiImage2
+		{
+			get
+			{
+				if (this.RelIndex[20] != default) return this.Configurations[this.RelIndex[20]].Value;
+				else return null;
+			}
+			set
+			{
+				this.Configurations[this.RelIndex[20]].Value = value;
+			}
+		}
+
+		[XmlIgnore]
+		public string HaikeiImage3
+		{
+			get
+			{
+				if (this.RelIndex[21] != default) return this.Configurations[this.RelIndex[21]].Value;
+				else return null;
+			}
+			set
+			{
+				this.Configurations[this.RelIndex[21]].Value = value;
+			}
+		}
+
+		[XmlIgnore]
+		public string HaikeiImage4
+		{
+			get
+			{
+				if (this.RelIndex[22] != default) return this.Configurations[this.RelIndex[22]].Value;
+				else return null;
+			}
+			set
+			{
+				this.Configurations[this.RelIndex[22]].Value = value;
+			}
+		}
+
+		[XmlIgnore]
+		public string SecondHaikeiImage
+		{
+			get
+			{
+				if (this.RelIndex[23] != default) return this.Configurations[this.RelIndex[23]].Value;
+				else return null;
+			}
+			set
+			{
+				this.Configurations[this.RelIndex[23]].Value = value;
+			}
+		}
+
+		[XmlIgnore]
+		public string SecondHaikeiImage2
+		{
+			get
+			{
+				if (this.RelIndex[24] != default) return this.Configurations[this.RelIndex[24]].Value;
+				else return null;
+			}
+			set
+			{
+				this.Configurations[this.RelIndex[24]].Value = value;
+			}
+		}
+
+		[XmlIgnore]
+		public string SecondHaikeiImage3
+		{
+			get
+			{
+				if (this.RelIndex[25] != default) return this.Configurations[this.RelIndex[25]].Value;
+				else return null;
+			}
+			set
+			{
+				this.Configurations[this.RelIndex[25]].Value = value;
+			}
+		}
+
+		[XmlIgnore]
+		public string SecondHaikeiImage4
+		{
+			get
+			{
+				if (this.RelIndex[26] != default) return this.Configurations[this.RelIndex[26]].Value;
+				else return null;
+			}
+			set
+			{
+				this.Configurations[this.RelIndex[26]].Value = value;
 			}
 		}
 

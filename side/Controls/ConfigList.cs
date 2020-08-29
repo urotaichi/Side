@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MasaoPlus.Dialogs;
 
@@ -325,6 +326,13 @@ namespace MasaoPlus.Controls
 					{
 						Global.MainWnd.MainDesigner.PrepareImages();
 						Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
+						Global.MainWnd.MainDesigner.Refresh();
+					}
+					if(Regex.IsMatch(Global.cpd.project.Config.Configurations[num].Name, "^(filename_haikei|filename_second_haikei)"))
+					{
+						Global.MainWnd.MainDesigner.PrepareImages();
+						Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
+						Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
 						Global.MainWnd.MainDesigner.Refresh();
 					}
 					break;
