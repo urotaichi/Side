@@ -44,6 +44,7 @@ namespace MasaoPlus
 			this.IntegrateEditorId.Checked = Global.config.localSystem.IntegrateEditorId;
 			this.UsePropTextDialog.Checked = Global.config.localSystem.UsePropExTextEditor;
 			this.OutPutInititalSourceCode.Checked = Global.config.localSystem.OutPutInititalSourceCode;
+			this.WrapPropText.Checked = Global.config.localSystem.WrapPropText;
 			this.StartWithCL.Checked = Global.config.draw.StartUpWithClassicCL;
 			this.WheelHorz.Checked = Global.config.draw.HScrollDefault;
 			if (!Native.CheckRegistryAddmittion())
@@ -96,6 +97,7 @@ namespace MasaoPlus
 			Global.config.localSystem.IntegrateEditorId = this.IntegrateEditorId.Checked;
 			Global.config.localSystem.UsePropExTextEditor = this.UsePropTextDialog.Checked;
 			Global.config.localSystem.OutPutInititalSourceCode = this.OutPutInititalSourceCode.Checked;
+			Global.config.localSystem.WrapPropText = this.WrapPropText.Checked;
 			Global.config.draw.StartUpWithClassicCL = this.StartWithCL.Checked;
 			Global.config.draw.HScrollDefault = this.WheelHorz.Checked;
 			base.Close();

@@ -143,11 +143,11 @@ namespace MasaoPlus
 			// Token: 0x04000300 RID: 768
 			public bool UsePropExTextEditor = true;
 
-			// Token: 0x04000301 RID: 769
-			public bool WrapPropText;
-
 			//初期値を出力するかどうか　デフォルトでは出力しない
 			public bool OutPutInititalSourceCode;
+
+			//枠に収まりきらないプロパティを改行して表示するかどうか　デフォルトでは改行して表示する
+			public bool WrapPropText = true;
 		}
 
 		// Token: 0x02000046 RID: 70

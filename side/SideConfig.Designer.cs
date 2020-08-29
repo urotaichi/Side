@@ -22,6 +22,7 @@
 			this.tabPage1 = new global::System.Windows.Forms.TabPage();
 			this.UsePropTextDialog = new global::System.Windows.Forms.CheckBox();
 			this.OutPutInititalSourceCode = new global::System.Windows.Forms.CheckBox();
+			this.WrapPropText = new global::System.Windows.Forms.CheckBox();
 			this.IntegrateEditorId = new global::System.Windows.Forms.CheckBox();
 			this.EnableAutoUpdate = new global::System.Windows.Forms.CheckBox();
 			this.ReversePosition = new global::System.Windows.Forms.CheckBox();
@@ -89,6 +90,7 @@
 			this.tabControl1.SelectedIndex = 0;
 			this.tabControl1.Size = new global::System.Drawing.Size(555, 265);
 			this.tabControl1.TabIndex = 0;
+			this.tabPage1.Controls.Add(this.WrapPropText);
 			this.tabPage1.Controls.Add(this.OutPutInititalSourceCode);
 			this.tabPage1.Controls.Add(this.UsePropTextDialog);
 			this.tabPage1.Controls.Add(this.IntegrateEditorId);
@@ -103,10 +105,17 @@
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "システム";
 			this.tabPage1.UseVisualStyleBackColor = true;
+			this.WrapPropText.AutoSize = true;
+			this.WrapPropText.Location = new global::System.Drawing.Point(6, 142);
+			this.WrapPropText.Name = "WrapPropText";
+			this.WrapPropText.Size = new global::System.Drawing.Size(212, 16);
+			this.WrapPropText.TabIndex = 7;
+			this.WrapPropText.Text = "長いプロパティ名を改行する(&B)";
+			this.WrapPropText.UseVisualStyleBackColor = true;
 			this.OutPutInititalSourceCode.AutoSize = true;
 			this.OutPutInititalSourceCode.Location = new global::System.Drawing.Point(6, 120);
 			this.OutPutInititalSourceCode.Name = "OutPutInititalSourceCode";
-			this.OutPutInititalSourceCode.Size = new global::System.Drawing.Size(212, 16);//?
+			this.OutPutInititalSourceCode.Size = new global::System.Drawing.Size(212, 16);
 			this.OutPutInititalSourceCode.TabIndex = 6;
 			this.OutPutInititalSourceCode.Text = "初期値のパラメータを出力する(2.8ではチェックの有無に関わらず出力)(&P)";
 			this.OutPutInititalSourceCode.UseVisualStyleBackColor = true;
@@ -544,6 +553,8 @@
 		private global::System.Windows.Forms.CheckBox UsePropTextDialog;
 
 		private global::System.Windows.Forms.CheckBox OutPutInititalSourceCode;
+
+		private global::System.Windows.Forms.CheckBox WrapPropText;
 
 		// Token: 0x04000196 RID: 406
 		private global::System.Windows.Forms.CheckBox StartWithCL;

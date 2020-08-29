@@ -114,10 +114,6 @@ namespace MasaoPlus.Controls
 							DataGridViewButtonCell dataGridViewButtonCell = new DataGridViewButtonCell();
 							dataGridViewButtonCell.Value = configParam.Value;
 							dataGridViewButtonCell.FlatStyle = FlatStyle.Popup;
-							if (Global.config.localSystem.WrapPropText)
-							{
-								dataGridViewButtonCell.Style.WrapMode = DataGridViewTriState.True;
-							}
 							this.ConfView[1, this.OrigIdx.Count - 1] = dataGridViewButtonCell;
 						}
 						else
@@ -193,6 +189,7 @@ namespace MasaoPlus.Controls
 					}
 				}
 			}
+			if (Global.config.localSystem.WrapPropText) this.ConfView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 		}
 
 		// Token: 0x06000046 RID: 70 RVA: 0x000023FD File Offset: 0x000005FD
@@ -610,11 +607,12 @@ namespace MasaoPlus.Controls
 			this.ConfigSelector.TabIndex = 3;
 			this.ConfigSelector.Resize += this.ConfigSelector_Resize;
 			this.ConfigSelector.SelectedIndexChanged += this.ConfigSelector_SelectedIndexChanged;
+			//先頭行
 			this.ConfView.AllowUserToAddRows = false;
 			this.ConfView.AllowUserToDeleteRows = false;
 			this.ConfView.AllowUserToResizeRows = false;
 			this.ConfView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-			this.ConfView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+			this.ConfView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
 			this.ConfView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.ConfView.Columns.AddRange(new DataGridViewColumn[]
 			{
