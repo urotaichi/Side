@@ -1631,8 +1631,8 @@
   <param name="water_visible" desc="水の表示" type="list" value="2" category="画像" chip="WaterVisible">
     <list>ﾚｲﾔｰ使用時は表示しない</list><list>常に表示する</list>
   </param>
-  <param name="water_clear_switch" desc="水の半透明表示をする" type="bool21" value="true" category="画像" />
-  <param name="water_clear_level" desc="水の透明度(0-255)" type="int" value="128" category="画像" />
+  <param name="water_clear_switch" desc="水の半透明表示をする" type="bool21" value="true" category="画像" chip="water_clear_switch" />
+  <param name="water_clear_level" desc="水の透明度(0-255)" type="int" value="128" category="画像" chip="water_clear_level" />
   <param name="now_loading" desc="起動中メッセージ" type="string" value="ただいまファイルを読み込み中。しばらくお待ち下さい。" category="表示" />
   <param name="easy_mode" desc="イージーモードにするか" type="list" value="1" category="システム">
     <list>ノーマルモード</list><list>敵の端を踏んでも倒せる</list>

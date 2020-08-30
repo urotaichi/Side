@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace MasaoPlus
@@ -241,7 +242,24 @@ namespace MasaoPlus
 										default:
 											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
 											e.Graphics.RotateTransform(cschip.rotate);
-											e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+
+											// 水の半透明処理
+											if(Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && chipsData.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                                            {
+												float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                                var colorMatrix = new ColorMatrix
+                                                {
+                                                    Matrix00 = 1f,
+                                                    Matrix11 = 1f,
+                                                    Matrix22 = 1f,
+                                                    Matrix33 = water_clear_level / 255f,
+                                                    Matrix44 = 1f
+                                                };
+                                                using var imageAttributes = new ImageAttributes();
+                                                imageAttributes.SetColorMatrix(colorMatrix);
+                                                e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
+                                            }
+											else e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
 											break;
 									}
 								}

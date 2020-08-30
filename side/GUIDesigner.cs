@@ -718,6 +718,21 @@ namespace MasaoPlus
 										new Rectangle(keepDrawData.cd.pattern, chipsize), GraphicsUnit.Pixel);
 								}
 							}
+							else if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && keepDrawData.chara == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+							{// 水の半透明処理
+								float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                var colorMatrix = new ColorMatrix
+                                {
+                                    Matrix00 = 1f,
+                                    Matrix11 = 1f,
+                                    Matrix22 = 1f,
+                                    Matrix33 = water_clear_level / 255f,
+                                    Matrix44 = 1f
+                                };
+                                using var imageAttributes = new ImageAttributes();
+								imageAttributes.SetColorMatrix(colorMatrix);
+								g.DrawImage(this.DrawChipOrig, new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height), keepDrawData.cd.pattern.X, keepDrawData.cd.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
+							}
 							else g.DrawImage(this.DrawChipOrig,
 								new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height),
 								new Rectangle(keepDrawData.cd.pattern, chipsize), GraphicsUnit.Pixel);
@@ -959,6 +974,7 @@ namespace MasaoPlus
 		}
 
 		// Token: 0x06000088 RID: 136 RVA: 0x0000D280 File Offset: 0x0000B480
+		// 画像準備
 		public void PrepareImages()
 		{
 			if (this.DrawChipOrig != null)
@@ -2720,6 +2736,22 @@ namespace MasaoPlus
 															new Rectangle(-chipsize.Width / 2 + j * chipsize.Width * Math.Sign(cschip.rotate), -chipsize.Height / 2, chipsize.Width, chipsize.Height),
 															new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 													}
+												}
+												else if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && chipsData.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+												{// 水の半透明処理
+													float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+													var colorMatrix = new ColorMatrix
+													{
+														Matrix00 = 1f,
+														Matrix11 = 1f,
+														Matrix22 = 1f,
+														Matrix33 = water_clear_level / 255f,
+														Matrix44 = 1f
+													};
+													using var imageAttributes = new ImageAttributes();
+													imageAttributes.SetColorMatrix(colorMatrix);
+													graphics.DrawImage(this.DrawChipOrig, new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height),
+														cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
 												}
 												else graphics.DrawImage(this.DrawChipOrig,
 													new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height),

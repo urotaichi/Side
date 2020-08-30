@@ -357,7 +357,24 @@ namespace MasaoPlus
 								}
 								graphics.TranslateTransform(size.Width / 2, size.Height / 2);
 								graphics.RotateTransform(cschip.rotate);
-								graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size), new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
+
+								// 水の半透明処理
+								if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && chipsData.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+								{
+									float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                    var colorMatrix = new ColorMatrix
+                                    {
+                                        Matrix00 = 1f,
+                                        Matrix11 = 1f,
+                                        Matrix22 = 1f,
+                                        Matrix33 = water_clear_level / 255f,
+                                        Matrix44 = 1f
+                                    };
+                                    using var imageAttributes = new ImageAttributes();
+                                    imageAttributes.SetColorMatrix(colorMatrix);
+                                    graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size), cschip.pattern.X, cschip.pattern.Y, size.Width, size.Height, GraphicsUnit.Pixel, imageAttributes);
+                                }
+								else graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size), new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
 								break;
 						}
 					}
@@ -1185,7 +1202,24 @@ namespace MasaoPlus
 							default:
 								e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Height / 2);
 								e.Graphics.RotateTransform(cschip.rotate);
-								e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-this.ChipImage.Width / 2, -this.ChipImage.Height / 2), this.ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
+
+								// 水の半透明処理
+								if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.state.CurrentChip.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+								{
+									float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                    var colorMatrix = new ColorMatrix
+                                    {
+                                        Matrix00 = 1f,
+                                        Matrix11 = 1f,
+                                        Matrix22 = 1f,
+                                        Matrix33 = water_clear_level / 255f,
+                                        Matrix44 = 1f
+                                    };
+                                    using var imageAttributes = new ImageAttributes();
+									imageAttributes.SetColorMatrix(colorMatrix);
+									e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-this.ChipImage.Width / 2, -this.ChipImage.Height / 2), this.ChipImage.Size), cschip.pattern.X, cschip.pattern.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height, GraphicsUnit.Pixel, imageAttributes);
+								}
+								else e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-this.ChipImage.Width / 2, -this.ChipImage.Height / 2), this.ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
 								break;
 						}
 					}
@@ -1690,7 +1724,23 @@ namespace MasaoPlus
 								default:
 									e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
 									e.Graphics.RotateTransform(cschip.rotate);
-									e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+									// 水の半透明処理
+									if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.cpd.Mapchip[e.Index].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+										{
+										float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+										var colorMatrix = new ColorMatrix
+										{
+											Matrix00 = 1f,
+											Matrix11 = 1f,
+											Matrix22 = 1f,
+											Matrix33 = water_clear_level / 255f,
+											Matrix44 = 1f
+										};
+										using var imageAttributes = new ImageAttributes();
+										imageAttributes.SetColorMatrix(colorMatrix);
+										e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
+									}
+									else e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
 									break;
 							}
 						}
@@ -1739,7 +1789,23 @@ namespace MasaoPlus
 								default:
 									e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
 									e.Graphics.RotateTransform(cschip.rotate);
-									e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+									// 水の半透明処理
+									if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.cpd.Mapchip[e.Index].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+									{
+										float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+										var colorMatrix = new ColorMatrix
+										{
+											Matrix00 = 1f,
+											Matrix11 = 1f,
+											Matrix22 = 1f,
+											Matrix33 = water_clear_level / 255f,
+											Matrix44 = 1f
+										};
+										using var imageAttributes = new ImageAttributes();
+										imageAttributes.SetColorMatrix(colorMatrix);
+										e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
+									}
+									else e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 									break;
 							}
 							width = chipsize.Width;
