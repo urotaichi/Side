@@ -236,7 +236,7 @@ namespace MasaoPlus.Controls
 					openFileDialog.InitialDirectory = Global.cpd.where;
 					openFileDialog.FileName = configParam.Value;
 					if(configParam.Type == ConfigParam.Types.f_i)
-						openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
+						openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.bmp)|*.gif;*.png;*.jpg;*.bmp|全てのファイル (*.*)|*.*";
 					else if(configParam.Type == ConfigParam.Types.f_a)
 						openFileDialog.Filter = "音声(*.wav;*.mp3;*.ogg)|*.wav;*.mp3;*.ogg|全てのファイル (*.*)|*.*";
 					if (openFileDialog.ShowDialog() != DialogResult.OK)

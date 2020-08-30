@@ -114,7 +114,7 @@ namespace MasaoPlus.Dialogs
 						using (OpenFileDialog openFileDialog = new OpenFileDialog())
 						{
 							openFileDialog.DefaultExt = "*.gif";
-							openFileDialog.Filter = "gif画像 (*.gif)|*.gif|png画像 (*.png)|*.png|WebP画像 (*.webp)|*.webp|全てのファイル (*.*)|*.*";
+							openFileDialog.Filter = "gif画像 (*.gif)|*.gif|png画像 (*.png)|*.png|全てのファイル (*.*)|*.*";
 							openFileDialog.InitialDirectory = Global.cpd.where;
 							if (openFileDialog.ShowDialog() != DialogResult.OK)
 							{
