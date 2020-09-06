@@ -427,9 +427,11 @@
         <description>左向き。縦４つ。</description></chip>
       <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
-      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ここへ全部持って行くとクリアです。</description></chip>
-      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ロック機能付きです。</description></chip>
       <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
@@ -1255,9 +1257,11 @@
         <description>左向き。縦４つ。</description></chip>
       <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
-      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ここへ全部持って行くとクリアです。</description></chip>
-      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ロック機能付きです。</description></chip>
       <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
@@ -2083,9 +2087,11 @@
         <description>左向き。縦４つ。</description></chip>
       <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
-      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ここへ全部持って行くとクリアです。</description></chip>
-      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ロック機能付きです。</description></chip>
       <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
@@ -2911,9 +2917,11 @@
         <description>左向き。縦４つ。</description></chip>
       <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
-      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ここへ全部持って行くとクリアです。</description></chip>
-      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ロック機能付きです。</description></chip>
       <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
@@ -3739,9 +3747,11 @@
         <description>左向き。縦４つ。</description></chip>
       <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
-      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ここへ全部持って行くとクリアです。</description></chip>
-      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ロック機能付きです。</description></chip>
       <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
@@ -4567,9 +4577,11 @@
         <description>左向き。縦４つ。</description></chip>
       <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
-      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ここへ全部持って行くとクリアです。</description></chip>
-      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ロック機能付きです。</description></chip>
       <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
@@ -5537,9 +5549,11 @@
         <description>左向き。縦４つ。</description></chip>
       <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
-      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ここへ全部持って行くとクリアです。</description></chip>
-      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ロック機能付きです。</description></chip>
       <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
@@ -6365,9 +6379,11 @@
         <description>左向き。縦４つ。</description></chip>
       <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
-      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ここへ全部持って行くとクリアです。</description></chip>
-      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ロック機能付きです。</description></chip>
       <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
@@ -7248,9 +7264,11 @@
         <description>左向き。縦４つ。</description></chip>
       <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
-      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ここへ全部持って行くとクリアです。</description></chip>
-      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ロック機能付きです。</description></chip>
       <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
@@ -8075,9 +8093,11 @@
         <description>左向き。縦４つ。</description></chip>
       <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
-      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ここへ全部持って行くとクリアです。</description></chip>
-      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ロック機能付きです。</description></chip>
       <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
@@ -8902,9 +8922,11 @@
         <description>左向き。縦４つ。</description></chip>
       <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
-      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ここへ全部持って行くとクリアです。</description></chip>
-      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ロック機能付きです。</description></chip>
       <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>
@@ -9729,9 +9751,11 @@
         <description>左向き。縦４つ。</description></chip>
       <chip value="156"><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右向き。縦４つ。</description></chip>
-      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="157"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ここへ全部持って行くとクリアです。</description></chip>
-      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw><name>左右へ押せるドッスンスンのゴール</name>
+      <chip value="158"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>ロック機能付きです。</description></chip>
       <chip value="159"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>右へ一歩通行。縦４つ。</description></chip>

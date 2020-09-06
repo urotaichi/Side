@@ -680,22 +680,31 @@ namespace MasaoPlus
 				if (foreground)
 				{ // 標準パターン画像
 					transState = g.Save();
-					g.TranslateTransform(keepDrawData.pos.X * chipsize.Width,
-						keepDrawData.pos.Y * chipsize.Height);
+					g.TranslateTransform(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height);
+					Pen pen;
 					switch (keepDrawData.cd.name)
 					{
 						case "一方通行":
 							if (keepDrawData.cd.description.Contains("表示なし")) break;
-							Pen p = new Pen(Global.cpd.project.Config.Firebar2, 2);
+							pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
 							if (keepDrawData.cd.description.Contains("右"))
-								g.DrawLine(p, keepDrawData.cd.view_size.Width - 1, 0, keepDrawData.cd.view_size.Width - 1, keepDrawData.cd.view_size.Height);
+								g.DrawLine(pen, keepDrawData.cd.view_size.Width - 1, 0, keepDrawData.cd.view_size.Width - 1, keepDrawData.cd.view_size.Height);
 							else if (keepDrawData.cd.description.Contains("左"))
-								g.DrawLine(p, 1, 0, 1, keepDrawData.cd.view_size.Height);
+								g.DrawLine(pen, 1, 0, 1, keepDrawData.cd.view_size.Height);
 							else if (keepDrawData.cd.description.Contains("上"))
-								g.DrawLine(p, 0, 1, keepDrawData.cd.view_size.Width, 1);
+								g.DrawLine(pen, 0, 1, keepDrawData.cd.view_size.Width, 1);
 							else if (keepDrawData.cd.description.Contains("下"))
-								g.DrawLine(p, 0, keepDrawData.cd.view_size.Height - 1, keepDrawData.cd.view_size.Width, keepDrawData.cd.view_size.Height - 1);
-							p.Dispose();
+								g.DrawLine(pen, 0, keepDrawData.cd.view_size.Height - 1, keepDrawData.cd.view_size.Width, keepDrawData.cd.view_size.Height - 1);
+							pen.Dispose();
+							break;
+						case "左右へ押せるドッスンスンのゴール":
+							g.SmoothingMode = SmoothingMode.AntiAlias;
+							g.TranslateTransform(-keepDrawData.cd.center.X + 1, -keepDrawData.cd.center.Y + 1);
+							pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
+							g.DrawRectangle(pen, 0, 0, 94, 62);
+							g.DrawLine(pen, 0, 0, 94, 62);
+							g.DrawLine(pen, 0, 62, 94, 0);
+							pen.Dispose();
 							break;
 						default:
 							g.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
@@ -2701,20 +2710,30 @@ namespace MasaoPlus
 									{
 										transState = graphics.Save();
 										graphics.TranslateTransform(point.X * chipsize.Width, point.Y * chipsize.Height);
+										Pen pen;
 										switch (cschip.name)
 										{
 											case "一方通行":
 												if (cschip.description.Contains("表示なし")) break;
-												Pen p = new Pen(Global.cpd.project.Config.Firebar2, 2);
+												pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
 												if (cschip.description.Contains("右"))
-													graphics.DrawLine(p, cschip.view_size.Width - 1, 0, cschip.view_size.Width - 1, cschip.view_size.Height);
+													graphics.DrawLine(pen, cschip.view_size.Width - 1, 0, cschip.view_size.Width - 1, cschip.view_size.Height);
 												else if (cschip.description.Contains("左"))
-													graphics.DrawLine(p, 1, 0, 1, cschip.view_size.Height);
+													graphics.DrawLine(pen, 1, 0, 1, cschip.view_size.Height);
 												else if (cschip.description.Contains("上"))
-													graphics.DrawLine(p, 0, 1, cschip.view_size.Width, 1);
+													graphics.DrawLine(pen, 0, 1, cschip.view_size.Width, 1);
 												else if (cschip.description.Contains("下"))
-													graphics.DrawLine(p, 0, cschip.view_size.Height - 1, cschip.view_size.Width, cschip.view_size.Height - 1);
-												p.Dispose();
+													graphics.DrawLine(pen, 0, cschip.view_size.Height - 1, cschip.view_size.Width, cschip.view_size.Height - 1);
+												pen.Dispose();
+												break;
+											case "左右へ押せるドッスンスンのゴール":
+												graphics.SmoothingMode = SmoothingMode.AntiAlias;
+												graphics.TranslateTransform(-cschip.center.X + 1, -cschip.center.Y + 1);
+												pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
+												graphics.DrawRectangle(pen, 0, 0, 94, 62);
+												graphics.DrawLine(pen, 0, 0, 94, 62);
+												graphics.DrawLine(pen, 0, 62, 94, 0);
+												pen.Dispose();
 												break;
 											default:
 												graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);

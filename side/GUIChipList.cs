@@ -224,20 +224,30 @@ namespace MasaoPlus
 								}
 								else
 								{
+									Pen pen;
 									switch (cschip.name)
 									{
 										case "一方通行":
 											if (cschip.description.Contains("表示なし")) break;
-											Pen p = new Pen(Global.cpd.project.Config.Firebar2, 2);
+											pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
 											if (cschip.description.Contains("右"))
-												e.Graphics.DrawLine(p, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
+												e.Graphics.DrawLine(pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
 											else if (cschip.description.Contains("左"))
-												e.Graphics.DrawLine(p, 1, 0, 1, chipsize.Height);
+												e.Graphics.DrawLine(pen, 1, 0, 1, chipsize.Height);
 											else if (cschip.description.Contains("上"))
-												e.Graphics.DrawLine(p, 0, 1, chipsize.Width, 1);
+												e.Graphics.DrawLine(pen, 0, 1, chipsize.Width, 1);
 											else if (cschip.description.Contains("下"))
-												e.Graphics.DrawLine(p, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
-											p.Dispose();
+												e.Graphics.DrawLine(pen, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
+											pen.Dispose();
+											break;
+										case "左右へ押せるドッスンスンのゴール":
+											pen = new Pen(Global.cpd.project.Config.Firebar1, 1);
+											e.Graphics.TranslateTransform(1, 1);
+											e.Graphics.DrawRectangle(pen, 0, 11, chipsize.Width - 1, chipsize.Height - 1 - 11);
+											e.Graphics.TranslateTransform(-1, -1);
+											e.Graphics.DrawLine(pen, 0, 11, chipsize.Width, chipsize.Height);
+											e.Graphics.DrawLine(pen, 0, chipsize.Height, chipsize.Width, 11);
+											pen.Dispose();
 											break;
 										default:
 											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
