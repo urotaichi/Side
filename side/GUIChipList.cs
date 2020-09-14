@@ -225,6 +225,9 @@ namespace MasaoPlus
 								else
 								{
 									Pen pen;
+									SolidBrush brush;
+									PointF[] vo_pa;
+									double rad = 0;
 									switch (cschip.name)
 									{
 										case "一方通行":
@@ -248,6 +251,32 @@ namespace MasaoPlus
 											e.Graphics.DrawLine(pen, 0, 11, chipsize.Width, chipsize.Height);
 											e.Graphics.DrawLine(pen, 0, chipsize.Height, chipsize.Width, 11);
 											pen.Dispose();
+											break;
+										case "シーソー":
+											e.Graphics.TranslateTransform(16, 17);
+											vo_pa = new PointF[4];
+											if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
+											else if (cschip.description.Contains("右")) rad = 56 * Math.PI / 180;
+											vo_pa[0].X = (float)Math.Cos(rad + Math.PI) * chipsize.Width / 2;
+											vo_pa[0].Y = (float)Math.Sin(rad + Math.PI) * chipsize.Width / 2;
+											vo_pa[1].X = (float)Math.Cos(rad) * chipsize.Width / 2;
+											vo_pa[1].Y = (float)Math.Sin(rad) * chipsize.Width / 2;
+											vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad - Math.PI / 2) * 5;
+											vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad - Math.PI / 2) * 5;
+											vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad - Math.PI / 2) * 5;
+											vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad - Math.PI / 2) * 5;
+											brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+											e.Graphics.FillPolygon(brush, vo_pa);
+											vo_pa = new PointF[3];
+											vo_pa[0].X = 0;
+											vo_pa[0].Y = -2;
+											vo_pa[1].X = -4;
+											vo_pa[1].Y = 15;
+											vo_pa[2].X = 4;
+											vo_pa[2].Y = 15;
+											brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+											e.Graphics.FillPolygon(brush, vo_pa);
+											brush.Dispose();
 											break;
 										default:
 											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);

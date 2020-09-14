@@ -143,11 +143,14 @@
       <chip value="24"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[ハシゴ]</name>
         <description>上にハシゴが出現</description></chip>
-      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>32</Y></center><name>シーソー</name><view_size><Width>352</Width><Height>160</Height></view_size>
         <description>水平</description></chip>
-      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>左が下</description></chip>
-      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
       <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
         <description>左右に揺れるブランコ</description></chip>
@@ -973,11 +976,14 @@
       <chip value="24"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[ハシゴ]</name>
         <description>上にハシゴが出現</description></chip>
-      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>32</Y></center><name>シーソー</name><view_size><Width>352</Width><Height>160</Height></view_size>
         <description>水平</description></chip>
-      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>左が下</description></chip>
-      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
       <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
         <description>左右に揺れるブランコ</description></chip>
@@ -1803,11 +1809,14 @@
       <chip value="24"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[ハシゴ]</name>
         <description>上にハシゴが出現</description></chip>
-      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>32</Y></center><name>シーソー</name><view_size><Width>352</Width><Height>160</Height></view_size>
         <description>水平</description></chip>
-      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>左が下</description></chip>
-      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
       <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
         <description>左右に揺れるブランコ</description></chip>
@@ -2633,11 +2642,14 @@
       <chip value="24"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[ハシゴ]</name>
         <description>上にハシゴが出現</description></chip>
-      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>32</Y></center><name>シーソー</name><view_size><Width>352</Width><Height>160</Height></view_size>
         <description>水平</description></chip>
-      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>左が下</description></chip>
-      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
       <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
         <description>左右に揺れるブランコ</description></chip>
@@ -3463,11 +3475,14 @@
       <chip value="24"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[ハシゴ]</name>
         <description>上にハシゴが出現</description></chip>
-      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>32</Y></center><name>シーソー</name><view_size><Width>352</Width><Height>160</Height></view_size>
         <description>水平</description></chip>
-      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>左が下</description></chip>
-      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
       <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
         <description>左右に揺れるブランコ</description></chip>
@@ -4293,11 +4308,14 @@
       <chip value="24"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[ハシゴ]</name>
         <description>上にハシゴが出現</description></chip>
-      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>32</Y></center><name>シーソー</name><view_size><Width>352</Width><Height>160</Height></view_size>
         <description>水平</description></chip>
-      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>左が下</description></chip>
-      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
       <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
         <description>左右に揺れるブランコ</description></chip>
@@ -5265,11 +5283,14 @@
       <chip value="24"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[ハシゴ]</name>
         <description>上にハシゴが出現</description></chip>
-      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>32</Y></center><name>シーソー</name><view_size><Width>352</Width><Height>160</Height></view_size>
         <description>水平</description></chip>
-      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>左が下</description></chip>
-      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
       <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
         <description>左右に揺れるブランコ</description></chip>
@@ -6095,11 +6116,14 @@
       <chip value="24"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[ハシゴ]</name>
         <description>上にハシゴが出現</description></chip>
-      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>32</Y></center><name>シーソー</name><view_size><Width>352</Width><Height>160</Height></view_size>
         <description>水平</description></chip>
-      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>左が下</description></chip>
-      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
       <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
         <description>左右に揺れるブランコ</description></chip>
@@ -6980,11 +7004,14 @@
       <chip value="24"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[ハシゴ]</name>
         <description>上にハシゴが出現</description></chip>
-      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>32</Y></center><name>シーソー</name><view_size><Width>352</Width><Height>160</Height></view_size>
         <description>水平</description></chip>
-      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>左が下</description></chip>
-      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
       <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
         <description>左右に揺れるブランコ</description></chip>
@@ -7809,11 +7836,14 @@
       <chip value="24"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[ハシゴ]</name>
         <description>上にハシゴが出現</description></chip>
-      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>32</Y></center><name>シーソー</name><view_size><Width>352</Width><Height>160</Height></view_size>
         <description>水平</description></chip>
-      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>左が下</description></chip>
-      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
       <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
         <description>左右に揺れるブランコ</description></chip>
@@ -8638,11 +8668,14 @@
       <chip value="24"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[ハシゴ]</name>
         <description>上にハシゴが出現</description></chip>
-      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>32</Y></center><name>シーソー</name><view_size><Width>352</Width><Height>160</Height></view_size>
         <description>水平</description></chip>
-      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>左が下</description></chip>
-      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
       <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
         <description>左右に揺れるブランコ</description></chip>
@@ -9467,11 +9500,14 @@
       <chip value="24"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[ハシゴ]</name>
         <description>上にハシゴが出現</description></chip>
-      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="25"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>32</Y></center><name>シーソー</name><view_size><Width>352</Width><Height>160</Height></view_size>
         <description>水平</description></chip>
-      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="26"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>左が下</description></chip>
-      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>64</Y></xdraw><name>シーソー</name>
+      <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
       <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
         <description>左右に揺れるブランコ</description></chip>

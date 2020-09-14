@@ -682,6 +682,9 @@ namespace MasaoPlus
 					transState = g.Save();
 					g.TranslateTransform(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height);
 					Pen pen;
+					SolidBrush brush;
+					PointF[] vo_pa;
+					double rad = 0;
 					switch (keepDrawData.cd.name)
 					{
 						case "一方通行":
@@ -705,6 +708,33 @@ namespace MasaoPlus
 							g.DrawLine(pen, 0, 0, 94, 62);
 							g.DrawLine(pen, 0, 62, 94, 0);
 							pen.Dispose();
+							break;
+						case "シーソー":
+							g.SmoothingMode = SmoothingMode.AntiAlias;
+							g.TranslateTransform(16, 0);
+							vo_pa = new PointF[4];
+							if (keepDrawData.cd.description.Contains("左")) rad = -56 * Math.PI / 180;
+							else if (keepDrawData.cd.description.Contains("右")) rad = 56 * Math.PI / 180;
+                            vo_pa[0].X = (float)Math.Cos(rad + Math.PI) * 160;
+							vo_pa[0].Y = (float)Math.Sin(rad + Math.PI) * 160;
+							vo_pa[1].X = (float)Math.Cos(rad) * 160;
+							vo_pa[1].Y = (float)Math.Sin(rad) * 160;
+							vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad - Math.PI / 2) * 12;
+							vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad - Math.PI / 2) * 12;
+							vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad - Math.PI / 2) * 12;
+							vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad - Math.PI / 2) * 12;
+							brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+							g.FillPolygon(brush, vo_pa);
+							vo_pa = new PointF[3];
+							vo_pa[0].X = 0;
+							vo_pa[0].Y = 0;
+							vo_pa[1].X = -16;
+							vo_pa[1].Y = 128;
+							vo_pa[2].X = 16;
+							vo_pa[2].Y = 128;
+							brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+							g.FillPolygon(brush, vo_pa);
+							brush.Dispose();
 							break;
 						default:
 							g.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
@@ -2424,8 +2454,11 @@ namespace MasaoPlus
 				else
 				{
 					Point largerPoint = this.GetLargerPoint(cd.GetCSChip().center, chipData.center);
-					if(cd.character == "Z") largerPoint = this.GetLargerPoint(new Point(0,0), chipData.center);
-					else if (chipsData.character == "Z") largerPoint = this.GetLargerPoint(cd.GetCSChip().center, new Point(0, 0));
+					if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+					{
+						if (cd.character == "Z") largerPoint = this.GetLargerPoint(new Point(0, 0), chipData.center);
+						else if (chipsData.character == "Z") largerPoint = this.GetLargerPoint(cd.GetCSChip().center, new Point(0, 0));
+					}
 					Rectangle rectangle = new Rectangle(MapPos.X * chipsize.Width - largerPoint.X, MapPos.Y * chipsize.Height - largerPoint.Y, size.Width, size.Height);
 					this.RedrawMap(g,
 						new Rectangle((int)Math.Ceiling((decimal)rectangle.X / chipsize.Width), (int)Math.Ceiling((decimal)rectangle.Y / chipsize.Height),
@@ -2711,6 +2744,9 @@ namespace MasaoPlus
 										transState = graphics.Save();
 										graphics.TranslateTransform(point.X * chipsize.Width, point.Y * chipsize.Height);
 										Pen pen;
+										SolidBrush brush;
+										PointF[] vo_pa;
+										double rad = 0;
 										switch (cschip.name)
 										{
 											case "一方通行":
@@ -2734,6 +2770,33 @@ namespace MasaoPlus
 												graphics.DrawLine(pen, 0, 0, 94, 62);
 												graphics.DrawLine(pen, 0, 62, 94, 0);
 												pen.Dispose();
+												break;
+											case "シーソー":
+												graphics.SmoothingMode = SmoothingMode.AntiAlias;
+												graphics.TranslateTransform(16, 0);
+												vo_pa = new PointF[4];
+												if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
+												else if (cschip.description.Contains("右")) rad = 56 * Math.PI / 180;
+												vo_pa[0].X = (float)Math.Cos(rad + Math.PI) * 160;
+												vo_pa[0].Y = (float)Math.Sin(rad + Math.PI) * 160;
+												vo_pa[1].X = (float)Math.Cos(rad) * 160;
+												vo_pa[1].Y = (float)Math.Sin(rad) * 160;
+												vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad - Math.PI / 2) * 12;
+												vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad - Math.PI / 2) * 12;
+												vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad - Math.PI / 2) * 12;
+												vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad - Math.PI / 2) * 12;
+												brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+												graphics.FillPolygon(brush, vo_pa);
+												vo_pa = new PointF[3];
+												vo_pa[0].X = 0;
+												vo_pa[0].Y = 0;
+												vo_pa[1].X = -16;
+												vo_pa[1].Y = 128;
+												vo_pa[2].X = 16;
+												vo_pa[2].Y = 128;
+												brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+												graphics.FillPolygon(brush, vo_pa);
+												brush.Dispose();
 												break;
 											default:
 												graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
