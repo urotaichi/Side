@@ -715,7 +715,7 @@ namespace MasaoPlus
 							vo_pa = new PointF[4];
 							if (keepDrawData.cd.description.Contains("左")) rad = -56 * Math.PI / 180;
 							else if (keepDrawData.cd.description.Contains("右")) rad = 56 * Math.PI / 180;
-                            vo_pa[0].X = (float)Math.Cos(rad + Math.PI) * 160;
+							vo_pa[0].X = (float)Math.Cos(rad + Math.PI) * 160;
 							vo_pa[0].Y = (float)Math.Sin(rad + Math.PI) * 160;
 							vo_pa[1].X = (float)Math.Cos(rad) * 160;
 							vo_pa[1].Y = (float)Math.Sin(rad) * 160;
@@ -734,6 +734,44 @@ namespace MasaoPlus
 							vo_pa[2].Y = 128;
 							brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
 							g.FillPolygon(brush, vo_pa);
+							brush.Dispose();
+							break;
+						case "ブランコ":
+							g.DrawImage(this.DrawChipOrig,
+								new Rectangle(0, 0, chipsize.Width, chipsize.Height),
+								new Rectangle(keepDrawData.cd.pattern, chipsize), GraphicsUnit.Pixel);
+							g.SmoothingMode = SmoothingMode.AntiAlias;
+							g.TranslateTransform(16, 16);
+							rad = 90 * Math.PI / 180;
+							vo_pa = new PointF[4];
+							vo_pa[0].X = (float)Math.Cos(rad + Math.PI / 9) * 192;
+							vo_pa[0].Y = (float)Math.Sin(rad + Math.PI / 9) * 192;
+							vo_pa[1].X = (float)Math.Cos(rad - Math.PI / 9) * 192;
+							vo_pa[1].Y = (float)Math.Sin(rad - Math.PI / 9) * 192;
+							vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad) * 12;
+							vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad) * 12;
+							vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad) * 12;
+							vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 12;
+							double dx = Math.Cos(rad) * 80;
+							double dy = Math.Sin(rad) * 80;
+							pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
+							g.DrawLine(pen, (float)Math.Cos(rad) * 12, (float)Math.Sin(rad) * 12, (float)dx, (float)dy);
+							g.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
+							g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
+							brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+							g.FillPolygon(brush, vo_pa);
+							if (keepDrawData.cd.description == "２個連続")
+							{
+								g.TranslateTransform(384, 0);
+								g.DrawImage(this.DrawChipOrig,
+									new Rectangle(-16, -16, chipsize.Width, chipsize.Height),
+									new Rectangle(keepDrawData.cd.pattern, chipsize), GraphicsUnit.Pixel);
+								g.DrawLine(pen, (float)Math.Cos(rad) * 12, (float)Math.Sin(rad) * 12, (float)dx, (float)dy);
+								g.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
+								g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
+								g.FillPolygon(brush, vo_pa);
+							}
+							pen.Dispose();
 							brush.Dispose();
 							break;
 						default:
@@ -2796,6 +2834,44 @@ namespace MasaoPlus
 												vo_pa[2].Y = 128;
 												brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
 												graphics.FillPolygon(brush, vo_pa);
+												brush.Dispose();
+												break;
+											case "ブランコ":
+												graphics.DrawImage(this.DrawChipOrig,
+													new Rectangle(0, 0, chipsize.Width, chipsize.Height),
+													new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+												graphics.SmoothingMode = SmoothingMode.AntiAlias;
+												graphics.TranslateTransform(16, 16);
+												rad = 90 * Math.PI / 180;
+												vo_pa = new PointF[4];
+												vo_pa[0].X = (float)Math.Cos(rad + Math.PI / 9) * 192;
+												vo_pa[0].Y = (float)Math.Sin(rad + Math.PI / 9) * 192;
+												vo_pa[1].X = (float)Math.Cos(rad - Math.PI / 9) * 192;
+												vo_pa[1].Y = (float)Math.Sin(rad - Math.PI / 9) * 192;
+												vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad) * 12;
+												vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad) * 12;
+												vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad) * 12;
+												vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 12;
+												double dx = Math.Cos(rad) * 80;
+												double dy = Math.Sin(rad) * 80;
+												pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
+												graphics.DrawLine(pen, (float)Math.Cos(rad) * 12, (float)Math.Sin(rad) * 12, (float)dx, (float)dy);
+												graphics.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
+												graphics.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
+												brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+												graphics.FillPolygon(brush, vo_pa);
+												if (cschip.description == "２個連続")
+												{
+													graphics.TranslateTransform(384, 0);
+													graphics.DrawImage(this.DrawChipOrig,
+														new Rectangle(-16, -16, chipsize.Width, chipsize.Height),
+														new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+													graphics.DrawLine(pen, (float)Math.Cos(rad) * 12, (float)Math.Sin(rad) * 12, (float)dx, (float)dy);
+													graphics.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
+													graphics.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
+													graphics.FillPolygon(brush, vo_pa);
+												}
+												pen.Dispose();
 												brush.Dispose();
 												break;
 											default:

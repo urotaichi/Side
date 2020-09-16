@@ -152,9 +152,11 @@
       <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
         <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
-      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に揺れるブランコ</description></chip>
-      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>128</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>544</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="30"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>64</Y></xdraw><name>スウィングバー</name>
         <description>左側で上下にスウィングする足場</description></chip>
@@ -985,9 +987,11 @@
       <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
         <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
-      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に揺れるブランコ</description></chip>
-      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>128</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>544</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="30"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>64</Y></xdraw><name>スウィングバー</name>
         <description>左側で上下にスウィングする足場</description></chip>
@@ -1818,9 +1822,11 @@
       <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
         <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
-      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に揺れるブランコ</description></chip>
-      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>128</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>544</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="30"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>64</Y></xdraw><name>スウィングバー</name>
         <description>左側で上下にスウィングする足場</description></chip>
@@ -2651,9 +2657,11 @@
       <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
         <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
-      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に揺れるブランコ</description></chip>
-      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>128</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>544</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="30"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>64</Y></xdraw><name>スウィングバー</name>
         <description>左側で上下にスウィングする足場</description></chip>
@@ -3484,9 +3492,11 @@
       <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
         <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
-      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に揺れるブランコ</description></chip>
-      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>128</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>544</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="30"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>64</Y></xdraw><name>スウィングバー</name>
         <description>左側で上下にスウィングする足場</description></chip>
@@ -4317,9 +4327,11 @@
       <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
         <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
-      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に揺れるブランコ</description></chip>
-      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>128</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>544</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="30"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>64</Y></xdraw><name>スウィングバー</name>
         <description>左側で上下にスウィングする足場</description></chip>
@@ -5292,9 +5304,11 @@
       <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
         <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
-      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に揺れるブランコ</description></chip>
-      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>128</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>544</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="30"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>64</Y></xdraw><name>スウィングバー</name>
         <description>左側で上下にスウィングする足場</description></chip>
@@ -6125,9 +6139,11 @@
       <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
         <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
-      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に揺れるブランコ</description></chip>
-      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>128</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>544</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="30"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>64</Y></xdraw><name>スウィングバー</name>
         <description>左側で上下にスウィングする足場</description></chip>
@@ -7013,9 +7029,11 @@
       <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
         <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
-      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に揺れるブランコ</description></chip>
-      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>128</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>544</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="30"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>64</Y></xdraw><name>スウィングバー</name>
         <description>左側で上下にスウィングする足場</description></chip>
@@ -7845,9 +7863,11 @@
       <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
         <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
-      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に揺れるブランコ</description></chip>
-      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>128</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>544</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="30"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>64</Y></xdraw><name>スウィングバー</name>
         <description>左側で上下にスウィングする足場</description></chip>
@@ -8677,9 +8697,11 @@
       <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
         <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
-      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に揺れるブランコ</description></chip>
-      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>128</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>544</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="30"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>64</Y></xdraw><name>スウィングバー</name>
         <description>左側で上下にスウィングする足場</description></chip>
@@ -9509,9 +9531,11 @@
       <chip value="27"><pattern><X>0</X><Y>0</Y></pattern>
         <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
         <description>右が下</description></chip>
-      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="28"><pattern><X>0</X><Y>160</Y></pattern>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に揺れるブランコ</description></chip>
-      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>128</X><Y>64</Y></xdraw><name>ブランコ</name>
+      <chip value="29"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>544</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="30"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>64</Y></xdraw><name>スウィングバー</name>
         <description>左側で上下にスウィングする足場</description></chip>

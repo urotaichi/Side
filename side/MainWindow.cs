@@ -389,6 +389,32 @@ namespace MasaoPlus
 								graphics.FillPolygon(brush2, vo_pa);
 								brush2.Dispose();
 								break;
+							case "ブランコ":
+								graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
+									new Rectangle(0, 0, size.Width, size.Height),
+									new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
+								graphics.TranslateTransform(16, -9);
+								rad = 90 * Math.PI / 180;
+								vo_pa = new PointF[4];
+								vo_pa[0].X = (float)Math.Cos(rad + Math.PI / 9) * size.Width * (float)1.15;
+								vo_pa[0].Y = (float)Math.Sin(rad + Math.PI / 9) * size.Width * (float)1.15;
+								vo_pa[1].X = (float)Math.Cos(rad - Math.PI / 9) * size.Width * (float)1.15;
+								vo_pa[1].Y = (float)Math.Sin(rad - Math.PI / 9) * size.Width * (float)1.15;
+								vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad) * 5;
+								vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad) * 5;
+								vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad) * 5;
+								vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 5;
+								double dx = Math.Cos(rad) * 21;
+								double dy = Math.Sin(rad) * 21;
+								pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
+								graphics.DrawLine(pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
+								graphics.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
+								graphics.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
+								brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+								graphics.FillPolygon(brush2, vo_pa);
+								pen.Dispose();
+								brush2.Dispose();
+								break;
 							default:
 								int rotate_o = default;
 								if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
@@ -1278,6 +1304,32 @@ namespace MasaoPlus
 								e.Graphics.FillPolygon(brush, vo_pa);
 								brush.Dispose();
 								break;
+							case "ブランコ":
+								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
+									new Rectangle(0, 0, this.ChipImage.Width, this.ChipImage.Height),
+									new Rectangle(cschip.pattern, this.ChipImage.Size), GraphicsUnit.Pixel);
+								e.Graphics.TranslateTransform(16, -9);
+								rad = 90 * Math.PI / 180;
+								vo_pa = new PointF[4];
+								vo_pa[0].X = (float)Math.Cos(rad + Math.PI / 9) * this.ChipImage.Width * (float)1.15;
+								vo_pa[0].Y = (float)Math.Sin(rad + Math.PI / 9) * this.ChipImage.Width * (float)1.15;
+								vo_pa[1].X = (float)Math.Cos(rad - Math.PI / 9) * this.ChipImage.Width * (float)1.15;
+								vo_pa[1].Y = (float)Math.Sin(rad - Math.PI / 9) * this.ChipImage.Width * (float)1.15;
+								vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad) * 5;
+								vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad) * 5;
+								vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad) * 5;
+								vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 5;
+								double dx = Math.Cos(rad) * 21;
+								double dy = Math.Sin(rad) * 21;
+								pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
+								e.Graphics.DrawLine(pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
+								e.Graphics.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
+								e.Graphics.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
+								brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+								e.Graphics.FillPolygon(brush, vo_pa);
+								pen.Dispose();
+								brush.Dispose();
+								break;
 							default:
 								e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Height / 2);
 								e.Graphics.RotateTransform(cschip.rotate);
@@ -1839,6 +1891,30 @@ namespace MasaoPlus
 										e.Graphics.FillPolygon(brush2, vo_pa);
 										brush2.Dispose();
 										break;
+									case "ブランコ":
+										e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
+											new Rectangle(0, 0, e.Bounds.Height, e.Bounds.Height),
+											new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+										e.Graphics.TranslateTransform(e.Bounds.Height / 2, -e.Bounds.Height / 2 + 3);
+										rad = 90 * Math.PI / 180;
+										vo_pa = new PointF[4];
+										vo_pa[0].X = (float)Math.Cos(rad + Math.PI / 8) * e.Bounds.Height * (float)1.1;
+										vo_pa[0].Y = (float)Math.Sin(rad + Math.PI / 8) * e.Bounds.Height * (float)1.1;
+										vo_pa[1].X = (float)Math.Cos(rad - Math.PI / 8) * e.Bounds.Height * (float)1.1;
+										vo_pa[1].Y = (float)Math.Sin(rad - Math.PI / 8) * e.Bounds.Height * (float)1.1;
+										vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad) * 2;
+										vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad) * 2;
+										vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad) * 2;
+										vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 2;
+										pen = new Pen(Global.cpd.project.Config.Firebar1, 1);
+										e.Graphics.DrawLine(pen, 0, 5, 0, 8);
+										e.Graphics.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, 0, 8);
+										e.Graphics.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, 0, 8);
+										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+										e.Graphics.FillPolygon(brush2, vo_pa);
+										pen.Dispose();
+										brush2.Dispose();
+										break;
 									default:
 										e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
 										e.Graphics.RotateTransform(cschip.rotate);
@@ -1937,6 +2013,32 @@ namespace MasaoPlus
 										vo_pa[2].Y = 15;
 										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
 										e.Graphics.FillPolygon(brush2, vo_pa);
+										brush2.Dispose();
+										break;
+									case "ブランコ":
+										e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
+											new Rectangle(0, 0, chipsize.Width, chipsize.Height),
+											new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+										e.Graphics.TranslateTransform(16, -9);
+										rad = 90 * Math.PI / 180;
+										vo_pa = new PointF[4];
+										vo_pa[0].X = (float)Math.Cos(rad + Math.PI / 9) * chipsize.Width * (float)1.15;
+										vo_pa[0].Y = (float)Math.Sin(rad + Math.PI / 9) * chipsize.Width * (float)1.15;
+										vo_pa[1].X = (float)Math.Cos(rad - Math.PI / 9) * chipsize.Width * (float)1.15;
+										vo_pa[1].Y = (float)Math.Sin(rad - Math.PI / 9) * chipsize.Width * (float)1.15;
+										vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad) * 5;
+										vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad) * 5;
+										vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad) * 5;
+										vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 5;
+										double dx = Math.Cos(rad) * 21;
+										double dy = Math.Sin(rad) * 21;
+										pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
+										e.Graphics.DrawLine(pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
+										e.Graphics.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
+										e.Graphics.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
+										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+										e.Graphics.FillPolygon(brush2, vo_pa);
+										pen.Dispose();
 										brush2.Dispose();
 										break;
 									default:
