@@ -217,9 +217,11 @@
         <description>ブロック７から火山</description></chip>
       <chip value="57"><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>416</X><Y>96</Y></xdraw><name>逆火山</name>
         <description>ブロック７から逆火山</description></chip>
-      <chip value="58"><pattern><X>0</X><Y>00</Y></pattern><xdraw><X>448</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="58"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に動く</description></chip>
-      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
         <description>ターザンロープ。</description></chip>
@@ -1052,9 +1054,11 @@
         <description>ブロック７から火山</description></chip>
       <chip value="57"><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>416</X><Y>96</Y></xdraw><name>逆火山</name>
         <description>ブロック７から逆火山</description></chip>
-      <chip value="58"><pattern><X>0</X><Y>00</Y></pattern><xdraw><X>448</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="58"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に動く</description></chip>
-      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
         <description>ターザンロープ。</description></chip>
@@ -1887,9 +1891,11 @@
         <description>ブロック７から火山</description></chip>
       <chip value="57"><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>416</X><Y>96</Y></xdraw><name>逆火山</name>
         <description>ブロック７から逆火山</description></chip>
-      <chip value="58"><pattern><X>0</X><Y>00</Y></pattern><xdraw><X>448</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="58"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に動く</description></chip>
-      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
         <description>ターザンロープ。</description></chip>
@@ -2722,9 +2728,11 @@
         <description>ブロック７から火山</description></chip>
       <chip value="57"><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>416</X><Y>96</Y></xdraw><name>逆火山</name>
         <description>ブロック７から逆火山</description></chip>
-      <chip value="58"><pattern><X>0</X><Y>00</Y></pattern><xdraw><X>448</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="58"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に動く</description></chip>
-      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
         <description>ターザンロープ。</description></chip>
@@ -3557,9 +3565,11 @@
         <description>ブロック７から火山</description></chip>
       <chip value="57"><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>416</X><Y>96</Y></xdraw><name>逆火山</name>
         <description>ブロック７から逆火山</description></chip>
-      <chip value="58"><pattern><X>0</X><Y>00</Y></pattern><xdraw><X>448</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="58"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に動く</description></chip>
-      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
         <description>ターザンロープ。</description></chip>
@@ -4392,9 +4402,11 @@
         <description>ブロック７から火山</description></chip>
       <chip value="57"><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>416</X><Y>96</Y></xdraw><name>逆火山</name>
         <description>ブロック７から逆火山</description></chip>
-      <chip value="58"><pattern><X>0</X><Y>00</Y></pattern><xdraw><X>448</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="58"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に動く</description></chip>
-      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
         <description>ターザンロープ。</description></chip>
@@ -5369,9 +5381,11 @@
         <description>ブロック７から火山</description></chip>
       <chip value="57"><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>416</X><Y>96</Y></xdraw><name>逆火山</name>
         <description>ブロック７から逆火山</description></chip>
-      <chip value="58"><pattern><X>0</X><Y>00</Y></pattern><xdraw><X>448</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="58"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に動く</description></chip>
-      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
         <description>ターザンロープ。</description></chip>
@@ -6204,9 +6218,11 @@
         <description>ブロック７から火山</description></chip>
       <chip value="57"><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>416</X><Y>96</Y></xdraw><name>逆火山</name>
         <description>ブロック７から逆火山</description></chip>
-      <chip value="58"><pattern><X>0</X><Y>00</Y></pattern><xdraw><X>448</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="58"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に動く</description></chip>
-      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
         <description>ターザンロープ。</description></chip>
@@ -7094,9 +7110,11 @@
         <description>ブロック７から火山</description></chip>
       <chip value="57"><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>416</X><Y>96</Y></xdraw><name>逆火山</name>
         <description>ブロック７から逆火山</description></chip>
-      <chip value="58"><pattern><X>0</X><Y>00</Y></pattern><xdraw><X>448</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="58"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に動く</description></chip>
-      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
         <description>ターザンロープ。</description></chip>
@@ -7928,9 +7946,11 @@
         <description>ブロック７から火山</description></chip>
       <chip value="57"><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>416</X><Y>96</Y></xdraw><name>逆火山</name>
         <description>ブロック７から逆火山</description></chip>
-      <chip value="58"><pattern><X>0</X><Y>00</Y></pattern><xdraw><X>448</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="58"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に動く</description></chip>
-      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
         <description>ターザンロープ。</description></chip>
@@ -8762,9 +8782,11 @@
         <description>ブロック７から火山</description></chip>
       <chip value="57"><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>416</X><Y>96</Y></xdraw><name>逆火山</name>
         <description>ブロック７から逆火山</description></chip>
-      <chip value="58"><pattern><X>0</X><Y>00</Y></pattern><xdraw><X>448</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="58"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に動く</description></chip>
-      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
         <description>ターザンロープ。</description></chip>
@@ -9596,9 +9618,11 @@
         <description>ブロック７から火山</description></chip>
       <chip value="57"><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>416</X><Y>96</Y></xdraw><name>逆火山</name>
         <description>ブロック７から逆火山</description></chip>
-      <chip value="58"><pattern><X>0</X><Y>00</Y></pattern><xdraw><X>448</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="58"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>160</Width><Height>224</Height></view_size>
         <description>左右に動く</description></chip>
-      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>96</Y></xdraw><name>動くＴ字型</name>
+      <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
       <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
         <description>ターザンロープ。</description></chip>

@@ -1330,6 +1330,31 @@ namespace MasaoPlus
 								pen.Dispose();
 								brush.Dispose();
 								break;
+							case "動くＴ字型":
+								e.Graphics.TranslateTransform(16, 37);
+								rad = 270;
+								vo_pa = new PointF[3];
+								vo_pa[0].X = (float)Math.Cos(((rad + 6) * Math.PI) / 180) * this.ChipImage.Width;
+								vo_pa[0].Y = (float)Math.Sin(((rad + 6) * Math.PI) / 180) * this.ChipImage.Width;
+								vo_pa[1].X = (float)Math.Cos(((rad - 6) * Math.PI) / 180) * this.ChipImage.Width;
+								vo_pa[1].Y = (float)Math.Sin(((rad - 6) * Math.PI) / 180) * this.ChipImage.Width;
+								vo_pa[2].X = 0;
+								vo_pa[2].Y = 0;
+								brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+								e.Graphics.FillPolygon(brush, vo_pa);
+								vo_pa = new PointF[4];
+								vo_pa[0].X = (float)Math.Cos(((rad + 20) * Math.PI) / 180) * this.ChipImage.Width * (float)1.3;
+								vo_pa[0].Y = (float)Math.Sin(((rad + 20) * Math.PI) / 180) * this.ChipImage.Width;
+								vo_pa[1].X = (float)Math.Cos(((rad - 20) * Math.PI) / 180) * this.ChipImage.Width * (float)1.3;
+								vo_pa[1].Y = (float)Math.Sin(((rad - 20) * Math.PI) / 180) * this.ChipImage.Width;
+								vo_pa[2].X = vo_pa[1].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
+								vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
+								vo_pa[3].X = vo_pa[0].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
+								vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
+								brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+								e.Graphics.FillPolygon(brush, vo_pa);
+								brush.Dispose();
+								break;
 							default:
 								e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Height / 2);
 								e.Graphics.RotateTransform(cschip.rotate);
@@ -1915,6 +1940,31 @@ namespace MasaoPlus
 										pen.Dispose();
 										brush2.Dispose();
 										break;
+									case "動くＴ字型":
+										e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height + 2);
+										rad = 270;
+										vo_pa = new PointF[3];
+										vo_pa[0].X = (float)Math.Cos(((rad + 6) * Math.PI) / 180) * e.Bounds.Height;
+										vo_pa[0].Y = (float)Math.Sin(((rad + 6) * Math.PI) / 180) * e.Bounds.Height;
+										vo_pa[1].X = (float)Math.Cos(((rad - 6) * Math.PI) / 180) * e.Bounds.Height;
+										vo_pa[1].Y = (float)Math.Sin(((rad - 6) * Math.PI) / 180) * e.Bounds.Height;
+										vo_pa[2].X = 0;
+										vo_pa[2].Y = 0;
+										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
+										e.Graphics.FillPolygon(brush2, vo_pa);
+										vo_pa = new PointF[4];
+										vo_pa[0].X = (float)Math.Cos(((rad + 20) * Math.PI) / 180) * e.Bounds.Height * (float)1.3;
+										vo_pa[0].Y = (float)Math.Sin(((rad + 20) * Math.PI) / 180) * e.Bounds.Height;
+										vo_pa[1].X = (float)Math.Cos(((rad - 20) * Math.PI) / 180) * e.Bounds.Height * (float)1.3;
+										vo_pa[1].Y = (float)Math.Sin(((rad - 20) * Math.PI) / 180) * e.Bounds.Height;
+										vo_pa[2].X = vo_pa[1].X + (float)Math.Cos((rad * Math.PI) / 180) * 2;
+										vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin((rad * Math.PI) / 180) * 2;
+										vo_pa[3].X = vo_pa[0].X + (float)Math.Cos((rad * Math.PI) / 180) * 2;
+										vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 2;
+										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+										e.Graphics.FillPolygon(brush2, vo_pa);
+										brush2.Dispose();
+										break;
 									default:
 										e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
 										e.Graphics.RotateTransform(cschip.rotate);
@@ -2039,6 +2089,31 @@ namespace MasaoPlus
 										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
 										e.Graphics.FillPolygon(brush2, vo_pa);
 										pen.Dispose();
+										brush2.Dispose();
+										break;
+									case "動くＴ字型":
+										e.Graphics.TranslateTransform(16, 37);
+										rad = 270;
+										vo_pa = new PointF[3];
+										vo_pa[0].X = (float)Math.Cos(((rad + 6) * Math.PI) / 180) * chipsize.Width;
+										vo_pa[0].Y = (float)Math.Sin(((rad + 6) * Math.PI) / 180) * chipsize.Width;
+										vo_pa[1].X = (float)Math.Cos(((rad - 6) * Math.PI) / 180) * chipsize.Width;
+										vo_pa[1].Y = (float)Math.Sin(((rad - 6) * Math.PI) / 180) * chipsize.Width;
+										vo_pa[2].X = 0;
+										vo_pa[2].Y = 0;
+										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
+										e.Graphics.FillPolygon(brush2, vo_pa);
+										vo_pa = new PointF[4];
+										vo_pa[0].X = (float)Math.Cos(((rad + 20) * Math.PI) / 180) * chipsize.Width * (float)1.3;
+										vo_pa[0].Y = (float)Math.Sin(((rad + 20) * Math.PI) / 180) * chipsize.Width;
+										vo_pa[1].X = (float)Math.Cos(((rad - 20) * Math.PI) / 180) * chipsize.Width * (float)1.3;
+										vo_pa[1].Y = (float)Math.Sin(((rad - 20) * Math.PI) / 180) * chipsize.Width;
+										vo_pa[2].X = vo_pa[1].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
+										vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
+										vo_pa[3].X = vo_pa[0].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
+										vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
+										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+										e.Graphics.FillPolygon(brush2, vo_pa);
 										brush2.Dispose();
 										break;
 									default:
