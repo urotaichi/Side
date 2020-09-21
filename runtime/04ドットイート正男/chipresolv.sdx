@@ -223,9 +223,11 @@
       <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
         <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
-      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
+      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>ロープ</name><view_size><Width>32</Width><Height>224</Height></view_size>
         <description>ターザンロープ。</description></chip>
-      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw><name>ロープ</name>
+      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw>
+        <name>ロープ</name><view_size><Width>352</Width><Height>224</Height></view_size>
         <description>ターザンロープ。２本連続。</description></chip>
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
@@ -422,13 +424,17 @@
       <chip value="150"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>256</Y></xdraw><name>ドッスンスン</name>
         <description>その場で跳ねる</description></chip>
-      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>長いロープです。</description></chip>
-      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>右から</description></chip>
-      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>つかまると動く</description></chip>
-      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw>
+        <center><X>224</X><Y>0</Y></center><name>長いロープ</name><view_size><Width>256</Width><Height>96</Height></view_size>
         <description>つかまると左から動く</description></chip>
       <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
@@ -456,13 +462,17 @@
         <description>上へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
-      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
-      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
-      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
-      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>320</Y></xdraw><name>ゆれる棒</name>
+      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
         <description>上下に跳ねます。</description></chip>
@@ -1060,9 +1070,11 @@
       <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
         <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
-      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
+      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>ロープ</name><view_size><Width>32</Width><Height>224</Height></view_size>
         <description>ターザンロープ。</description></chip>
-      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw><name>ロープ</name>
+      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw>
+        <name>ロープ</name><view_size><Width>352</Width><Height>224</Height></view_size>
         <description>ターザンロープ。２本連続。</description></chip>
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
@@ -1259,13 +1271,17 @@
       <chip value="150"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>256</Y></xdraw><name>ドッスンスン</name>
         <description>その場で跳ねる</description></chip>
-      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>長いロープです。</description></chip>
-      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>右から</description></chip>
-      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>つかまると動く</description></chip>
-      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw>
+        <center><X>224</X><Y>0</Y></center><name>長いロープ</name><view_size><Width>256</Width><Height>96</Height></view_size>
         <description>つかまると左から動く</description></chip>
       <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
@@ -1293,13 +1309,17 @@
         <description>上へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
-      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
-      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
-      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
-      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>320</Y></xdraw><name>ゆれる棒</name>
+      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
         <description>上下に跳ねます。</description></chip>
@@ -1897,9 +1917,11 @@
       <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
         <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
-      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
+      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>ロープ</name><view_size><Width>32</Width><Height>224</Height></view_size>
         <description>ターザンロープ。</description></chip>
-      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw><name>ロープ</name>
+      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw>
+        <name>ロープ</name><view_size><Width>352</Width><Height>224</Height></view_size>
         <description>ターザンロープ。２本連続。</description></chip>
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
@@ -2096,13 +2118,17 @@
       <chip value="150"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>256</Y></xdraw><name>ドッスンスン</name>
         <description>その場で跳ねる</description></chip>
-      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>長いロープです。</description></chip>
-      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>右から</description></chip>
-      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>つかまると動く</description></chip>
-      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw>
+        <center><X>224</X><Y>0</Y></center><name>長いロープ</name><view_size><Width>256</Width><Height>96</Height></view_size>
         <description>つかまると左から動く</description></chip>
       <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
@@ -2130,13 +2156,17 @@
         <description>上へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
-      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
-      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
-      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
-      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>320</Y></xdraw><name>ゆれる棒</name>
+      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
         <description>上下に跳ねます。</description></chip>
@@ -2734,9 +2764,11 @@
       <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
         <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
-      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
+      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>ロープ</name><view_size><Width>32</Width><Height>224</Height></view_size>
         <description>ターザンロープ。</description></chip>
-      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw><name>ロープ</name>
+      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw>
+        <name>ロープ</name><view_size><Width>352</Width><Height>224</Height></view_size>
         <description>ターザンロープ。２本連続。</description></chip>
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
@@ -2933,13 +2965,17 @@
       <chip value="150"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>256</Y></xdraw><name>ドッスンスン</name>
         <description>その場で跳ねる</description></chip>
-      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>長いロープです。</description></chip>
-      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>右から</description></chip>
-      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>つかまると動く</description></chip>
-      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw>
+        <center><X>224</X><Y>0</Y></center><name>長いロープ</name><view_size><Width>256</Width><Height>96</Height></view_size>
         <description>つかまると左から動く</description></chip>
       <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
@@ -2967,13 +3003,17 @@
         <description>上へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
-      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
-      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
-      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
-      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>320</Y></xdraw><name>ゆれる棒</name>
+      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
         <description>上下に跳ねます。</description></chip>
@@ -3571,9 +3611,11 @@
       <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
         <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
-      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
+      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>ロープ</name><view_size><Width>32</Width><Height>224</Height></view_size>
         <description>ターザンロープ。</description></chip>
-      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw><name>ロープ</name>
+      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw>
+        <name>ロープ</name><view_size><Width>352</Width><Height>224</Height></view_size>
         <description>ターザンロープ。２本連続。</description></chip>
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
@@ -3770,13 +3812,17 @@
       <chip value="150"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>256</Y></xdraw><name>ドッスンスン</name>
         <description>その場で跳ねる</description></chip>
-      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>長いロープです。</description></chip>
-      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>右から</description></chip>
-      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>つかまると動く</description></chip>
-      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw>
+        <center><X>224</X><Y>0</Y></center><name>長いロープ</name><view_size><Width>256</Width><Height>96</Height></view_size>
         <description>つかまると左から動く</description></chip>
       <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
@@ -3804,13 +3850,17 @@
         <description>上へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
-      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
-      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
-      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
-      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>320</Y></xdraw><name>ゆれる棒</name>
+      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
         <description>上下に跳ねます。</description></chip>
@@ -4408,9 +4458,11 @@
       <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
         <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
-      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
+      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>ロープ</name><view_size><Width>32</Width><Height>224</Height></view_size>
         <description>ターザンロープ。</description></chip>
-      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw><name>ロープ</name>
+      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw>
+        <name>ロープ</name><view_size><Width>352</Width><Height>224</Height></view_size>
         <description>ターザンロープ。２本連続。</description></chip>
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
@@ -4607,13 +4659,17 @@
       <chip value="150"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>256</Y></xdraw><name>ドッスンスン</name>
         <description>その場で跳ねる</description></chip>
-      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>長いロープです。</description></chip>
-      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>右から</description></chip>
-      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>つかまると動く</description></chip>
-      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw>
+        <center><X>224</X><Y>0</Y></center><name>長いロープ</name><view_size><Width>256</Width><Height>96</Height></view_size>
         <description>つかまると左から動く</description></chip>
       <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
@@ -4641,13 +4697,17 @@
         <description>上へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
-      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
-      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
-      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
-      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>320</Y></xdraw><name>ゆれる棒</name>
+      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
         <description>上下に跳ねます。</description></chip>
@@ -5387,9 +5447,11 @@
       <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
         <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
-      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
+      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>ロープ</name><view_size><Width>32</Width><Height>224</Height></view_size>
         <description>ターザンロープ。</description></chip>
-      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw><name>ロープ</name>
+      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw>
+        <name>ロープ</name><view_size><Width>352</Width><Height>224</Height></view_size>
         <description>ターザンロープ。２本連続。</description></chip>
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
@@ -5586,13 +5648,17 @@
       <chip value="150"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>256</Y></xdraw><name>ドッスンスン</name>
         <description>その場で跳ねる</description></chip>
-      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>長いロープです。</description></chip>
-      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>右から</description></chip>
-      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>つかまると動く</description></chip>
-      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw>
+        <center><X>224</X><Y>0</Y></center><name>長いロープ</name><view_size><Width>256</Width><Height>96</Height></view_size>
         <description>つかまると左から動く</description></chip>
       <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
@@ -5620,13 +5686,17 @@
         <description>上へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
-      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
-      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
-      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
-      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>320</Y></xdraw><name>ゆれる棒</name>
+      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
         <description>上下に跳ねます。</description></chip>
@@ -6224,9 +6294,11 @@
       <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
         <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
-      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
+      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>ロープ</name><view_size><Width>32</Width><Height>224</Height></view_size>
         <description>ターザンロープ。</description></chip>
-      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw><name>ロープ</name>
+      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw>
+        <name>ロープ</name><view_size><Width>352</Width><Height>224</Height></view_size>
         <description>ターザンロープ。２本連続。</description></chip>
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
@@ -6423,13 +6495,17 @@
       <chip value="150"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>256</Y></xdraw><name>ドッスンスン</name>
         <description>その場で跳ねる</description></chip>
-      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>長いロープです。</description></chip>
-      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>右から</description></chip>
-      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>つかまると動く</description></chip>
-      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw>
+        <center><X>224</X><Y>0</Y></center><name>長いロープ</name><view_size><Width>256</Width><Height>96</Height></view_size>
         <description>つかまると左から動く</description></chip>
       <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
@@ -6457,13 +6533,17 @@
         <description>上へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
-      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
-      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
-      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
-      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>320</Y></xdraw><name>ゆれる棒</name>
+      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
         <description>上下に跳ねます。</description></chip>
@@ -7116,9 +7196,11 @@
       <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
         <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
-      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
+      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>ロープ</name><view_size><Width>32</Width><Height>224</Height></view_size>
         <description>ターザンロープ。</description></chip>
-      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw><name>ロープ</name>
+      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw>
+        <name>ロープ</name><view_size><Width>352</Width><Height>224</Height></view_size>
         <description>ターザンロープ。２本連続。</description></chip>
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
@@ -7315,13 +7397,17 @@
       <chip value="150"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>256</Y></xdraw><name>ドッスンスン</name>
         <description>その場で跳ねる</description></chip>
-      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>長いロープです。</description></chip>
-      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>右から</description></chip>
-      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>つかまると動く</description></chip>
-      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw>
+        <center><X>224</X><Y>0</Y></center><name>長いロープ</name><view_size><Width>256</Width><Height>96</Height></view_size>
         <description>つかまると左から動く</description></chip>
       <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
@@ -7349,13 +7435,17 @@
         <description>上へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
-      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
-      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
-      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
-      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>320</Y></xdraw><name>ゆれる棒</name>
+      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
         <description>上下に跳ねます。</description></chip>
@@ -7952,9 +8042,11 @@
       <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
         <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
-      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
+      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>ロープ</name><view_size><Width>32</Width><Height>224</Height></view_size>
         <description>ターザンロープ。</description></chip>
-      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw><name>ロープ</name>
+      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw>
+        <name>ロープ</name><view_size><Width>352</Width><Height>224</Height></view_size>
         <description>ターザンロープ。２本連続。</description></chip>
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
@@ -8151,13 +8243,17 @@
       <chip value="150"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>256</Y></xdraw><name>ドッスンスン</name>
         <description>その場で跳ねる</description></chip>
-      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>長いロープです。</description></chip>
-      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>右から</description></chip>
-      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>つかまると動く</description></chip>
-      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw>
+        <center><X>224</X><Y>0</Y></center><name>長いロープ</name><view_size><Width>256</Width><Height>96</Height></view_size>
         <description>つかまると左から動く</description></chip>
       <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
@@ -8185,13 +8281,17 @@
         <description>上へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
-      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
-      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
-      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
-      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>320</Y></xdraw><name>ゆれる棒</name>
+      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
         <description>上下に跳ねます。</description></chip>
@@ -8788,9 +8888,11 @@
       <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
         <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
-      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
+      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>ロープ</name><view_size><Width>32</Width><Height>224</Height></view_size>
         <description>ターザンロープ。</description></chip>
-      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw><name>ロープ</name>
+      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw>
+        <name>ロープ</name><view_size><Width>352</Width><Height>224</Height></view_size>
         <description>ターザンロープ。２本連続。</description></chip>
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
@@ -8987,13 +9089,17 @@
       <chip value="150"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>256</Y></xdraw><name>ドッスンスン</name>
         <description>その場で跳ねる</description></chip>
-      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>長いロープです。</description></chip>
-      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>右から</description></chip>
-      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>つかまると動く</description></chip>
-      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw>
+        <center><X>224</X><Y>0</Y></center><name>長いロープ</name><view_size><Width>256</Width><Height>96</Height></view_size>
         <description>つかまると左から動く</description></chip>
       <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
@@ -9021,13 +9127,17 @@
         <description>上へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
-      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
-      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
-      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
-      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>320</Y></xdraw><name>ゆれる棒</name>
+      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
         <description>上下に跳ねます。</description></chip>
@@ -9624,9 +9734,11 @@
       <chip value="59"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
         <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
         <description>２個連続</description></chip>
-      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw><name>ロープ</name>
+      <chip value="60"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>ロープ</name><view_size><Width>32</Width><Height>224</Height></view_size>
         <description>ターザンロープ。</description></chip>
-      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw><name>ロープ</name>
+      <chip value="61"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw>
+        <name>ロープ</name><view_size><Width>352</Width><Height>224</Height></view_size>
         <description>ターザンロープ。２本連続。</description></chip>
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
@@ -9823,13 +9935,17 @@
       <chip value="150"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>256</Y></xdraw><name>ドッスンスン</name>
         <description>その場で跳ねる</description></chip>
-      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="151"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>長いロープです。</description></chip>
-      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>256</Y></xdraw><name>長いロープ</name>
+      <chip value="152"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>右から</description></chip>
-      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="153"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>つかまると動く</description></chip>
-      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw><name>長いロープ</name>
+      <chip value="154"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw>
+        <center><X>224</X><Y>0</Y></center><name>長いロープ</name><view_size><Width>256</Width><Height>96</Height></view_size>
         <description>つかまると左から動く</description></chip>
       <chip value="155"><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
         <description>左向き。縦４つ。</description></chip>
@@ -9857,13 +9973,17 @@
         <description>上へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
-      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
-      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
-      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw><name>ゆれる棒</name>
+      <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
-      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>320</Y></xdraw><name>ゆれる棒</name>
+      <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
         <description>上下に跳ねます。</description></chip>

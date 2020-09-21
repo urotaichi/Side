@@ -329,6 +329,38 @@ namespace MasaoPlus
 											e.Graphics.FillPolygon(brush, vo_pa);
 											brush.Dispose();
 											break;
+										case "ロープ":
+										case "長いロープ":
+										case "ゆれる棒":
+											e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
+												new Rectangle(0, 0, chipsize.Width, chipsize.Height),
+												new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+											int length;
+											if (cschip.name == "ロープ") length = 2;
+											else length = 1;
+											if (cschip.description == "つかまると左から動く")
+											{
+												e.Graphics.TranslateTransform(39, 5);
+												rad = 168;
+											}
+											else
+											{
+												e.Graphics.TranslateTransform(16, -9);
+												rad = 90;
+											}
+											vo_pa = new PointF[4];
+											vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
+											vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
+											vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
+											vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
+											vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
+											vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
+											vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
+											vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
+											brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+											e.Graphics.FillPolygon(brush, vo_pa);
+											brush.Dispose();
+											break;
 										default:
 											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
 											e.Graphics.RotateTransform(cschip.rotate);

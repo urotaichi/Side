@@ -415,6 +415,63 @@ namespace MasaoPlus
 								pen.Dispose();
 								brush2.Dispose();
 								break;
+							case "動くＴ字型":
+								graphics.TranslateTransform(16, 37);
+								rad = 270;
+								vo_pa = new PointF[3];
+								vo_pa[0].X = (float)Math.Cos(((rad + 6) * Math.PI) / 180) * size.Width;
+								vo_pa[0].Y = (float)Math.Sin(((rad + 6) * Math.PI) / 180) * size.Width;
+								vo_pa[1].X = (float)Math.Cos(((rad - 6) * Math.PI) / 180) * size.Width;
+								vo_pa[1].Y = (float)Math.Sin(((rad - 6) * Math.PI) / 180) * size.Width;
+								vo_pa[2].X = 0;
+								vo_pa[2].Y = 0;
+								brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
+								graphics.FillPolygon(brush2, vo_pa);
+								vo_pa = new PointF[4];
+								vo_pa[0].X = (float)Math.Cos(((rad + 20) * Math.PI) / 180) * size.Width * (float)1.3;
+								vo_pa[0].Y = (float)Math.Sin(((rad + 20) * Math.PI) / 180) * size.Width;
+								vo_pa[1].X = (float)Math.Cos(((rad - 20) * Math.PI) / 180) * size.Width * (float)1.3;
+								vo_pa[1].Y = (float)Math.Sin(((rad - 20) * Math.PI) / 180) * size.Width;
+								vo_pa[2].X = vo_pa[1].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
+								vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
+								vo_pa[3].X = vo_pa[0].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
+								vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
+								brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+								graphics.FillPolygon(brush2, vo_pa);
+								brush2.Dispose();
+								break;
+							case "ロープ":
+							case "長いロープ":
+							case "ゆれる棒":
+								graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
+									new Rectangle(0, 0, size.Width, size.Height),
+									new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
+								int length;
+								if (cschip.name == "ロープ") length = 2;
+								else length = 1;
+								if (cschip.description == "つかまると左から動く")
+								{
+									graphics.TranslateTransform(39, 5);
+									rad = 168;
+								}
+								else
+								{
+									graphics.TranslateTransform(16, -9);
+									rad = 90;
+								}
+								vo_pa = new PointF[4];
+								vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
+								vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
+								vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
+								vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
+								vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * size.Width * 1.2 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
+								vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * size.Width * 1.2 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
+								vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * size.Width * 1.2 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
+								vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * size.Width * 1.2 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
+								brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+								graphics.FillPolygon(brush2, vo_pa);
+								brush2.Dispose();
+								break;
 							default:
 								int rotate_o = default;
 								if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
@@ -1355,6 +1412,38 @@ namespace MasaoPlus
 								e.Graphics.FillPolygon(brush, vo_pa);
 								brush.Dispose();
 								break;
+							case "ロープ":
+							case "長いロープ":
+							case "ゆれる棒":
+								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
+									new Rectangle(0, 0, this.ChipImage.Width, this.ChipImage.Height),
+									new Rectangle(cschip.pattern, this.ChipImage.Size), GraphicsUnit.Pixel);
+								int length;
+								if (cschip.name == "ロープ") length = 2;
+								else length = 1;
+								if (cschip.description == "つかまると左から動く")
+								{
+									e.Graphics.TranslateTransform(39, 5);
+									rad = 168;
+								}
+								else
+								{
+									e.Graphics.TranslateTransform(16, -9);
+									rad = 90;
+								}
+								vo_pa = new PointF[4];
+								vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
+								vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
+								vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
+								vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
+								vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * this.ChipImage.Width * 1.2 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
+								vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * this.ChipImage.Width * 1.2 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
+								vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * this.ChipImage.Width * 1.2 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
+								vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * this.ChipImage.Width * 1.2 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
+								brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+								e.Graphics.FillPolygon(brush, vo_pa);
+								brush.Dispose();
+								break;
 							default:
 								e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Height / 2);
 								e.Graphics.RotateTransform(cschip.rotate);
@@ -1965,6 +2054,38 @@ namespace MasaoPlus
 										e.Graphics.FillPolygon(brush2, vo_pa);
 										brush2.Dispose();
 										break;
+									case "ロープ":
+									case "長いロープ":
+									case "ゆれる棒":
+										e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
+											new Rectangle(0, 0, e.Bounds.Height, e.Bounds.Height),
+											new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+										double length;
+										if (cschip.name == "ロープ") length = 1;
+										else length = 0.5;
+										if (cschip.description == "つかまると左から動く")
+										{
+											e.Graphics.TranslateTransform(e.Bounds.Height * 2 - 3, 0);
+											rad = 168;
+										}
+										else
+										{
+											e.Graphics.TranslateTransform(e.Bounds.Height / 2, -e.Bounds.Height);
+											rad = 90;
+										}
+										vo_pa = new PointF[4];
+										vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
+										vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
+										vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
+										vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
+										vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * e.Bounds.Height * 1.8 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
+										vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * e.Bounds.Height * 1.8 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
+										vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * e.Bounds.Height * 1.8 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
+										vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * e.Bounds.Height * 1.8 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
+										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+										e.Graphics.FillPolygon(brush2, vo_pa);
+										brush2.Dispose();
+										break;
 									default:
 										e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
 										e.Graphics.RotateTransform(cschip.rotate);
@@ -2111,7 +2232,39 @@ namespace MasaoPlus
 										vo_pa[2].X = vo_pa[1].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
 										vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
 										vo_pa[3].X = vo_pa[0].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
-										vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
+										vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5; 
+										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+										e.Graphics.FillPolygon(brush2, vo_pa);
+										brush2.Dispose();
+										break;
+									case "ロープ":
+									case "長いロープ":
+									case "ゆれる棒":
+										e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
+											new Rectangle(0, 0, chipsize.Width, chipsize.Height),
+											new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+										int length;
+										if (cschip.name == "ロープ") length = 2;
+										else length = 1;
+										if (cschip.description == "つかまると左から動く")
+										{
+											e.Graphics.TranslateTransform(39, 5);
+											rad = 168;
+										}
+										else
+										{
+											e.Graphics.TranslateTransform(16, -9);
+											rad = 90;
+										}
+										vo_pa = new PointF[4];
+										vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
+										vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
+										vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
+										vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
+										vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
+										vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
+										vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
+										vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
 										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
 										e.Graphics.FillPolygon(brush2, vo_pa);
 										brush2.Dispose();
