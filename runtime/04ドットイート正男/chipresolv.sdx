@@ -248,15 +248,20 @@
         <description>周囲１０パーツ以内のコインを全部取ると開く</description></chip>
       <chip value="70"><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>288</X><Y>128</Y></xdraw><name>左１５パーツ以内の雑魚敵を全部倒すと開く扉</name>
         <description>左１５パーツ以内の雑魚敵を全部倒すと開く扉</description></chip>
-      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>右向き</description></chip>
-      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>左向き</description></chip>
-      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>32</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>天井</description></chip>
-      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>96</Width><Height>128</Height></view_size>
         <description>右の壁</description></chip>
-      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>左の壁</description></chip>
       <chip value="76"><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>480</X><Y>128</Y></xdraw><name>ジャンプ台</name>
         <description>高性能なジャンプ台</description></chip>
@@ -1095,15 +1100,20 @@
         <description>周囲１０パーツ以内のコインを全部取ると開く</description></chip>
       <chip value="70"><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>288</X><Y>128</Y></xdraw><name>左１５パーツ以内の雑魚敵を全部倒すと開く扉</name>
         <description>左１５パーツ以内の雑魚敵を全部倒すと開く扉</description></chip>
-      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>右向き</description></chip>
-      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>左向き</description></chip>
-      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>32</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>天井</description></chip>
-      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>96</Width><Height>128</Height></view_size>
         <description>右の壁</description></chip>
-      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>左の壁</description></chip>
       <chip value="76"><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>480</X><Y>128</Y></xdraw><name>ジャンプ台</name>
         <description>高性能なジャンプ台</description></chip>
@@ -1942,15 +1952,20 @@
         <description>周囲１０パーツ以内のコインを全部取ると開く</description></chip>
       <chip value="70"><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>288</X><Y>128</Y></xdraw><name>左１５パーツ以内の雑魚敵を全部倒すと開く扉</name>
         <description>左１５パーツ以内の雑魚敵を全部倒すと開く扉</description></chip>
-      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>右向き</description></chip>
-      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>左向き</description></chip>
-      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>32</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>天井</description></chip>
-      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>96</Width><Height>128</Height></view_size>
         <description>右の壁</description></chip>
-      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>左の壁</description></chip>
       <chip value="76"><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>480</X><Y>128</Y></xdraw><name>ジャンプ台</name>
         <description>高性能なジャンプ台</description></chip>
@@ -2789,15 +2804,20 @@
         <description>周囲１０パーツ以内のコインを全部取ると開く</description></chip>
       <chip value="70"><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>288</X><Y>128</Y></xdraw><name>左１５パーツ以内の雑魚敵を全部倒すと開く扉</name>
         <description>左１５パーツ以内の雑魚敵を全部倒すと開く扉</description></chip>
-      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>右向き</description></chip>
-      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>左向き</description></chip>
-      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>32</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>天井</description></chip>
-      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>96</Width><Height>128</Height></view_size>
         <description>右の壁</description></chip>
-      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>左の壁</description></chip>
       <chip value="76"><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>480</X><Y>128</Y></xdraw><name>ジャンプ台</name>
         <description>高性能なジャンプ台</description></chip>
@@ -3636,15 +3656,20 @@
         <description>周囲１０パーツ以内のコインを全部取ると開く</description></chip>
       <chip value="70"><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>288</X><Y>128</Y></xdraw><name>左１５パーツ以内の雑魚敵を全部倒すと開く扉</name>
         <description>左１５パーツ以内の雑魚敵を全部倒すと開く扉</description></chip>
-      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>右向き</description></chip>
-      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>左向き</description></chip>
-      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>32</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>天井</description></chip>
-      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>96</Width><Height>128</Height></view_size>
         <description>右の壁</description></chip>
-      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>左の壁</description></chip>
       <chip value="76"><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>480</X><Y>128</Y></xdraw><name>ジャンプ台</name>
         <description>高性能なジャンプ台</description></chip>
@@ -4483,15 +4508,20 @@
         <description>周囲１０パーツ以内のコインを全部取ると開く</description></chip>
       <chip value="70"><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>288</X><Y>128</Y></xdraw><name>左１５パーツ以内の雑魚敵を全部倒すと開く扉</name>
         <description>左１５パーツ以内の雑魚敵を全部倒すと開く扉</description></chip>
-      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>右向き</description></chip>
-      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>左向き</description></chip>
-      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>32</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>天井</description></chip>
-      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>96</Width><Height>128</Height></view_size>
         <description>右の壁</description></chip>
-      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>左の壁</description></chip>
       <chip value="76"><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>480</X><Y>128</Y></xdraw><name>ジャンプ台</name>
         <description>高性能なジャンプ台</description></chip>
@@ -5472,15 +5502,20 @@
         <description>周囲１０パーツ以内のコインを全部取ると開く</description></chip>
       <chip value="70"><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>288</X><Y>128</Y></xdraw><name>左１５パーツ以内の雑魚敵を全部倒すと開く扉</name>
         <description>左１５パーツ以内の雑魚敵を全部倒すと開く扉</description></chip>
-      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>右向き</description></chip>
-      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>左向き</description></chip>
-      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>32</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>天井</description></chip>
-      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>96</Width><Height>128</Height></view_size>
         <description>右の壁</description></chip>
-      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>左の壁</description></chip>
       <chip value="76"><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>480</X><Y>128</Y></xdraw><name>ジャンプ台</name>
         <description>高性能なジャンプ台</description></chip>
@@ -6319,15 +6354,20 @@
         <description>周囲１０パーツ以内のコインを全部取ると開く</description></chip>
       <chip value="70"><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>288</X><Y>128</Y></xdraw><name>左１５パーツ以内の雑魚敵を全部倒すと開く扉</name>
         <description>左１５パーツ以内の雑魚敵を全部倒すと開く扉</description></chip>
-      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>右向き</description></chip>
-      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>左向き</description></chip>
-      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>32</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>天井</description></chip>
-      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>96</Width><Height>128</Height></view_size>
         <description>右の壁</description></chip>
-      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>左の壁</description></chip>
       <chip value="76"><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>480</X><Y>128</Y></xdraw><name>ジャンプ台</name>
         <description>高性能なジャンプ台</description></chip>
@@ -7221,15 +7261,20 @@
         <description>周囲１０パーツ以内のコインを全部取ると開く</description></chip>
       <chip value="70"><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>288</X><Y>128</Y></xdraw><name>左１５パーツ以内の雑魚敵を全部倒すと開く扉</name>
         <description>左１５パーツ以内の雑魚敵を全部倒すと開く扉</description></chip>
-      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>右向き</description></chip>
-      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>左向き</description></chip>
-      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>32</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>天井</description></chip>
-      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>96</Width><Height>128</Height></view_size>
         <description>右の壁</description></chip>
-      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>左の壁</description></chip>
       <chip value="76"><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>480</X><Y>128</Y></xdraw><name>ジャンプ台</name>
         <description>高性能なジャンプ台</description></chip>
@@ -8067,15 +8112,20 @@
         <description>周囲１０パーツ以内のコインを全部取ると開く</description></chip>
       <chip value="70"><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>288</X><Y>128</Y></xdraw><name>左１５パーツ以内の雑魚敵を全部倒すと開く扉</name>
         <description>左１５パーツ以内の雑魚敵を全部倒すと開く扉</description></chip>
-      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>右向き</description></chip>
-      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>左向き</description></chip>
-      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>32</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>天井</description></chip>
-      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>96</Width><Height>128</Height></view_size>
         <description>右の壁</description></chip>
-      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>左の壁</description></chip>
       <chip value="76"><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>480</X><Y>128</Y></xdraw><name>ジャンプ台</name>
         <description>高性能なジャンプ台</description></chip>
@@ -8913,15 +8963,20 @@
         <description>周囲１０パーツ以内のコインを全部取ると開く</description></chip>
       <chip value="70"><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>288</X><Y>128</Y></xdraw><name>左１５パーツ以内の雑魚敵を全部倒すと開く扉</name>
         <description>左１５パーツ以内の雑魚敵を全部倒すと開く扉</description></chip>
-      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>右向き</description></chip>
-      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>左向き</description></chip>
-      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>32</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>天井</description></chip>
-      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>96</Width><Height>128</Height></view_size>
         <description>右の壁</description></chip>
-      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>左の壁</description></chip>
       <chip value="76"><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>480</X><Y>128</Y></xdraw><name>ジャンプ台</name>
         <description>高性能なジャンプ台</description></chip>
@@ -9759,15 +9814,20 @@
         <description>周囲１０パーツ以内のコインを全部取ると開く</description></chip>
       <chip value="70"><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>288</X><Y>128</Y></xdraw><name>左１５パーツ以内の雑魚敵を全部倒すと開く扉</name>
         <description>左１５パーツ以内の雑魚敵を全部倒すと開く扉</description></chip>
-      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="71"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>右向き</description></chip>
-      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="72"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
         <description>左向き</description></chip>
-      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="73"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>32</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>天井</description></chip>
-      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="74"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>96</Width><Height>128</Height></view_size>
         <description>右の壁</description></chip>
-      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>128</Y></xdraw><name>人間大砲</name>
+      <chip value="75"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
         <description>左の壁</description></chip>
       <chip value="76"><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>480</X><Y>128</Y></xdraw><name>ジャンプ台</name>
         <description>高性能なジャンプ台</description></chip>

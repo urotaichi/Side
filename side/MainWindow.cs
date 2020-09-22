@@ -472,6 +472,72 @@ namespace MasaoPlus
 								graphics.FillPolygon(brush2, vo_pa);
 								brush2.Dispose();
 								break;
+							case "人間大砲":
+								if (cschip.description == "右向き") { rad = 330; graphics.TranslateTransform(-9, 3); }
+								else if (cschip.description == "左向き") { rad = 225; graphics.TranslateTransform(9, 3); }
+								else if (cschip.description == "天井") { rad = 30; graphics.TranslateTransform(-9, 0); }
+								else if (cschip.description == "右の壁") { rad = 270; graphics.TranslateTransform(0, 9); }
+								else if (cschip.description == "左の壁") { rad = 300; graphics.TranslateTransform(0, 9); }
+								brush2 = new SolidBrush(Global.cpd.project.Config.Mizunohadou);
+								graphics.FillEllipse(brush2, 16 - 7, 16 - 7, 14, 14);
+								vo_pa = new PointF[4];
+								vo_pa[0].X = 16 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
+								vo_pa[0].Y = 16 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
+								vo_pa[1].X = 16 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
+								vo_pa[1].Y = 16 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
+								vo_pa[2].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
+								vo_pa[2].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
+								vo_pa[3].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
+								vo_pa[3].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
+								graphics.FillPolygon(brush2, vo_pa);
+								brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+								if (cschip.description == "天井")
+								{
+									vo_pa[0].X = 16 - 2;
+									vo_pa[0].Y = 16 + 1;
+									vo_pa[1].X = 16 + 2;
+									vo_pa[1].Y = 16 + 1;
+									vo_pa[2].X = 16 + 5;
+									vo_pa[2].Y = 0;
+									vo_pa[3].X = 16 - 5;
+									vo_pa[3].Y = 0;
+								}
+								else if (cschip.description == "右の壁")
+								{
+									vo_pa[0].X = 16 - 1;
+									vo_pa[0].Y = 16 - 2;
+									vo_pa[1].X = 16 - 1;
+									vo_pa[1].Y = 16 + 2;
+									vo_pa[2].X = size.Width;
+									vo_pa[2].Y = 16 + 5;
+									vo_pa[3].X = size.Width;
+									vo_pa[3].Y = 16 - 5;
+								}
+								else if (cschip.description == "左の壁")
+								{
+									vo_pa[0].X = 16 + 1;
+									vo_pa[0].Y = 16 - 2;
+									vo_pa[1].X = 16 + 1;
+									vo_pa[1].Y = 16 + 2;
+									vo_pa[2].X = 0;
+									vo_pa[2].Y = 16 + 5;
+									vo_pa[3].X = 0;
+									vo_pa[3].Y = 16 - 5;
+								}
+								else
+								{
+									vo_pa[0].X = 16 - 2;
+									vo_pa[0].Y = 16 - 1;
+									vo_pa[1].X = 16 + 2;
+									vo_pa[1].Y = 16 - 1;
+									vo_pa[2].X = 16 + 5;
+									vo_pa[2].Y = size.Width - 3;
+									vo_pa[3].X = 16 - 5;
+									vo_pa[3].Y = size.Width - 3;
+								}
+								graphics.FillPolygon(brush2, vo_pa);
+								brush2.Dispose();
+								break;
 							default:
 								int rotate_o = default;
 								if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
@@ -1444,6 +1510,72 @@ namespace MasaoPlus
 								e.Graphics.FillPolygon(brush, vo_pa);
 								brush.Dispose();
 								break;
+							case "人間大砲":
+								if (cschip.description == "右向き") { rad = 330; e.Graphics.TranslateTransform(-9, 3); }
+								else if (cschip.description == "左向き") { rad = 225; e.Graphics.TranslateTransform(9, 3); }
+								else if (cschip.description == "天井") { rad = 30; e.Graphics.TranslateTransform(-9, 0); }
+								else if (cschip.description == "右の壁") { rad = 270; e.Graphics.TranslateTransform(0, 9); }
+								else if (cschip.description == "左の壁") { rad = 300; e.Graphics.TranslateTransform(0, 9); }
+								brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou);
+								e.Graphics.FillEllipse(brush, 16 - 7, 16 - 7, 14, 14);
+								vo_pa = new PointF[4];
+								vo_pa[0].X = 16 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
+								vo_pa[0].Y = 16 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
+								vo_pa[1].X = 16 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
+								vo_pa[1].Y = 16 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
+								vo_pa[2].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
+								vo_pa[2].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
+								vo_pa[3].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
+								vo_pa[3].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
+								e.Graphics.FillPolygon(brush, vo_pa);
+								brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+								if (cschip.description == "天井")
+								{
+									vo_pa[0].X = 16 - 2;
+									vo_pa[0].Y = 16 + 1;
+									vo_pa[1].X = 16 + 2;
+									vo_pa[1].Y = 16 + 1;
+									vo_pa[2].X = 16 + 5;
+									vo_pa[2].Y = 0;
+									vo_pa[3].X = 16 - 5;
+									vo_pa[3].Y = 0;
+								}
+								else if (cschip.description == "右の壁")
+								{
+									vo_pa[0].X = 16 - 1;
+									vo_pa[0].Y = 16 - 2;
+									vo_pa[1].X = 16 - 1;
+									vo_pa[1].Y = 16 + 2;
+									vo_pa[2].X = this.ChipImage.Width;
+									vo_pa[2].Y = 16 + 5;
+									vo_pa[3].X = this.ChipImage.Width;
+									vo_pa[3].Y = 16 - 5;
+								}
+								else if (cschip.description == "左の壁")
+								{
+									vo_pa[0].X = 16 + 1;
+									vo_pa[0].Y = 16 - 2;
+									vo_pa[1].X = 16 + 1;
+									vo_pa[1].Y = 16 + 2;
+									vo_pa[2].X = 0;
+									vo_pa[2].Y = 16 + 5;
+									vo_pa[3].X = 0;
+									vo_pa[3].Y = 16 - 5;
+								}
+								else
+								{
+									vo_pa[0].X = 16 - 2;
+									vo_pa[0].Y = 16 - 1;
+									vo_pa[1].X = 16 + 2;
+									vo_pa[1].Y = 16 - 1;
+									vo_pa[2].X = 16 + 5;
+									vo_pa[2].Y = this.ChipImage.Width - 3;
+									vo_pa[3].X = 16 - 5;
+									vo_pa[3].Y = this.ChipImage.Width - 3;
+								}
+								e.Graphics.FillPolygon(brush, vo_pa);
+								brush.Dispose();
+								break;
 							default:
 								e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Height / 2);
 								e.Graphics.RotateTransform(cschip.rotate);
@@ -2086,6 +2218,72 @@ namespace MasaoPlus
 										e.Graphics.FillPolygon(brush2, vo_pa);
 										brush2.Dispose();
 										break;
+									case "人間大砲":
+										if (cschip.description == "右向き") { rad = 330; e.Graphics.TranslateTransform(0, 3); }
+										else if (cschip.description == "左向き") { rad = 225; e.Graphics.TranslateTransform(0, 3); }
+										else if (cschip.description == "天井") { rad = 30; e.Graphics.TranslateTransform(0, 0); }
+										else if (cschip.description == "右の壁") { rad = 270; e.Graphics.TranslateTransform(0, 0); }
+										else if (cschip.description == "左の壁") { rad = 300; e.Graphics.TranslateTransform(0, 0); }
+										brush2 = new SolidBrush(Global.cpd.project.Config.Mizunohadou);
+										e.Graphics.FillEllipse(brush2, e.Bounds.Height / 2 - 3, e.Bounds.Height / 2 - 3, 6, 6);
+										vo_pa = new PointF[4];
+										vo_pa[0].X = e.Bounds.Height / 2 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 3;
+										vo_pa[0].Y = e.Bounds.Height / 2 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 3;
+										vo_pa[1].X = e.Bounds.Height / 2 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 3;
+										vo_pa[1].Y = e.Bounds.Height / 2 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 3;
+										vo_pa[2].X = e.Bounds.Height / 2 + (float)Math.Cos((rad * Math.PI) / 180) * 6 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 3;
+										vo_pa[2].Y = e.Bounds.Height / 2 + (float)Math.Sin((rad * Math.PI) / 180) * 6 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 3;
+										vo_pa[3].X = e.Bounds.Height / 2 + (float)Math.Cos((rad * Math.PI) / 180) * 6 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 3;
+										vo_pa[3].Y = e.Bounds.Height / 2 + (float)Math.Sin((rad * Math.PI) / 180) * 6 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 3;
+										e.Graphics.FillPolygon(brush2, vo_pa);
+										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+										if (cschip.description == "天井")
+										{
+											vo_pa[0].X = e.Bounds.Height / 2 - 1;
+											vo_pa[0].Y = e.Bounds.Height / 2;
+											vo_pa[1].X = e.Bounds.Height / 2 + 1;
+											vo_pa[1].Y = e.Bounds.Height / 2;
+											vo_pa[2].X = e.Bounds.Height / 2 + 2;
+											vo_pa[2].Y = 0;
+											vo_pa[3].X = e.Bounds.Height / 2 - 2;
+											vo_pa[3].Y = 0;
+										}
+										else if (cschip.description == "右の壁")
+										{
+											vo_pa[0].X = e.Bounds.Height / 2;
+											vo_pa[0].Y = e.Bounds.Height / 2 - 1;
+											vo_pa[1].X = e.Bounds.Height / 2;
+											vo_pa[1].Y = e.Bounds.Height / 2 + 1;
+											vo_pa[2].X = e.Bounds.Height;
+											vo_pa[2].Y = e.Bounds.Height / 2 + 2;
+											vo_pa[3].X = e.Bounds.Height;
+											vo_pa[3].Y = e.Bounds.Height / 2 - 2;
+										}
+										else if (cschip.description == "左の壁")
+										{
+											vo_pa[0].X = e.Bounds.Height / 2;
+											vo_pa[0].Y = e.Bounds.Height / 2 - 1;
+											vo_pa[1].X = e.Bounds.Height / 2;
+											vo_pa[1].Y = e.Bounds.Height / 2 + 1;
+											vo_pa[2].X = 0;
+											vo_pa[2].Y = e.Bounds.Height / 2 + 2;
+											vo_pa[3].X = 0;
+											vo_pa[3].Y = e.Bounds.Height / 2 - 2;
+										}
+										else
+										{
+											vo_pa[0].X = e.Bounds.Height / 2 - 1;
+											vo_pa[0].Y = e.Bounds.Height / 2;
+											vo_pa[1].X = e.Bounds.Height / 2 + 1;
+											vo_pa[1].Y = e.Bounds.Height / 2;
+											vo_pa[2].X = e.Bounds.Height / 2 + 2;
+											vo_pa[2].Y = e.Bounds.Height - 3;
+											vo_pa[3].X = e.Bounds.Height / 2 - 2;
+											vo_pa[3].Y = e.Bounds.Height - 3;
+										}
+										e.Graphics.FillPolygon(brush2, vo_pa);
+										brush2.Dispose();
+										break;
 									default:
 										e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
 										e.Graphics.RotateTransform(cschip.rotate);
@@ -2266,6 +2464,72 @@ namespace MasaoPlus
 										vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
 										vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
 										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+										e.Graphics.FillPolygon(brush2, vo_pa);
+										brush2.Dispose();
+										break;
+									case "人間大砲":
+										if (cschip.description == "右向き") { rad = 330; e.Graphics.TranslateTransform(-9, 3); }
+										else if (cschip.description == "左向き") { rad = 225; e.Graphics.TranslateTransform(9, 3); }
+										else if (cschip.description == "天井") { rad = 30; e.Graphics.TranslateTransform(-9, 0); }
+										else if (cschip.description == "右の壁") { rad = 270; e.Graphics.TranslateTransform(0, 9); }
+										else if (cschip.description == "左の壁") { rad = 300; e.Graphics.TranslateTransform(0, 9); }
+										brush2 = new SolidBrush(Global.cpd.project.Config.Mizunohadou);
+										e.Graphics.FillEllipse(brush2, 16 - 7, 16 - 7, 14, 14);
+										vo_pa = new PointF[4];
+										vo_pa[0].X = 16 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
+										vo_pa[0].Y = 16 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
+										vo_pa[1].X = 16 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
+										vo_pa[1].Y = 16 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
+										vo_pa[2].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
+										vo_pa[2].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
+										vo_pa[3].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
+										vo_pa[3].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
+										e.Graphics.FillPolygon(brush2, vo_pa);
+										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+										if (cschip.description == "天井")
+										{
+											vo_pa[0].X = 16 - 2;
+											vo_pa[0].Y = 16 + 1;
+											vo_pa[1].X = 16 + 2;
+											vo_pa[1].Y = 16 + 1;
+											vo_pa[2].X = 16 + 5;
+											vo_pa[2].Y = 0;
+											vo_pa[3].X = 16 - 5;
+											vo_pa[3].Y = 0;
+										}
+										else if (cschip.description == "右の壁")
+										{
+											vo_pa[0].X = 16 - 1;
+											vo_pa[0].Y = 16 - 2;
+											vo_pa[1].X = 16 - 1;
+											vo_pa[1].Y = 16 + 2;
+											vo_pa[2].X = chipsize.Width;
+											vo_pa[2].Y = 16 + 5;
+											vo_pa[3].X = chipsize.Width;
+											vo_pa[3].Y = 16 - 5;
+										}
+										else if (cschip.description == "左の壁")
+										{
+											vo_pa[0].X = 16 + 1;
+											vo_pa[0].Y = 16 - 2;
+											vo_pa[1].X = 16 + 1;
+											vo_pa[1].Y = 16 + 2;
+											vo_pa[2].X = 0;
+											vo_pa[2].Y = 16 + 5;
+											vo_pa[3].X = 0;
+											vo_pa[3].Y = 16 - 5;
+										}
+										else
+										{
+											vo_pa[0].X = 16 - 2;
+											vo_pa[0].Y = 16 - 1;
+											vo_pa[1].X = 16 + 2;
+											vo_pa[1].Y = 16 - 1;
+											vo_pa[2].X = 16 + 5;
+											vo_pa[2].Y = chipsize.Width - 3;
+											vo_pa[3].X = 16 - 5;
+											vo_pa[3].Y = chipsize.Width - 3;
+										}
 										e.Graphics.FillPolygon(brush2, vo_pa);
 										brush2.Dispose();
 										break;

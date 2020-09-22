@@ -859,6 +859,74 @@ namespace MasaoPlus
 							}
 							brush.Dispose();
 							break;
+						case "人間大砲":
+							g.SmoothingMode = SmoothingMode.AntiAlias;
+							if (keepDrawData.cd.description.Contains("向き")) g.TranslateTransform(0, -12);
+							brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou);
+							g.FillEllipse(brush, 16 - 19, 16 - 19, 38, 38);
+							if (keepDrawData.cd.description == "右向き") rad = 330;
+							else if (keepDrawData.cd.description == "左向き") rad = 225;
+							else if (keepDrawData.cd.description == "天井") rad = 30;
+							else if (keepDrawData.cd.description == "右の壁") rad = 270;
+							else if (keepDrawData.cd.description == "左の壁") rad = 300;
+							vo_pa = new PointF[4];
+							vo_pa[0].X = 16 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 20;
+							vo_pa[0].Y = 16 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 20;
+							vo_pa[1].X = 16 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 20;
+							vo_pa[1].Y = 16 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 20;
+							vo_pa[2].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 68 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 20;
+							vo_pa[2].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 68 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 20;
+							vo_pa[3].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 68 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 20;
+							vo_pa[3].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 68 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 20;
+							g.FillPolygon(brush, vo_pa);
+							brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+							if (keepDrawData.cd.description == "天井")
+							{
+								vo_pa[0].X = 16 - 6;
+								vo_pa[0].Y = 16 + 4;
+								vo_pa[1].X = 16 + 6;
+								vo_pa[1].Y = 16 + 4;
+								vo_pa[2].X = 16 + 12;
+								vo_pa[2].Y = -32;
+								vo_pa[3].X = 16 - 12;
+								vo_pa[3].Y = -32;
+							}
+							else if (keepDrawData.cd.description == "右の壁")
+							{
+								vo_pa[0].X = 16 - 4;
+								vo_pa[0].Y = 16 - 6;
+								vo_pa[1].X = 16 - 4;
+								vo_pa[1].Y = 16 + 6;
+								vo_pa[2].X = 64;
+								vo_pa[2].Y = 16 + 12;
+								vo_pa[3].X = 64;
+								vo_pa[3].Y = 16 - 12;
+							}
+							else if (keepDrawData.cd.description == "左の壁")
+							{
+								vo_pa[0].X = 16 + 4;
+								vo_pa[0].Y = 16 - 6;
+								vo_pa[1].X = 16 + 4;
+								vo_pa[1].Y = 16 + 6;
+								vo_pa[2].X = -32;
+								vo_pa[2].Y = 16 + 12;
+								vo_pa[3].X = -32;
+								vo_pa[3].Y = 16 - 12;
+							}
+							else
+							{
+								vo_pa[0].X = 16 - 6;
+								vo_pa[0].Y = 16 - 4;
+								vo_pa[1].X = 16 + 6;
+								vo_pa[1].Y = 16 - 4;
+								vo_pa[2].X = 16 + 12;
+								vo_pa[2].Y = 32 + 12;
+								vo_pa[3].X = 16 - 12;
+								vo_pa[3].Y = 32 + 12;
+							}
+							g.FillPolygon(brush, vo_pa);
+							brush.Dispose();
+							break;
 						default:
 							g.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
 							if (keepDrawData.chara == Global.cpd.Mapchip[1].character)
@@ -3042,6 +3110,74 @@ namespace MasaoPlus
 														new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 													graphics.FillPolygon(brush, vo_pa);
 												}
+												brush.Dispose();
+												break;
+											case "人間大砲":
+												graphics.SmoothingMode = SmoothingMode.AntiAlias;
+												if (cschip.description.Contains("向き")) graphics.TranslateTransform(0, -12);
+												brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou);
+												graphics.FillEllipse(brush, 16 - 19, 16 - 19, 38, 38);
+												if (cschip.description == "右向き") rad = 330;
+												else if (cschip.description == "左向き") rad = 225;
+												else if (cschip.description == "天井") rad = 30;
+												else if (cschip.description == "右の壁") rad = 270;
+												else if (cschip.description == "左の壁") rad = 300;
+												vo_pa = new PointF[4];
+												vo_pa[0].X = 16 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 20;
+												vo_pa[0].Y = 16 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 20;
+												vo_pa[1].X = 16 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 20;
+												vo_pa[1].Y = 16 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 20;
+												vo_pa[2].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 68 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 20;
+												vo_pa[2].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 68 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 20;
+												vo_pa[3].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 68 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 20;
+												vo_pa[3].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 68 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 20;
+												graphics.FillPolygon(brush, vo_pa);
+												brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+												if (cschip.description == "天井")
+												{
+													vo_pa[0].X = 16 - 6;
+													vo_pa[0].Y = 16 + 4;
+													vo_pa[1].X = 16 + 6;
+													vo_pa[1].Y = 16 + 4;
+													vo_pa[2].X = 16 + 12;
+													vo_pa[2].Y = -32;
+													vo_pa[3].X = 16 - 12;
+													vo_pa[3].Y = -32;
+												}
+												else if (cschip.description == "右の壁")
+												{
+													vo_pa[0].X = 16 - 4;
+													vo_pa[0].Y = 16 - 6;
+													vo_pa[1].X = 16 - 4;
+													vo_pa[1].Y = 16 + 6;
+													vo_pa[2].X = 64;
+													vo_pa[2].Y = 16 + 12;
+													vo_pa[3].X = 64;
+													vo_pa[3].Y = 16 - 12;
+												}
+												else if (cschip.description == "左の壁")
+												{
+													vo_pa[0].X = 16 + 4;
+													vo_pa[0].Y = 16 - 6;
+													vo_pa[1].X = 16 + 4;
+													vo_pa[1].Y = 16 + 6;
+													vo_pa[2].X = -32;
+													vo_pa[2].Y = 16 + 12;
+													vo_pa[3].X = -32;
+													vo_pa[3].Y = 16 - 12;
+												}
+												else
+												{
+													vo_pa[0].X = 16 - 6;
+													vo_pa[0].Y = 16 - 4;
+													vo_pa[1].X = 16 + 6;
+													vo_pa[1].Y = 16 - 4;
+													vo_pa[2].X = 16 + 12;
+													vo_pa[2].Y = 32 + 12;
+													vo_pa[3].X = 16 - 12;
+													vo_pa[3].Y = 32 + 12;
+												}
+												graphics.FillPolygon(brush, vo_pa);
 												brush.Dispose();
 												break;
 											default:
