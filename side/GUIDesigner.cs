@@ -833,7 +833,7 @@ namespace MasaoPlus
 							g.SmoothingMode = SmoothingMode.AntiAlias;
 							g.TranslateTransform(16, 16);
 							int length;
-							if(keepDrawData.cd.name == "ロープ") length = 182;
+							if (keepDrawData.cd.name == "ロープ") length = 182;
 							else length = 226;
 							if (keepDrawData.cd.description == "つかまると左から動く") rad = 168;
 							else if (keepDrawData.cd.name == "ゆれる棒") rad = 270;
@@ -926,6 +926,115 @@ namespace MasaoPlus
 							}
 							g.FillPolygon(brush, vo_pa);
 							brush.Dispose();
+							break;
+						case "曲線による上り坂":
+						case "曲線による下り坂":
+							g.SmoothingMode = SmoothingMode.AntiAlias;
+							var k21 = 0; float j20 = default, k20 = default, l20 = default, i21 = default;
+							if (keepDrawData.cd.description.Contains("線のみ"))
+							{
+								vo_pa = new PointF[11];
+								pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
+								for (var i1 = 0; i1 <= 50; i1 += 5)
+								{
+									if (keepDrawData.cd.name.Contains("上"))
+										vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+									else if (keepDrawData.cd.name.Contains("下"))
+										vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+									vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * 3.1415926535897931) / 180) * 160) - 1;
+									if (i1 == 50)
+									{
+										j20 = vo_pa[k21].X;
+										k20 = vo_pa[k21].Y;
+									}
+									k21++;
+								}
+
+								g.DrawLines(pen, vo_pa);
+								k21 = 0;
+								for (var i1 = 0; i1 <= 50; i1 += 5)
+								{
+									if (keepDrawData.cd.name.Contains("上"))
+										vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+									else if (keepDrawData.cd.name.Contains("下"))
+										vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+									vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * 3.1415926535897931) / 180) * 160) + 1;
+									if (i1 == 50)
+									{
+										l20 = vo_pa[k21].X;
+										i21 = vo_pa[k21].Y;
+									}
+									k21++;
+								}
+								g.DrawLines(pen, vo_pa);
+								vo_pa = new PointF[2];
+								vo_pa[0].X = j20;
+								vo_pa[0].Y = k20;
+								vo_pa[1].X = l20;
+								vo_pa[1].Y = i21;
+								g.DrawLines(pen, vo_pa);
+								pen.Dispose();
+							}
+							else
+							{
+								vo_pa = new PointF[12];
+								brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+								for (var i1 = 0; i1 <= 50; i1 += 5)
+								{
+									if (keepDrawData.cd.name.Contains("上"))
+										vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+									else if (keepDrawData.cd.name.Contains("下"))
+										vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+									vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * 3.1415926535897931) / 180) * 160);
+									if (i1 == 50)
+									{
+										j20 = vo_pa[k21].X;
+										k20 = vo_pa[k21].Y;
+									}
+									k21++;
+								}
+
+								vo_pa[k21].X = j20;
+								vo_pa[k21].Y = 128;
+								g.FillPolygon(brush, vo_pa);
+								vo_pa = new PointF[13];
+								k21 = 0;
+								for (var i1 = 0; i1 <= 50; i1 += 5)
+								{
+									if (keepDrawData.cd.name.Contains("上"))
+										vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+									else if (keepDrawData.cd.name.Contains("下"))
+										vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+									vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * 3.1415926535897931) / 180) * 160);
+									if (i1 == 50)
+									{
+										l20 = vo_pa[k21].X;
+										i21 = vo_pa[k21].Y;
+									}
+									k21++;
+								}
+
+								vo_pa[k21].X = l20;
+								vo_pa[k21].Y = 128;
+								k21++;
+								if (keepDrawData.cd.name.Contains("上")) vo_pa[k21].X = 256;
+								else if (keepDrawData.cd.name.Contains("下")) vo_pa[k21].X = 0;
+								vo_pa[k21].Y = 128;
+								g.FillPolygon(brush, vo_pa);
+								vo_pa = new PointF[4];
+								vo_pa[0].X = j20;
+								vo_pa[0].Y = k20;
+								vo_pa[1].X = l20;
+								vo_pa[1].Y = i21;
+								vo_pa[2].X = l20;
+								vo_pa[2].Y = 128;
+								vo_pa[3].X = j20;
+								vo_pa[3].Y = 128;
+								g.FillPolygon(brush, vo_pa);
+								if (128 + keepDrawData.pos.Y * chipsize.Height < Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height)
+									g.FillRectangle(brush, 0, 128, 256, Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height - (128 + keepDrawData.pos.Y * chipsize.Height));
+								brush.Dispose();
+							}
 							break;
 						default:
 							g.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
@@ -2626,7 +2735,13 @@ namespace MasaoPlus
 					{
 						size = this.DrawOribossOrig.Size;
 					}
-					else size = (cd.GetCSChip().view_size != default)?cd.GetCSChip().view_size: cd.GetCSChip().size; // 置きたいチップデータのサイズ
+					else {
+						size = (cd.GetCSChip().view_size != default) ? cd.GetCSChip().view_size : cd.GetCSChip().size; // 置きたいチップデータのサイズ
+
+						if (cd.GetCSChip().name.Contains("曲線による") && cd.GetCSChip().name.Contains("坂") &&
+							128 + MapPos.Y * chipsize.Height < Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height)
+								size.Height += Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height - (128 + MapPos.Y * chipsize.Height);
+					}
 				}
 				ChipsData chipsData = default; // 置く前から元々あったチップデータのサイズ
 				ChipData chipData = default(ChipData);
@@ -2636,9 +2751,9 @@ namespace MasaoPlus
 					else chipsData = this.DrawItemRef[stageChar];
 					chipData = chipsData.GetCSChip();
 					if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
-					{
 						size = this.GetLargerSize(size, this.DrawOribossOrig.Size);
-					}
+					else if (chipData.name.Contains("曲線による") && chipData.name.Contains("坂"))
+						size = this.GetLargerSize(size, new Size(chipData.view_size.Width, Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height));
 					else size = this.GetLargerSize(size, (chipData.view_size != default)?chipData.view_size:chipData.size);	//サイズを比較して、大きい方に合わせる
 				}
 				if (size == default(Size)) this.RedrawMap(g, new Rectangle(MapPos, new Size(1, 1)));
@@ -3179,6 +3294,115 @@ namespace MasaoPlus
 												}
 												graphics.FillPolygon(brush, vo_pa);
 												brush.Dispose();
+												break;
+											case "曲線による上り坂":
+											case "曲線による下り坂":
+												graphics.SmoothingMode = SmoothingMode.AntiAlias;
+												var k21 = 0; float j20 = default, k20 = default, l20 = default, i21 = default;
+												if (cschip.description.Contains("線のみ"))
+												{
+													vo_pa = new PointF[11];
+													pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
+													for (var i1 = 0; i1 <= 50; i1 += 5)
+													{
+														if (cschip.name.Contains("上"))
+															vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+														else if (cschip.name.Contains("下"))
+															vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+														vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * 3.1415926535897931) / 180) * 160) - 1;
+														if (i1 == 50)
+														{
+															j20 = vo_pa[k21].X;
+															k20 = vo_pa[k21].Y;
+														}
+														k21++;
+													}
+
+													graphics.DrawLines(pen, vo_pa);
+													k21 = 0;
+													for (var i1 = 0; i1 <= 50; i1 += 5)
+													{
+														if (cschip.name.Contains("上"))
+															vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+														else if (cschip.name.Contains("下"))
+															vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+														vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * 3.1415926535897931) / 180) * 160) + 1;
+														if (i1 == 50)
+														{
+															l20 = vo_pa[k21].X;
+															i21 = vo_pa[k21].Y;
+														}
+														k21++;
+													}
+													graphics.DrawLines(pen, vo_pa);
+													vo_pa = new PointF[2];
+													vo_pa[0].X = j20;
+													vo_pa[0].Y = k20;
+													vo_pa[1].X = l20;
+													vo_pa[1].Y = i21;
+													graphics.DrawLines(pen, vo_pa);
+													pen.Dispose();
+												}
+												else
+												{
+													vo_pa = new PointF[12];
+													brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+													for (var i1 = 0; i1 <= 50; i1 += 5)
+													{
+														if (cschip.name.Contains("上"))
+															vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+														else if (cschip.name.Contains("下"))
+															vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+														vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * 3.1415926535897931) / 180) * 160);
+														if (i1 == 50)
+														{
+															j20 = vo_pa[k21].X;
+															k20 = vo_pa[k21].Y;
+														}
+														k21++;
+													}
+
+													vo_pa[k21].X = j20;
+													vo_pa[k21].Y = 128;
+													graphics.FillPolygon(brush, vo_pa);
+													vo_pa = new PointF[13];
+													k21 = 0;
+													for (var i1 = 0; i1 <= 50; i1 += 5)
+													{
+														if (cschip.name.Contains("上"))
+															vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+														else if (cschip.name.Contains("下"))
+															vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+														vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * 3.1415926535897931) / 180) * 160);
+														if (i1 == 50)
+														{
+															l20 = vo_pa[k21].X;
+															i21 = vo_pa[k21].Y;
+														}
+														k21++;
+													}
+
+													vo_pa[k21].X = l20;
+													vo_pa[k21].Y = 128;
+													k21++;
+													if (cschip.name.Contains("上")) vo_pa[k21].X = 256;
+													else if (cschip.name.Contains("下")) vo_pa[k21].X = 0;
+													vo_pa[k21].Y = 128;
+													graphics.FillPolygon(brush, vo_pa);
+													vo_pa = new PointF[4];
+													vo_pa[0].X = j20;
+													vo_pa[0].Y = k20;
+													vo_pa[1].X = l20;
+													vo_pa[1].Y = i21;
+													vo_pa[2].X = l20;
+													vo_pa[2].Y = 128;
+													vo_pa[3].X = j20;
+													vo_pa[3].Y = 128;
+													graphics.FillPolygon(brush, vo_pa);
+													if (128 + point.Y * chipsize.Height < Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height)
+														graphics.FillRectangle(brush, 0, 128, 256, Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height - (128 + point.Y * chipsize.Height));
+													brush.Dispose();
+												}
 												break;
 											default:
 												graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);

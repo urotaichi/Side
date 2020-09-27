@@ -360,13 +360,17 @@
         <description>左進行用の視界に変更します</description></chip>
       <chip value="118"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>192</Y></xdraw><name>画面内で右進行用の視界</name>
         <description>右進行用の視界に変更します</description></chip>
-      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の上り坂です</description></chip>
-      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の下り坂です</description></chip>
-      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
       <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
         <description>乗れる円です</description></chip>
@@ -1212,13 +1216,17 @@
         <description>左進行用の視界に変更します</description></chip>
       <chip value="118"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>192</Y></xdraw><name>画面内で右進行用の視界</name>
         <description>右進行用の視界に変更します</description></chip>
-      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の上り坂です</description></chip>
-      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の下り坂です</description></chip>
-      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
       <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
         <description>乗れる円です</description></chip>
@@ -2064,13 +2072,17 @@
         <description>左進行用の視界に変更します</description></chip>
       <chip value="118"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>192</Y></xdraw><name>画面内で右進行用の視界</name>
         <description>右進行用の視界に変更します</description></chip>
-      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の上り坂です</description></chip>
-      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の下り坂です</description></chip>
-      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
       <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
         <description>乗れる円です</description></chip>
@@ -2916,13 +2928,17 @@
         <description>左進行用の視界に変更します</description></chip>
       <chip value="118"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>192</Y></xdraw><name>画面内で右進行用の視界</name>
         <description>右進行用の視界に変更します</description></chip>
-      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の上り坂です</description></chip>
-      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の下り坂です</description></chip>
-      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
       <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
         <description>乗れる円です</description></chip>
@@ -3768,13 +3784,17 @@
         <description>左進行用の視界に変更します</description></chip>
       <chip value="118"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>192</Y></xdraw><name>画面内で右進行用の視界</name>
         <description>右進行用の視界に変更します</description></chip>
-      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の上り坂です</description></chip>
-      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の下り坂です</description></chip>
-      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
       <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
         <description>乗れる円です</description></chip>
@@ -4620,13 +4640,17 @@
         <description>左進行用の視界に変更します</description></chip>
       <chip value="118"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>192</Y></xdraw><name>画面内で右進行用の視界</name>
         <description>右進行用の視界に変更します</description></chip>
-      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の上り坂です</description></chip>
-      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の下り坂です</description></chip>
-      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
       <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
         <description>乗れる円です</description></chip>
@@ -5614,13 +5638,17 @@
         <description>左進行用の視界に変更します</description></chip>
       <chip value="118"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>192</Y></xdraw><name>画面内で右進行用の視界</name>
         <description>右進行用の視界に変更します</description></chip>
-      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の上り坂です</description></chip>
-      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の下り坂です</description></chip>
-      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
       <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
         <description>乗れる円です</description></chip>
@@ -6466,13 +6494,17 @@
         <description>左進行用の視界に変更します</description></chip>
       <chip value="118"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>192</Y></xdraw><name>画面内で右進行用の視界</name>
         <description>右進行用の視界に変更します</description></chip>
-      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の上り坂です</description></chip>
-      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の下り坂です</description></chip>
-      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
       <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
         <description>乗れる円です</description></chip>
@@ -7373,13 +7405,17 @@
         <description>左進行用の視界に変更します</description></chip>
       <chip value="118"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>192</Y></xdraw><name>画面内で右進行用の視界</name>
         <description>右進行用の視界に変更します</description></chip>
-      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の上り坂です</description></chip>
-      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の下り坂です</description></chip>
-      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
       <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
         <description>乗れる円です</description></chip>
@@ -8224,13 +8260,17 @@
         <description>左進行用の視界に変更します</description></chip>
       <chip value="118"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>192</Y></xdraw><name>画面内で右進行用の視界</name>
         <description>右進行用の視界に変更します</description></chip>
-      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の上り坂です</description></chip>
-      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の下り坂です</description></chip>
-      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
       <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
         <description>乗れる円です</description></chip>
@@ -9075,13 +9115,17 @@
         <description>左進行用の視界に変更します</description></chip>
       <chip value="118"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>192</Y></xdraw><name>画面内で右進行用の視界</name>
         <description>右進行用の視界に変更します</description></chip>
-      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の上り坂です</description></chip>
-      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の下り坂です</description></chip>
-      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
       <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
         <description>乗れる円です</description></chip>
@@ -9926,13 +9970,17 @@
         <description>左進行用の視界に変更します</description></chip>
       <chip value="118"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>192</Y></xdraw><name>画面内で右進行用の視界</name>
         <description>右進行用の視界に変更します</description></chip>
-      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="119"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の上り坂です</description></chip>
-      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="120"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>曲線の下り坂です</description></chip>
-      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>224</Y></xdraw><name>曲線による上り坂</name>
+      <chip value="121"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>224</Y></xdraw><name>曲線による下り坂</name>
+      <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
       <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
         <description>乗れる円です</description></chip>
