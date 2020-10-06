@@ -372,13 +372,17 @@
       <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
         <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>96</Y></center><name>乗れる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>乗れる円です</description></chip>
-      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>128</Y></center><name>乗れる円</name><view_size><Width>320</Width><Height>288</Height></view_size>
         <description>大</description></chip>
-      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる</description></chip>
-      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
       <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
         <description>左回り</description></chip>
@@ -392,23 +396,32 @@
         <description>左回り</description></chip>
       <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>右回り</description></chip>
-      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　下から</description></chip>
-      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　上から</description></chip>
-      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると上がる</description></chip>
-      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>柱付き</description></chip>
-      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる。降りると上がる。</description></chip>
-      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>96</Y></center><name>円</name><view_size><Width>256</Width><Height>256</Height></view_size>
         <description>上下移動。上から。</description></chip>
-      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
       <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
         <description>2本。左回り。</description></chip>
@@ -483,9 +496,11 @@
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
         <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
-      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>上下に跳ねます。</description></chip>
-      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>128</X><Y>128</Y></center><name>跳ねる円</name><view_size><Width>288</Width><Height>288</Height></view_size>
         <description>大</description></chip>
       <chip value="173"><pattern><X>0</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
         <name>ワープ土管１</name><description>下向き</description></chip>
@@ -1228,13 +1243,17 @@
       <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
         <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>96</Y></center><name>乗れる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>乗れる円です</description></chip>
-      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>128</Y></center><name>乗れる円</name><view_size><Width>320</Width><Height>288</Height></view_size>
         <description>大</description></chip>
-      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる</description></chip>
-      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
       <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
         <description>左回り</description></chip>
@@ -1248,23 +1267,32 @@
         <description>左回り</description></chip>
       <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>右回り</description></chip>
-      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　下から</description></chip>
-      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　上から</description></chip>
-      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると上がる</description></chip>
-      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>柱付き</description></chip>
-      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる。降りると上がる。</description></chip>
-      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>96</Y></center><name>円</name><view_size><Width>256</Width><Height>256</Height></view_size>
         <description>上下移動。上から。</description></chip>
-      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
       <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
         <description>2本。左回り。</description></chip>
@@ -1339,9 +1367,11 @@
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
         <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
-      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>上下に跳ねます。</description></chip>
-      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>128</X><Y>128</Y></center><name>跳ねる円</name><view_size><Width>288</Width><Height>288</Height></view_size>
         <description>大</description></chip>
       <chip value="173"><pattern><X>0</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
         <name>ワープ土管１</name><description>下向き</description></chip>
@@ -2084,13 +2114,17 @@
       <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
         <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>96</Y></center><name>乗れる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>乗れる円です</description></chip>
-      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>128</Y></center><name>乗れる円</name><view_size><Width>320</Width><Height>288</Height></view_size>
         <description>大</description></chip>
-      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる</description></chip>
-      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
       <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
         <description>左回り</description></chip>
@@ -2104,23 +2138,32 @@
         <description>左回り</description></chip>
       <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>右回り</description></chip>
-      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　下から</description></chip>
-      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　上から</description></chip>
-      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると上がる</description></chip>
-      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>柱付き</description></chip>
-      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる。降りると上がる。</description></chip>
-      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>96</Y></center><name>円</name><view_size><Width>256</Width><Height>256</Height></view_size>
         <description>上下移動。上から。</description></chip>
-      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
       <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
         <description>2本。左回り。</description></chip>
@@ -2195,9 +2238,11 @@
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
         <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
-      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>上下に跳ねます。</description></chip>
-      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>128</X><Y>128</Y></center><name>跳ねる円</name><view_size><Width>288</Width><Height>288</Height></view_size>
         <description>大</description></chip>
       <chip value="173"><pattern><X>0</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
         <name>ワープ土管１</name><description>下向き</description></chip>
@@ -2940,13 +2985,17 @@
       <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
         <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>96</Y></center><name>乗れる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>乗れる円です</description></chip>
-      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>128</Y></center><name>乗れる円</name><view_size><Width>320</Width><Height>288</Height></view_size>
         <description>大</description></chip>
-      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる</description></chip>
-      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
       <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
         <description>左回り</description></chip>
@@ -2960,23 +3009,32 @@
         <description>左回り</description></chip>
       <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>右回り</description></chip>
-      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　下から</description></chip>
-      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　上から</description></chip>
-      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると上がる</description></chip>
-      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>柱付き</description></chip>
-      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる。降りると上がる。</description></chip>
-      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>96</Y></center><name>円</name><view_size><Width>256</Width><Height>256</Height></view_size>
         <description>上下移動。上から。</description></chip>
-      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
       <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
         <description>2本。左回り。</description></chip>
@@ -3051,9 +3109,11 @@
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
         <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
-      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>上下に跳ねます。</description></chip>
-      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>128</X><Y>128</Y></center><name>跳ねる円</name><view_size><Width>288</Width><Height>288</Height></view_size>
         <description>大</description></chip>
       <chip value="173"><pattern><X>0</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
         <name>ワープ土管１</name><description>下向き</description></chip>
@@ -3796,13 +3856,17 @@
       <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
         <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>96</Y></center><name>乗れる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>乗れる円です</description></chip>
-      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>128</Y></center><name>乗れる円</name><view_size><Width>320</Width><Height>288</Height></view_size>
         <description>大</description></chip>
-      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる</description></chip>
-      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
       <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
         <description>左回り</description></chip>
@@ -3816,23 +3880,32 @@
         <description>左回り</description></chip>
       <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>右回り</description></chip>
-      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　下から</description></chip>
-      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　上から</description></chip>
-      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると上がる</description></chip>
-      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>柱付き</description></chip>
-      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる。降りると上がる。</description></chip>
-      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>96</Y></center><name>円</name><view_size><Width>256</Width><Height>256</Height></view_size>
         <description>上下移動。上から。</description></chip>
-      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
       <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
         <description>2本。左回り。</description></chip>
@@ -3907,9 +3980,11 @@
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
         <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
-      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>上下に跳ねます。</description></chip>
-      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>128</X><Y>128</Y></center><name>跳ねる円</name><view_size><Width>288</Width><Height>288</Height></view_size>
         <description>大</description></chip>
       <chip value="173"><pattern><X>0</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
         <name>ワープ土管１</name><description>下向き</description></chip>
@@ -4652,13 +4727,17 @@
       <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
         <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>96</Y></center><name>乗れる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>乗れる円です</description></chip>
-      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>128</Y></center><name>乗れる円</name><view_size><Width>320</Width><Height>288</Height></view_size>
         <description>大</description></chip>
-      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる</description></chip>
-      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
       <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
         <description>左回り</description></chip>
@@ -4672,23 +4751,32 @@
         <description>左回り</description></chip>
       <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>右回り</description></chip>
-      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　下から</description></chip>
-      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　上から</description></chip>
-      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると上がる</description></chip>
-      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>柱付き</description></chip>
-      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる。降りると上がる。</description></chip>
-      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>96</Y></center><name>円</name><view_size><Width>256</Width><Height>256</Height></view_size>
         <description>上下移動。上から。</description></chip>
-      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
       <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
         <description>2本。左回り。</description></chip>
@@ -4763,9 +4851,11 @@
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
         <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
-      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>上下に跳ねます。</description></chip>
-      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>128</X><Y>128</Y></center><name>跳ねる円</name><view_size><Width>288</Width><Height>288</Height></view_size>
         <description>大</description></chip>
       <chip value="173"><pattern><X>0</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
         <name>ワープ土管１</name><description>下向き</description></chip>
@@ -5650,13 +5740,17 @@
       <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
         <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>96</Y></center><name>乗れる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>乗れる円です</description></chip>
-      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>128</Y></center><name>乗れる円</name><view_size><Width>320</Width><Height>288</Height></view_size>
         <description>大</description></chip>
-      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる</description></chip>
-      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
       <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
         <description>左回り</description></chip>
@@ -5670,23 +5764,32 @@
         <description>左回り</description></chip>
       <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>右回り</description></chip>
-      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　下から</description></chip>
-      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　上から</description></chip>
-      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると上がる</description></chip>
-      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>柱付き</description></chip>
-      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる。降りると上がる。</description></chip>
-      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>96</Y></center><name>円</name><view_size><Width>256</Width><Height>256</Height></view_size>
         <description>上下移動。上から。</description></chip>
-      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
       <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
         <description>2本。左回り。</description></chip>
@@ -5761,9 +5864,11 @@
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
         <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
-      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>上下に跳ねます。</description></chip>
-      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>128</X><Y>128</Y></center><name>跳ねる円</name><view_size><Width>288</Width><Height>288</Height></view_size>
         <description>大</description></chip>
       <chip value="173"><pattern><X>0</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
         <name>ワープ土管１</name><description>下向き</description></chip>
@@ -6506,13 +6611,17 @@
       <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
         <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>96</Y></center><name>乗れる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>乗れる円です</description></chip>
-      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>128</Y></center><name>乗れる円</name><view_size><Width>320</Width><Height>288</Height></view_size>
         <description>大</description></chip>
-      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる</description></chip>
-      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
       <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
         <description>左回り</description></chip>
@@ -6526,23 +6635,32 @@
         <description>左回り</description></chip>
       <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>右回り</description></chip>
-      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　下から</description></chip>
-      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　上から</description></chip>
-      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると上がる</description></chip>
-      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>柱付き</description></chip>
-      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる。降りると上がる。</description></chip>
-      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>96</Y></center><name>円</name><view_size><Width>256</Width><Height>256</Height></view_size>
         <description>上下移動。上から。</description></chip>
-      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
       <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
         <description>2本。左回り。</description></chip>
@@ -6617,9 +6735,11 @@
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
         <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
-      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>上下に跳ねます。</description></chip>
-      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>128</X><Y>128</Y></center><name>跳ねる円</name><view_size><Width>288</Width><Height>288</Height></view_size>
         <description>大</description></chip>
       <chip value="173"><pattern><X>0</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
         <name>ワープ土管１</name><description>下向き</description></chip>
@@ -7417,13 +7537,17 @@
       <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
         <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>96</Y></center><name>乗れる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>乗れる円です</description></chip>
-      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>128</Y></center><name>乗れる円</name><view_size><Width>320</Width><Height>288</Height></view_size>
         <description>大</description></chip>
-      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる</description></chip>
-      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
       <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
         <description>左回り</description></chip>
@@ -7437,23 +7561,32 @@
         <description>左回り</description></chip>
       <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>右回り</description></chip>
-      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　下から</description></chip>
-      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　上から</description></chip>
-      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると上がる</description></chip>
-      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>柱付き</description></chip>
-      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる。降りると上がる。</description></chip>
-      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>96</Y></center><name>円</name><view_size><Width>256</Width><Height>256</Height></view_size>
         <description>上下移動。上から。</description></chip>
-      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
       <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
         <description>2本。左回り。</description></chip>
@@ -7528,9 +7661,11 @@
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
         <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
-      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>上下に跳ねます。</description></chip>
-      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>128</X><Y>128</Y></center><name>跳ねる円</name><view_size><Width>288</Width><Height>288</Height></view_size>
         <description>大</description></chip>
       <chip value="173"><pattern><X>0</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
         <name>ワープ土管１</name><description>下向き</description></chip>
@@ -8272,13 +8407,17 @@
       <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
         <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>96</Y></center><name>乗れる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>乗れる円です</description></chip>
-      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>128</Y></center><name>乗れる円</name><view_size><Width>320</Width><Height>288</Height></view_size>
         <description>大</description></chip>
-      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる</description></chip>
-      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
       <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
         <description>左回り</description></chip>
@@ -8292,23 +8431,32 @@
         <description>左回り</description></chip>
       <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>右回り</description></chip>
-      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　下から</description></chip>
-      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　上から</description></chip>
-      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると上がる</description></chip>
-      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>柱付き</description></chip>
-      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる。降りると上がる。</description></chip>
-      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>96</Y></center><name>円</name><view_size><Width>256</Width><Height>256</Height></view_size>
         <description>上下移動。上から。</description></chip>
-      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
       <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
         <description>2本。左回り。</description></chip>
@@ -8383,9 +8531,11 @@
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
         <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
-      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>上下に跳ねます。</description></chip>
-      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>128</X><Y>128</Y></center><name>跳ねる円</name><view_size><Width>288</Width><Height>288</Height></view_size>
         <description>大</description></chip>
       <chip value="173"><pattern><X>0</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
         <name>ワープ土管１</name><description>下向き</description></chip>
@@ -9127,13 +9277,17 @@
       <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
         <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>96</Y></center><name>乗れる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>乗れる円です</description></chip>
-      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>128</Y></center><name>乗れる円</name><view_size><Width>320</Width><Height>288</Height></view_size>
         <description>大</description></chip>
-      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる</description></chip>
-      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
       <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
         <description>左回り</description></chip>
@@ -9147,23 +9301,32 @@
         <description>左回り</description></chip>
       <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>右回り</description></chip>
-      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　下から</description></chip>
-      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　上から</description></chip>
-      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると上がる</description></chip>
-      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>柱付き</description></chip>
-      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる。降りると上がる。</description></chip>
-      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>96</Y></center><name>円</name><view_size><Width>256</Width><Height>256</Height></view_size>
         <description>上下移動。上から。</description></chip>
-      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
       <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
         <description>2本。左回り。</description></chip>
@@ -9238,9 +9401,11 @@
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
         <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
-      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>上下に跳ねます。</description></chip>
-      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>128</X><Y>128</Y></center><name>跳ねる円</name><view_size><Width>288</Width><Height>288</Height></view_size>
         <description>大</description></chip>
       <chip value="173"><pattern><X>0</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
         <name>ワープ土管１</name><description>下向き</description></chip>
@@ -9982,13 +10147,17 @@
       <chip value="122"><pattern><X>0</X><Y>0</Y></pattern>
         <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>線のみです</description></chip>
-      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="123"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>96</Y></center><name>乗れる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>乗れる円です</description></chip>
-      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>224</Y></xdraw><name>乗れる円</name>
+      <chip value="124"><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>128</Y></center><name>乗れる円</name><view_size><Width>320</Width><Height>288</Height></view_size>
         <description>大</description></chip>
-      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="125"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる</description></chip>
-      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
       <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
         <description>左回り</description></chip>
@@ -10002,23 +10171,32 @@
         <description>左回り</description></chip>
       <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>右回り</description></chip>
-      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　下から</description></chip>
-      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="134"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>上下移動　上から</description></chip>
-      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw><name>半円</name>
+      <chip value="135"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると上がる</description></chip>
-      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="136"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>256</Y></xdraw><name>半円</name>
+      <chip value="137"><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
         <description>柱付き</description></chip>
-      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="138"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる</description></chip>
-      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="139"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
         <description>乗ると下がる。降りると上がる。</description></chip>
-      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="140"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>96</Y></center><name>円</name><view_size><Width>256</Width><Height>256</Height></view_size>
         <description>上下移動。上から。</description></chip>
-      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>256</Y></xdraw><name>円</name>
+      <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
       <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
         <description>2本。左回り。</description></chip>
@@ -10093,9 +10271,11 @@
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
         <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
-      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
         <description>上下に跳ねます。</description></chip>
-      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>320</Y></xdraw><name>跳ねる円</name>
+      <chip value="172"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>128</X><Y>128</Y></center><name>跳ねる円</name><view_size><Width>288</Width><Height>288</Height></view_size>
         <description>大</description></chip>
       <chip value="173"><pattern><X>0</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
         <name>ワープ土管１</name><description>下向き</description></chip>

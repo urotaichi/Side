@@ -537,6 +537,150 @@ namespace MasaoPlus
 												brush.Dispose();
 											}
 											break;
+										case "乗れる円":
+										case "跳ねる円":
+										case "円":
+											int radius = default;
+											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
+											if (cschip.name == "円")
+											{
+												brush = new SolidBrush(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou));
+												if (cschip.description.Contains("乗ると下がる"))
+												{
+													e.Graphics.TranslateTransform(0, 3);
+													radius = 80 / 10;
+												}
+												else
+												{
+													radius = 112 / 10;
+												}
+											}
+											else
+											{
+												brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+												if (cschip.description.Contains("大"))
+												{
+													if (cschip.name == "乗れる円")
+													{
+														radius = 144 / 10;
+													}
+													else if (cschip.name == "跳ねる円")
+													{
+														radius = 128 / 10;
+													}
+												}
+												else
+												{
+													radius = 96 / 10;
+												}
+											}
+											e.Graphics.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
+											brush.Dispose();
+											break;
+										case "半円":
+											e.Graphics.TranslateTransform(1, 2);
+											if (cschip.description.Contains("乗れる"))
+											{
+												if (cschip.description.Contains("線のみ"))
+												{
+													pen = new Pen(Global.cpd.project.Config.Firebar2, 1);
+													vo_pa = new PointF[12];
+													var j21 = 0;
+													vo_pa[j21].X = 1 / 8;
+													vo_pa[j21].Y = 63 / 8;
+													j21++;
+													for (var j = 140; j >= 90; j -= 5)
+													{
+														vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * 3.1415926535897931) / 180) * 144) / 8;
+														vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((j * 3.1415926535897931) / 180) * 144) / 8;
+														j21++;
+													}
+													e.Graphics.DrawLines(pen, vo_pa);
+													j21 = 0;
+													for (var k2 = 90; k2 >= 40; k2 -= 5)
+													{
+														vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * 3.1415926535897931) / 180) * 144) / 8;
+														vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((k2 * 3.1415926535897931) / 180) * 144) / 8;
+														j21++;
+													}
+													vo_pa[j21].X = 240 / 8;
+													vo_pa[j21].Y = 63 / 8;
+													e.Graphics.DrawLines(pen, vo_pa);
+													pen.Dispose();
+												}
+												else
+												{
+													brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+													vo_pa = new PointF[13];
+													var j21 = 0;
+													vo_pa[j21].X = 0;
+													vo_pa[j21].Y = 64 / 8;
+													j21++;
+													for (var j = 140; j >= 90; j -= 5)
+													{
+														vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * 3.1415926535897931) / 180) * 144) / 8;
+														vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * 3.1415926535897931) / 180) * 144) / 8;
+														j21++;
+													}
+
+													vo_pa[j21].X = 120 / 8;
+													vo_pa[j21].Y = 64 / 8;
+													e.Graphics.FillPolygon(brush, vo_pa);
+													j21 = 0;
+													for (var k2 = 90; k2 >= 40; k2 -= 5)
+													{
+														vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * 3.1415926535897931) / 180) * 144) / 8;
+														vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * 3.1415926535897931) / 180) * 144) / 8;
+														j21++;
+													}
+
+													vo_pa[j21].X = 240 / 8;
+													vo_pa[j21].Y = 64 / 8;
+													j21++;
+													vo_pa[j21].X = 120 / 8;
+													vo_pa[j21].Y = 64 / 8;
+													e.Graphics.FillPolygon(brush, vo_pa);
+													brush.Dispose();
+												}
+											}
+											else
+											{
+												e.Graphics.TranslateTransform(0, 10);
+												brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+													e.Graphics.FillRectangle(brush, (120 - 20) / 8, 64 / 8, 40 / 8, 12);
+												brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+												vo_pa = new PointF[13];
+												var j21 = 0;
+												vo_pa[j21].X = 0;
+												vo_pa[j21].Y = 64 / 8;
+												j21++;
+												for (var j = 140; j >= 90; j -= 5)
+												{
+													vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * 3.1415926535897931) / 180) * 144) / 8;
+													vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * 3.1415926535897931) / 180) * 144) / 8;
+													j21++;
+												}
+
+												vo_pa[j21].X = 120 / 8;
+												vo_pa[j21].Y = 64 / 8;
+												e.Graphics.FillPolygon(brush, vo_pa);
+												j21 = 0;
+												for (var k2 = 90; k2 >= 40; k2 -= 5)
+												{
+													vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * 3.1415926535897931) / 180) * 144) / 8;
+													vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * 3.1415926535897931) / 180) * 144) / 8;
+													j21++;
+												}
+
+												vo_pa[j21].X = 240 / 8;
+												vo_pa[j21].Y = 64 / 8;
+												j21++;
+												vo_pa[j21].X = 120 / 8;
+												vo_pa[j21].Y = 64 / 8;
+												e.Graphics.FillPolygon(brush, vo_pa);
+												brush.Dispose();
+											}
+											break;
 										default:
 											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
 											e.Graphics.RotateTransform(cschip.rotate);
