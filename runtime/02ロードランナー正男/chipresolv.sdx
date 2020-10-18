@@ -128,11 +128,11 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイアーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイアーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイアーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -999,11 +999,11 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイアーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイアーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイアーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -1870,11 +1870,11 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイアーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイアーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイアーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -2741,11 +2741,11 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイアーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイアーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイアーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -3612,11 +3612,11 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイアーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイアーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイアーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -4483,11 +4483,11 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイアーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイアーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイアーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -5496,11 +5496,11 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイアーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイアーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイアーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -6367,11 +6367,11 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイアーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイアーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイアーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -7293,11 +7293,11 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイアーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイアーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイアーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -8163,11 +8163,11 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイアーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイアーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイアーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -9033,11 +9033,11 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイアーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイアーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイアーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -9903,11 +9903,11 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイアーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイアーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイアーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
