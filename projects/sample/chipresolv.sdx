@@ -490,7 +490,8 @@
           <X>256</X>
           <Y>0</Y>
         </xdraw>
-        <name>ファイアーバー</name>
+        <center><X>0</X><Y>32</Y></center>
+        <name>ファイヤーバー</name><view_size><Width>160</Width><Height>64</Height></view_size>
         <description>左回り</description>
       </chip>
     </chips>
@@ -500,12 +501,11 @@
           <X>0</X>
           <Y>160</Y>
         </pattern>
-
         <xdraw>
           <X>288</X>
           <Y>0</Y>
         </xdraw>
-        <name>ファイアーバー</name>
+        <name>ファイヤーバー</name><view_size><Width>160</Width><Height>64</Height></view_size>
         <description>右回り</description>
       </chip>
     </chips>
