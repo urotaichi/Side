@@ -949,8 +949,8 @@
    <!-- ファイヤーバー1の設定ここから（ポイント２） -->
 
     <chips char="U" rel="Fire1" color="yellow">
-      <chip value="1"><pattern><X>0</X><Y>160</Y></pattern>
-        <xdraw><X>256</X><Y>0</Y></xdraw><name>ファイヤーバー</name>
+      <chip value="1"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー</name><view_size><Width>160</Width><Height>64</Height></view_size>
         <description>左回り</description></chip>
       <chip value="2"><pattern><X>0</X><Y>576</Y></pattern><size><Width>96</Width><Height>32</Height></size>
         <xdraw><X>96</X><Y>32</Y></xdraw><name>落ちる床</name>
@@ -1820,8 +1820,8 @@
    <!-- ファイヤーバー2の設定ここから（ポイント３） -->
 
     <chips char="V" rel="Fire2" color="yellow">
-      <chip value="1"><pattern><X>0</X><Y>160</Y></pattern>
-        <xdraw><X>288</X><Y>0</Y></xdraw><name>ファイヤーバー</name>
+      <chip value="1"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <name>ファイヤーバー</name><view_size><Width>160</Width><Height>64</Height></view_size>
         <description>右回り</description></chip>
       <chip value="2"><pattern><X>0</X><Y>576</Y></pattern><size><Width>96</Width><Height>32</Height></size>
         <xdraw><X>96</X><Y>32</Y></xdraw><name>落ちる床</name>
