@@ -310,17 +310,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><rotate>-3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><rotate>3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><rotate>-2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><rotate>2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -1181,17 +1181,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><rotate>-3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><rotate>3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><rotate>-2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><rotate>2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -2052,17 +2052,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><rotate>-3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><rotate>3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><rotate>-2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><rotate>2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -2923,17 +2923,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><rotate>-3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><rotate>3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><rotate>-2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><rotate>2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -3794,17 +3794,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><rotate>-3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><rotate>3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><rotate>-2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><rotate>2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -4665,17 +4665,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><rotate>-3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><rotate>3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><rotate>-2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><rotate>2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -5678,17 +5678,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><rotate>-3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><rotate>3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><rotate>-2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><rotate>2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -6549,17 +6549,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><rotate>-3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><rotate>3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><rotate>-2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><rotate>2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -7475,17 +7475,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><rotate>-3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><rotate>3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><rotate>-2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><rotate>2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -8345,17 +8345,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><rotate>-3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><rotate>3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><rotate>-2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><rotate>2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -9215,17 +9215,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><rotate>-3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><rotate>3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><rotate>-2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><rotate>2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>
@@ -10085,17 +10085,17 @@
       <chip value="95"><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[グレネード]</name>
         <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
-      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="96"><pattern><X>96</X><Y>576</Y></pattern><rotate>-3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>96</Height></view_size>
-        <center><X>64</X><Y>32</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+      <chip value="97"><pattern><X>96</X><Y>576</Y></pattern><rotate>3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
         <description>右回り</description></chip>
-      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="98"><pattern><X>96</X><Y>576</Y></pattern><rotate>-2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>左回り</description></chip>
-      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>160</Height></view_size>
-        <center><X>128</X><Y>64</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+      <chip value="99"><pattern><X>96</X><Y>576</Y></pattern><rotate>2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
         <description>右回り</description></chip>
       <chip value="100"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
         <description>右に強制スクロールします</description></chip>

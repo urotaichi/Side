@@ -716,7 +716,7 @@ namespace MasaoPlus
 											break;
 										default:
 											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
-											e.Graphics.RotateTransform(cschip.rotate);
+											if (Math.Abs(cschip.rotate) % 180 == 90) e.Graphics.RotateTransform(cschip.rotate);
 
 											// 水の半透明処理
 											if(Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && chipsData.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
