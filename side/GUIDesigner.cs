@@ -742,7 +742,7 @@ namespace MasaoPlus
 								new Rectangle(keepDrawData.cd.pattern, chipsize), GraphicsUnit.Pixel);
 							g.SmoothingMode = SmoothingMode.AntiAlias;
 							g.TranslateTransform(16, 16);
-							rad = 90 * Math.PI / 180;
+							rad = (90 + Math.Floor((double)(30 + 5) / 10)) * Math.PI / 180;
 							vo_pa = new PointF[4];
 							vo_pa[0].X = (float)Math.Cos(rad + Math.PI / 9) * 192;
 							vo_pa[0].Y = (float)Math.Sin(rad + Math.PI / 9) * 192;
@@ -766,6 +766,17 @@ namespace MasaoPlus
 								g.DrawImage(this.DrawChipOrig,
 									new Rectangle(-16, -16, chipsize.Width, chipsize.Height),
 									new Rectangle(keepDrawData.cd.pattern, chipsize), GraphicsUnit.Pixel);
+								rad = (90 + Math.Floor((double)(-30 - 5) / 10)) * Math.PI / 180;
+								vo_pa[0].X = (float)Math.Cos(rad + Math.PI / 9) * 192;
+								vo_pa[0].Y = (float)Math.Sin(rad + Math.PI / 9) * 192;
+								vo_pa[1].X = (float)Math.Cos(rad - Math.PI / 9) * 192;
+								vo_pa[1].Y = (float)Math.Sin(rad - Math.PI / 9) * 192;
+								vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad) * 12;
+								vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad) * 12;
+								vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad) * 12;
+								vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 12;
+								dx = Math.Cos(rad) * 80;
+								dy = Math.Sin(rad) * 80;
 								g.DrawLine(pen, (float)Math.Cos(rad) * 12, (float)Math.Sin(rad) * 12, (float)dx, (float)dy);
 								g.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
 								g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
@@ -3286,7 +3297,7 @@ namespace MasaoPlus
 													new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 												graphics.SmoothingMode = SmoothingMode.AntiAlias;
 												graphics.TranslateTransform(16, 16);
-												rad = 90 * Math.PI / 180;
+												rad = (90 + Math.Floor((double)(30 + 5) / 10)) * Math.PI / 180;
 												vo_pa = new PointF[4];
 												vo_pa[0].X = (float)Math.Cos(rad + Math.PI / 9) * 192;
 												vo_pa[0].Y = (float)Math.Sin(rad + Math.PI / 9) * 192;
@@ -3310,6 +3321,17 @@ namespace MasaoPlus
 													graphics.DrawImage(this.DrawChipOrig,
 														new Rectangle(-16, -16, chipsize.Width, chipsize.Height),
 														new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+													rad = (90 + Math.Floor((double)(-30 - 5) / 10)) * Math.PI / 180;
+													vo_pa[0].X = (float)Math.Cos(rad + Math.PI / 9) * 192;
+													vo_pa[0].Y = (float)Math.Sin(rad + Math.PI / 9) * 192;
+													vo_pa[1].X = (float)Math.Cos(rad - Math.PI / 9) * 192;
+													vo_pa[1].Y = (float)Math.Sin(rad - Math.PI / 9) * 192;
+													vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad) * 12;
+													vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad) * 12;
+													vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad) * 12;
+													vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 12;
+													dx = Math.Cos(rad) * 80;
+													dy = Math.Sin(rad) * 80;
 													graphics.DrawLine(pen, (float)Math.Cos(rad) * 12, (float)Math.Sin(rad) * 12, (float)dx, (float)dy);
 													graphics.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
 													graphics.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
