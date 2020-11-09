@@ -788,7 +788,7 @@ namespace MasaoPlus
 						case "動くＴ字型":
 							g.SmoothingMode = SmoothingMode.AntiAlias;
 							g.TranslateTransform(16, 48);
-							rad = 270;
+							rad = 270 + Math.Floor((double)(-30 - 5) / 10);
 							vo_pa = new PointF[3];
 							vo_pa[0].X = (float)Math.Cos(((rad + 6) * Math.PI) / 180) * 182;
 							vo_pa[0].Y = (float)Math.Sin(((rad + 6) * Math.PI) / 180) * 182;
@@ -812,6 +812,7 @@ namespace MasaoPlus
 							if (keepDrawData.cd.description == "２個連続")
 							{
 								g.TranslateTransform(416, 0);
+								rad = 270 + Math.Floor((double)(30 + 5) / 10);
 								vo_pa = new PointF[3];
 								vo_pa[0].X = (float)Math.Cos(((rad + 6) * Math.PI) / 180) * 182;
 								vo_pa[0].Y = (float)Math.Sin(((rad + 6) * Math.PI) / 180) * 182;
@@ -3343,7 +3344,7 @@ namespace MasaoPlus
 											case "動くＴ字型":
 												graphics.SmoothingMode = SmoothingMode.AntiAlias;
 												graphics.TranslateTransform(16, 48);
-												rad = 270;
+												rad = 270 + Math.Floor((double)(-30 - 5) / 10);
 												vo_pa = new PointF[3];
 												vo_pa[0].X = (float)Math.Cos(((rad + 6) * Math.PI) / 180) * 182;
 												vo_pa[0].Y = (float)Math.Sin(((rad + 6) * Math.PI) / 180) * 182;
@@ -3367,6 +3368,7 @@ namespace MasaoPlus
 												if (cschip.description == "２個連続")
 												{
 													graphics.TranslateTransform(416, 0);
+													rad = 270 + Math.Floor((double)(30 + 5) / 10);
 													vo_pa = new PointF[3];
 													vo_pa[0].X = (float)Math.Cos(((rad + 6) * Math.PI) / 180) * 182;
 													vo_pa[0].Y = (float)Math.Sin(((rad + 6) * Math.PI) / 180) * 182;
