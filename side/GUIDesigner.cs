@@ -848,8 +848,18 @@ namespace MasaoPlus
 							if (keepDrawData.cd.name == "ロープ") length = 182;
 							else length = 226;
 							if (keepDrawData.cd.description == "つかまると左から動く") rad = 168;
-							else if (keepDrawData.cd.name == "ゆれる棒") rad = 270;
-							else rad = 90;
+							else if (keepDrawData.cd.name == "ゆれる棒")
+							{
+								if (keepDrawData.cd.description.Contains("左から")) rad = 270 + Math.Floor((double)(-22 - 5) / 10);
+								else rad = 270 + Math.Floor((double)(22 + 5) / 10);
+							}
+							else if (keepDrawData.cd.name == "長いロープ")
+							{
+								if (keepDrawData.cd.description == "つかまると動く") rad = 90;
+								else if (keepDrawData.cd.description == "右から") rad = 90 + Math.Floor((double)(-22 - 5) / 10);
+								else rad = 90 + Math.Floor((double)(22 + 5) / 10);
+							}
+							else rad = 90 + Math.Floor((double)(30 + 5) / 10);
 							vo_pa = new PointF[4];
 							vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * 5);
 							vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * 5);
@@ -867,6 +877,15 @@ namespace MasaoPlus
 								g.DrawImage(this.DrawChipOrig,
 									new Rectangle(-16, -16, chipsize.Width, chipsize.Height),
 									new Rectangle(keepDrawData.cd.pattern, chipsize), GraphicsUnit.Pixel);
+								rad = 90 + Math.Floor((double)(-30 - 5) / 10);
+								vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * 5);
+								vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * 5);
+								vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * 5);
+								vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * 5);
+								vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * length + Math.Cos(((rad - 90) * Math.PI) / 180) * 5);
+								vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * length + Math.Sin(((rad - 90) * Math.PI) / 180) * 5);
+								vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * length + Math.Cos(((rad + 90) * Math.PI) / 180) * 5);
+								vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * length + Math.Sin(((rad + 90) * Math.PI) / 180) * 5);
 								g.FillPolygon(brush, vo_pa);
 							}
 							brush.Dispose();
@@ -3404,8 +3423,18 @@ namespace MasaoPlus
 												if (cschip.name == "ロープ") length = 182;
 												else length = 226;
 												if (cschip.description == "つかまると左から動く") rad = 168;
-												else if (cschip.name == "ゆれる棒") rad = 270;
-												else rad = 90;
+												else if (cschip.name == "ゆれる棒")
+												{
+													if (cschip.description.Contains("左から")) rad = 270 + Math.Floor((double)(-22 - 5) / 10);
+													else rad = 270 + Math.Floor((double)(22 + 5) / 10);
+												}
+												else if (cschip.name == "長いロープ")
+												{
+													if (cschip.description == "つかまると動く") rad = 90;
+													else if (cschip.description == "右から") rad = 90 + Math.Floor((double)(-22 - 5) / 10);
+													else rad = 90 + Math.Floor((double)(22 + 5) / 10);
+												}
+												else rad = 90 + Math.Floor((double)(30 + 5) / 10);
 												vo_pa = new PointF[4];
 												vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * 5);
 												vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * 5);
@@ -3423,6 +3452,15 @@ namespace MasaoPlus
 													graphics.DrawImage(this.DrawChipOrig,
 														new Rectangle(-16, -16, chipsize.Width, chipsize.Height),
 														new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+													rad = 90 + Math.Floor((double)(-30 - 5) / 10);
+													vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * 5);
+													vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * 5);
+													vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * 5);
+													vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * 5);
+													vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * length + Math.Cos(((rad - 90) * Math.PI) / 180) * 5);
+													vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * length + Math.Sin(((rad - 90) * Math.PI) / 180) * 5);
+													vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * length + Math.Cos(((rad + 90) * Math.PI) / 180) * 5);
+													vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * length + Math.Sin(((rad + 90) * Math.PI) / 180) * 5);
 													graphics.FillPolygon(brush, vo_pa);
 												}
 												brush.Dispose();

@@ -485,16 +485,16 @@
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
       <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
       <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
         <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
@@ -1356,16 +1356,16 @@
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
       <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
       <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
         <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
@@ -2227,16 +2227,16 @@
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
       <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
       <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
         <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
@@ -3098,16 +3098,16 @@
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
       <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
       <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
         <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
@@ -3969,16 +3969,16 @@
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
       <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
       <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
         <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
@@ -4840,16 +4840,16 @@
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
       <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
       <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
         <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
@@ -5853,16 +5853,16 @@
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
       <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
       <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
         <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
@@ -6724,16 +6724,16 @@
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
       <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
       <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
         <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
@@ -7650,16 +7650,16 @@
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
       <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
       <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
         <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
@@ -8520,16 +8520,16 @@
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
       <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
       <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
         <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
@@ -9390,16 +9390,16 @@
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
       <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
       <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
         <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
@@ -10260,16 +10260,16 @@
       <chip value="166"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
         <description>下へ一方通行。表示なし。横４つ。</description></chip>
       <chip value="167"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左右に揺れます。</description></chip>
       <chip value="168"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>左から</description></chip>
       <chip value="169"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角</description></chip>
       <chip value="170"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
-        <center><X>0</X><Y>256</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
         <description>広角。左から。</description></chip>
       <chip value="171"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
         <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
