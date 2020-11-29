@@ -685,6 +685,7 @@ namespace MasaoPlus
 					SolidBrush brush;
 					PointF[] vo_pa;
 					double rad = 0;
+					const double math_pi = 3.1415926535897931;
 					switch (keepDrawData.cd.name)
 					{
 						case "一方通行":
@@ -784,6 +785,46 @@ namespace MasaoPlus
 							}
 							pen.Dispose();
 							brush.Dispose();
+							break;
+						case "スウィングバー":
+							g.DrawImage(this.DrawChipOrig,
+								new Rectangle(0, 0, chipsize.Width, chipsize.Height),
+								new Rectangle(keepDrawData.cd.pattern, chipsize), GraphicsUnit.Pixel);
+							g.SmoothingMode = SmoothingMode.AntiAlias;
+							g.TranslateTransform(16, 16);
+							if (keepDrawData.cd.description.Contains("左")) rad = 180 + Math.Floor((double)(-26 - 5) / 10);
+							else if (keepDrawData.cd.description.Contains("右")) rad = 360 + Math.Floor((double)(26 + 5) / 10);
+							rad = (rad * Math.PI) / 180;
+							vo_pa = new PointF[4];
+							vo_pa[0].X = (float)(Math.Cos(rad) * 192 + Math.Cos(rad + Math.PI / 2) * 12);
+							vo_pa[0].Y = (float)(Math.Sin(rad) * 192 + Math.Sin(rad + Math.PI / 2) * 12);
+							vo_pa[1].X = (float)(Math.Cos(rad) * 60 + Math.Cos(rad + Math.PI / 2) * 12);
+							vo_pa[1].Y = (float)(Math.Sin(rad) * 60 + Math.Sin(rad + Math.PI / 2) * 12);
+							vo_pa[2].X = (float)(Math.Cos(rad) * 60 + Math.Cos(rad - Math.PI / 2) * 12);
+							vo_pa[2].Y = (float)(Math.Sin(rad) * 60 + Math.Sin(rad - Math.PI / 2) * 12);
+							vo_pa[3].X = (float)(Math.Cos(rad) * 192 + Math.Cos(rad - Math.PI / 2) * 12);
+							vo_pa[3].Y = (float)(Math.Sin(rad) * 192 + Math.Sin(rad - Math.PI / 2) * 12);
+							brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+							g.FillPolygon(brush, vo_pa);
+							brush.Dispose();
+							pen = new Pen(Color.White, 2);
+							if (keepDrawData.cd.description.Contains("左"))
+							{
+								rad = 180 + Math.Floor((double)(-26 - 5) / 10);
+								g.DrawLine(pen, (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 192) + Math.Floor(Math.Cos((rad + 90) * math_pi / 180) * 12)),
+									(float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 192) + Math.Floor(Math.Sin((rad + 90) * math_pi / 180) * 12)),
+									(float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 60) + Math.Floor(Math.Cos((rad + 90) * math_pi / 180) * 12)),
+									(float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 60) + Math.Floor(Math.Sin((rad + 90) * math_pi / 180) * 12)));
+							}
+							else if (keepDrawData.cd.description.Contains("右"))
+							{
+								rad = 360 + Math.Floor((double)(26 + 5) / 10);
+								g.DrawLine(pen, (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 60) + Math.Floor(Math.Cos((rad - 90) * math_pi / 180) * 12)),
+									(float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 60) + Math.Floor(Math.Sin((rad - 90) * math_pi / 180) * 12)),
+									(float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 192) + Math.Floor(Math.Cos((rad - 90) * math_pi / 180) * 12)),
+									(float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 192) + Math.Floor(Math.Sin((rad - 90) * math_pi / 180) * 12)));
+							}
+							pen.Dispose();
 							break;
 						case "動くＴ字型":
 							g.SmoothingMode = SmoothingMode.AntiAlias;
@@ -969,10 +1010,10 @@ namespace MasaoPlus
 								for (var i1 = 0; i1 <= 50; i1 += 5)
 								{
 									if (keepDrawData.cd.name.Contains("上"))
-										vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+										vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * 160);
 									else if (keepDrawData.cd.name.Contains("下"))
-										vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
-									vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * 3.1415926535897931) / 180) * 160) - 1;
+										vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * math_pi) / 180) * 160);
+									vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * math_pi) / 180) * 160) - 1;
 									if (i1 == 50)
 									{
 										j20 = vo_pa[k21].X;
@@ -986,10 +1027,10 @@ namespace MasaoPlus
 								for (var i1 = 0; i1 <= 50; i1 += 5)
 								{
 									if (keepDrawData.cd.name.Contains("上"))
-										vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+										vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * math_pi) / 180) * 160);
 									else if (keepDrawData.cd.name.Contains("下"))
-										vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
-									vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * 3.1415926535897931) / 180) * 160) + 1;
+										vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * 160);
+									vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * math_pi) / 180) * 160) + 1;
 									if (i1 == 50)
 									{
 										l20 = vo_pa[k21].X;
@@ -1013,10 +1054,10 @@ namespace MasaoPlus
 								for (var i1 = 0; i1 <= 50; i1 += 5)
 								{
 									if (keepDrawData.cd.name.Contains("上"))
-										vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+										vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * 160);
 									else if (keepDrawData.cd.name.Contains("下"))
-										vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
-									vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * 3.1415926535897931) / 180) * 160);
+										vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * math_pi) / 180) * 160);
+									vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * math_pi) / 180) * 160);
 									if (i1 == 50)
 									{
 										j20 = vo_pa[k21].X;
@@ -1033,10 +1074,10 @@ namespace MasaoPlus
 								for (var i1 = 0; i1 <= 50; i1 += 5)
 								{
 									if (keepDrawData.cd.name.Contains("上"))
-										vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+										vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * math_pi) / 180) * 160);
 									else if (keepDrawData.cd.name.Contains("下"))
-										vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
-									vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * 3.1415926535897931) / 180) * 160);
+										vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * 160);
+									vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * math_pi) / 180) * 160);
 									if (i1 == 50)
 									{
 										l20 = vo_pa[k21].X;
@@ -1115,16 +1156,16 @@ namespace MasaoPlus
 									j21++;
 									for (var j = 140; j >= 90; j -= 5)
 									{
-										vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * 3.1415926535897931) / 180) * 144);
-										vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((j * 3.1415926535897931) / 180) * 144);
+										vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144);
+										vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((j * math_pi) / 180) * 144);
 										j21++;
 									}
 									g.DrawLines(pen, vo_pa);
 									j21 = 0;
 									for (var k = 90; k >= 40; k -= 5)
 									{
-										vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k * 3.1415926535897931) / 180) * 144);
-										vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((k * 3.1415926535897931) / 180) * 144);
+										vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k * math_pi) / 180) * 144);
+										vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((k * math_pi) / 180) * 144);
 										j21++;
 									}
 									vo_pa[j21].X = 240;
@@ -1142,8 +1183,8 @@ namespace MasaoPlus
 									j21++;
 									for (var j = 140; j >= 90; j -= 5)
 									{
-										vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * 3.1415926535897931) / 180) * 144);
-										vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * 3.1415926535897931) / 180) * 144);
+										vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144);
+										vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144);
 										j21++;
 									}
 
@@ -1153,8 +1194,8 @@ namespace MasaoPlus
 									j21 = 0;
 									for (var k = 90; k >= 40; k -= 5)
 									{
-										vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k * 3.1415926535897931) / 180) * 144);
-										vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k * 3.1415926535897931) / 180) * 144);
+										vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k * math_pi) / 180) * 144);
+										vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k * math_pi) / 180) * 144);
 										j21++;
 									}
 
@@ -1180,8 +1221,8 @@ namespace MasaoPlus
 								j21++;
 								for (var j = 140; j >= 90; j -= 5)
 								{
-									vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * 3.1415926535897931) / 180) * 144);
-									vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * 3.1415926535897931) / 180) * 144);
+									vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144);
+									vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144);
 									j21++;
 								}
 
@@ -1191,8 +1232,8 @@ namespace MasaoPlus
 								j21 = 0;
 								for (var k = 90; k >= 40; k -= 5)
 								{
-									vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k * 3.1415926535897931) / 180) * 144);
-									vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k * 3.1415926535897931) / 180) * 144);
+									vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k * math_pi) / 180) * 144);
+									vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k * math_pi) / 180) * 144);
 									j21++;
 								}
 
@@ -3260,6 +3301,7 @@ namespace MasaoPlus
 										SolidBrush brush;
 										PointF[] vo_pa;
 										double rad = 0;
+										const double math_pi = 3.1415926535897931;
 										switch (cschip.name)
 										{
 											case "一方通行":
@@ -3359,6 +3401,46 @@ namespace MasaoPlus
 												}
 												pen.Dispose();
 												brush.Dispose();
+												break;
+											case "スウィングバー":
+												graphics.DrawImage(this.DrawChipOrig,
+													new Rectangle(0, 0, chipsize.Width, chipsize.Height),
+													new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+												graphics.SmoothingMode = SmoothingMode.AntiAlias;
+												graphics.TranslateTransform(16, 16);
+												if (cschip.description.Contains("左")) rad = 180 + Math.Floor((double)(-26 - 5) / 10);
+												else if (cschip.description.Contains("右")) rad = 360 + Math.Floor((double)(26 + 5) / 10);
+												rad = (rad * Math.PI) / 180;
+												vo_pa = new PointF[4];
+												vo_pa[0].X = (float)(Math.Cos(rad) * 192 + Math.Cos(rad + Math.PI / 2) * 12);
+												vo_pa[0].Y = (float)(Math.Sin(rad) * 192 + Math.Sin(rad + Math.PI / 2) * 12);
+												vo_pa[1].X = (float)(Math.Cos(rad) * 60 + Math.Cos(rad + Math.PI / 2) * 12);
+												vo_pa[1].Y = (float)(Math.Sin(rad) * 60 + Math.Sin(rad + Math.PI / 2) * 12);
+												vo_pa[2].X = (float)(Math.Cos(rad) * 60 + Math.Cos(rad - Math.PI / 2) * 12);
+												vo_pa[2].Y = (float)(Math.Sin(rad) * 60 + Math.Sin(rad - Math.PI / 2) * 12);
+												vo_pa[3].X = (float)(Math.Cos(rad) * 192 + Math.Cos(rad - Math.PI / 2) * 12);
+												vo_pa[3].Y = (float)(Math.Sin(rad) * 192 + Math.Sin(rad - Math.PI / 2) * 12);
+												brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+												graphics.FillPolygon(brush, vo_pa);
+												brush.Dispose();
+												pen = new Pen(Color.White, 2);
+												if (cschip.description.Contains("左"))
+												{
+													rad = 180 + Math.Floor((double)(-26 - 5) / 10);
+													graphics.DrawLine(pen, (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 192) + Math.Floor(Math.Cos((rad + 90) * math_pi / 180) * 12)),
+														(float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 192) + Math.Floor(Math.Sin((rad + 90) * math_pi / 180) * 12)),
+														(float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 60) + Math.Floor(Math.Cos((rad + 90) * math_pi / 180) * 12)),
+														(float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 60) + Math.Floor(Math.Sin((rad + 90) * math_pi / 180) * 12)));
+												}
+												else if (cschip.description.Contains("右"))
+												{
+													rad = 360 + Math.Floor((double)(26 + 5) / 10);
+													graphics.DrawLine(pen, (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 60) + Math.Floor(Math.Cos((rad - 90) * math_pi / 180) * 12)),
+														(float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 60) + Math.Floor(Math.Sin((rad - 90) * math_pi / 180) * 12)),
+														(float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 192) + Math.Floor(Math.Cos((rad - 90) * math_pi / 180) * 12)),
+														(float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 192) + Math.Floor(Math.Sin((rad - 90) * math_pi / 180) * 12)));
+												}
+												pen.Dispose();
 												break;
 											case "動くＴ字型":
 												graphics.SmoothingMode = SmoothingMode.AntiAlias;
@@ -3544,10 +3626,10 @@ namespace MasaoPlus
 													for (var i1 = 0; i1 <= 50; i1 += 5)
 													{
 														if (cschip.name.Contains("上"))
-															vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+															vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * 160);
 														else if (cschip.name.Contains("下"))
-															vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
-														vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * 3.1415926535897931) / 180) * 160) - 1;
+															vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * math_pi) / 180) * 160);
+														vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * math_pi) / 180) * 160) - 1;
 														if (i1 == 50)
 														{
 															j20 = vo_pa[k21].X;
@@ -3561,10 +3643,10 @@ namespace MasaoPlus
 													for (var i1 = 0; i1 <= 50; i1 += 5)
 													{
 														if (cschip.name.Contains("上"))
-															vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+															vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * math_pi) / 180) * 160);
 														else if (cschip.name.Contains("下"))
-															vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
-														vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * 3.1415926535897931) / 180) * 160) + 1;
+															vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * 160);
+														vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * math_pi) / 180) * 160) + 1;
 														if (i1 == 50)
 														{
 															l20 = vo_pa[k21].X;
@@ -3588,10 +3670,10 @@ namespace MasaoPlus
 													for (var i1 = 0; i1 <= 50; i1 += 5)
 													{
 														if (cschip.name.Contains("上"))
-															vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+															vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * 160);
 														else if (cschip.name.Contains("下"))
-															vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
-														vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * 3.1415926535897931) / 180) * 160);
+															vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * math_pi) / 180) * 160);
+														vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * math_pi) / 180) * 160);
 														if (i1 == 50)
 														{
 															j20 = vo_pa[k21].X;
@@ -3608,10 +3690,10 @@ namespace MasaoPlus
 													for (var i1 = 0; i1 <= 50; i1 += 5)
 													{
 														if (cschip.name.Contains("上"))
-															vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
+															vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * math_pi) / 180) * 160);
 														else if (cschip.name.Contains("下"))
-															vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * 3.1415926535897931) / 180) * 160);
-														vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * 3.1415926535897931) / 180) * 160);
+															vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * 160);
+														vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * math_pi) / 180) * 160);
 														if (i1 == 50)
 														{
 															l20 = vo_pa[k21].X;
@@ -3697,16 +3779,16 @@ namespace MasaoPlus
 														j21++;
 														for (var j = 140; j >= 90; j -= 5)
 														{
-															vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * 3.1415926535897931) / 180) * 144);
-															vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((j * 3.1415926535897931) / 180) * 144);
+															vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144);
+															vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((j * math_pi) / 180) * 144);
 															j21++;
 														}
 														graphics.DrawLines(pen, vo_pa);
 														j21 = 0;
 														for (var k2 = 90; k2 >= 40; k2 -= 5)
 														{
-															vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * 3.1415926535897931) / 180) * 144);
-															vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((k2 * 3.1415926535897931) / 180) * 144);
+															vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144);
+															vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((k2 * math_pi) / 180) * 144);
 															j21++;
 														}
 														vo_pa[j21].X = 240;
@@ -3724,8 +3806,8 @@ namespace MasaoPlus
 														j21++;
 														for (var j = 140; j >= 90; j -= 5)
 														{
-															vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * 3.1415926535897931) / 180) * 144);
-															vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * 3.1415926535897931) / 180) * 144);
+															vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144);
+															vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144);
 															j21++;
 														}
 
@@ -3735,8 +3817,8 @@ namespace MasaoPlus
 														j21 = 0;
 														for (var k2 = 90; k2 >= 40; k2 -= 5)
 														{
-															vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * 3.1415926535897931) / 180) * 144);
-															vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * 3.1415926535897931) / 180) * 144);
+															vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144);
+															vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * math_pi) / 180) * 144);
 															j21++;
 														}
 
@@ -3762,8 +3844,8 @@ namespace MasaoPlus
 													j21++;
 													for (var j = 140; j >= 90; j -= 5)
 													{
-														vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * 3.1415926535897931) / 180) * 144);
-														vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * 3.1415926535897931) / 180) * 144);
+														vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144);
+														vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144);
 														j21++;
 													}
 
@@ -3773,8 +3855,8 @@ namespace MasaoPlus
 													j21 = 0;
 													for (var k2 = 90; k2 >= 40; k2 -= 5)
 													{
-														vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * 3.1415926535897931) / 180) * 144);
-														vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * 3.1415926535897931) / 180) * 144);
+														vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144);
+														vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * math_pi) / 180) * 144);
 														j21++;
 													}
 
