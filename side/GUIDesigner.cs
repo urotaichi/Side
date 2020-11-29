@@ -736,6 +736,17 @@ namespace MasaoPlus
 							brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
 							g.FillPolygon(brush, vo_pa);
 							brush.Dispose();
+							pen = new Pen(Color.White, 2);
+							if (keepDrawData.cd.description.Contains("左")) rad = -56;
+							else if (keepDrawData.cd.description.Contains("右")) rad = 56;
+							else rad = 0;
+							g.DrawLine(pen,
+								(float)(Math.Floor(Math.Cos(((rad + 180) * math_pi) / 180) * 160) + Math.Floor(Math.Cos(((rad + 270) * math_pi) / 180) * 12)),
+								(float)(Math.Floor(Math.Sin(((rad + 180) * math_pi) / 180) * 160) + Math.Floor(Math.Sin(((rad + 270) * math_pi) / 180) * 12)),
+								(float)(Math.Floor(Math.Cos((rad * math_pi) / 180) * 160) + Math.Floor(Math.Cos(((rad - 90) * math_pi) / 180) * 12)),
+								(float)(Math.Floor(Math.Sin((rad * math_pi) / 180) * 160) + Math.Floor(Math.Sin(((rad - 90) * math_pi) / 180) * 12))
+							);
+							pen.Dispose();
 							break;
 						case "ブランコ":
 							g.DrawImage(this.DrawChipOrig,
@@ -3352,6 +3363,17 @@ namespace MasaoPlus
 												brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
 												graphics.FillPolygon(brush, vo_pa);
 												brush.Dispose();
+												pen = new Pen(Color.White, 2);
+												if (cschip.description.Contains("左")) rad = -56;
+												else if (cschip.description.Contains("右")) rad = 56;
+												else rad = 0;
+												graphics.DrawLine(pen,
+													(float)(Math.Floor(Math.Cos(((rad + 180) * math_pi) / 180) * 160) + Math.Floor(Math.Cos(((rad + 270) * math_pi) / 180) * 12)),
+													(float)(Math.Floor(Math.Sin(((rad + 180) * math_pi) / 180) * 160) + Math.Floor(Math.Sin(((rad + 270) * math_pi) / 180) * 12)),
+													(float)(Math.Floor(Math.Cos((rad * math_pi) / 180) * 160) + Math.Floor(Math.Cos(((rad - 90) * math_pi) / 180) * 12)),
+													(float)(Math.Floor(Math.Sin((rad * math_pi) / 180) * 160) + Math.Floor(Math.Sin(((rad - 90) * math_pi) / 180) * 12))
+												);
+												pen.Dispose();
 												break;
 											case "ブランコ":
 												graphics.DrawImage(this.DrawChipOrig,
