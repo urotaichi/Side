@@ -877,6 +877,13 @@ namespace MasaoPlus
 							vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 12;
 							brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
 							g.FillPolygon(brush, vo_pa);
+							pen = new Pen(Color.White, 2);
+							g.DrawLine(pen,
+								(float)(Math.Floor(Math.Cos(((rad + 20) * math_pi) / 180) * 192) + Math.Floor(Math.Cos((rad * math_pi) / 180) * 12)),
+								(float)(Math.Floor(Math.Sin(((rad + 20) * math_pi) / 180) * 192) + Math.Floor(Math.Sin((rad * math_pi) / 180) * 12)),
+								(float)(Math.Floor(Math.Cos(((rad - 20) * math_pi) / 180) * 192) + Math.Floor(Math.Cos((rad * math_pi) / 180) * 12)),
+								(float)(Math.Floor(Math.Sin(((rad - 20) * math_pi) / 180) * 192) + Math.Floor(Math.Sin((rad * math_pi) / 180) * 12))
+							);
 							if (keepDrawData.cd.description == "２個連続")
 							{
 								g.TranslateTransform(416, 0);
@@ -901,7 +908,14 @@ namespace MasaoPlus
 								vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 12;
 								brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
 								g.FillPolygon(brush, vo_pa);
+								g.DrawLine(pen,
+									(float)(Math.Floor(Math.Cos(((rad + 20) * math_pi) / 180) * 192) + Math.Floor(Math.Cos((rad * math_pi) / 180) * 12)),
+									(float)(Math.Floor(Math.Sin(((rad + 20) * math_pi) / 180) * 192) + Math.Floor(Math.Sin((rad * math_pi) / 180) * 12)),
+									(float)(Math.Floor(Math.Cos(((rad - 20) * math_pi) / 180) * 192) + Math.Floor(Math.Cos((rad * math_pi) / 180) * 12)),
+									(float)(Math.Floor(Math.Sin(((rad - 20) * math_pi) / 180) * 192) + Math.Floor(Math.Sin((rad * math_pi) / 180) * 12))
+								);
 							}
+							pen.Dispose();
 							brush.Dispose();
 							break;
 						case "ロープ":
@@ -3520,6 +3534,13 @@ namespace MasaoPlus
 												vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 12;
 												brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
 												graphics.FillPolygon(brush, vo_pa);
+												pen = new Pen(Color.White, 2);
+												graphics.DrawLine(pen,
+													(float)(Math.Floor(Math.Cos(((rad + 20) * math_pi) / 180) * 192) + Math.Floor(Math.Cos((rad * math_pi) / 180) * 12)),
+													(float)(Math.Floor(Math.Sin(((rad + 20) * math_pi) / 180) * 192) + Math.Floor(Math.Sin((rad * math_pi) / 180) * 12)),
+													(float)(Math.Floor(Math.Cos(((rad - 20) * math_pi) / 180) * 192) + Math.Floor(Math.Cos((rad * math_pi) / 180) * 12)),
+													(float)(Math.Floor(Math.Sin(((rad - 20) * math_pi) / 180) * 192) + Math.Floor(Math.Sin((rad * math_pi) / 180) * 12))
+												);
 												if (cschip.description == "２個連続")
 												{
 													graphics.TranslateTransform(416, 0);
@@ -3544,7 +3565,14 @@ namespace MasaoPlus
 													vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 12;
 													brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
 													graphics.FillPolygon(brush, vo_pa);
+													graphics.DrawLine(pen,
+														(float)(Math.Floor(Math.Cos(((rad + 20) * math_pi) / 180) * 192) + Math.Floor(Math.Cos((rad * math_pi) / 180) * 12)),
+														(float)(Math.Floor(Math.Sin(((rad + 20) * math_pi) / 180) * 192) + Math.Floor(Math.Sin((rad * math_pi) / 180) * 12)),
+														(float)(Math.Floor(Math.Cos(((rad - 20) * math_pi) / 180) * 192) + Math.Floor(Math.Cos((rad * math_pi) / 180) * 12)),
+														(float)(Math.Floor(Math.Sin(((rad - 20) * math_pi) / 180) * 192) + Math.Floor(Math.Sin((rad * math_pi) / 180) * 12))
+													);
 												}
+												pen.Dispose();
 												brush.Dispose();
 												break;
 											case "ロープ":
