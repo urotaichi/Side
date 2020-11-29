@@ -681,7 +681,7 @@ namespace MasaoPlus
 				{ // 標準パターン画像
 					transState = g.Save();
 					g.TranslateTransform(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height);
-					Pen pen;
+					Pen pen, pen2;
 					SolidBrush brush;
 					PointF[] vo_pa;
 					double rad = 0;
@@ -772,6 +772,14 @@ namespace MasaoPlus
 							g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
 							brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
 							g.FillPolygon(brush, vo_pa);
+							pen2 = new Pen(Color.White, 2);
+							rad = 90 + Math.Floor((double)(30 + 5) / 10);
+							g.DrawLine(pen2,
+								(float)Math.Floor(Math.Cos(((rad + 20) * math_pi) / 180) * 192),
+								(float)Math.Floor(Math.Sin(((rad + 20) * math_pi) / 180) * 192),
+								(float)Math.Floor(Math.Cos(((rad - 20) * math_pi) / 180) * 192),
+								(float)Math.Floor(Math.Sin(((rad - 20) * math_pi) / 180) * 192)
+							);
 							if (keepDrawData.cd.description == "２個連続")
 							{
 								g.TranslateTransform(384, 0);
@@ -793,7 +801,15 @@ namespace MasaoPlus
 								g.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
 								g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
 								g.FillPolygon(brush, vo_pa);
+								rad = 90 + Math.Floor((double)(-30 - 5) / 10);
+								g.DrawLine(pen2,
+									(float)Math.Floor(Math.Cos(((rad + 20) * math_pi) / 180) * 192),
+									(float)Math.Floor(Math.Sin(((rad + 20) * math_pi) / 180) * 192),
+									(float)Math.Floor(Math.Cos(((rad - 20) * math_pi) / 180) * 192),
+									(float)Math.Floor(Math.Sin(((rad - 20) * math_pi) / 180) * 192)
+								);
 							}
+							pen2.Dispose();
 							pen.Dispose();
 							brush.Dispose();
 							break;
@@ -3308,7 +3324,7 @@ namespace MasaoPlus
 									{
 										transState = graphics.Save();
 										graphics.TranslateTransform(point.X * chipsize.Width, point.Y * chipsize.Height);
-										Pen pen;
+										Pen pen, pen2;
 										SolidBrush brush;
 										PointF[] vo_pa;
 										double rad = 0;
@@ -3399,6 +3415,14 @@ namespace MasaoPlus
 												graphics.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
 												brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
 												graphics.FillPolygon(brush, vo_pa);
+												pen2 = new Pen(Color.White, 2);
+												rad = 90 + Math.Floor((double)(30 + 5) / 10);
+												graphics.DrawLine(pen2,
+													(float)Math.Floor(Math.Cos(((rad + 20) * math_pi) / 180) * 192),
+													(float)Math.Floor(Math.Sin(((rad + 20) * math_pi) / 180) * 192),
+													(float)Math.Floor(Math.Cos(((rad - 20) * math_pi) / 180) * 192),
+													(float)Math.Floor(Math.Sin(((rad - 20) * math_pi) / 180) * 192)
+												);
 												if (cschip.description == "２個連続")
 												{
 													graphics.TranslateTransform(384, 0);
@@ -3420,7 +3444,15 @@ namespace MasaoPlus
 													graphics.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
 													graphics.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
 													graphics.FillPolygon(brush, vo_pa);
+													rad = 90 + Math.Floor((double)(-30 - 5) / 10);
+													graphics.DrawLine(pen2,
+														(float)Math.Floor(Math.Cos(((rad + 20) * math_pi) / 180) * 192),
+														(float)Math.Floor(Math.Sin(((rad + 20) * math_pi) / 180) * 192),
+														(float)Math.Floor(Math.Cos(((rad - 20) * math_pi) / 180) * 192),
+														(float)Math.Floor(Math.Sin(((rad - 20) * math_pi) / 180) * 192)
+													);
 												}
+												pen2.Dispose();
 												pen.Dispose();
 												brush.Dispose();
 												break;
