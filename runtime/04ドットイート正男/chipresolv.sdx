@@ -128,7 +128,8 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
       <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
@@ -1001,7 +1002,8 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
       <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
@@ -1874,7 +1876,8 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
       <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
@@ -2747,7 +2750,8 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
       <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
@@ -3620,7 +3624,8 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
       <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
@@ -4493,7 +4498,8 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
       <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
@@ -5508,7 +5514,8 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
       <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
@@ -6381,7 +6388,8 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
       <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
@@ -7309,7 +7317,8 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
       <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
@@ -8181,7 +8190,8 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
       <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
@@ -9053,7 +9063,8 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
       <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
@@ -9925,7 +9936,8 @@
       <chip value="17"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
         <description>当たるまで急降下するドッスンスン</description></chip>
-      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw><name>ファイヤーバー2本</name>
+      <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
       <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
         <description>少し長めのが3本左回り</description></chip>
