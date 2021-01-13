@@ -25,10 +25,7 @@ namespace MasaoPlus.Controls
 			this.ConfigSelector.Items.Add("全部");
 			foreach (string text in Global.cpd.project.Config.Categories)
 			{
-				if (text != null)
-				{
-					this.ConfigSelector.Items.Add(text);
-				}
+				if (text != null) this.ConfigSelector.Items.Add(text);
 			}
 			this.ConfigSelector.SelectedIndex = 0;
 		}
@@ -186,6 +183,48 @@ namespace MasaoPlus.Controls
 						this.ConfView[1, this.OrigIdx.Count - 1] = dataGridViewButtonCell3;
 						break;
 					}
+					}
+					switch (configParam.Category)
+					{
+						case "システム":
+							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.LightCyan;
+							break;
+						case "表示":
+							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.AliceBlue;
+							break;
+						case "BGM":
+							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.GhostWhite;
+							break;
+						case "効果音":
+							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.SeaShell;
+							break;
+						case "仕掛け":
+							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.MistyRose;
+							break;
+						case "画像":
+							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.Honeydew;
+							break;
+						case "装備":
+							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.MintCream;
+							break;
+						case "敵":
+							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.Lavender;
+							break;
+						case "お店":
+							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.LavenderBlush;
+							break;
+						case "地図":
+							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.Azure;
+							break;
+						case "オリジナルボス":
+							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.LightYellow;
+							break;
+						case "リンク土管":
+							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.MistyRose;
+							break;
+						case "メッセージ":
+							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.OldLace;
+							break;
 					}
 				}
 			}
@@ -597,6 +636,7 @@ namespace MasaoPlus.Controls
 			this.CValues = new DataGridViewTextBoxColumn();
 			((ISupportInitialize)this.ConfView).BeginInit();
 			base.SuspendLayout();
+
 			this.ConfigSelector.Dock = DockStyle.Top;
 			this.ConfigSelector.DropDownStyle = ComboBoxStyle.DropDownList;
 			this.ConfigSelector.FlatStyle = FlatStyle.System;
@@ -607,6 +647,7 @@ namespace MasaoPlus.Controls
 			this.ConfigSelector.TabIndex = 3;
 			this.ConfigSelector.Resize += this.ConfigSelector_Resize;
 			this.ConfigSelector.SelectedIndexChanged += this.ConfigSelector_SelectedIndexChanged;
+
 			//先頭行
 			this.ConfView.AllowUserToAddRows = false;
 			this.ConfView.AllowUserToDeleteRows = false;
@@ -634,6 +675,7 @@ namespace MasaoPlus.Controls
 			this.ConfView.EditingControlShowing += this.ConfView_EditingControlShowing;
 			this.ConfView.CurrentCellDirtyStateChanged += this.ConfView_CurrentCellDirtyStateChanged;
 			this.ConfView.CellContentClick += this.ConfView_CellContentClick;
+
 			this.CNames.HeaderText = "項目名";
 			this.CNames.Name = "CNames";
 			this.CNames.ReadOnly = true;
