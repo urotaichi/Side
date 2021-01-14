@@ -54,7 +54,7 @@
 			this.label2.Name = "label2";
 			this.label2.Size = new global::System.Drawing.Size(114, 12);
 			this.label2.TabIndex = 2;
-			this.label2.Text = "© 2020 urotaichi";
+			this.label2.Text = "© 2021 urotaichi";
 			this.linkLabel1.AutoSize = true;
 			this.linkLabel1.Location = new global::System.Drawing.Point(152, 209);
 			this.linkLabel1.Name = "linkLabel1";
