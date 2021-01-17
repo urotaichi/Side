@@ -131,9 +131,11 @@
       <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
         <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　左回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　右回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -1005,9 +1007,11 @@
       <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
         <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　左回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　右回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -1879,9 +1883,11 @@
       <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
         <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　左回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　右回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -2753,9 +2759,11 @@
       <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
         <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　左回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　右回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -3627,9 +3635,11 @@
       <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
         <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　左回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　右回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -4501,9 +4511,11 @@
       <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
         <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　左回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　右回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -5517,9 +5529,11 @@
       <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
         <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　左回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　右回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -6391,9 +6405,11 @@
       <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
         <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　左回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　右回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -7320,9 +7336,11 @@
       <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
         <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　左回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　右回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -8193,9 +8211,11 @@
       <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
         <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　左回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　右回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -9066,9 +9086,11 @@
       <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
         <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　左回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　右回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
@@ -9939,9 +9961,11 @@
       <chip value="18"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
         <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>少し長めの右回りと左回りが1本ずつ</description></chip>
-      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw><name>ファイヤーバー3本　左回り</name>
+      <chip value="19"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　左回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本左回り</description></chip>
-      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw><name>ファイヤーバー3本　右回り</name>
+      <chip value="20"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　右回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
         <description>少し長めのが3本右回り</description></chip>
       <chip value="21"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
         <description>下から叩くとブロック４になる</description></chip>
