@@ -1292,6 +1292,7 @@ namespace MasaoPlus
 						case "ファイヤーバー2本":
 						case "ファイヤーバー3本　左回り":
 						case "ファイヤーバー3本　右回り":
+						case "スウィングファイヤーバー":
 							{
 								int width = default;
 								g.DrawImage(this.DrawChipOrig,
@@ -1303,6 +1304,10 @@ namespace MasaoPlus
 								int v = default;
 								if (cschip.name == "ファイヤーバー2本" || cschip.name == "ファイヤーバー3本　左回り") v = 360 - 2;
 								else if (cschip.name == "ファイヤーバー3本　右回り") v = 2;
+								else if (cschip.name == "スウィングファイヤーバー") {
+									if(cschip.description.Contains("左")) v = 160 + 2;
+									else v = 380 - 2;
+								}
 								else if (cschip.description == "左回り") v = 360 - 3;
 								else if (cschip.description == "右回り") v = 3;
 								rad = ((v + 90) * Math.PI) / 180;
@@ -1336,7 +1341,7 @@ namespace MasaoPlus
 								vo_pa[3].X = (float)(Math.Cos(v * d) * width + Math.Cos(rad) * 10);
 								vo_pa[3].Y = (float)(Math.Sin(v * d) * width + Math.Sin(rad) * 10);
 								g.FillPolygon(brush, vo_pa);
-								if (cschip.name != "ファイヤーバー")
+								if (cschip.name != "ファイヤーバー" && cschip.name != "スウィングファイヤーバー")
 								{
 									if (cschip.name == "ファイヤーバー2本") v = 2;
 									else if (cschip.name == "ファイヤーバー3本　左回り") v = 360 - 2 + 120;
@@ -4036,6 +4041,7 @@ namespace MasaoPlus
 											case "ファイヤーバー2本":
 											case "ファイヤーバー3本　左回り":
 											case "ファイヤーバー3本　右回り":
+											case "スウィングファイヤーバー":
 												{
 													int width = default;
 													graphics.DrawImage(this.DrawChipOrig,
@@ -4047,6 +4053,11 @@ namespace MasaoPlus
 													int v = default;
 													if (cschip.name == "ファイヤーバー2本" || cschip.name == "ファイヤーバー3本　左回り") v = 360 - 2;
 													else if (cschip.name == "ファイヤーバー3本　右回り") v = 2;
+													else if (cschip.name == "スウィングファイヤーバー")
+													{
+														if (cschip.description.Contains("左")) v = 160 + 2;
+														else v = 380 - 2;
+													}
 													else if (cschip.description == "左回り") v = 360 - 3;
 													else if (cschip.description == "右回り") v = 3;
 													rad = ((v + 90) * Math.PI) / 180;
@@ -4080,7 +4091,7 @@ namespace MasaoPlus
 													vo_pa[3].X = (float)(Math.Cos(v * d) * width + Math.Cos(rad) * 10);
 													vo_pa[3].Y = (float)(Math.Sin(v * d) * width + Math.Sin(rad) * 10);
 													graphics.FillPolygon(brush, vo_pa);
-													if (cschip.name != "ファイヤーバー")
+													if (cschip.name != "ファイヤーバー" && cschip.name != "スウィングファイヤーバー")
 													{
 														if (cschip.name == "ファイヤーバー2本") v = 2;
 														else if (cschip.name == "ファイヤーバー3本　左回り") v = 360 - 2 + 120;

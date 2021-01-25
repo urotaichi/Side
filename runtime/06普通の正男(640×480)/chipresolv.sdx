@@ -167,9 +167,11 @@
       <chip value="31"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
         <name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
         <description>右側で上下にスウィングする足場</description></chip>
-      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>左側でスウィング</description></chip>
-      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>右側でスウィング</description></chip>
       <chip value="34"><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が出る]</name>
         <description>ブロック１が上に１０個出現</description></chip>
@@ -1043,9 +1045,11 @@
       <chip value="31"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
         <name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
         <description>右側で上下にスウィングする足場</description></chip>
-      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>左側でスウィング</description></chip>
-      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>右側でスウィング</description></chip>
       <chip value="34"><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が出る]</name>
         <description>ブロック１が上に１０個出現</description></chip>
@@ -1919,9 +1923,11 @@
       <chip value="31"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
         <name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
         <description>右側で上下にスウィングする足場</description></chip>
-      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>左側でスウィング</description></chip>
-      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>右側でスウィング</description></chip>
       <chip value="34"><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が出る]</name>
         <description>ブロック１が上に１０個出現</description></chip>
@@ -2795,9 +2801,11 @@
       <chip value="31"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
         <name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
         <description>右側で上下にスウィングする足場</description></chip>
-      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>左側でスウィング</description></chip>
-      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>右側でスウィング</description></chip>
       <chip value="34"><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が出る]</name>
         <description>ブロック１が上に１０個出現</description></chip>
@@ -3671,9 +3679,11 @@
       <chip value="31"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
         <name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
         <description>右側で上下にスウィングする足場</description></chip>
-      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>左側でスウィング</description></chip>
-      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>右側でスウィング</description></chip>
       <chip value="34"><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が出る]</name>
         <description>ブロック１が上に１０個出現</description></chip>
@@ -4547,9 +4557,11 @@
       <chip value="31"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
         <name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
         <description>右側で上下にスウィングする足場</description></chip>
-      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>左側でスウィング</description></chip>
-      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>右側でスウィング</description></chip>
       <chip value="34"><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が出る]</name>
         <description>ブロック１が上に１０個出現</description></chip>
@@ -5565,9 +5577,11 @@
       <chip value="31"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
         <name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
         <description>右側で上下にスウィングする足場</description></chip>
-      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>左側でスウィング</description></chip>
-      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>右側でスウィング</description></chip>
       <chip value="34"><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が出る]</name>
         <description>ブロック１が上に１０個出現</description></chip>
@@ -6441,9 +6455,11 @@
       <chip value="31"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
         <name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
         <description>右側で上下にスウィングする足場</description></chip>
-      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>左側でスウィング</description></chip>
-      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>右側でスウィング</description></chip>
       <chip value="34"><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が出る]</name>
         <description>ブロック１が上に１０個出現</description></chip>
@@ -7372,9 +7388,11 @@
       <chip value="31"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
         <name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
         <description>右側で上下にスウィングする足場</description></chip>
-      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>左側でスウィング</description></chip>
-      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>右側でスウィング</description></chip>
       <chip value="34"><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が出る]</name>
         <description>ブロック１が上に１０個出現</description></chip>
@@ -8247,9 +8265,11 @@
       <chip value="31"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
         <name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
         <description>右側で上下にスウィングする足場</description></chip>
-      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>左側でスウィング</description></chip>
-      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>右側でスウィング</description></chip>
       <chip value="34"><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が出る]</name>
         <description>ブロック１が上に１０個出現</description></chip>
@@ -9122,9 +9142,11 @@
       <chip value="31"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
         <name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
         <description>右側で上下にスウィングする足場</description></chip>
-      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>左側でスウィング</description></chip>
-      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>右側でスウィング</description></chip>
       <chip value="34"><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が出る]</name>
         <description>ブロック１が上に１０個出現</description></chip>
@@ -9997,9 +10019,11 @@
       <chip value="31"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
         <name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
         <description>右側で上下にスウィングする足場</description></chip>
-      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="32"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>左側でスウィング</description></chip>
-      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw><name>スウィングファイヤーバー</name>
+      <chip value="33"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
         <description>右側でスウィング</description></chip>
       <chip value="34"><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が出る]</name>
         <description>ブロック１が上に１０個出現</description></chip>

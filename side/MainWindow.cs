@@ -820,6 +820,7 @@ namespace MasaoPlus
 								}
 								break;
 							case "ファイヤーバー":
+							case "スウィングファイヤーバー":
 								graphics.TranslateTransform(size.Width / 2, size.Width / 2);
 								graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
 									new Rectangle(0, 0, size.Width / 2, size.Width / 2),
@@ -2173,6 +2174,7 @@ namespace MasaoPlus
 								}
 								break;
 							case "ファイヤーバー":
+							case "スウィングファイヤーバー":
 								e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Width / 2);
 								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
 									new Rectangle(0, 0, this.ChipImage.Width / 2, this.ChipImage.Width / 2),
@@ -3196,6 +3198,7 @@ namespace MasaoPlus
 										}
 										break;
 									case "ファイヤーバー":
+									case "スウィングファイヤーバー":
 										e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
 										e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
 											new Rectangle(0, 0, e.Bounds.Height / 2, e.Bounds.Height / 2),
@@ -3759,6 +3762,7 @@ namespace MasaoPlus
 										}
 										break;
 									case "ファイヤーバー":
+									case "スウィングファイヤーバー":
 										e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
 										e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
 											new Rectangle(0, 0, chipsize.Width / 2, chipsize.Height / 2),

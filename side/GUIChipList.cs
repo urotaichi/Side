@@ -712,6 +712,7 @@ namespace MasaoPlus
 											}
 											break;
 										case "ファイヤーバー":
+										case "スウィングファイヤーバー":
 											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
 											e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
 												new Rectangle(0, 0, chipsize.Width / 2, chipsize.Height / 2),
