@@ -391,13 +391,17 @@
       <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
         <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
-      <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="127"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="128"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="128"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
-      <chip value="129"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="129"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  左回り</description></chip>
-      <chip value="130"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
       <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>左回り</description></chip>
@@ -1269,13 +1273,17 @@
       <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
         <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
-      <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="127"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="128"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="128"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
-      <chip value="129"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="129"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  左回り</description></chip>
-      <chip value="130"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
       <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>左回り</description></chip>
@@ -2147,13 +2155,17 @@
       <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
         <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
-      <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="127"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="128"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="128"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
-      <chip value="129"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="129"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  左回り</description></chip>
-      <chip value="130"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
       <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>左回り</description></chip>
@@ -3025,13 +3037,17 @@
       <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
         <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
-      <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="127"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="128"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="128"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
-      <chip value="129"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="129"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  左回り</description></chip>
-      <chip value="130"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
       <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>左回り</description></chip>
@@ -3903,13 +3919,17 @@
       <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
         <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
-      <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="127"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="128"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="128"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
-      <chip value="129"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="129"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  左回り</description></chip>
-      <chip value="130"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
       <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>左回り</description></chip>
@@ -4781,13 +4801,17 @@
       <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
         <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
-      <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="127"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="128"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="128"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
-      <chip value="129"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="129"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  左回り</description></chip>
-      <chip value="130"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
       <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>左回り</description></chip>
@@ -5801,13 +5825,17 @@
       <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
         <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
-      <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="127"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="128"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="128"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
-      <chip value="129"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="129"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  左回り</description></chip>
-      <chip value="130"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
       <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>左回り</description></chip>
@@ -6679,13 +6707,17 @@
       <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
         <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
-      <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="127"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="128"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="128"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
-      <chip value="129"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="129"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  左回り</description></chip>
-      <chip value="130"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
       <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>左回り</description></chip>
@@ -7612,13 +7644,17 @@
       <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
         <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
-      <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="127"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="128"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="128"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
-      <chip value="129"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="129"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  左回り</description></chip>
-      <chip value="130"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
       <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>左回り</description></chip>
@@ -8489,13 +8525,17 @@
       <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
         <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
-      <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="127"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="128"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="128"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
-      <chip value="129"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="129"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  左回り</description></chip>
-      <chip value="130"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
       <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>左回り</description></chip>
@@ -9366,13 +9406,17 @@
       <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
         <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
-      <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="127"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="128"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="128"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
-      <chip value="129"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="129"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  左回り</description></chip>
-      <chip value="130"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
       <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>左回り</description></chip>
@@ -10243,13 +10287,17 @@
       <chip value="126"><pattern><X>0</X><Y>0</Y></pattern>
         <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
         <description>乗れる。線のみ</description></chip>
-      <chip value="127"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="127"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="128"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="128"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
-      <chip value="129"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="129"><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  左回り</description></chip>
-      <chip value="130"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>224</Y></xdraw><name>人口太陽</name>
+      <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
       <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
         <description>左回り</description></chip>

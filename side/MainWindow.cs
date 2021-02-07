@@ -821,37 +821,86 @@ namespace MasaoPlus
 								break;
 							case "ファイヤーバー":
 							case "スウィングファイヤーバー":
-								graphics.TranslateTransform(size.Width / 2, size.Width / 2);
-								graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
-									new Rectangle(0, 0, size.Width / 2, size.Width / 2),
-									new Rectangle(cschip.pattern, new Size(size.Width / 2, size.Width / 2)), GraphicsUnit.Pixel);
-								int v = 225;
-								graphics.TranslateTransform(size.Width / 2, size.Width / 2);
-								rad = ((v + 90) * Math.PI) / 180;
-								const double d = 0.017453292519943295;
-								vo_pa = new PointF[4];
-								vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 25) + Math.Cos(rad) * 4);
-								vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) + Math.Sin(rad) * 4);
-								vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 25) - Math.Cos(rad) * 4);
-								vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) - Math.Sin(rad) * 4);
-								vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 42) - Math.Cos(rad) * 4);
-								vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) - Math.Sin(rad) * 4);
-								vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 42) + Math.Cos(rad) * 4);
-								vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) + Math.Sin(rad) * 4);
-								brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
-								graphics.FillPolygon(brush2, vo_pa);
-								// 内側の色を描画
-								brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
-								vo_pa[0].X = (float)(Math.Cos(v * d) * 28 + Math.Cos(rad) * 2);
-								vo_pa[0].Y = (float)(Math.Sin(v * d) * 28 + Math.Sin(rad) * 2);
-								vo_pa[1].X = (float)(Math.Cos(v * d) * 28 - Math.Cos(rad) * 2);
-								vo_pa[1].Y = (float)(Math.Sin(v * d) * 28 - Math.Sin(rad) * 2);
-								vo_pa[2].X = (float)(Math.Cos(v * d) * 40 - Math.Cos(rad) * 2);
-								vo_pa[2].Y = (float)(Math.Sin(v * d) * 40 - Math.Sin(rad) * 2);
-								vo_pa[3].X = (float)(Math.Cos(v * d) * 40 + Math.Cos(rad) * 2);
-								vo_pa[3].Y = (float)(Math.Sin(v * d) * 40 + Math.Sin(rad) * 2);
-								graphics.FillPolygon(brush2, vo_pa);
-								brush2.Dispose();
+								{
+									graphics.TranslateTransform(size.Width / 2, size.Width / 2);
+									graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
+										new Rectangle(0, 0, size.Width / 2, size.Width / 2),
+										new Rectangle(cschip.pattern, new Size(size.Width / 2, size.Width / 2)), GraphicsUnit.Pixel);
+									int v = 225;
+									graphics.TranslateTransform(size.Width / 2, size.Width / 2);
+									rad = ((v + 90) * Math.PI) / 180;
+									const double d = 0.017453292519943295;
+									vo_pa = new PointF[4];
+									vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 25) + Math.Cos(rad) * 4);
+									vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) + Math.Sin(rad) * 4);
+									vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 25) - Math.Cos(rad) * 4);
+									vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) - Math.Sin(rad) * 4);
+									vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 42) - Math.Cos(rad) * 4);
+									vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) - Math.Sin(rad) * 4);
+									vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 42) + Math.Cos(rad) * 4);
+									vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) + Math.Sin(rad) * 4);
+									brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
+									graphics.FillPolygon(brush2, vo_pa);
+									// 内側の色を描画
+									brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+									vo_pa[0].X = (float)(Math.Cos(v * d) * 28 + Math.Cos(rad) * 2);
+									vo_pa[0].Y = (float)(Math.Sin(v * d) * 28 + Math.Sin(rad) * 2);
+									vo_pa[1].X = (float)(Math.Cos(v * d) * 28 - Math.Cos(rad) * 2);
+									vo_pa[1].Y = (float)(Math.Sin(v * d) * 28 - Math.Sin(rad) * 2);
+									vo_pa[2].X = (float)(Math.Cos(v * d) * 40 - Math.Cos(rad) * 2);
+									vo_pa[2].Y = (float)(Math.Sin(v * d) * 40 - Math.Sin(rad) * 2);
+									vo_pa[3].X = (float)(Math.Cos(v * d) * 40 + Math.Cos(rad) * 2);
+									vo_pa[3].Y = (float)(Math.Sin(v * d) * 40 + Math.Sin(rad) * 2);
+									graphics.FillPolygon(brush2, vo_pa);
+									brush2.Dispose();
+								}
+								break;
+							case "人口太陽":
+								{
+									graphics.TranslateTransform(size.Width / 2, size.Width / 2);
+
+									int v = default, n = default;
+									const double d = 0.017453292519943295;
+									vo_pa = new PointF[4];
+									if (cschip.description.Contains("棒５本")) n = 5;
+									else n = 3;
+									if (cschip.description.Contains("左")) v = 360 - 2;
+									else v = 2;
+
+									for (var ii = 0; ii < n; ii++)
+									{
+										v += 360 / n;
+										rad = ((v + 90) * Math.PI) / 180;
+										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
+										vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 4) + Math.Cos(rad) * 3);
+										vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 4) + Math.Sin(rad) * 3);
+										vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 4) - Math.Cos(rad) * 3);
+										vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 4) - Math.Sin(rad) * 3);
+										vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 15) - Math.Cos(rad) * 3);
+										vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) - Math.Sin(rad) * 3);
+										vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 15) + Math.Cos(rad) * 3);
+										vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) + Math.Sin(rad) * 3);
+										graphics.FillPolygon(brush2, vo_pa);
+
+										// 内側の色を描画
+										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+										vo_pa[0].X = (float)(Math.Cos(v * d) * 6 + Math.Cos(rad) * 1);
+										vo_pa[0].Y = (float)(Math.Sin(v * d) * 6 + Math.Sin(rad) * 1);
+										vo_pa[1].X = (float)(Math.Cos(v * d) * 6 - Math.Cos(rad) * 1);
+										vo_pa[1].Y = (float)(Math.Sin(v * d) * 6 - Math.Sin(rad) * 1);
+										vo_pa[2].X = (float)(Math.Cos(v * d) * 13 - Math.Cos(rad) * 1);
+										vo_pa[2].Y = (float)(Math.Sin(v * d) * 13 - Math.Sin(rad) * 1);
+										vo_pa[3].X = (float)(Math.Cos(v * d) * 13 + Math.Cos(rad) * 1);
+										vo_pa[3].Y = (float)(Math.Sin(v * d) * 13 + Math.Sin(rad) * 1);
+										graphics.FillPolygon(brush2, vo_pa);
+									}
+									brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
+									graphics.FillEllipse(brush2, -6, -6, 12, 12);
+									brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+									graphics.FillEllipse(brush2, -2, -2, 4, 4);
+
+									brush2.Dispose();
+								}
 								break;
 							default:
 								int rotate_o = default;
@@ -2175,37 +2224,86 @@ namespace MasaoPlus
 								break;
 							case "ファイヤーバー":
 							case "スウィングファイヤーバー":
-								e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Width / 2);
-								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
-									new Rectangle(0, 0, this.ChipImage.Width / 2, this.ChipImage.Width / 2),
-									new Rectangle(cschip.pattern, new Size(this.ChipImage.Width / 2, this.ChipImage.Width / 2)), GraphicsUnit.Pixel);
-								int v = 225;
-								e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Width / 2);
-								rad = ((v + 90) * Math.PI) / 180;
-								const double d = 0.017453292519943295;
-								vo_pa = new PointF[4];
-								vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 25) + Math.Cos(rad) * 4);
-								vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) + Math.Sin(rad) * 4);
-								vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 25) - Math.Cos(rad) * 4);
-								vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) - Math.Sin(rad) * 4);
-								vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 42) - Math.Cos(rad) * 4);
-								vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) - Math.Sin(rad) * 4);
-								vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 42) + Math.Cos(rad) * 4);
-								vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) + Math.Sin(rad) * 4);
-								brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
-								e.Graphics.FillPolygon(brush, vo_pa);
-								// 内側の色を描画
-								brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-								vo_pa[0].X = (float)(Math.Cos(v * d) * 28 + Math.Cos(rad) * 2);
-								vo_pa[0].Y = (float)(Math.Sin(v * d) * 28 + Math.Sin(rad) * 2);
-								vo_pa[1].X = (float)(Math.Cos(v * d) * 28 - Math.Cos(rad) * 2);
-								vo_pa[1].Y = (float)(Math.Sin(v * d) * 28 - Math.Sin(rad) * 2);
-								vo_pa[2].X = (float)(Math.Cos(v * d) * 40 - Math.Cos(rad) * 2);
-								vo_pa[2].Y = (float)(Math.Sin(v * d) * 40 - Math.Sin(rad) * 2);
-								vo_pa[3].X = (float)(Math.Cos(v * d) * 40 + Math.Cos(rad) * 2);
-								vo_pa[3].Y = (float)(Math.Sin(v * d) * 40 + Math.Sin(rad) * 2);
-								e.Graphics.FillPolygon(brush, vo_pa);
-								brush.Dispose();
+								{
+									e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Width / 2);
+									e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
+										new Rectangle(0, 0, this.ChipImage.Width / 2, this.ChipImage.Width / 2),
+										new Rectangle(cschip.pattern, new Size(this.ChipImage.Width / 2, this.ChipImage.Width / 2)), GraphicsUnit.Pixel);
+									int v = 225;
+									e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Width / 2);
+									rad = ((v + 90) * Math.PI) / 180;
+									const double d = 0.017453292519943295;
+									vo_pa = new PointF[4];
+									vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 25) + Math.Cos(rad) * 4);
+									vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) + Math.Sin(rad) * 4);
+									vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 25) - Math.Cos(rad) * 4);
+									vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) - Math.Sin(rad) * 4);
+									vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 42) - Math.Cos(rad) * 4);
+									vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) - Math.Sin(rad) * 4);
+									vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 42) + Math.Cos(rad) * 4);
+									vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) + Math.Sin(rad) * 4);
+									brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+									e.Graphics.FillPolygon(brush, vo_pa);
+									// 内側の色を描画
+									brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+									vo_pa[0].X = (float)(Math.Cos(v * d) * 28 + Math.Cos(rad) * 2);
+									vo_pa[0].Y = (float)(Math.Sin(v * d) * 28 + Math.Sin(rad) * 2);
+									vo_pa[1].X = (float)(Math.Cos(v * d) * 28 - Math.Cos(rad) * 2);
+									vo_pa[1].Y = (float)(Math.Sin(v * d) * 28 - Math.Sin(rad) * 2);
+									vo_pa[2].X = (float)(Math.Cos(v * d) * 40 - Math.Cos(rad) * 2);
+									vo_pa[2].Y = (float)(Math.Sin(v * d) * 40 - Math.Sin(rad) * 2);
+									vo_pa[3].X = (float)(Math.Cos(v * d) * 40 + Math.Cos(rad) * 2);
+									vo_pa[3].Y = (float)(Math.Sin(v * d) * 40 + Math.Sin(rad) * 2);
+									e.Graphics.FillPolygon(brush, vo_pa);
+									brush.Dispose();
+								}
+								break;
+							case "人口太陽":
+								{
+									e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Width / 2);
+
+									int v = default, n = default;
+									const double d = 0.017453292519943295;
+									vo_pa = new PointF[4];
+									if (cschip.description.Contains("棒５本")) n = 5;
+									else n = 3;
+									if (cschip.description.Contains("左")) v = 360 - 2;
+									else v = 2;
+
+									for (var ii = 0; ii < n; ii++)
+									{
+										v += 360 / n;
+										rad = ((v + 90) * Math.PI) / 180;
+										brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+										vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 4) + Math.Cos(rad) * 3);
+										vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 4) + Math.Sin(rad) * 3);
+										vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 4) - Math.Cos(rad) * 3);
+										vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 4) - Math.Sin(rad) * 3);
+										vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 15) - Math.Cos(rad) * 3);
+										vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) - Math.Sin(rad) * 3);
+										vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 15) + Math.Cos(rad) * 3);
+										vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) + Math.Sin(rad) * 3);
+										e.Graphics.FillPolygon(brush, vo_pa);
+
+										// 内側の色を描画
+										brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+										vo_pa[0].X = (float)(Math.Cos(v * d) * 6 + Math.Cos(rad) * 1);
+										vo_pa[0].Y = (float)(Math.Sin(v * d) * 6 + Math.Sin(rad) * 1);
+										vo_pa[1].X = (float)(Math.Cos(v * d) * 6 - Math.Cos(rad) * 1);
+										vo_pa[1].Y = (float)(Math.Sin(v * d) * 6 - Math.Sin(rad) * 1);
+										vo_pa[2].X = (float)(Math.Cos(v * d) * 13 - Math.Cos(rad) * 1);
+										vo_pa[2].Y = (float)(Math.Sin(v * d) * 13 - Math.Sin(rad) * 1);
+										vo_pa[3].X = (float)(Math.Cos(v * d) * 13 + Math.Cos(rad) * 1);
+										vo_pa[3].Y = (float)(Math.Sin(v * d) * 13 + Math.Sin(rad) * 1);
+										e.Graphics.FillPolygon(brush, vo_pa);
+									}
+									brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+									e.Graphics.FillEllipse(brush, -6, -6, 12, 12);
+									brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+									e.Graphics.FillEllipse(brush, -2, -2, 4, 4);
+
+									brush.Dispose();
+								}
 								break;
 							default:
 								e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Height / 2);
@@ -3199,37 +3297,86 @@ namespace MasaoPlus
 										break;
 									case "ファイヤーバー":
 									case "スウィングファイヤーバー":
-										e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
-										e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
-											new Rectangle(0, 0, e.Bounds.Height / 2, e.Bounds.Height / 2),
-											new Rectangle(cschip.pattern, new Size(chipsize.Width / 2, chipsize.Height / 2)), GraphicsUnit.Pixel);
-										int v = 225;
-										e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
-										rad = ((v + 90) * Math.PI) / 180;
-										const double d = 0.017453292519943295;
-										vo_pa = new PointF[4];
-										vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 9) + Math.Cos(rad) * 2);
-										vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 9) + Math.Sin(rad) * 2);
-										vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 9) - Math.Cos(rad) * 2);
-										vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 9) - Math.Sin(rad) * 2);
-										vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 15) - Math.Cos(rad) * 2);
-										vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) - Math.Sin(rad) * 2);
-										vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 15) + Math.Cos(rad) * 2);
-										vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) + Math.Sin(rad) * 2);
-										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
-										e.Graphics.FillPolygon(brush2, vo_pa);
-										// 内側の色を描画
-										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
-										vo_pa[0].X = (float)(Math.Cos(v * d) * 11 + Math.Cos(rad) * 1);
-										vo_pa[0].Y = (float)(Math.Sin(v * d) * 11 + Math.Sin(rad) * 1);
-										vo_pa[1].X = (float)(Math.Cos(v * d) * 11 - Math.Cos(rad) * 1);
-										vo_pa[1].Y = (float)(Math.Sin(v * d) * 11 - Math.Sin(rad) * 1);
-										vo_pa[2].X = (float)(Math.Cos(v * d) * 14 - Math.Cos(rad) * 1);
-										vo_pa[2].Y = (float)(Math.Sin(v * d) * 14 - Math.Sin(rad) * 1);
-										vo_pa[3].X = (float)(Math.Cos(v * d) * 14 + Math.Cos(rad) * 1);
-										vo_pa[3].Y = (float)(Math.Sin(v * d) * 14 + Math.Sin(rad) * 1);
-										e.Graphics.FillPolygon(brush2, vo_pa);
-										brush2.Dispose();
+										{
+											e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
+											e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
+												new Rectangle(0, 0, e.Bounds.Height / 2, e.Bounds.Height / 2),
+												new Rectangle(cschip.pattern, new Size(chipsize.Width / 2, chipsize.Height / 2)), GraphicsUnit.Pixel);
+											int v = 225;
+											e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
+											rad = ((v + 90) * Math.PI) / 180;
+											const double d = 0.017453292519943295;
+											vo_pa = new PointF[4];
+											vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 9) + Math.Cos(rad) * 2);
+											vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 9) + Math.Sin(rad) * 2);
+											vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 9) - Math.Cos(rad) * 2);
+											vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 9) - Math.Sin(rad) * 2);
+											vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 15) - Math.Cos(rad) * 2);
+											vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) - Math.Sin(rad) * 2);
+											vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 15) + Math.Cos(rad) * 2);
+											vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) + Math.Sin(rad) * 2);
+											brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
+											e.Graphics.FillPolygon(brush2, vo_pa);
+											// 内側の色を描画
+											brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+											vo_pa[0].X = (float)(Math.Cos(v * d) * 11 + Math.Cos(rad) * 1);
+											vo_pa[0].Y = (float)(Math.Sin(v * d) * 11 + Math.Sin(rad) * 1);
+											vo_pa[1].X = (float)(Math.Cos(v * d) * 11 - Math.Cos(rad) * 1);
+											vo_pa[1].Y = (float)(Math.Sin(v * d) * 11 - Math.Sin(rad) * 1);
+											vo_pa[2].X = (float)(Math.Cos(v * d) * 14 - Math.Cos(rad) * 1);
+											vo_pa[2].Y = (float)(Math.Sin(v * d) * 14 - Math.Sin(rad) * 1);
+											vo_pa[3].X = (float)(Math.Cos(v * d) * 14 + Math.Cos(rad) * 1);
+											vo_pa[3].Y = (float)(Math.Sin(v * d) * 14 + Math.Sin(rad) * 1);
+											e.Graphics.FillPolygon(brush2, vo_pa);
+											brush2.Dispose();
+										}
+										break;
+									case "人口太陽":
+										{
+											e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
+
+											int v = default, n = default;
+											const double d = 0.017453292519943295;
+											vo_pa = new PointF[4];
+											if (cschip.description.Contains("棒５本")) n = 5;
+											else n = 3;
+											if (cschip.description.Contains("左")) v = 360 - 2;
+											else v = 2;
+
+											for (var ii = 0; ii < n; ii++)
+											{
+												v += 360 / n;
+												rad = ((v + 90) * Math.PI) / 180;
+												brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
+												vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 1) + Math.Cos(rad) * 1);
+												vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 1) + Math.Sin(rad) * 1);
+												vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 1) - Math.Cos(rad) * 1);
+												vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 1) - Math.Sin(rad) * 1);
+												vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 6) - Math.Cos(rad) * 1);
+												vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 6) - Math.Sin(rad) * 1);
+												vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 6) + Math.Cos(rad) * 1);
+												vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 6) + Math.Sin(rad) * 1);
+												e.Graphics.FillPolygon(brush2, vo_pa);
+
+												// 内側の色を描画
+												brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+												vo_pa[0].X = (float)(Math.Cos(v * d) * 2 + Math.Cos(rad) * 0.5);
+												vo_pa[0].Y = (float)(Math.Sin(v * d) * 2 + Math.Sin(rad) * 0.5);
+												vo_pa[1].X = (float)(Math.Cos(v * d) * 2 - Math.Cos(rad) * 0.5);
+												vo_pa[1].Y = (float)(Math.Sin(v * d) * 2 - Math.Sin(rad) * 0.5);
+												vo_pa[2].X = (float)(Math.Cos(v * d) * 5 - Math.Cos(rad) * 0.5);
+												vo_pa[2].Y = (float)(Math.Sin(v * d) * 5 - Math.Sin(rad) * 0.5);
+												vo_pa[3].X = (float)(Math.Cos(v * d) * 5 + Math.Cos(rad) * 0.5);
+												vo_pa[3].Y = (float)(Math.Sin(v * d) * 5 + Math.Sin(rad) * 0.5);
+												e.Graphics.FillPolygon(brush2, vo_pa);
+											}
+											brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
+											e.Graphics.FillEllipse(brush2, -2, -2, 4, 4);
+											brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+											e.Graphics.FillEllipse(brush2, -1, -1, 2, 2);
+
+											brush2.Dispose();
+										}
 										break;
 									default:
 										e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
@@ -3763,37 +3910,86 @@ namespace MasaoPlus
 										break;
 									case "ファイヤーバー":
 									case "スウィングファイヤーバー":
-										e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
-										e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
-											new Rectangle(0, 0, chipsize.Width / 2, chipsize.Height / 2),
-											new Rectangle(cschip.pattern, new Size(chipsize.Width / 2, chipsize.Height / 2)), GraphicsUnit.Pixel);
-										int v = 225;
-										e.Graphics.TranslateTransform(chipsize.Width / 2 + 1, chipsize.Width / 2 + 1);
-										rad = ((v + 90) * Math.PI) / 180;
-										const double d = 0.017453292519943295;
-										vo_pa = new PointF[4];
-										vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 25) + Math.Cos(rad) * 4);
-										vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) + Math.Sin(rad) * 4);
-										vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 25) - Math.Cos(rad) * 4);
-										vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) - Math.Sin(rad) * 4);
-										vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 42) - Math.Cos(rad) * 4);
-										vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) - Math.Sin(rad) * 4);
-										vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 42) + Math.Cos(rad) * 4);
-										vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) + Math.Sin(rad) * 4);
-										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
-										e.Graphics.FillPolygon(brush2, vo_pa);
-										// 内側の色を描画
-										brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
-										vo_pa[0].X = (float)(Math.Cos(v * d) * 28 + Math.Cos(rad) * 2);
-										vo_pa[0].Y = (float)(Math.Sin(v * d) * 28 + Math.Sin(rad) * 2);
-										vo_pa[1].X = (float)(Math.Cos(v * d) * 28 - Math.Cos(rad) * 2);
-										vo_pa[1].Y = (float)(Math.Sin(v * d) * 28 - Math.Sin(rad) * 2);
-										vo_pa[2].X = (float)(Math.Cos(v * d) * 40 - Math.Cos(rad) * 2);
-										vo_pa[2].Y = (float)(Math.Sin(v * d) * 40 - Math.Sin(rad) * 2);
-										vo_pa[3].X = (float)(Math.Cos(v * d) * 40 + Math.Cos(rad) * 2);
-										vo_pa[3].Y = (float)(Math.Sin(v * d) * 40 + Math.Sin(rad) * 2);
-										e.Graphics.FillPolygon(brush2, vo_pa);
-										brush2.Dispose();
+										{
+											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
+											e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
+												new Rectangle(0, 0, chipsize.Width / 2, chipsize.Height / 2),
+												new Rectangle(cschip.pattern, new Size(chipsize.Width / 2, chipsize.Height / 2)), GraphicsUnit.Pixel);
+											int v = 225;
+											e.Graphics.TranslateTransform(chipsize.Width / 2 + 1, chipsize.Width / 2 + 1);
+											rad = ((v + 90) * Math.PI) / 180;
+											const double d = 0.017453292519943295;
+											vo_pa = new PointF[4];
+											vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 25) + Math.Cos(rad) * 4);
+											vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) + Math.Sin(rad) * 4);
+											vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 25) - Math.Cos(rad) * 4);
+											vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) - Math.Sin(rad) * 4);
+											vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 42) - Math.Cos(rad) * 4);
+											vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) - Math.Sin(rad) * 4);
+											vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 42) + Math.Cos(rad) * 4);
+											vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) + Math.Sin(rad) * 4);
+											brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
+											e.Graphics.FillPolygon(brush2, vo_pa);
+											// 内側の色を描画
+											brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+											vo_pa[0].X = (float)(Math.Cos(v * d) * 28 + Math.Cos(rad) * 2);
+											vo_pa[0].Y = (float)(Math.Sin(v * d) * 28 + Math.Sin(rad) * 2);
+											vo_pa[1].X = (float)(Math.Cos(v * d) * 28 - Math.Cos(rad) * 2);
+											vo_pa[1].Y = (float)(Math.Sin(v * d) * 28 - Math.Sin(rad) * 2);
+											vo_pa[2].X = (float)(Math.Cos(v * d) * 40 - Math.Cos(rad) * 2);
+											vo_pa[2].Y = (float)(Math.Sin(v * d) * 40 - Math.Sin(rad) * 2);
+											vo_pa[3].X = (float)(Math.Cos(v * d) * 40 + Math.Cos(rad) * 2);
+											vo_pa[3].Y = (float)(Math.Sin(v * d) * 40 + Math.Sin(rad) * 2);
+											e.Graphics.FillPolygon(brush2, vo_pa);
+											brush2.Dispose();
+										}
+										break;
+									case "人口太陽":
+										{
+											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
+
+											int v = default, n = default;
+											const double d = 0.017453292519943295;
+											vo_pa = new PointF[4];
+											if (cschip.description.Contains("棒５本")) n = 5;
+											else n = 3;
+											if (cschip.description.Contains("左")) v = 360 - 2;
+											else v = 2;
+
+											for (var ii = 0; ii < n; ii++)
+											{
+												v += 360 / n;
+												rad = ((v + 90) * Math.PI) / 180;
+												brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
+												vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 4) + Math.Cos(rad) * 3);
+												vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 4) + Math.Sin(rad) * 3);
+												vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 4) - Math.Cos(rad) * 3);
+												vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 4) - Math.Sin(rad) * 3);
+												vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 15) - Math.Cos(rad) * 3);
+												vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) - Math.Sin(rad) * 3);
+												vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 15) + Math.Cos(rad) * 3);
+												vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) + Math.Sin(rad) * 3);
+												e.Graphics.FillPolygon(brush2, vo_pa);
+
+												// 内側の色を描画
+												brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+												vo_pa[0].X = (float)(Math.Cos(v * d) * 6 + Math.Cos(rad) * 1);
+												vo_pa[0].Y = (float)(Math.Sin(v * d) * 6 + Math.Sin(rad) * 1);
+												vo_pa[1].X = (float)(Math.Cos(v * d) * 6 - Math.Cos(rad) * 1);
+												vo_pa[1].Y = (float)(Math.Sin(v * d) * 6 - Math.Sin(rad) * 1);
+												vo_pa[2].X = (float)(Math.Cos(v * d) * 13 - Math.Cos(rad) * 1);
+												vo_pa[2].Y = (float)(Math.Sin(v * d) * 13 - Math.Sin(rad) * 1);
+												vo_pa[3].X = (float)(Math.Cos(v * d) * 13 + Math.Cos(rad) * 1);
+												vo_pa[3].Y = (float)(Math.Sin(v * d) * 13 + Math.Sin(rad) * 1);
+												e.Graphics.FillPolygon(brush2, vo_pa);
+											}
+											brush2 = new SolidBrush(Global.cpd.project.Config.Firebar1);
+											e.Graphics.FillEllipse(brush2, -6, -6, 12, 12);
+											brush2 = new SolidBrush(Global.cpd.project.Config.Firebar2);
+											e.Graphics.FillEllipse(brush2, -2, -2, 4, 4);
+
+											brush2.Dispose();
+										}
 										break;
 									default:
 										e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
