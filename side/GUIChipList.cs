@@ -794,6 +794,112 @@ namespace MasaoPlus
 												brush.Dispose();
 											}
 											break;
+										case "ファイヤーリング":
+											{
+												e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
+
+												int v = default, n = default;
+												if (cschip.description.Contains("2本")) n = 2;
+												else n = 3;
+												if (cschip.description.Contains("左回り"))
+												{
+													if (cschip.description.Contains("高速")) v = -4 + 360;
+													else v = -2 + 360;
+												}
+												else
+												{
+													if (cschip.description.Contains("高速")) v = 4;
+													else v = 2;
+												}
+
+												brush = default;
+
+												for (var ii = 0; ii < n; ii++)
+												{
+													var k6 = 0;
+													if (cschip.description.Contains("2本"))
+													{
+														vo_pa = new PointF[26];
+														for (var i4 = 0; i4 >= -120; i4 -= 10)
+														{
+															vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
+															vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
+															k6++;
+														}
+
+														for (var j4 = -120; j4 <= 0; j4 += 10)
+														{
+															vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
+															vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
+															k6++;
+														}
+													}
+													else
+													{
+														vo_pa = new PointF[12];
+														for (var i4 = 0; i4 >= -50; i4 -= 10)
+														{
+															vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
+															vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
+															k6++;
+														}
+
+														for (var j4 = -50; j4 <= 0; j4 += 10)
+														{
+															vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
+															vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
+															k6++;
+														}
+													}
+
+													brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+													e.Graphics.FillPolygon(brush, vo_pa);
+
+													// 内側の色を描画
+													k6 = 0;
+													if (cschip.description.Contains("2本"))
+													{
+														vo_pa = new PointF[24];
+														for (var k4 = -5; k4 >= -115; k4 -= 10)
+														{
+															vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
+															vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
+															k6++;
+														}
+
+														for (var l4 = -115; l4 <= -5; l4 += 10)
+														{
+															vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
+															vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
+															k6++;
+														}
+													}
+													else
+													{
+														for (var k4 = -5; k4 >= -45; k4 -= 8)
+														{
+															vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
+															vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
+															k6++;
+														}
+
+														for (var l4 = -45; l4 <= -5; l4 += 8)
+														{
+															vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
+															vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
+															k6++;
+														}
+													}
+
+													brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+													e.Graphics.FillPolygon(brush, vo_pa);
+
+													v += 360 / n;
+												}
+
+												brush.Dispose();
+											}
+											break;
 										default:
 											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
 											if (Math.Abs(cschip.rotate) % 180 == 90) e.Graphics.RotateTransform(cschip.rotate);

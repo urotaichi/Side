@@ -403,9 +403,11 @@
       <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
         <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
-      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
       <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
@@ -434,13 +436,17 @@
       <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
-      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。左回り。</description></chip>
-      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。右回り。</description></chip>
-      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速左回り。</description></chip>
-      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速右回り。</description></chip>
       <chip value="146"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>256</Y></xdraw><name>ドッスンスン</name>
@@ -1285,9 +1291,11 @@
       <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
         <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
-      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
       <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
@@ -1316,13 +1324,17 @@
       <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
-      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。左回り。</description></chip>
-      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。右回り。</description></chip>
-      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速左回り。</description></chip>
-      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速右回り。</description></chip>
       <chip value="146"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>256</Y></xdraw><name>ドッスンスン</name>
@@ -2167,9 +2179,11 @@
       <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
         <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
-      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
       <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
@@ -2198,13 +2212,17 @@
       <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
-      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。左回り。</description></chip>
-      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。右回り。</description></chip>
-      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速左回り。</description></chip>
-      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速右回り。</description></chip>
       <chip value="146"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>256</Y></xdraw><name>ドッスンスン</name>
@@ -3049,9 +3067,11 @@
       <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
         <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
-      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
       <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
@@ -3080,13 +3100,17 @@
       <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
-      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。左回り。</description></chip>
-      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。右回り。</description></chip>
-      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速左回り。</description></chip>
-      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速右回り。</description></chip>
       <chip value="146"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>256</Y></xdraw><name>ドッスンスン</name>
@@ -3931,9 +3955,11 @@
       <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
         <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
-      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
       <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
@@ -3962,13 +3988,17 @@
       <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
-      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。左回り。</description></chip>
-      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。右回り。</description></chip>
-      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速左回り。</description></chip>
-      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速右回り。</description></chip>
       <chip value="146"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>256</Y></xdraw><name>ドッスンスン</name>
@@ -4813,9 +4843,11 @@
       <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
         <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
-      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
       <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
@@ -4844,13 +4876,17 @@
       <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
-      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。左回り。</description></chip>
-      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。右回り。</description></chip>
-      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速左回り。</description></chip>
-      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速右回り。</description></chip>
       <chip value="146"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>256</Y></xdraw><name>ドッスンスン</name>
@@ -5837,9 +5873,11 @@
       <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
         <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
-      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
       <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
@@ -5868,13 +5906,17 @@
       <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
-      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。左回り。</description></chip>
-      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。右回り。</description></chip>
-      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速左回り。</description></chip>
-      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速右回り。</description></chip>
       <chip value="146"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>256</Y></xdraw><name>ドッスンスン</name>
@@ -6719,9 +6761,11 @@
       <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
         <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
-      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
       <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
@@ -6750,13 +6794,17 @@
       <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
-      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。左回り。</description></chip>
-      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。右回り。</description></chip>
-      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速左回り。</description></chip>
-      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速右回り。</description></chip>
       <chip value="146"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>256</Y></xdraw><name>ドッスンスン</name>
@@ -7656,9 +7704,11 @@
       <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
         <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
-      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
       <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
@@ -7687,13 +7737,17 @@
       <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
-      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。左回り。</description></chip>
-      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。右回り。</description></chip>
-      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速左回り。</description></chip>
-      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速右回り。</description></chip>
       <chip value="146"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>256</Y></xdraw><name>ドッスンスン</name>
@@ -8537,9 +8591,11 @@
       <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
         <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
-      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
       <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
@@ -8568,13 +8624,17 @@
       <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
-      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。左回り。</description></chip>
-      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。右回り。</description></chip>
-      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速左回り。</description></chip>
-      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速右回り。</description></chip>
       <chip value="146"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>256</Y></xdraw><name>ドッスンスン</name>
@@ -9418,9 +9478,11 @@
       <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
         <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
-      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
       <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
@@ -9449,13 +9511,17 @@
       <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
-      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。左回り。</description></chip>
-      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。右回り。</description></chip>
-      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速左回り。</description></chip>
-      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速右回り。</description></chip>
       <chip value="146"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>256</Y></xdraw><name>ドッスンスン</name>
@@ -10299,9 +10365,11 @@
       <chip value="130"><xdraw><X>288</X><Y>0</Y></xdraw>
         <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
         <description>棒５本  右回り</description></chip>
-      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="131"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>左回り</description></chip>
-      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>224</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="132"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>右回り</description></chip>
       <chip value="133"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
@@ -10330,13 +10398,17 @@
       <chip value="141"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
         <description>上下移動。下から。</description></chip>
-      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="142"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。左回り。</description></chip>
-      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="143"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。右回り。</description></chip>
-      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="144"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速左回り。</description></chip>
-      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>256</Y></xdraw><name>ファイヤーリング</name>
+      <chip value="145"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>160</Y></center><name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
         <description>2本。高速右回り。</description></chip>
       <chip value="146"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>256</Y></xdraw><name>ドッスンスン</name>
