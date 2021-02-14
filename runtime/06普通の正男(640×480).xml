@@ -2,8 +2,8 @@
 <MasaoRuntime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Definitions>
     <Name>普通の正男(640×480)</Name>
-    <DefVersion>4.07</DefVersion>
-    <RequireLower>2.6</RequireLower>
+    <DefVersion>4.08</DefVersion>
+    <RequireLower>2.61</RequireLower>
     <Author>RYO</Author>
     <Update>https://urotaichi.com/other/side/mc_w.xml</Update>
     <!--各種ファイルの指定-->
