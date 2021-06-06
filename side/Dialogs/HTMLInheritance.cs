@@ -423,6 +423,9 @@ namespace MasaoPlus.Dialogs
 								list2.RemoveRange(project.Config.Configurations[num].Rows, list2.Count - project.Config.Configurations[num].Rows);
 							}
 							project.Config.Configurations[num].Value = string.Join(Environment.NewLine, list2.ToArray());
+							// 文字列に\"が含まれていた場合エスケープを戻す
+							project.Config.Configurations[num].Value = project.Config.Configurations[num].Value.Replace(@"\""", @"""");
+							project.Config.Configurations[num].Value = project.Config.Configurations[num].Value.Replace(@"\\", @"\");
 						}
 						break;
 					}
@@ -520,6 +523,11 @@ namespace MasaoPlus.Dialogs
 					if (dictionary.ContainsKey(project.Config.Configurations[num].Name))
 					{
 						project.Config.Configurations[num].Value = dictionary[project.Config.Configurations[num].Name];
+						if (project.Config.Configurations[num].Type == ConfigParam.Types.s) // 文字列に\"が含まれていた場合エスケープを戻す
+						{
+							project.Config.Configurations[num].Value = project.Config.Configurations[num].Value.Replace(@"\""", @"""");
+							project.Config.Configurations[num].Value = project.Config.Configurations[num].Value.Replace(@"\\", @"\");
+						}
 						goto IL_DF3;
 					}
 					else if (project.Config.Configurations[num].Relation == "STAGENUM")

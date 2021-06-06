@@ -728,6 +728,12 @@ namespace MasaoPlus
 					}
 				}
 
+				if (configParam.Typestr == "text" || configParam.Typestr == "string") // 文字列に"または\が含まれていた場合エスケーピング
+				{
+					configParam.Value = configParam.Value.Replace(@"\", @"\\");
+					configParam.Value = configParam.Value.Replace(@"""", @"\""");
+				}
+
 				string typestr;
 				switch (typestr = configParam.Typestr)
 				{
