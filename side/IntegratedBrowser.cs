@@ -89,6 +89,11 @@ namespace MasaoPlus
 			this.Progress.Visible = false;
 		}
 		*/
+		private void CoreWebView2_NewWindowRequested(object sender, CoreWebView2NewWindowRequestedEventArgs e)
+		{
+			e.NewWindow = (CoreWebView2)sender;
+			//e.Handled= true;
+		}
 
 		// Token: 0x06000011 RID: 17 RVA: 0x00002165 File Offset: 0x00000365
 		private void Back_Click(object sender, EventArgs e)
@@ -289,6 +294,7 @@ namespace MasaoPlus
 			var webView2Environment = await CoreWebView2Environment.CreateAsync(null, "cache");
 			await this.Browser.EnsureCoreWebView2Async(webView2Environment);
 			this.Browser.CoreWebView2.NavigationStarting += this.Browser_Navigating;
+			this.Browser.CoreWebView2.NewWindowRequested += this.CoreWebView2_NewWindowRequested;
 		}
 
 		// Token: 0x04000009 RID: 9
