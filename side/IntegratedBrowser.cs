@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using MasaoPlus.Properties;
 using Microsoft.Web.WebView2.WinForms;
+using Microsoft.Web.WebView2.Core;
 
 namespace MasaoPlus
 {
@@ -17,10 +18,6 @@ namespace MasaoPlus
 			this.InitializeComponent();
 			//this.Browser.StatusTextChanged += this.Browser_StatusTextChanged;
 			this.InitializeAsync();
-		}
-		async void InitializeAsync()
-		{
-			await this.Browser.EnsureCoreWebView2Async(null);
 		}
 
 		/*
@@ -69,15 +66,13 @@ namespace MasaoPlus
 			this.Progress.Value = (int)((double)e.CurrentProgress / (double)e.MaximumProgress) * 100;
 		}
 		*/
-
-		/*
+		
 		// Token: 0x0600000E RID: 14 RVA: 0x00002111 File Offset: 0x00000311
-		private void Browser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+		private void Browser_Navigating(object sender, CoreWebView2NavigationStartingEventArgs e)
 		{
-			this.Progress.Visible = true;
-			this.URL.Text = e.Url.ToString() + "...";
+			//this.Progress.Visible = true;
+			this.URL.Text = e.Uri.ToString();
 		}
-		*/
 
 		/*
 		// Token: 0x0600000F RID: 15 RVA: 0x0000213F File Offset: 0x0000033F
@@ -261,7 +256,6 @@ namespace MasaoPlus
 			this.Browser.Size = new Size(414, 172);
 			this.Browser.TabIndex = 2;
 			//this.Browser.ProgressChanged += this.Browser_ProgressChanged;
-			//this.Browser.Navigating += this.Browser_Navigating;
 			//this.Browser.DocumentCompleted += this.Browser_DocumentCompleted;
 			//this.Browser.Navigated += this.Browser_Navigated;
 			/*
@@ -289,6 +283,11 @@ namespace MasaoPlus
 			//this.contextMenuStrip1.ResumeLayout(false);
 			base.ResumeLayout(false);
 			base.PerformLayout();
+		}
+		async void InitializeAsync()
+		{
+			await this.Browser.EnsureCoreWebView2Async(null);
+			this.Browser.CoreWebView2.NavigationStarting += this.Browser_Navigating;
 		}
 
 		// Token: 0x04000009 RID: 9
