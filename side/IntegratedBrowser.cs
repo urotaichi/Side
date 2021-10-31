@@ -286,7 +286,8 @@ namespace MasaoPlus
 		}
 		async void InitializeAsync()
 		{
-			await this.Browser.EnsureCoreWebView2Async(null);
+			var webView2Environment = await CoreWebView2Environment.CreateAsync(null, "cache");
+			await this.Browser.EnsureCoreWebView2Async(webView2Environment);
 			this.Browser.CoreWebView2.NavigationStarting += this.Browser_Navigating;
 		}
 
