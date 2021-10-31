@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using MasaoPlus.Properties;
+using Microsoft.Web.WebView2.WinForms;
 
 namespace MasaoPlus
 {
@@ -14,14 +15,21 @@ namespace MasaoPlus
 		public IntegratedBrowser()
 		{
 			this.InitializeComponent();
-			this.Browser.StatusTextChanged += this.Browser_StatusTextChanged;
+			//this.Browser.StatusTextChanged += this.Browser_StatusTextChanged;
+			this.InitializeAsync();
+		}
+		async void InitializeAsync()
+		{
+			await this.Browser.EnsureCoreWebView2Async(null);
 		}
 
+		/*
 		// Token: 0x0600000B RID: 11 RVA: 0x000020D9 File Offset: 0x000002D9
 		private void Browser_StatusTextChanged(object sender, EventArgs e)
 		{
 			this.Status.Text = this.Browser.StatusText;
 		}
+		*/
 
 		// Token: 0x0600000C RID: 12 RVA: 0x00004168 File Offset: 0x00002368
 		public bool Navigate(string str)
@@ -50,34 +58,42 @@ namespace MasaoPlus
 				return true;
 			}
 			base.Enabled = true;
-			this.Browser.Navigate(str);
+			this.Browser.CoreWebView2.Navigate(str);
 			return true;
 		}
 
+		/*
 		// Token: 0x0600000D RID: 13 RVA: 0x000020F1 File Offset: 0x000002F1
 		private void Browser_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
 		{
 			this.Progress.Value = (int)((double)e.CurrentProgress / (double)e.MaximumProgress) * 100;
 		}
+		*/
 
+		/*
 		// Token: 0x0600000E RID: 14 RVA: 0x00002111 File Offset: 0x00000311
 		private void Browser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
 		{
 			this.Progress.Visible = true;
 			this.URL.Text = e.Url.ToString() + "...";
 		}
+		*/
 
+		/*
 		// Token: 0x0600000F RID: 15 RVA: 0x0000213F File Offset: 0x0000033F
 		private void Browser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
 		{
 			this.URL.Text = e.Url.ToString();
 		}
+		*/
 
+		/*
 		// Token: 0x06000010 RID: 16 RVA: 0x00002157 File Offset: 0x00000357
 		private void Browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
 		{
 			this.Progress.Visible = false;
 		}
+		*/
 
 		// Token: 0x06000011 RID: 17 RVA: 0x00002165 File Offset: 0x00000365
 		private void Back_Click(object sender, EventArgs e)
@@ -94,7 +110,7 @@ namespace MasaoPlus
 		// Token: 0x06000013 RID: 19 RVA: 0x00002181 File Offset: 0x00000381
 		private void Reload_Click(object sender, EventArgs e)
 		{
-			this.Browser.Refresh(WebBrowserRefreshOption.Completely);
+			this.Browser.Reload();
 		}
 
 		// Token: 0x06000014 RID: 20 RVA: 0x0000218F File Offset: 0x0000038F
@@ -103,7 +119,7 @@ namespace MasaoPlus
 			if (Global.config.testRun.UseIntegratedBrowser)
 			{
 				Subsystem.MakeTestrun(0);
-				this.Browser.Navigate(Subsystem.GetTempFileWhere());
+				this.Browser.CoreWebView2.Navigate(Subsystem.GetTempFileWhere());
 			}
 		}
 
@@ -114,11 +130,11 @@ namespace MasaoPlus
 			{
 				if (Global.config.localSystem.UsingWebBrowser != "" && Global.config.localSystem.UsingWebBrowser != null)
 				{
-					Global.state.Testrun = Process.Start(Global.config.localSystem.UsingWebBrowser, this.Browser.Url.ToString());
+					Global.state.Testrun = Process.Start(Global.config.localSystem.UsingWebBrowser, this.Browser.Source.ToString());
 				}
 				else
 				{
-					Global.state.Testrun = Process.Start(this.Browser.Url.ToString());
+					Global.state.Testrun = Process.Start(this.Browser.Source.ToString());
 				}
 			}
 			catch (Exception ex)
@@ -152,13 +168,13 @@ namespace MasaoPlus
 			this.OnWeb = new ToolStripButton();
 			this.MainStatusStrip = new StatusStrip();
 			this.Status = new ToolStripStatusLabel();
-			this.Progress = new ToolStripProgressBar();
-			this.Browser = new WebBrowser();
-			this.contextMenuStrip1 = new ContextMenuStrip(this.components);
-			this.testToolStripMenuItem = new ToolStripMenuItem();
+			//this.Progress = new ToolStripProgressBar();
+			this.Browser = new WebView2();
+			//this.contextMenuStrip1 = new ContextMenuStrip(this.components);
+			//this.testToolStripMenuItem = new ToolStripMenuItem();
 			this.MainToolStrip.SuspendLayout();
 			this.MainStatusStrip.SuspendLayout();
-			this.contextMenuStrip1.SuspendLayout();
+			//this.contextMenuStrip1.SuspendLayout();
 			base.SuspendLayout();
 			this.MainToolStrip.Items.AddRange(new ToolStripItem[]
 			{
@@ -223,7 +239,7 @@ namespace MasaoPlus
 			this.MainStatusStrip.Items.AddRange(new ToolStripItem[]
 			{
 				this.Status,
-				this.Progress
+				//this.Progress
 			});
 			this.MainStatusStrip.Location = new Point(0, 197);
 			this.MainStatusStrip.Name = "MainStatusStrip";
@@ -235,28 +251,30 @@ namespace MasaoPlus
 			this.Status.Spring = true;
 			this.Status.Text = "完了";
 			this.Status.TextAlign = ContentAlignment.MiddleLeft;
-			this.Progress.Name = "Progress";
-			this.Progress.Size = new Size(100, 17);
-			this.Browser.ContextMenuStrip = this.contextMenuStrip1;
+			//this.Progress.Name = "Progress";
+			//this.Progress.Size = new Size(100, 17);
+			//this.Browser.ContextMenuStrip = this.contextMenuStrip1;
 			this.Browser.Dock = DockStyle.Fill;
 			this.Browser.Location = new Point(0, 25);
 			this.Browser.MinimumSize = new Size(20, 20);
 			this.Browser.Name = "Browser";
 			this.Browser.Size = new Size(414, 172);
 			this.Browser.TabIndex = 2;
-			this.Browser.ProgressChanged += this.Browser_ProgressChanged;
-			this.Browser.Navigating += this.Browser_Navigating;
-			this.Browser.DocumentCompleted += this.Browser_DocumentCompleted;
-			this.Browser.Navigated += this.Browser_Navigated;
+			//this.Browser.ProgressChanged += this.Browser_ProgressChanged;
+			//this.Browser.Navigating += this.Browser_Navigating;
+			//this.Browser.DocumentCompleted += this.Browser_DocumentCompleted;
+			//this.Browser.Navigated += this.Browser_Navigated;
+			/*
 			this.contextMenuStrip1.Items.AddRange(new ToolStripItem[]
 			{
 				this.testToolStripMenuItem
 			});
-			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new Size(102, 26);
-			this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-			this.testToolStripMenuItem.Size = new Size(101, 22);
-			this.testToolStripMenuItem.Text = "Test";
+			*/
+			//this.contextMenuStrip1.Name = "contextMenuStrip1";
+			//this.contextMenuStrip1.Size = new Size(102, 26);
+			//this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+			//this.testToolStripMenuItem.Size = new Size(101, 22);
+			//this.testToolStripMenuItem.Text = "Test";
 			base.AutoScaleDimensions = new SizeF(6f, 12f);
 			base.AutoScaleMode = AutoScaleMode.Font;
 			base.Controls.Add(this.Browser);
@@ -268,7 +286,7 @@ namespace MasaoPlus
 			this.MainToolStrip.PerformLayout();
 			this.MainStatusStrip.ResumeLayout(false);
 			this.MainStatusStrip.PerformLayout();
-			this.contextMenuStrip1.ResumeLayout(false);
+			//this.contextMenuStrip1.ResumeLayout(false);
 			base.ResumeLayout(false);
 			base.PerformLayout();
 		}
@@ -307,18 +325,18 @@ namespace MasaoPlus
 		private ToolStripButton OnWeb;
 
 		// Token: 0x04000014 RID: 20
-		private ToolStripProgressBar Progress;
+		//private ToolStripProgressBar Progress;
 
 		// Token: 0x04000015 RID: 21
-		private WebBrowser Browser;
+		private WebView2 Browser;
 
 		// Token: 0x04000016 RID: 22
 		private ToolStripLabel URL;
 
 		// Token: 0x04000017 RID: 23
-		private ContextMenuStrip contextMenuStrip1;
+		//private ContextMenuStrip contextMenuStrip1;
 
 		// Token: 0x04000018 RID: 24
-		private ToolStripMenuItem testToolStripMenuItem;
+		//private ToolStripMenuItem testToolStripMenuItem;
 	}
 }
