@@ -157,7 +157,7 @@ namespace MasaoPlus
 			public string TempFile = "~temp";
 
 			// Token: 0x04000303 RID: 771
-			public bool UseIntegratedBrowser;
+			public bool UseIntegratedBrowser = true;
 
 			// Token: 0x04000304 RID: 772
 			public bool KillTestrunOnFocus = true;
