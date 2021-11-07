@@ -1458,6 +1458,7 @@ namespace MasaoPlus
 						case "ファイヤーリング":
 							{
 								g.SmoothingMode = SmoothingMode.AntiAlias;
+								g.TranslateTransform(32*5,32*5);
 
 								int v = default, n = default;
 								if (cschip.description.Contains("2本")) n = 2;
@@ -4360,6 +4361,7 @@ namespace MasaoPlus
 											case "ファイヤーリング":
 												{
 													graphics.SmoothingMode = SmoothingMode.AntiAlias;
+													graphics.TranslateTransform(32 * 5, 32 * 5);
 
 													int v = default, n = default;
 													if (cschip.description.Contains("2本")) n = 2;
