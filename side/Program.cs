@@ -1,6 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Net;
 using System.Windows.Forms;
 
 namespace MasaoPlus
@@ -59,9 +61,40 @@ namespace MasaoPlus
 				IL_104:
 				if (flag)
 				{
-					Application.Run(new MainWindow());
+					//WebView2 ランタイムがインストールされているかを調べて、されていない場合インストールする
+					Microsoft.Win32.RegistryKey key;
+					if (Environment.Is64BitOperatingSystem)
+						key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}");
+					else
+						key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}");
+
+					if (key == null || key.GetValue("pv") == null)
+					{
+						DialogResult result = MessageBox.Show("Sideを起動するにはWebView2 ランタイムのインストールが必要です。" + Environment.NewLine +
+							"WebView2 ランタイムをインストールします。" + Environment.NewLine +
+							"(インストール後、PCの再起動が必要な場合があります)",
+							"WebView2 ランタイムのインストール",
+							MessageBoxButtons.YesNo);
+						if (result == DialogResult.Yes)
+						{
+							Process.Start(new ProcessStartInfo()
+							{
+								FileName = @"runtimes\MicrosoftEdgeWebview2Setup.exe",
+								UseShellExecute = true,
+							});
+						}
+						else
+						{
+							MessageBox.Show("Sideを終了します。", "Sideの終了");
+						}
+					}
+					else
+					{
+						Application.Run(new MainWindow());
+					}
 				}
 			}
+
 			catch (Exception ex)
 			{
 				try
