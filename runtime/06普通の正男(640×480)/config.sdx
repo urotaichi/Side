@@ -1598,10 +1598,10 @@
   <param name="mcs_haikei_visible" desc="レイヤーモードでなくても背景画像を表示する" type="bool10" value="true" category="画像" />
   <param name="layer_mode" desc="背景レイヤーの表示をする" type="bool21" value="true" category="システム" chip="InvisLayer" />
   <param name="filename_mapchip" desc="背景レイヤーチップのファイル名" type="file_img" value="mapchip.gif" rel="LAYERCHIP" category="画像" />
-  <param name="filename_haikei" desc="ステージ1背景のファイル名" type="file_img" value="haikei.gif" category="画像" />
-  <param name="filename_haikei2" desc="ステージ2背景のファイル名" type="file_img" value="haikei.gif" category="画像" stage="2" />  
-  <param name="filename_haikei3" desc="ステージ3背景のファイル名" type="file_img" value="haikei.gif" category="画像" stage="3" />  
-  <param name="filename_haikei4" desc="ステージ4背景のファイル名" type="file_img" value="haikei.gif" category="画像" stage="4" />  
+  <param name="filename_haikei" desc="ステージ1背景のファイル名" type="file_img" value="haikei.png" category="画像" />
+  <param name="filename_haikei2" desc="ステージ2背景のファイル名" type="file_img" value="haikei.png" category="画像" stage="2" />  
+  <param name="filename_haikei3" desc="ステージ3背景のファイル名" type="file_img" value="haikei.png" category="画像" stage="3" />  
+  <param name="filename_haikei4" desc="ステージ4背景のファイル名" type="file_img" value="haikei.png" category="画像" stage="4" />  
   <param name="gazou_scroll" desc="背景画像のスクロール" type="list" value="2" category="画像" chip="gazou_scroll">
     <list>しない</list><list>左右ｽｸﾛｰﾙ 速度1/4</list><list>左へ強制スクロール</list><list>指定速度で強制ｽｸﾛｰﾙ</list>
     <list>上下スクロール</list><list>全方向ｽｸﾛｰﾙ 速度1/2</list><list>全方向ｽｸﾛｰﾙ 速度1/1</list><list>画像ｻｲｽﾞ 512×640専用</list>
