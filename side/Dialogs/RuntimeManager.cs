@@ -8,16 +8,13 @@ using System.Windows.Forms;
 
 namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000033 RID: 51
 	public partial class RuntimeManager : Form
 	{
-		// Token: 0x060001CB RID: 459 RVA: 0x00003340 File Offset: 0x00001540
 		public RuntimeManager()
 		{
 			this.InitializeComponent();
 		}
 
-		// Token: 0x060001CC RID: 460 RVA: 0x00024E44 File Offset: 0x00023044
 		private void InstalledRuntime_Shown(object sender, EventArgs e)
 		{
 			Application.DoEvents();
@@ -89,7 +86,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x060001CD RID: 461 RVA: 0x000250D8 File Offset: 0x000232D8
 		private void NewRuntimeInstall_Click(object sender, EventArgs e)
 		{
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -123,7 +119,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x060001CE RID: 462 RVA: 0x000251C0 File Offset: 0x000233C0
 		private void RuntimeViewer_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (this.RuntimeViewer.SelectedIndices.Count == 0)
@@ -143,7 +138,6 @@ namespace MasaoPlus.Dialogs
 			this.Uninstall.Enabled = true;
 		}
 
-		// Token: 0x060001CF RID: 463 RVA: 0x00025284 File Offset: 0x00023484
 		private void NetworkUpdate_Click(object sender, EventArgs e)
 		{
 			if (this.RuntimeViewer.SelectedIndices.Count == 0)
@@ -183,7 +177,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x060001D0 RID: 464 RVA: 0x00025440 File Offset: 0x00023640
 		private void dlClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
 		{
 			if (e.Error != null)
@@ -243,7 +236,6 @@ namespace MasaoPlus.Dialogs
 			base.Close();
 		}
 
-		// Token: 0x060001D1 RID: 465 RVA: 0x00003364 File Offset: 0x00001564
 		private void dlClient_DownloadFileCompleted_Package(object sender, AsyncCompletedEventArgs e)
 		{
 			this.Text = "ランタイムをインストールしています...";
@@ -252,13 +244,11 @@ namespace MasaoPlus.Dialogs
 			base.Close();
 		}
 
-		// Token: 0x060001D2 RID: 466 RVA: 0x0000338A File Offset: 0x0000158A
 		private void dlClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
 		{
 			this.DownProgress.Value = e.ProgressPercentage;
 		}
 
-		// Token: 0x060001D3 RID: 467 RVA: 0x00025668 File Offset: 0x00023868
 		private void Uninstall_Click(object sender, EventArgs e)
 		{
 			if (this.RuntimeViewer.SelectedIndices.Count == 0)
@@ -280,19 +270,14 @@ namespace MasaoPlus.Dialogs
 			base.Close();
 		}
 
-		// Token: 0x04000276 RID: 630
 		private WebClient dlClient;
 
-		// Token: 0x04000277 RID: 631
 		private string tempfile;
 
-		// Token: 0x04000278 RID: 632
 		private Runtime ur;
 
-		// Token: 0x04000279 RID: 633
 		public List<Runtime> runtimedatas = new List<Runtime>();
 
-		// Token: 0x0400027A RID: 634
 		private List<string> runtimefiles = new List<string>();
 	}
 }

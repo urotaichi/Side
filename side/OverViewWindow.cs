@@ -6,10 +6,8 @@ using MasaoPlus.Controls;
 
 namespace MasaoPlus
 {
-	// Token: 0x0200002E RID: 46
 	public partial class OverViewWindow : Form
 	{
-		// Token: 0x060001AF RID: 431 RVA: 0x00024050 File Offset: 0x00022250
 		public OverViewWindow()
 		{
 			this.InitializeComponent();
@@ -18,19 +16,16 @@ namespace MasaoPlus
 			Global.MainWnd.MainDesignerScroll += this.MainWnd_MainDesignerScroll;
 		}
 
-		// Token: 0x060001B0 RID: 432 RVA: 0x00003192 File Offset: 0x00001392
 		private void MainWnd_MainDesignerScroll()
 		{
 			this.UpdateView();
 		}
 
-		// Token: 0x060001B1 RID: 433 RVA: 0x00003192 File Offset: 0x00001392
 		private void MainDesigner_ChangeBufferInvoke()
 		{
 			this.UpdateView();
 		}
 
-		// Token: 0x060001B2 RID: 434 RVA: 0x000240A0 File Offset: 0x000222A0
 		public void UpdateView()
 		{
 			this.OverViewViewer.UpdateDrawSource();
@@ -38,7 +33,6 @@ namespace MasaoPlus
 			this.cPoint = new Point(this.mWndSize.Width / 2, this.mWndSize.Height / 2);
 		}
 
-		// Token: 0x060001B3 RID: 435 RVA: 0x0000319A File Offset: 0x0000139A
 		private void OverViewWindow_Load(object sender, EventArgs e)
 		{
 			base.ClientSize = this.OverViewViewer.Size;
@@ -48,7 +42,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x060001B4 RID: 436 RVA: 0x00024188 File Offset: 0x00022388
 		private void OverViewWindow_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Modifiers == Keys.None)
@@ -65,7 +58,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x060001B5 RID: 437 RVA: 0x000241BC File Offset: 0x000223BC
 		protected override bool ProcessDialogKey(Keys keyData)
 		{
 			switch (keyData)
@@ -89,7 +81,6 @@ namespace MasaoPlus
 			return true;
 		}
 
-		// Token: 0x060001B6 RID: 438 RVA: 0x000242AC File Offset: 0x000224AC
 		private void OverViewViewer_MouseMove(object sender, MouseEventArgs e)
 		{
 			if (e.Button == MouseButtons.Left)
@@ -107,13 +98,11 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x060001B7 RID: 439 RVA: 0x000031CF File Offset: 0x000013CF
 		private void OverViewViewer_MouseDown(object sender, MouseEventArgs e)
 		{
 			this.OverViewViewer_MouseMove(sender, e);
 		}
 
-		// Token: 0x060001B8 RID: 440 RVA: 0x000031D9 File Offset: 0x000013D9
 		private void OverViewWindow_Activated(object sender, EventArgs e)
 		{
 			if (Global.MainWnd.ovw != null)
@@ -123,10 +112,8 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x04000240 RID: 576
 		private Size mWndSize;
 
-		// Token: 0x04000241 RID: 577
 		private Point cPoint;
 	}
 }

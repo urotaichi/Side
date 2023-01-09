@@ -7,17 +7,14 @@ using System.Windows.Forms;
 
 namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000014 RID: 20
 	public partial class ProjectLoading : Form
 	{
-		// Token: 0x060000B9 RID: 185 RVA: 0x000027C9 File Offset: 0x000009C9
 		public ProjectLoading(string LoadProject)
 		{
 			this.load = LoadProject;
 			this.InitializeComponent();
 		}
 
-		// Token: 0x060000BA RID: 186 RVA: 0x00012264 File Offset: 0x00010464
 		private void ProjectLoading_Shown(object sender, EventArgs e)
 		{
 			Application.DoEvents();
@@ -25,7 +22,6 @@ namespace MasaoPlus.Dialogs
 			loadProjectDlg.BeginInvoke(new AsyncCallback(this.EndInv), null);
 		}
 
-		// Token: 0x060000BB RID: 187 RVA: 0x00012298 File Offset: 0x00010498
 		public void EndInv(IAsyncResult iar)
 		{
 			ProjectLoading.LoadProjectDlg method = new ProjectLoading.LoadProjectDlg(this.EndInvInv);
@@ -38,7 +34,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x060000BC RID: 188 RVA: 0x000027E9 File Offset: 0x000009E9
 		public void EndInvInv()
 		{
 			Global.MainWnd.UpdateTitle();
@@ -46,7 +41,6 @@ namespace MasaoPlus.Dialogs
 			base.Close();
 		}
 
-		// Token: 0x060000BD RID: 189 RVA: 0x000122D0 File Offset: 0x000104D0
 		public void LoadProject()
 		{
 			try
@@ -145,7 +139,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x060000BE RID: 190 RVA: 0x000126CC File Offset: 0x000108CC
 		private void SetState(string text)
 		{
 			ProjectLoading.SetStateDelg method = new ProjectLoading.SetStateDelg(this.SetStateInv);
@@ -155,22 +148,16 @@ namespace MasaoPlus.Dialogs
 			});
 		}
 
-		// Token: 0x060000BF RID: 191 RVA: 0x00002802 File Offset: 0x00000A02
 		private void SetStateInv(string text)
 		{
 			this.WaiterText.Text = text;
 			this.WaiterText.Refresh();
 		}
 
-		// Token: 0x040000BA RID: 186
 		private string load = "";
 
-		// Token: 0x02000015 RID: 21
-		// (Invoke) Token: 0x060000C1 RID: 193
 		private delegate void LoadProjectDlg();
 
-		// Token: 0x02000016 RID: 22
-		// (Invoke) Token: 0x060000C5 RID: 197
 		private delegate void SetStateDelg(string text);
 	}
 }

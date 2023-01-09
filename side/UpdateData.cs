@@ -5,12 +5,10 @@ using System.Xml.Serialization;
 
 namespace MasaoPlus
 {
-	// Token: 0x0200001B RID: 27
 	[XmlType("SideUpdate")]
 	[Serializable]
 	public class UpdateData
 	{
-		// Token: 0x060000EF RID: 239 RVA: 0x0001710C File Offset: 0x0001530C
 		public static UpdateData ParseXML(string file)
 		{
 			UpdateData result;
@@ -31,7 +29,6 @@ namespace MasaoPlus
 			return result;
 		}
 
-		// Token: 0x060000F0 RID: 240 RVA: 0x00017194 File Offset: 0x00015394
 		public void SaveXML(string file)
 		{
 			XmlSerializer xmlSerializer = new XmlSerializer(typeof(UpdateData));
@@ -48,22 +45,16 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x040000F9 RID: 249
 		public string Name = "";
 
-		// Token: 0x040000FA RID: 250
 		public string Author = "";
 
-		// Token: 0x040000FB RID: 251
 		public string Update = "";
 
-		// Token: 0x040000FC RID: 252
 		public double DefVersion;
 
-		// Token: 0x040000FD RID: 253
 		public double RequireLower;
 
-		// Token: 0x040000FE RID: 254
 		public string Installer = "";
 	}
 }

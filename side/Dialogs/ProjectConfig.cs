@@ -8,10 +8,8 @@ using MasaoPlus.Properties;
 
 namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000007 RID: 7
 	public partial class ProjectConfig : Form
 	{
-		// Token: 0x0600003B RID: 59 RVA: 0x00002352 File Offset: 0x00000552
 		public ProjectConfig()
 		{
 			this.InitializeComponent();
@@ -20,7 +18,6 @@ namespace MasaoPlus.Dialogs
 			this.OutFooter.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
 		}
 
-		// Token: 0x0600003C RID: 60 RVA: 0x000097D8 File Offset: 0x000079D8
 		private void ProjectConfig_Load(object sender, EventArgs e)
 		{
 			this.ProjectName.Text = Global.cpd.project.Name;
@@ -55,7 +52,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x0600003D RID: 61 RVA: 0x00009A58 File Offset: 0x00007C58
 		private void Accept_Click(object sender, EventArgs e)
 		{
 			Global.cpd.project.Name = this.ProjectName.Text;
@@ -92,25 +88,21 @@ namespace MasaoPlus.Dialogs
 			base.Close();
 		}
 
-		// Token: 0x0600003E RID: 62 RVA: 0x0000237A File Offset: 0x0000057A
 		private void TextUndo_Click(object sender, EventArgs e)
 		{
 			((RichTextBox)this.EditContext.SourceControl).Undo();
 		}
 
-		// Token: 0x0600003F RID: 63 RVA: 0x00002391 File Offset: 0x00000591
 		private void TextCut_Click(object sender, EventArgs e)
 		{
 			((RichTextBox)this.EditContext.SourceControl).Cut();
 		}
 
-		// Token: 0x06000040 RID: 64 RVA: 0x000023A8 File Offset: 0x000005A8
 		private void TextCopy_Click(object sender, EventArgs e)
 		{
 			((RichTextBox)this.EditContext.SourceControl).Copy();
 		}
 
-		// Token: 0x06000041 RID: 65 RVA: 0x000023BF File Offset: 0x000005BF
 		private void TextPaste_Click(object sender, EventArgs e)
 		{
 			((RichTextBox)this.EditContext.SourceControl).Paste();

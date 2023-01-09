@@ -10,10 +10,8 @@ using System.Text.RegularExpressions;
 
 namespace MasaoPlus
 {
-	// Token: 0x02000036 RID: 54
 	public static class Subsystem
 	{
-		// Token: 0x060001FA RID: 506 RVA: 0x000263A0 File Offset: 0x000245A0
 		public static void MakeTestrun(int startup)
 		{
 			using (StreamWriter streamWriter = new StreamWriter(Subsystem.GetTempFileWhere(), false, Global.config.localSystem.FileEncoding))
@@ -24,7 +22,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x060001FB RID: 507 RVA: 0x000263F8 File Offset: 0x000245F8
 		public static void MakeTestrun(int startup, int replace, string[] sts)
 		{
 			using (StreamWriter streamWriter = new StreamWriter(Subsystem.GetTempFileWhere(), false, Global.config.localSystem.FileEncoding))
@@ -35,19 +32,16 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x060001FC RID: 508 RVA: 0x0000358D File Offset: 0x0000178D
 		public static string GetTempFileWhere()
 		{
 			return Path.Combine(Global.cpd.where, Global.config.testRun.TempFile + "." + Global.cpd.runtime.DefaultConfigurations.FileExt);
 		}
 
-		// Token: 0x060001FD RID: 509 RVA: 0x000035CB File Offset: 0x000017CB
 		public static string MakeHTMLCode(int StartStage)
 		{
 			return Subsystem.MakeHTMLCode(StartStage, -1, null);
 		}
 
-		// Token: 0x060001FE RID: 510 RVA: 0x00026454 File Offset: 0x00024654
 		public static string MakeHTMLCode(int StartStage, int ReplaceStage, string[] sts)
 		{
 			Global.cpd.project.Config.StageStart = StartStage + 1;
@@ -880,19 +874,16 @@ namespace MasaoPlus
 			return result;
 		}
 
-		// Token: 0x060001FF RID: 511 RVA: 0x000035D5 File Offset: 0x000017D5
 		public static string DecodeBase64(string s)
 		{
 			return s;
 		}
 
-		// Token: 0x06000200 RID: 512 RVA: 0x000035D5 File Offset: 0x000017D5
 		public static string EncodeBase64(string str)
 		{
 			return str;
 		}
 
-		// Token: 0x06000201 RID: 513 RVA: 0x00026C74 File Offset: 0x00024E74
 		public static string MakeStageParameter(string Parameter, int StageSplit, string[] StageText, Runtime.DefinedData.StageSizeData StageSizeData, bool notdefaultparam = false)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -979,7 +970,6 @@ namespace MasaoPlus
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x06000202 RID: 514 RVA: 0x00026DC8 File Offset: 0x00024FC8
 		public static string LoadUnknownTextFile(string path)
 		{
 			if (!File.Exists(path))
@@ -995,7 +985,6 @@ namespace MasaoPlus
 			return Subsystem.GetCode(array).GetString(array);
 		}
 
-		// Token: 0x06000203 RID: 515 RVA: 0x00026E38 File Offset: 0x00025038
 		public static Encoding GetCode(byte[] byts)
 		{
 			int num = byts.Length;
@@ -1117,7 +1106,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000204 RID: 516 RVA: 0x00027200 File Offset: 0x00025400
 		public static string ExtractZipArchive(string InputArchive)
 		{
 			string text = "";
@@ -1162,7 +1150,6 @@ namespace MasaoPlus
 			return text;
 		}
 
-		// Token: 0x06000205 RID: 517 RVA: 0x00027344 File Offset: 0x00025544
 		public static bool InstallRuntime(string Source)
 		{
 			string text = Subsystem.ExtractZipArchive(Source);
@@ -1241,7 +1228,6 @@ namespace MasaoPlus
 			return true;
 		}
 
-		// Token: 0x06000206 RID: 518 RVA: 0x00027600 File Offset: 0x00025800
 		public static void UpdateAutoCheck()
 		{
 			if (!Global.definition.IsAutoUpdateEnabled)
@@ -1274,7 +1260,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000207 RID: 519 RVA: 0x0002773C File Offset: 0x0002593C
 		private static void dlClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
 		{
 			Subsystem.dlClient.Dispose();
@@ -1313,10 +1298,8 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x04000293 RID: 659
 		private static WebClient dlClient;
 
-		// Token: 0x04000294 RID: 660
 		private static string tempfile;
 	}
 }

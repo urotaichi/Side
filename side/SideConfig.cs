@@ -9,16 +9,13 @@ using Microsoft.Win32;
 
 namespace MasaoPlus
 {
-	// Token: 0x0200002A RID: 42
 	public partial class SideConfig : Form
 	{
-		// Token: 0x0600012D RID: 301 RVA: 0x00002C0E File Offset: 0x00000E0E
 		public SideConfig()
 		{
 			this.InitializeComponent();
 		}
 
-		// Token: 0x0600012E RID: 302 RVA: 0x00018870 File Offset: 0x00016A70
 		private void SideConfig_Load(object sender, EventArgs e)
 		{
 			this.OutputFileEncode.Text = Global.config.localSystem.FileEncoding.WebName;
@@ -73,7 +70,6 @@ namespace MasaoPlus
 			this.FormShown = true;
 		}
 
-		// Token: 0x0600012F RID: 303 RVA: 0x00018B90 File Offset: 0x00016D90
 		private void Accept_Click(object sender, EventArgs e)
 		{
 			Global.config.localSystem.FileEncoding = Encoding.GetEncoding(this.OutputFileEncode.Items[this.OutputFileEncode.SelectedIndex].ToString());
@@ -103,13 +99,11 @@ namespace MasaoPlus
 			base.Close();
 		}
 
-		// Token: 0x06000130 RID: 304 RVA: 0x00002C1C File Offset: 0x00000E1C
 		private void UseIntegBrow_CheckedChanged(object sender, EventArgs e)
 		{
 			this.UnuseIntegBrow.Enabled = !this.UseIntegBrow.Checked;
 		}
 
-		// Token: 0x06000131 RID: 305 RVA: 0x00018DFC File Offset: 0x00016FFC
 		private void RegistProjFile_Click(object sender, EventArgs e)
 		{
 			try
@@ -147,7 +141,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000132 RID: 306 RVA: 0x00018EF0 File Offset: 0x000170F0
 		private void UnregistProjFile_Click(object sender, EventArgs e)
 		{
 			try
@@ -185,7 +178,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000133 RID: 307 RVA: 0x00002C37 File Offset: 0x00000E37
 		private void ChipSkip_CheckedChanged(object sender, EventArgs e)
 		{
 			if (this.ChipSkip.Checked)
@@ -194,7 +186,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000134 RID: 308 RVA: 0x00018FE4 File Offset: 0x000171E4
 		private void ReuseDraw_CheckedChanged(object sender, EventArgs e)
 		{
 			if (this.ReuseDraw.Checked)
@@ -208,7 +199,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000135 RID: 309 RVA: 0x00019044 File Offset: 0x00017244
 		private void BPSelect_Click(object sender, EventArgs e)
 		{
 			using (System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog())
@@ -223,10 +213,8 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0400016D RID: 365
 		private bool UseUAC;
 
-		// Token: 0x0400016E RID: 366
 		private bool FormShown;
 	}
 }

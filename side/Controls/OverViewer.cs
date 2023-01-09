@@ -8,10 +8,8 @@ using System.Windows.Forms;
 
 namespace MasaoPlus.Controls
 {
-	// Token: 0x02000034 RID: 52
 	public class OverViewer : Control
 	{
-		// Token: 0x060001D6 RID: 470 RVA: 0x000033BC File Offset: 0x000015BC
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -21,7 +19,6 @@ namespace MasaoPlus.Controls
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x060001D7 RID: 471 RVA: 0x000033DB File Offset: 0x000015DB
 		private void InitializeComponent()
 		{
 			base.SuspendLayout();
@@ -29,9 +26,6 @@ namespace MasaoPlus.Controls
 			base.ResumeLayout(false);
 		}
 
-		// Token: 0x17000028 RID: 40
-		// (get) Token: 0x060001D8 RID: 472 RVA: 0x00025C94 File Offset: 0x00023E94
-		// (set) Token: 0x060001D9 RID: 473 RVA: 0x000033FC File Offset: 0x000015FC
 		public new Size Size
 		{
 			get
@@ -47,7 +41,6 @@ namespace MasaoPlus.Controls
 			}
 		}
 
-		// Token: 0x060001DA RID: 474 RVA: 0x00025CF4 File Offset: 0x00023EF4
 		public OverViewer()
 		{
 			this.InitializeComponent();
@@ -58,7 +51,6 @@ namespace MasaoPlus.Controls
 			this.CreateDrawSource();
 		}
 
-		// Token: 0x060001DB RID: 475 RVA: 0x00025D44 File Offset: 0x00023F44
 		public void CreateDrawSource()
 		{
 			if (Global.cpd.runtime == null)
@@ -69,7 +61,6 @@ namespace MasaoPlus.Controls
 			this.UpdateDrawSource();
 		}
 
-		// Token: 0x060001DC RID: 476 RVA: 0x00025DA4 File Offset: 0x00023FA4
 		public unsafe void UpdateDrawSource()
 		{
 			BitmapData bitmapData = this.Source.LockBits(new Rectangle(new Point(0, 0), this.Source.Size), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
@@ -139,7 +130,6 @@ namespace MasaoPlus.Controls
 			this.Refresh();
 		}
 
-		// Token: 0x060001DD RID: 477 RVA: 0x00026014 File Offset: 0x00024214
 		private void OverViewer_Paint(object sender, PaintEventArgs e)
 		{
 			if (this.Source == null)
@@ -158,13 +148,10 @@ namespace MasaoPlus.Controls
 			}
 		}
 
-		// Token: 0x04000287 RID: 647
 		private IContainer components;
 
-		// Token: 0x04000288 RID: 648
 		private Bitmap Source;
 
-		// Token: 0x04000289 RID: 649
 		public int ppb = 2;
 	}
 }

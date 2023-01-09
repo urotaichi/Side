@@ -14,15 +14,10 @@ using MasaoPlus.Properties;
 
 namespace MasaoPlus
 {
-	// Token: 0x0200002B RID: 43
 	public partial class MainWindow : Form
 	{
-		// Token: 0x14000002 RID: 2
-		// (add) Token: 0x0600013A RID: 314 RVA: 0x0001F5E0 File Offset: 0x0001D7E0
-		// (remove) Token: 0x0600013B RID: 315 RVA: 0x0001F618 File Offset: 0x0001D818
 		public event MainWindow.MainDesignerScrollInvoke MainDesignerScroll;
 
-		// Token: 0x0600013C RID: 316 RVA: 0x0001F650 File Offset: 0x0001D850
 		public MainWindow()
 		{
 			Global.MainWnd = this;
@@ -35,7 +30,6 @@ namespace MasaoPlus
 			this.MainDesigner.MouseWheel += this.MainDesigner_MouseWheel;
 		}
 
-		// Token: 0x0600013D RID: 317 RVA: 0x0001F70C File Offset: 0x0001D90C
 		private void MainDesigner_MouseWheel(object sender, MouseEventArgs e)
 		{
 			int num = e.Delta / 120 * Global.cpd.runtime.Definitions.ChipSize.Height;
@@ -55,7 +49,6 @@ namespace MasaoPlus
 			this.MainDesigner.Refresh();
 		}
 
-		// Token: 0x0600013E RID: 318 RVA: 0x0001F7D4 File Offset: 0x0001D9D4
 		public void RefreshAll()
 		{
 			this.UpdateStatus("パラメータを反映しています...");
@@ -71,13 +64,11 @@ namespace MasaoPlus
 			this.UpdateStatus("完了");
 		}
 
-		// Token: 0x0600013F RID: 319 RVA: 0x00002C90 File Offset: 0x00000E90
 		public void Testrun()
 		{
 			this.EditTab.SelectedIndex = 2;
 		}
 
-		// Token: 0x06000140 RID: 320 RVA: 0x0001F858 File Offset: 0x0001DA58
 		private void MainDesigner_ChangeBufferInvoke()
 		{
 			this.ItemUndo.Enabled = (this.MainDesigner.BufferCurrent != 0);
@@ -86,7 +77,6 @@ namespace MasaoPlus
 			this.GMRedo.Enabled = this.ItemRedo.Enabled;
 		}
 
-		// Token: 0x06000141 RID: 321 RVA: 0x0001F8D8 File Offset: 0x0001DAD8
 		private void MainWindow_Load(object sender, EventArgs e)
 		{
 			this.MUpdateApp.Enabled = Global.definition.IsAutoUpdateEnabled;
@@ -151,7 +141,6 @@ namespace MasaoPlus
 			Global.config.draw.ZoomIndex = 1.0;
 		}
 
-		// Token: 0x06000142 RID: 322 RVA: 0x0001FB10 File Offset: 0x0001DD10
 		private void MainWindow_Shown(object sender, EventArgs e)
 		{
 			this.EditorSystemPanel_Resize(this, new EventArgs());
@@ -215,7 +204,6 @@ namespace MasaoPlus
 			this.UpdateStageSelector();
 		}
 
-		// Token: 0x06000143 RID: 323 RVA: 0x0001FC88 File Offset: 0x0001DE88
 		public void UpdateTitle()
 		{
 			if (Global.cpd.project == null)
@@ -259,7 +247,6 @@ namespace MasaoPlus
 			this.Text = stringBuilder.ToString();
 		}
 
-		// Token: 0x06000144 RID: 324 RVA: 0x0001FE14 File Offset: 0x0001E014
 		// ステータスバーっぽいところに表示される小さいアイコンや文字
 		private void MainDesigner_MouseMove(object sender, MouseEventArgs e)
 		{
@@ -1160,7 +1147,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000145 RID: 325 RVA: 0x00020288 File Offset: 0x0001E488
 		public void CommitScrollbar()
 		{
 			this.GHorzScroll.Value = Global.state.MapPoint.X;
@@ -1171,13 +1157,11 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000146 RID: 326 RVA: 0x00002C9E File Offset: 0x00000E9E
 		public void UpdateScrollbar()
 		{
 			this.UpdateScrollbar(Global.config.draw.ZoomIndex);
 		}
 
-		// Token: 0x06000147 RID: 327 RVA: 0x000202DC File Offset: 0x0001E4DC
 		public void UpdateScrollbar(double oldZoomIndex)
 		{
 			double num = Global.config.draw.ZoomIndex / oldZoomIndex;
@@ -1247,7 +1231,6 @@ namespace MasaoPlus
 			this.MainDesigner.Refresh();
 		}
 
-		// Token: 0x06000148 RID: 328 RVA: 0x00020604 File Offset: 0x0001E804
 		private void EditorSystemPanel_Resize(object sender, EventArgs e)
 		{
 			this.MainDesigner.Width = this.EditorSystemPanel.Width - 20;
@@ -1261,7 +1244,6 @@ namespace MasaoPlus
 			this.UpdateScrollbar();
 		}
 
-		// Token: 0x06000149 RID: 329 RVA: 0x000206B8 File Offset: 0x0001E8B8
 		private void EditTab_Deselecting(object sender, TabControlCancelEventArgs e)
 		{
 			if (e.TabPageIndex == 1 && !this.MainEditor.CanConvertTextSource() && MessageBox.Show(string.Concat(new string[]
@@ -1277,7 +1259,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600014A RID: 330 RVA: 0x00020728 File Offset: 0x0001E928
 		private void EditTab_Selecting(object sender, TabControlCancelEventArgs e)
 		{
 			if (e.TabPageIndex == 2)
@@ -1303,7 +1284,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600014B RID: 331 RVA: 0x000207C4 File Offset: 0x0001E9C4
 		private void EditTab_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (this.Restartupping)
@@ -1408,14 +1388,12 @@ namespace MasaoPlus
 			this.UpdateTitle();
 		}
 
-		// Token: 0x0600014C RID: 332 RVA: 0x00020CA4 File Offset: 0x0001EEA4
 		public void ChipItemReady()
 		{
 			MainWindow.CRID method = new MainWindow.CRID(this.ChipItemReadyInvoke);
 			base.Invoke(method);
 		}
 
-		// Token: 0x0600014D RID: 333 RVA: 0x00020CC8 File Offset: 0x0001EEC8
 		// クラシックチップリスト以外
 		public void ChipItemReadyInvoke()
 		{
@@ -1555,7 +1533,6 @@ namespace MasaoPlus
 			this.ChipList.EndUpdate();
 		}
 
-		// Token: 0x0600014E RID: 334 RVA: 0x00002CB5 File Offset: 0x00000EB5
 		private void GVirtScroll_Scroll(object sender, ScrollEventArgs e)
 		{
 			Global.state.MapPoint.Y = this.GVirtScroll.Value;
@@ -1566,7 +1543,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600014F RID: 335 RVA: 0x00002CEF File Offset: 0x00000EEF
 		private void GHorzScroll_Scroll(object sender, ScrollEventArgs e)
 		{
 			Global.state.MapPoint.X = this.GHorzScroll.Value;
@@ -1577,7 +1553,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000150 RID: 336 RVA: 0x00002D29 File Offset: 0x00000F29
 		private void ShowGrid_Click(object sender, EventArgs e)
 		{
 			this.GMShowGrid.Checked = this.ShowGrid.Checked;
@@ -1585,7 +1560,6 @@ namespace MasaoPlus
 			this.MainDesigner.Refresh();
 		}
 
-		// Token: 0x06000151 RID: 337 RVA: 0x00002D66 File Offset: 0x00000F66
 		private void GMShowGrid_Click(object sender, EventArgs e)
 		{
 			this.ShowGrid.Checked = this.GMShowGrid.Checked;
@@ -1593,7 +1567,6 @@ namespace MasaoPlus
 			this.MainDesigner.Refresh();
 		}
 
-		// Token: 0x06000152 RID: 338 RVA: 0x00020DE0 File Offset: 0x0001EFE0
 		private void ZoomInit()
 		{
 			this.StageZoom25.Checked = false;
@@ -1606,7 +1579,6 @@ namespace MasaoPlus
 			this.GMZoom200.Checked = false;
 		}
 
-		// Token: 0x06000153 RID: 339 RVA: 0x00020E50 File Offset: 0x0001F050
 		private void StageZoom25_Click(object sender, EventArgs e)
 		{
 			this.ZoomInit();
@@ -1617,7 +1589,6 @@ namespace MasaoPlus
 			this.UpdateScrollbar(zoomIndex);
 		}
 
-		// Token: 0x06000154 RID: 340 RVA: 0x00020EAC File Offset: 0x0001F0AC
 		private void StageZoom50_Click(object sender, EventArgs e)
 		{
 			this.ZoomInit();
@@ -1628,7 +1599,6 @@ namespace MasaoPlus
 			this.UpdateScrollbar(zoomIndex);
 		}
 
-		// Token: 0x06000155 RID: 341 RVA: 0x00020F08 File Offset: 0x0001F108
 		private void StageZoom100_Click(object sender, EventArgs e)
 		{
 			this.ZoomInit();
@@ -1639,7 +1609,6 @@ namespace MasaoPlus
 			this.UpdateScrollbar(zoomIndex);
 		}
 
-		// Token: 0x06000156 RID: 342 RVA: 0x00020F64 File Offset: 0x0001F164
 		private void StageZoom200_Click(object sender, EventArgs e)
 		{
 			this.ZoomInit();
@@ -1650,7 +1619,6 @@ namespace MasaoPlus
 			this.UpdateScrollbar(zoomIndex);
 		}
 
-		// Token: 0x06000157 RID: 343 RVA: 0x00020FC0 File Offset: 0x0001F1C0
 		private void ChipList_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (this.ChipList.SelectedIndex >= 0)
@@ -1669,7 +1637,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000158 RID: 344 RVA: 0x00021070 File Offset: 0x0001F270
 		// チップリストの左上
 		private void state_UpdateCurrentChipInvoke()
 		{
@@ -1826,7 +1793,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000159 RID: 345 RVA: 0x0002126C File Offset: 0x0001F46C
 		// チップリストの左上
 		private void ChipImage_Paint(object sender, PaintEventArgs e)
 		{
@@ -2549,7 +2515,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600015A RID: 346 RVA: 0x0002140C File Offset: 0x0001F60C
 		private void ItemReload_Click(object sender, EventArgs e)
 		{
 			this.UpdateStatus("描画中...");
@@ -2561,14 +2526,12 @@ namespace MasaoPlus
 			this.UpdateStatus("完了(" + (Environment.TickCount - tickCount).ToString() + "ms)");
 		}
 
-		// Token: 0x0600015B RID: 347 RVA: 0x00002DA3 File Offset: 0x00000FA3
 		public void UpdateStatus(string t)
 		{
 			this.CurrentStatus.Text = t;
 			this.GUIEditorStatus.Refresh();
 		}
 
-		// Token: 0x0600015C RID: 348 RVA: 0x0002147C File Offset: 0x0001F67C
 		private void ItemUncheck()
 		{
 			this.ItemCursor.Checked = false;
@@ -2583,7 +2546,6 @@ namespace MasaoPlus
 			this.GMFill.Checked = false;
 		}
 
-		// Token: 0x0600015D RID: 349 RVA: 0x00002DBC File Offset: 0x00000FBC
 		private void ItemCursor_Click(object sender, EventArgs e)
 		{
 			this.ItemUncheck();
@@ -2592,7 +2554,6 @@ namespace MasaoPlus
 			this.MainDesigner.CurrentTool = GUIDesigner.EditTool.Cursor;
 		}
 
-		// Token: 0x0600015E RID: 350 RVA: 0x00002DE8 File Offset: 0x00000FE8
 		private void ItemPen_Click(object sender, EventArgs e)
 		{
 			this.ItemUncheck();
@@ -2601,7 +2562,6 @@ namespace MasaoPlus
 			this.MainDesigner.CurrentTool = GUIDesigner.EditTool.Pen;
 		}
 
-		// Token: 0x0600015F RID: 351 RVA: 0x00002E14 File Offset: 0x00001014
 		private void ItemLine_Click(object sender, EventArgs e)
 		{
 			this.ItemUncheck();
@@ -2610,7 +2570,6 @@ namespace MasaoPlus
 			this.MainDesigner.CurrentTool = GUIDesigner.EditTool.Line;
 		}
 
-		// Token: 0x06000160 RID: 352 RVA: 0x00002E40 File Offset: 0x00001040
 		private void ItemRect_Click(object sender, EventArgs e)
 		{
 			this.ItemUncheck();
@@ -2619,7 +2578,6 @@ namespace MasaoPlus
 			this.MainDesigner.CurrentTool = GUIDesigner.EditTool.Rect;
 		}
 
-		// Token: 0x06000161 RID: 353 RVA: 0x00002E6C File Offset: 0x0000106C
 		private void ItemFill_Click(object sender, EventArgs e)
 		{
 			this.ItemUncheck();
@@ -2628,52 +2586,44 @@ namespace MasaoPlus
 			this.MainDesigner.CurrentTool = GUIDesigner.EditTool.Fill;
 		}
 
-		// Token: 0x06000162 RID: 354 RVA: 0x00002E98 File Offset: 0x00001098
 		private void ItemUndo_Click(object sender, EventArgs e)
 		{
 			this.MainDesigner.Undo();
 		}
 
-		// Token: 0x06000163 RID: 355 RVA: 0x00002EA5 File Offset: 0x000010A5
 		private void GMUndo_Click(object sender, EventArgs e)
 		{
 			this.ItemUndo_Click(this, new EventArgs());
 		}
 
-		// Token: 0x06000164 RID: 356 RVA: 0x00002EB3 File Offset: 0x000010B3
 		private void ItemRedo_Click(object sender, EventArgs e)
 		{
 			this.MainDesigner.Redo();
 		}
 
-		// Token: 0x06000165 RID: 357 RVA: 0x00002EC0 File Offset: 0x000010C0
 		private void GMRedo_Click(object sender, EventArgs e)
 		{
 			this.ItemRedo_Click(this, new EventArgs());
 		}
 
-		// Token: 0x06000166 RID: 358 RVA: 0x00002ECE File Offset: 0x000010CE
 		private void GMCut_Click(object sender, EventArgs e)
 		{
 			this.GuiCut.Checked = !this.GuiCut.Checked;
 			this.GuiCut_Click(sender, e);
 		}
 
-		// Token: 0x06000167 RID: 359 RVA: 0x00002EF1 File Offset: 0x000010F1
 		private void GMCopy_Click(object sender, EventArgs e)
 		{
 			this.GuiCopy.Checked = !this.GuiCopy.Checked;
 			this.GuiCopy_Click(sender, e);
 		}
 
-		// Token: 0x06000168 RID: 360 RVA: 0x00002F14 File Offset: 0x00001114
 		private void GMPaste_Click(object sender, EventArgs e)
 		{
 			this.GuiPaste.Checked = !this.GuiPaste.Checked;
 			this.GuiPaste_Click(sender, e);
 		}
 
-		// Token: 0x06000169 RID: 361 RVA: 0x00021504 File Offset: 0x0001F704
 		private void MainDesigner_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
 		{
 			Keys keyCode = e.KeyCode;
@@ -2684,7 +2634,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600016A RID: 362 RVA: 0x00021528 File Offset: 0x0001F728
 		private void MainDesigner_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Modifiers == Keys.None)
@@ -2876,7 +2825,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600016B RID: 363 RVA: 0x0002193C File Offset: 0x0001FB3C
 		public void MoveMainDesigner(Size Scroll)
 		{
 			State state = Global.state;
@@ -2888,7 +2836,6 @@ namespace MasaoPlus
 			this.MainDesigner.Refresh();
 		}
 
-		// Token: 0x0600016C RID: 364 RVA: 0x000219B0 File Offset: 0x0001FBB0
 		private void MainDesigner_KeyUp(object sender, KeyEventArgs e)
 		{
 			if (e.Modifiers == Keys.None)
@@ -2905,7 +2852,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600016D RID: 365 RVA: 0x00002F37 File Offset: 0x00001137
 		public void GuiCut_Click(object sender, EventArgs e)
 		{
 			if (this.GuiCut.Checked)
@@ -2918,7 +2864,6 @@ namespace MasaoPlus
 			this.CopyPasteInit();
 		}
 
-		// Token: 0x0600016E RID: 366 RVA: 0x00002F71 File Offset: 0x00001171
 		public void GuiCopy_Click(object sender, EventArgs e)
 		{
 			if (this.GuiCopy.Checked)
@@ -2931,7 +2876,6 @@ namespace MasaoPlus
 			this.CopyPasteInit();
 		}
 
-		// Token: 0x0600016F RID: 367 RVA: 0x00021A00 File Offset: 0x0001FC00
 		public void GuiPaste_Click(object sender, EventArgs e)
 		{
 			if (!this.GuiPaste.Checked)
@@ -2951,7 +2895,6 @@ namespace MasaoPlus
 			this.UpdateStatus("クリップテキストが不正です");
 		}
 
-		// Token: 0x06000170 RID: 368 RVA: 0x00002FAB File Offset: 0x000011AB
 		public void CopyPasteInit()
 		{
 			this.GuiCopy.Checked = false;
@@ -2961,13 +2904,11 @@ namespace MasaoPlus
 			this.MainDesigner.Refresh();
 		}
 
-		// Token: 0x06000171 RID: 369 RVA: 0x00002FE8 File Offset: 0x000011E8
 		private void GUIProjConfig_Click(object sender, EventArgs e)
 		{
 			this.ProjectConfig_Click(this, new EventArgs());
 		}
 
-		// Token: 0x06000172 RID: 370 RVA: 0x00021A74 File Offset: 0x0001FC74
 		private void DrawType_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (this.DrawType.SelectedIndex == 3)
@@ -2985,7 +2926,6 @@ namespace MasaoPlus
 			this.ChipList.Refresh();
 		}
 
-		// Token: 0x06000173 RID: 371 RVA: 0x00021AFC File Offset: 0x0001FCFC
 		private void ChipList_DrawItem(object sender, DrawItemEventArgs e)
 		{
 			if (e.Index == -1)
@@ -4495,7 +4435,6 @@ namespace MasaoPlus
 			e.DrawFocusRectangle();
 		}
 
-		// Token: 0x06000174 RID: 372 RVA: 0x00022284 File Offset: 0x00020484
 		private void ChipList_MeasureItem(object sender, MeasureItemEventArgs e)
 		{
 			int chip_hight = Global.cpd.runtime.Definitions.ChipSize.Height;
@@ -4559,43 +4498,36 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000175 RID: 373 RVA: 0x00002FF6 File Offset: 0x000011F6
 		private void TMUndo_Click(object sender, EventArgs e)
 		{
 			this.MainEditor.Undo();
 		}
 
-		// Token: 0x06000176 RID: 374 RVA: 0x00003003 File Offset: 0x00001203
 		private void TMRedo_Click(object sender, EventArgs e)
 		{
 			this.MainEditor.Redo();
 		}
 
-		// Token: 0x06000177 RID: 375 RVA: 0x00003010 File Offset: 0x00001210
 		private void TextCut_Click(object sender, EventArgs e)
 		{
 			this.MainEditor.StageTextEditor.Cut();
 		}
 
-		// Token: 0x06000178 RID: 376 RVA: 0x00003022 File Offset: 0x00001222
 		private void TextCopy_Click(object sender, EventArgs e)
 		{
 			this.MainEditor.StageTextEditor.Copy();
 		}
 
-		// Token: 0x06000179 RID: 377 RVA: 0x00003034 File Offset: 0x00001234
 		private void TextPaste_Click(object sender, EventArgs e)
 		{
 			this.MainEditor.StageTextEditor.Paste();
 		}
 
-		// Token: 0x0600017A RID: 378 RVA: 0x00002C90 File Offset: 0x00000E90
 		private void ProjTestRun(object sender, EventArgs e)
 		{
 			this.EditTab.SelectedIndex = 2;
 		}
 
-		// Token: 0x0600017B RID: 379 RVA: 0x00022460 File Offset: 0x00020660
 		private void MainWindow_Activated(object sender, EventArgs e)
 		{
 			if (this.EditTab.SelectedIndex == 0)
@@ -4622,7 +4554,6 @@ namespace MasaoPlus
 			Global.state.Testrun = null;
 		}
 
-		// Token: 0x0600017C RID: 380 RVA: 0x00003046 File Offset: 0x00001246
 		private void MainDesigner_Enter(object sender, EventArgs e)
 		{
 			if (this.OldET != GUIDesigner.EditTool.Cursor && this.MainDesigner.CurrentTool == GUIDesigner.EditTool.Cursor)
@@ -4632,7 +4563,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600017D RID: 381 RVA: 0x0002254C File Offset: 0x0002074C
 		private void RestartUp(string su)
 		{
 			this.Restartupping = true;
@@ -4672,7 +4602,6 @@ namespace MasaoPlus
 			this.Restartupping = false;
 		}
 
-		// Token: 0x0600017E RID: 382 RVA: 0x00003075 File Offset: 0x00001275
 		private void LayerState(bool enabled)
 		{
 			this.ViewUnactiveLayer.Enabled = enabled;
@@ -4681,7 +4610,6 @@ namespace MasaoPlus
 			this.MainEditor.StageLayer.Visible = enabled;
 		}
 
-		// Token: 0x0600017F RID: 383 RVA: 0x0002266C File Offset: 0x0002086C
 		private void MNew_Click(object sender, EventArgs e)
 		{
 			if (Global.state.EditFlag && MessageBox.Show(string.Concat(new string[]
@@ -4704,7 +4632,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000180 RID: 384 RVA: 0x00022700 File Offset: 0x00020900
 		private void MOpen_Click(object sender, EventArgs e)
 		{
 			if (Global.state.EditFlag && MessageBox.Show(string.Concat(new string[]
@@ -4737,7 +4664,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000181 RID: 385 RVA: 0x000030AC File Offset: 0x000012AC
 		private void MSave_Click(object sender, EventArgs e)
 		{
 			Global.cpd.project.SaveXML(Global.cpd.filename);
@@ -4745,7 +4671,6 @@ namespace MasaoPlus
 			this.UpdateStatus("保存しました");
 		}
 
-		// Token: 0x06000182 RID: 386 RVA: 0x000227FC File Offset: 0x000209FC
 		private void MSaveAs_Click(object sender, EventArgs e)
 		{
 			using (SaveFileDialog saveFileDialog = new SaveFileDialog())
@@ -4794,7 +4719,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000183 RID: 387 RVA: 0x000229D4 File Offset: 0x00020BD4
 		private void MWriteHTML_Click(object sender, EventArgs e)
 		{
 			using (SaveFileDialog saveFileDialog = new SaveFileDialog())
@@ -4825,13 +4749,11 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000184 RID: 388 RVA: 0x000030DD File Offset: 0x000012DD
 		private void MExit_Click(object sender, EventArgs e)
 		{
 			base.Close();
 		}
 
-		// Token: 0x06000185 RID: 389 RVA: 0x00022B18 File Offset: 0x00020D18
 		private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			if (e.CloseReason == CloseReason.UserClosing && Global.state.EditFlag && MessageBox.Show("編集データが保存されていません。" + Environment.NewLine + "終了してもよろしいですか？", Global.definition.AppName + "の終了", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
@@ -4840,7 +4762,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000186 RID: 390 RVA: 0x00022B74 File Offset: 0x00020D74
 		private void ViewUnactiveLayer_Click(object sender, EventArgs e)
 		{
 			Global.state.DrawUnactiveLayer = !Global.state.DrawUnactiveLayer;
@@ -4871,7 +4792,6 @@ namespace MasaoPlus
 			this.MainDesigner.Refresh();
 		}
 
-		// Token: 0x06000187 RID: 391 RVA: 0x00022C60 File Offset: 0x00020E60
 		private void TransparentUnactiveLayer_Click(object sender, EventArgs e)
 		{
 			this.UpdateStatus("描画モードを切り替えています...");
@@ -4894,7 +4814,6 @@ namespace MasaoPlus
 			this.UpdateStatus("完了");
 		}
 
-		// Token: 0x06000188 RID: 392 RVA: 0x00022D10 File Offset: 0x00020F10
 		public void EditPatternChip_Click(object sender, EventArgs e)
 		{
 			if (Global.state.EditingForeground)
@@ -4915,7 +4834,6 @@ namespace MasaoPlus
 			this.UpdateLayer();
 		}
 
-		// Token: 0x06000189 RID: 393 RVA: 0x00022D98 File Offset: 0x00020F98
 		public void EditBackground_Click(object sender, EventArgs e)
 		{
 			if (!Global.state.EditingForeground)
@@ -4936,7 +4854,6 @@ namespace MasaoPlus
 			this.UpdateLayer();
 		}
 
-		// Token: 0x0600018A RID: 394 RVA: 0x00022E20 File Offset: 0x00021020
 		private bool ChangePreCheck()
 		{
 			return this.EditTab.SelectedIndex != 1 || this.MainEditor.CanConvertTextSource() || MessageBox.Show(string.Concat(new string[]
@@ -4949,7 +4866,6 @@ namespace MasaoPlus
 			}), "コンバート失敗", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) != DialogResult.Cancel;
 		}
 
-		// Token: 0x0600018B RID: 395 RVA: 0x00022E90 File Offset: 0x00021090
 		private void StageSelectionChange(int newValue)
 		{
 			if (Global.state.EdittingStage == newValue)
@@ -5008,7 +4924,6 @@ namespace MasaoPlus
 			this.UpdateScrollbar();
 		}
 
-		// Token: 0x0600018C RID: 396 RVA: 0x00023160 File Offset: 0x00021360
 		private void UpdateStageSelector()
 		{
 			this.MEditStage2.Enabled = (Global.cpd.project.Config.StageNum >= 2) || Global.cpd.project.Config.UseWorldmap;
@@ -5017,7 +4932,6 @@ namespace MasaoPlus
 			this.MEditMap.Enabled = Global.cpd.project.Config.UseWorldmap;
 		}
 
-		// Token: 0x0600018D RID: 397 RVA: 0x000231FC File Offset: 0x000213FC
 		private void UpdateLayer()
 		{
 			if (this.EditTab.SelectedIndex == 0)
@@ -5061,13 +4975,11 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600018E RID: 398 RVA: 0x000030E5 File Offset: 0x000012E5
 		private void DrawType_Resize(object sender, EventArgs e)
 		{
 			this.DrawType.Refresh();
 		}
 
-		// Token: 0x0600018F RID: 399 RVA: 0x000233B4 File Offset: 0x000215B4
 		public void MSysConfig_Click(object sender, EventArgs e)
 		{
 			using (SideConfig sideConfig = new SideConfig())
@@ -5086,7 +4998,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000190 RID: 400 RVA: 0x00023454 File Offset: 0x00021654
 		private void MVersion_Click(object sender, EventArgs e)
 		{
 			using (VersionInfo versionInfo = new VersionInfo())
@@ -5095,7 +5006,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000191 RID: 401 RVA: 0x000030F2 File Offset: 0x000012F2
 		private void SideTab_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (this.SideTab.SelectedIndex == 1)
@@ -5104,7 +5014,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000192 RID: 402 RVA: 0x0002348C File Offset: 0x0002168C
 		private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			if (e.CloseReason != CloseReason.ApplicationExitCall)
@@ -5129,7 +5038,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000193 RID: 403 RVA: 0x00023584 File Offset: 0x00021784
 		private void MainWindow_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Control)
@@ -5185,7 +5093,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000194 RID: 404 RVA: 0x00023650 File Offset: 0x00021850
 		public void ProjectConfig_Click(object sender, EventArgs e)
 		{
 			using (ProjectConfig projectConfig = new ProjectConfig())
@@ -5195,7 +5102,6 @@ namespace MasaoPlus
 			this.UpdateStageSelector();
 		}
 
-		// Token: 0x06000195 RID: 405 RVA: 0x0002368C File Offset: 0x0002188C
 		private void MWriteStagePicture_Click(object sender, EventArgs e)
 		{
 			string text = "";
@@ -5251,7 +5157,6 @@ namespace MasaoPlus
 			MessageBox.Show("保存しました。", "ステージ画像の保存", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 		}
 
-		// Token: 0x06000196 RID: 406 RVA: 0x000238F0 File Offset: 0x00021AF0
 		private void MResetProjRuntime_Click(object sender, EventArgs e)
 		{
 			using (ResetRuntime resetRuntime = new ResetRuntime())
@@ -5272,7 +5177,6 @@ namespace MasaoPlus
 			this.LayerState(false);
 		}
 
-		// Token: 0x06000197 RID: 407 RVA: 0x00023968 File Offset: 0x00021B68
 		private void InstalledRuntime_Click(object sender, EventArgs e)
 		{
 			DialogResult dialogResult = DialogResult.Retry;
@@ -5285,7 +5189,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000198 RID: 408 RVA: 0x000239A8 File Offset: 0x00021BA8
 		private void MProjectInheritNew_Click(object sender, EventArgs e)
 		{
 			if (Global.state.EditFlag && MessageBox.Show(string.Concat(new string[]
@@ -5323,7 +5226,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000199 RID: 409 RVA: 0x00023AC8 File Offset: 0x00021CC8
 		private void MConvertHTML_Click(object sender, EventArgs e)
 		{
 			if (Global.state.EditFlag && MessageBox.Show(string.Concat(new string[]
@@ -5354,7 +5256,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600019A RID: 410 RVA: 0x00023BAC File Offset: 0x00021DAC
 		private void MUpdateApp_Click(object sender, EventArgs e)
 		{
 			using (WebUpdate webUpdate = new WebUpdate())
@@ -5367,7 +5268,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600019B RID: 411 RVA: 0x00023C04 File Offset: 0x00021E04
 		private void MStageRev_Click(object sender, EventArgs e)
 		{
 			this.UpdateStatus("ステージ反転処理中...");
@@ -5413,44 +5313,37 @@ namespace MasaoPlus
 			this.UpdateStatus("完了");
 		}
 
-		// Token: 0x0600019C RID: 412 RVA: 0x0000310D File Offset: 0x0000130D
 		private void MEditStage1_Click(object sender, EventArgs e)
 		{
 			this.StageSelectionChange(0);
 		}
 
-		// Token: 0x0600019D RID: 413 RVA: 0x00003116 File Offset: 0x00001316
 		private void MEditStage2_Click(object sender, EventArgs e)
 		{
 			this.StageSelectionChange(1);
 		}
 
-		// Token: 0x0600019E RID: 414 RVA: 0x0000311F File Offset: 0x0000131F
 		private void MEditStage3_Click(object sender, EventArgs e)
 		{
 			this.StageSelectionChange(2);
 		}
 
-		// Token: 0x0600019F RID: 415 RVA: 0x00003128 File Offset: 0x00001328
 		private void MEditStage4_Click(object sender, EventArgs e)
 		{
 			this.StageSelectionChange(3);
 		}
 
-		// Token: 0x060001A0 RID: 416 RVA: 0x00003131 File Offset: 0x00001331
 		private void MEditMap_Click(object sender, EventArgs e)
 		{
 			this.StageSelectionChange(4);
 		}
 
-		// Token: 0x060001A1 RID: 417 RVA: 0x0000313A File Offset: 0x0000133A
 		private void AllTestrun(object sender, EventArgs e)
 		{
 			Global.state.TestrunAll = true;
 			this.EditTab.SelectedIndex = 2;
 		}
 
-		// Token: 0x060001A2 RID: 418 RVA: 0x00023E0C File Offset: 0x0002200C
 		private void MReloadImage_Click(object sender, EventArgs e)
 		{
 			this.UpdateStatus("更新しています...");
@@ -5461,7 +5354,6 @@ namespace MasaoPlus
 			this.UpdateStatus("完了");
 		}
 
-		// Token: 0x060001A3 RID: 419 RVA: 0x00023E68 File Offset: 0x00022068
 		private void ShowOverView_Click(object sender, EventArgs e)
 		{
 			if (this.ovw == null)
@@ -5477,7 +5369,6 @@ namespace MasaoPlus
 			this.ShowOverView.Checked = false;
 		}
 
-		// Token: 0x060001A4 RID: 420 RVA: 0x00003153 File Offset: 0x00001353
 		private void ovw_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			this.ovw.Dispose();
@@ -5485,24 +5376,16 @@ namespace MasaoPlus
 			this.ShowOverView.Checked = false;
 		}
 
-		// Token: 0x0400023A RID: 570
 		public OverViewWindow ovw;
 
-		// Token: 0x0400023B RID: 571
 		private bool StageConvert = true;
 
-		// Token: 0x0400023C RID: 572
 		private GUIDesigner.EditTool OldET;
 
-		// Token: 0x0400023D RID: 573
 		private bool Restartupping;
 
-		// Token: 0x0200002C RID: 44
-		// (Invoke) Token: 0x060001A6 RID: 422
 		public delegate void MainDesignerScrollInvoke();
 
-		// Token: 0x0200002D RID: 45
-		// (Invoke) Token: 0x060001AA RID: 426
 		private delegate void CRID();
 	}
 }

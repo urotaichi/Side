@@ -7,10 +7,8 @@ using System.Windows.Forms;
 
 namespace MasaoPlus
 {
-	// Token: 0x0200003A RID: 58
 	internal static class Program
 	{
-		// Token: 0x06000251 RID: 593 RVA: 0x00029E68 File Offset: 0x00028068
 		[STAThread]
 		private static void Main()
 		{

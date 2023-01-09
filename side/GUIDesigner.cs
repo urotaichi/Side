@@ -11,12 +11,8 @@ using System.Windows.Forms;
 
 namespace MasaoPlus
 {
-    // Token: 0x0200000C RID: 12
     public class GUIDesigner : UserControl, IDisposable
 	{
-		// Token: 0x17000010 RID: 16
-		// (get) Token: 0x0600006C RID: 108 RVA: 0x0000255B File Offset: 0x0000075B
-		// (set) Token: 0x0600006D RID: 109 RVA: 0x0000B4C8 File Offset: 0x000096C8
 		public GUIDesigner.EditTool CurrentTool
 		{
 			get
@@ -31,9 +27,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x17000011 RID: 17
-		// (get) Token: 0x0600006E RID: 110 RVA: 0x00002563 File Offset: 0x00000763
-		// (set) Token: 0x0600006F RID: 111 RVA: 0x0000B4F8 File Offset: 0x000096F8
 		public GUIDesigner.CopyPasteTool CopyPaste
 		{
 			get
@@ -55,14 +48,8 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x14000001 RID: 1
-		// (add) Token: 0x06000070 RID: 112 RVA: 0x0000256B File Offset: 0x0000076B
-		// (remove) Token: 0x06000071 RID: 113 RVA: 0x00002584 File Offset: 0x00000784
 		public event GUIDesigner.ChangeBuffer ChangeBufferInvoke;
 
-		// Token: 0x17000012 RID: 18
-		// (get) Token: 0x06000072 RID: 114 RVA: 0x0000259D File Offset: 0x0000079D
-		// (set) Token: 0x06000073 RID: 115 RVA: 0x000025A5 File Offset: 0x000007A5
 		private bool BufferingDraw
 		{
 			get
@@ -80,7 +67,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000074 RID: 116 RVA: 0x0000B53C File Offset: 0x0000973C
 		public void PaintStage(Graphics g, bool EnableExDraw)
 		{
 			bool extendDraw = Global.config.draw.ExtendDraw;
@@ -100,7 +86,6 @@ namespace MasaoPlus
 			this.Refresh();
 		}
 
-		// Token: 0x06000075 RID: 117 RVA: 0x000025C6 File Offset: 0x000007C6
 		public void ClearBuffer()
 		{
 			this.StageBuffer.Clear();
@@ -110,7 +95,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000076 RID: 118 RVA: 0x0000B5D8 File Offset: 0x000097D8
 		public void AddBuffer()
 		{
 			if (this.StageBuffer.Count > this.BufferCurrent + 1)
@@ -136,7 +120,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000077 RID: 119 RVA: 0x0000B6A8 File Offset: 0x000098A8
 		public void Undo()
 		{
 			if (this.BufferCurrent <= 0)
@@ -203,7 +186,6 @@ namespace MasaoPlus
 			Global.MainWnd.UpdateStatus("完了");
 		}
 
-		// Token: 0x06000078 RID: 120 RVA: 0x0000B9F4 File Offset: 0x00009BF4
 		public void Redo()
 		{
 			if (this.BufferCurrent >= this.StageBuffer.Count - 1)
@@ -270,8 +252,6 @@ namespace MasaoPlus
 			Global.MainWnd.UpdateStatus("完了");
 		}
 
-		// Token: 0x17000013 RID: 19
-		// (get) Token: 0x06000079 RID: 121 RVA: 0x0000BD4C File Offset: 0x00009F4C
 		public Size BufferSize
 		{
 			get
@@ -291,8 +271,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x17000014 RID: 20
-		// (get) Token: 0x0600007A RID: 122 RVA: 0x0000BD98 File Offset: 0x00009F98
 		public Size DisplaySize
 		{
 			get
@@ -312,8 +290,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x17000015 RID: 21
-		// (get) Token: 0x0600007B RID: 123 RVA: 0x0000BE50 File Offset: 0x0000A050
 		public Size CurrentChipSize
 		{
 			get
@@ -329,7 +305,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600007C RID: 124 RVA: 0x0000BED8 File Offset: 0x0000A0D8
 		public GUIDesigner()
 		{
 			this.InitializeComponent();
@@ -339,7 +314,6 @@ namespace MasaoPlus
 			base.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 		}
 
-		// Token: 0x0600007D RID: 125 RVA: 0x000025E6 File Offset: 0x000007E6
 		public void StageSourceToDrawBuffer()
 		{
 			if (Global.state.EditingForeground)
@@ -350,7 +324,6 @@ namespace MasaoPlus
 			this.UpdateBackgroundBuffer();
 		}
 
-		// Token: 0x0600007E RID: 126 RVA: 0x00002601 File Offset: 0x00000801
 		public void InitTransparent()
 		{
 			if (Global.cpd.UseLayer && Global.state.TransparentUnactiveLayer)
@@ -364,7 +337,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600007F RID: 127 RVA: 0x00002640 File Offset: 0x00000840
 		public void ForceBufferResize()
 		{
 			if (this.ForeLayerBmp != null)
@@ -380,7 +352,6 @@ namespace MasaoPlus
 			this.bufpos = -1;
 		}
 
-		// Token: 0x06000080 RID: 128 RVA: 0x0000BFA0 File Offset: 0x0000A1A0
 		public void UpdateForegroundBuffer()
 		{
 			bool flag = false;
@@ -412,7 +383,6 @@ namespace MasaoPlus
 			this.bufpos = -1;
 		}
 
-		// Token: 0x06000081 RID: 129 RVA: 0x0000C138 File Offset: 0x0000A338
 		public void UpdateBackgroundBuffer()
 		{
 			bool flag = false;
@@ -441,7 +411,6 @@ namespace MasaoPlus
 			this.bufpos = -1;
 		}
 
-		// Token: 0x06000082 RID: 130 RVA: 0x0000C254 File Offset: 0x0000A454
 		private void MakeDrawBuffer(Graphics g, bool foreground)
 		{
 			if (!Global.state.MapEditMode)
@@ -1742,14 +1711,12 @@ namespace MasaoPlus
 			list.Clear();
 		}
 
-		// Token: 0x06000083 RID: 131 RVA: 0x0000CF1C File Offset: 0x0000B11C
 		public void TransparentStageClip(Bitmap b, Rectangle stagearea)
 		{
 			Size chipSize = Global.cpd.runtime.Definitions.ChipSize;
 			this.TransparentClip(b, new Rectangle(stagearea.X * chipSize.Width, stagearea.Y * chipSize.Height, stagearea.Width * chipSize.Width, stagearea.Height * chipSize.Height));
 		}
 
-		// Token: 0x06000084 RID: 132 RVA: 0x0000CF88 File Offset: 0x0000B188
 		public unsafe void TransparentClip(Bitmap b, Rectangle area)
 		{
 			try
@@ -1771,7 +1738,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000085 RID: 133 RVA: 0x0000D008 File Offset: 0x0000B208
 		public unsafe void HalfTransparentBitmap(Bitmap b)
 		{
 			byte b2 = 125;
@@ -1792,7 +1758,6 @@ namespace MasaoPlus
 			b.UnlockBits(bitmapData);
 		}
 
-		// Token: 0x06000086 RID: 134 RVA: 0x0000D0A0 File Offset: 0x0000B2A0
 		public void HalfTransparentBitmap2(ref Bitmap b)
 		{
 			Bitmap bitmap = new Bitmap(b.Width, b.Height, PixelFormat.Format32bppArgb);
@@ -1814,7 +1779,6 @@ namespace MasaoPlus
 			b = bitmap;
 		}
 
-		// Token: 0x06000087 RID: 135 RVA: 0x0000D184 File Offset: 0x0000B384
 		public void CreateDrawItemReference()
 		{
 			this.DrawItemRef.Clear();
@@ -1837,7 +1801,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000088 RID: 136 RVA: 0x0000D280 File Offset: 0x0000B480
 		// 画像準備
 		public void PrepareImages()
 		{
@@ -2053,7 +2016,6 @@ namespace MasaoPlus
 			this.DrawChizuOrig = Image.FromStream(fs, false, false);
 		}
 
-		// Token: 0x06000089 RID: 137 RVA: 0x0000D6A4 File Offset: 0x0000B8A4
 		protected unsafe override void OnPaint(PaintEventArgs e)
 		{
 			if (this.ForeLayerBmp == null)
@@ -2199,13 +2161,11 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600008A RID: 138 RVA: 0x0000267D File Offset: 0x0000087D
 		protected override void OnPaintBackground(PaintEventArgs e)
 		{
 			base.OnPaintBackground(e);
 		}
 
-		// Token: 0x0600008B RID: 139 RVA: 0x0000E220 File Offset: 0x0000C420
 		void IDisposable.Dispose()
 		{
 			if (this.DrawMask != null)
@@ -2305,7 +2265,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600008C RID: 140 RVA: 0x0000E300 File Offset: 0x0000C500
 		private void GUIDesigner_MouseDown(object sender, MouseEventArgs e)
 		{
 			if (e.Button != MouseButtons.Left)
@@ -2481,7 +2440,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600008D RID: 141 RVA: 0x0000EBD4 File Offset: 0x0000CDD4
 		private void FillStart(ChipsData repl, Point pt)
 		{
 			if (GUIDesigner.StageText.IsOverflow(pt))
@@ -2542,7 +2500,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600008E RID: 142 RVA: 0x0000EDCC File Offset: 0x0000CFCC
 		private void FillThis(ChipsData old, ChipsData repl, Point pt)
 		{
 			for (int i = 0; i < Global.state.GetCByte; i++)
@@ -2575,7 +2532,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600008F RID: 143 RVA: 0x0000EEB4 File Offset: 0x0000D0B4
 		private bool CheckChar(Point pt, ChipsData cd)
 		{
 			if (GUIDesigner.StageText.IsOverflow(pt))
@@ -2592,7 +2548,6 @@ namespace MasaoPlus
 			return true;
 		}
 
-		// Token: 0x06000090 RID: 144 RVA: 0x0000EF1C File Offset: 0x0000D11C
 		private void GUIDesigner_MouseMove(object sender, MouseEventArgs e)
 		{
 			if (this.CopyPaste != GUIDesigner.CopyPasteTool.Paste || this.MousePressed)
@@ -2779,7 +2734,6 @@ namespace MasaoPlus
 			this.Refresh();
 		}
 
-		// Token: 0x06000091 RID: 145 RVA: 0x0000F860 File Offset: 0x0000DA60
 		public bool CheckBuffer()
 		{
 			if (this.ClipedString == null || this.ClipedString.Length == 0)
@@ -2801,7 +2755,6 @@ namespace MasaoPlus
 			return num != 0 && num < Global.state.GetCByteWidth;
 		}
 
-		// Token: 0x06000092 RID: 146 RVA: 0x0000F8EC File Offset: 0x0000DAEC
 		private Size GetBufferSize()
 		{
 			string[] array = this.ClipedString.Split(new string[]
@@ -2811,7 +2764,6 @@ namespace MasaoPlus
 			return new Size(array[0].Length / Global.state.GetCByte, array.Length);
 		}
 
-		// Token: 0x06000093 RID: 147 RVA: 0x0000F934 File Offset: 0x0000DB34
 		public void EnsureScroll(int x, int y)
 		{
 			Size chipSize = Global.cpd.runtime.Definitions.ChipSize;
@@ -2869,7 +2821,6 @@ namespace MasaoPlus
 			Global.MainWnd.CommitScrollbar();
 		}
 
-		// Token: 0x06000094 RID: 148 RVA: 0x0000FAC8 File Offset: 0x0000DCC8
 		private void GUIDesigner_MouseUp(object sender, MouseEventArgs e)
 		{
 			if (this.MousePressed)
@@ -3089,7 +3040,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000095 RID: 149 RVA: 0x000102BC File Offset: 0x0000E4BC
 		public void DrawLine(Graphics g, Rectangle dr, bool L2R)
 		{
 			Point point = new Point(0, 0);
@@ -3141,13 +3091,11 @@ namespace MasaoPlus
 			this.Refresh();
 		}
 
-		// Token: 0x06000096 RID: 150 RVA: 0x00002686 File Offset: 0x00000886
 		public void PutItem(Point MapPos)
 		{
 			this.PutItem(MapPos, Global.state.CurrentChip);
 		}
 
-		// Token: 0x06000097 RID: 151 RVA: 0x00010478 File Offset: 0x0000E678
 		public void PutItem(Point MapPos, ChipsData cd)
 		{
 			Graphics graphics = null;
@@ -3170,7 +3118,6 @@ namespace MasaoPlus
 			this.Refresh();
 		}
 
-		// Token: 0x06000098 RID: 152 RVA: 0x000104D8 File Offset: 0x0000E6D8
 		public void PutItemText(ref char[] ca, Point MapPos, ChipsData cd)
 		{
 			if (GUIDesigner.StageText.IsOverflow(MapPos))
@@ -3183,7 +3130,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000099 RID: 153 RVA: 0x00010528 File Offset: 0x0000E728
 		public char[] PutItemTextStart(int Y)
 		{
 			if (Y < 0 || Y >= Global.state.GetCSSize.y)
@@ -3197,7 +3143,6 @@ namespace MasaoPlus
 			return Global.cpd.EditingLayer[Y].ToCharArray();
 		}
 
-		// Token: 0x0600009A RID: 154 RVA: 0x00002699 File Offset: 0x00000899
 		public void PutItemTextEnd(char[] item, int Y)
 		{
 			if (Global.state.EditingForeground)
@@ -3208,7 +3153,6 @@ namespace MasaoPlus
 			Global.cpd.EditingLayer[Y] = new string(item);
 		}
 
-		// Token: 0x0600009B RID: 155 RVA: 0x0001057C File Offset: 0x0000E77C
 		public Point GetLargerPoint(Point fst, Point snd)
 		{
 			return new Point
@@ -3218,7 +3162,6 @@ namespace MasaoPlus
 			};
 		}
 
-		// Token: 0x0600009C RID: 156 RVA: 0x000105E0 File Offset: 0x0000E7E0
 		public Size GetLargerSize(Size fst, Size snd)
 		{
 			return new Size
@@ -3228,7 +3171,6 @@ namespace MasaoPlus
 			};
 		}
 
-		// Token: 0x0600009D RID: 157 RVA: 0x00010644 File Offset: 0x0000E844
 		// チップを置いたとき
 		public void PutItem(Graphics g, Point MapPos, ChipsData cd)
 		{
@@ -3321,7 +3263,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600009E RID: 158 RVA: 0x00010A94 File Offset: 0x0000EC94
 		public void RedrawMap(Graphics g, Rectangle rect)
 		{
 			GraphicsState transState;
@@ -4533,7 +4474,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600009F RID: 159 RVA: 0x00011550 File Offset: 0x0000F750
 		private void GUIDesigner_MouseCaptureChanged(object sender, EventArgs e)
 		{
 			if (this.MousePressed)
@@ -4542,7 +4482,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x060000A0 RID: 160 RVA: 0x00011590 File Offset: 0x0000F790
 		private void GUIDesigner_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Control)
@@ -4561,7 +4500,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x060000A1 RID: 161 RVA: 0x000115CC File Offset: 0x0000F7CC
 		private void QuickTestRun_Click(object sender, EventArgs e)
 		{
 			Point mouseStartPoint = this.MouseStartPoint;
@@ -4581,7 +4519,6 @@ namespace MasaoPlus
 			Global.MainWnd.Testrun();
 		}
 
-		// Token: 0x060000A2 RID: 162 RVA: 0x00011710 File Offset: 0x0000F910
 		private void PickChip_Click(object sender, EventArgs e)
 		{
 			Point mouseStartPoint = this.MouseStartPoint;
@@ -4608,7 +4545,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x060000A3 RID: 163 RVA: 0x000026CC File Offset: 0x000008CC
 		private void MenuCut_Click(object sender, EventArgs e)
 		{
 			Global.MainWnd.GuiCut.Checked = true;
@@ -4616,7 +4552,6 @@ namespace MasaoPlus
 			this.Refresh();
 		}
 
-		// Token: 0x060000A4 RID: 164 RVA: 0x000026F0 File Offset: 0x000008F0
 		private void MenuCopy_Click(object sender, EventArgs e)
 		{
 			Global.MainWnd.GuiCopy.Checked = true;
@@ -4624,7 +4559,6 @@ namespace MasaoPlus
 			this.Refresh();
 		}
 
-		// Token: 0x060000A5 RID: 165 RVA: 0x00002714 File Offset: 0x00000914
 		private void MenuPaste_Click(object sender, EventArgs e)
 		{
 			Global.MainWnd.GuiPaste.Checked = true;
@@ -4632,19 +4566,16 @@ namespace MasaoPlus
 			this.Refresh();
 		}
 
-		// Token: 0x060000A6 RID: 166 RVA: 0x00002738 File Offset: 0x00000938
 		private void DoTestrun_Click(object sender, EventArgs e)
 		{
 			Global.MainWnd.Testrun();
 		}
 
-		// Token: 0x060000A7 RID: 167 RVA: 0x00002744 File Offset: 0x00000944
 		private void ProjectConfig_Click(object sender, EventArgs e)
 		{
 			Global.MainWnd.ProjectConfig_Click(this, new EventArgs());
 		}
 
-		// Token: 0x060000A8 RID: 168 RVA: 0x00002756 File Offset: 0x00000956
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -4654,7 +4585,6 @@ namespace MasaoPlus
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x060000A9 RID: 169 RVA: 0x000117B4 File Offset: 0x0000F9B4
 		private void InitializeComponent()
 		{
 			this.components = new Container();
@@ -4740,153 +4670,107 @@ namespace MasaoPlus
 			base.ResumeLayout(false);
 		}
 
-		// Token: 0x04000079 RID: 121
 		public Image DrawChipOrig;
 
-		// Token: 0x0400007A RID: 122
 		public Bitmap DrawMask;
 
-		// Token: 0x0400007B RID: 123
 		public Image DrawLayerOrig;
 
-		// Token: 0x0400007C RID: 124
 		public Bitmap DrawLayerMask;
 
 		public Image DrawOribossOrig;
 
 		public Bitmap DrawOribossMask;
 
-		// Token: 0x0400007D RID: 125
 		public Image DrawExOrig;
 
-		// Token: 0x0400007E RID: 126
 		public Bitmap DrawExMask;
 
 		public Image DrawHaikeiOrig, DrawHaikei2Orig, DrawHaikei3Orig, DrawHaikei4Orig, DrawSecondHaikeiOrig,
 			DrawSecondHaikei2Orig, DrawSecondHaikei3Orig, DrawSecondHaikei4Orig,
 			DrawChizuOrig;
 
-		// Token: 0x0400007F RID: 127
 		public Dictionary<string, ChipsData> DrawItemRef = new Dictionary<string, ChipsData>();
 
-		// Token: 0x04000080 RID: 128
 		public Dictionary<string, ChipsData> DrawLayerRef = new Dictionary<string, ChipsData>();
 
-		// Token: 0x04000081 RID: 129
 		public Dictionary<string, ChipsData> DrawWorldRef = new Dictionary<string, ChipsData>();
 
-		// Token: 0x04000082 RID: 130
 		private Bitmap ForeLayerBmp;
 
-		// Token: 0x04000083 RID: 131
 		private Bitmap BackLayerBmp;
 
-		// Token: 0x04000084 RID: 132
 		private GUIDesigner.EditTool curTool;
 
-		// Token: 0x04000085 RID: 133
 		private GUIDesigner.CopyPasteTool cpaste;
 
-		// Token: 0x04000086 RID: 134
 		public List<string[]> StageBuffer = new List<string[]>();
 
-		// Token: 0x04000087 RID: 135
 		public int BufferCurrent = -1;
 
-		// Token: 0x04000089 RID: 137
 		public string ClipedString;
 
-		// Token: 0x0400008A RID: 138
 		public Rectangle DrawRectangle = default(Rectangle);
 
-		// Token: 0x0400008B RID: 139
 		public GUIDesigner.DirectDrawMode DrawMode;
 
-		// Token: 0x0400008C RID: 140
 		private bool bdraw = true;
 
-		// Token: 0x0400008D RID: 141
 		private string[] ForePrevDrawn;
 
-		// Token: 0x0400008E RID: 142
 		private string[] BackPrevDrawn;
 
-		// Token: 0x0400008F RID: 143
 		private Bitmap ForegroundBuffer = new Bitmap(1, 1);
 
-		// Token: 0x04000090 RID: 144
 		private int bufpos = -1;
 
-		// Token: 0x04000091 RID: 145
 		private double zi;
 
-		// Token: 0x04000092 RID: 146
 		private bool FLayer;
 
-		// Token: 0x04000093 RID: 147
 		private bool DULayer;
 
-		// Token: 0x04000094 RID: 148
 		private bool TULayer;
 
-		// Token: 0x04000095 RID: 149
 		private int EditMap = -1;
 
-		// Token: 0x04000096 RID: 150
 		private Point MouseStartPoint = default(Point);
 
-		// Token: 0x04000097 RID: 151
 		private Point MouseLastPoint = default(Point);
 
-		// Token: 0x04000098 RID: 152
 		private bool MousePressed;
 
-		// Token: 0x04000099 RID: 153
 		private List<char[]> repls = new List<char[]>();
 
-		// Token: 0x0400009A RID: 154
 		private IContainer components;
 
-		// Token: 0x0400009B RID: 155
 		private ContextMenuStrip CursorContextMenu;
 
-		// Token: 0x0400009C RID: 156
 		private ToolStripMenuItem QuickTestRun;
 
-		// Token: 0x0400009D RID: 157
 		private ToolStripMenuItem DoTestrun;
 
-		// Token: 0x0400009E RID: 158
 		private ToolStripMenuItem MenuCut;
 
-		// Token: 0x0400009F RID: 159
 		private ToolStripMenuItem MenuCopy;
 
-		// Token: 0x040000A0 RID: 160
 		private ToolStripMenuItem MenuPaste;
 
-		// Token: 0x040000A1 RID: 161
 		private ToolStripSeparator toolStripMenuItem2;
 
-		// Token: 0x040000A2 RID: 162
 		private ToolStripMenuItem ProjectConfig;
 
-		// Token: 0x040000A3 RID: 163
 		private ToolStripMenuItem PickChip;
 
-		// Token: 0x040000A4 RID: 164
 		private ToolStripSeparator toolStripMenuItem3;
 
-		// Token: 0x0200000D RID: 13
 		public class StageText
 		{
-			// Token: 0x060000AA RID: 170 RVA: 0x00011CB0 File Offset: 0x0000FEB0
 			public static bool IsOverflow(Point p)
 			{
 				return p.X < 0 || p.Y < 0 || p.X >= Global.state.GetCSSize.x || p.Y >= Global.state.GetCSSize.y;
 			}
 
-			// Token: 0x060000AB RID: 171 RVA: 0x00011D04 File Offset: 0x0000FF04
 			public static string GetStageChar(Point p)
 			{
 				if (GUIDesigner.StageText.IsOverflow(p))
@@ -4901,55 +4785,35 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0200000E RID: 14
-		// (Invoke) Token: 0x060000AE RID: 174
 		public delegate void ChangeBuffer();
 
-		// Token: 0x0200000F RID: 15
 		public enum DirectDrawMode
 		{
-			// Token: 0x040000A6 RID: 166
 			None,
-			// Token: 0x040000A7 RID: 167
 			Line,
-			// Token: 0x040000A8 RID: 168
 			RevLine,
-			// Token: 0x040000A9 RID: 169
 			Rectangle
 		}
 
-		// Token: 0x02000010 RID: 16
 		public enum EditTool
 		{
-			// Token: 0x040000AB RID: 171
 			Cursor,
-			// Token: 0x040000AC RID: 172
 			Pen,
-			// Token: 0x040000AD RID: 173
 			Line,
-			// Token: 0x040000AE RID: 174
 			Rect,
-			// Token: 0x040000AF RID: 175
 			Fill
 		}
 
-		// Token: 0x02000011 RID: 17
 		public enum CopyPasteTool
 		{
-			// Token: 0x040000B1 RID: 177
 			None,
-			// Token: 0x040000B2 RID: 178
 			Copy,
-			// Token: 0x040000B3 RID: 179
 			Cut,
-			// Token: 0x040000B4 RID: 180
 			Paste
 		}
 
-		// Token: 0x02000012 RID: 18
 		public struct KeepDrawData
 		{
-			// Token: 0x060000B1 RID: 177 RVA: 0x0000277D File Offset: 0x0000097D
 			public KeepDrawData(ChipData c, Point p, string chara)
 			{
 				this.cd = c;
@@ -4957,10 +4821,8 @@ namespace MasaoPlus
 				this.chara = chara;
 			}
 
-			// Token: 0x040000B5 RID: 181
 			public ChipData cd;
 
-			// Token: 0x040000B6 RID: 182
 			public Point pos;
 
 			public string chara;

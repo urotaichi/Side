@@ -9,16 +9,13 @@ using MasaoPlus.Dialogs;
 
 namespace MasaoPlus.Controls
 {
-	// Token: 0x02000008 RID: 8
 	public class ConfigList : UserControl
 	{
-		// Token: 0x06000042 RID: 66 RVA: 0x000023D6 File Offset: 0x000005D6
 		public ConfigList()
 		{
 			this.InitializeComponent();
 		}
 
-		// Token: 0x06000043 RID: 67 RVA: 0x00009D48 File Offset: 0x00007F48
 		public void Prepare()
 		{
 			this.ConfigSelector.Items.Clear();
@@ -30,13 +27,11 @@ namespace MasaoPlus.Controls
 			this.ConfigSelector.SelectedIndex = 0;
 		}
 
-		// Token: 0x06000044 RID: 68 RVA: 0x000023EF File Offset: 0x000005EF
 		public void Reload()
 		{
 			this.ConfigSelector_SelectedIndexChanged(this, new EventArgs());
 		}
 
-		// Token: 0x06000045 RID: 69 RVA: 0x00009DEC File Offset: 0x00007FEC
 
 		// 表示を変える
 		private void ConfigSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -231,13 +226,11 @@ namespace MasaoPlus.Controls
 			if (Global.config.localSystem.WrapPropText) this.ConfView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 		}
 
-		// Token: 0x06000046 RID: 70 RVA: 0x000023FD File Offset: 0x000005FD
 		private void ConfigSelector_Resize(object sender, EventArgs e)
 		{
 			this.ConfigSelector.Refresh();
 		}
 
-		// Token: 0x06000047 RID: 71 RVA: 0x0000A22C File Offset: 0x0000842C
 		private void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
 			if (e.ColumnIndex != 1)
@@ -421,7 +414,6 @@ namespace MasaoPlus.Controls
 			Global.state.EditFlag = true;
 		}
 
-		// Token: 0x06000048 RID: 72 RVA: 0x0000A9A8 File Offset: 0x00008BA8
 		private void ConfView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
 		{
 			if (e.Control is DataGridViewTextBoxEditingControl)
@@ -432,7 +424,6 @@ namespace MasaoPlus.Controls
 			}
 		}
 
-		// Token: 0x06000049 RID: 73 RVA: 0x0000A9E8 File Offset: 0x00008BE8
 		private void ct_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
 		{
 			Keys keyCode = e.KeyCode;
@@ -443,7 +434,6 @@ namespace MasaoPlus.Controls
 			e.IsInputKey = true;
 		}
 
-		// Token: 0x0600004A RID: 74 RVA: 0x0000AA0C File Offset: 0x00008C0C
 		private void ConfView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
 		{
 			if (this.ConfView.CurrentCellAddress.X == 1 && this.ConfView.IsCurrentCellDirty)
@@ -452,7 +442,6 @@ namespace MasaoPlus.Controls
 			}
 		}
 
-		// Token: 0x0600004B RID: 75 RVA: 0x0000AA50 File Offset: 0x00008C50
 		private void ConfView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
 		{
 			if (e.ColumnIndex != 1)
@@ -608,7 +597,6 @@ namespace MasaoPlus.Controls
 			Global.state.EditFlag = true;
 		}
 
-		// Token: 0x0600004C RID: 76 RVA: 0x0000240A File Offset: 0x0000060A
 		private void ConfView_CellClick(object sender, DataGridViewCellEventArgs e)
 		{
 			if (e.ColumnIndex == 1)
@@ -617,7 +605,6 @@ namespace MasaoPlus.Controls
 			}
 		}
 
-		// Token: 0x0600004D RID: 77 RVA: 0x00002422 File Offset: 0x00000622
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -627,7 +614,6 @@ namespace MasaoPlus.Controls
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x0600004E RID: 78 RVA: 0x0000AFC0 File Offset: 0x000091C0
 		private void InitializeComponent()
 		{
 			this.ConfigSelector = new ComboBox();
@@ -694,22 +680,16 @@ namespace MasaoPlus.Controls
 			base.ResumeLayout(false);
 		}
 
-		// Token: 0x0400006E RID: 110
 		private List<int> OrigIdx = new List<int>();
 
-		// Token: 0x0400006F RID: 111
 		private IContainer components;
 
-		// Token: 0x04000070 RID: 112
 		private ComboBox ConfigSelector;
 
-		// Token: 0x04000071 RID: 113
 		private DataGridView ConfView;
 
-		// Token: 0x04000072 RID: 114
 		private DataGridViewTextBoxColumn CNames;
 
-		// Token: 0x04000073 RID: 115
 		private DataGridViewTextBoxColumn CValues;
 
 		private int width_index, height_index;

@@ -10,17 +10,14 @@ using System.Windows.Forms;
 
 namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000018 RID: 24
 	public partial class HTMLInheritance : Form
 	{
-		// Token: 0x060000CF RID: 207 RVA: 0x000132B8 File Offset: 0x000114B8
 		public HTMLInheritance(string pf)
 		{
 			this.InitializeComponent();
 			this.ParseFile = pf;
 		}
 
-		// Token: 0x060000D0 RID: 208 RVA: 0x00013310 File Offset: 0x00011510
 		private void Inheritance_Load(object sender, EventArgs e)
 		{
 			this.TargetFile.Text = this.ParseFile;
@@ -30,7 +27,6 @@ namespace MasaoPlus.Dialogs
 			this.OK.Enabled = false;
 		}
 
-		// Token: 0x060000D1 RID: 209 RVA: 0x0001337C File Offset: 0x0001157C
 		private void Inheritance_Shown(object sender, EventArgs e)
 		{
 			Application.DoEvents();
@@ -106,7 +102,6 @@ namespace MasaoPlus.Dialogs
 			this.OK.Text = "OK";
 		}
 
-		// Token: 0x060000D2 RID: 210 RVA: 0x00013634 File Offset: 0x00011834
 		private void RootDirBrowse_Click(object sender, EventArgs e)
 		{
 			using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
@@ -120,19 +115,16 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x060000D3 RID: 211 RVA: 0x00002898 File Offset: 0x00000A98
 		private void ProjectName_TextChanged(object sender, EventArgs e)
 		{
 			this.ValidationText();
 		}
 
-		// Token: 0x060000D4 RID: 212 RVA: 0x00002898 File Offset: 0x00000A98
 		private void RootDir_TextChanged(object sender, EventArgs e)
 		{
 			this.ValidationText();
 		}
 
-		// Token: 0x060000D5 RID: 213 RVA: 0x0001369C File Offset: 0x0001189C
 		private void ValidationText()
 		{
 			if (this.ProjectName.Text == "")
@@ -148,7 +140,6 @@ namespace MasaoPlus.Dialogs
 			this.OK.Enabled = true;
 		}
 
-		// Token: 0x060000D6 RID: 214 RVA: 0x00013710 File Offset: 0x00011910
 		private void OK_Click(object sender, EventArgs e)
 		{
 			try
@@ -656,7 +647,6 @@ namespace MasaoPlus.Dialogs
 			base.Close();
 		}
 
-		// Token: 0x060000D7 RID: 215 RVA: 0x00014750 File Offset: 0x00012950
 		private bool GetMapSource(ref string[] overwrite, string f, Runtime.DefinedData.StageSizeData StageSizeData, ref Dictionary<string, string> Params, ChipsData[] MapChip, int Split = 0)
 		{
 			int dxsize = StageSizeData.x, dysize = StageSizeData.y;
@@ -708,19 +698,14 @@ namespace MasaoPlus.Dialogs
 			return false;
 		}
 
-		// Token: 0x040000D0 RID: 208
 		public string ProjectFile = "";
 
-		// Token: 0x040000D1 RID: 209
 		public List<string> runtimes = new List<string>();
 
-		// Token: 0x040000D2 RID: 210
 		public List<Runtime> runtimedatas = new List<Runtime>();
 
-		// Token: 0x040000D3 RID: 211
 		public List<bool> runtimeuselayer = new List<bool>();
 
-		// Token: 0x040000D4 RID: 212
 		private string ParseFile = "";
 	}
 }

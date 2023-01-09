@@ -4,12 +4,8 @@ using System.Text;
 
 namespace MasaoPlus
 {
-	// Token: 0x02000028 RID: 40
 	public struct Colors
 	{
-		// Token: 0x17000026 RID: 38
-		// (get) Token: 0x06000121 RID: 289 RVA: 0x00002B98 File Offset: 0x00000D98
-		// (set) Token: 0x06000122 RID: 290 RVA: 0x00002BB1 File Offset: 0x00000DB1
 		public Color c
 		{
 			get
@@ -24,7 +20,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000123 RID: 291 RVA: 0x00018030 File Offset: 0x00016230
 		public override string ToString()
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -36,7 +31,6 @@ namespace MasaoPlus
 			return stringBuilder.ToString();
 		}
 
-		// Token: 0x06000124 RID: 292 RVA: 0x00018098 File Offset: 0x00016298
 		public Colors(string color)
 		{
 			string[] array = color.Split(new char[]
@@ -67,13 +61,10 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x04000161 RID: 353
 		public int r;
 
-		// Token: 0x04000162 RID: 354
 		public int g;
 
-		// Token: 0x04000163 RID: 355
 		public int b;
 	}
 }

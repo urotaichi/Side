@@ -8,16 +8,13 @@ using System.Windows.Forms;
 
 namespace MasaoPlus.Dialogs
 {
-	// Token: 0x0200001A RID: 26
 	public partial class NewProject : Form
 	{
-		// Token: 0x060000DD RID: 221 RVA: 0x000028E4 File Offset: 0x00000AE4
 		public NewProject()
 		{
 			this.InitializeComponent();
 		}
 
-		// Token: 0x060000DE RID: 222 RVA: 0x00015B98 File Offset: 0x00013D98
 		private void NewProject_Load(object sender, EventArgs e)
 		{
 			this.RuntimeSet.DropDownWidth = base.Width - this.RuntimeSet.Left;
@@ -26,7 +23,6 @@ namespace MasaoPlus.Dialogs
 			this.OK.Enabled = false;
 		}
 
-		// Token: 0x060000DF RID: 223 RVA: 0x00015BF8 File Offset: 0x00013DF8
 		private void NewProject_Shown(object sender, EventArgs e)
 		{
 			Application.DoEvents();
@@ -102,7 +98,6 @@ namespace MasaoPlus.Dialogs
 			this.CheckInput();
 		}
 
-		// Token: 0x060000E0 RID: 224 RVA: 0x00015EA8 File Offset: 0x000140A8
 		private void CheckInput()
 		{
 			if (this.ProjectName.Text != "" && this.RootDir.Text != "" && Directory.Exists(this.RootDir.Text) && (!this.LayerPattern.Enabled || this.LayerPattern.Text == "" || File.Exists(this.LayerPattern.Text)))
@@ -128,7 +123,6 @@ namespace MasaoPlus.Dialogs
 			this.OK.Enabled = false;
 		}
 
-		// Token: 0x060000E1 RID: 225 RVA: 0x00015FD0 File Offset: 0x000141D0
 		private void TextCheckNullable(object sender, EventArgs e)
 		{
 			TextBox textBox = (TextBox)sender;
@@ -145,7 +139,6 @@ namespace MasaoPlus.Dialogs
 			this.CheckInput();
 		}
 
-		// Token: 0x060000E2 RID: 226 RVA: 0x00016028 File Offset: 0x00014228
 		private void ValidText(object sender, EventArgs e)
 		{
 			TextBox textBox = (TextBox)sender;
@@ -162,7 +155,6 @@ namespace MasaoPlus.Dialogs
 			this.CheckInput();
 		}
 
-		// Token: 0x060000E3 RID: 227 RVA: 0x00016084 File Offset: 0x00014284
 		private void ValidPath(object sender, EventArgs e)
 		{
 			TextBox textBox = (TextBox)sender;
@@ -179,7 +171,6 @@ namespace MasaoPlus.Dialogs
 			this.CheckInput();
 		}
 
-		// Token: 0x060000E4 RID: 228 RVA: 0x000160EC File Offset: 0x000142EC
 		private void ValidPathEmptiable(object sender, EventArgs e)
 		{
 			TextBox textBox = (TextBox)sender;
@@ -196,7 +187,6 @@ namespace MasaoPlus.Dialogs
 			this.CheckInput();
 		}
 
-		// Token: 0x060000E5 RID: 229 RVA: 0x00016154 File Offset: 0x00014354
 		private void ValidDir(object sender, EventArgs e)
 		{
 			TextBox textBox = (TextBox)sender;
@@ -213,7 +203,6 @@ namespace MasaoPlus.Dialogs
 			this.CheckInput();
 		}
 
-		// Token: 0x060000E6 RID: 230 RVA: 0x000161BC File Offset: 0x000143BC
 		private void RootDirBrowse_Click(object sender, EventArgs e)
 		{
 			using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
@@ -227,7 +216,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x060000E7 RID: 231 RVA: 0x00016224 File Offset: 0x00014424
 		private void MapChipBrowse_Click(object sender, EventArgs e)
 		{
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -249,7 +237,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x060000E8 RID: 232 RVA: 0x000162C0 File Offset: 0x000144C0
 		private void LayerPatternBrowse_Click(object sender, EventArgs e)
 		{
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -271,7 +258,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x060000E9 RID: 233 RVA: 0x0001635C File Offset: 0x0001455C
 		private void TitleImageBrowse_Click(object sender, EventArgs e)
 		{
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -293,7 +279,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x060000EA RID: 234 RVA: 0x000163F8 File Offset: 0x000145F8
 		private void EndingImageBrowse_Click(object sender, EventArgs e)
 		{
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -315,7 +300,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x060000EB RID: 235 RVA: 0x00016494 File Offset: 0x00014694
 		private void GameoverBrowse_Click(object sender, EventArgs e)
 		{
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -337,7 +321,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x060000EC RID: 236 RVA: 0x00016530 File Offset: 0x00014730
 		private void OK_Click(object sender, EventArgs ev)
 		{
 			List<string> list = new List<string>();
@@ -511,7 +494,6 @@ namespace MasaoPlus.Dialogs
 			base.Close();
 		}
 
-		// Token: 0x060000ED RID: 237 RVA: 0x00016F20 File Offset: 0x00015120
 		private void RuntimeSet_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if (this.RuntimeSet.SelectedIndex != -1)
@@ -534,7 +516,6 @@ namespace MasaoPlus.Dialogs
 			this.CheckInput();
 		}
 
-		// Token: 0x060000EE RID: 238 RVA: 0x0001700C File Offset: 0x0001520C
 		private void UseDefaultPict_Click(object sender, EventArgs e)
 		{
 			this.MapChip.Text = Path.Combine(Global.config.lastData.PictDirF, Global.config.lastData.DefaultChip);
@@ -547,16 +528,12 @@ namespace MasaoPlus.Dialogs
 			this.GameoverImage.Text = Path.Combine(Global.config.lastData.PictDirF, Global.config.lastData.DefaultGameoverImage);
 		}
 
-		// Token: 0x040000F5 RID: 245
 		public string CreatedProject = "";
 
-		// Token: 0x040000F6 RID: 246
 		public List<string> runtimes = new List<string>();
 
-		// Token: 0x040000F7 RID: 247
 		public List<Runtime> runtimedatas = new List<Runtime>();
 
-		// Token: 0x040000F8 RID: 248
 		public List<bool> runtimeuselayer = new List<bool>();
 	}
 }

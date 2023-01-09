@@ -8,16 +8,13 @@ using System.Windows.Forms;
 
 namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000004 RID: 4
 	public partial class ResetRuntime : Form
 	{
-		// Token: 0x06000018 RID: 24 RVA: 0x000021D7 File Offset: 0x000003D7
 		public ResetRuntime()
 		{
 			this.InitializeComponent();
 		}
 
-		// Token: 0x06000019 RID: 25 RVA: 0x00004AA0 File Offset: 0x00002CA0
 		private void ResetRuntime_Shown(object sender, EventArgs e)
 		{
 			try
@@ -94,7 +91,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x0600001A RID: 26 RVA: 0x00004D4C File Offset: 0x00002F4C
 		private void Accept_Click(object sender, EventArgs e)
 		{
 			base.Enabled = false;
@@ -138,13 +134,11 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x0600001B RID: 27 RVA: 0x000021FB File Offset: 0x000003FB
 		private void ChipDefinitionValidation_CheckedChanged(object sender, EventArgs e)
 		{
 			this.ChipMethod.Enabled = this.ChipDefinitionValidation.Checked;
 		}
 
-		// Token: 0x0600001C RID: 28 RVA: 0x00004F04 File Offset: 0x00003104
 		private void NoTouch_CheckedChanged(object sender, EventArgs e)
 		{
 			if (this.NoTouch.Checked && MessageBox.Show(string.Concat(new string[]
@@ -162,7 +156,6 @@ namespace MasaoPlus.Dialogs
 			this.ChipMethod.Enabled = !this.NoTouch.Checked;
 		}
 
-		// Token: 0x0600001D RID: 29 RVA: 0x00004FA4 File Offset: 0x000031A4
 		private void MoveProject(string nRPath, Runtime nR)
 		{
 			Project project = new Project();
@@ -601,10 +594,8 @@ namespace MasaoPlus.Dialogs
 		}
 
 
-		// Token: 0x04000019 RID: 25
 		public List<string> runtimes = new List<string>();
 
-		// Token: 0x0400001A RID: 26
 		public List<Runtime> runtimedatas = new List<Runtime>();
 	}
 }

@@ -5,10 +5,8 @@ using System.Runtime.InteropServices;
 
 namespace MasaoPlus
 {
-	// Token: 0x02000013 RID: 19
 	public static class DrawEx
 	{
-		// Token: 0x060000B2 RID: 178 RVA: 0x00011DA4 File Offset: 0x0000FFA4
 		public static Bitmap MakeMask(Image img)
 		{
 			Bitmap bitmap = new Bitmap(img.Width, img.Height);
@@ -31,7 +29,6 @@ namespace MasaoPlus
 			return bitmap;
 		}
 
-		// Token: 0x060000B3 RID: 179 RVA: 0x00011EC8 File Offset: 0x000100C8
 		public static void DrawGridEx(Graphics graphics, Rectangle area, Size pixelsBetweenDots, Color backColor)
 		{
 			TextureBrush textureBrush = null;
@@ -70,7 +67,6 @@ namespace MasaoPlus
 			textureBrush.Dispose();
 		}
 
-		// Token: 0x060000B4 RID: 180 RVA: 0x0001202C File Offset: 0x0001022C
 		public static Color GetForegroundColor(Color c)
 		{
 			int red = DrawEx.plus128((int)c.R);
@@ -79,7 +75,6 @@ namespace MasaoPlus
 			return Color.FromArgb(red, green, blue);
 		}
 
-		// Token: 0x060000B5 RID: 181 RVA: 0x0000278D File Offset: 0x0000098D
 		private static int plus128(int n)
 		{
 			n += 128;
@@ -90,7 +85,6 @@ namespace MasaoPlus
 			return n;
 		}
 
-		// Token: 0x060000B6 RID: 182 RVA: 0x00012068 File Offset: 0x00010268
 		public static double ToHalfAdjust(double dValue, int iDigits)
 		{
 			double num = Math.Pow(10.0, (double)iDigits);

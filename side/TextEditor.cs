@@ -7,22 +7,18 @@ using MasaoPlus.Properties;
 
 namespace MasaoPlus
 {
-	// Token: 0x02000037 RID: 55
 	public class TextEditor : UserControl
 	{
-		// Token: 0x06000208 RID: 520 RVA: 0x000035D8 File Offset: 0x000017D8
 		public TextEditor()
 		{
 			this.InitializeComponent();
 		}
 
-		// Token: 0x06000209 RID: 521 RVA: 0x0000360A File Offset: 0x0000180A
 		private void TextEditor_Load(object sender, EventArgs e)
 		{
 			this.StageTextEditor.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
 		}
 
-		// Token: 0x0600020A RID: 522 RVA: 0x00003619 File Offset: 0x00001819
 		public void InitEditor()
 		{
 			this.StageTextEditor.SelectionStart = 0;
@@ -30,7 +26,6 @@ namespace MasaoPlus
 			this.TextRuler.Refresh();
 		}
 
-		// Token: 0x0600020B RID: 523 RVA: 0x00027864 File Offset: 0x00025A64
 		public void AddBuffer()
 		{
 			if (this.Buffering)
@@ -51,7 +46,6 @@ namespace MasaoPlus
 			this.SetUndoRedo();
 		}
 
-		// Token: 0x0600020C RID: 524 RVA: 0x00027954 File Offset: 0x00025B54
 		public void Undo()
 		{
 			if (this.ci <= 0)
@@ -67,7 +61,6 @@ namespace MasaoPlus
 			this.SetUndoRedo();
 		}
 
-		// Token: 0x0600020D RID: 525 RVA: 0x000279DC File Offset: 0x00025BDC
 		public void Redo()
 		{
 			if (this.ci >= this.TextBuffer.Count - 1)
@@ -83,7 +76,6 @@ namespace MasaoPlus
 			this.SetUndoRedo();
 		}
 
-		// Token: 0x0600020E RID: 526 RVA: 0x00027A70 File Offset: 0x00025C70
 		private void SetUndoRedo()
 		{
 			if (this.ci == 0)
@@ -106,7 +98,6 @@ namespace MasaoPlus
 			Global.MainWnd.TMRedo.Enabled = true;
 		}
 
-		// Token: 0x0600020F RID: 527 RVA: 0x0000363D File Offset: 0x0000183D
 		public void BufferClear()
 		{
 			this.TextBuffer.Clear();
@@ -115,14 +106,12 @@ namespace MasaoPlus
 			this.SetUndoRedo();
 		}
 
-		// Token: 0x06000210 RID: 528 RVA: 0x0000366E File Offset: 0x0000186E
 		private void TextBoxOwnerPanel_Resize(object sender, EventArgs e)
 		{
 			this.StageTextEditor.Width = this.TextBoxOwnerPanel.Width - 2;
 			this.StageTextEditor.Height = this.TextBoxOwnerPanel.Height - 2;
 		}
 
-		// Token: 0x06000211 RID: 529 RVA: 0x00027B10 File Offset: 0x00025D10
 		private void StageTextEditor_KeyDown(object sender, KeyEventArgs e)
 		{
 			this.TextLineNo.Refresh();
@@ -171,17 +160,14 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000212 RID: 530 RVA: 0x000033FC File Offset: 0x000015FC
 		private void StageTextEditor_KeyUp(object sender, KeyEventArgs e)
 		{
 		}
 
-		// Token: 0x06000213 RID: 531 RVA: 0x000033FC File Offset: 0x000015FC
 		private void StageTextEditor_MouseDown(object sender, MouseEventArgs e)
 		{
 		}
 
-		// Token: 0x06000214 RID: 532 RVA: 0x000036A0 File Offset: 0x000018A0
 		private void StageTextEditor_VScroll(object sender, EventArgs e)
 		{
 			this.TextLineNo.Refresh();
@@ -189,7 +175,6 @@ namespace MasaoPlus
 			this.LineInfoUpdate();
 		}
 
-		// Token: 0x06000215 RID: 533 RVA: 0x00027BE0 File Offset: 0x00025DE0
 		private void LineInfoUpdate()
 		{
 			if (this.StageTextEditor.Text == "")
@@ -220,7 +205,6 @@ namespace MasaoPlus
 			this.TextStatus.Text = "現在の行は" + num3.ToString() + "文字足りていません。";
 		}
 
-		// Token: 0x06000216 RID: 534 RVA: 0x00027D58 File Offset: 0x00025F58
 		private void TextLineNo_Paint(object sender, PaintEventArgs e)
 		{
 			int num = Native.USER32.SendMessage(this.StageTextEditor.Handle, 206U, 0, 0);
@@ -251,7 +235,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000217 RID: 535 RVA: 0x00027FE8 File Offset: 0x000261E8
 		private void DrawText(Graphics g, string s, Font f, Point p, Color c)
 		{
 			if (Global.config.localSystem.TextEditorGDIMode)
@@ -265,7 +248,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000218 RID: 536 RVA: 0x00028048 File Offset: 0x00026248
 		public bool CanConvertTextSource()
 		{
 			if (this.StageTextEditor.Lines.Length != Global.state.GetCSSize.y)
@@ -282,7 +264,6 @@ namespace MasaoPlus
 			return true;
 		}
 
-		// Token: 0x06000219 RID: 537 RVA: 0x000280AC File Offset: 0x000262AC
 		private int GetLastVisibleRowIndex()
 		{
 			Point pt = new Point(0, this.StageTextEditor.Height);
@@ -290,7 +271,6 @@ namespace MasaoPlus
 			return this.StageTextEditor.GetLineFromCharIndex(charIndexFromPosition);
 		}
 
-		// Token: 0x0600021A RID: 538 RVA: 0x000280E8 File Offset: 0x000262E8
 		private void TextRuler_Paint(object sender, PaintEventArgs e)
 		{
 			int lineFromCharIndex = this.StageTextEditor.GetLineFromCharIndex(this.StageTextEditor.GetFirstCharIndexOfCurrentLine());
@@ -336,7 +316,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600021B RID: 539 RVA: 0x00028374 File Offset: 0x00026574
 		private void StageTextEditor_TextChanged(object sender, EventArgs e)
 		{
 			if (this.CanConvertTextSource())
@@ -356,49 +335,41 @@ namespace MasaoPlus
 			this.AddBuffer();
 		}
 
-		// Token: 0x0600021C RID: 540 RVA: 0x000036BE File Offset: 0x000018BE
 		private void TextUndo_Click(object sender, EventArgs e)
 		{
 			this.Undo();
 		}
 
-		// Token: 0x0600021D RID: 541 RVA: 0x000036C6 File Offset: 0x000018C6
 		private void TextRedo_Click(object sender, EventArgs e)
 		{
 			this.Redo();
 		}
 
-		// Token: 0x0600021E RID: 542 RVA: 0x000036CE File Offset: 0x000018CE
 		private void TextCut_Click(object sender, EventArgs e)
 		{
 			this.StageTextEditor.Cut();
 		}
 
-		// Token: 0x0600021F RID: 543 RVA: 0x000036DB File Offset: 0x000018DB
 		private void TextCopy_Click(object sender, EventArgs e)
 		{
 			this.StageTextEditor.Copy();
 		}
 
-		// Token: 0x06000220 RID: 544 RVA: 0x000036E8 File Offset: 0x000018E8
 		private void TextPaste_Click(object sender, EventArgs e)
 		{
 			this.StageTextEditor.Paste();
 		}
 
-		// Token: 0x06000221 RID: 545 RVA: 0x00002738 File Offset: 0x00000938
 		private void TextTestRun_Click(object sender, EventArgs e)
 		{
 			Global.MainWnd.Testrun();
 		}
 
-		// Token: 0x06000222 RID: 546 RVA: 0x000036F5 File Offset: 0x000018F5
 		private void TextProjConfig_Click(object sender, EventArgs e)
 		{
 			Global.MainWnd.ProjectConfig_Click(sender, e);
 		}
 
-		// Token: 0x06000223 RID: 547 RVA: 0x000036A0 File Offset: 0x000018A0
 		private void StageTextEditor_SelectionChanged(object sender, EventArgs e)
 		{
 			this.TextLineNo.Refresh();
@@ -406,7 +377,6 @@ namespace MasaoPlus
 			this.LineInfoUpdate();
 		}
 
-		// Token: 0x06000224 RID: 548 RVA: 0x00003703 File Offset: 0x00001903
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -416,7 +386,6 @@ namespace MasaoPlus
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x06000225 RID: 549 RVA: 0x00028404 File Offset: 0x00026604
 		private void InitializeComponent()
 		{
 			this.TextEditorTable = new TableLayoutPanel();
@@ -662,91 +631,62 @@ namespace MasaoPlus
 			base.PerformLayout();
 		}
 
-		// Token: 0x04000295 RID: 661
 		private List<string> TextBuffer = new List<string>();
 
-		// Token: 0x04000296 RID: 662
 		private List<int> CursorBuffer = new List<int>();
 
-		// Token: 0x04000297 RID: 663
 		private int ci = -1;
 
-		// Token: 0x04000298 RID: 664
 		private bool Buffering = true;
 
-		// Token: 0x04000299 RID: 665
 		private IContainer components;
 
-		// Token: 0x0400029A RID: 666
 		private TableLayoutPanel TextEditorTable;
 
-		// Token: 0x0400029B RID: 667
 		private PictureBox TextRuler;
 
-		// Token: 0x0400029C RID: 668
 		private PictureBox TextLineNo;
 
-		// Token: 0x0400029D RID: 669
 		private Panel TextBoxOwnerPanel;
 
-		// Token: 0x0400029E RID: 670
 		private StatusStrip TextEditorStatus;
 
-		// Token: 0x0400029F RID: 671
 		private ToolStripStatusLabel TextPositionInfo;
 
-		// Token: 0x040002A0 RID: 672
 		private ToolStripStatusLabel TextStatus;
 
-		// Token: 0x040002A1 RID: 673
 		private ToolStripStatusLabel LineInfo;
 
-		// Token: 0x040002A2 RID: 674
 		private ToolStripStatusLabel EnableTranslate;
 
-		// Token: 0x040002A3 RID: 675
 		private ToolStrip TextEditorTool;
 
-		// Token: 0x040002A4 RID: 676
 		private ToolStripButton TextUndo;
 
-		// Token: 0x040002A5 RID: 677
 		private ToolStripButton TextRedo;
 
-		// Token: 0x040002A6 RID: 678
 		private ToolStripSeparator toolStripSeparator5;
 
-		// Token: 0x040002A7 RID: 679
 		private ToolStripButton TextCut;
 
-		// Token: 0x040002A8 RID: 680
 		private ToolStripButton TextCopy;
 
-		// Token: 0x040002A9 RID: 681
 		private ToolStripButton TextPaste;
 
-		// Token: 0x040002AA RID: 682
 		private ToolStripSeparator toolStripSeparator9;
 
-		// Token: 0x040002AB RID: 683
 		private ToolStripButton TextProjConfig;
 
-		// Token: 0x040002AC RID: 684
 		private ToolStripButton TextTestRun;
 
-		// Token: 0x040002AD RID: 685
 		public RichTextBox StageTextEditor;
 
-		// Token: 0x040002AE RID: 686
 		private ToolStripSeparator toolStripSeparator1;
 
-		// Token: 0x040002AF RID: 687
 		public ToolStripDropDownButton StageLayer;
 
-		// Token: 0x040002B0 RID: 688
 		public ToolStripMenuItem PatternChipLayer;
 
-		// Token: 0x040002B1 RID: 689
 		public ToolStripMenuItem BackgroundLayer;
 	}
 }

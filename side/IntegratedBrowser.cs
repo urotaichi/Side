@@ -9,10 +9,8 @@ using Microsoft.Web.WebView2.Core;
 
 namespace MasaoPlus
 {
-	// Token: 0x02000003 RID: 3
 	public class IntegratedBrowser : UserControl
 	{
-		// Token: 0x0600000A RID: 10 RVA: 0x000020B4 File Offset: 0x000002B4
 		public IntegratedBrowser()
 		{
 			this.InitializeComponent();
@@ -21,14 +19,12 @@ namespace MasaoPlus
 		}
 
 		/*
-		// Token: 0x0600000B RID: 11 RVA: 0x000020D9 File Offset: 0x000002D9
 		private void Browser_StatusTextChanged(object sender, EventArgs e)
 		{
 			this.Status.Text = this.Browser.StatusText;
 		}
 		*/
 
-		// Token: 0x0600000C RID: 12 RVA: 0x00004168 File Offset: 0x00002368
 		public bool Navigate(string str)
 		{
 			if (!Global.config.testRun.UseIntegratedBrowser)
@@ -60,14 +56,12 @@ namespace MasaoPlus
 		}
 
 		/*
-		// Token: 0x0600000D RID: 13 RVA: 0x000020F1 File Offset: 0x000002F1
 		private void Browser_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
 		{
 			this.Progress.Value = (int)((double)e.CurrentProgress / (double)e.MaximumProgress) * 100;
 		}
 		*/
 		
-		// Token: 0x0600000E RID: 14 RVA: 0x00002111 File Offset: 0x00000311
 		private void Browser_Navigating(object sender, CoreWebView2NavigationStartingEventArgs e)
 		{
 			//this.Progress.Visible = true;
@@ -75,7 +69,6 @@ namespace MasaoPlus
 		}
 
 		/*
-		// Token: 0x0600000F RID: 15 RVA: 0x0000213F File Offset: 0x0000033F
 		private void Browser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
 		{
 			this.URL.Text = e.Url.ToString();
@@ -83,7 +76,6 @@ namespace MasaoPlus
 		*/
 
 		/*
-		// Token: 0x06000010 RID: 16 RVA: 0x00002157 File Offset: 0x00000357
 		private void Browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
 		{
 			this.Progress.Visible = false;
@@ -95,25 +87,21 @@ namespace MasaoPlus
 			//e.Handled= true;
 		}
 
-		// Token: 0x06000011 RID: 17 RVA: 0x00002165 File Offset: 0x00000365
 		private void Back_Click(object sender, EventArgs e)
 		{
 			this.Browser.GoBack();
 		}
 
-		// Token: 0x06000012 RID: 18 RVA: 0x00002173 File Offset: 0x00000373
 		private void Forward_Click(object sender, EventArgs e)
 		{
 			this.Browser.GoForward();
 		}
 
-		// Token: 0x06000013 RID: 19 RVA: 0x00002181 File Offset: 0x00000381
 		private void Reload_Click(object sender, EventArgs e)
 		{
 			this.Browser.Reload();
 		}
 
-		// Token: 0x06000014 RID: 20 RVA: 0x0000218F File Offset: 0x0000038F
 		private void ReRun_Click(object sender, EventArgs e)
 		{
 			if (Global.config.testRun.UseIntegratedBrowser)
@@ -123,7 +111,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000015 RID: 21 RVA: 0x0000425C File Offset: 0x0000245C
 		private void OnWeb_Click(object sender, EventArgs e)
 		{
 			try
@@ -143,7 +130,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000016 RID: 22 RVA: 0x000021B8 File Offset: 0x000003B8
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -153,7 +139,6 @@ namespace MasaoPlus
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x06000017 RID: 23 RVA: 0x0000431C File Offset: 0x0000251C
 		private void InitializeComponent()
 		{
 			this.components = new Container();
@@ -297,52 +282,36 @@ namespace MasaoPlus
 			this.Browser.CoreWebView2.NewWindowRequested += this.CoreWebView2_NewWindowRequested;
 		}
 
-		// Token: 0x04000009 RID: 9
 		private IContainer components;
 
-		// Token: 0x0400000A RID: 10
 		private ToolStrip MainToolStrip;
 
-		// Token: 0x0400000B RID: 11
 		private StatusStrip MainStatusStrip;
 
-		// Token: 0x0400000C RID: 12
 		private ToolStripStatusLabel Status;
 
-		// Token: 0x0400000D RID: 13
 		private ToolStripButton Back;
 
-		// Token: 0x0400000E RID: 14
 		private ToolStripButton Forward;
 
-		// Token: 0x0400000F RID: 15
 		private ToolStripSeparator toolStripSeparator1;
 
-		// Token: 0x04000010 RID: 16
 		private ToolStripButton Reload;
 
-		// Token: 0x04000011 RID: 17
 		private ToolStripButton ReRun;
 
-		// Token: 0x04000012 RID: 18
 		private ToolStripSeparator toolStripSeparator2;
 
-		// Token: 0x04000013 RID: 19
 		private ToolStripButton OnWeb;
 
-		// Token: 0x04000014 RID: 20
 		//private ToolStripProgressBar Progress;
 
-		// Token: 0x04000015 RID: 21
 		private WebView2 Browser;
 
-		// Token: 0x04000016 RID: 22
 		private ToolStripLabel URL;
 
-		// Token: 0x04000017 RID: 23
 		//private ContextMenuStrip contextMenuStrip1;
 
-		// Token: 0x04000018 RID: 24
 		//private ToolStripMenuItem testToolStripMenuItem;
 	}
 }

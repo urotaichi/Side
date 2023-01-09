@@ -7,16 +7,13 @@ using System.Windows.Forms;
 
 namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000002 RID: 2
 	public partial class WebUpdate : Form
 	{
-		// Token: 0x06000003 RID: 3 RVA: 0x0000206F File Offset: 0x0000026F
 		public WebUpdate()
 		{
 			this.InitializeComponent();
 		}
 
-		// Token: 0x06000004 RID: 4 RVA: 0x00003A98 File Offset: 0x00001C98
 		private void WebUpdate_Shown(object sender, EventArgs e)
 		{
 			this.SUpdate("更新を確認しています...");
@@ -50,7 +47,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x06000005 RID: 5 RVA: 0x00003C20 File Offset: 0x00001E20
 		private void dlClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
 		{
 			this.dlClient.Dispose();
@@ -124,7 +120,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x06000006 RID: 6 RVA: 0x00003F04 File Offset: 0x00002104
 		private void dlClient_DownloadFileCompleted2(object sender, AsyncCompletedEventArgs e)
 		{
 			this.dlClient.Dispose();
@@ -163,7 +158,6 @@ namespace MasaoPlus.Dialogs
 			}
 		}
 
-		// Token: 0x06000007 RID: 7 RVA: 0x000040A0 File Offset: 0x000022A0
 		private void dlClient_DownloadFileCompleted3(object sender, AsyncCompletedEventArgs e)
 		{
 			this.dlClient.Dispose();
@@ -186,33 +180,26 @@ namespace MasaoPlus.Dialogs
 			base.Close();
 		}
 
-		// Token: 0x06000008 RID: 8 RVA: 0x0000207D File Offset: 0x0000027D
 		private void dlClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
 		{
 			this.progressBar1.Value = e.ProgressPercentage;
 			this.progressBar1.Refresh();
 		}
 
-		// Token: 0x06000009 RID: 9 RVA: 0x0000209B File Offset: 0x0000029B
 		private void SUpdate(string state)
 		{
 			this.StateLabel.Text = state;
 			this.StateLabel.Refresh();
 		}
 
-		// Token: 0x04000004 RID: 4
 		private WebClient dlClient;
 
-		// Token: 0x04000005 RID: 5
 		private string tempfile;
 
-		// Token: 0x04000006 RID: 6
 		public string runfile;
 
-		// Token: 0x04000007 RID: 7
 		private string TemporaryFolder;
 
-		// Token: 0x04000008 RID: 8
 		private UpdateData ud;
 	}
 }

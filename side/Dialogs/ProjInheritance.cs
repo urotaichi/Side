@@ -7,10 +7,8 @@ using System.Windows.Forms;
 
 namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000005 RID: 5
 	public partial class ProjInheritance : Form
 	{
-		// Token: 0x06000020 RID: 32 RVA: 0x00006578 File Offset: 0x00004778
 		public ProjInheritance(string PrevProj)
 		{
 			this.InitializeComponent();
@@ -33,7 +31,6 @@ namespace MasaoPlus.Dialogs
 			this.NewProjName.Text = this.PrevProject.Name + "_Inherited";
 		}
 
-		// Token: 0x06000021 RID: 33 RVA: 0x00002232 File Offset: 0x00000432
 		private void NewProjName_TextChanged(object sender, EventArgs e)
 		{
 			if (this.NewProjName.Text == "")
@@ -44,7 +41,6 @@ namespace MasaoPlus.Dialogs
 			this.OKBtn.Enabled = true;
 		}
 
-		// Token: 0x06000022 RID: 34 RVA: 0x0000662C File Offset: 0x0000482C
 		private void OKBtn_Click(object sender, EventArgs e)
 		{
 			string text = Path.Combine(Path.GetDirectoryName(this.PrevProjPath), this.NewProjName.Text + Global.definition.ProjExt);
@@ -126,13 +122,10 @@ namespace MasaoPlus.Dialogs
 			base.Close();
 		}
 
-		// Token: 0x0400002B RID: 43
 		public string NewProjectName = "";
 
-		// Token: 0x0400002C RID: 44
 		public string PrevProjPath;
 
-		// Token: 0x0400002D RID: 45
 		public Project PrevProject;
 	}
 }

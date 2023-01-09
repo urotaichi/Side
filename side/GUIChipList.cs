@@ -7,12 +7,8 @@ using System.Windows.Forms;
 
 namespace MasaoPlus
 {
-	// Token: 0x02000006 RID: 6
 	public class GUIChipList : UserControl
 	{
-		// Token: 0x17000001 RID: 1
-		// (get) Token: 0x06000025 RID: 37 RVA: 0x00002283 File Offset: 0x00000483
-		// (set) Token: 0x06000026 RID: 38 RVA: 0x00006DB4 File Offset: 0x00004FB4
 		public int SelectedIndex
 		{
 			get
@@ -54,9 +50,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x17000002 RID: 2
-		// (get) Token: 0x06000027 RID: 39 RVA: 0x0000228B File Offset: 0x0000048B
-		// (set) Token: 0x06000028 RID: 40 RVA: 0x00002298 File Offset: 0x00000498
 		private int vPosition
 		{
 			get
@@ -71,8 +64,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x17000003 RID: 3
-		// (get) Token: 0x06000029 RID: 41 RVA: 0x00006EA0 File Offset: 0x000050A0
 		private int hMaxChip
 		{
 			get
@@ -86,13 +77,11 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x0600002A RID: 42 RVA: 0x000022C1 File Offset: 0x000004C1
 		private void vScr_Scroll(object sender, ScrollEventArgs e)
 		{
 			this.MainPanel.Refresh();
 		}
 
-		// Token: 0x0600002B RID: 43 RVA: 0x00006EE4 File Offset: 0x000050E4
 		private void SetMaxValue()
 		{
 			this.vScr.LargeChange = this.MainPanel.Height;
@@ -100,13 +89,11 @@ namespace MasaoPlus
 			this.vScr.Maximum = this.GetVirtSize() - this.MainPanel.Height + this.vScr.LargeChange - 1;
 		}
 
-		// Token: 0x0600002C RID: 44 RVA: 0x000022CE File Offset: 0x000004CE
 		public GUIChipList()
 		{
 			this.InitializeComponent();
 		}
 
-		// Token: 0x0600002D RID: 45 RVA: 0x00006F58 File Offset: 0x00005158
 		public Point GetPosition(int idx)
 		{
 			int num = this.MainPanel.Width / Global.cpd.runtime.Definitions.ChipSize.Width;
@@ -117,13 +104,11 @@ namespace MasaoPlus
 			return new Point(idx % num, (int)Math.Floor((double)idx / (double)num));
 		}
 
-		// Token: 0x0600002E RID: 46 RVA: 0x000022DC File Offset: 0x000004DC
 		public int GetVirtSize()
 		{
 			return this.GetVirtSize(this.MainPanel.Width);
 		}
 
-		// Token: 0x0600002F RID: 47 RVA: 0x00006FA4 File Offset: 0x000051A4
 		public int GetVirtSize(int wid)
 		{
 			if (Global.cpd.runtime == null)
@@ -142,13 +127,11 @@ namespace MasaoPlus
 			return (int)Math.Ceiling((double)Global.cpd.Layerchip.Length / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height;
 		}
 
-		// Token: 0x06000030 RID: 48 RVA: 0x000022EF File Offset: 0x000004EF
 		public void ResizeInvoke()
 		{
 			this.GUIChipList_Resize(this, new EventArgs());
 		}
 
-		// Token: 0x06000031 RID: 49 RVA: 0x0000705C File Offset: 0x0000525C
 		private void GUIChipList_Resize(object sender, EventArgs e)
 		{
 			if (this.GetVirtSize(base.Width) < base.Height)
@@ -164,7 +147,6 @@ namespace MasaoPlus
 			this.MainPanel.Refresh();
 		}
 
-        // Token: 0x06000032 RID: 50 RVA: 0x000070B4 File Offset: 0x000052B4
         // クラシックチップリスト
         private void MainPanel_Paint(object sender, PaintEventArgs e)
 		{
@@ -1068,7 +1050,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000033 RID: 51 RVA: 0x000076F8 File Offset: 0x000058F8
 		private void MainPanel_MouseDown(object sender, MouseEventArgs e)
 		{
 			base.Focus();
@@ -1103,7 +1084,6 @@ namespace MasaoPlus
 			this.SelectedIndex = num;
 		}
 
-		// Token: 0x06000034 RID: 52 RVA: 0x000022FD File Offset: 0x000004FD
 		private void MainPanel_MouseMove(object sender, MouseEventArgs e)
 		{
 			if (e.Button == MouseButtons.Left)
@@ -1112,7 +1092,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000035 RID: 53 RVA: 0x000077FC File Offset: 0x000059FC
 		private void GUIChipList_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
 		{
 			switch (e.KeyCode)
@@ -1128,7 +1107,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000036 RID: 54 RVA: 0x00007834 File Offset: 0x00005A34
 		private void GUIChipList_KeyDown(object sender, KeyEventArgs e)
 		{
 			e.Handled = true;
@@ -1152,7 +1130,6 @@ namespace MasaoPlus
 			}
 		}
 
-		// Token: 0x06000037 RID: 55 RVA: 0x00002314 File Offset: 0x00000514
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -1162,7 +1139,6 @@ namespace MasaoPlus
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x06000038 RID: 56 RVA: 0x000078B8 File Offset: 0x00005AB8
 		private void InitializeComponent()
 		{
 			this.vScr = new VScrollBar();
@@ -1197,16 +1173,12 @@ namespace MasaoPlus
 			base.ResumeLayout(false);
 		}
 
-		// Token: 0x04000033 RID: 51
 		private int selectedIndex;
 
-		// Token: 0x04000034 RID: 52
 		private IContainer components;
 
-		// Token: 0x04000035 RID: 53
 		private VScrollBar vScr;
 
-		// Token: 0x04000036 RID: 54
 		private PictureBox MainPanel;
 	}
 }
