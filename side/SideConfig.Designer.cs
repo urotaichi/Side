@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus
 {
-	// Token: 0x0200002A RID: 42
 	public partial class SideConfig : global::System.Windows.Forms.Form
 	{
-		// Token: 0x06000136 RID: 310 RVA: 0x00002C52 File Offset: 0x00000E52
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x06000137 RID: 311 RVA: 0x000190AC File Offset: 0x000172AC
 		private void InitializeComponent()
 		{
 			this.Cancel = new global::System.Windows.Forms.Button();
@@ -435,131 +432,90 @@
 			base.ResumeLayout(false);
 		}
 
-		// Token: 0x0400016F RID: 367
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x04000170 RID: 368
 		private global::System.Windows.Forms.Button Cancel;
 
-		// Token: 0x04000171 RID: 369
 		private global::System.Windows.Forms.Button Accept;
 
-		// Token: 0x04000172 RID: 370
 		private global::System.Windows.Forms.TabControl tabControl1;
 
-		// Token: 0x04000173 RID: 371
 		private global::System.Windows.Forms.TabPage tabPage1;
 
-		// Token: 0x04000174 RID: 372
 		private global::System.Windows.Forms.TabPage tabPage2;
 
-		// Token: 0x04000175 RID: 373
 		private global::System.Windows.Forms.ComboBox OutputFileEncode;
 
-		// Token: 0x04000176 RID: 374
 		private global::System.Windows.Forms.Label OFELabel;
 
-		// Token: 0x04000177 RID: 375
 		private global::System.Windows.Forms.TabPage tabPage3;
 
-		// Token: 0x04000178 RID: 376
 		private global::System.Windows.Forms.Label TFNLabel;
 
-		// Token: 0x04000179 RID: 377
 		private global::System.Windows.Forms.TextBox TempFileName;
 
-		// Token: 0x0400017A RID: 378
 		private global::System.Windows.Forms.CheckBox UseIntegBrow;
 
-		// Token: 0x0400017B RID: 379
 		private global::System.Windows.Forms.GroupBox UnuseIntegBrow;
 
-		// Token: 0x0400017C RID: 380
 		private global::System.Windows.Forms.Button BPSelect;
 
-		// Token: 0x0400017D RID: 381
 		private global::System.Windows.Forms.TextBox BrowPath;
 
-		// Token: 0x0400017E RID: 382
 		private global::System.Windows.Forms.CheckBox KillExternalBrow;
 
-		// Token: 0x0400017F RID: 383
 		private global::System.Windows.Forms.Label BPLabel;
 
-		// Token: 0x04000180 RID: 384
 		private global::System.Windows.Forms.CheckBox UseZoomInterp;
 
-		// Token: 0x04000181 RID: 385
 		private global::System.Windows.Forms.CheckBox UseClassicCLInterp;
 
-		// Token: 0x04000182 RID: 386
 		private global::System.Windows.Forms.CheckBox UseQTRun;
 
-		// Token: 0x04000183 RID: 387
 		private global::System.Windows.Forms.CheckBox CursorPageScroll;
 
-		// Token: 0x04000184 RID: 388
 		private global::System.Windows.Forms.TabPage Regist;
 
-		// Token: 0x04000185 RID: 389
 		private global::System.Windows.Forms.Button UnregistProjFile;
 
-		// Token: 0x04000186 RID: 390
 		private global::System.Windows.Forms.Button RegistProjFile;
 
-		// Token: 0x04000187 RID: 391
 		private global::System.Windows.Forms.Label label1;
 
-		// Token: 0x04000188 RID: 392
 		private global::System.Windows.Forms.Label label2;
 
-		// Token: 0x04000189 RID: 393
 		private global::System.Windows.Forms.CheckBox ReversePosition;
 
-		// Token: 0x0400018A RID: 394
 		private global::System.Windows.Forms.CheckBox EnableAutoUpdate;
 
-		// Token: 0x0400018B RID: 395
 		private global::System.Windows.Forms.CheckBox RCContextMenu;
 
-		// Token: 0x0400018C RID: 396
 		private global::System.Windows.Forms.CheckBox ExDraw;
 
-		// Token: 0x0400018D RID: 397
 		private global::System.Windows.Forms.CheckBox EnableAlpha;
 
-		// Token: 0x0400018E RID: 398
 		private global::System.Windows.Forms.ComboBox ClassicSelectionMode;
 
-		// Token: 0x0400018F RID: 399
 		private global::System.Windows.Forms.Label label3;
 
-		// Token: 0x04000190 RID: 400
 		private global::System.Windows.Forms.GroupBox groupBox1;
 
-		// Token: 0x04000191 RID: 401
 		private global::System.Windows.Forms.CheckBox BufferingDraw;
 
-		// Token: 0x04000192 RID: 402
 		private global::System.Windows.Forms.CheckBox ChipSkip;
 
-		// Token: 0x04000193 RID: 403
 		private global::System.Windows.Forms.CheckBox ReuseDraw;
 
-		// Token: 0x04000194 RID: 404
 		private global::System.Windows.Forms.CheckBox IntegrateEditorId;
 
-		// Token: 0x04000195 RID: 405
 		private global::System.Windows.Forms.CheckBox UsePropTextDialog;
 
 		private global::System.Windows.Forms.CheckBox OutPutInititalSourceCode;
 
 		private global::System.Windows.Forms.CheckBox WrapPropText;
 
-		// Token: 0x04000196 RID: 406
 		private global::System.Windows.Forms.CheckBox StartWithCL;
 
-		// Token: 0x04000197 RID: 407
 		private global::System.Windows.Forms.CheckBox WheelHorz;
 	}
 }

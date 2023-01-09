@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000002 RID: 2
 	public partial class WebUpdate : global::System.Windows.Forms.Form
 	{
-		// Token: 0x06000001 RID: 1 RVA: 0x00002050 File Offset: 0x00000250
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x06000002 RID: 2 RVA: 0x00003920 File Offset: 0x00001B20
 		private void InitializeComponent()
 		{
 			this.StateLabel = new global::System.Windows.Forms.Label();
@@ -46,13 +43,10 @@
 			base.PerformLayout();
 		}
 
-		// Token: 0x04000001 RID: 1
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x04000002 RID: 2
 		private global::System.Windows.Forms.Label StateLabel;
 
-		// Token: 0x04000003 RID: 3
 		private global::System.Windows.Forms.ProgressBar progressBar1;
 	}
 }

@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000018 RID: 24
 	public partial class HTMLInheritance : global::System.Windows.Forms.Form
 	{
-		// Token: 0x060000CD RID: 205 RVA: 0x00002879 File Offset: 0x00000A79
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x060000CE RID: 206 RVA: 0x00012974 File Offset: 0x00010B74
 		private void InitializeComponent()
 		{
 			this.label1 = new global::System.Windows.Forms.Label();
@@ -173,52 +170,36 @@
 			base.PerformLayout();
 		}
 
-		// Token: 0x040000C0 RID: 192
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x040000C1 RID: 193
 		private global::System.Windows.Forms.Label label1;
 
-		// Token: 0x040000C2 RID: 194
 		private global::System.Windows.Forms.ComboBox RuntimeSet;
 
-		// Token: 0x040000C3 RID: 195
 		private global::System.Windows.Forms.GroupBox groupBox1;
 
-		// Token: 0x040000C4 RID: 196
 		private global::System.Windows.Forms.CheckBox SeekHeaderFooter;
 
-		// Token: 0x040000C5 RID: 197
 		private global::System.Windows.Forms.Label PNLabel;
 
-		// Token: 0x040000C6 RID: 198
 		private global::System.Windows.Forms.TextBox ProjectName;
 
-		// Token: 0x040000C7 RID: 199
 		private global::System.Windows.Forms.TextBox RootDir;
 
-		// Token: 0x040000C8 RID: 200
 		private global::System.Windows.Forms.Label RDLabel;
 
-		// Token: 0x040000C9 RID: 201
 		private global::System.Windows.Forms.Button RootDirBrowse;
 
-		// Token: 0x040000CA RID: 202
 		private global::System.Windows.Forms.Button button2;
 
-		// Token: 0x040000CB RID: 203
 		private global::System.Windows.Forms.Button OK;
 
-		// Token: 0x040000CC RID: 204
 		private global::System.Windows.Forms.Label StatusText;
 
-		// Token: 0x040000CD RID: 205
 		private global::System.Windows.Forms.Label label3;
 
-		// Token: 0x040000CE RID: 206
 		private global::System.Windows.Forms.TextBox TargetFile;
 
-		// Token: 0x040000CF RID: 207
 		private global::System.Windows.Forms.Label label2;
 	}
 }

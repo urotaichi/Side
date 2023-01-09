@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000004 RID: 4
 	public partial class ResetRuntime : global::System.Windows.Forms.Form
 	{
-		// Token: 0x0600001E RID: 30 RVA: 0x00002213 File Offset: 0x00000413
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x0600001F RID: 31 RVA: 0x00005CA4 File Offset: 0x00003EA4
 		private void InitializeComponent()
 		{
 			this.label1 = new global::System.Windows.Forms.Label();
@@ -174,52 +171,36 @@
 			base.PerformLayout();
 		}
 
-		// Token: 0x0400001B RID: 27
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x0400001C RID: 28
 		private global::System.Windows.Forms.Label label1;
 
-		// Token: 0x0400001D RID: 29
 		private global::System.Windows.Forms.ListView RuntimeView;
 
-		// Token: 0x0400001E RID: 30
 		private global::System.Windows.Forms.Button Cancel;
 
-		// Token: 0x0400001F RID: 31
 		private global::System.Windows.Forms.Button Accept;
 
-		// Token: 0x04000020 RID: 32
 		private global::System.Windows.Forms.ColumnHeader RTN;
 
-		// Token: 0x04000021 RID: 33
 		private global::System.Windows.Forms.ColumnHeader Author;
 
-		// Token: 0x04000022 RID: 34
 		private global::System.Windows.Forms.ColumnHeader ELayer;
 
-		// Token: 0x04000023 RID: 35
 		private global::System.Windows.Forms.Label StateLabel;
 
-		// Token: 0x04000024 RID: 36
 		private global::System.Windows.Forms.GroupBox groupBox1;
 
-		// Token: 0x04000025 RID: 37
 		private global::System.Windows.Forms.Label label2;
 
-		// Token: 0x04000026 RID: 38
 		private global::System.Windows.Forms.GroupBox groupBox2;
 
-		// Token: 0x04000027 RID: 39
 		private global::System.Windows.Forms.CheckBox ChipDefinitionValidation;
 
-		// Token: 0x04000028 RID: 40
 		private global::System.Windows.Forms.CheckBox PutNullChip;
 
-		// Token: 0x04000029 RID: 41
 		private global::System.Windows.Forms.ComboBox ChipMethod;
 
-		// Token: 0x0400002A RID: 42
 		private global::System.Windows.Forms.CheckBox NoTouch;
 	}
 }

@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000014 RID: 20
 	public partial class ProjectLoading : global::System.Windows.Forms.Form
 	{
-		// Token: 0x060000B7 RID: 183 RVA: 0x000027AA File Offset: 0x000009AA
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x060000B8 RID: 184 RVA: 0x000120BC File Offset: 0x000102BC
 		private void InitializeComponent()
 		{
 			this.WaiterText = new global::System.Windows.Forms.Label();
@@ -48,13 +45,10 @@
 			base.PerformLayout();
 		}
 
-		// Token: 0x040000B7 RID: 183
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x040000B8 RID: 184
 		private global::System.Windows.Forms.Label WaiterText;
 
-		// Token: 0x040000B9 RID: 185
 		private global::System.Windows.Forms.ProgressBar progressBar1;
 	}
 }

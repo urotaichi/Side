@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000017 RID: 23
 	public partial class PropertyTextInputDialog : global::System.Windows.Forms.Form
 	{
-		// Token: 0x060000CB RID: 203 RVA: 0x0000285A File Offset: 0x00000A5A
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x060000CC RID: 204 RVA: 0x000126FC File Offset: 0x000108FC
 		private void InitializeComponent()
 		{
 			this.InputText = new global::System.Windows.Forms.TextBox();
@@ -63,16 +60,12 @@
 			base.PerformLayout();
 		}
 
-		// Token: 0x040000BC RID: 188
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x040000BD RID: 189
 		private global::System.Windows.Forms.TextBox InputText;
 
-		// Token: 0x040000BE RID: 190
 		private global::System.Windows.Forms.Button button1;
 
-		// Token: 0x040000BF RID: 191
 		private global::System.Windows.Forms.Button button2;
 	}
 }

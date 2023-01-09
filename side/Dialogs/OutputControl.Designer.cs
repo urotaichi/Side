@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000029 RID: 41
 	public partial class OutputControl : global::System.Windows.Forms.Form
 	{
-		// Token: 0x06000125 RID: 293 RVA: 0x00002BDA File Offset: 0x00000DDA
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x06000126 RID: 294 RVA: 0x00018150 File Offset: 0x00016350
 		private void InitializeComponent()
 		{
 			this.OutputSelector = new global::System.Windows.Forms.CheckedListBox();
@@ -95,28 +92,20 @@
 			base.PerformLayout();
 		}
 
-		// Token: 0x04000164 RID: 356
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x04000165 RID: 357
 		private global::System.Windows.Forms.CheckedListBox OutputSelector;
 
-		// Token: 0x04000166 RID: 358
 		private global::System.Windows.Forms.Label label1;
 
-		// Token: 0x04000167 RID: 359
 		private global::System.Windows.Forms.Button OK;
 
-		// Token: 0x04000168 RID: 360
 		private global::System.Windows.Forms.Button Cancel;
 
-		// Token: 0x04000169 RID: 361
 		private global::System.Windows.Forms.Button AllCheck;
 
-		// Token: 0x0400016A RID: 362
 		private global::System.Windows.Forms.Button AllUncheck;
 
-		// Token: 0x0400016B RID: 363
 		private global::System.Windows.Forms.Button AllWiseCheck;
 	}
 }

@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus.Dialogs
 {
-	// Token: 0x0200002F RID: 47
 	public partial class StartUp : global::System.Windows.Forms.Form
 	{
-		// Token: 0x060001C5 RID: 453 RVA: 0x00003296 File Offset: 0x00001496
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x060001C6 RID: 454 RVA: 0x00024648 File Offset: 0x00022848
 		private void InitializeComponent()
 		{
 			this.components = new global::System.ComponentModel.Container();
@@ -134,40 +131,28 @@
 			base.PerformLayout();
 		}
 
-		// Token: 0x04000243 RID: 579
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x04000244 RID: 580
 		private global::System.Windows.Forms.Label WelcomeLabel;
 
-		// Token: 0x04000245 RID: 581
 		private global::System.Windows.Forms.Button ExMenu;
 
-		// Token: 0x04000246 RID: 582
 		private global::System.Windows.Forms.Button Exit;
 
-		// Token: 0x04000247 RID: 583
 		private global::System.Windows.Forms.ContextMenuStrip ExMenuStrip;
 
-		// Token: 0x04000248 RID: 584
 		private global::System.Windows.Forms.ToolStripMenuItem CallConfig;
 
-		// Token: 0x04000249 RID: 585
 		private global::System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
 
-		// Token: 0x0400024A RID: 586
 		private global::System.Windows.Forms.ToolStripMenuItem CallRuntimeManager;
 
-		// Token: 0x0400024B RID: 587
 		private global::System.Windows.Forms.ToolStripMenuItem CallSideUpdate;
 
-		// Token: 0x0400024C RID: 588
 		private global::MasaoPlus.Controls.CommandLinkButton CmdNewProj;
 
-		// Token: 0x0400024D RID: 589
 		private global::MasaoPlus.Controls.CommandLinkButton CmdOpenFile;
 
-		// Token: 0x0400024E RID: 590
 		private global::MasaoPlus.Controls.CommandLinkButton CmdInheritNew;
 	}
 }

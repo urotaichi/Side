@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000033 RID: 51
 	public partial class RuntimeManager : global::System.Windows.Forms.Form
 	{
-		// Token: 0x060001D4 RID: 468 RVA: 0x0000339D File Offset: 0x0000159D
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x060001D5 RID: 469 RVA: 0x00025744 File Offset: 0x00023944
 		private void InitializeComponent()
 		{
 			this.RuntimeViewer = new global::System.Windows.Forms.ListView();
@@ -112,40 +109,28 @@
 			base.ResumeLayout(false);
 		}
 
-		// Token: 0x0400027B RID: 635
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x0400027C RID: 636
 		private global::System.Windows.Forms.ListView RuntimeViewer;
 
-		// Token: 0x0400027D RID: 637
 		private global::System.Windows.Forms.Button button1;
 
-		// Token: 0x0400027E RID: 638
 		private global::System.Windows.Forms.Button NetworkUpdate;
 
-		// Token: 0x0400027F RID: 639
 		private global::System.Windows.Forms.Button NewRuntimeInstall;
 
-		// Token: 0x04000280 RID: 640
 		private global::System.Windows.Forms.ColumnHeader RuntimeName;
 
-		// Token: 0x04000281 RID: 641
 		private global::System.Windows.Forms.ColumnHeader Author;
 
-		// Token: 0x04000282 RID: 642
 		private global::System.Windows.Forms.ColumnHeader Archive;
 
-		// Token: 0x04000283 RID: 643
 		private global::System.Windows.Forms.ColumnHeader Version;
 
-		// Token: 0x04000284 RID: 644
 		private global::System.Windows.Forms.ColumnHeader Layer;
 
-		// Token: 0x04000285 RID: 645
 		private global::System.Windows.Forms.ProgressBar DownProgress;
 
-		// Token: 0x04000286 RID: 646
 		private global::System.Windows.Forms.Button Uninstall;
 	}
 }

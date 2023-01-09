@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000038 RID: 56
 	public partial class VersionInfo : global::System.Windows.Forms.Form
 	{
-		// Token: 0x0600022B RID: 555 RVA: 0x00003768 File Offset: 0x00001968
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x0600022C RID: 556 RVA: 0x0002928C File Offset: 0x0002748C
 		private void InitializeComponent()
 		{
 			global::System.ComponentModel.ComponentResourceManager componentResourceManager = new global::System.ComponentModel.ComponentResourceManager(typeof(global::MasaoPlus.Dialogs.VersionInfo));
@@ -124,34 +121,24 @@
 			base.PerformLayout();
 		}
 
-		// Token: 0x040002B2 RID: 690
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x040002B3 RID: 691
 		private global::System.Windows.Forms.Button OKButton;
 
-		// Token: 0x040002B4 RID: 692
 		private global::System.Windows.Forms.Label AppName;
 
-		// Token: 0x040002B5 RID: 693
 		private global::System.Windows.Forms.PictureBox pictureBox1;
 
-		// Token: 0x040002B6 RID: 694
 		private global::System.Windows.Forms.Label label2;
 
-		// Token: 0x040002B7 RID: 695
 		private global::System.Windows.Forms.LinkLabel linkLabel1;
 
-		// Token: 0x040002B8 RID: 696
 		private global::System.Windows.Forms.RichTextBox ViewDat;
 
-		// Token: 0x040002B9 RID: 697
 		private global::System.Windows.Forms.Label VersionLabel;
 
-		// Token: 0x040002BA RID: 698
 		private global::System.Windows.Forms.Panel panel1;
 
-		// Token: 0x040002BB RID: 699
 		private global::System.Windows.Forms.LinkLabel linkLabel2;
 	}
 }

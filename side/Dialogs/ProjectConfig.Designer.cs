@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000007 RID: 7
 	public partial class ProjectConfig : global::System.Windows.Forms.Form
 	{
-		// Token: 0x06000039 RID: 57 RVA: 0x00002333 File Offset: 0x00000533
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x0600003A RID: 58 RVA: 0x00007AA4 File Offset: 0x00005CA4
 		private void InitializeComponent()
 		{
 			this.components = new global::System.ComponentModel.Container();
@@ -549,176 +546,120 @@
 			base.ResumeLayout(false);
 		}
 
-		// Token: 0x04000037 RID: 55
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x04000038 RID: 56
 		private global::System.Windows.Forms.Button Cancel;
 
-		// Token: 0x04000039 RID: 57
 		private global::System.Windows.Forms.Button Accept;
 
-		// Token: 0x0400003A RID: 58
 		private global::System.Windows.Forms.TabControl MainTab;
 
-		// Token: 0x0400003B RID: 59
 		private global::System.Windows.Forms.TabPage A;
 
-		// Token: 0x0400003C RID: 60
 		private global::System.Windows.Forms.TabPage OH;
 
 		private global::System.Windows.Forms.TabPage OM;
-		// Token: 0x0400003D RID: 61
+
 		private global::System.Windows.Forms.TabPage OF;
 
-		// Token: 0x0400003E RID: 62
 		private global::System.Windows.Forms.Panel panel1;
 
-		// Token: 0x0400003F RID: 63
 		private global::System.Windows.Forms.RichTextBox OutHeader;
 
-		// Token: 0x04000040 RID: 64
 		private global::System.Windows.Forms.Panel panel2;
 
-		// Token: 0x04000041 RID: 65
 		private global::System.Windows.Forms.RichTextBox OutFooter;
 
-		// Token: 0x04000040 RID: 64
 		private global::System.Windows.Forms.Panel panel3;
 
-		// Token: 0x04000041 RID: 65
 		private global::System.Windows.Forms.RichTextBox OutMiddle;
 
-		// Token: 0x04000042 RID: 66
 		private global::System.Windows.Forms.TextBox OutExt;
 
-		// Token: 0x04000043 RID: 67
 		private global::System.Windows.Forms.Label label2;
 
-		// Token: 0x04000044 RID: 68
 		private global::System.Windows.Forms.TextBox OutDir;
 
-		// Token: 0x04000045 RID: 69
 		private global::System.Windows.Forms.Label label1;
 
-		// Token: 0x04000046 RID: 70
 		private global::System.Windows.Forms.TextBox ProjectName;
 
-		// Token: 0x04000047 RID: 71
 		private global::System.Windows.Forms.Label label8;
 
-		// Token: 0x04000048 RID: 72
 		private global::System.Windows.Forms.TabPage OutputReplace;
 
-		// Token: 0x04000049 RID: 73
 		private global::System.Windows.Forms.DataGridView OutputReplaceView;
 
-		// Token: 0x0400004A RID: 74
 		private global::System.Windows.Forms.Label label9;
 
-		// Token: 0x0400004B RID: 75
 		private global::System.Windows.Forms.DataGridViewTextBoxColumn ReplName;
 
-		// Token: 0x0400004C RID: 76
 		private global::System.Windows.Forms.DataGridViewTextBoxColumn ReplValue;
 
-		// Token: 0x0400004D RID: 77
 		private global::System.Windows.Forms.TabPage Fom;
 
-		// Token: 0x0400004E RID: 78
 		private global::System.Windows.Forms.Label label13;
 
-		// Token: 0x0400004F RID: 79
 		private global::System.Windows.Forms.Label label12;
 
-		// Token: 0x04000050 RID: 80
 		private global::System.Windows.Forms.Label label11;
 
-		// Token: 0x04000051 RID: 81
 		private global::System.Windows.Forms.Label label10;
 
-		// Token: 0x04000052 RID: 82
 		private global::System.Windows.Forms.Label label7;
 
-		// Token: 0x04000053 RID: 83
 		private global::System.Windows.Forms.Label label6;
 
-		// Token: 0x04000054 RID: 84
 		private global::System.Windows.Forms.TextBox MapF;
 
-		// Token: 0x04000055 RID: 85
 		private global::System.Windows.Forms.TextBox LayerF4;
 
-		// Token: 0x04000056 RID: 86
 		private global::System.Windows.Forms.TextBox StageF4;
 
-		// Token: 0x04000057 RID: 87
 		private global::System.Windows.Forms.TextBox LayerF3;
 
-		// Token: 0x04000058 RID: 88
 		private global::System.Windows.Forms.TextBox StageF3;
 
-		// Token: 0x04000059 RID: 89
 		private global::System.Windows.Forms.TextBox LayerF2;
 
-		// Token: 0x0400005A RID: 90
 		private global::System.Windows.Forms.TextBox StageF2;
 
-		// Token: 0x0400005B RID: 91
 		private global::System.Windows.Forms.Label label5;
 
-		// Token: 0x0400005C RID: 92
 		private global::System.Windows.Forms.TextBox LayerF;
 
-		// Token: 0x0400005D RID: 93
 		private global::System.Windows.Forms.Label label4;
 
-		// Token: 0x0400005E RID: 94
 		private global::System.Windows.Forms.Label label3;
 
-		// Token: 0x0400005F RID: 95
 		private global::System.Windows.Forms.TextBox StageF;
 
-		// Token: 0x04000060 RID: 96
 		private global::System.Windows.Forms.Label label14;
 
-		// Token: 0x04000061 RID: 97
 		private global::System.Windows.Forms.Label label15;
 
-		// Token: 0x04000062 RID: 98
 		private global::System.Windows.Forms.NumericUpDown ProjNum;
 
-		// Token: 0x04000063 RID: 99
 		private global::System.Windows.Forms.Label label17;
 
-		// Token: 0x04000064 RID: 100
 		private global::System.Windows.Forms.Label label16;
 
-		// Token: 0x04000065 RID: 101
 		private global::System.Windows.Forms.CheckBox UseWorldmap;
 
-		// Token: 0x04000066 RID: 102
 		private global::System.Windows.Forms.ContextMenuStrip EditContext;
 
-		// Token: 0x04000067 RID: 103
 		private global::System.Windows.Forms.ToolStripMenuItem TextUndo;
 
-		// Token: 0x04000068 RID: 104
 		private global::System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
 
-		// Token: 0x04000069 RID: 105
 		private global::System.Windows.Forms.ToolStripMenuItem TextCut;
 
-		// Token: 0x0400006A RID: 106
 		private global::System.Windows.Forms.ToolStripMenuItem TextCopy;
 
-		// Token: 0x0400006B RID: 107
 		private global::System.Windows.Forms.ToolStripMenuItem TextPaste;
 
-		// Token: 0x0400006C RID: 108
 		private global::System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
 
-		// Token: 0x0400006D RID: 109
 		private global::System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
 	}
 }

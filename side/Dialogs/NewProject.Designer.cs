@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus.Dialogs
 {
-	// Token: 0x0200001A RID: 26
 	public partial class NewProject : global::System.Windows.Forms.Form
 	{
-		// Token: 0x060000DB RID: 219 RVA: 0x000028C5 File Offset: 0x00000AC5
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x060000DC RID: 220 RVA: 0x00014800 File Offset: 0x00012A00
 		private void InitializeComponent()
 		{
 			this.components = new global::System.ComponentModel.Container();
@@ -331,97 +328,66 @@
 			base.PerformLayout();
 		}
 
-		// Token: 0x040000D6 RID: 214
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x040000D7 RID: 215
 		private global::System.Windows.Forms.GroupBox groupBox2;
 
-		// Token: 0x040000D8 RID: 216
 		private global::System.Windows.Forms.ComboBox RuntimeSet;
 
-		// Token: 0x040000D9 RID: 217
 		private global::System.Windows.Forms.Label RSLabel;
 
-		// Token: 0x040000DA RID: 218
 		private global::System.Windows.Forms.Button MapChipBrowse;
 
-		// Token: 0x040000DB RID: 219
 		private global::System.Windows.Forms.TextBox MapChip;
 
-		// Token: 0x040000DC RID: 220
 		private global::System.Windows.Forms.Label MCLabel;
 
-		// Token: 0x040000DD RID: 221
 		private global::System.Windows.Forms.TextBox ProjectName;
 
-		// Token: 0x040000DE RID: 222
 		private global::System.Windows.Forms.Label PNLabel;
 
-		// Token: 0x040000DF RID: 223
 		private global::System.Windows.Forms.Button RootDirBrowse;
 
-		// Token: 0x040000E0 RID: 224
 		private global::System.Windows.Forms.TextBox RootDir;
 
-		// Token: 0x040000E1 RID: 225
 		private global::System.Windows.Forms.Label RDLabel;
 
-		// Token: 0x040000E2 RID: 226
 		private global::System.Windows.Forms.Button Cancel;
 
-		// Token: 0x040000E3 RID: 227
 		private global::System.Windows.Forms.Button OK;
 
-		// Token: 0x040000E4 RID: 228
 		private global::System.Windows.Forms.Button GameoverBrowse;
 
-		// Token: 0x040000E5 RID: 229
 		private global::System.Windows.Forms.TextBox GameoverImage;
 
-		// Token: 0x040000E6 RID: 230
 		private global::System.Windows.Forms.Label GOLabel;
 
-		// Token: 0x040000E7 RID: 231
 		private global::System.Windows.Forms.Button EndingImageBrowse;
 
-		// Token: 0x040000E8 RID: 232
 		private global::System.Windows.Forms.TextBox EndingImage;
 
-		// Token: 0x040000E9 RID: 233
 		private global::System.Windows.Forms.Label EILabel;
 
-		// Token: 0x040000EA RID: 234
 		private global::System.Windows.Forms.Button TitleImageBrowse;
 
-		// Token: 0x040000EB RID: 235
 		private global::System.Windows.Forms.TextBox TitleImage;
 
-		// Token: 0x040000EC RID: 236
 		private global::System.Windows.Forms.Label TILabel;
 
-		// Token: 0x040000ED RID: 237
 		private global::System.Windows.Forms.Label label1;
 
-		// Token: 0x040000EE RID: 238
 		private global::System.Windows.Forms.ToolTip HelpTip;
 
-		// Token: 0x040000EF RID: 239
 		private global::System.Windows.Forms.Button LayerPatternBrowse;
 
-		// Token: 0x040000F0 RID: 240
 		private global::System.Windows.Forms.TextBox LayerPattern;
 
-		// Token: 0x040000F1 RID: 241
 		private global::System.Windows.Forms.Label LPLabel;
 
-		// Token: 0x040000F2 RID: 242
 		private global::System.Windows.Forms.Label label2;
 
-		// Token: 0x040000F3 RID: 243
 		private global::System.Windows.Forms.NumericUpDown StageNum;
 
-		// Token: 0x040000F4 RID: 244
 		private global::System.Windows.Forms.Label LayerUnsupNotice;
 	}
 }

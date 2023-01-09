@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus.Dialogs
 {
-	// Token: 0x02000005 RID: 5
 	public partial class ProjInheritance : global::System.Windows.Forms.Form
 	{
-		// Token: 0x06000023 RID: 35 RVA: 0x00002264 File Offset: 0x00000464
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x06000024 RID: 36 RVA: 0x00006AE4 File Offset: 0x00004CE4
 		private void InitializeComponent()
 		{
 			this.label1 = new global::System.Windows.Forms.Label();
@@ -67,19 +64,14 @@
 			base.PerformLayout();
 		}
 
-		// Token: 0x0400002E RID: 46
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x0400002F RID: 47
 		private global::System.Windows.Forms.Label label1;
 
-		// Token: 0x04000030 RID: 48
 		private global::System.Windows.Forms.Button CancelBtn;
 
-		// Token: 0x04000031 RID: 49
 		private global::System.Windows.Forms.Button OKBtn;
 
-		// Token: 0x04000032 RID: 50
 		private global::System.Windows.Forms.TextBox NewProjName;
 	}
 }

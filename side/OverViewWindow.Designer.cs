@@ -1,9 +1,7 @@
 ﻿namespace MasaoPlus
 {
-	// Token: 0x0200002E RID: 46
 	public partial class OverViewWindow : global::System.Windows.Forms.Form
 	{
-		// Token: 0x060001AD RID: 429 RVA: 0x00003173 File Offset: 0x00001373
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && this.components != null)
@@ -13,7 +11,6 @@
 			base.Dispose(disposing);
 		}
 
-		// Token: 0x060001AE RID: 430 RVA: 0x00023ED8 File Offset: 0x000220D8
 		private void InitializeComponent()
 		{
 			this.OverViewViewer = new global::MasaoPlus.Controls.OverViewer();
@@ -46,10 +43,8 @@
 			base.ResumeLayout(false);
 		}
 
-		// Token: 0x0400023E RID: 574
 		private global::System.ComponentModel.IContainer components;
 
-		// Token: 0x0400023F RID: 575
 		private global::MasaoPlus.Controls.OverViewer OverViewViewer;
 	}
 }
