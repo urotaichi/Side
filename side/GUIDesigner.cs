@@ -2422,12 +2422,24 @@ namespace MasaoPlus
 					return;
 				case GUIDesigner.EditTool.Line:
 				case GUIDesigner.EditTool.Rect:
-					this.MouseStartPoint = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+					this.MouseStartPoint = new Point(
+						(int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)),
+						(int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex))
+					);
 					this.MouseLastPoint = this.MouseStartPoint;
 					return;
 				case GUIDesigner.EditTool.Fill:
 					Global.MainWnd.UpdateStatus("塗り潰しています...");
-					this.FillStart(Global.state.CurrentChip, new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex))));
+					this.FillStart(Global.state.CurrentChip,
+						new Point(
+							(int)(
+								(double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)
+							),
+							(int)(
+								(double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)
+							)
+						)
+					);
 					this.StageSourceToDrawBuffer();
 					this.AddBuffer();
 					this.Refresh();
@@ -2440,8 +2452,10 @@ namespace MasaoPlus
 			}
 		}
 
+		// 塗りつぶすチップデータ、塗りつぶし開始座標
 		private void FillStart(ChipsData repl, Point pt)
 		{
+			// 画面外なら終了
 			if (GUIDesigner.StageText.IsOverflow(pt))
 			{
 				return;
@@ -2472,7 +2486,8 @@ namespace MasaoPlus
 				}
 			}
 			string stageChar = GUIDesigner.StageText.GetStageChar(pt);
-			if (stageChar == repl.character)
+            // 塗りつぶしたマスと同じなら終了
+            if (stageChar == repl.character)
 			{
 				return;
 			}
@@ -2494,41 +2509,109 @@ namespace MasaoPlus
 			{
 				this.FillThis(this.DrawLayerRef[stageChar], repl, pt);
 			}
+
 			for (int j = 0; j < Global.state.GetCSSize.y; j++)
 			{
 				this.PutItemTextEnd(this.repls[j], j);
 			}
 		}
 
-		private void FillThis(ChipsData old, ChipsData repl, Point pt)
+        // 塗りつぶす前のチップデータ、塗りつぶすチップデータ、塗りつぶし開始座標
+        private void FillThis(ChipsData old, ChipsData repl, Point pt)
+        {
+			var queue = new Queue<BufStr>();
+
+            queue.Enqueue(new BufStr(
+				this.scanLeft(pt, this.repls, old),
+				this.scanRight(pt, this.repls, old),
+                pt.Y
+			));
+
+            var newmap = new List<char[]>(this.repls);
+
+            while (queue.Count > 0) {
+				int left = queue.Peek().left;
+				int right = queue.Peek().right;
+				int y = queue.Peek().y;
+				queue.Dequeue();
+
+                this.updateLine(left, right, y, repl);
+
+				// 上下を探索
+				if (0 < y)
+				{
+					this.searchLine(left, right, y - 1, newmap, old, queue);
+				}
+				if (y < Global.state.GetCSSize.y - 1)
+				{
+					this.searchLine(left, right, y + 1, newmap, old, queue);
+				}
+			}
+        }
+
+		private int scanLeft(Point pt, List<char[]> newmap, ChipsData old)
 		{
-			for (int i = 0; i < Global.state.GetCByte; i++)
+			int result = pt.X;
+
+            while (0 < result && this.getMapChipString(result - 1, pt.Y, newmap).Equals(old.character))
+            {
+                result--;
+            }
+            return result;
+		}
+
+		private int scanRight(Point pt, List<char[]> newmap, ChipsData old)
+		{
+			int result = pt.X;
+
+            while (result < Global.state.GetCSSize.x - 1 && this.getMapChipString(result + 1, pt.Y, newmap).Equals(old.character))
+            {
+                result++;
+            }
+            return result;
+		}
+
+		private void updateLine(int left, int right, int y, ChipsData repl)
+		{
+			//マップの文字を書き換える
+			for (int x = left; x <= right; x++)
 			{
-				this.repls[pt.Y][pt.X * Global.state.GetCByte + i] = repl.character[i];
+				for (int i = 0; i < Global.state.GetCByte; i++)
+				{
+					this.repls[y][x * Global.state.GetCByte + i] = repl.character[i];
+				}
 			}
-			Point pt2 = pt;
-			pt2.X++;
-			if (this.CheckChar(pt2, old))
+		}
+
+		private void searchLine(int left, int right, int y, List<char[]> newmap, ChipsData old, Queue<BufStr> queue)
+		{
+			int l = -1;
+			for (int x = left; x <= right; x++)
 			{
-				this.FillThis(old, repl, pt2);
+				var c = this.getMapChipString(x, y, newmap);
+
+				if (c.Equals(old.character) && l == -1)
+				{
+					if (x == left)
+					{
+						l = this.scanLeft(new Point(x, y), newmap, old);
+					}
+					else
+					{
+						l = x;
+					}
+				}
+				else if (!c.Equals(old.character) && l != -1)
+				{
+					int r = x - 1;
+					queue.Enqueue(new BufStr(l, r, y));
+					l = -1;
+				}
 			}
-			pt2 = pt;
-			pt2.X--;
-			if (this.CheckChar(pt2, old))
+			if (l != -1)
 			{
-				this.FillThis(old, repl, pt2);
-			}
-			pt2 = pt;
-			pt2.Y++;
-			if (this.CheckChar(pt2, old))
-			{
-				this.FillThis(old, repl, pt2);
-			}
-			pt2 = pt;
-			pt2.Y--;
-			if (this.CheckChar(pt2, old))
-			{
-				this.FillThis(old, repl, pt2);
+				int r = this.scanRight(new Point(right, y), newmap, old);
+				queue.Enqueue(new BufStr(l, r, y));
 			}
 		}
 
@@ -2546,9 +2629,22 @@ namespace MasaoPlus
 				}
 			}
 			return true;
-		}
+        }
 
-		private void GUIDesigner_MouseMove(object sender, MouseEventArgs e)
+		// マップ文字列から特定の座標の文字(String型)を取り出す。通常は1文字。レイヤーは2文字。
+        private String getMapChipString(int x, int y, List<char[]> newmap)
+        {
+            var c = new char[Global.state.GetCByte];
+
+            for (int i = 0; i < Global.state.GetCByte; i++)
+            {
+                c[i] = newmap[y][x * Global.state.GetCByte + i];
+            }
+
+            return new String(c);
+        }
+
+        private void GUIDesigner_MouseMove(object sender, MouseEventArgs e)
 		{
 			if (this.CopyPaste != GUIDesigner.CopyPasteTool.Paste || this.MousePressed)
 			{
@@ -4742,7 +4838,21 @@ namespace MasaoPlus
 
 		private List<char[]> repls = new List<char[]>();
 
-		private IContainer components;
+        private struct BufStr
+        {
+            public int left;
+            public int right;
+            public int y;
+
+            public BufStr(int left, int right, int y)
+			{
+				this.left = left;
+				this.right = right;
+				this.y = y;
+			}
+        };
+
+        private IContainer components;
 
 		private ContextMenuStrip CursorContextMenu;
 
@@ -4766,6 +4876,7 @@ namespace MasaoPlus
 
 		public class StageText
 		{
+			// 座標が画面内にあるかチェック
 			public static bool IsOverflow(Point p)
 			{
 				return p.X < 0 || p.Y < 0 || p.X >= Global.state.GetCSSize.x || p.Y >= Global.state.GetCSSize.y;
