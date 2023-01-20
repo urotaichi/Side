@@ -258,6 +258,9 @@
     <PackageReference Include="SharpZipLib">
       <Version>1.4.1</Version>
     </PackageReference>
+    <PackageReference Include="WindowsAPICodePack">
+      <Version>7.0.1</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

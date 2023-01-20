@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Taskbar;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -180,9 +181,9 @@ namespace MasaoPlus.Dialogs
 		private void dlClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
 		{
 			if (e.Error != null)
-			{
-				MessageBox.Show("更新できませんでした。" + Environment.NewLine + e.Error.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-				base.DialogResult = DialogResult.Retry;
+            {
+                MessageBox.Show("更新できませんでした。" + Environment.NewLine + e.Error.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                base.DialogResult = DialogResult.Retry;
 				base.Close();
 				return;
 			}
@@ -217,7 +218,8 @@ namespace MasaoPlus.Dialogs
 				this.tempfile = Path.GetTempFileName();
 				this.dlClient = new WebClient();
 				this.dlClient.DownloadProgressChanged += this.dlClient_DownloadProgressChanged;
-				this.dlClient.DownloadFileCompleted += this.dlClient_DownloadFileCompleted_Package;
+                this.dlClient.DownloadProgressChanged += this.dlClient_DownloadTaskbarManagerProgressChanged;
+                this.dlClient.DownloadFileCompleted += this.dlClient_DownloadFileCompleted_Package;
 				Uri address = new Uri(updateData.Update);
 				try
 				{
@@ -226,30 +228,40 @@ namespace MasaoPlus.Dialogs
 					return;
 				}
 				catch (Exception ex)
-				{
-					MessageBox.Show("更新できませんでした。" + Environment.NewLine + ex.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-					base.DialogResult = DialogResult.Retry;
+                {
+                    TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
+                    MessageBox.Show("更新できませんでした。" + Environment.NewLine + ex.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
+                    base.DialogResult = DialogResult.Retry;
 					base.Close();
 				}
-			}
-			base.DialogResult = DialogResult.Retry;
+            }
+            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
+            base.DialogResult = DialogResult.Retry;
 			base.Close();
 		}
 
 		private void dlClient_DownloadFileCompleted_Package(object sender, AsyncCompletedEventArgs e)
-		{
-			this.Text = "ランタイムをインストールしています...";
+        {
+            this.Text = "ランタイムをインストールしています...";
 			Subsystem.InstallRuntime(this.tempfile);
-			base.DialogResult = DialogResult.Retry;
+            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
+            base.DialogResult = DialogResult.Retry;
 			base.Close();
 		}
 
 		private void dlClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
 		{
 			this.DownProgress.Value = e.ProgressPercentage;
-		}
+        }
 
-		private void Uninstall_Click(object sender, EventArgs e)
+        private void dlClient_DownloadTaskbarManagerProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
+            TaskbarManager.Instance.SetProgressValue(e.ProgressPercentage, 100);
+        }
+
+        private void Uninstall_Click(object sender, EventArgs e)
 		{
 			if (this.RuntimeViewer.SelectedIndices.Count == 0)
 			{
