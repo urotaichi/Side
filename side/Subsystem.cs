@@ -1240,14 +1240,14 @@ namespace MasaoPlus
 			}
 			Subsystem.dlClient = new WebClient();
 			Subsystem.dlClient.Headers.Add("User-Agent", string.Concat(new string[]
-			{
-				Global.definition.AppName,
-				" - ",
-				Global.definition.AppNameFull,
-				"/",
-				Global.definition.Version,
-				"(compatible; MSIE 6.0/7.0; Windows XP/Vista)"
-			}));
+            {
+                Global.definition.AppName,
+                " - ",
+                Global.definition.AppNameFull,
+                "/",
+                Global.definition.Version,
+                "(Windows NT 10.0; Win64; x64)"
+            }));
 			Subsystem.dlClient.DownloadFileCompleted += Subsystem.dlClient_DownloadFileCompleted;
 			Subsystem.tempfile = Path.GetTempFileName();
 			Uri address = new Uri(Global.config.localSystem.UpdateServer);

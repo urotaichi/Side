@@ -24,14 +24,14 @@ namespace MasaoPlus.Dialogs
 			}
 			this.dlClient = new WebClient();
 			this.dlClient.Headers.Add("User-Agent", string.Concat(new string[]
-			{
-				Global.definition.AppName,
-				" - ",
-				Global.definition.AppNameFull,
-				"/",
-				Global.definition.Version,
-				"(compatible; MSIE 6.0/7.0; Windows XP/Vista)"
-			}));
+            {
+                Global.definition.AppName,
+                " - ",
+                Global.definition.AppNameFull,
+                "/",
+                Global.definition.Version,
+                "(Windows NT 10.0; Win64; x64)"
+            }));
 			this.dlClient.DownloadProgressChanged += this.dlClient_DownloadProgressChanged;
 			this.dlClient.DownloadFileCompleted += this.dlClient_DownloadFileCompleted;
 			this.tempfile = Path.GetTempFileName();
@@ -98,8 +98,8 @@ namespace MasaoPlus.Dialogs
 				Global.definition.AppNameFull,
 				"/",
 				Global.definition.Version,
-				"(compatible; MSIE 6.0/7.0; Windows XP/Vista)"
-			}));
+                "(Windows NT 10.0; Win64; x64)"
+            }));
 			this.dlClient.DownloadProgressChanged += this.dlClient_DownloadProgressChanged;
             this.dlClient.DownloadProgressChanged += this.dlClient_DownloadTaskbarManagerProgressChanged;
             this.dlClient.DownloadFileCompleted += this.dlClient_DownloadFileCompleted2;
@@ -146,8 +146,8 @@ namespace MasaoPlus.Dialogs
 				Global.definition.AppNameFull,
 				"/",
 				Global.definition.Version,
-				"(compatible; MSIE 6.0/7.0; Windows XP/Vista)"
-			}));
+                "(Windows NT 10.0; Win64; x64)"
+            }));
 			this.dlClient.DownloadProgressChanged += this.dlClient_DownloadProgressChanged;
             this.dlClient.DownloadProgressChanged += this.dlClient_DownloadTaskbarManagerProgressChanged;
             this.dlClient.DownloadFileCompleted += this.dlClient_DownloadFileCompleted3;
