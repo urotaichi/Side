@@ -202,7 +202,7 @@
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
 
     <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
-    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>上り坂</list><list>下り坂</list>
     <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
     <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
     <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
@@ -326,7 +326,7 @@
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
 
     <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
-    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>上り坂</list><list>下り坂</list>
     <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
     <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
     <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
@@ -450,7 +450,7 @@
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
 
     <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
-    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>上り坂</list><list>下り坂</list>
     <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
     <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
     <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
@@ -574,7 +574,7 @@
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
 
     <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
-    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>上り坂</list><list>下り坂</list>
     <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
     <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
     <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
@@ -698,7 +698,7 @@
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
 
     <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
-    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>上り坂</list><list>下り坂</list>
     <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
     <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
     <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
@@ -822,7 +822,7 @@
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
 
     <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
-    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>上り坂</list><list>下り坂</list>
     <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
     <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
     <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
@@ -946,7 +946,7 @@
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
 
     <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
-    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>上り坂</list><list>下り坂</list>
     <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
     <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
     <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
@@ -1070,7 +1070,7 @@
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
 
     <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
-    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>上り坂</list><list>下り坂</list>
     <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
     <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
     <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
@@ -1194,7 +1194,7 @@
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
 
     <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
-    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>上り坂</list><list>下り坂</list>
     <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
     <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
     <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
@@ -1318,7 +1318,7 @@
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
 
     <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
-    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>上り坂</list><list>下り坂</list>
     <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
     <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
     <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
@@ -1442,7 +1442,7 @@
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
 
     <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
-    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>上り坂</list><list>下り坂</list>
     <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
     <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
     <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
@@ -1566,7 +1566,7 @@
     <list>得点でｸﾞﾚﾈｰﾄﾞを売る人</list><list>下ｷｰで降りられる上り坂</list><list>下ｷｰで降りられる下り坂</list>
 
     <list>雲の左側</list><list>雲の右側</list><list>草</list><list>水中</list><list>上向きのトゲ</list><list>下向きのトゲ</list><list>ろうそく</list><list>星</list><list>コイン</list><list>ハシゴ</list>
-    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>一言メッセージ３（背景）</list><list>一言メッセージ４（背景）</list>
+    <list>空白</list><list>ジャンプ台（背景）</list><list>ジャンプ台2（背景）</list><list>ジャンプ台3（背景）</list><list>下から通れるブロック</list><list>一言メッセージ１（背景）</list><list>一言メッセージ２（背景）</list><list>上り坂</list><list>下り坂</list>
     <list>ブロック１</list><list>ブロック２</list><list>ブロック３</list><list>ブロック４</list><list>ブロック５</list><list>ブロック６</list><list>ブロック７</list><list>ブロック８</list><list>ブロック９</list><list>ブロック１０</list>
     <list>ハシゴ（ブロック）</list><list>透明なブロック</list><list>ジャンプ台（ブロック）</list><list>ジャンプ台2（ブロック）</list><list>ジャンプ台3（ブロック）</list><list>下から通れないブロック（ブロック）</list><list>一言メッセージ１（ブロック）</list><list>一言メッセージ２（ブロック）</list><list>一言メッセージ３（ブロック）</list><list>一言メッセージ４（ブロック）</list>
     <list>？ブロック</list><list>？ブロック（空）</list><list>ファイヤーボール</list><list>バリア</list><list>タイム</list><list>ジェット</list><list>ヘルメット</list><list>しっぽ</list><list>ドリル</list><list>グレネード</list>
