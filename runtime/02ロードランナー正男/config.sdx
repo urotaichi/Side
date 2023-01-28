@@ -1926,6 +1926,13 @@
   <param name="mizunohadou_@" desc="水の波動,人間大砲(本体)の色" type="color" value="0,32,255" category="表示" />
   <param name="firebar_@1" desc="ﾌｧｲﾔｰ系の外側,ｼｰｿｰと動くT字型の支柱,ﾌﾞﾗﾝｺの鎖の色" type="color" value="255,0,0" category="表示" />
   <param name="firebar_@2" desc="ﾌｧｲﾔｰ系の内側,ｼｰｿｰと動くT字型とｽｳｨﾝｸﾞﾊﾞｰとﾌﾞﾗﾝｺの板,ﾛｰﾌﾟ,ゆれる棒,人間大砲の台座の色" type="color" value="255,192,0" category="表示" />
+  <param name="message_back_@" desc="メッセージウィンドウの背景色" type="color" value="0,0,0" category="表示" />
+  <param name="message_border_@" desc="メッセージウィンドウの枠色" type="color" value="255,255,255" category="表示" />
+  <param name="message_name_@" desc="メッセージウィンドウの名前の文字色" type="color" value="0,255,255" category="表示" />
+  <param name="message_text_@" desc="メッセージウィンドウの文字色" type="color" value="255,255,255" category="表示" />
+  <param name="gauge_border_@" desc="ゲージの枠の色" type="color" value="255,255,255" category="表示" />
+  <param name="gauge_back_@1" desc="ゲージの背景色1" type="color" value="255,255,0" category="表示" />
+  <param name="gauge_back_@2" desc="ゲージの背景色2" type="color" value="255,0,0" category="表示" />
   <param name="moji_score" desc="SCORE の文字" type="string" value="SCORE" category="表示" />
   <param name="moji_highscore" desc="HIGHSCORE の文字" type="string" value="HIGHSCORE" category="表示" />
   <param name="moji_time" desc="TIME の文字" type="string" value="TIME" category="表示" />
