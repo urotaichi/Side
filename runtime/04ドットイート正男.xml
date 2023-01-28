@@ -3,7 +3,7 @@
   <Definitions>
     <Name>ドットイート正男</Name>
     <DefVersion>4.2</DefVersion>
-    <RequireLower>2.8</RequireLower>
+    <RequireLower>2.9</RequireLower>
     <Author>RYO</Author>
     <Update>https://urotaichi.com/other/side/mc_d.xml</Update>
     <!--各種ファイルの指定-->
