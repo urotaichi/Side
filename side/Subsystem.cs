@@ -775,15 +775,15 @@ namespace MasaoPlus
 					string param  = configParam.Name;
 
 					if (Global.config.localSystem.OutPutInititalSourceCode || Global.cpd.runtime.Definitions.Package.Contains("28")
-					   || !((param == "backcolor_@" || param == "scorecolor_@" || param == "mizunohadou_@" || param == "kaishi_@" || param == "backcolor_@_s" || param == "backcolor_@_t") && colors.r == 0
-					   || (param == "grenade_@1" || param == "grenade_@2" || param == "firebar_@1" || param == "firebar_@2") && colors.r == 255
+					   || !((param == "backcolor_@" || param == "scorecolor_@" || param == "mizunohadou_@" || param == "kaishi_@" || param == "backcolor_@_s" || param == "backcolor_@_t" || param == "message_back_@" || param == "message_name_@") && colors.r == 0
+					   || (param == "grenade_@1" || param == "grenade_@2" || param == "firebar_@1" || param == "firebar_@2" || param == "message_border_@" || param == "message_text_@" || param == "gauge_border_@" || param == "gauge_back_@1" || param == "gauge_back_@2") && colors.r == 255
 					   || param == "backcolor_@_f" && colors.r == 192
 					))
 					stringBuilder.AppendLine(string.Format(parameter, configParam.Name.Replace("@", "red"), colors.r.ToString()));
 					
 					if (Global.config.localSystem.OutPutInititalSourceCode || Global.cpd.runtime.Definitions.Package.Contains("28")
-					   || !((param == "scorecolor_@" || param == "kaishi_@" || param == "firebar_@1" || param == "backcolor_@_s") && colors.g == 0
-					   || (param == "backcolor_@" || param == "grenade_@1" || param == "grenade_@2" || param == "backcolor_@_t") && colors.g == 255
+					   || !((param == "scorecolor_@" || param == "kaishi_@" || param == "firebar_@1" || param == "backcolor_@_s" || param == "message_back_@" || param == "gauge_back_@2") && colors.g == 0
+					   || (param == "backcolor_@" || param == "grenade_@1" || param == "grenade_@2" || param == "backcolor_@_t" || param == "message_border_@" || param == "message_name_@" || param == "message_text_@" || param == "gauge_border_@" || param == "gauge_back_@1") && colors.g == 255
 					   || param == "mizunohadou_@" && colors.g == 32
 					   || param == "firebar_@2" && colors.g == 192
 					   || param == "backcolor_@_f" && colors.g == 48
@@ -791,8 +791,8 @@ namespace MasaoPlus
 					stringBuilder.AppendLine(string.Format(parameter, configParam.Name.Replace("@", "green"), colors.g.ToString()));
 					
 					if (Global.config.localSystem.OutPutInititalSourceCode || Global.cpd.runtime.Definitions.Package.Contains("28")
-					   || !((param == "grenade_@2" || param == "firebar_@1" || param == "firebar_@2" || param == "kaishi_@" || param == "backcolor_@_s") && colors.b == 0
-					   || (param == "backcolor_@" || param == "scorecolor_@" || param == "grenade_@1" || param == "mizunohadou_@" || param == "backcolor_@_t") && colors.b == 255
+					   || !((param == "grenade_@2" || param == "firebar_@1" || param == "firebar_@2" || param == "kaishi_@" || param == "backcolor_@_s" || param == "message_back_@" || param == "gauge_back_@1" || param == "gauge_back_@2") && colors.b == 0
+					   || (param == "backcolor_@" || param == "scorecolor_@" || param == "grenade_@1" || param == "mizunohadou_@" || param == "backcolor_@_t" || param == "message_border_@" || param == "message_name_@" || param == "message_text_@" || param == "gauge_border_@") && colors.b == 255
 					   || param == "backcolor_@_f" && colors.b == 48
 					))
 					stringBuilder.AppendLine(string.Format(parameter, configParam.Name.Replace("@", "blue"), colors.b.ToString()));
