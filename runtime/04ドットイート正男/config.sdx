@@ -1927,7 +1927,7 @@
   <param name="firebar_@1" desc="ﾌｧｲﾔｰ系の外側,ｼｰｿｰと動くT字型の支柱,ﾌﾞﾗﾝｺの鎖の色" type="color" value="255,0,0" category="表示" />
   <param name="firebar_@2" desc="ﾌｧｲﾔｰ系の内側,ｼｰｿｰと動くT字型とｽｳｨﾝｸﾞﾊﾞｰとﾌﾞﾗﾝｺの板,ﾛｰﾌﾟ,ゆれる棒,人間大砲の台座の色" type="color" value="255,192,0" category="表示" />
   <param name="message_back_@" desc="メッセージウィンドウの背景色" type="color" value="0,0,0" category="表示" />
-  <param name="message_border_@" desc="メッセージウィンドウの枠色" type="color" value="255,255,255" category="表示" />
+  <param name="message_border_@" desc="メッセージウィンドウの枠の色" type="color" value="255,255,255" category="表示" />
   <param name="message_name_@" desc="メッセージウィンドウの名前の文字色" type="color" value="0,255,255" category="表示" />
   <param name="message_text_@" desc="メッセージウィンドウの文字色" type="color" value="255,255,255" category="表示" />
   <param name="gauge_border_@" desc="ゲージの枠の色" type="color" value="255,255,255" category="表示" />
