@@ -1256,8 +1256,10 @@ namespace MasaoPlus
 			}), "コンバート失敗", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
 			{
 				e.Cancel = true;
-			}
-		}
+            }
+
+            if (this.EditTab.SelectedIndex == 2) this.IntegrateBrowser.Navigate("about:blank");
+        }
 
 		private void EditTab_Selecting(object sender, TabControlCancelEventArgs e)
 		{
@@ -1386,8 +1388,6 @@ namespace MasaoPlus
 				this.UpdateStatus("完了");
 			}
 			this.UpdateTitle();
-
-			if(this.EditTab.SelectedIndex == 0 || this.EditTab.SelectedIndex == 1) this.IntegrateBrowser.Navigate("about:blank");
         }
 
 		public void ChipItemReady()
