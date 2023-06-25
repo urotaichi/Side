@@ -356,3 +356,13 @@ projects/NewProject
 desktop.ini
 /cache/EBWebView
 /Microsoft.Web.WebView2.Wpf.dll
+/Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll
+/Microsoft.WindowsAPICodePack.Sensors.dll
+/Microsoft.WindowsAPICodePack.ShellExtensions.dll
+/System.Buffers.dll
+/System.Memory.dll
+/System.Numerics.Vectors.dll
+/System.Runtime.CompilerServices.Unsafe.dll
+/System.Threading.Tasks.Extensions.dll
+/System.Windows.Forms.dll
+/WindowsFormsIntegration.dll
