@@ -1002,7 +1002,7 @@ namespace MasaoPlus
 									rotate_o = (cschip.size.Width - cschip.size.Height) / (cschip.size.Width / cschip.size.Height) * Math.Sign(cschip.rotate);
 								}
 								graphics.TranslateTransform(size.Width / 2, size.Height / 2);
-								if (Math.Abs(cschip.rotate) % 180 == 90) graphics.RotateTransform(cschip.rotate);
+								graphics.RotateTransform(cschip.rotate);
 
 								// 水の半透明処理
 								if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && chipsData.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
@@ -2485,7 +2485,7 @@ namespace MasaoPlus
 								break;
 							default:
 								e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Height / 2);
-								if (Math.Abs(cschip.rotate) % 180 == 90) e.Graphics.RotateTransform(cschip.rotate);
+								if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
 								// 水の半透明処理
 								if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.state.CurrentChip.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
@@ -3638,7 +3638,7 @@ namespace MasaoPlus
 										break;
 									default:
 										e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
-										if (Math.Abs(cschip.rotate) % 180 == 90) e.Graphics.RotateTransform(cschip.rotate);
+										if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 										// 水の半透明処理
 										if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.cpd.Mapchip[e.Index].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
 											{
@@ -4399,7 +4399,7 @@ namespace MasaoPlus
 											width = cschip.size.Width;
 										}
 									e.Graphics.TranslateTransform(cschip.size.Width / 2, cschip.size.Height / 2);
-									if (Math.Abs(cschip.rotate) % 180 == 90) e.Graphics.RotateTransform(cschip.rotate);
+									if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 									e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig,
 										new Rectangle(new Point(-cschip.size.Width / 2 + rotate_o, -cschip.size.Height / 2 + rotate_o), cschip.size),
 										new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
