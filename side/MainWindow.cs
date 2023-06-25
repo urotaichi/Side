@@ -1386,7 +1386,9 @@ namespace MasaoPlus
 				this.UpdateStatus("完了");
 			}
 			this.UpdateTitle();
-		}
+
+			if(this.EditTab.SelectedIndex == 0 || this.EditTab.SelectedIndex == 1) this.IntegrateBrowser.Navigate("about:blank");
+        }
 
 		public void ChipItemReady()
 		{
@@ -4533,10 +4535,10 @@ namespace MasaoPlus
 			if (this.EditTab.SelectedIndex == 0)
 			{
 				this.MainDesigner.Refresh();
-			}
-			if (Global.state.Testrun != null && Global.config.testRun.KillTestrunOnFocus)
-			{
-				if (!Global.state.Testrun.HasExited && !Global.state.Testrun.CloseMainWindow())
+            }
+            if (Global.state.Testrun != null && Global.config.testRun.KillTestrunOnFocus)
+            {
+                if (!Global.state.Testrun.HasExited && !Global.state.Testrun.CloseMainWindow())
 				{
 					try
 					{
@@ -4551,7 +4553,7 @@ namespace MasaoPlus
 				Global.state.Testrun.Close();
 				Global.state.Testrun.Dispose();
 			}
-			Global.state.Testrun = null;
+            Global.state.Testrun = null;
 		}
 
 		private void MainDesigner_Enter(object sender, EventArgs e)
