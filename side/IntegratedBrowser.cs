@@ -52,14 +52,19 @@ namespace MasaoPlus
 			return true;
 		}
 
-		/*
+		public void TrySuspendAsync()
+		{
+            this.Browser.CoreWebView2.TrySuspendAsync();
+        }
+
+        /*
 		private void Browser_ProgressChanged(object sender, WebBrowserProgressChangedEventArgs e)
 		{
 			this.Progress.Value = (int)((double)e.CurrentProgress / (double)e.MaximumProgress) * 100;
 		}
 		*/
-		
-		private void Browser_Navigating(object sender, CoreWebView2NavigationStartingEventArgs e)
+
+        private void Browser_Navigating(object sender, CoreWebView2NavigationStartingEventArgs e)
 		{
 			//this.Progress.Visible = true;
 			this.URL.Text = e.Uri.ToString();
