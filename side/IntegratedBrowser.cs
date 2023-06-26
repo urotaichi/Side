@@ -14,16 +14,13 @@ namespace MasaoPlus
 		public IntegratedBrowser()
 		{
 			this.InitializeComponent();
-			//this.Browser.StatusTextChanged += this.Browser_StatusTextChanged;
 			this.InitializeAsync();
 		}
 
-		/*
-		private void Browser_StatusTextChanged(object sender, EventArgs e)
+		private void Browser_StatusTextChanged(object sender, Object e)
 		{
-			this.Status.Text = this.Browser.StatusText;
+			this.Status.Text = this.Browser.CoreWebView2.StatusBarText;
 		}
-		*/
 
 		public bool Navigate(string str)
 		{
@@ -278,6 +275,7 @@ namespace MasaoPlus
 		{
 			var webView2Environment = await CoreWebView2Environment.CreateAsync(null, "cache");
 			await this.Browser.EnsureCoreWebView2Async(webView2Environment);
+			this.Browser.CoreWebView2.StatusBarTextChanged += this.Browser_StatusTextChanged;
 			this.Browser.CoreWebView2.NavigationStarting += this.Browser_Navigating;
 			this.Browser.CoreWebView2.NewWindowRequested += this.CoreWebView2_NewWindowRequested;
 		}
