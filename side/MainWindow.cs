@@ -1258,7 +1258,7 @@ namespace MasaoPlus
 				e.Cancel = true;
             }
 
-            if (this.EditTab.SelectedIndex == 2) this.IntegrateBrowser.Navigate("about:blank");
+            if (e.TabPageIndex == 2) this.IntegrateBrowser.Navigate("about:blank");
         }
 
 		private void EditTab_Selecting(object sender, TabControlCancelEventArgs e)
