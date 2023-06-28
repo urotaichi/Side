@@ -1952,7 +1952,7 @@
   <param name="audio_bgm_switch_wave" desc="Wave形式の音声ファイルをBGMに使う" type="bool" value="false" category="BGM" />
   <param name="audio_bgm_switch_mp3" desc="MP3形式の音声ファイルをBGMに使う" type="bool" value="true" category="BGM" />
   <param name="audio_bgm_switch_ogg" desc="Ogg形式の音声ファイルをBGMに使う" type="bool" value="true" category="BGM" />
-  <param name="filename_fx_bgm_stage1" desc="ステージ１のBGM" type="file_audio" value="stage1.mp3" category="BGM" />
+  <param name="filename_fx_bgm_stage1" desc="ステージ1のBGM" type="file_audio" value="stage1.mp3" category="BGM" />
   <param name="filename_fx_bgm_stage2" desc="ステージ2のBGM" type="file_audio" value="stage2.mp3" category="BGM" stage="2" />
   <param name="filename_fx_bgm_stage3" desc="ステージ3のBGM" type="file_audio" value="stage3.mp3" category="BGM" stage="3" />
   <param name="filename_fx_bgm_stage4" desc="ステージ4のBGM" type="file_audio" value="stage4.mp3" category="BGM" stage="4" />
