@@ -6,6 +6,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MasaoPlus.Dialogs;
+using WMPLib;
 
 namespace MasaoPlus.Controls
 {
@@ -412,9 +413,40 @@ namespace MasaoPlus.Controls
 				return;
 			}
 			Global.state.EditFlag = true;
-		}
+        }
+        private void ConfView_PreviewAudio(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != 0)
+            {
+                return;
+            }
+            if (e.RowIndex >= this.OrigIdx.Count || e.RowIndex < 0)
+            {
+                return;
+            }
+            int num = this.OrigIdx[e.RowIndex];
+            ConfigParam configParam = Global.cpd.project.Config.Configurations[num];
+			if (configParam.Type == ConfigParam.Types.f_a)
+            {
+                if (this.now_playing_item != num)
+				{
+					this.now_playing_item = num;
+					this.mediaPlayer.URL = Path.Combine(Global.cpd.where, configParam.Value);
+					this.mediaPlayer.controls.play();
+				}
+				else
+                {
+                    this.now_playing_item = -1;
+                    this.mediaPlayer.controls.stop();
+				}
+            }
+        }
+        private void PreviewAudio_error(object pMediaObject)
+        {
+            MessageBox.Show("ファイルの読み込みに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+        }
 
-		private void ConfView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        private void ConfView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
 		{
 			if (e.Control is DataGridViewTextBoxEditingControl)
 			{
@@ -661,8 +693,9 @@ namespace MasaoPlus.Controls
 			this.ConfView.EditingControlShowing += this.ConfView_EditingControlShowing;
 			this.ConfView.CurrentCellDirtyStateChanged += this.ConfView_CurrentCellDirtyStateChanged;
 			this.ConfView.CellContentClick += this.ConfView_CellContentClick;
+            this.ConfView.CellDoubleClick += this.ConfView_PreviewAudio;
 
-			this.CNames.HeaderText = "項目名";
+            this.CNames.HeaderText = "項目名";
 			this.CNames.Name = "CNames";
 			this.CNames.ReadOnly = true;
 			this.CNames.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -678,7 +711,11 @@ namespace MasaoPlus.Controls
 			base.Size = new Size(298, 358);
 			((ISupportInitialize)this.ConfView).EndInit();
 			base.ResumeLayout(false);
-		}
+
+            // メディアプレーヤークラスのインスタンスを作成する
+            this.mediaPlayer = new WindowsMediaPlayer();
+            this.mediaPlayer.MediaError += this.PreviewAudio_error;
+        }
 
 		private List<int> OrigIdx = new List<int>();
 
@@ -693,5 +730,9 @@ namespace MasaoPlus.Controls
 		private DataGridViewTextBoxColumn CValues;
 
 		private int width_index, height_index;
-	}
+
+		private WindowsMediaPlayer mediaPlayer;
+
+        private int now_playing_item = -1;
+    }
 }
