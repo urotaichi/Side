@@ -659,17 +659,7 @@ namespace MasaoPlus
 					switch (cschip.name)
 					{
 						case "一方通行":
-							if (cschip.description.Contains("表示なし")) break;
-							pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
-							if (cschip.description.Contains("右"))
-								g.DrawLine(pen, cschip.view_size.Width - 1, 0, cschip.view_size.Width - 1, cschip.view_size.Height);
-							else if (cschip.description.Contains("左"))
-								g.DrawLine(pen, 1, 0, 1, cschip.view_size.Height);
-							else if (cschip.description.Contains("上"))
-								g.DrawLine(pen, 0, 1, cschip.view_size.Width, 1);
-							else if (cschip.description.Contains("下"))
-								g.DrawLine(pen, 0, cschip.view_size.Height - 1, cschip.view_size.Width, cschip.view_size.Height - 1);
-							pen.Dispose();
+                            AthleticView.list[cschip.name].Max(cschip, g);
 							break;
 						case "左右へ押せるドッスンスンのゴール":
 							g.SmoothingMode = SmoothingMode.AntiAlias;
@@ -3622,17 +3612,7 @@ namespace MasaoPlus
 										switch (cschip.name)
 										{
 											case "一方通行":
-												if (cschip.description.Contains("表示なし")) break;
-												pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
-												if (cschip.description.Contains("右"))
-													graphics.DrawLine(pen, cschip.view_size.Width - 1, 0, cschip.view_size.Width - 1, cschip.view_size.Height);
-												else if (cschip.description.Contains("左"))
-													graphics.DrawLine(pen, 1, 0, 1, cschip.view_size.Height);
-												else if (cschip.description.Contains("上"))
-													graphics.DrawLine(pen, 0, 1, cschip.view_size.Width, 1);
-												else if (cschip.description.Contains("下"))
-													graphics.DrawLine(pen, 0, cschip.view_size.Height - 1, cschip.view_size.Width, cschip.view_size.Height - 1);
-												pen.Dispose();
+                                                AthleticView.list[cschip.name].Max(cschip, graphics);
 												break;
 											case "左右へ押せるドッスンスンのゴール":
 												graphics.SmoothingMode = SmoothingMode.AntiAlias;

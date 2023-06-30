@@ -214,17 +214,7 @@ namespace MasaoPlus
 									switch (cschip.name)
 									{
 										case "一方通行":
-											if (cschip.description.Contains("表示なし")) break;
-											pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
-											if (cschip.description.Contains("右"))
-												e.Graphics.DrawLine(pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
-											else if (cschip.description.Contains("左"))
-												e.Graphics.DrawLine(pen, 1, 0, 1, chipsize.Height);
-											else if (cschip.description.Contains("上"))
-												e.Graphics.DrawLine(pen, 0, 1, chipsize.Width, 1);
-											else if (cschip.description.Contains("下"))
-												e.Graphics.DrawLine(pen, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
-											pen.Dispose();
+											AthleticView.list[cschip.name].Main(cschip, e.Graphics, chipsize);
 											break;
 										case "左右へ押せるドッスンスンのゴール":
 											pen = new Pen(Global.cpd.project.Config.Firebar1, 1);

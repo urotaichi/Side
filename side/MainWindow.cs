@@ -329,17 +329,7 @@ namespace MasaoPlus
 						switch (cschip.name)
 						{
 							case "一方通行":
-								if (cschip.description.Contains("表示なし")) break;
-								pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
-								if (cschip.description.Contains("右"))
-									graphics.DrawLine(pen, size.Width - 1, 0, size.Width - 1, size.Width);
-								else if (cschip.description.Contains("左"))
-									graphics.DrawLine(pen, 0, 0, 0, size.Width);
-								else if (cschip.description.Contains("上"))
-									graphics.DrawLine(pen, 0, 0, size.Width, 0);
-								else if (cschip.description.Contains("下"))
-									graphics.DrawLine(pen, 0, size.Width - 1, size.Width, size.Width - 1);
-								pen.Dispose();
+                                AthleticView.list[cschip.name].Min(cschip, graphics, size);
 								break;
 							case "左右へ押せるドッスンスンのゴール":
 								pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
@@ -1819,17 +1809,7 @@ namespace MasaoPlus
 						switch (cschip.name)
 						{
 							case "一方通行":
-								if (cschip.description.Contains("表示なし")) break;
-								pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
-								if (cschip.description.Contains("右"))
-									e.Graphics.DrawLine(pen, this.ChipImage.Width - 1, 0, this.ChipImage.Width - 1, this.ChipImage.Height);
-								else if (cschip.description.Contains("左"))
-									e.Graphics.DrawLine(pen, 1, 0, 1, this.ChipImage.Height);
-								else if (cschip.description.Contains("上"))
-									e.Graphics.DrawLine(pen, 0, 1, this.ChipImage.Width, 1);
-								else if (cschip.description.Contains("下"))
-									e.Graphics.DrawLine(pen, 0, this.ChipImage.Height - 1, this.ChipImage.Width, this.ChipImage.Height - 1);
-								pen.Dispose();
+                                AthleticView.list[cschip.name].Main(cschip, e.Graphics, new Size(this.ChipImage.Width, this.ChipImage.Height));
 								break;
 							case "左右へ押せるドッスンスンのゴール":
 								pen = new Pen(Global.cpd.project.Config.Firebar1, 1);
@@ -2974,17 +2954,7 @@ namespace MasaoPlus
 								switch (cschip.name)
 								{
 									case "一方通行":
-										if (cschip.description.Contains("表示なし")) break;
-										pen = new Pen(Global.cpd.project.Config.Firebar2, 2 / e.Bounds.Height);
-										if (cschip.description.Contains("右"))
-											e.Graphics.DrawLine(pen, e.Bounds.Height - 1, 0, e.Bounds.Height - 1, e.Bounds.Height);
-										else if (cschip.description.Contains("左"))
-											e.Graphics.DrawLine(pen, 1, 0, 1, e.Bounds.Height);
-										else if (cschip.description.Contains("上"))
-											e.Graphics.DrawLine(pen, 0, 1, e.Bounds.Height, 1);
-										else if (cschip.description.Contains("下"))
-											e.Graphics.DrawLine(pen, 0, e.Bounds.Height - 1, e.Bounds.Height, e.Bounds.Height - 1);
-										pen.Dispose();
+                                        AthleticView.list[cschip.name].Small(cschip, e.Graphics, e.Bounds.Height);
 										break;
 									case "左右へ押せるドッスンスンのゴール":
 										pen = new Pen(Global.cpd.project.Config.Firebar1, 1);
@@ -3691,17 +3661,7 @@ namespace MasaoPlus
 								switch (cschip.name)
 								{
 									case "一方通行":
-										if (cschip.description.Contains("表示なし")) break;
-										pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
-										if (cschip.description.Contains("右"))
-											e.Graphics.DrawLine(pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
-										else if (cschip.description.Contains("左"))
-											e.Graphics.DrawLine(pen, 1, 0, 1, chipsize.Height);
-										else if (cschip.description.Contains("上"))
-											e.Graphics.DrawLine(pen, 0, 1, chipsize.Width, 1);
-										else if (cschip.description.Contains("下"))
-											e.Graphics.DrawLine(pen, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
-										pen.Dispose();
+                                        AthleticView.list[cschip.name].Large(cschip, e.Graphics, chipsize);
 										break;
 									case "左右へ押せるドッスンスンのゴール":
 										pen = new Pen(Global.cpd.project.Config.Firebar1, 1);
