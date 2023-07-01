@@ -360,13 +360,13 @@ new JSMasao({</HeaderHTML>
     <param type="string" value="クリス" desc="一言メッセージ4 名前" name="hitokoto4_name" category="メッセージ" row="0" stage="0" />
     <param type="text" value="あたし、クリス。ペットのピカチーが、&#xD;&#xA;どこかに行っちゃったの。&#xD;&#xA;こまったわね、ぐすん。" desc="一言メッセージ4 セリフ" name="hitokoto4" category="メッセージ" row="3" stage="0" />
     <param type="int" value="800" desc="地図の「得点で開く扉」の基準得点(10以上)" name="door_score" category="地図" row="0" stage="5" />
-    <param type="string" value="ダケシ" desc="メッセージ1の人(地図)" name="mes1_name" category="未設定" row="0" stage="5" />
+    <param type="string" value="ダケシ" desc="メッセージ1の人(地図)" name="mes1_name" category="地図" row="0" stage="5" />
     <param type="text" value="人の命は、お金では買えないと言われています。&#xD;&#xA;しかし、お店へ行けば、ＳＣＯＲＥで買えます。&#xD;&#xA;0" desc="メッセージ1の人セリフ1" name="serifu1" category="地図" row="3" stage="5" />
     <param type="text" value="時は金なりと、言われています。しかし、&#xD;&#xA;お店なら、時間も買えます。&#xD;&#xA;店員さんて、グレートですね。" desc="メッセージ1の人セリフ2" name="serifu2" category="地図" row="3" stage="5" />
-    <param type="string" value="エリコ" desc="メッセージ2の人(地図)" name="mes2_name" category="未設定" row="0" stage="5" />
+    <param type="string" value="エリコ" desc="メッセージ2の人(地図)" name="mes2_name" category="地図" row="0" stage="5" />
     <param type="text" value="おはようございます。星と数字が付いた扉が、&#xD;&#xA;ありますよね。あれは、ですねえ、その数だけ&#xD;&#xA;人面星を取ると、開くので、ございます。" desc="メッセージ2の人セリフ1" name="serifu3" category="地図" row="3" stage="5" />
     <param type="text" value="ＬＡＳＴ ＳＴＡＧＥというのは、最終面の事ですわ。&#xD;&#xA;これをクリアーすると、エンディングに、&#xD;&#xA;行けますのよ。がんばって下さいね。" desc="メッセージ2の人セリフ2" name="serifu4" category="地図" row="3" stage="5" />
-    <param type="string" value="店員さん" desc="ショップ店員(地図)" name="shop_name" category="未設定" row="0" stage="5" />
+    <param type="string" value="店員さん" desc="ショップ店員(地図)" name="shop_name" category="地図" row="0" stage="5" />
     <param type="text" value="いらっしゃいませ。&#xD;&#xA;当店では、ＳＣＯＲＥと、アイテムを、&#xD;&#xA;交換いたします。" desc="ショップ店員セリフ1" name="serifu5" category="地図" row="3" stage="5" />
     <param type="text" value="本日の営業は、終了いたしました。&#xD;&#xA;またのご来店を、&#xD;&#xA;こころより、お待ちしております。" desc="ショップ店員セリフ2" name="serifu8" category="地図" row="3" stage="5" />
     <param type="string" value="どれになさいますか？" desc="ショップ店員セリフその他(1)" name="shop_serifu1" category="地図" row="0" stage="5" />
@@ -393,7 +393,7 @@ new JSMasao({</HeaderHTML>
     <param type="int" value="980" desc="アイテムの値段(8)[0で無くなる]" name="shop_item_teika8" category="地図" row="0" stage="5" />
     <param type="string" value="制限時間増加" desc="店にあるアイテム(9)" name="shop_item_name9" category="地図" row="0" stage="5" />
     <param type="int" value="1" desc="アイテムの値段(9)[0で無くなる]" name="shop_item_teika9" category="地図" row="0" stage="5" />
-    <param type="string" value="キドはかせ" desc="説明する人(地図)" name="setumei_name" category="未設定" row="0" stage="5" />
+    <param type="string" value="キドはかせ" desc="説明する人(地図)" name="setumei_name" category="地図" row="0" stage="5" />
     <param type="text" value="よく来た。わしは、キドはかせ。&#xD;&#xA;アイテムの研究をしており、みんなから、&#xD;&#xA;アイテムはかせと呼ばれて、したわれておるよ。" desc="説明する人セリフ1" name="serifu9" category="地図" row="3" stage="5" />
     <param type="string" value="なんでも、質問してくれたまえよ。" desc="説明する人メニュー前置き" name="setumei_menu1" category="地図" row="0" stage="5" />
     <param type="string" value="ファイヤーボール" desc="説明する人メニュー1" name="setumei_menu2" category="地図" row="0" stage="5" />
