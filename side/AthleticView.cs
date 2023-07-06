@@ -186,6 +186,7 @@ namespace MasaoPlus
                         vo_pa = new PointF[4];
                         if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
                         else if (cschip.description.Contains("右")) rad = 56 * Math.PI / 180;
+                        else rad = 0;
                         vo_pa[0].X = (float)Math.Cos(rad + Math.PI) * 160;
                         vo_pa[0].Y = (float)Math.Sin(rad + Math.PI) * 160;
                         vo_pa[1].X = (float)Math.Cos(rad) * 160;
