@@ -343,6 +343,8 @@ namespace MasaoPlus
 							case "ファイヤーリング":
                             case "ファイヤーウォール":
                             case "スイッチ式ファイヤーバー":
+                            case "スイッチ式動くＴ字型":
+                            case "スイッチ式速く動くＴ字型":
                                 AthleticView.list[cschip.name].Min(cschip, graphics, size);
                                 break;
                             default:
@@ -1185,6 +1187,8 @@ namespace MasaoPlus
 							case "ファイヤーリング":
                             case "ファイヤーウォール":
                             case "スイッチ式ファイヤーバー":
+                            case "スイッチ式動くＴ字型":
+                            case "スイッチ式速く動くＴ字型":
                                 AthleticView.list[cschip.name].Main(cschip, e.Graphics, new Size(this.ChipImage.Width, this.ChipImage.Height));
                                 break;
                             default:
@@ -1692,6 +1696,8 @@ namespace MasaoPlus
 									case "ファイヤーリング":
                                     case "ファイヤーウォール":
                                     case "スイッチ式ファイヤーバー":
+                                    case "スイッチ式動くＴ字型":
+                                    case "スイッチ式速く動くＴ字型":
                                         AthleticView.list[cschip.name].Small(cschip, e.Graphics, chipsize, e.Bounds.Height);
                                         break;
                                     default:
@@ -1768,6 +1774,8 @@ namespace MasaoPlus
 									case "ファイヤーリング":
                                     case "ファイヤーウォール":
                                     case "スイッチ式ファイヤーバー":
+                                    case "スイッチ式動くＴ字型":
+                                    case "スイッチ式速く動くＴ字型":
                                         AthleticView.list[cschip.name].Large(cschip, e.Graphics, chipsize);
                                         break;
                                     default:

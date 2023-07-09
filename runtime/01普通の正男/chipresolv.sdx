@@ -671,21 +671,29 @@
         <description>ＯＮで消える</description></chip>
       <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>352</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>352</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左から上</description></chip>
-      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から左</description></chip>
-      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右から上</description></chip>
-      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から右</description></chip>
       <chip value="245"><pattern><X>96</X><Y>32</Y></pattern>
         <name>ＫＥＹ１</name><description>落ちない</description></chip>
@@ -1577,21 +1585,29 @@
         <description>ＯＮで消える</description></chip>
       <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>352</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>352</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左から上</description></chip>
-      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から左</description></chip>
-      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右から上</description></chip>
-      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から右</description></chip>
       <chip value="245"><pattern><X>96</X><Y>32</Y></pattern>
         <name>ＫＥＹ１</name><description>落ちない</description></chip>
@@ -2483,21 +2499,29 @@
         <description>ＯＮで消える</description></chip>
       <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>352</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>352</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左から上</description></chip>
-      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から左</description></chip>
-      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右から上</description></chip>
-      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から右</description></chip>
       <chip value="245"><pattern><X>96</X><Y>32</Y></pattern>
         <name>ＫＥＹ１</name><description>落ちない</description></chip>
@@ -3389,21 +3413,29 @@
         <description>ＯＮで消える</description></chip>
       <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>352</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>352</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左から上</description></chip>
-      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から左</description></chip>
-      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右から上</description></chip>
-      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から右</description></chip>
       <chip value="245"><pattern><X>96</X><Y>32</Y></pattern>
         <name>ＫＥＹ１</name><description>落ちない</description></chip>
@@ -4295,21 +4327,29 @@
         <description>ＯＮで消える</description></chip>
       <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>352</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>352</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左から上</description></chip>
-      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から左</description></chip>
-      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右から上</description></chip>
-      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から右</description></chip>
       <chip value="245"><pattern><X>96</X><Y>32</Y></pattern>
         <name>ＫＥＹ１</name><description>落ちない</description></chip>
@@ -5201,21 +5241,29 @@
         <description>ＯＮで消える</description></chip>
       <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>352</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>352</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左から上</description></chip>
-      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から左</description></chip>
-      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右から上</description></chip>
-      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から右</description></chip>
       <chip value="245"><pattern><X>96</X><Y>32</Y></pattern>
         <name>ＫＥＹ１</name><description>落ちない</description></chip>
@@ -6249,21 +6297,29 @@
         <description>ＯＮで消える</description></chip>
       <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>352</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>352</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左から上</description></chip>
-      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から左</description></chip>
-      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右から上</description></chip>
-      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から右</description></chip>
       <chip value="245"><pattern><X>96</X><Y>32</Y></pattern>
         <name>ＫＥＹ１</name><description>落ちない</description></chip>
@@ -7155,21 +7211,29 @@
         <description>ＯＮで消える</description></chip>
       <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>352</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>352</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左から上</description></chip>
-      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から左</description></chip>
-      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右から上</description></chip>
-      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から右</description></chip>
       <chip value="245"><pattern><X>96</X><Y>32</Y></pattern>
         <name>ＫＥＹ１</name><description>落ちない</description></chip>
@@ -8116,21 +8180,29 @@
         <description>ＯＮで消える</description></chip>
       <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>352</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>352</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左から上</description></chip>
-      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から左</description></chip>
-      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右から上</description></chip>
-      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から右</description></chip>
       <chip value="245"><pattern><X>96</X><Y>32</Y></pattern>
         <name>ＫＥＹ１</name><description>落ちない</description></chip>
@@ -9021,21 +9093,29 @@
         <description>ＯＮで消える</description></chip>
       <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>352</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>352</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左から上</description></chip>
-      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から左</description></chip>
-      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右から上</description></chip>
-      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から右</description></chip>
       <chip value="245"><pattern><X>96</X><Y>32</Y></pattern>
         <name>ＫＥＹ１</name><description>落ちない</description></chip>
@@ -9926,21 +10006,29 @@
         <description>ＯＮで消える</description></chip>
       <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>352</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>352</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左から上</description></chip>
-      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から左</description></chip>
-      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右から上</description></chip>
-      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から右</description></chip>
       <chip value="245"><pattern><X>96</X><Y>32</Y></pattern>
         <name>ＫＥＹ１</name><description>落ちない</description></chip>
@@ -10831,21 +10919,29 @@
         <description>ＯＮで消える</description></chip>
       <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>352</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="238"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>352</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="239"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左</description></chip>
-      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw><name>スイッチ式速く動くＴ字型</name>
+      <chip value="240"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右</description></chip>
-      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="241"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで左から上</description></chip>
-      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="242"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から左</description></chip>
-      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="243"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
         <description>ＯＮで右から上</description></chip>
-      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
+      <chip value="244"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
         <description>ＯＮで上から右</description></chip>
       <chip value="245"><pattern><X>96</X><Y>32</Y></pattern>
         <name>ＫＥＹ１</name><description>落ちない</description></chip>

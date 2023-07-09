@@ -230,6 +230,8 @@ namespace MasaoPlus
 										case "ファイヤーリング":
                                         case "ファイヤーウォール":
                                         case "スイッチ式ファイヤーバー":
+                                        case "スイッチ式動くＴ字型":
+                                        case "スイッチ式速く動くＴ字型":
                                             AthleticView.list[cschip.name].Main(cschip, e.Graphics, chipsize);
 											break;
 										default:
