@@ -352,6 +352,139 @@ namespace MasaoPlus
 			this.bufpos = -1;
 		}
 
+		private void DrawExtendSizeMap(ChipData cschip, Graphics g, Point p, bool foreground, string chara){
+			GraphicsState transState;
+			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
+			if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
+			{ // 拡張画像　背面
+				g.DrawImage(this.DrawExOrig,
+					new Rectangle(new Point(p.X * chipsize.Width - cschip.center.X, p.Y * chipsize.Height - cschip.center.Y), chipsize),
+					new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+			}
+			if (foreground)
+			{ // 標準パターン画像
+				if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chara == "Z")
+				{
+					g.DrawImage(this.DrawOribossOrig, p.X * chipsize.Width, p.Y * chipsize.Height);
+				}
+				else
+				{
+					transState = g.Save();
+					if (cschip.view_size != default)
+						g.TranslateTransform(p.X * chipsize.Width - cschip.center.X + cschip.view_size.Width / 2, p.Y * chipsize.Height - cschip.center.Y + cschip.view_size.Height / 2);
+					else
+						g.TranslateTransform(p.X * chipsize.Width - cschip.center.X + cschip.size.Width / 2, p.Y * chipsize.Height - cschip.center.Y + cschip.size.Height / 2);
+					g.RotateTransform(cschip.rotate);
+					if (cschip.scale != default) g.ScaleTransform(cschip.scale, cschip.scale);
+					g.DrawImage(this.DrawChipOrig,
+						new Rectangle(-cschip.size.Width / 2, -cschip.size.Height / 2, cschip.size.Width, cschip.size.Height),
+						new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
+					g.Restore(transState);
+				}
+			}
+			else
+			{ // 背景レイヤー画像
+				g.DrawImage(this.DrawLayerOrig,
+					new Rectangle(p.X * chipsize.Width - cschip.center.X, p.Y * chipsize.Height - cschip.center.Y, cschip.size.Width, cschip.size.Height),
+					new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
+			}
+			if (chara == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 &&
+				Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
+			{
+				Point point = default;
+				switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+				{
+					case 1:
+						point = new Point(352, 256);
+						break;
+					case 2:
+						point = new Point(96, 0);
+						break;
+					case 3:
+						point = new Point(64, 0);
+						break;
+					case 4:
+						point = new Point(256, 0);
+						break;
+					case 5:
+						point = new Point(288, 0);
+						break;
+					case 6:
+						point = new Point(288, 448);
+						break;
+					case 7:
+						point = new Point(320, 448);
+						break;
+					case 8:
+						point = new Point(32, 32);
+						break;
+					case 9:
+						point = new Point(96, 0);
+						break;
+					case 10:
+						point = new Point(0, 32);
+						break;
+					case 11:
+						point = new Point(64, 0);
+						break;
+					case 12:
+						point = new Point(96, 32);
+						break;
+					case 13:
+						point = new Point(64, 0);
+						break;
+					case 14:
+						point = new Point(352, 448);
+						break;
+					case 15:
+						point = new Point(416, 448);
+						break;
+					case 16:
+						point = new Point(288, 448);
+						break;
+					case 17:
+						point = new Point(320, 448);
+						break;
+					case 18:
+						point = new Point(96, 0);
+						break;
+					case 19:
+						point = new Point(96, 0);
+						break;
+					case 20:
+						point = new Point(256, 0);
+						break;
+					case 21:
+						point = new Point(256, 0);
+						break;
+					case 22:
+						point = new Point(352, 448);
+						break;
+					case 23:
+						point = new Point(384, 448);
+						break;
+					case 24:
+						point = new Point(32, 32);
+						break;
+					case 25:
+						point = new Point(32, 32);
+						break;
+					case 26:
+						point = new Point(32, 128);
+						break;
+					case 27:
+						point = new Point(32, 128);
+						break;
+				}
+				g.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, p.X * chipsize.Width, p.Y * chipsize.Height, new Rectangle(point, chipsize), GraphicsUnit.Pixel);
+			}
+			else if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
+			{ // 拡張画像　前面
+				g.DrawImage(this.DrawExOrig,
+					new Rectangle(new Point(p.X * chipsize.Width - cschip.center.X, p.Y * chipsize.Height - cschip.center.Y), chipsize),
+					new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+			}
+		}
 		private void DrawNormalSizeMap(ChipData cschip, Graphics g, Point p, bool foreground, string chara, int x){
 			GraphicsState transState;
 			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
@@ -608,135 +741,7 @@ namespace MasaoPlus
 								g.FillRectangle(Brushes.Transparent, new Rectangle(num2 * chipsize.Width - c.center.X, num * chipsize.Height - c.center.Y, c.size.Width, c.size.Height));
 								g.CompositingMode = CompositingMode.SourceOver;
 							}
-							if (Global.config.draw.ExtendDraw && c.xdraw != default(Point) && c.xdbackgrnd)
-							{ // 拡張画像　背面
-								g.DrawImage(this.DrawExOrig,
-									new Rectangle(new Point(num2 * chipsize.Width - c.center.X, num * chipsize.Height - c.center.Y), chipsize),
-									new Rectangle(c.xdraw, chipsize), GraphicsUnit.Pixel);
-							}
-							if (foreground)
-							{ // 標準パターン画像
-								if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
-								{
-									g.DrawImage(this.DrawOribossOrig, num2 * chipsize.Width, num * chipsize.Height);
-								}
-								else
-								{
-									transState = g.Save();
-									if (c.view_size != default)
-										g.TranslateTransform(num2 * chipsize.Width - c.center.X + c.view_size.Width / 2, num * chipsize.Height - c.center.Y + c.view_size.Height / 2);
-									else
-										g.TranslateTransform(num2 * chipsize.Width - c.center.X + c.size.Width / 2, num * chipsize.Height - c.center.Y + c.size.Height / 2);
-									g.RotateTransform(c.rotate);
-									if (c.scale != default) g.ScaleTransform(c.scale, c.scale);
-									g.DrawImage(this.DrawChipOrig,
-										new Rectangle(-c.size.Width / 2, -c.size.Height / 2, c.size.Width, c.size.Height),
-										new Rectangle(c.pattern, c.size), GraphicsUnit.Pixel);
-									g.Restore(transState);
-								}
-							}
-							else
-							{ // 背景レイヤー画像
-								g.DrawImage(this.DrawLayerOrig,
-									new Rectangle(num2 * chipsize.Width - c.center.X, num * chipsize.Height - c.center.Y, c.size.Width, c.size.Height),
-									new Rectangle(c.pattern, c.size), GraphicsUnit.Pixel);
-							}
-							if (chipsData.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 &&
-								Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
-							{
-								Point p = default;
-								switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
-								{
-									case 1:
-										p = new Point(352, 256);
-										break;
-									case 2:
-										p = new Point(96, 0);
-										break;
-									case 3:
-										p = new Point(64, 0);
-										break;
-									case 4:
-										p = new Point(256, 0);
-										break;
-									case 5:
-										p = new Point(288, 0);
-										break;
-									case 6:
-										p = new Point(288, 448);
-										break;
-									case 7:
-										p = new Point(320, 448);
-										break;
-									case 8:
-										p = new Point(32, 32);
-										break;
-									case 9:
-										p = new Point(96, 0);
-										break;
-									case 10:
-										p = new Point(0, 32);
-										break;
-									case 11:
-										p = new Point(64, 0);
-										break;
-									case 12:
-										p = new Point(96, 32);
-										break;
-									case 13:
-										p = new Point(64, 0);
-										break;
-									case 14:
-										p = new Point(352, 448);
-										break;
-									case 15:
-										p = new Point(416, 448);
-										break;
-									case 16:
-										p = new Point(288, 448);
-										break;
-									case 17:
-										p = new Point(320, 448);
-										break;
-									case 18:
-										p = new Point(96, 0);
-										break;
-									case 19:
-										p = new Point(96, 0);
-										break;
-									case 20:
-										p = new Point(256, 0);
-										break;
-									case 21:
-										p = new Point(256, 0);
-										break;
-									case 22:
-										p = new Point(352, 448);
-										break;
-									case 23:
-										p = new Point(384, 448);
-										break;
-									case 24:
-										p = new Point(32, 32);
-										break;
-									case 25:
-										p = new Point(32, 32);
-										break;
-									case 26:
-										p = new Point(32, 128);
-										break;
-									case 27:
-										p = new Point(32, 128);
-										break;
-								}
-								g.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, num2 * chipsize.Width, num * chipsize.Height, new Rectangle(p, chipsize), GraphicsUnit.Pixel);
-							}
-							else if (Global.config.draw.ExtendDraw && c.xdraw != default(Point) && !c.xdbackgrnd)
-							{ // 拡張画像　前面
-								g.DrawImage(this.DrawExOrig,
-									new Rectangle(new Point(num2 * chipsize.Width - c.center.X, num * chipsize.Height - c.center.Y), chipsize),
-									new Rectangle(c.xdraw, chipsize), GraphicsUnit.Pixel);
-							}
+							DrawExtendSizeMap(c, g, new Point(num2, num), foreground, chipsData.character);
 						}
 						else
 						{ // 標準サイズの画像はリストに追加後、↓で描画
@@ -2589,141 +2594,7 @@ namespace MasaoPlus
 									goto IL_514;
 								}
 								ChipData cschip = chipsData.GetCSChip();
-								if (cschip.size != default(Size))
-								{
-									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
-									{
-										graphics.DrawImage(this.DrawExOrig,
-											new Rectangle(new Point(point.X * chipsize.Width - cschip.center.X, point.Y * chipsize.Height - cschip.center.Y), chipsize),
-											new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
-									}
-									if (Global.state.EditingForeground)
-									{
-										if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
-										{
-											graphics.DrawImage(this.DrawOribossOrig, point.X * chipsize.Width, point.Y * chipsize.Height);
-										}
-										else
-										{
-											transState = graphics.Save();
-											if (cschip.view_size != default)
-												graphics.TranslateTransform(point.X * chipsize.Width - cschip.center.X + cschip.view_size.Width / 2,
-												point.Y * chipsize.Height - cschip.center.Y + cschip.view_size.Height / 2);
-											else
-												graphics.TranslateTransform(point.X * chipsize.Width - cschip.center.X + cschip.size.Width / 2,
-												point.Y * chipsize.Height - cschip.center.Y + cschip.size.Height / 2);
-											graphics.RotateTransform(cschip.rotate);
-											if (cschip.scale != default) graphics.ScaleTransform(cschip.scale, cschip.scale);
-											graphics.DrawImage(this.DrawChipOrig,
-												new Rectangle(-cschip.size.Width / 2, -cschip.size.Height / 2, cschip.size.Width, cschip.size.Height),
-												new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
-											graphics.Restore(transState);
-										}
-									}
-									else
-									{
-										graphics.DrawImage(this.DrawLayerOrig,
-											new Rectangle(new Point(point.X * chipsize.Width - cschip.center.X, point.Y * chipsize.Height - cschip.center.Y), chipsize),
-											new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
-									}
-
-									if (chipsData.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 &&
-										Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
-									{
-										Point p = default;
-										switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
-										{
-											case 1:
-												p = new Point(352, 256);
-												break;
-											case 2:
-												p = new Point(96, 0);
-												break;
-											case 3:
-												p = new Point(64, 0);
-												break;
-											case 4:
-												p = new Point(256, 0);
-												break;
-											case 5:
-												p = new Point(288, 0);
-												break;
-											case 6:
-												p = new Point(288, 448);
-												break;
-											case 7:
-												p = new Point(320, 448);
-												break;
-											case 8:
-												p = new Point(32, 32);
-												break;
-											case 9:
-												p = new Point(96, 0);
-												break;
-											case 10:
-												p = new Point(0, 32);
-												break;
-											case 11:
-												p = new Point(64, 0);
-												break;
-											case 12:
-												p = new Point(96, 32);
-												break;
-											case 13:
-												p = new Point(64, 0);
-												break;
-											case 14:
-												p = new Point(352, 448);
-												break;
-											case 15:
-												p = new Point(416, 448);
-												break;
-											case 16:
-												p = new Point(288, 448);
-												break;
-											case 17:
-												p = new Point(320, 448);
-												break;
-											case 18:
-												p = new Point(96, 0);
-												break;
-											case 19:
-												p = new Point(96, 0);
-												break;
-											case 20:
-												p = new Point(256, 0);
-												break;
-											case 21:
-												p = new Point(256, 0);
-												break;
-											case 22:
-												p = new Point(352, 448);
-												break;
-											case 23:
-												p = new Point(384, 448);
-												break;
-											case 24:
-												p = new Point(32, 32);
-												break;
-											case 25:
-												p = new Point(32, 32);
-												break;
-											case 26:
-												p = new Point(32, 128);
-												break;
-											case 27:
-												p = new Point(32, 128);
-												break;
-										}
-										graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, point.X * chipsize.Width, point.Y * chipsize.Height, new Rectangle(p, chipsize), GraphicsUnit.Pixel);
-									}
-									else if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
-									{
-										graphics.DrawImage(this.DrawExOrig,
-											new Rectangle(new Point(point.X * chipsize.Width - cschip.center.X, point.Y * chipsize.Height - cschip.center.Y), chipsize),
-											new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
-									}
-								}
+								if (cschip.size != default(Size)) DrawExtendSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character);
 							}
 							IL_514:;
 						}
