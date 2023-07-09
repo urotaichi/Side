@@ -573,13 +573,13 @@
         <description>ＯＮで開く</description></chip>
       <chip value="194"><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>160</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
         <description>ＯＮで閉まる</description></chip>
-      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮでブロック４</description></chip>
-      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＦＦでブロック４</description></chip>
-      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
         <description>ＯＮで消える</description></chip>
@@ -1471,13 +1471,13 @@
         <description>ＯＮで開く</description></chip>
       <chip value="194"><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>160</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
         <description>ＯＮで閉まる</description></chip>
-      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮでブロック４</description></chip>
-      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＦＦでブロック４</description></chip>
-      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
         <description>ＯＮで消える</description></chip>
@@ -2369,13 +2369,13 @@
         <description>ＯＮで開く</description></chip>
       <chip value="194"><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>160</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
         <description>ＯＮで閉まる</description></chip>
-      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮでブロック４</description></chip>
-      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＦＦでブロック４</description></chip>
-      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
         <description>ＯＮで消える</description></chip>
@@ -3267,13 +3267,13 @@
         <description>ＯＮで開く</description></chip>
       <chip value="194"><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>160</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
         <description>ＯＮで閉まる</description></chip>
-      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮでブロック４</description></chip>
-      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＦＦでブロック４</description></chip>
-      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
         <description>ＯＮで消える</description></chip>
@@ -4165,13 +4165,13 @@
         <description>ＯＮで開く</description></chip>
       <chip value="194"><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>160</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
         <description>ＯＮで閉まる</description></chip>
-      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮでブロック４</description></chip>
-      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＦＦでブロック４</description></chip>
-      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
         <description>ＯＮで消える</description></chip>
@@ -5063,13 +5063,13 @@
         <description>ＯＮで開く</description></chip>
       <chip value="194"><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>160</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
         <description>ＯＮで閉まる</description></chip>
-      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮでブロック４</description></chip>
-      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＦＦでブロック４</description></chip>
-      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
         <description>ＯＮで消える</description></chip>
@@ -6103,13 +6103,13 @@
         <description>ＯＮで開く</description></chip>
       <chip value="194"><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>160</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
         <description>ＯＮで閉まる</description></chip>
-      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮでブロック４</description></chip>
-      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＦＦでブロック４</description></chip>
-      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
         <description>ＯＮで消える</description></chip>
@@ -7001,13 +7001,13 @@
         <description>ＯＮで開く</description></chip>
       <chip value="194"><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>160</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
         <description>ＯＮで閉まる</description></chip>
-      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮでブロック４</description></chip>
-      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＦＦでブロック４</description></chip>
-      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
         <description>ＯＮで消える</description></chip>
@@ -7954,13 +7954,13 @@
         <description>ＯＮで開く</description></chip>
       <chip value="194"><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>160</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
         <description>ＯＮで閉まる</description></chip>
-      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮでブロック４</description></chip>
-      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＦＦでブロック４</description></chip>
-      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
         <description>ＯＮで消える</description></chip>
@@ -8851,13 +8851,13 @@
         <description>ＯＮで開く</description></chip>
       <chip value="194"><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>160</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
         <description>ＯＮで閉まる</description></chip>
-      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮでブロック４</description></chip>
-      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＦＦでブロック４</description></chip>
-      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
         <description>ＯＮで消える</description></chip>
@@ -9748,13 +9748,13 @@
         <description>ＯＮで開く</description></chip>
       <chip value="194"><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>160</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
         <description>ＯＮで閉まる</description></chip>
-      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮでブロック４</description></chip>
-      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＦＦでブロック４</description></chip>
-      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
         <description>ＯＮで消える</description></chip>
@@ -10645,13 +10645,13 @@
         <description>ＯＮで開く</description></chip>
       <chip value="194"><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>160</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
         <description>ＯＮで閉まる</description></chip>
-      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="195"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮでブロック４</description></chip>
-      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="196"><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＦＦでブロック４</description></chip>
-      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="197"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式トゲ</name>
+      <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
         <description>ＯＮで消える</description></chip>
