@@ -228,6 +228,7 @@ namespace MasaoPlus
 										case "スウィングファイヤーバー":
 										case "人口太陽":
 										case "ファイヤーリング":
+                                        case "ファイヤーウォール":
                                             AthleticView.list[cschip.name].Main(cschip, e.Graphics, chipsize);
 											break;
 										default:

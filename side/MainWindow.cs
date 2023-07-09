@@ -341,6 +341,7 @@ namespace MasaoPlus
 							case "スウィングファイヤーバー":
 							case "人口太陽":
 							case "ファイヤーリング":
+                            case "ファイヤーウォール":
                                 AthleticView.list[cschip.name].Min(cschip, graphics, size);
                                 break;
                             default:
@@ -1181,6 +1182,7 @@ namespace MasaoPlus
 							case "スウィングファイヤーバー":
 							case "人口太陽":
 							case "ファイヤーリング":
+                            case "ファイヤーウォール":
                                 AthleticView.list[cschip.name].Main(cschip, e.Graphics, new Size(this.ChipImage.Width, this.ChipImage.Height));
                                 break;
                             default:
@@ -1686,6 +1688,7 @@ namespace MasaoPlus
 									case "スウィングファイヤーバー":
 									case "人口太陽":
 									case "ファイヤーリング":
+                                    case "ファイヤーウォール":
                                         AthleticView.list[cschip.name].Small(cschip, e.Graphics, chipsize, e.Bounds.Height);
                                         break;
                                     default:
@@ -1760,6 +1763,7 @@ namespace MasaoPlus
 									case "スウィングファイヤーバー":
 									case "人口太陽":
 									case "ファイヤーリング":
+                                    case "ファイヤーウォール":
                                         AthleticView.list[cschip.name].Large(cschip, e.Graphics, chipsize);
                                         break;
                                     default:

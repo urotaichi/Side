@@ -676,6 +676,7 @@ namespace MasaoPlus
 						case "スウィングファイヤーバー":
 						case "人口太陽":
 						case "ファイヤーリング":
+                        case "ファイヤーウォール":
                             AthleticView.list[cschip.name].Max(cschip, g, chipsize, this, keepDrawData.pos.Y);
 							break;
 						default:
@@ -2787,6 +2788,7 @@ namespace MasaoPlus
 											case "スウィングファイヤーバー":
 											case "人口太陽":
 											case "ファイヤーリング":
+                                            case "ファイヤーウォール":
                                                 AthleticView.list[cschip.name].Max(cschip, graphics, chipsize, this, point.Y);
                                                 break;
 											default:

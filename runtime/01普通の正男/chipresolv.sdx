@@ -199,17 +199,23 @@
         <description>ヘルメットかドリルを1つだけくれる</description></chip>
       <chip value="46"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>64</X><Y>96</Y></xdraw><name>グレネードかジェットをくれる人</name>
         <description>グレネードかジェットを1つだけくれる</description></chip>
-      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ伸びる</description></chip>
-      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ伸びる</description></chip>
-      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>32</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>96</Height></view_size>
         <description>壁と壁の間で上下</description></chip>
-      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>壁と壁の間で左右</description></chip>
       <chip value="53"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>96</Y></xdraw><name>ドッスンスン</name>
@@ -239,13 +245,17 @@
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
         <description>方向キーで移動</description></chip>
-      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ速射</description></chip>
-      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ速射</description></chip>
-      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ速射　下に空白が１ブロック必要</description></chip>
-      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ速射　下に空白が１ブロック必要</description></chip>
       <chip value="67"><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>192</X><Y>128</Y></xdraw><name>得点で開く扉</name>
         <description>指定したスコア（得点）になると開く</description></chip>
@@ -1087,17 +1097,23 @@
         <description>ヘルメットかドリルを1つだけくれる</description></chip>
       <chip value="46"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>64</X><Y>96</Y></xdraw><name>グレネードかジェットをくれる人</name>
         <description>グレネードかジェットを1つだけくれる</description></chip>
-      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ伸びる</description></chip>
-      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ伸びる</description></chip>
-      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>32</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>96</Height></view_size>
         <description>壁と壁の間で上下</description></chip>
-      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>壁と壁の間で左右</description></chip>
       <chip value="53"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>96</Y></xdraw><name>ドッスンスン</name>
@@ -1127,13 +1143,17 @@
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
         <description>方向キーで移動</description></chip>
-      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ速射</description></chip>
-      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ速射</description></chip>
-      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ速射　下に空白が１ブロック必要</description></chip>
-      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ速射　下に空白が１ブロック必要</description></chip>
       <chip value="67"><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>192</X><Y>128</Y></xdraw><name>得点で開く扉</name>
         <description>指定したスコア（得点）になると開く</description></chip>
@@ -1975,17 +1995,23 @@
         <description>ヘルメットかドリルを1つだけくれる</description></chip>
       <chip value="46"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>64</X><Y>96</Y></xdraw><name>グレネードかジェットをくれる人</name>
         <description>グレネードかジェットを1つだけくれる</description></chip>
-      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ伸びる</description></chip>
-      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ伸びる</description></chip>
-      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>32</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>96</Height></view_size>
         <description>壁と壁の間で上下</description></chip>
-      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>壁と壁の間で左右</description></chip>
       <chip value="53"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>96</Y></xdraw><name>ドッスンスン</name>
@@ -2015,13 +2041,17 @@
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
         <description>方向キーで移動</description></chip>
-      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ速射</description></chip>
-      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ速射</description></chip>
-      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ速射　下に空白が１ブロック必要</description></chip>
-      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ速射　下に空白が１ブロック必要</description></chip>
       <chip value="67"><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>192</X><Y>128</Y></xdraw><name>得点で開く扉</name>
         <description>指定したスコア（得点）になると開く</description></chip>
@@ -2863,17 +2893,23 @@
         <description>ヘルメットかドリルを1つだけくれる</description></chip>
       <chip value="46"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>64</X><Y>96</Y></xdraw><name>グレネードかジェットをくれる人</name>
         <description>グレネードかジェットを1つだけくれる</description></chip>
-      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ伸びる</description></chip>
-      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ伸びる</description></chip>
-      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>32</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>96</Height></view_size>
         <description>壁と壁の間で上下</description></chip>
-      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>壁と壁の間で左右</description></chip>
       <chip value="53"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>96</Y></xdraw><name>ドッスンスン</name>
@@ -2903,13 +2939,17 @@
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
         <description>方向キーで移動</description></chip>
-      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ速射</description></chip>
-      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ速射</description></chip>
-      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ速射　下に空白が１ブロック必要</description></chip>
-      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ速射　下に空白が１ブロック必要</description></chip>
       <chip value="67"><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>192</X><Y>128</Y></xdraw><name>得点で開く扉</name>
         <description>指定したスコア（得点）になると開く</description></chip>
@@ -3751,17 +3791,23 @@
         <description>ヘルメットかドリルを1つだけくれる</description></chip>
       <chip value="46"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>64</X><Y>96</Y></xdraw><name>グレネードかジェットをくれる人</name>
         <description>グレネードかジェットを1つだけくれる</description></chip>
-      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ伸びる</description></chip>
-      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ伸びる</description></chip>
-      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>32</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>96</Height></view_size>
         <description>壁と壁の間で上下</description></chip>
-      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>壁と壁の間で左右</description></chip>
       <chip value="53"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>96</Y></xdraw><name>ドッスンスン</name>
@@ -3791,13 +3837,17 @@
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
         <description>方向キーで移動</description></chip>
-      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ速射</description></chip>
-      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ速射</description></chip>
-      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ速射　下に空白が１ブロック必要</description></chip>
-      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ速射　下に空白が１ブロック必要</description></chip>
       <chip value="67"><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>192</X><Y>128</Y></xdraw><name>得点で開く扉</name>
         <description>指定したスコア（得点）になると開く</description></chip>
@@ -4639,17 +4689,23 @@
         <description>ヘルメットかドリルを1つだけくれる</description></chip>
       <chip value="46"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>64</X><Y>96</Y></xdraw><name>グレネードかジェットをくれる人</name>
         <description>グレネードかジェットを1つだけくれる</description></chip>
-      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ伸びる</description></chip>
-      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ伸びる</description></chip>
-      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>32</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>96</Height></view_size>
         <description>壁と壁の間で上下</description></chip>
-      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>壁と壁の間で左右</description></chip>
       <chip value="53"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>96</Y></xdraw><name>ドッスンスン</name>
@@ -4679,13 +4735,17 @@
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
         <description>方向キーで移動</description></chip>
-      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ速射</description></chip>
-      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ速射</description></chip>
-      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ速射　下に空白が１ブロック必要</description></chip>
-      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ速射　下に空白が１ブロック必要</description></chip>
       <chip value="67"><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>192</X><Y>128</Y></xdraw><name>得点で開く扉</name>
         <description>指定したスコア（得点）になると開く</description></chip>
@@ -5669,17 +5729,23 @@
         <description>ヘルメットかドリルを1つだけくれる</description></chip>
       <chip value="46"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>64</X><Y>96</Y></xdraw><name>グレネードかジェットをくれる人</name>
         <description>グレネードかジェットを1つだけくれる</description></chip>
-      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ伸びる</description></chip>
-      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ伸びる</description></chip>
-      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>32</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>96</Height></view_size>
         <description>壁と壁の間で上下</description></chip>
-      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>壁と壁の間で左右</description></chip>
       <chip value="53"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>96</Y></xdraw><name>ドッスンスン</name>
@@ -5709,13 +5775,17 @@
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
         <description>方向キーで移動</description></chip>
-      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ速射</description></chip>
-      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ速射</description></chip>
-      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ速射　下に空白が１ブロック必要</description></chip>
-      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ速射　下に空白が１ブロック必要</description></chip>
       <chip value="67"><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>192</X><Y>128</Y></xdraw><name>得点で開く扉</name>
         <description>指定したスコア（得点）になると開く</description></chip>
@@ -6557,17 +6627,23 @@
         <description>ヘルメットかドリルを1つだけくれる</description></chip>
       <chip value="46"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>64</X><Y>96</Y></xdraw><name>グレネードかジェットをくれる人</name>
         <description>グレネードかジェットを1つだけくれる</description></chip>
-      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ伸びる</description></chip>
-      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ伸びる</description></chip>
-      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>32</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>96</Height></view_size>
         <description>壁と壁の間で上下</description></chip>
-      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>壁と壁の間で左右</description></chip>
       <chip value="53"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>96</Y></xdraw><name>ドッスンスン</name>
@@ -6597,13 +6673,17 @@
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
         <description>方向キーで移動</description></chip>
-      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ速射</description></chip>
-      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ速射</description></chip>
-      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ速射　下に空白が１ブロック必要</description></chip>
-      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ速射　下に空白が１ブロック必要</description></chip>
       <chip value="67"><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>192</X><Y>128</Y></xdraw><name>得点で開く扉</name>
         <description>指定したスコア（得点）になると開く</description></chip>
@@ -7500,17 +7580,23 @@
         <description>ヘルメットかドリルを1つだけくれる</description></chip>
       <chip value="46"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>64</X><Y>96</Y></xdraw><name>グレネードかジェットをくれる人</name>
         <description>グレネードかジェットを1つだけくれる</description></chip>
-      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ伸びる</description></chip>
-      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ伸びる</description></chip>
-      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>32</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>96</Height></view_size>
         <description>壁と壁の間で上下</description></chip>
-      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>壁と壁の間で左右</description></chip>
       <chip value="53"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>96</Y></xdraw><name>ドッスンスン</name>
@@ -7540,13 +7626,17 @@
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
         <description>方向キーで移動</description></chip>
-      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ速射</description></chip>
-      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ速射</description></chip>
-      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ速射　下に空白が１ブロック必要</description></chip>
-      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ速射　下に空白が１ブロック必要</description></chip>
       <chip value="67"><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>192</X><Y>128</Y></xdraw><name>得点で開く扉</name>
         <description>指定したスコア（得点）になると開く</description></chip>
@@ -8387,17 +8477,23 @@
         <description>ヘルメットかドリルを1つだけくれる</description></chip>
       <chip value="46"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>64</X><Y>96</Y></xdraw><name>グレネードかジェットをくれる人</name>
         <description>グレネードかジェットを1つだけくれる</description></chip>
-      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ伸びる</description></chip>
-      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ伸びる</description></chip>
-      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>32</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>96</Height></view_size>
         <description>壁と壁の間で上下</description></chip>
-      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>壁と壁の間で左右</description></chip>
       <chip value="53"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>96</Y></xdraw><name>ドッスンスン</name>
@@ -8427,13 +8523,17 @@
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
         <description>方向キーで移動</description></chip>
-      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ速射</description></chip>
-      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ速射</description></chip>
-      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ速射　下に空白が１ブロック必要</description></chip>
-      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ速射　下に空白が１ブロック必要</description></chip>
       <chip value="67"><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>192</X><Y>128</Y></xdraw><name>得点で開く扉</name>
         <description>指定したスコア（得点）になると開く</description></chip>
@@ -9274,17 +9374,23 @@
         <description>ヘルメットかドリルを1つだけくれる</description></chip>
       <chip value="46"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>64</X><Y>96</Y></xdraw><name>グレネードかジェットをくれる人</name>
         <description>グレネードかジェットを1つだけくれる</description></chip>
-      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ伸びる</description></chip>
-      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ伸びる</description></chip>
-      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>32</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>96</Height></view_size>
         <description>壁と壁の間で上下</description></chip>
-      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>壁と壁の間で左右</description></chip>
       <chip value="53"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>96</Y></xdraw><name>ドッスンスン</name>
@@ -9314,13 +9420,17 @@
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
         <description>方向キーで移動</description></chip>
-      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ速射</description></chip>
-      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ速射</description></chip>
-      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ速射　下に空白が１ブロック必要</description></chip>
-      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ速射　下に空白が１ブロック必要</description></chip>
       <chip value="67"><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>192</X><Y>128</Y></xdraw><name>得点で開く扉</name>
         <description>指定したスコア（得点）になると開く</description></chip>
@@ -10161,17 +10271,23 @@
         <description>ヘルメットかドリルを1つだけくれる</description></chip>
       <chip value="46"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>64</X><Y>96</Y></xdraw><name>グレネードかジェットをくれる人</name>
         <description>グレネードかジェットを1つだけくれる</description></chip>
-      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="47"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ伸びる</description></chip>
-      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="48"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ伸びる</description></chip>
-      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="49"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>32</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="50"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ伸びる　下に空白が１ブロック必要</description></chip>
-      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="51"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>96</Height></view_size>
         <description>壁と壁の間で上下</description></chip>
-      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>96</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>96</Width><Height>64</Height></view_size>
         <description>壁と壁の間で左右</description></chip>
       <chip value="53"><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
         <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>96</Y></xdraw><name>ドッスンスン</name>
@@ -10201,13 +10317,17 @@
       <chip value="62"><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
         <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
         <description>方向キーで移動</description></chip>
-      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="63"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>上へ速射</description></chip>
-      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="64"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
         <description>下へ速射</description></chip>
-      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="65"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>左へ速射　下に空白が１ブロック必要</description></chip>
-      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw><name>ファイヤーウォール</name>
+      <chip value="66"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
         <description>右へ速射　下に空白が１ブロック必要</description></chip>
       <chip value="67"><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>192</X><Y>128</Y></xdraw><name>得点で開く扉</name>
         <description>指定したスコア（得点）になると開く</description></chip>

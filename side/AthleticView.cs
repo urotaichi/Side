@@ -3546,6 +3546,236 @@ namespace MasaoPlus
                         brush.Dispose();
                     })
                 },
+                {"ファイヤーウォール", new Athletic(
+                    (cschip, g, chipsize) => {
+                        Rectangle r = default, r2 = default;
+                        if (cschip.description.Contains("上下"))
+                        {
+                            g.TranslateTransform(8, 0);
+                            r = new Rectangle(0, 0, 15, 32);
+                            r2 = Rectangle.Inflate(r, -3, -3);
+                        }
+                        else if (cschip.description.Contains("左右"))
+                        {
+                            g.TranslateTransform(0, 9);
+                            r = new Rectangle(0, 0, 32, 15);
+                            r2 = Rectangle.Inflate(r, -3, -3);
+                        }
+                        else if (cschip.description.Contains("上へ"))
+                        {
+                            g.TranslateTransform(8, 1);
+                            r = new Rectangle(0, 0, 15, 31);
+                            r2 = new Rectangle(3, 3, 9, 28);
+                        }
+                        else if (cschip.description.Contains("下へ"))
+                        {
+                            g.TranslateTransform(8, 0);
+                            r = new Rectangle(0, 0, 15, 31);
+                            r2 = new Rectangle(3, 0, 9, 28);
+                        }
+                        else if (cschip.description.Contains("左へ"))
+                        {
+                            g.TranslateTransform(1, 9);
+                            r = new Rectangle(0, 0, 31, 15);
+                            r2 = new Rectangle(3, 3, 28, 9);
+                        }
+                        else if (cschip.description.Contains("右へ"))
+                        {
+                            g.TranslateTransform(0, 9);
+                            r = new Rectangle(0, 0, 31, 15);
+                            r2 = new Rectangle(0, 3, 28, 9);
+                        }
+
+                        brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+                        g.FillRectangle(brush, r);
+						// 内側の色を描画
+						brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        g.FillRectangle(brush, r2);
+                        brush.Dispose();
+                    },
+                    (cschip, g, chipsize, gd, base_y) => {
+                        Rectangle r = default, r2 = default;
+                        if (cschip.description.Contains("上下"))
+                        {
+                            r = new Rectangle(0, 0, 64, 96);
+                            r2 = Rectangle.Inflate(r, -8, -8);
+                        }
+                        else if (cschip.description.Contains("左右"))
+                        {
+                            r = new Rectangle(0, 0, 96, 64);
+                            r2 = Rectangle.Inflate(r, -8, -8);
+                        }
+                        else if (cschip.description.Contains("上へ"))
+                        {
+                            r = new Rectangle(8, -160, 48, 192);
+                            r2 = Rectangle.Inflate(r, -8, -4);
+                            r2.Offset(0, 4);
+                        }
+                        else if (cschip.description.Contains("下へ"))
+                        {
+                            r = new Rectangle(8, 0, 48, 192);
+                            r2 = Rectangle.Inflate(r, -8, -4);
+                            r2.Offset(0, -4);
+                        }
+                        else if (cschip.description.Contains("左へ"))
+                        {
+                            r = new Rectangle(-160, 8, 192, 48);
+                            r2 = Rectangle.Inflate(r, -4, -8);
+                            r2.Offset(4, 0);
+                        }
+                        else if (cschip.description.Contains("右へ"))
+                        {
+                            r = new Rectangle(0, 8, 192, 48);
+                            r2 = Rectangle.Inflate(r, -4, -8);
+                            r2.Offset(-4, 0);
+                        }
+
+                        brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+                        g.FillRectangle(brush, r);
+						// 内側の色を描画
+						brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        g.FillRectangle(brush, r2);
+                        brush.Dispose();
+                    },
+                    (cschip, g, chipsize) => {
+                        Rectangle r = default, r2 = default;
+                        if (cschip.description.Contains("上下"))
+                        {
+                            g.TranslateTransform(8, 0);
+                            r = new Rectangle(0, 0, 15, 32);
+                            r2 = Rectangle.Inflate(r, -3, -3);
+                        }
+                        else if (cschip.description.Contains("左右"))
+                        {
+                            g.TranslateTransform(0, 9);
+                            r = new Rectangle(0, 0, 32, 15);
+                            r2 = Rectangle.Inflate(r, -3, -3);
+                        }
+                        else if (cschip.description.Contains("上へ"))
+                        {
+                            g.TranslateTransform(8, 1);
+                            r = new Rectangle(0, 0, 15, 31);
+                            r2 = new Rectangle(3, 3, 9, 28);
+                        }
+                        else if (cschip.description.Contains("下へ"))
+                        {
+                            g.TranslateTransform(8, 0);
+                            r = new Rectangle(0, 0, 15, 31);
+                            r2 = new Rectangle(3, 0, 9, 28);
+                        }
+                        else if (cschip.description.Contains("左へ"))
+                        {
+                            g.TranslateTransform(1, 9);
+                            r = new Rectangle(0, 0, 31, 15);
+                            r2 = new Rectangle(3, 3, 28, 9);
+                        }
+                        else if (cschip.description.Contains("右へ"))
+                        {
+                            g.TranslateTransform(0, 9);
+                            r = new Rectangle(0, 0, 31, 15);
+                            r2 = new Rectangle(0, 3, 28, 9);
+                        }
+
+                        brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+                        g.FillRectangle(brush, r);
+						// 内側の色を描画
+						brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        g.FillRectangle(brush, r2);
+                        brush.Dispose();
+                    },
+                    (cschip, g, chipsize, height) => {
+                        Rectangle r = default, r2 = default;
+                        if (cschip.description.Contains("上下"))
+                        {
+                            g.TranslateTransform(height / 4, 0);
+                            r = new Rectangle(0, 0, height / 2, height);
+                            r2 = Rectangle.Inflate(r, -1, -1);
+                        }
+                        else if (cschip.description.Contains("左右"))
+                        {
+                            g.TranslateTransform(0, height / 4);
+                            r = new Rectangle(0, 0, height, height / 2);
+                            r2 = Rectangle.Inflate(r, -1, -1);
+                        }
+                        else if (cschip.description.Contains("上へ"))
+                        {
+                            g.TranslateTransform(height / 4, 0);
+                            r = new Rectangle(0, 0, height / 2, height);
+                            r2 = new Rectangle(1, 1, height / 4 + 1, height - 1);
+                        }
+                        else if (cschip.description.Contains("下へ"))
+                        {
+                            g.TranslateTransform(height / 4, 0);
+                            r = new Rectangle(0, 0, height / 2, height);
+                            r2 = new Rectangle(1, 0, height / 4 + 1, height - 1);
+                        }
+                        else if (cschip.description.Contains("左へ"))
+                        {
+                            g.TranslateTransform(0, height / 4);
+                            r = new Rectangle(0, 0, height, height / 2);
+                            r2 = new Rectangle(1, 1, height - 1, height / 4 + 1);
+                        }
+                        else if (cschip.description.Contains("右へ"))
+                        {
+                            g.TranslateTransform(0, height / 4);
+                            r = new Rectangle(0, 0, height, height / 2);
+                            r2 = new Rectangle(0, 1, height - 1, height / 4 + 1);
+                        }
+
+                        brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+                        g.FillRectangle(brush, r);
+						// 内側の色を描画
+						brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        g.FillRectangle(brush, r2);
+                        brush.Dispose();
+                    },
+                    (cschip, g, chipsize) => {
+                        Rectangle r = default, r2 = default;
+                        if (cschip.description.Contains("上下"))
+                        {
+                            g.TranslateTransform(8, 0);
+                            r = new Rectangle(0, 0, 15, 32);
+                            r2 = Rectangle.Inflate(r, -3, -3);
+                        }
+                        else if (cschip.description.Contains("左右"))
+                        {
+                            g.TranslateTransform(0, 9);
+                            r = new Rectangle(0, 0, 32, 15);
+                            r2 = Rectangle.Inflate(r, -3, -3);
+                        }
+                        else if (cschip.description.Contains("上へ"))
+                        {
+                            g.TranslateTransform(8, 1);
+                            r = new Rectangle(0, 0, 15, 31);
+                            r2 = new Rectangle(3, 3, 9, 28);
+                        }
+                        else if (cschip.description.Contains("下へ"))
+                        {
+                            g.TranslateTransform(8, 0);
+                            r = new Rectangle(0, 0, 15, 31);
+                            r2 = new Rectangle(3, 0, 9, 28);
+                        }
+                        else if (cschip.description.Contains("左へ"))
+                        {
+                            g.TranslateTransform(1, 9);
+                            r = new Rectangle(0, 0, 31, 15);
+                            r2 = new Rectangle(3, 3, 28, 9);
+                        }
+                        else if (cschip.description.Contains("右へ"))
+                        {
+                            g.TranslateTransform(0, 9);
+                            r = new Rectangle(0, 0, 31, 15);
+                            r2 = new Rectangle(0, 3, 28, 9);
+                        }
+
+                        brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
+                        g.FillRectangle(brush, r);
+						// 内側の色を描画
+						brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        g.FillRectangle(brush, r2);
+                        brush.Dispose();
+                    })
+                },
             };
             list.Add("長いロープ", list["ロープ"]);
             list.Add("ゆれる棒", list["ロープ"]);
