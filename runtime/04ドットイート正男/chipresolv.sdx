@@ -667,9 +667,9 @@
         <description>下から右回り</description></chip>
       <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
-      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
         <description>ＯＮで左</description></chip>
@@ -709,10 +709,10 @@
         <name>ＫＥＹ１が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
       <chip value="255"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>0</X><Y>448</Y></xdraw>
         <name>ＫＥＹ２が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
-      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで消える</name></chip>
-      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで出現</name></chip>
+      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
       <chip value="258"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw>
         <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
       <chip value="259"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw>
@@ -1573,9 +1573,9 @@
         <description>下から右回り</description></chip>
       <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
-      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
         <description>ＯＮで左</description></chip>
@@ -1615,10 +1615,10 @@
         <name>ＫＥＹ１が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
       <chip value="255"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>0</X><Y>448</Y></xdraw>
         <name>ＫＥＹ２が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
-      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで消える</name></chip>
-      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで出現</name></chip>
+      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
       <chip value="258"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw>
         <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
       <chip value="259"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw>
@@ -2479,9 +2479,9 @@
         <description>下から右回り</description></chip>
       <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
-      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
         <description>ＯＮで左</description></chip>
@@ -2521,10 +2521,10 @@
         <name>ＫＥＹ１が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
       <chip value="255"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>0</X><Y>448</Y></xdraw>
         <name>ＫＥＹ２が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
-      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで消える</name></chip>
-      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで出現</name></chip>
+      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
       <chip value="258"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw>
         <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
       <chip value="259"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw>
@@ -3385,9 +3385,9 @@
         <description>下から右回り</description></chip>
       <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
-      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
         <description>ＯＮで左</description></chip>
@@ -3427,10 +3427,10 @@
         <name>ＫＥＹ１が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
       <chip value="255"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>0</X><Y>448</Y></xdraw>
         <name>ＫＥＹ２が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
-      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで消える</name></chip>
-      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで出現</name></chip>
+      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
       <chip value="258"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw>
         <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
       <chip value="259"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw>
@@ -4291,9 +4291,9 @@
         <description>下から右回り</description></chip>
       <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
-      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
         <description>ＯＮで左</description></chip>
@@ -4333,10 +4333,10 @@
         <name>ＫＥＹ１が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
       <chip value="255"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>0</X><Y>448</Y></xdraw>
         <name>ＫＥＹ２が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
-      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで消える</name></chip>
-      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで出現</name></chip>
+      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
       <chip value="258"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw>
         <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
       <chip value="259"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw>
@@ -5197,9 +5197,9 @@
         <description>下から右回り</description></chip>
       <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
-      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
         <description>ＯＮで左</description></chip>
@@ -5239,10 +5239,10 @@
         <name>ＫＥＹ１が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
       <chip value="255"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>0</X><Y>448</Y></xdraw>
         <name>ＫＥＹ２が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
-      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで消える</name></chip>
-      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで出現</name></chip>
+      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
       <chip value="258"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw>
         <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
       <chip value="259"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw>
@@ -6245,9 +6245,9 @@
         <description>下から右回り</description></chip>
       <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
-      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
         <description>ＯＮで左</description></chip>
@@ -6287,10 +6287,10 @@
         <name>ＫＥＹ１が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
       <chip value="255"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>0</X><Y>448</Y></xdraw>
         <name>ＫＥＹ２が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
-      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで消える</name></chip>
-      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで出現</name></chip>
+      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
       <chip value="258"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw>
         <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
       <chip value="259"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw>
@@ -7151,9 +7151,9 @@
         <description>下から右回り</description></chip>
       <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
-      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
         <description>ＯＮで左</description></chip>
@@ -7193,10 +7193,10 @@
         <name>ＫＥＹ１が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
       <chip value="255"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>0</X><Y>448</Y></xdraw>
         <name>ＫＥＹ２が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
-      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで消える</name></chip>
-      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで出現</name></chip>
+      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
       <chip value="258"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw>
         <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
       <chip value="259"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw>
@@ -8112,9 +8112,9 @@
         <description>下から右回り</description></chip>
       <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
-      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
         <description>ＯＮで左</description></chip>
@@ -8154,10 +8154,10 @@
         <name>ＫＥＹ１が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
       <chip value="255"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>0</X><Y>448</Y></xdraw>
         <name>ＫＥＹ２が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
-      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで消える</name></chip>
-      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで出現</name></chip>
+      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
       <chip value="258"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw>
         <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
       <chip value="259"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw>
@@ -9017,9 +9017,9 @@
         <description>下から右回り</description></chip>
       <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
-      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
         <description>ＯＮで左</description></chip>
@@ -9059,10 +9059,10 @@
         <name>ＫＥＹ１が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
       <chip value="255"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>0</X><Y>448</Y></xdraw>
         <name>ＫＥＹ２が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
-      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで消える</name></chip>
-      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで出現</name></chip>
+      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
       <chip value="258"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw>
         <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
       <chip value="259"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw>
@@ -9922,9 +9922,9 @@
         <description>下から右回り</description></chip>
       <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
-      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
         <description>ＯＮで左</description></chip>
@@ -9964,10 +9964,10 @@
         <name>ＫＥＹ１が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
       <chip value="255"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>0</X><Y>448</Y></xdraw>
         <name>ＫＥＹ２が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
-      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで消える</name></chip>
-      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで出現</name></chip>
+      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
       <chip value="258"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw>
         <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
       <chip value="259"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw>
@@ -10827,9 +10827,9 @@
         <description>下から右回り</description></chip>
       <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
-      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
+      <chip value="236"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="237"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>416</Y></xdraw><name>スイッチ式動くＴ字型</name>
         <description>ＯＮで左</description></chip>
@@ -10869,10 +10869,10 @@
         <name>ＫＥＹ１が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
       <chip value="255"><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>0</X><Y>448</Y></xdraw>
         <name>ＫＥＹ２が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
-      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで消える</name></chip>
-      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw>
-        <name>スイッチ式ブロック縦 ＯＮで出現</name></chip>
+      <chip value="256"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+      <chip value="257"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
       <chip value="258"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw>
         <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
       <chip value="259"><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw>
