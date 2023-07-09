@@ -352,6 +352,122 @@ namespace MasaoPlus
 			this.bufpos = -1;
 		}
 
+		private void DrawNormalSizeMap(ChipData cschip, Graphics g, Point p, bool foreground, string chara, int x){
+			GraphicsState transState;
+			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
+			if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
+			{ // 拡張画像　背面
+				g.DrawImage(this.DrawExOrig,
+					new Rectangle(p.X * chipsize.Width, p.Y * chipsize.Height, chipsize.Width, chipsize.Height),
+					new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+			}
+			if (foreground)
+			{ // 標準パターン画像
+				transState = g.Save();
+				g.TranslateTransform(p.X * chipsize.Width, p.Y * chipsize.Height);
+				switch (cschip.name)
+				{
+					case "一方通行":
+					case "左右へ押せるドッスンスンのゴール":
+					case "シーソー":
+					case "ブランコ":
+					case "スウィングバー":
+					case "動くＴ字型":
+					case "ロープ":
+					case "長いロープ":
+					case "ゆれる棒":
+					case "人間大砲":
+					case "曲線による上り坂":
+					case "曲線による下り坂":
+					case "乗れる円":
+					case "跳ねる円":
+					case "円":
+					case "半円":
+					case "ファイヤーバー":
+					case "ファイヤーバー2本":
+					case "ファイヤーバー3本　左回り":
+					case "ファイヤーバー3本　右回り":
+					case "スウィングファイヤーバー":
+					case "人口太陽":
+					case "ファイヤーリング":
+					case "ファイヤーウォール":
+						AthleticView.list[cschip.name].Max(cschip, g, chipsize, this, p.Y);
+						break;
+					default:
+						g.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
+						if (chara == Global.cpd.Mapchip[1].character)
+						{
+							g.ScaleTransform(-1, 1); // 基本主人公は逆向き
+							if (Global.state.MapEditMode && x > Global.cpd.runtime.Definitions.MapSize.x / 2 ||
+								Global.state.ChipRegister.ContainsKey("view_move_type") && int.Parse(Global.state.ChipRegister["view_move_type"]) == 2)
+							{
+								g.ScaleTransform(-1, 1);// 特殊条件下では元の向き
+							}
+						}
+						g.RotateTransform(cschip.rotate);
+						if (cschip.repeat != default)
+						{
+							for (int j = 0; j < cschip.repeat; j++)
+							{
+								g.DrawImage(this.DrawChipOrig,
+									new Rectangle(-chipsize.Width / 2 + j * chipsize.Width * Math.Sign(cschip.rotate), -chipsize.Height / 2, chipsize.Width, chipsize.Height),
+									new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+							}
+						}
+						else if(cschip.repeat_x != default)
+						{
+							for (int j = 0; j < cschip.repeat_x; j++)
+							{
+								g.DrawImage(this.DrawChipOrig,
+									new Rectangle(-chipsize.Width / 2 + j * chipsize.Width, -chipsize.Height / 2, chipsize.Width, chipsize.Height),
+									new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+							}
+						}
+						else if (cschip.repeat_y != default)
+						{
+							for (int j = 0; j < cschip.repeat_y; j++)
+							{
+								g.DrawImage(this.DrawChipOrig,
+									new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2 + j * chipsize.Height, chipsize.Width, chipsize.Height),
+									new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+							}
+						}
+						else if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && chara == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+						{// 水の半透明処理
+							float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+							var colorMatrix = new ColorMatrix
+							{
+								Matrix00 = 1f,
+								Matrix11 = 1f,
+								Matrix22 = 1f,
+								Matrix33 = water_clear_level / 255f,
+								Matrix44 = 1f
+							};
+							using var imageAttributes = new ImageAttributes();
+							imageAttributes.SetColorMatrix(colorMatrix);
+							g.DrawImage(this.DrawChipOrig, new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
+						}
+						else g.DrawImage(this.DrawChipOrig,
+							new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height),
+							new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+						break;
+				}
+				g.Restore(transState);
+			}
+			else
+			{ // 背景レイヤー画像
+				g.DrawImage(this.DrawLayerOrig,
+					new Rectangle(p.X * chipsize.Width, p.Y * chipsize.Height, chipsize.Width, chipsize.Height),
+					new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+			}
+			if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
+			{ // 拡張画像　前面
+				g.DrawImage(this.DrawExOrig,
+						new Rectangle(p.X * chipsize.Width, p.Y * chipsize.Height, chipsize.Width, chipsize.Height),
+						new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+			}
+		}
+
 		public void UpdateForegroundBuffer()
 		{
 			bool flag = false;
@@ -641,99 +757,7 @@ namespace MasaoPlus
 						chipsize.Width, chipsize.Height));
 					g.CompositingMode = CompositingMode.SourceOver;
 				}
-				if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
-				{ // 拡張画像　背面
-					g.DrawImage(this.DrawExOrig,
-						new Rectangle(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height, chipsize.Width, chipsize.Height),
-						new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
-				}
-				if (foreground)
-				{ // 標準パターン画像
-					transState = g.Save();
-					g.TranslateTransform(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height);
-					switch (cschip.name)
-					{
-						case "一方通行":
-						case "左右へ押せるドッスンスンのゴール":
-						case "シーソー":
-						case "ブランコ":
-						case "スウィングバー":
-						case "動くＴ字型":
-						case "ロープ":
-						case "長いロープ":
-						case "ゆれる棒":
-						case "人間大砲":
-						case "曲線による上り坂":
-						case "曲線による下り坂":
-						case "乗れる円":
-						case "跳ねる円":
-						case "円":
-						case "半円":
-						case "ファイヤーバー":
-						case "ファイヤーバー2本":
-						case "ファイヤーバー3本　左回り":
-						case "ファイヤーバー3本　右回り":
-						case "スウィングファイヤーバー":
-						case "人口太陽":
-						case "ファイヤーリング":
-                        case "ファイヤーウォール":
-                            AthleticView.list[cschip.name].Max(cschip, g, chipsize, this, keepDrawData.pos.Y);
-							break;
-						default:
-							g.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
-							if (keepDrawData.chara == Global.cpd.Mapchip[1].character)
-							{
-								g.ScaleTransform(-1, 1); // 基本主人公は逆向き
-								if (Global.state.MapEditMode && keepDrawData.pos.X > Global.cpd.runtime.Definitions.MapSize.x / 2 ||
-									Global.state.ChipRegister.ContainsKey("view_move_type") && int.Parse(Global.state.ChipRegister["view_move_type"]) == 2)
-								{
-									g.ScaleTransform(-1, 1);// 特殊条件下では元の向き
-								}
-							}
-							g.RotateTransform(cschip.rotate);
-							if (cschip.repeat != default)
-							{
-								for (int j = 0; j < cschip.repeat; j++)
-								{
-									g.DrawImage(this.DrawChipOrig,
-										new Rectangle(-chipsize.Width / 2 + j * chipsize.Width * Math.Sign(cschip.rotate), -chipsize.Height / 2, chipsize.Width, chipsize.Height),
-										new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-								}
-							}
-							else if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && keepDrawData.chara == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
-							{// 水の半透明処理
-								float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
-                                var colorMatrix = new ColorMatrix
-                                {
-                                    Matrix00 = 1f,
-                                    Matrix11 = 1f,
-                                    Matrix22 = 1f,
-                                    Matrix33 = water_clear_level / 255f,
-                                    Matrix44 = 1f
-                                };
-                                using var imageAttributes = new ImageAttributes();
-								imageAttributes.SetColorMatrix(colorMatrix);
-								g.DrawImage(this.DrawChipOrig, new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
-							}
-							else g.DrawImage(this.DrawChipOrig,
-								new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height),
-								new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-							break;
-					}
-					g.Restore(transState);
-				}
-				else
-				{ // 背景レイヤー画像
-					g.DrawImage(this.DrawLayerOrig,
-						new Rectangle(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height, chipsize.Width, chipsize.Height),
-						new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-				}
-				if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
-				{ // 拡張画像　前面
-					g.DrawImage(this.DrawExOrig,
-						 new Rectangle(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height, chipsize.Width, chipsize.Height),
-						 new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
-				}
+				DrawNormalSizeMap(cschip, g, keepDrawData.pos, foreground, keepDrawData.chara, keepDrawData.pos.X);
 			}
 			if (!Global.state.MapEditMode)
 			{
@@ -2751,103 +2775,7 @@ namespace MasaoPlus
 									goto IL_9DD;
 								}
 								ChipData cschip = chipsData.GetCSChip();
-								if (cschip.size == default(Size))
-								{
-									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
-									{
-										graphics.DrawImage(this.DrawExOrig,
-											new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize),
-											new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
-									}
-									if (Global.state.EditingForeground)
-									{
-										transState = graphics.Save();
-										graphics.TranslateTransform(point.X * chipsize.Width, point.Y * chipsize.Height);
-										switch (cschip.name)
-										{
-											case "一方通行":
-											case "左右へ押せるドッスンスンのゴール":
-											case "シーソー":
-											case "ブランコ":
-											case "スウィングバー":
-											case "動くＴ字型":
-											case "ロープ":
-											case "長いロープ":
-											case "ゆれる棒":
-											case "人間大砲":
-											case "曲線による上り坂":
-											case "曲線による下り坂":
-											case "乗れる円":
-											case "跳ねる円":
-											case "円":
-											case "半円":
-											case "ファイヤーバー":
-											case "ファイヤーバー2本":
-											case "ファイヤーバー3本　左回り":
-											case "ファイヤーバー3本　右回り":
-											case "スウィングファイヤーバー":
-											case "人口太陽":
-											case "ファイヤーリング":
-                                            case "ファイヤーウォール":
-                                                AthleticView.list[cschip.name].Max(cschip, graphics, chipsize, this, point.Y);
-                                                break;
-											default:
-												graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
-												if (chipsData.character == Global.cpd.Mapchip[1].character)
-												{
-													graphics.ScaleTransform(-1, 1); // 基本主人公は逆向き
-													if (Global.state.MapEditMode && rect.X > Global.cpd.runtime.Definitions.MapSize.x / 2 ||
-														Global.state.ChipRegister.ContainsKey("view_move_type") && int.Parse(Global.state.ChipRegister["view_move_type"]) == 2)
-													{
-														graphics.ScaleTransform(-1, 1);// 特殊条件下では元の向き
-													}
-												}
-												graphics.RotateTransform(cschip.rotate);
-												if (cschip.repeat != default)
-												{
-													for (int j = 0; j < cschip.repeat; j++)
-													{
-														graphics.DrawImage(this.DrawChipOrig,
-															new Rectangle(-chipsize.Width / 2 + j * chipsize.Width * Math.Sign(cschip.rotate), -chipsize.Height / 2, chipsize.Width, chipsize.Height),
-															new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-													}
-												}
-												else if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && chipsData.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
-												{// 水の半透明処理
-													float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
-													var colorMatrix = new ColorMatrix
-													{
-														Matrix00 = 1f,
-														Matrix11 = 1f,
-														Matrix22 = 1f,
-														Matrix33 = water_clear_level / 255f,
-														Matrix44 = 1f
-													};
-													using var imageAttributes = new ImageAttributes();
-													imageAttributes.SetColorMatrix(colorMatrix);
-													graphics.DrawImage(this.DrawChipOrig, new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height),
-														cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
-												}
-												else graphics.DrawImage(this.DrawChipOrig,
-													new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height),
-													new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-												break;
-										}
-										graphics.Restore(transState);
-									}
-									else
-									{
-										graphics.DrawImage(this.DrawLayerOrig,
-											new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize),
-											new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-									}
-									if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
-									{
-										graphics.DrawImage(this.DrawExOrig,
-											new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize),
-											new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
-									}
-								}
+								if (cschip.size == default(Size)) DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X);
 							}
 							IL_9DD:;
 						}

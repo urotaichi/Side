@@ -23,7 +23,11 @@ namespace MasaoPlus
 
 		public int repeat;
 
-		public Point xdraw;
+        public int repeat_x;
+
+        public int repeat_y;
+
+        public Point xdraw;
 
 		public bool xdbackgrnd;
 
