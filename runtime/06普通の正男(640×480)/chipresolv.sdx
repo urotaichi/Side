@@ -627,37 +627,45 @@
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
       <chip value="218"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>128</X><Y>384</Y></xdraw><name>連動スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
-      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から左</description></chip>
-      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から右</description></chip>
-      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から上</description></chip>
-      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から上</description></chip>
-      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から下</description></chip>
-      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から下</description></chip>
-      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から左</description></chip>
-      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から右</description></chip>
-      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から左回り</description></chip>
-      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から右回り</description></chip>
-      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から右回り</description></chip>
-      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から左回り</description></chip>
-      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から左回り</description></chip>
-      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から右回り</description></chip>
-      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から右回り</description></chip>
-      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
       <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
         <description>ＯＮで消える</description></chip>
@@ -1525,37 +1533,45 @@
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
       <chip value="218"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>128</X><Y>384</Y></xdraw><name>連動スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
-      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から左</description></chip>
-      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から右</description></chip>
-      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から上</description></chip>
-      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から上</description></chip>
-      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から下</description></chip>
-      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から下</description></chip>
-      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から左</description></chip>
-      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から右</description></chip>
-      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から左回り</description></chip>
-      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から右回り</description></chip>
-      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から右回り</description></chip>
-      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から左回り</description></chip>
-      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から左回り</description></chip>
-      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から右回り</description></chip>
-      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から右回り</description></chip>
-      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
       <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
         <description>ＯＮで消える</description></chip>
@@ -2423,37 +2439,45 @@
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
       <chip value="218"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>128</X><Y>384</Y></xdraw><name>連動スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
-      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から左</description></chip>
-      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から右</description></chip>
-      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から上</description></chip>
-      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から上</description></chip>
-      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から下</description></chip>
-      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から下</description></chip>
-      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から左</description></chip>
-      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から右</description></chip>
-      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から左回り</description></chip>
-      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から右回り</description></chip>
-      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から右回り</description></chip>
-      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から左回り</description></chip>
-      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から左回り</description></chip>
-      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から右回り</description></chip>
-      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から右回り</description></chip>
-      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
       <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
         <description>ＯＮで消える</description></chip>
@@ -3321,37 +3345,45 @@
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
       <chip value="218"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>128</X><Y>384</Y></xdraw><name>連動スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
-      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から左</description></chip>
-      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から右</description></chip>
-      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から上</description></chip>
-      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から上</description></chip>
-      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から下</description></chip>
-      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から下</description></chip>
-      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から左</description></chip>
-      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から右</description></chip>
-      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から左回り</description></chip>
-      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から右回り</description></chip>
-      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から右回り</description></chip>
-      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から左回り</description></chip>
-      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から左回り</description></chip>
-      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から右回り</description></chip>
-      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から右回り</description></chip>
-      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
       <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
         <description>ＯＮで消える</description></chip>
@@ -4219,37 +4251,45 @@
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
       <chip value="218"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>128</X><Y>384</Y></xdraw><name>連動スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
-      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から左</description></chip>
-      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から右</description></chip>
-      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から上</description></chip>
-      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から上</description></chip>
-      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から下</description></chip>
-      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から下</description></chip>
-      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から左</description></chip>
-      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から右</description></chip>
-      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から左回り</description></chip>
-      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から右回り</description></chip>
-      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から右回り</description></chip>
-      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から左回り</description></chip>
-      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から左回り</description></chip>
-      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から右回り</description></chip>
-      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から右回り</description></chip>
-      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
       <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
         <description>ＯＮで消える</description></chip>
@@ -5117,37 +5157,45 @@
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
       <chip value="218"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>128</X><Y>384</Y></xdraw><name>連動スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
-      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から左</description></chip>
-      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から右</description></chip>
-      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から上</description></chip>
-      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から上</description></chip>
-      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から下</description></chip>
-      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から下</description></chip>
-      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から左</description></chip>
-      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から右</description></chip>
-      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から左回り</description></chip>
-      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から右回り</description></chip>
-      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から右回り</description></chip>
-      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から左回り</description></chip>
-      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から左回り</description></chip>
-      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から右回り</description></chip>
-      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から右回り</description></chip>
-      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
       <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
         <description>ＯＮで消える</description></chip>
@@ -6157,37 +6205,45 @@
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
       <chip value="218"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>128</X><Y>384</Y></xdraw><name>連動スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
-      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から左</description></chip>
-      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から右</description></chip>
-      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から上</description></chip>
-      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から上</description></chip>
-      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から下</description></chip>
-      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から下</description></chip>
-      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から左</description></chip>
-      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から右</description></chip>
-      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から左回り</description></chip>
-      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から右回り</description></chip>
-      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から右回り</description></chip>
-      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から左回り</description></chip>
-      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から左回り</description></chip>
-      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から右回り</description></chip>
-      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から右回り</description></chip>
-      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
       <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
         <description>ＯＮで消える</description></chip>
@@ -7055,37 +7111,45 @@
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
       <chip value="218"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>128</X><Y>384</Y></xdraw><name>連動スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
-      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から左</description></chip>
-      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から右</description></chip>
-      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から上</description></chip>
-      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から上</description></chip>
-      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から下</description></chip>
-      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から下</description></chip>
-      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から左</description></chip>
-      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から右</description></chip>
-      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から左回り</description></chip>
-      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から右回り</description></chip>
-      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から右回り</description></chip>
-      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から左回り</description></chip>
-      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から左回り</description></chip>
-      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から右回り</description></chip>
-      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から右回り</description></chip>
-      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
       <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
         <description>ＯＮで消える</description></chip>
@@ -8008,37 +8072,45 @@
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
       <chip value="218"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>128</X><Y>384</Y></xdraw><name>連動スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
-      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から左</description></chip>
-      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から右</description></chip>
-      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から上</description></chip>
-      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から上</description></chip>
-      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から下</description></chip>
-      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から下</description></chip>
-      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から左</description></chip>
-      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から右</description></chip>
-      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から左回り</description></chip>
-      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から右回り</description></chip>
-      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から右回り</description></chip>
-      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から左回り</description></chip>
-      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から左回り</description></chip>
-      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から右回り</description></chip>
-      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から右回り</description></chip>
-      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
       <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
         <description>ＯＮで消える</description></chip>
@@ -8905,37 +8977,45 @@
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
       <chip value="218"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>128</X><Y>384</Y></xdraw><name>連動スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
-      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から左</description></chip>
-      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から右</description></chip>
-      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から上</description></chip>
-      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から上</description></chip>
-      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から下</description></chip>
-      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から下</description></chip>
-      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から左</description></chip>
-      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から右</description></chip>
-      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から左回り</description></chip>
-      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から右回り</description></chip>
-      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から右回り</description></chip>
-      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から左回り</description></chip>
-      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から左回り</description></chip>
-      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から右回り</description></chip>
-      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から右回り</description></chip>
-      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
       <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
         <description>ＯＮで消える</description></chip>
@@ -9802,37 +9882,45 @@
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
       <chip value="218"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>128</X><Y>384</Y></xdraw><name>連動スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
-      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から左</description></chip>
-      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から右</description></chip>
-      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から上</description></chip>
-      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から上</description></chip>
-      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から下</description></chip>
-      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から下</description></chip>
-      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から左</description></chip>
-      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から右</description></chip>
-      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から左回り</description></chip>
-      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から右回り</description></chip>
-      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から右回り</description></chip>
-      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から左回り</description></chip>
-      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から左回り</description></chip>
-      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から右回り</description></chip>
-      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から右回り</description></chip>
-      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
       <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
         <description>ＯＮで消える</description></chip>
@@ -10699,37 +10787,45 @@
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
       <chip value="218"><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>128</X><Y>384</Y></xdraw><name>連動スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
         <description>マップ全体に影響  同スイッチへ連動</description></chip>
-      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="219"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から左</description></chip>
-      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="220"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>上から右</description></chip>
-      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="221"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から上</description></chip>
-      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="222"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から上</description></chip>
-      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="223"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>左から下</description></chip>
-      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="224"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
         <description>右から下</description></chip>
-      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から左</description></chip>
-      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="226"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
         <description>下から右</description></chip>
-      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="227"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から左回り</description></chip>
-      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="228"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から右回り</description></chip>
-      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="229"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>右から右回り</description></chip>
-      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="230"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
         <description>左から左回り</description></chip>
-      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="231"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から左回り</description></chip>
-      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="232"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>上から右回り</description></chip>
-      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="233"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から右回り</description></chip>
-      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name>
+      <chip value="234"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
         <description>下から左回り</description></chip>
       <chip value="235"><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ブロック</name>
         <description>ＯＮで消える</description></chip>

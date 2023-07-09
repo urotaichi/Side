@@ -2598,6 +2598,13 @@ namespace MasaoPlus
                             if (cschip.description.Contains("左")) v = 160 + 2;
                             else v = 380 - 2;
                         }
+                        else if (cschip.name == "スイッチ式ファイヤーバー")
+                        {
+                            if (cschip.description.Contains("上から")) v = -90;
+                            else if (cschip.description.Contains("左から")) v = 180;
+                            else if (cschip.description.Contains("右から")) v = 0;
+                            else if (cschip.description.Contains("下から")) v = 90;
+                        }
                         else if (cschip.description == "左回り") v = 360 - 3;
                         else if (cschip.description == "右回り") v = 3;
                         rad = ((v + 90) * Math.PI) / 180;
@@ -2606,7 +2613,7 @@ namespace MasaoPlus
                         vo_pa = new PointF[4];
 
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
-                        if (cschip.name == "ファイヤーバー") width = 140;
+                        if (cschip.name == "ファイヤーバー" || cschip.name == "スイッチ式ファイヤーバー" && cschip.description.Contains("回り")) width = 140;
                         else width = 172;
                         vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 25) + Math.Cos(rad) * 16);
                         vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) + Math.Sin(rad) * 16);
@@ -2620,7 +2627,7 @@ namespace MasaoPlus
 
 						// 内側の色を描画
 						brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-                        if (cschip.name == "ファイヤーバー") width = 134;
+                        if (cschip.name == "ファイヤーバー" || cschip.name == "スイッチ式ファイヤーバー" && cschip.description.Contains("回り")) width = 134;
                         else width = 166;
                         vo_pa[0].X = (float)(Math.Cos(v * d) * 31 + Math.Cos(rad) * 10);
                         vo_pa[0].Y = (float)(Math.Sin(v * d) * 31 + Math.Sin(rad) * 10);
@@ -2631,7 +2638,7 @@ namespace MasaoPlus
                         vo_pa[3].X = (float)(Math.Cos(v * d) * width + Math.Cos(rad) * 10);
                         vo_pa[3].Y = (float)(Math.Sin(v * d) * width + Math.Sin(rad) * 10);
                         g.FillPolygon(brush, vo_pa);
-                        if (cschip.name != "ファイヤーバー" && cschip.name != "スウィングファイヤーバー")
+                        if (cschip.name != "ファイヤーバー" && cschip.name != "スウィングファイヤーバー" && cschip.name != "スイッチ式ファイヤーバー")
                         {
                             if (cschip.name == "ファイヤーバー2本") v = 2;
                             else if (cschip.name == "ファイヤーバー3本　左回り") v = 360 - 2 + 120;
@@ -3786,6 +3793,7 @@ namespace MasaoPlus
             list.Add("ファイヤーバー2本", list["ファイヤーバー"]);
             list.Add("ファイヤーバー3本　左回り", list["ファイヤーバー"]);
             list.Add("ファイヤーバー3本　右回り", list["ファイヤーバー"]);
+            list.Add("スイッチ式ファイヤーバー", list["ファイヤーバー"]);
         }
         public static Dictionary<string, Athletic> list;
     }

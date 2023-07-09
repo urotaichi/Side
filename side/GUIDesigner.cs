@@ -524,7 +524,8 @@ namespace MasaoPlus
 					case "人口太陽":
 					case "ファイヤーリング":
 					case "ファイヤーウォール":
-						AthleticView.list[cschip.name].Max(cschip, g, chipsize, this, p.Y);
+                    case "スイッチ式ファイヤーバー":
+                        AthleticView.list[cschip.name].Max(cschip, g, chipsize, this, p.Y);
 						break;
 					default:
 						g.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
