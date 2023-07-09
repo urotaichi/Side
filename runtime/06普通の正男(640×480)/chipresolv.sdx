@@ -581,9 +581,9 @@
         <description>ＯＮで消える</description></chip>
       <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="201"><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><name>スイッチ式電撃バリア縦</name>
         <description>ＯＮで消える</description></chip>
@@ -1479,9 +1479,9 @@
         <description>ＯＮで消える</description></chip>
       <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="201"><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><name>スイッチ式電撃バリア縦</name>
         <description>ＯＮで消える</description></chip>
@@ -2377,9 +2377,9 @@
         <description>ＯＮで消える</description></chip>
       <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="201"><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><name>スイッチ式電撃バリア縦</name>
         <description>ＯＮで消える</description></chip>
@@ -3275,9 +3275,9 @@
         <description>ＯＮで消える</description></chip>
       <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="201"><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><name>スイッチ式電撃バリア縦</name>
         <description>ＯＮで消える</description></chip>
@@ -4173,9 +4173,9 @@
         <description>ＯＮで消える</description></chip>
       <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="201"><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><name>スイッチ式電撃バリア縦</name>
         <description>ＯＮで消える</description></chip>
@@ -5071,9 +5071,9 @@
         <description>ＯＮで消える</description></chip>
       <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="201"><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><name>スイッチ式電撃バリア縦</name>
         <description>ＯＮで消える</description></chip>
@@ -6111,9 +6111,9 @@
         <description>ＯＮで消える</description></chip>
       <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="201"><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><name>スイッチ式電撃バリア縦</name>
         <description>ＯＮで消える</description></chip>
@@ -7009,9 +7009,9 @@
         <description>ＯＮで消える</description></chip>
       <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="201"><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><name>スイッチ式電撃バリア縦</name>
         <description>ＯＮで消える</description></chip>
@@ -7962,9 +7962,9 @@
         <description>ＯＮで消える</description></chip>
       <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="201"><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><name>スイッチ式電撃バリア縦</name>
         <description>ＯＮで消える</description></chip>
@@ -8859,9 +8859,9 @@
         <description>ＯＮで消える</description></chip>
       <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="201"><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><name>スイッチ式電撃バリア縦</name>
         <description>ＯＮで消える</description></chip>
@@ -9756,9 +9756,9 @@
         <description>ＯＮで消える</description></chip>
       <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="201"><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><name>スイッチ式電撃バリア縦</name>
         <description>ＯＮで消える</description></chip>
@@ -10653,9 +10653,9 @@
         <description>ＯＮで消える</description></chip>
       <chip value="198"><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
         <description>ＯＮで出現</description></chip>
-      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="199"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで消える</description></chip>
-      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><name>スイッチ式ハシゴ</name>
+      <chip value="200"><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
         <description>ＯＮで出現</description></chip>
       <chip value="201"><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><name>スイッチ式電撃バリア縦</name>
         <description>ＯＮで消える</description></chip>
