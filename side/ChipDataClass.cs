@@ -34,5 +34,7 @@ namespace MasaoPlus
 		public ChipsData[] Layerchip = new ChipsData[0];
 
 		public ChipsData[] WorldChip = new ChipsData[0];
-	}
+
+        public ChipsData[] VarietyChip = new ChipsData[0];
+    }
 }
