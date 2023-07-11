@@ -34,8 +34,9 @@ namespace MasaoPlus.Dialogs
 			this.MapF.Text = Global.cpd.runtime.DefaultConfigurations.MapParam;
 			this.ProjNum.Value = Global.cpd.project.Config.StageNum;
 			this.UseWorldmap.Checked = Global.cpd.project.Config.UseWorldmap;
+            this.Use3rdMapData.Checked = Global.cpd.project.Use3rdMapData;
 
-			this.OutHeader.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
+            this.OutHeader.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
 			this.OutMiddle.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.MiddleHTML);
 			this.OutFooter.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.FooterHTML);
 
@@ -73,7 +74,8 @@ namespace MasaoPlus.Dialogs
 			Global.cpd.runtime.DefaultConfigurations.FooterHTML = Subsystem.EncodeBase64(this.OutFooter.Text);
 
 			Global.cpd.project.Config.UseWorldmap = this.UseWorldmap.Checked;
-			Global.state.EditFlag = true;
+            Global.cpd.project.Use3rdMapData = this.Use3rdMapData.Checked;
+            Global.state.EditFlag = true;
 			List<HTMLReplaceData> list = new List<HTMLReplaceData>();
 			foreach (object obj in ((IEnumerable)this.OutputReplaceView.Rows))
 			{

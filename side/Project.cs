@@ -80,7 +80,9 @@ namespace MasaoPlus
 
 		public Runtime Runtime = new Runtime();
 
-		public string[] StageData = new string[0];
+        public bool Use3rdMapData = false;
+
+        public string[] StageData = new string[0];
 
 		public string[] StageData2 = new string[0];
 

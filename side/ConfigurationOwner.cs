@@ -368,9 +368,9 @@ namespace MasaoPlus
 				}
 				this.Configurations[this.RelIndex[12]].Value = "1";
 			}
-		}
+        }
 
-		[XmlIgnore]
+        [XmlIgnore]
 		public Color Grenade1
 		{
 			get

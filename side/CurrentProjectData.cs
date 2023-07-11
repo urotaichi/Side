@@ -26,7 +26,9 @@ namespace MasaoPlus
 
 		public ChipsData[] Worldchip;
 
-		public string where = "";
+        public ChipsData[] VarietyChip;
+
+        public string where = "";
 
 		public string filename = "";
 	}
