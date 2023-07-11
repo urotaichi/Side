@@ -11711,7 +11711,7 @@
         <description>ブロック１が左に10個出現</description></chip>
     </chips>
     <chips code="1024" color="yellow">
-      <chi><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+      <chip><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>？ブロック[ハシゴ]</name>
         <description>上にハシゴが出現</description></chip>
     </chips>
