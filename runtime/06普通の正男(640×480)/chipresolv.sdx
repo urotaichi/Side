@@ -12792,6 +12792,10 @@
       <chip><pattern><X>0</X><Y>448</Y></pattern>
         <name>亀</name><description>足元に空白があると落ちる</description></chip>
     </chips>
+    <chips code="6200" color="magenta">
+      <chip><pattern><X>0</X><Y>448</Y></pattern><xdraw><X>512</X><Y>0</Y></xdraw>
+        <name>亀</name><description>主人公を追尾</description></chip>
+    </chips>
     <chips code="5200" color="magenta">
       <chip><pattern><X>96</X><Y>448</Y></pattern>
         <name>ピカチー</name><description>電撃　水中で消える</description></chip>
@@ -12807,6 +12811,10 @@
     <chips code="5203" color="magenta">
       <chip><pattern><X>96</X><Y>448</Y></pattern>
         <name>ピカチー</name><description>プラズマ砲</description></chip>
+    </chips>
+    <chips code="6400" color="magenta">
+      <chip><pattern><X>96</X><Y>448</Y></pattern><xdraw><X>512</X><Y>0</Y></xdraw>
+        <name>ピカチー</name><description>主人公を追尾</description></chip>
     </chips>
     <chips code="5300" color="magenta">
       <chip><pattern><X>0</X><Y>480</Y></pattern>
@@ -13007,14 +13015,6 @@
     <chips code="6180" color="magenta">
       <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
         <name>クラゲッソ</name><description>右回り</description></chip>
-    </chips>
-    <chips code="6200" color="magenta">
-      <chip><pattern><X>0</X><Y>448</Y></pattern><xdraw><X>512</X><Y>0</Y></xdraw>
-        <name>亀</name><description>主人公を追尾</description></chip>
-    </chips>
-    <chips code="6400" color="magenta">
-      <chip><pattern><X>96</X><Y>448</Y></pattern><xdraw><X>512</X><Y>0</Y></xdraw>
-        <name>ピカチー</name><description>主人公を追尾</description></chip>
     </chips>
   </VarietyChip>
 </ChipDefinition>
