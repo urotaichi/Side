@@ -98,7 +98,8 @@ namespace MasaoPlus.Dialogs
 					}
 					Global.cpd.Mapchip = chipDataClass.Mapchip;
 					Global.cpd.Worldchip = chipDataClass.WorldChip;
-					Global.cpd.EditingMap = Global.cpd.project.StageData;
+                    Global.cpd.VarietyChip = chipDataClass.VarietyChip;
+                    Global.cpd.EditingMap = Global.cpd.project.StageData;
 					if (Global.cpd.UseLayer)
 					{
 						Global.cpd.EditingLayer = Global.cpd.project.LayerData;
