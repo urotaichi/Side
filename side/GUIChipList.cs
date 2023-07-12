@@ -151,7 +151,7 @@ namespace MasaoPlus
         {
             for (int i = inital; i < num; i++)
             {
-                ChipsData chipData = chipsData[i];
+                ChipsData chipData = chipsData[i - inital];
                 Point point = this.GetPosition(i);
 				Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
 				Rectangle rectangle = new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize);
