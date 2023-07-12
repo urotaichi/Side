@@ -31,12 +31,31 @@ namespace MasaoPlus
 				}
 				else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
 				{
-					if (value >= Global.cpd.Mapchip.Length || value < 0)
+					int n = Global.cpd.Mapchip.Length;
+
+                    if (!Global.cpd.project.Use3rdMapData && value >= n
+						|| Global.cpd.project.Use3rdMapData && value >= n + Global.cpd.VarietyChip.Length
+                        || value < 0)
 					{
 						return;
 					}
-					Global.state.CurrentChip = Global.cpd.Mapchip[value];
-				}
+
+                    if (Global.cpd.project.Use3rdMapData)
+                    {
+						if(value < n)
+                        {
+                            Global.state.CurrentChip = Global.cpd.Mapchip[value];
+                        }
+						else
+                        {
+                            Global.state.CurrentChip = Global.cpd.VarietyChip[value - n];
+                        }
+                    }
+					else
+                    {
+                        Global.state.CurrentChip = Global.cpd.Mapchip[value];
+                    }
+                }
 				else
 				{
 					if (value >= Global.cpd.Layerchip.Length || value < 0)
@@ -121,8 +140,13 @@ namespace MasaoPlus
 				num = 1;
 			}
 			if (!Global.cpd.UseLayer || Global.state.EditingForeground)
-			{
-				return (int)Math.Ceiling((double)Global.cpd.Mapchip.Length / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height;
+            {
+                int num2 = Global.cpd.Mapchip.Length;
+                if (Global.cpd.project.Use3rdMapData)
+                {
+                    num2 += Global.cpd.VarietyChip.Length;
+                }
+                return (int)Math.Ceiling((double)num2 / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height;
 			}
 			return (int)Math.Ceiling((double)Global.cpd.Layerchip.Length / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height;
 		}
@@ -329,7 +353,10 @@ namespace MasaoPlus
 						e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
 					}
 					e.Graphics.PixelOffsetMode = default;
-					if (Global.state.CurrentChip.character == chipData.character)
+					if (Global.state.MapEditMode && Global.state.CurrentChip.character == chipData.character
+                        || !Global.state.MapEditMode
+							&& ( Global.cpd.project.Use3rdMapData && Global.state.CurrentChip.code == chipData.code
+							|| !Global.cpd.project.Use3rdMapData && Global.state.CurrentChip.character == chipData.character))
 					{
 						if (i != this.selectedIndex) this.selectedIndex = i;
 						switch (Global.config.draw.SelDrawMode)
@@ -384,9 +411,12 @@ namespace MasaoPlus
 					else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
 					{
 						num = Global.cpd.Mapchip.Length;
-                        num2 = Global.cpd.VarietyChip.Length;
                         AddChipData(Global.cpd.Mapchip, num, e);
-                        if(Global.cpd.project.Use3rdMapData) AddChipData(Global.cpd.VarietyChip, num + num2, e, num);
+						if (Global.cpd.project.Use3rdMapData)
+                        {
+                            num2 = Global.cpd.VarietyChip.Length;
+                            AddChipData(Global.cpd.VarietyChip, num + num2, e, num);
+						}
                     }
 					else
 					{
@@ -430,7 +460,11 @@ namespace MasaoPlus
 			else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
 			{
 				num2 = Global.cpd.Mapchip.Length;
-			}
+				if (Global.cpd.project.Use3rdMapData)
+				{
+                    num2 += Global.cpd.VarietyChip.Length;
+                }
+            }
 			else
 			{
 				num2 = Global.cpd.Layerchip.Length;
