@@ -3733,7 +3733,7 @@
 
    <!-- 動く床(左右移動)の設定ここから（ポイント５）  -->
 
-    <chips char="L" rel="HMovFloor">
+    <chips char="L" rel="HMovFloor" color="yellow">
       <chip value="1"><pattern><X>0</X><Y>608</Y></pattern><size><Width>96</Width><Height>32</Height></size>
         <xdraw><X>96</X><Y>0</Y></xdraw><name>動く床</name>
         <description>左右移動</description></chip>

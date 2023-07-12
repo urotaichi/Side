@@ -215,7 +215,7 @@
         <description>高くジャンプできます</description>
       </chip>
     </chips>
-    <chips char="L" rel="HMovFloor">
+    <chips char="L" rel="HMovFloor" color="yellow">
       <chip value="1">
         <pattern>
           <X>0</X>

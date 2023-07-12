@@ -1072,8 +1072,8 @@ namespace MasaoPlus
 			}
 			string filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.PatternImage);
 			FileStream fs;
-			this.DrawChipOrig = Image.FromFile(filename);
-			this.DrawMask = new Bitmap(this.DrawChipOrig.Width, this.DrawChipOrig.Height);
+			this.DrawChipOrig = Image.FromStream(File.OpenRead(filename), false, false);
+            this.DrawMask = new Bitmap(this.DrawChipOrig.Width, this.DrawChipOrig.Height);
 			ColorMap[] remapTable = new ColorMap[]
 			{
 				new ColorMap()
@@ -1091,8 +1091,8 @@ namespace MasaoPlus
 			if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.LayerImage);
-				this.DrawLayerOrig = Image.FromFile(filename);
-				this.DrawLayerMask = new Bitmap(this.DrawLayerOrig.Width, this.DrawLayerOrig.Height);
+				this.DrawLayerOrig = Image.FromStream(File.OpenRead(filename), false, false);
+                this.DrawLayerMask = new Bitmap(this.DrawLayerOrig.Width, this.DrawLayerOrig.Height);
 				using (ImageAttributes imageAttributes2 = new ImageAttributes())
 				{
 					imageAttributes2.SetRemapTable(remapTable);
@@ -1119,7 +1119,7 @@ namespace MasaoPlus
             }
 
 			filename = Path.Combine(Global.cpd.where, Global.cpd.runtime.Definitions.ChipExtender);
-			this.DrawExOrig = Image.FromFile(filename);
+			this.DrawExOrig = Image.FromStream(File.OpenRead(filename), false, false);
 			this.DrawExMask = new Bitmap(this.DrawExOrig.Width, this.DrawExOrig.Height);
 			using (ImageAttributes imageAttributes3 = new ImageAttributes())
 			{
