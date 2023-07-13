@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MasaoPlus.Controls;
@@ -486,15 +487,7 @@ namespace MasaoPlus
 					description = cschip.description;
 				}
 
-				this.ChipNavigator.Text = string.Concat(new string[]
-				{
-					"[",
-					chipsData.character,
-					"]",
-					name,
-					"/",
-					description
-				});
+				this.ChipNavigator.Text = $"[{chipsData.character}]{name}/{description}";
 				this.ChipNavigator.Visible = true;
 			}
 		}
@@ -761,8 +754,9 @@ namespace MasaoPlus
 					array = Global.cpd.Worldchip;
 				}
 				else
-				{
-					array = Global.cpd.Mapchip;
+                {
+                    if (Global.cpd.project.Use3rdMapData) array = Global.cpd.Mapchip.Concat(Global.cpd.VarietyChip).ToArray();
+                    else array = Global.cpd.Mapchip;
 				}
 			}
 			else
@@ -782,7 +776,7 @@ namespace MasaoPlus
 					string description;
 					if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
 					{
-						switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+                        switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
 						{
 							case 1:
 								description = "停止";
@@ -872,12 +866,12 @@ namespace MasaoPlus
 					}
 					else description = "";
 
-					this.ChipList.Items.Add("オリジナルボス" + "/" + description);
+					this.ChipList.Items.Add($"オリジナルボス/{description}");
 
 				}
 				else 
 				{
-					this.ChipList.Items.Add(chipData.name + "/" + chipData.description);
+					this.ChipList.Items.Add($"{chipData.name}/{chipData.description}");
 				}
 			}
 			if (this.ChipList.Items.Count != 0)
@@ -975,19 +969,27 @@ namespace MasaoPlus
 
 		private void ChipList_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (this.ChipList.SelectedIndex >= 0)
+			int i = this.ChipList.SelectedIndex;
+
+            if (i >= 0)
 			{
 				if (Global.state.MapEditMode)
 				{
-					Global.state.CurrentChip = Global.cpd.Worldchip[this.ChipList.SelectedIndex];
+					Global.state.CurrentChip = Global.cpd.Worldchip[i];
 					return;
 				}
 				if (!Global.cpd.UseLayer || Global.state.EditingForeground)
 				{
-					Global.state.CurrentChip = Global.cpd.Mapchip[this.ChipList.SelectedIndex];
+                    if (Global.cpd.project.Use3rdMapData)
+					{
+						int n = Global.cpd.Mapchip.Length;
+						if(i < n) Global.state.CurrentChip = Global.cpd.Mapchip[i];
+                        else Global.state.CurrentChip = Global.cpd.VarietyChip[i - n];
+                    }
+                    else Global.state.CurrentChip = Global.cpd.Mapchip[i];
 					return;
 				}
-				Global.state.CurrentChip = Global.cpd.Layerchip[this.ChipList.SelectedIndex];
+				Global.state.CurrentChip = Global.cpd.Layerchip[i];
 			}
 		}
 
@@ -995,7 +997,10 @@ namespace MasaoPlus
 		private void state_UpdateCurrentChipInvoke()
 		{
 			this.ChipImage.Refresh();
-			if (Global.state.CurrentChip.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+			string chara = Global.state.CurrentChip.character;
+			if(Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) chara = Global.state.CurrentChip.code.ToString();
+
+            if (Global.state.CurrentChip.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
 				this.ChipDescription.Text = "オリジナルボス";
 			else this.ChipDescription.Text = Global.state.CurrentChip.GetCSChip().name;
 			if (Global.state.CurrentChip.GetCSChip().description != "")
@@ -1095,14 +1100,14 @@ namespace MasaoPlus
 					}
 					else description = "";
 
-					this.ChipChar.Text = "[Z]" + description;
+					this.ChipChar.Text = $"[{chara}]{description}";
 
 				}
-				else this.ChipChar.Text = "[" + Global.state.CurrentChip.character + "]" + Global.state.CurrentChip.GetCSChip().description;
+				else this.ChipChar.Text = $"[{chara}]{Global.state.CurrentChip.GetCSChip().description}";
 			}
 			else
 			{
-				this.ChipChar.Text = "[" + Global.state.CurrentChip.character + "]";
+				this.ChipChar.Text = $"[{chara}]";
 			}
 			if (this.DrawType.SelectedIndex == 3)
 			{
@@ -1231,7 +1236,7 @@ namespace MasaoPlus
 			this.MainDesigner.StageSourceToDrawBuffer();
 			this.MainDesigner.Refresh();
 			Global.state.ForceNoBuffering = false;
-			this.UpdateStatus("完了(" + (Environment.TickCount - tickCount).ToString() + "ms)");
+			this.UpdateStatus($"完了({Environment.TickCount - tickCount}ms)");
 		}
 
 		public void UpdateStatus(string t)
@@ -1636,7 +1641,8 @@ namespace MasaoPlus
 
 		private void ChipList_DrawItem(object sender, DrawItemEventArgs e)
 		{
-			if (e.Index == -1)
+			int i = e.Index;
+            if (i == -1)
 			{
 				return;
 			}
@@ -1656,17 +1662,23 @@ namespace MasaoPlus
 						{
 							if (Global.state.MapEditMode)
 							{
-								cschip = Global.cpd.Worldchip[e.Index].GetCSChip();
+								cschip = Global.cpd.Worldchip[i].GetCSChip();
 							}
 							else
-							{
-								cschip = Global.cpd.Mapchip[e.Index].GetCSChip();
+                            {
+                                if (Global.cpd.project.Use3rdMapData)
+								{
+									int n = Global.cpd.Mapchip.Length;
+                                    if (i < n) cschip = Global.cpd.Mapchip[i].GetCSChip();
+                                    else cschip = Global.cpd.VarietyChip[i - n].GetCSChip();
+                                }
+                                else cschip = Global.cpd.Mapchip[i].GetCSChip();
 							}
 
 							e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
 							transState = e.Graphics.Save();
 							e.Graphics.TranslateTransform(e.Bounds.X, e.Bounds.Y);
-							if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[e.Index].character == "Z")
+							if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[i].character == "Z")
 							{
 								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, e.Bounds.Height, e.Bounds.Height);
 							}
@@ -1704,7 +1716,7 @@ namespace MasaoPlus
 										e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
 										if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 										// 水の半透明処理
-										if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.cpd.Mapchip[e.Index].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+										if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.cpd.Mapchip[i].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
 											{
 											float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
 											var colorMatrix = new ColorMatrix
@@ -1727,7 +1739,7 @@ namespace MasaoPlus
 						}
 						else
 						{
-							cschip = Global.cpd.Layerchip[e.Index].GetCSChip();
+							cschip = Global.cpd.Layerchip[i].GetCSChip();
 							e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig, new Rectangle(e.Bounds.Location, new Size(e.Bounds.Height, e.Bounds.Height)), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
 						}
 						width = e.Bounds.Height;
@@ -1737,11 +1749,17 @@ namespace MasaoPlus
 						{
 							if (Global.state.MapEditMode)
 							{
-								cschip = Global.cpd.Worldchip[e.Index].GetCSChip();
+								cschip = Global.cpd.Worldchip[i].GetCSChip();
 							}
 							else
-							{
-								cschip = Global.cpd.Mapchip[e.Index].GetCSChip();
+                            {
+                                if (Global.cpd.project.Use3rdMapData)
+                                {
+                                    int n = Global.cpd.Mapchip.Length;
+                                    if (i < n) cschip = Global.cpd.Mapchip[i].GetCSChip();
+                                    else cschip = Global.cpd.VarietyChip[i - n].GetCSChip();
+                                }
+                                else cschip = Global.cpd.Mapchip[i].GetCSChip();
 							}
 
 							e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
@@ -1782,7 +1800,7 @@ namespace MasaoPlus
 										e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
 										e.Graphics.RotateTransform(cschip.rotate);
 										// 水の半透明処理
-										if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.cpd.Mapchip[e.Index].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+										if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.cpd.Mapchip[i].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
 										{
 											float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
 											var colorMatrix = new ColorMatrix
@@ -1804,7 +1822,7 @@ namespace MasaoPlus
 							}
 							else
 							{
-								if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[e.Index].character == "Z")
+								if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[i].character == "Z")
 								{
 									e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0);
 									width = Global.MainWnd.MainDesigner.DrawOribossOrig.Width;
@@ -1833,7 +1851,7 @@ namespace MasaoPlus
 						}
 						else
 						{
-							cschip = Global.cpd.Layerchip[e.Index].GetCSChip();
+							cschip = Global.cpd.Layerchip[i].GetCSChip();
 							if (cschip.size == default(Size))
 							{
 								e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig, new Rectangle(e.Bounds.Location, chipsize), new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -1848,7 +1866,7 @@ namespace MasaoPlus
 						break;
 				}
 				e.Graphics.PixelOffsetMode = default;
-				e.Graphics.DrawString(((ListBox)sender).Items[e.Index].ToString(), e.Font, brush, new Rectangle(e.Bounds.X + width, e.Bounds.Y, e.Bounds.Width - width, e.Bounds.Height));
+				e.Graphics.DrawString(((ListBox)sender).Items[i].ToString(), e.Font, brush, new Rectangle(e.Bounds.X + width, e.Bounds.Y, e.Bounds.Width - width, e.Bounds.Height));
 
 				if (!this.ChipList.Enabled) e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(160, Color.White)), e.Bounds); // 無効時に白くする
 			}
@@ -1859,8 +1877,9 @@ namespace MasaoPlus
 		}
 
 		private void ChipList_MeasureItem(object sender, MeasureItemEventArgs e)
-		{
-			int chip_hight = Global.cpd.runtime.Definitions.ChipSize.Height;
+        {
+            int i = e.Index;
+            int chip_hight = Global.cpd.runtime.Definitions.ChipSize.Height;
 
 			switch (this.DrawType.SelectedIndex)
 			{
@@ -1872,49 +1891,56 @@ namespace MasaoPlus
 				int height;
 				if (Global.state.MapEditMode)
 				{
-					if (Global.cpd.Worldchip[e.Index].GetCSChip().size.Height == 0)
+					if (Global.cpd.Worldchip[i].GetCSChip().size.Height == 0)
 					{
 						height = chip_hight;
 					}
 					else
 					{
-						height = Global.cpd.Worldchip[e.Index].GetCSChip().size.Height;
+						height = Global.cpd.Worldchip[i].GetCSChip().size.Height;
 					}
 					e.ItemHeight = height;
 					return;
 				}
 				if (!Global.cpd.UseLayer || Global.state.EditingForeground)
 				{
-					ChipData cschip = Global.cpd.Mapchip[e.Index].GetCSChip();
-						if (cschip.size.Height == 0)
+					ChipData cschip;
+                    if (Global.cpd.project.Use3rdMapData)
+                    {
+                        int n = Global.cpd.Mapchip.Length;
+                        if (i < n) cschip = Global.cpd.Mapchip[i].GetCSChip();
+                        else cschip = Global.cpd.VarietyChip[i - n].GetCSChip();
+                    }
+					else cschip = Global.cpd.Mapchip[i].GetCSChip();
+					if (cschip.size.Height == 0)
+					{
+						height = chip_hight;
+					}
+					else
+					{
+						if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
 						{
-							height = chip_hight;
+							height = cschip.size.Width;
 						}
 						else
 						{
-							if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
+							if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[i].character == "Z")
 							{
-								height = cschip.size.Width;
+								height = Global.MainWnd.MainDesigner.DrawOribossOrig.Height;
 							}
-							else
-							{
-								if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[e.Index].character == "Z")
-								{
-									height = Global.MainWnd.MainDesigner.DrawOribossOrig.Height;
-								}
-								else height = cschip.size.Height;
-							}
+							else height = cschip.size.Height;
 						}
+					}
 					e.ItemHeight = height;
 					return;
 				}
-				if (Global.cpd.Layerchip[e.Index].GetCSChip().size.Height == 0)
+				if (Global.cpd.Layerchip[i].GetCSChip().size.Height == 0)
 				{
 					height = chip_hight;
 				}
 				else
 				{
-					height = Global.cpd.Layerchip[e.Index].GetCSChip().size.Height;
+					height = Global.cpd.Layerchip[i].GetCSChip().size.Height;
 				}
 				e.ItemHeight = height;
 				return;
