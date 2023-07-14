@@ -74,7 +74,34 @@ namespace MasaoPlus
 			}
 		}
 
-		public string Name = "";
+		public static void Convert3rdMapData(string[] StageData, int bytesize = 1)
+		{
+			for(int i = 0; i < StageData.Length; i++)
+            {
+                char[] array = StageData[i].ToCharArray();
+				int[] array2 = new int[array.Length / bytesize];
+				for(int j = 0; j < array.Length; j+= bytesize)
+				{
+					if(bytesize == 1)
+                    {
+                        if (array[j] == '.') array2[j] = 0;
+                        else array2[j] = array[j];
+                    }
+					else
+                    {
+                        char[] chararray = new char[bytesize];
+                        for (int k = 0; k < bytesize; k++) chararray[k] = array[j + k];
+						var str = string.Join("", chararray);
+
+                        if (str == "..") array2[j / bytesize] = 0;
+						else array2[j / bytesize] = int.Parse(str, System.Globalization.NumberStyles.HexNumber);
+                    }
+                }
+                StageData[i] = string.Join(",", array2);
+            }
+		}
+
+        public string Name = "";
 
 		public double ProjVer;
 

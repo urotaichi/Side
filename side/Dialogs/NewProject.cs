@@ -50,16 +50,9 @@ namespace MasaoPlus.Dialogs
 								this.runtimes.Add(text);
 								this.runtimedatas.Add(runtime);
 								this.runtimeuselayer.Add(runtime.Definitions.LayerSize.bytesize != 0);
-								this.RuntimeSet.Items.Add(string.Concat(new string[]
-								{
-									runtime.Definitions.Name,
-									" [Author:",
-									runtime.Definitions.Author,
-									" Layer:",
-									(runtime.Definitions.LayerSize.bytesize != 0) ? "○" : "×",
-									"] : ",
-									Path.GetFileName(text)
-								}));
+								this.RuntimeSet.Items.Add($"{runtime.Definitions.Name} [Author:{runtime.Definitions.Author} Layer:"
+									+ ((runtime.Definitions.LayerSize.bytesize != 0) ? "○" : "×")
+									+ $"] : {Path.GetFileName(text)}");
 							}
 							else
 							{
@@ -76,7 +69,7 @@ namespace MasaoPlus.Dialogs
 					}
 					else
 					{
-						MessageBox.Show("ランタイムフォルダが見つかりません:" + Path.GetFileName(text), "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+						MessageBox.Show($"ランタイムフォルダが見つかりません:{Path.GetFileName(text)}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 					}
 				}
 				catch (Exception ex)

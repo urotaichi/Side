@@ -705,7 +705,6 @@ namespace MasaoPlus
 			new List<GUIDesigner.KeepDrawData>();
 			List<GUIDesigner.KeepDrawData> list = new List<GUIDesigner.KeepDrawData>();
 			int num = 0;
-			GraphicsState transState;
 			g.PixelOffsetMode = PixelOffsetMode.Half;
 			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
 
@@ -2453,7 +2452,9 @@ namespace MasaoPlus
 		{
 			if (GUIDesigner.StageText.IsOverflow(MapPos)) return;
 			string stageChar = GUIDesigner.StageText.GetStageChar(MapPos);
-			if (cd.character.Equals(stageChar)) return;
+			if (Global.state.MapEditMode && cd.character.Equals(stageChar)
+                || !Global.state.MapEditMode && (!Global.cpd.project.Use3rdMapData && cd.character.Equals(stageChar)
+					|| Global.cpd.project.Use3rdMapData && cd.code.Equals(stageChar))) return;
 			for (int i = 0; i < Global.state.GetCByte; i++)
 			{
 				if (Global.state.EditingForeground)

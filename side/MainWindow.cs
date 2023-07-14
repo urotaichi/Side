@@ -2096,15 +2096,7 @@ namespace MasaoPlus
 			}
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
 			{
-				openFileDialog.Filter = string.Concat(new string[]
-				{
-					Global.definition.AppName,
-					" プロジェクト (*",
-					Global.definition.ProjExt,
-					")|*",
-					Global.definition.ProjExt,
-					"|全てのファイル|*.*"
-				});
+				openFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}|全てのファイル|*.*";
 				openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
 				if (openFileDialog.ShowDialog() == DialogResult.OK)
 				{
@@ -2124,15 +2116,7 @@ namespace MasaoPlus
 		{
 			using (SaveFileDialog saveFileDialog = new SaveFileDialog())
 			{
-				saveFileDialog.Filter = string.Concat(new string[]
-				{
-					Global.definition.AppName,
-					" プロジェクト (*",
-					Global.definition.ProjExt,
-					")|*",
-					Global.definition.ProjExt,
-					"|全てのファイル|*.*"
-				});
+				saveFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}|全てのファイル|*.*";
 				saveFileDialog.InitialDirectory = Global.cpd.where;
 				saveFileDialog.FileName = Path.GetFileName(Global.cpd.filename);
 				if (saveFileDialog.ShowDialog() == DialogResult.OK)
@@ -2174,7 +2158,7 @@ namespace MasaoPlus
 			{
 				saveFileDialog.DefaultExt = Global.cpd.runtime.DefaultConfigurations.FileExt;
 				saveFileDialog.AddExtension = true;
-				saveFileDialog.Filter = "出力ファイル(*." + Global.cpd.runtime.DefaultConfigurations.FileExt + ")|*" + Global.cpd.runtime.DefaultConfigurations.FileExt;
+				saveFileDialog.Filter = $"出力ファイル(*.{Global.cpd.runtime.DefaultConfigurations.FileExt})|*{Global.cpd.runtime.DefaultConfigurations.FileExt}";
 				if (saveFileDialog.ShowDialog() != DialogResult.Cancel)
 				{
 					if (Path.GetDirectoryName(saveFileDialog.FileName) != Global.cpd.where)
@@ -2205,7 +2189,7 @@ namespace MasaoPlus
 
 		private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			if (e.CloseReason == CloseReason.UserClosing && Global.state.EditFlag && MessageBox.Show("編集データが保存されていません。" + Environment.NewLine + "終了してもよろしいですか？", Global.definition.AppName + "の終了", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+			if (e.CloseReason == CloseReason.UserClosing && Global.state.EditFlag && MessageBox.Show("編集データが保存されていません。" + Environment.NewLine + "終了してもよろしいですか？", $"{Global.definition.AppName}の終了", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
 			{
 				e.Cancel = true;
 			}
@@ -2653,14 +2637,7 @@ namespace MasaoPlus
 			}
 			using (OpenFileDialog openFileDialog = new OpenFileDialog())
 			{
-				openFileDialog.Filter = string.Concat(new string[]
-				{
-					Global.definition.AppName,
-					" プロジェクト (*",
-					Global.definition.ProjExt,
-					")|*",
-					Global.definition.ProjExt
-				});
+				openFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}";
 				openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
 				if (openFileDialog.ShowDialog() == DialogResult.OK)
 				{

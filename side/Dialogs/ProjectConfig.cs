@@ -74,7 +74,20 @@ namespace MasaoPlus.Dialogs
 			Global.cpd.runtime.DefaultConfigurations.FooterHTML = Subsystem.EncodeBase64(this.OutFooter.Text);
 
 			Global.cpd.project.Config.UseWorldmap = this.UseWorldmap.Checked;
-            Global.cpd.project.Use3rdMapData = this.Use3rdMapData.Checked;
+			if (Global.cpd.project.Use3rdMapData = this.Use3rdMapData.Checked)
+			{
+				Project.Convert3rdMapData(Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize.bytesize);
+				Project.Convert3rdMapData(Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize.bytesize);
+				Project.Convert3rdMapData(Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize.bytesize);
+				Project.Convert3rdMapData(Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize.bytesize);
+				if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
+				{
+					Project.Convert3rdMapData(Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+					Project.Convert3rdMapData(Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+					Project.Convert3rdMapData(Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+					Project.Convert3rdMapData(Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+				}
+			}
             Global.state.EditFlag = true;
 			List<HTMLReplaceData> list = new List<HTMLReplaceData>();
 			foreach (object obj in ((IEnumerable)this.OutputReplaceView.Rows))
