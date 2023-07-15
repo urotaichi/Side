@@ -464,6 +464,12 @@ namespace MasaoPlus.Dialogs
 									case "backcolor_blue_s":
 									case "backcolor_green_s":
 									case "backcolor_red_t":
+									case "message_back_red":
+									case "message_back_green":
+									case "message_back_blue":
+									case "message_name_red":
+									case "gauge_back_blue1":
+									case "gauge_back_blue2":
 										array2[num3] = 0;
 										break;
 									case "backcolor_green":
@@ -479,6 +485,20 @@ namespace MasaoPlus.Dialogs
 									case "firebar_red2":
 									case "backcolor_green_t":
 									case "backcolor_blue_t":
+									case "message_border_red":
+									case "message_border_green":
+									case "message_border_blue":
+									case "message_name_green":
+									case "message_name_blue":
+									case "message_text_red":
+									case "message_text_green":
+									case "message_text_blue":
+									case "gauge_border_red":
+									case "gauge_border_green":
+									case "gauge_border_blue":
+									case "gauge_back_red1":
+									case "gauge_back_green1":
+									case "gauge_back_red2":
 										array2[num3] = 255;
 										break;
 									case "mizunohadou_green":
