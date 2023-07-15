@@ -707,29 +707,52 @@ namespace MasaoPlus
 			int num = 0;
 			g.PixelOffsetMode = PixelOffsetMode.Half;
 			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
+            Runtime.DefinedData.StageSizeData MapSize = Global.cpd.project.Runtime.Definitions.MapSize;
+            Runtime.DefinedData.StageSizeData StageSize = Global.cpd.project.Runtime.Definitions.StageSize;
+            Runtime.DefinedData.StageSizeData LayerSize = Global.cpd.project.Runtime.Definitions.LayerSize;
 
-			while (Global.state.MapEditMode ? (num < Global.cpd.runtime.Definitions.MapSize.y) : (num < Global.cpd.runtime.Definitions.StageSize.y))
+
+            while (Global.state.MapEditMode ? (num < MapSize.y) : (num < StageSize.y))
 			{
 				int num2 = 0;
-				while (Global.state.MapEditMode ? (num2 < Global.cpd.runtime.Definitions.MapSize.x) : (num2 < Global.cpd.runtime.Definitions.StageSize.x))
+				while (Global.state.MapEditMode ? (num2 < MapSize.x) : (num2 < StageSize.x))
 				{
 					string text;
 					if (foreground)
 					{
 						if (Global.state.MapEditMode)
 						{
-							text = Global.cpd.EditingMap[num].Substring(num2 * Global.cpd.project.Runtime.Definitions.MapSize.bytesize, Global.cpd.project.Runtime.Definitions.MapSize.bytesize);
+							text = Global.cpd.EditingMap[num].Substring(num2 * MapSize.bytesize, MapSize.bytesize);
 						}
 						else
 						{
-							text = Global.cpd.EditingMap[num].Substring(num2 * Global.cpd.project.Runtime.Definitions.StageSize.bytesize, Global.cpd.project.Runtime.Definitions.StageSize.bytesize);
+							text = Global.cpd.EditingMap[num].Substring(num2 * StageSize.bytesize, StageSize.bytesize);
 						}
 					}
 					else
 					{
-						text = Global.cpd.EditingLayer[num].Substring(num2 * Global.cpd.project.Runtime.Definitions.LayerSize.bytesize, Global.cpd.project.Runtime.Definitions.LayerSize.bytesize);
+						text = Global.cpd.EditingLayer[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize);
 					}
-					if ((!Global.state.UseBuffered || ((!foreground || ForePrevDrawn == null || !(ForePrevDrawn[num].Substring(Global.state.MapEditMode ? (num2 * Global.cpd.project.Runtime.Definitions.MapSize.bytesize) : (num2 * Global.cpd.project.Runtime.Definitions.StageSize.bytesize), Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize.bytesize : Global.cpd.project.Runtime.Definitions.StageSize.bytesize) == text)) && (foreground || BackPrevDrawn == null || !(BackPrevDrawn[num].Substring(num2 * Global.cpd.project.Runtime.Definitions.LayerSize.bytesize, Global.cpd.project.Runtime.Definitions.LayerSize.bytesize) == text)))) && (!Global.config.draw.SkipFirstChip || ((!foreground || !text.Equals(Global.cpd.Mapchip[0].character)) && (foreground || !text.Equals(Global.cpd.Layerchip[0].character)))) && ((foreground && DrawItemRef.ContainsKey(text)) || (!foreground && DrawLayerRef.ContainsKey(text))))
+					if (
+						(!Global.state.UseBuffered
+						|| (
+							(!foreground
+									|| ForePrevDrawn == null
+									|| !(ForePrevDrawn[num].Substring(Global.state.MapEditMode ? (num2 * MapSize.bytesize) : (num2 * StageSize.bytesize), Global.state.MapEditMode ? MapSize.bytesize : StageSize.bytesize) == text)
+							)
+							&& (foreground
+								|| BackPrevDrawn == null
+								|| !(BackPrevDrawn[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize) == text)
+								)
+							)
+						)
+						&& (
+							!Global.config.draw.SkipFirstChip
+								|| ((!foreground || !text.Equals(Global.cpd.Mapchip[0].character))
+									&& (foreground || !text.Equals(Global.cpd.Layerchip[0].character)))
+							)
+							&& ((foreground && DrawItemRef.ContainsKey(text)) || (!foreground && DrawLayerRef.ContainsKey(text)))
+						)
 					{
 						if (Global.state.MapEditMode) chipsData = DrawWorldRef[text];
 						else if (foreground) chipsData = DrawItemRef[text];
