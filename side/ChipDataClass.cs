@@ -15,12 +15,10 @@ namespace MasaoPlus
 			try
 			{
 				XmlSerializer xmlSerializer = new XmlSerializer(typeof(ChipDataClass));
-				using (FileStream fileStream = new FileStream(file, FileMode.Open))
-				{
-					ChipDataClass chipDataClass = (ChipDataClass)xmlSerializer.Deserialize(fileStream);
-					result = chipDataClass;
-				}
-			}
+                using FileStream fileStream = new FileStream(file, FileMode.Open);
+                ChipDataClass chipDataClass = (ChipDataClass)xmlSerializer.Deserialize(fileStream);
+                result = chipDataClass;
+            }
 			catch (Exception ex)
 			{
 				MessageBox.Show("チップ定義を開けませんでした。" + Environment.NewLine + ex.Message, "オープン失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);

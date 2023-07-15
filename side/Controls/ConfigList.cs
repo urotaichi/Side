@@ -249,17 +249,15 @@ namespace MasaoPlus.Controls
 			case ConfigParam.Types.t:
 				if (Global.config.localSystem.UsePropExTextEditor)
 				{
-					using (PropertyTextInputDialog propertyTextInputDialog = new PropertyTextInputDialog())
-					{
-						propertyTextInputDialog.InputStr = configParam.Value;
-						if (propertyTextInputDialog.ShowDialog() != DialogResult.Cancel)
-						{
-							this.ConfView[e.ColumnIndex, e.RowIndex].Value = propertyTextInputDialog.InputStr;
-							Global.cpd.project.Config.Configurations[num].Value = propertyTextInputDialog.InputStr;
-						}
-						break;
-					}
-				}
+                        using PropertyTextInputDialog propertyTextInputDialog = new PropertyTextInputDialog();
+                        propertyTextInputDialog.InputStr = configParam.Value;
+                        if (propertyTextInputDialog.ShowDialog() != DialogResult.Cancel)
+                        {
+                            this.ConfView[e.ColumnIndex, e.RowIndex].Value = propertyTextInputDialog.InputStr;
+                            Global.cpd.project.Config.Configurations[num].Value = propertyTextInputDialog.InputStr;
+                        }
+                        break;
+                    }
 				return;
 			case ConfigParam.Types.f:
 			case ConfigParam.Types.f_i:
@@ -303,32 +301,30 @@ namespace MasaoPlus.Controls
 							bool flag = false;
 							while (!flag)
 							{
-								using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-								{
-									saveFileDialog.InitialDirectory = Path.GetDirectoryName(text);
-									saveFileDialog.FileName = Path.GetFileName(text);
-									saveFileDialog.Filter = "保存ファイル|*" + Path.GetExtension(fileName);
-									saveFileDialog.AddExtension = true;
-									saveFileDialog.DefaultExt = Path.GetExtension(fileName);
-									if (saveFileDialog.ShowDialog() != DialogResult.OK)
-									{
-										return;
-									}
-									if (File.Exists(saveFileDialog.FileName))
-									{
-										MessageBox.Show("上書きはできません。" + Environment.NewLine + "元のファイルを消すか、別のファイルを指定してください。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-									}
-									else if (Path.GetDirectoryName(saveFileDialog.FileName) != Global.cpd.where)
-									{
-										MessageBox.Show("プロジェクトディレクトリ内に保存してください。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-									}
-									else
-									{
-										text = saveFileDialog.FileName;
-										flag = true;
-									}
-								}
-							}
+                                    using SaveFileDialog saveFileDialog = new SaveFileDialog();
+                                    saveFileDialog.InitialDirectory = Path.GetDirectoryName(text);
+                                    saveFileDialog.FileName = Path.GetFileName(text);
+                                    saveFileDialog.Filter = "保存ファイル|*" + Path.GetExtension(fileName);
+                                    saveFileDialog.AddExtension = true;
+                                    saveFileDialog.DefaultExt = Path.GetExtension(fileName);
+                                    if (saveFileDialog.ShowDialog() != DialogResult.OK)
+                                    {
+                                        return;
+                                    }
+                                    if (File.Exists(saveFileDialog.FileName))
+                                    {
+                                        MessageBox.Show("上書きはできません。" + Environment.NewLine + "元のファイルを消すか、別のファイルを指定してください。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                                    }
+                                    else if (Path.GetDirectoryName(saveFileDialog.FileName) != Global.cpd.where)
+                                    {
+                                        MessageBox.Show("プロジェクトディレクトリ内に保存してください。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                                    }
+                                    else
+                                    {
+                                        text = saveFileDialog.FileName;
+                                        flag = true;
+                                    }
+                                }
 						}
 					}
 					this.ConfView[e.ColumnIndex, e.RowIndex].Value = Path.GetFileName(text) + "...";

@@ -17,16 +17,14 @@ namespace MasaoPlus
 			try
 			{
 				XmlSerializer xmlSerializer = new XmlSerializer(typeof(ConfigurationOwner));
-				using (FileStream fileStream = new FileStream(file, FileMode.Open))
-				{
-					ConfigurationOwner configurationOwner = (ConfigurationOwner)xmlSerializer.Deserialize(fileStream);
-					configurationOwner.ConfigReady();
-					result = configurationOwner;
-				}
-			}
+                using FileStream fileStream = new FileStream(file, FileMode.Open);
+                ConfigurationOwner configurationOwner = (ConfigurationOwner)xmlSerializer.Deserialize(fileStream);
+                configurationOwner.ConfigReady();
+                result = configurationOwner;
+            }
 			catch (Exception ex)
 			{
-				MessageBox.Show("設定定義ファイルを開けませんでした。" + Environment.NewLine + ex.Message, "オープン失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+				MessageBox.Show($"設定定義ファイルを開けませんでした。{Environment.NewLine}{ex.Message}", "オープン失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				result = null;
 			}
 			return result;

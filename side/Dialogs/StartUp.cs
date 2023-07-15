@@ -45,60 +45,54 @@ namespace MasaoPlus.Dialogs
 
 		private void NewProj_Click(object sender, EventArgs e)
 		{
-			using (NewProject newProject = new NewProject())
-			{
-				if (newProject.ShowDialog() == DialogResult.OK)
-				{
-					this.ProjectPath = newProject.CreatedProject;
-					base.DialogResult = DialogResult.OK;
-					base.Close();
-				}
-			}
-		}
+            using NewProject newProject = new NewProject();
+            if (newProject.ShowDialog() == DialogResult.OK)
+            {
+                this.ProjectPath = newProject.CreatedProject;
+                base.DialogResult = DialogResult.OK;
+                base.Close();
+            }
+        }
 
 		private void OpenFile_Click(object sender, EventArgs e)
 		{
-			using (OpenFileDialog openFileDialog = new OpenFileDialog())
-			{
-				openFileDialog.Filter = string.Concat(new string[]
-				{
-					Global.definition.AppName,
-					"プロジェクト及びHTML/XML(*.html,*.xml,*",
-					Global.definition.ProjExt,
-					")|*.html;*.xml;*",
-					Global.definition.ProjExt,
-					"|",
-					Global.definition.AppName,
-					" プロジェクト (*",
-					Global.definition.ProjExt,
-					")|*",
-					Global.definition.ProjExt,
-					"|HTML/XML ドキュメント(*.htm*;*.xml)|*.htm*;*.xml|全てのファイル|*.*"
-				});
-				openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
-				if (openFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					if (Path.GetExtension(openFileDialog.FileName) == Global.definition.ProjExt)
-					{
-						this.ProjectPath = openFileDialog.FileName;
-						base.DialogResult = DialogResult.OK;
-						base.Close();
-					}
-					else
-					{
-						using (HTMLInheritance htmlinheritance = new HTMLInheritance(openFileDialog.FileName))
-						{
-							if (htmlinheritance.ShowDialog() == DialogResult.OK)
-							{
-								this.ProjectPath = htmlinheritance.ProjectFile;
-								base.DialogResult = DialogResult.OK;
-								base.Close();
-							}
-						}
-					}
-				}
-			}
-		}
+            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = string.Concat(new string[]
+            {
+                    Global.definition.AppName,
+                    "プロジェクト及びHTML/XML(*.html,*.xml,*",
+                    Global.definition.ProjExt,
+                    ")|*.html;*.xml;*",
+                    Global.definition.ProjExt,
+                    "|",
+                    Global.definition.AppName,
+                    " プロジェクト (*",
+                    Global.definition.ProjExt,
+                    ")|*",
+                    Global.definition.ProjExt,
+                    "|HTML/XML ドキュメント(*.htm*;*.xml)|*.htm*;*.xml|全てのファイル|*.*"
+            });
+            openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if (Path.GetExtension(openFileDialog.FileName) == Global.definition.ProjExt)
+                {
+                    this.ProjectPath = openFileDialog.FileName;
+                    base.DialogResult = DialogResult.OK;
+                    base.Close();
+                }
+                else
+                {
+                    using HTMLInheritance htmlinheritance = new HTMLInheritance(openFileDialog.FileName);
+                    if (htmlinheritance.ShowDialog() == DialogResult.OK)
+                    {
+                        this.ProjectPath = htmlinheritance.ProjectFile;
+                        base.DialogResult = DialogResult.OK;
+                        base.Close();
+                    }
+                }
+            }
+        }
 
 		private void ExMenu_Click(object sender, EventArgs e)
 		{
@@ -107,63 +101,53 @@ namespace MasaoPlus.Dialogs
 
 		private void CallConfig_Click(object sender, EventArgs e)
 		{
-			using (SideConfig sideConfig = new SideConfig())
-			{
-				sideConfig.ShowDialog();
-			}
-		}
+            using SideConfig sideConfig = new SideConfig();
+            sideConfig.ShowDialog();
+        }
 
 		private void CallRuntimeManager_Click(object sender, EventArgs e)
 		{
 			DialogResult dialogResult = DialogResult.Retry;
 			while (dialogResult == DialogResult.Retry)
 			{
-				using (RuntimeManager runtimeManager = new RuntimeManager())
-				{
-					dialogResult = runtimeManager.ShowDialog();
-				}
-			}
+                using RuntimeManager runtimeManager = new RuntimeManager();
+                dialogResult = runtimeManager.ShowDialog();
+            }
 		}
 
 		private void CallSideUpdate_Click(object sender, EventArgs e)
 		{
-			using (WebUpdate webUpdate = new WebUpdate())
-			{
-				if (webUpdate.ShowDialog() == DialogResult.Retry)
-				{
-					Global.state.RunFile = (string)webUpdate.runfile.Clone();
-					base.Close();
-				}
-			}
-		}
+            using WebUpdate webUpdate = new WebUpdate();
+            if (webUpdate.ShowDialog() == DialogResult.Retry)
+            {
+                Global.state.RunFile = (string)webUpdate.runfile.Clone();
+                base.Close();
+            }
+        }
 
 		private void InheritNew_Click(object sender, EventArgs e)
 		{
-			using (OpenFileDialog openFileDialog = new OpenFileDialog())
-			{
-				openFileDialog.Filter = string.Concat(new string[]
-				{
-					Global.definition.AppName,
-					" プロジェクト (*",
-					Global.definition.ProjExt,
-					")|*",
-					Global.definition.ProjExt
-				});
-				openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
-				if (openFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					using (ProjInheritance projInheritance = new ProjInheritance(openFileDialog.FileName))
-					{
-						if (projInheritance.DialogResult != DialogResult.Abort && projInheritance.ShowDialog() == DialogResult.OK)
-						{
-							this.ProjectPath = projInheritance.NewProjectName;
-							base.DialogResult = DialogResult.OK;
-							base.Close();
-						}
-					}
-				}
-			}
-		}
+            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = string.Concat(new string[]
+            {
+                    Global.definition.AppName,
+                    " プロジェクト (*",
+                    Global.definition.ProjExt,
+                    ")|*",
+                    Global.definition.ProjExt
+            });
+            openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using ProjInheritance projInheritance = new ProjInheritance(openFileDialog.FileName);
+                if (projInheritance.DialogResult != DialogResult.Abort && projInheritance.ShowDialog() == DialogResult.OK)
+                {
+                    this.ProjectPath = projInheritance.NewProjectName;
+                    base.DialogResult = DialogResult.OK;
+                    base.Close();
+                }
+            }
+        }
 
 		public string ProjectPath = "";
 	}

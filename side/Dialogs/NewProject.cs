@@ -198,121 +198,109 @@ namespace MasaoPlus.Dialogs
 
 		private void RootDirBrowse_Click(object sender, EventArgs e)
 		{
-			using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
-			{
-				folderBrowserDialog.Description = "プロジェクトのルートディレクトリを選択してください。";
-				folderBrowserDialog.SelectedPath = this.RootDir.Text;
-				if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-				{
-					this.RootDir.Text = folderBrowserDialog.SelectedPath;
-				}
-			}
-		}
+            using FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.Description = "プロジェクトのルートディレクトリを選択してください。";
+            folderBrowserDialog.SelectedPath = this.RootDir.Text;
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.RootDir.Text = folderBrowserDialog.SelectedPath;
+            }
+        }
 
 		private void MapChipBrowse_Click(object sender, EventArgs e)
 		{
-			using (OpenFileDialog openFileDialog = new OpenFileDialog())
-			{
-				openFileDialog.DefaultExt = "*.gif";
-				openFileDialog.Filter = "画像(*.gif;*.png;*.bmp)|*.gif;*.png;*.bmp|全てのファイル (*.*)|*.*";
-				if (this.MapChip.Text != "")
-				{
-					openFileDialog.FileName = this.MapChip.Text;
-				}
-				else
-				{
-					openFileDialog.FileName = this.RootDir.Text;
-				}
-				if (openFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					this.MapChip.Text = openFileDialog.FileName;
-				}
-			}
-		}
+            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = "*.gif";
+            openFileDialog.Filter = "画像(*.gif;*.png;*.bmp)|*.gif;*.png;*.bmp|全てのファイル (*.*)|*.*";
+            if (this.MapChip.Text != "")
+            {
+                openFileDialog.FileName = this.MapChip.Text;
+            }
+            else
+            {
+                openFileDialog.FileName = this.RootDir.Text;
+            }
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.MapChip.Text = openFileDialog.FileName;
+            }
+        }
 
 		private void LayerPatternBrowse_Click(object sender, EventArgs e)
 		{
-			using (OpenFileDialog openFileDialog = new OpenFileDialog())
-			{
-				openFileDialog.DefaultExt = "*.gif";
-				openFileDialog.Filter = "画像(*.gif;*.png;*.bmp)|*.gif;*.png;*.bmp|全てのファイル (*.*)|*.*";
-				if (this.MapChip.Text != "")
-				{
-					openFileDialog.FileName = this.LayerPattern.Text;
-				}
-				else
-				{
-					openFileDialog.FileName = this.RootDir.Text;
-				}
-				if (openFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					this.LayerPattern.Text = openFileDialog.FileName;
-				}
-			}
-		}
+            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = "*.gif";
+            openFileDialog.Filter = "画像(*.gif;*.png;*.bmp)|*.gif;*.png;*.bmp|全てのファイル (*.*)|*.*";
+            if (this.MapChip.Text != "")
+            {
+                openFileDialog.FileName = this.LayerPattern.Text;
+            }
+            else
+            {
+                openFileDialog.FileName = this.RootDir.Text;
+            }
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.LayerPattern.Text = openFileDialog.FileName;
+            }
+        }
 
 		private void TitleImageBrowse_Click(object sender, EventArgs e)
 		{
-			using (OpenFileDialog openFileDialog = new OpenFileDialog())
-			{
-				openFileDialog.DefaultExt = "*.gif";
-				openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
-				if (this.TitleImage.Text != "")
-				{
-					openFileDialog.FileName = this.TitleImage.Text;
-				}
-				else
-				{
-					openFileDialog.FileName = this.RootDir.Text;
-				}
-				if (openFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					this.TitleImage.Text = openFileDialog.FileName;
-				}
-			}
-		}
+            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = "*.gif";
+            openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
+            if (this.TitleImage.Text != "")
+            {
+                openFileDialog.FileName = this.TitleImage.Text;
+            }
+            else
+            {
+                openFileDialog.FileName = this.RootDir.Text;
+            }
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.TitleImage.Text = openFileDialog.FileName;
+            }
+        }
 
 		private void EndingImageBrowse_Click(object sender, EventArgs e)
 		{
-			using (OpenFileDialog openFileDialog = new OpenFileDialog())
-			{
-				openFileDialog.DefaultExt = "*.gif";
-				openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
-				if (this.EndingImage.Text != "")
-				{
-					openFileDialog.FileName = this.EndingImage.Text;
-				}
-				else
-				{
-					openFileDialog.FileName = this.RootDir.Text;
-				}
-				if (openFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					this.EndingImage.Text = openFileDialog.FileName;
-				}
-			}
-		}
+            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = "*.gif";
+            openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
+            if (this.EndingImage.Text != "")
+            {
+                openFileDialog.FileName = this.EndingImage.Text;
+            }
+            else
+            {
+                openFileDialog.FileName = this.RootDir.Text;
+            }
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.EndingImage.Text = openFileDialog.FileName;
+            }
+        }
 
 		private void GameoverBrowse_Click(object sender, EventArgs e)
 		{
-			using (OpenFileDialog openFileDialog = new OpenFileDialog())
-			{
-				openFileDialog.DefaultExt = "*.gif";
-				openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
-				if (this.GameoverImage.Text != "")
-				{
-					openFileDialog.FileName = this.GameoverImage.Text;
-				}
-				else
-				{
-					openFileDialog.FileName = this.RootDir.Text;
-				}
-				if (openFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					this.GameoverImage.Text = openFileDialog.FileName;
-				}
-			}
-		}
+            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.DefaultExt = "*.gif";
+            openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
+            if (this.GameoverImage.Text != "")
+            {
+                openFileDialog.FileName = this.GameoverImage.Text;
+            }
+            else
+            {
+                openFileDialog.FileName = this.RootDir.Text;
+            }
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.GameoverImage.Text = openFileDialog.FileName;
+            }
+        }
 
 		private void OK_Click(object sender, EventArgs ev)
 		{

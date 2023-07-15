@@ -14,23 +14,19 @@ namespace MasaoPlus
 	{
 		public static void MakeTestrun(int startup)
 		{
-			using (StreamWriter streamWriter = new StreamWriter(Subsystem.GetTempFileWhere(), false, Global.config.localSystem.FileEncoding))
-			{
-				string value = Subsystem.MakeHTMLCode(startup);
-				streamWriter.Write(value);
-				streamWriter.Close();
-			}
-		}
+            using StreamWriter streamWriter = new StreamWriter(Subsystem.GetTempFileWhere(), false, Global.config.localSystem.FileEncoding);
+            string value = Subsystem.MakeHTMLCode(startup);
+            streamWriter.Write(value);
+            streamWriter.Close();
+        }
 
 		public static void MakeTestrun(int startup, int replace, string[] sts)
 		{
-			using (StreamWriter streamWriter = new StreamWriter(Subsystem.GetTempFileWhere(), false, Global.config.localSystem.FileEncoding))
-			{
-				string value = Subsystem.MakeHTMLCode(startup, replace, sts);
-				streamWriter.Write(value);
-				streamWriter.Close();
-			}
-		}
+            using StreamWriter streamWriter = new StreamWriter(Subsystem.GetTempFileWhere(), false, Global.config.localSystem.FileEncoding);
+            string value = Subsystem.MakeHTMLCode(startup, replace, sts);
+            streamWriter.Write(value);
+            streamWriter.Close();
+        }
 
 		public static string GetTempFileWhere()
 		{
@@ -1123,30 +1119,26 @@ namespace MasaoPlus
 			}
 			using (FileStream fileStream = new FileStream(InputArchive, FileMode.Open))
 			{
-				using (ZipInputStream zipInputStream = new ZipInputStream(fileStream))
-				{
-					ZipEntry nextEntry;
-					while ((nextEntry = zipInputStream.GetNextEntry()) != null)
-					{
-						if (!nextEntry.IsDirectory)
-						{
-							string fileName = Path.GetFileName(nextEntry.Name);
-							string text2 = Path.Combine(text, Path.GetDirectoryName(nextEntry.Name));
-							Directory.CreateDirectory(text2);
-							string path = Path.Combine(text2, fileName);
-							using (FileStream fileStream2 = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
-							{
-								byte[] array = new byte[Global.definition.ZipExtractBufferLength];
-								int count;
-								while ((count = zipInputStream.Read(array, 0, array.Length)) > 0)
-								{
-									fileStream2.Write(array, 0, count);
-								}
-							}
-						}
-					}
-				}
-			}
+                using ZipInputStream zipInputStream = new ZipInputStream(fileStream);
+                ZipEntry nextEntry;
+                while ((nextEntry = zipInputStream.GetNextEntry()) != null)
+                {
+                    if (!nextEntry.IsDirectory)
+                    {
+                        string fileName = Path.GetFileName(nextEntry.Name);
+                        string text2 = Path.Combine(text, Path.GetDirectoryName(nextEntry.Name));
+                        Directory.CreateDirectory(text2);
+                        string path = Path.Combine(text2, fileName);
+                        using FileStream fileStream2 = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write);
+                        byte[] array = new byte[Global.definition.ZipExtractBufferLength];
+                        int count;
+                        while ((count = zipInputStream.Read(array, 0, array.Length)) > 0)
+                        {
+                            fileStream2.Write(array, 0, count);
+                        }
+                    }
+                }
+            }
 			return text;
 		}
 
@@ -1288,15 +1280,13 @@ namespace MasaoPlus
 				Global.config.localSystem.CheckAutoUpdate = false;
 				return;
 			}
-			using (WebUpdate webUpdate = new WebUpdate())
-			{
-				if (webUpdate.ShowDialog() == DialogResult.Retry)
-				{
-					Global.state.RunFile = (string)webUpdate.runfile.Clone();
-					Global.MainWnd.Close();
-				}
-			}
-		}
+            using WebUpdate webUpdate = new WebUpdate();
+            if (webUpdate.ShowDialog() == DialogResult.Retry)
+            {
+                Global.state.RunFile = (string)webUpdate.runfile.Clone();
+                Global.MainWnd.Close();
+            }
+        }
 
 		private static WebClient dlClient;
 

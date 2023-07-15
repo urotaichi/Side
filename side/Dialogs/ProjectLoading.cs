@@ -51,29 +51,22 @@ namespace MasaoPlus.Dialogs
 					Global.cpd.project = Project.ParseXML(this.load);
 					if (Global.cpd.project.ProjVer != 0.0 && Global.cpd.project.ProjVer < Global.definition.CProjVer)
 					{
-						if (MessageBox.Show(string.Concat(new string[]
-						{
-							"古いバージョンのプロジェクトファイルが指定されました。",
-							Environment.NewLine,
-							"プロジェクトファイルのアップグレードを試みます。",
-							Environment.NewLine,
-							"よろしいですか？"
-						}), "レガシー プロジェクト ファイルの読み込み", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
+						if (MessageBox.Show($"古いバージョンのプロジェクトファイルが指定されました。{Environment.NewLine}プロジェクトファイルのアップグレードを試みます。{Environment.NewLine}よろしいですか？", "レガシー プロジェクト ファイルの読み込み", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
 						{
 							this.SetState("プロジェクトをコンバートしています...");
 							double projVer = Global.cpd.project.ProjVer;
-							MessageBox.Show("このプロジェクトファイルはサポートされていません。" + Environment.NewLine + "通常の読み込みを試みます。", "コンバート エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+							MessageBox.Show($"このプロジェクトファイルはサポートされていません。{Environment.NewLine}通常の読み込みを試みます。", "コンバート エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 						}
 						else
 						{
-							MessageBox.Show("プロジェクトをロードできませんでした。" + Environment.NewLine + "アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+							MessageBox.Show($"プロジェクトをロードできませんでした。{Environment.NewLine}アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 							base.DialogResult = DialogResult.Abort;
 							base.Close();
 						}
 					}
 					if (Global.cpd.project == null)
 					{
-						MessageBox.Show("プロジェクトをロードできませんでした。" + Environment.NewLine + "アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+						MessageBox.Show($"プロジェクトをロードできませんでした。{Environment.NewLine}アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 						base.DialogResult = DialogResult.Abort;
 						base.Close();
 					}
@@ -85,8 +78,8 @@ namespace MasaoPlus.Dialogs
 					string[] array = Runtime.CheckFiles(Global.cpd.where, Global.cpd.runtime, false);
 					if (array.Length != 0)
 					{
-						MessageBox.Show("必須ファイルが欠落しています。" + Environment.NewLine + string.Join(",", array), "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-						MessageBox.Show("プロジェクトをロードできませんでした。" + Environment.NewLine + "アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+						MessageBox.Show($"必須ファイルが欠落しています。{Environment.NewLine}{string.Join(",", array)}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+						MessageBox.Show($"プロジェクトをロードできませんでした。{Environment.NewLine}アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 						base.DialogResult = DialogResult.Abort;
 						base.Close();
 					}
@@ -137,14 +130,7 @@ namespace MasaoPlus.Dialogs
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show(string.Concat(new string[]
-				{
-					"プロジェクトをロードできませんでした。",
-					Environment.NewLine,
-					ex.Message,
-					Environment.NewLine,
-					"アプリケーションを再起動します。"
-				}), "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+				MessageBox.Show($"プロジェクトをロードできませんでした。{Environment.NewLine}{ex.Message}{Environment.NewLine}アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				Application.Restart();
 				Environment.Exit(-1);
 			}

@@ -38,12 +38,12 @@ namespace MasaoPlus
 			if ((!flag && Global.config.draw.HScrollDefault) || (flag && !Global.config.draw.HScrollDefault))
 			{
 				State state = Global.state;
-				state.MapPoint.X = state.MapPoint.X - num;
+				state.MapPoint.X -= num;
 			}
 			else
 			{
 				State state2 = Global.state;
-				state2.MapPoint.Y = state2.MapPoint.Y - num;
+				state2.MapPoint.Y -= num;
 			}
 			Global.state.AdjustMapPoint();
 			this.CommitScrollbar();
@@ -157,7 +157,7 @@ namespace MasaoPlus
 					string text2 = Environment.GetCommandLineArgs()[1];
 					if (!File.Exists(text2))
 					{
-						MessageBox.Show("指定されたファイルが存在しないか、不正なパスです。" + Environment.NewLine + text2, "ロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+						MessageBox.Show($"指定されたファイルが存在しないか、不正なパスです。{Environment.NewLine}{text2}", "ロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 					}
 					else if (Path.GetExtension(text2) != Global.definition.ProjExt)
 					{
@@ -171,17 +171,15 @@ namespace MasaoPlus
 			}
 			if (text == "")
 			{
-				using (StartUp startUp = new StartUp())
-				{
-					if (startUp.ShowDialog() != DialogResult.OK)
-					{
-						base.Close();
-						Application.Exit();
-						return;
-					}
-					text = startUp.ProjectPath;
-				}
-			}
+                using StartUp startUp = new StartUp();
+                if (startUp.ShowDialog() != DialogResult.OK)
+                {
+                    base.Close();
+                    Application.Exit();
+                    return;
+                }
+                text = startUp.ProjectPath;
+            }
 			using (ProjectLoading projectLoading = new ProjectLoading(text))
 			{
 				if (projectLoading.ShowDialog() == DialogResult.Abort)
@@ -209,18 +207,18 @@ namespace MasaoPlus
 		{
 			if (Global.cpd.project == null)
 			{
-				this.Text = Global.definition.AppNameFull + " - " + Global.definition.AppName;
+				this.Text = $"{Global.definition.AppNameFull} - {Global.definition.AppName}";
 				return;
 			}
-			StringBuilder stringBuilder = new StringBuilder(Global.cpd.project.Name);
+            this.Text = Global.cpd.project.Name;
 			if (Global.state.EditFlag)
 			{
-				stringBuilder.Append("*");
+                this.Text += "*";
 			}
 			switch (this.EditTab.SelectedIndex)
 			{
 			case 0:
-				stringBuilder.Append(" [グラフィカルデザイナ] - ");
+                this.Text += " [グラフィカルデザイナ] - ";
 				this.GMTool.Visible = true;
 				this.GMEdit.Visible = true;
 				this.GMStage.Visible = true;
@@ -228,7 +226,7 @@ namespace MasaoPlus
 				this.BMView.Visible = false;
 				break;
 			case 1:
-				stringBuilder.Append(" [テキストエディタ] - ");
+                this.Text += " [テキストエディタ] - ";
 				this.GMTool.Visible = false;
 				this.GMEdit.Visible = false;
 				this.GMStage.Visible = true;
@@ -236,7 +234,7 @@ namespace MasaoPlus
 				this.BMView.Visible = false;
 				break;
 			case 2:
-				stringBuilder.Append(" [テスト実行] - ");
+				this.Text += " [テスト実行] - ";
 				this.BMView.Visible = true;
 				this.GMTool.Visible = false;
 				this.GMEdit.Visible = false;
@@ -244,8 +242,7 @@ namespace MasaoPlus
 				this.TMEdit.Visible = false;
 				break;
 			}
-			stringBuilder.Append(Global.definition.AppName);
-			this.Text = stringBuilder.ToString();
+            this.Text += Global.definition.AppName;
 		}
 
 		// ステータスバーっぽいところに表示される小さいアイコンや文字
@@ -296,7 +293,7 @@ namespace MasaoPlus
 					chipsData = this.MainDesigner.DrawLayerRef[text];
 				}
 				ChipData cschip = chipsData.GetCSChip();
-				Size size = (cschip.size == default(Size)) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size;
+				Size size = (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size;
 				if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
 					size = this.MainDesigner.DrawOribossOrig.Size;
                 this.ChipNavigator.Image?.Dispose();
@@ -391,93 +388,37 @@ namespace MasaoPlus
 					name = "オリジナルボス";
                     if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
                     {
-                        switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+                        description = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
                         {
-							case 1:
-								description = "停止";
-								break;
-							case 2:
-								description = "左右移動";
-								break;
-							case 3:
-								description = "上下移動";
-								break;
-							case 4:
-								description = "左回り";
-								break;
-							case 5:
-								description = "右回り";
-								break;
-							case 6:
-								description = "四角形左回り";
-								break;
-							case 7:
-								description = "四角形右回り";
-								break;
-							case 8:
-								description = "HPが半分になると左へ移動";
-								break;
-							case 9:
-								description = "HPが減ると左と右へ移動";
-								break;
-							case 10:
-								description = "HPが半分になると上へ移動";
-								break;
-							case 11:
-								description = "HPが減ると上と下へ移動";
-								break;
-							case 12:
-								description = "HPが半分になると下へ移動";
-								break;
-							case 13:
-								description = "HPが減ると下と上へ移動";
-								break;
-							case 14:
-								description = "画面の端で方向転換";
-								break;
-							case 15:
-								description = "ジグザグ移動";
-								break;
-							case 16:
-								description = "画面の内側を左回り";
-								break;
-							case 17:
-								description = "画面の内側を右回り";
-								break;
-							case 18:
-								description = "HPが半分以下になると左右移動";
-								break;
-							case 19:
-								description = "HPが1/3以下になると左右移動";
-								break;
-							case 20:
-								description = "HPが半分以下になると左回り";
-								break;
-							case 21:
-								description = "HPが1/3以下になると左回り";
-								break;
-							case 22:
-								description = "斜め上へ往復";
-								break;
-							case 23:
-								description = "斜め下へ往復";
-								break;
-							case 24:
-								description = "中央で停止";
-								break;
-							case 25:
-								description = "中央で停止 主人公の方を向く";
-								break;
-							case 26:
-								description = "巨大化  中央から";
-								break;
-							case 27:
-								description = "巨大化  右から";
-								break;
-							default:
-								description = "";
-								break;
-						}
+                            1 => "停止",
+                            2 => "左右移動",
+                            3 => "上下移動",
+                            4 => "左回り",
+                            5 => "右回り",
+                            6 => "四角形左回り",
+                            7 => "四角形右回り",
+                            8 => "HPが半分になると左へ移動",
+                            9 => "HPが減ると左と右へ移動",
+                            10 => "HPが半分になると上へ移動",
+                            11 => "HPが減ると上と下へ移動",
+                            12 => "HPが半分になると下へ移動",
+                            13 => "HPが減ると下と上へ移動",
+                            14 => "画面の端で方向転換",
+                            15 => "ジグザグ移動",
+                            16 => "画面の内側を左回り",
+                            17 => "画面の内側を右回り",
+                            18 => "HPが半分以下になると左右移動",
+                            19 => "HPが1/3以下になると左右移動",
+                            20 => "HPが半分以下になると左回り",
+                            21 => "HPが1/3以下になると左回り",
+                            22 => "斜め上へ往復",
+                            23 => "斜め下へ往復",
+                            24 => "中央で停止",
+                            25 => "中央で停止 主人公の方を向く",
+                            26 => "巨大化  中央から",
+                            27 => "巨大化  右から",
+                            _ => "",
+                        };
                     }
 					else description = "";
 
@@ -498,7 +439,7 @@ namespace MasaoPlus
 			this.GVirtScroll.Value = Global.state.MapPoint.Y;
 			if (this.MainDesignerScroll != null)
 			{
-				this.MainDesignerScroll();
+                this.MainDesignerScroll();
 			}
 		}
 
@@ -510,7 +451,7 @@ namespace MasaoPlus
 		public void UpdateScrollbar(double oldZoomIndex)
 		{
 			double num = Global.config.draw.ZoomIndex / oldZoomIndex;
-			Point point = new Point((int)((double)this.GHorzScroll.Value * num), (int)((double)this.GVirtScroll.Value * num));
+			Point point = new Point((int)(GHorzScroll.Value * num), (int)(GVirtScroll.Value * num));
 			Size displaySize = this.MainDesigner.DisplaySize;
 			Size mapMoveMax = new Size(displaySize.Width - this.MainDesigner.Width, displaySize.Height - this.MainDesigner.Height);
 			Global.state.MapMoveMax = mapMoveMax;
@@ -1363,7 +1304,6 @@ namespace MasaoPlus
 							overViewWindow.ShowDialog();
 							return;
 						}
-						break;
 					case Keys.Prior:
 					case Keys.Next:
 					case Keys.End:
@@ -1412,7 +1352,6 @@ namespace MasaoPlus
 						default:
 							goto IL_2CF;
 						}
-						break;
 					}
 					if (Global.config.draw.PageScroll)
 					{
@@ -1993,7 +1932,7 @@ namespace MasaoPlus
 					}
 					catch
 					{
-						MessageBox.Show("ブラウザプロセスを終了できませんでした。" + Environment.NewLine + "ブラウザを終了する設定をオフにします。", "終了失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+						MessageBox.Show($"ブラウザプロセスを終了できませんでした。{Environment.NewLine}ブラウザを終了する設定をオフにします。", "終了失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 						Global.config.testRun.KillTestrunOnFocus = false;
 					}
 				}
@@ -2061,49 +2000,31 @@ namespace MasaoPlus
 
 		private void MNew_Click(object sender, EventArgs e)
 		{
-			if (Global.state.EditFlag && MessageBox.Show(string.Concat(new string[]
-			{
-				"データが保存されていません。",
-				Environment.NewLine,
-				"保存していないデータは失われます。",
-				Environment.NewLine,
-				"続行してよろしいですか？"
-			}), "保存の確認", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+			if (Global.state.EditFlag && MessageBox.Show($"データが保存されていません。{Environment.NewLine}保存していないデータは失われます。{Environment.NewLine}続行してよろしいですか？", "保存の確認", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
 			{
 				return;
 			}
-			using (NewProject newProject = new NewProject())
-			{
-				if (newProject.ShowDialog() == DialogResult.OK)
-				{
-					this.RestartUp(newProject.CreatedProject);
-				}
-			}
-		}
+            using NewProject newProject = new NewProject();
+            if (newProject.ShowDialog() == DialogResult.OK)
+            {
+                this.RestartUp(newProject.CreatedProject);
+            }
+        }
 
 		private void MOpen_Click(object sender, EventArgs e)
 		{
-			if (Global.state.EditFlag && MessageBox.Show(string.Concat(new string[]
-			{
-				"データが保存されていません。",
-				Environment.NewLine,
-				"保存していないデータは失われます。",
-				Environment.NewLine,
-				"続行してよろしいですか？"
-			}), "保存の確認", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+			if (Global.state.EditFlag && MessageBox.Show($"データが保存されていません。{Environment.NewLine}保存していないデータは失われます。{Environment.NewLine}続行してよろしいですか？", "保存の確認", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
 			{
 				return;
 			}
-			using (OpenFileDialog openFileDialog = new OpenFileDialog())
-			{
-				openFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}|全てのファイル|*.*";
-				openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
-				if (openFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					this.RestartUp(openFileDialog.FileName);
-				}
-			}
-		}
+            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}|全てのファイル|*.*";
+            openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.RestartUp(openFileDialog.FileName);
+            }
+        }
 
 		private void MSave_Click(object sender, EventArgs e)
 		{
@@ -2114,73 +2035,60 @@ namespace MasaoPlus
 
 		private void MSaveAs_Click(object sender, EventArgs e)
 		{
-			using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-			{
-				saveFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}|全てのファイル|*.*";
-				saveFileDialog.InitialDirectory = Global.cpd.where;
-				saveFileDialog.FileName = Path.GetFileName(Global.cpd.filename);
-				if (saveFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					DialogResult dialogResult = MessageBox.Show("保存先のディレクトリに元のディレクトリのファイルをコピーしますか？" + Environment.NewLine + "移動しないとテスト実行に失敗したり、編集に失敗したりする恐れがあります。", "ファイルのコピー", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-					if (dialogResult == DialogResult.Yes)
-					{
-						foreach (string text in Directory.GetFiles(Global.cpd.where, "*", SearchOption.TopDirectoryOnly))
-						{
-							string text2 = Path.Combine(Path.GetDirectoryName(saveFileDialog.FileName), Path.GetFileName(text));
-							if (!File.Exists(text2) || MessageBox.Show(string.Concat(new string[]
-							{
-								text2,
-								Environment.NewLine,
-								"はすでに存在しています。",
-								Environment.NewLine,
-								"上書きしてもよろしいですか？"
-							}), "上書きの警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.No)
-							{
-								File.Copy(text, text2, true);
-							}
-						}
-						File.Delete(Path.Combine(Path.GetDirectoryName(saveFileDialog.FileName), Path.GetFileName(Global.cpd.filename)));
-					}
-					else if (dialogResult == DialogResult.Cancel)
-					{
-						return;
-					}
-					Global.cpd.where = Path.GetDirectoryName(saveFileDialog.FileName);
-					Global.cpd.filename = saveFileDialog.FileName;
-				}
-				this.MSave_Click(this, new EventArgs());
-			}
-		}
+            using SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}|全てのファイル|*.*";
+            saveFileDialog.InitialDirectory = Global.cpd.where;
+            saveFileDialog.FileName = Path.GetFileName(Global.cpd.filename);
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                DialogResult dialogResult = MessageBox.Show("保存先のディレクトリに元のディレクトリのファイルをコピーしますか？" + Environment.NewLine + "移動しないとテスト実行に失敗したり、編集に失敗したりする恐れがあります。", "ファイルのコピー", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    foreach (string text in Directory.GetFiles(Global.cpd.where, "*", SearchOption.TopDirectoryOnly))
+                    {
+                        string text2 = Path.Combine(Path.GetDirectoryName(saveFileDialog.FileName), Path.GetFileName(text));
+                        if (!File.Exists(text2) || MessageBox.Show($"{text2}{Environment.NewLine}はすでに存在しています。{Environment.NewLine}上書きしてもよろしいですか？", "上書きの警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.No)
+                        {
+                            File.Copy(text, text2, true);
+                        }
+                    }
+                    File.Delete(Path.Combine(Path.GetDirectoryName(saveFileDialog.FileName), Path.GetFileName(Global.cpd.filename)));
+                }
+                else if (dialogResult == DialogResult.Cancel)
+                {
+                    return;
+                }
+                Global.cpd.where = Path.GetDirectoryName(saveFileDialog.FileName);
+                Global.cpd.filename = saveFileDialog.FileName;
+            }
+            this.MSave_Click(this, new EventArgs());
+        }
 
 		private void MWriteHTML_Click(object sender, EventArgs e)
 		{
-			using (SaveFileDialog saveFileDialog = new SaveFileDialog())
-			{
-				saveFileDialog.DefaultExt = Global.cpd.runtime.DefaultConfigurations.FileExt;
-				saveFileDialog.AddExtension = true;
-				saveFileDialog.Filter = $"出力ファイル(*.{Global.cpd.runtime.DefaultConfigurations.FileExt})|*{Global.cpd.runtime.DefaultConfigurations.FileExt}";
-				if (saveFileDialog.ShowDialog() != DialogResult.Cancel)
-				{
-					if (Path.GetDirectoryName(saveFileDialog.FileName) != Global.cpd.where)
-					{
-						using (OutputControl outputControl = new OutputControl(Path.GetDirectoryName(saveFileDialog.FileName)))
-						{
-							if (outputControl.ShowDialog() == DialogResult.Cancel)
-							{
-								return;
-							}
-						}
-					}
-					using (StreamWriter streamWriter = new StreamWriter(saveFileDialog.FileName, false, Global.config.localSystem.FileEncoding))
-					{
-						string value = Subsystem.MakeHTMLCode(0);
-						streamWriter.Write(value);
-						streamWriter.Close();
-					}
-					MessageBox.Show("出力しました。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-				}
-			}
-		}
+            using SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.DefaultExt = Global.cpd.runtime.DefaultConfigurations.FileExt;
+            saveFileDialog.AddExtension = true;
+            saveFileDialog.Filter = $"出力ファイル(*.{Global.cpd.runtime.DefaultConfigurations.FileExt})|*{Global.cpd.runtime.DefaultConfigurations.FileExt}";
+            if (saveFileDialog.ShowDialog() != DialogResult.Cancel)
+            {
+                if (Path.GetDirectoryName(saveFileDialog.FileName) != Global.cpd.where)
+                {
+                    using OutputControl outputControl = new OutputControl(Path.GetDirectoryName(saveFileDialog.FileName));
+                    if (outputControl.ShowDialog() == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                }
+                using (StreamWriter streamWriter = new StreamWriter(saveFileDialog.FileName, false, Global.config.localSystem.FileEncoding))
+                {
+                    string value = Subsystem.MakeHTMLCode(0);
+                    streamWriter.Write(value);
+                    streamWriter.Close();
+                }
+                MessageBox.Show("出力しました。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+        }
 
 		private void MExit_Click(object sender, EventArgs e)
 		{
@@ -2289,14 +2197,7 @@ namespace MasaoPlus
 
 		private bool ChangePreCheck()
 		{
-			return this.EditTab.SelectedIndex != 1 || this.MainEditor.CanConvertTextSource() || MessageBox.Show(string.Concat(new string[]
-			{
-				"ステージのテキストが規定の形式を満たしていないため、テキストを反映できません。",
-				Environment.NewLine,
-				"レイヤーを切り替えると、編集結果は失われます。",
-				Environment.NewLine,
-				"続行してもよろしいですか？"
-			}), "コンバート失敗", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) != DialogResult.Cancel;
+			return this.EditTab.SelectedIndex != 1 || this.MainEditor.CanConvertTextSource() || MessageBox.Show($"ステージのテキストが規定の形式を満たしていないため、テキストを反映できません。{Environment.NewLine}レイヤーを切り替えると、編集結果は失われます。{Environment.NewLine}続行してもよろしいですか？", "コンバート失敗", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) != DialogResult.Cancel;
 		}
 
 		private void StageSelectionChange(int newValue)
@@ -2415,29 +2316,25 @@ namespace MasaoPlus
 
 		public void MSysConfig_Click(object sender, EventArgs e)
 		{
-			using (SideConfig sideConfig = new SideConfig())
-			{
-				if (sideConfig.ShowDialog() == DialogResult.OK && this.EditTab.SelectedIndex == 0)
-				{
-					this.UpdateStatus("描画を更新しています...");
-					this.GuiChipList.Refresh();
-					this.MainDesigner.UpdateBackgroundBuffer();
-					this.MainDesigner.UpdateForegroundBuffer();
-					this.MainDesigner.InitTransparent();
-					this.MainDesigner.Refresh();
-					this.MasaoConfigList.Reload();
-					this.UpdateStatus("完了");
-				}
-			}
-		}
+            using SideConfig sideConfig = new SideConfig();
+            if (sideConfig.ShowDialog() == DialogResult.OK && this.EditTab.SelectedIndex == 0)
+            {
+                this.UpdateStatus("描画を更新しています...");
+                this.GuiChipList.Refresh();
+                this.MainDesigner.UpdateBackgroundBuffer();
+                this.MainDesigner.UpdateForegroundBuffer();
+                this.MainDesigner.InitTransparent();
+                this.MainDesigner.Refresh();
+                this.MasaoConfigList.Reload();
+                this.UpdateStatus("完了");
+            }
+        }
 
 		private void MVersion_Click(object sender, EventArgs e)
 		{
-			using (VersionInfo versionInfo = new VersionInfo())
-			{
-				versionInfo.ShowDialog();
-			}
-		}
+            using VersionInfo versionInfo = new VersionInfo();
+            versionInfo.ShowDialog();
+        }
 
 		private void SideTab_SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -2465,7 +2362,7 @@ namespace MasaoPlus
 					}
 					catch
 					{
-						MessageBox.Show("アップデートの実行ができませんでした。" + Environment.NewLine + "手動更新してください。", "更新失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+						MessageBox.Show($"アップデートの実行ができませんでした。{Environment.NewLine}手動更新してください。", "更新失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 					}
 				}
 			}
@@ -2615,89 +2512,63 @@ namespace MasaoPlus
 			DialogResult dialogResult = DialogResult.Retry;
 			while (dialogResult == DialogResult.Retry)
 			{
-				using (RuntimeManager runtimeManager = new RuntimeManager())
-				{
-					dialogResult = runtimeManager.ShowDialog();
-				}
-			}
+                using RuntimeManager runtimeManager = new RuntimeManager();
+                dialogResult = runtimeManager.ShowDialog();
+            }
 		}
 
 		private void MProjectInheritNew_Click(object sender, EventArgs e)
 		{
-			if (Global.state.EditFlag && MessageBox.Show(string.Concat(new string[]
-			{
-				"データが保存されていません。",
-				Environment.NewLine,
-				"保存していないデータは失われます。",
-				Environment.NewLine,
-				"続行してよろしいですか？"
-			}), "保存の確認", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+			if (Global.state.EditFlag && MessageBox.Show($"データが保存されていません。{Environment.NewLine}保存していないデータは失われます。{Environment.NewLine}続行してよろしいですか？", "保存の確認", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
 			{
 				return;
 			}
-			using (OpenFileDialog openFileDialog = new OpenFileDialog())
-			{
-				openFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}";
-				openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
-				if (openFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					using (ProjInheritance projInheritance = new ProjInheritance(openFileDialog.FileName))
-					{
-						if (projInheritance.ShowDialog() == DialogResult.OK)
-						{
-							this.RestartUp(projInheritance.NewProjectName);
-						}
-					}
-				}
-			}
-		}
+            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}";
+            openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using ProjInheritance projInheritance = new ProjInheritance(openFileDialog.FileName);
+                if (projInheritance.ShowDialog() == DialogResult.OK)
+                {
+                    this.RestartUp(projInheritance.NewProjectName);
+                }
+            }
+        }
 
 		private void MConvertHTML_Click(object sender, EventArgs e)
 		{
-			if (Global.state.EditFlag && MessageBox.Show(string.Concat(new string[]
-			{
-				"データが保存されていません。",
-				Environment.NewLine,
-				"保存していないデータは失われます。",
-				Environment.NewLine,
-				"続行してよろしいですか？"
-			}), "保存の確認", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+			if (Global.state.EditFlag && MessageBox.Show($"データが保存されていません。{Environment.NewLine}保存していないデータは失われます。{Environment.NewLine}続行してよろしいですか？", "保存の確認", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
 			{
 				return;
 			}
-			using (OpenFileDialog openFileDialog = new OpenFileDialog())
-			{
-				openFileDialog.Filter = "HTML/XML ドキュメント(*.htm*;*.xml)|*.htm*;*.xml|全てのファイル|*.*";
-				openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
-				if (openFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					using (HTMLInheritance htmlinheritance = new HTMLInheritance(openFileDialog.FileName))
-					{
-						if (htmlinheritance.ShowDialog() == DialogResult.OK)
-						{
-							this.RestartUp(htmlinheritance.ProjectFile);
-						}
-					}
-				}
-			}
-		}
+            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "HTML/XML ドキュメント(*.htm*;*.xml)|*.htm*;*.xml|全てのファイル|*.*";
+            openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using HTMLInheritance htmlinheritance = new HTMLInheritance(openFileDialog.FileName);
+                if (htmlinheritance.ShowDialog() == DialogResult.OK)
+                {
+                    this.RestartUp(htmlinheritance.ProjectFile);
+                }
+            }
+        }
 
 		private void MUpdateApp_Click(object sender, EventArgs e)
 		{
-			using (WebUpdate webUpdate = new WebUpdate())
-			{
-				if (webUpdate.ShowDialog() == DialogResult.Retry)
-				{
-					Global.state.RunFile = (string)webUpdate.runfile.Clone();
-					base.Close();
-				}
-			}
-		}
+            using WebUpdate webUpdate = new WebUpdate();
+            if (webUpdate.ShowDialog() == DialogResult.Retry)
+            {
+                Global.state.RunFile = (string)webUpdate.runfile.Clone();
+                base.Close();
+            }
+        }
 
 		private void MStageRev_Click(object sender, EventArgs e)
 		{
 			this.UpdateStatus("ステージ反転処理中...");
-			List<string> list = new List<string>();
+			List<string> list;
 			Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : Global.cpd.runtime.Definitions.StageSize;
 			for (int i = 0; i < stageSizeData.y; i++)
 			{

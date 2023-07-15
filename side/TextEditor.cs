@@ -242,11 +242,9 @@ namespace MasaoPlus
 				TextRenderer.DrawText(g, s, f, p, c);
 				return;
 			}
-			using (Brush brush = new SolidBrush(c))
-			{
-				g.DrawString(s, f, brush, p);
-			}
-		}
+            using Brush brush = new SolidBrush(c);
+            g.DrawString(s, f, brush, p);
+        }
 
 		public bool CanConvertTextSource()
 		{

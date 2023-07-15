@@ -17,13 +17,11 @@ namespace MasaoPlus
 			try
 			{
 				XmlSerializer xmlSerializer = new XmlSerializer(typeof(Project));
-				using (FileStream fileStream = new FileStream(file, FileMode.Open))
-				{
-					Project project = (Project)xmlSerializer.Deserialize(fileStream);
-					project.Config.ConfigReady();
-					result = project;
-				}
-			}
+                using FileStream fileStream = new FileStream(file, FileMode.Open);
+                Project project = (Project)xmlSerializer.Deserialize(fileStream);
+                project.Config.ConfigReady();
+                result = project;
+            }
 			catch (Exception ex)
 			{
 				MessageBox.Show("プロジェクトファイルを開けませんでした。" + Environment.NewLine + ex.Message, "オープン失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
@@ -51,11 +49,9 @@ namespace MasaoPlus
 			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Project));
 			try
 			{
-				using (FileStream fileStream = new FileStream(file, FileMode.Create))
-				{
-					xmlSerializer.Serialize(fileStream, this);
-				}
-			}
+                using FileStream fileStream = new FileStream(file, FileMode.Create);
+                xmlSerializer.Serialize(fileStream, this);
+            }
 			catch (Exception ex)
 			{
 				MessageBox.Show("プロジェクトの保存に失敗しました。" + Environment.NewLine + ex.Message, "保存失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
@@ -65,14 +61,10 @@ namespace MasaoPlus
 		public void SaveBinary(string file)
 		{
 			BinaryFormatter binaryFormatter = new BinaryFormatter();
-			using (FileStream fileStream = new FileStream(file, FileMode.Create))
-			{
-				using (DeflateStream deflateStream = new DeflateStream(fileStream, CompressionMode.Compress))
-				{
-					binaryFormatter.Serialize(deflateStream, this);
-				}
-			}
-		}
+            using FileStream fileStream = new FileStream(file, FileMode.Create);
+            using DeflateStream deflateStream = new DeflateStream(fileStream, CompressionMode.Compress);
+            binaryFormatter.Serialize(deflateStream, this);
+        }
 
 		public static void Convert3rdMapData(string[] StageData, int bytesize = 1)
 		{

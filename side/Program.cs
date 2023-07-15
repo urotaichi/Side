@@ -97,18 +97,16 @@ namespace MasaoPlus
 			{
 				try
 				{
-					using (StreamWriter streamWriter = new StreamWriter(Global.definition.Dump, true))
-					{
-						streamWriter.WriteLine("------------------------------------------------------------");
-						streamWriter.WriteLine("| Reported:" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
-						streamWriter.WriteLine("------------------------------------------------------------");
-						streamWriter.WriteLine(ex.Message);
-						streamWriter.WriteLine(ex.Source);
-						streamWriter.WriteLine("*StackTrace");
-						streamWriter.WriteLine(ex.StackTrace);
-						streamWriter.Close();
-					}
-				}
+                    using StreamWriter streamWriter = new StreamWriter(Global.definition.Dump, true);
+                    streamWriter.WriteLine("------------------------------------------------------------");
+                    streamWriter.WriteLine("| Reported:" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
+                    streamWriter.WriteLine("------------------------------------------------------------");
+                    streamWriter.WriteLine(ex.Message);
+                    streamWriter.WriteLine(ex.Source);
+                    streamWriter.WriteLine("*StackTrace");
+                    streamWriter.WriteLine(ex.StackTrace);
+                    streamWriter.Close();
+                }
 				catch
 				{
 					MessageBox.Show("Error Dump Output Failed.", "Error Handling Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);

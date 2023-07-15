@@ -949,12 +949,10 @@ namespace MasaoPlus
 				colorMatrix.Matrix22 = 1f;
 				colorMatrix.Matrix33 = 0.5f;
 				colorMatrix.Matrix44 = 1f;
-				using (ImageAttributes imageAttributes = new ImageAttributes())
-				{
-					imageAttributes.SetColorMatrix(colorMatrix);
-					graphics.DrawImage(b, new Rectangle(0, 0, b.Width, b.Height), 0, 0, b.Width, b.Height, GraphicsUnit.Pixel, imageAttributes);
-				}
-			}
+                using ImageAttributes imageAttributes = new ImageAttributes();
+                imageAttributes.SetColorMatrix(colorMatrix);
+                graphics.DrawImage(b, new Rectangle(0, 0, b.Width, b.Height), 0, 0, b.Width, b.Height, GraphicsUnit.Pixel, imageAttributes);
+            }
 			b.Dispose();
 			b = bitmap;
 		}
@@ -1080,28 +1078,22 @@ namespace MasaoPlus
 			using (ImageAttributes imageAttributes = new ImageAttributes())
 			{
 				imageAttributes.SetRemapTable(remapTable);
-				using (Graphics graphics = Graphics.FromImage(this.DrawMask))
-				{
-					graphics.FillRectangle(Brushes.White, new Rectangle(0, 0, this.DrawMask.Width, this.DrawMask.Height));
-					graphics.DrawImage(this.DrawChipOrig, new Rectangle(0, 0, this.DrawMask.Width, this.DrawMask.Height), 0, 0, this.DrawMask.Width, this.DrawMask.Height, GraphicsUnit.Pixel, imageAttributes);
-				}
-			}
+                using Graphics graphics = Graphics.FromImage(this.DrawMask);
+                graphics.FillRectangle(Brushes.White, new Rectangle(0, 0, this.DrawMask.Width, this.DrawMask.Height));
+                graphics.DrawImage(this.DrawChipOrig, new Rectangle(0, 0, this.DrawMask.Width, this.DrawMask.Height), 0, 0, this.DrawMask.Width, this.DrawMask.Height, GraphicsUnit.Pixel, imageAttributes);
+            }
 
 			if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.LayerImage);
 				this.DrawLayerOrig = Image.FromStream(File.OpenRead(filename), false, false);
                 this.DrawLayerMask = new Bitmap(this.DrawLayerOrig.Width, this.DrawLayerOrig.Height);
-				using (ImageAttributes imageAttributes2 = new ImageAttributes())
-				{
-					imageAttributes2.SetRemapTable(remapTable);
-					using (Graphics graphics2 = Graphics.FromImage(this.DrawLayerMask))
-					{
-						graphics2.FillRectangle(Brushes.White, new Rectangle(0, 0, this.DrawLayerMask.Width, this.DrawLayerMask.Height));
-						graphics2.DrawImage(this.DrawLayerOrig, new Rectangle(0, 0, this.DrawLayerMask.Width, this.DrawLayerMask.Height), 0, 0, this.DrawLayerMask.Width, this.DrawLayerMask.Height, GraphicsUnit.Pixel, imageAttributes2);
-					}
-				}
-			}
+                using ImageAttributes imageAttributes2 = new ImageAttributes();
+                imageAttributes2.SetRemapTable(remapTable);
+                using Graphics graphics2 = Graphics.FromImage(this.DrawLayerMask);
+                graphics2.FillRectangle(Brushes.White, new Rectangle(0, 0, this.DrawLayerMask.Width, this.DrawLayerMask.Height));
+                graphics2.DrawImage(this.DrawLayerOrig, new Rectangle(0, 0, this.DrawLayerMask.Width, this.DrawLayerMask.Height), 0, 0, this.DrawLayerMask.Width, this.DrawLayerMask.Height, GraphicsUnit.Pixel, imageAttributes2);
+            }
 
 			if (Global.cpd.project.Config.OribossImage != null)//オリジナルボスを使うとき
 			{
@@ -1123,12 +1115,10 @@ namespace MasaoPlus
 			using (ImageAttributes imageAttributes3 = new ImageAttributes())
 			{
 				imageAttributes3.SetRemapTable(remapTable);
-				using (Graphics graphics3 = Graphics.FromImage(this.DrawExMask))
-				{
-					graphics3.FillRectangle(Brushes.White, new Rectangle(0, 0, this.DrawExMask.Width, this.DrawExMask.Height));
-					graphics3.DrawImage(this.DrawExOrig, new Rectangle(0, 0, this.DrawExMask.Width, this.DrawExMask.Height), 0, 0, this.DrawExMask.Width, this.DrawExMask.Height, GraphicsUnit.Pixel, imageAttributes3);
-				}
-			}
+                using Graphics graphics3 = Graphics.FromImage(this.DrawExMask);
+                graphics3.FillRectangle(Brushes.White, new Rectangle(0, 0, this.DrawExMask.Width, this.DrawExMask.Height));
+                graphics3.DrawImage(this.DrawExOrig, new Rectangle(0, 0, this.DrawExMask.Width, this.DrawExMask.Height), 0, 0, this.DrawExMask.Width, this.DrawExMask.Height, GraphicsUnit.Pixel, imageAttributes3);
+            }
 			using (Bitmap drawExMask = this.DrawExMask)
 			{
 				this.DrawExMask = DrawEx.MakeMask(drawExMask);
@@ -1217,34 +1207,32 @@ namespace MasaoPlus
 					this.ForegroundBuffer = new Bitmap((int)((double)this.ForeLayerBmp.Width * this.zi), (int)((double)this.ForeLayerBmp.Height * this.zi), PixelFormat.Format24bppRgb);
 				}
 				this.EditMap = Global.state.EdittingStage;
-				using (Graphics graphics = Graphics.FromImage(this.ForegroundBuffer))
-				{
-					using (Brush brush = new SolidBrush(Global.state.Background))
-					{
-						graphics.FillRectangle(brush, new Rectangle(0, 0, this.ForegroundBuffer.Width, this.ForegroundBuffer.Height));
-					}
-					if (Global.config.draw.StageInterpolation)
-					{
-						graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-					}
-					else
-					{
-						graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-					}
-					if (Global.cpd.UseLayer && (!Global.state.EditingForeground || Global.state.DrawUnactiveLayer))
-					{
-						graphics.DrawImage(this.BackLayerBmp, new Rectangle(new Point(0, 0), this.ForegroundBuffer.Size), new Rectangle(0, 0, this.BackLayerBmp.Width, this.BackLayerBmp.Height), GraphicsUnit.Pixel);
-					}
-					if (!Global.cpd.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
-					{
-						graphics.DrawImage(this.ForeLayerBmp, new Rectangle(new Point(0, 0), this.ForegroundBuffer.Size), new Rectangle(0, 0, this.ForeLayerBmp.Width, this.ForeLayerBmp.Height), GraphicsUnit.Pixel);
-					}
-					if (Global.config.draw.UseBufferingMemoryDraw)
-					{
-						this.ForegroundBuffer.RotateFlip(RotateFlipType.Rotate180FlipX);
-					}
-				}
-			}
+                using Graphics graphics = Graphics.FromImage(this.ForegroundBuffer);
+                using (Brush brush = new SolidBrush(Global.state.Background))
+                {
+                    graphics.FillRectangle(brush, new Rectangle(0, 0, this.ForegroundBuffer.Width, this.ForegroundBuffer.Height));
+                }
+                if (Global.config.draw.StageInterpolation)
+                {
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                }
+                else
+                {
+                    graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                }
+                if (Global.cpd.UseLayer && (!Global.state.EditingForeground || Global.state.DrawUnactiveLayer))
+                {
+                    graphics.DrawImage(this.BackLayerBmp, new Rectangle(new Point(0, 0), this.ForegroundBuffer.Size), new Rectangle(0, 0, this.BackLayerBmp.Width, this.BackLayerBmp.Height), GraphicsUnit.Pixel);
+                }
+                if (!Global.cpd.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
+                {
+                    graphics.DrawImage(this.ForeLayerBmp, new Rectangle(new Point(0, 0), this.ForegroundBuffer.Size), new Rectangle(0, 0, this.ForeLayerBmp.Width, this.ForeLayerBmp.Height), GraphicsUnit.Pixel);
+                }
+                if (Global.config.draw.UseBufferingMemoryDraw)
+                {
+                    this.ForegroundBuffer.RotateFlip(RotateFlipType.Rotate180FlipX);
+                }
+            }
 			if (Global.config.draw.UseBufferingDraw && this.BufferingDraw)
 			{
 				if (Global.config.draw.UseBufferingMemoryDraw)
@@ -1301,32 +1289,28 @@ namespace MasaoPlus
 				drawRectangle.Height *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
 				drawRectangle.X -= Global.state.MapPoint.X;
 				drawRectangle.Y -= Global.state.MapPoint.Y;
-				using (Brush brush3 = new SolidBrush(Color.FromArgb(Global.config.draw.AlphaBlending ? 160 : 255, DrawEx.GetForegroundColor(Global.state.Background))))
-				{
-					if (this.DrawMode == GUIDesigner.DirectDrawMode.Rectangle)
-					{
-						e.Graphics.FillRectangle(brush3, drawRectangle);
-					}
-					else
-					{
-						using (Pen pen = new Pen(brush3, (float)((int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) / 4)))
-						{
-							drawRectangle.X += (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) / 2;
-							drawRectangle.Y += (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex) / 2;
-							drawRectangle.Width -= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
-							drawRectangle.Height -= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
-							if (this.DrawMode == GUIDesigner.DirectDrawMode.RevLine)
-							{
-								e.Graphics.DrawLine(pen, new Point(drawRectangle.X, drawRectangle.Bottom), new Point(drawRectangle.Right, drawRectangle.Top));
-							}
-							else
-							{
-								e.Graphics.DrawLine(pen, drawRectangle.Location, new Point(drawRectangle.Right, drawRectangle.Bottom));
-							}
-						}
-					}
-				}
-			}
+                using Brush brush3 = new SolidBrush(Color.FromArgb(Global.config.draw.AlphaBlending ? 160 : 255, DrawEx.GetForegroundColor(Global.state.Background)));
+                if (this.DrawMode == GUIDesigner.DirectDrawMode.Rectangle)
+                {
+                    e.Graphics.FillRectangle(brush3, drawRectangle);
+                }
+                else
+                {
+                    using Pen pen = new Pen(brush3, (float)((int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) / 4));
+                    drawRectangle.X += (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) / 2;
+                    drawRectangle.Y += (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex) / 2;
+                    drawRectangle.Width -= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
+                    drawRectangle.Height -= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
+                    if (this.DrawMode == GUIDesigner.DirectDrawMode.RevLine)
+                    {
+                        e.Graphics.DrawLine(pen, new Point(drawRectangle.X, drawRectangle.Bottom), new Point(drawRectangle.Right, drawRectangle.Top));
+                    }
+                    else
+                    {
+                        e.Graphics.DrawLine(pen, drawRectangle.Location, new Point(drawRectangle.Right, drawRectangle.Bottom));
+                    }
+                }
+            }
 			if (Global.config.draw.DrawGrid)
 			{ // グリッドを表示
 
@@ -2545,122 +2529,120 @@ namespace MasaoPlus
 		{
 			GraphicsState transState;
 			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
-			using (Bitmap bitmap = new Bitmap(rect.Width * chipsize.Width, rect.Height * chipsize.Height, PixelFormat.Format32bppArgb))
-			{
-				using (Graphics graphics = Graphics.FromImage(bitmap))
-				{
-					graphics.PixelOffsetMode = PixelOffsetMode.Half;
-					graphics.FillRectangle(Brushes.Transparent, new Rectangle(new Point(0, 0), bitmap.Size));
-					Point point = new Point(-1, -1);
-					for (int i = rect.Y; i < rect.Bottom; i++)
-					{
-						point.Y++;
-						point.X = -1;
-						for (int j = rect.X; j < rect.Right; j++)
-						{
-							point.X++;
-							if (!GUIDesigner.StageText.IsOverflow(new Point(j, i)))
-							{
-								string stageChar = GUIDesigner.StageText.GetStageChar(new Point(j, i));
-								ChipsData chipsData;
-								if (Global.state.EditingForeground)
-								{
-									if (!this.DrawItemRef.ContainsKey(stageChar))
-									{
-										goto IL_514;
-									}
-									if (Global.state.MapEditMode)
-									{
-										chipsData = this.DrawWorldRef[stageChar];
-									}
-									else
-									{
-										chipsData = this.DrawItemRef[stageChar];
-									}
-								}
-								else
-								{
-									if (!this.DrawLayerRef.ContainsKey(stageChar))
-									{
-										goto IL_514;
-									}
-									chipsData = this.DrawLayerRef[stageChar];
-								}
-								if (Global.state.EditingForeground)
-								{
-									if (chipsData.character.Equals(Global.cpd.Mapchip[0].character))
-									{
-										goto IL_514;
-									}
-								}
-								else if (chipsData.character.Equals(Global.cpd.Layerchip[0].character))
-								{
-									goto IL_514;
-								}
-								ChipData cschip = chipsData.GetCSChip();
-								if (cschip.size != default(Size)) DrawExtendSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character);
-							}
-							IL_514:;
-						}
-					}
-					point = new Point(-1, -1);
-					for (int k = rect.Y; k < rect.Bottom; k++)
-					{
-						point.Y++;
-						point.X = -1;
-						for (int l = rect.X; l < rect.Right; l++)
-						{
-							point.X++;
-							if (!GUIDesigner.StageText.IsOverflow(new Point(l, k)))
-							{
-								string stageChar = GUIDesigner.StageText.GetStageChar(new Point(l, k));
-								ChipsData chipsData;
-								if (Global.state.EditingForeground)
-								{
-									if (!this.DrawItemRef.ContainsKey(stageChar))
-									{
-										goto IL_9DD;
-									}
-									if (Global.state.MapEditMode)
-									{
-										chipsData = this.DrawWorldRef[stageChar];
-									}
-									else
-									{
-										chipsData = this.DrawItemRef[stageChar];
-									}
-								}
-								else
-								{
-									if (!this.DrawLayerRef.ContainsKey(stageChar))
-									{
-										goto IL_9DD;
-									}
-									chipsData = this.DrawLayerRef[stageChar];
-								}
-								if (Global.state.EditingForeground)
-								{
-									if (chipsData.character.Equals(Global.cpd.Mapchip[0].character))
-									{
-										goto IL_9DD;
-									}
-								}
-								else if (chipsData.character.Equals(Global.cpd.Layerchip[0].character))
-								{
-									goto IL_9DD;
-								}
-								ChipData cschip = chipsData.GetCSChip();
-								if (cschip.size == default(Size)) DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X);
-							}
-							IL_9DD:;
-						}
-					}
-				}
-				g.CompositingMode = CompositingMode.SourceCopy;
-				g.DrawImage(bitmap, rect.X * chipsize.Width, rect.Y * chipsize.Height);
-				g.CompositingMode = CompositingMode.SourceOver;
-			}
-		}
+            using Bitmap bitmap = new Bitmap(rect.Width * chipsize.Width, rect.Height * chipsize.Height, PixelFormat.Format32bppArgb);
+            using (Graphics graphics = Graphics.FromImage(bitmap))
+            {
+                graphics.PixelOffsetMode = PixelOffsetMode.Half;
+                graphics.FillRectangle(Brushes.Transparent, new Rectangle(new Point(0, 0), bitmap.Size));
+                Point point = new Point(-1, -1);
+                for (int i = rect.Y; i < rect.Bottom; i++)
+                {
+                    point.Y++;
+                    point.X = -1;
+                    for (int j = rect.X; j < rect.Right; j++)
+                    {
+                        point.X++;
+                        if (!GUIDesigner.StageText.IsOverflow(new Point(j, i)))
+                        {
+                            string stageChar = GUIDesigner.StageText.GetStageChar(new Point(j, i));
+                            ChipsData chipsData;
+                            if (Global.state.EditingForeground)
+                            {
+                                if (!this.DrawItemRef.ContainsKey(stageChar))
+                                {
+                                    goto IL_514;
+                                }
+                                if (Global.state.MapEditMode)
+                                {
+                                    chipsData = this.DrawWorldRef[stageChar];
+                                }
+                                else
+                                {
+                                    chipsData = this.DrawItemRef[stageChar];
+                                }
+                            }
+                            else
+                            {
+                                if (!this.DrawLayerRef.ContainsKey(stageChar))
+                                {
+                                    goto IL_514;
+                                }
+                                chipsData = this.DrawLayerRef[stageChar];
+                            }
+                            if (Global.state.EditingForeground)
+                            {
+                                if (chipsData.character.Equals(Global.cpd.Mapchip[0].character))
+                                {
+                                    goto IL_514;
+                                }
+                            }
+                            else if (chipsData.character.Equals(Global.cpd.Layerchip[0].character))
+                            {
+                                goto IL_514;
+                            }
+                            ChipData cschip = chipsData.GetCSChip();
+                            if (cschip.size != default(Size)) DrawExtendSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character);
+                        }
+                    IL_514:;
+                    }
+                }
+                point = new Point(-1, -1);
+                for (int k = rect.Y; k < rect.Bottom; k++)
+                {
+                    point.Y++;
+                    point.X = -1;
+                    for (int l = rect.X; l < rect.Right; l++)
+                    {
+                        point.X++;
+                        if (!GUIDesigner.StageText.IsOverflow(new Point(l, k)))
+                        {
+                            string stageChar = GUIDesigner.StageText.GetStageChar(new Point(l, k));
+                            ChipsData chipsData;
+                            if (Global.state.EditingForeground)
+                            {
+                                if (!this.DrawItemRef.ContainsKey(stageChar))
+                                {
+                                    goto IL_9DD;
+                                }
+                                if (Global.state.MapEditMode)
+                                {
+                                    chipsData = this.DrawWorldRef[stageChar];
+                                }
+                                else
+                                {
+                                    chipsData = this.DrawItemRef[stageChar];
+                                }
+                            }
+                            else
+                            {
+                                if (!this.DrawLayerRef.ContainsKey(stageChar))
+                                {
+                                    goto IL_9DD;
+                                }
+                                chipsData = this.DrawLayerRef[stageChar];
+                            }
+                            if (Global.state.EditingForeground)
+                            {
+                                if (chipsData.character.Equals(Global.cpd.Mapchip[0].character))
+                                {
+                                    goto IL_9DD;
+                                }
+                            }
+                            else if (chipsData.character.Equals(Global.cpd.Layerchip[0].character))
+                            {
+                                goto IL_9DD;
+                            }
+                            ChipData cschip = chipsData.GetCSChip();
+                            if (cschip.size == default(Size)) DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X);
+                        }
+                    IL_9DD:;
+                    }
+                }
+            }
+            g.CompositingMode = CompositingMode.SourceCopy;
+            g.DrawImage(bitmap, rect.X * chipsize.Width, rect.Y * chipsize.Height);
+            g.CompositingMode = CompositingMode.SourceOver;
+        }
 
 		private void GUIDesigner_MouseCaptureChanged(object sender, EventArgs e)
 		{

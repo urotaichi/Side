@@ -25,12 +25,10 @@ namespace MasaoPlus
 		public void SaveXML(string file)
 		{
 			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
-			using (FileStream fileStream = new FileStream(file, FileMode.Create))
-			{
-				this.localSystem.FileEncStr = this.localSystem.FileEncoding.WebName;
-				xmlSerializer.Serialize(fileStream, this);
-			}
-		}
+            using FileStream fileStream = new FileStream(file, FileMode.Create);
+            this.localSystem.FileEncStr = this.localSystem.FileEncoding.WebName;
+            xmlSerializer.Serialize(fileStream, this);
+        }
 
 		public Config.Draw draw = new Config.Draw();
 

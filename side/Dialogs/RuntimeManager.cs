@@ -23,7 +23,7 @@ namespace MasaoPlus.Dialogs
 			base.Enabled = false;
 			if (!Directory.Exists(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir)))
 			{
-				MessageBox.Show("ランタイムフォルダが見つかりません。" + Environment.NewLine + "Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+				MessageBox.Show($"ランタイムフォルダが見つかりません。{Environment.NewLine}Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 			}
 			string[] files = Directory.GetFiles(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir), "*.xml", SearchOption.TopDirectoryOnly);
 			try
@@ -54,25 +54,18 @@ namespace MasaoPlus.Dialogs
 								}
 								else
 								{
-									MessageBox.Show(string.Concat(new string[]
-									{
-										"必須ファイルが欠落しています。",
-										Environment.NewLine,
-										Path.GetFileName(text),
-										" : ",
-										string.Join(",", array2)
-									}), "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+									MessageBox.Show($"必須ファイルが欠落しています。{Environment.NewLine}{Path.GetFileName(text)} : {string.Join(",", array2)}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 								}
 							}
 						}
 						else
 						{
-							MessageBox.Show("ランタイムフォルダが見つかりません:" + Path.GetFileName(text), "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+							MessageBox.Show($"ランタイムフォルダが見つかりません:{Path.GetFileName(text)}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 						}
 					}
 					catch (Exception ex)
 					{
-						MessageBox.Show("読み込めませんでした:" + Path.GetFileName(text) + Environment.NewLine + ex.Message, "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+						MessageBox.Show($"読み込めませんでした:{Path.GetFileName(text)}{Environment.NewLine}{ex.Message}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 					}
 				}
 			}
@@ -89,36 +82,27 @@ namespace MasaoPlus.Dialogs
 
 		private void NewRuntimeInstall_Click(object sender, EventArgs e)
 		{
-			using (OpenFileDialog openFileDialog = new OpenFileDialog())
-			{
-				openFileDialog.Filter = string.Concat(new string[]
-				{
-					Global.definition.AppName,
-					"ランタイムパッケージ(*",
-					Global.definition.RuntimeArchiveExt,
-					")|*",
-					Global.definition.RuntimeArchiveExt
-				});
-				openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
-				if (openFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					try
-					{
-						base.Enabled = false;
-						this.Text = "ランタイムをインストールしています...";
-						if (Subsystem.InstallRuntime(openFileDialog.FileName))
-						{
-							MessageBox.Show("ランタイムインストールが完了しました。", "インストール成功", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-						}
-					}
-					finally
-					{
-						base.DialogResult = DialogResult.Retry;
-						base.Close();
-					}
-				}
-			}
-		}
+            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = $"{Global.definition.AppName}ランタイムパッケージ(*{Global.definition.RuntimeArchiveExt})|*{Global.definition.RuntimeArchiveExt}";
+            openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    base.Enabled = false;
+                    this.Text = "ランタイムをインストールしています...";
+                    if (Subsystem.InstallRuntime(openFileDialog.FileName))
+                    {
+                        MessageBox.Show("ランタイムインストールが完了しました。", "インストール成功", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    }
+                }
+                finally
+                {
+                    base.DialogResult = DialogResult.Retry;
+                    base.Close();
+                }
+            }
+        }
 
 		private void RuntimeViewer_SelectedIndexChanged(object sender, EventArgs e)
 		{
@@ -153,7 +137,7 @@ namespace MasaoPlus.Dialogs
 				return;
 			}
 			this.ur = this.runtimedatas[this.RuntimeViewer.SelectedIndices[0]];
-			if (MessageBox.Show(this.ur.Definitions.Name + "の更新を確認しますか？", "アップデート確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+			if (MessageBox.Show($"{this.ur.Definitions.Name}の更新を確認しますか？", "アップデート確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
 			{
 				return;
 			}
@@ -172,7 +156,7 @@ namespace MasaoPlus.Dialogs
 			}
 			catch (Exception ex)
 			{
-				MessageBox.Show("更新できませんでした。" + Environment.NewLine + ex.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+				MessageBox.Show($"更新できませんでした。{Environment.NewLine}{ex.Message}", "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				base.DialogResult = DialogResult.Retry;
 				base.Close();
 			}
@@ -182,7 +166,7 @@ namespace MasaoPlus.Dialogs
 		{
 			if (e.Error != null)
             {
-                MessageBox.Show("更新できませんでした。" + Environment.NewLine + e.Error.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"更新できませんでした。{Environment.NewLine}{e.Error.Message}", "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 base.DialogResult = DialogResult.Retry;
 				base.Close();
 				return;
@@ -194,25 +178,9 @@ namespace MasaoPlus.Dialogs
 			}
 			else if (Global.definition.CheckVersion < updateData.RequireLower)
 			{
-				MessageBox.Show(string.Concat(new string[]
-				{
-					"最新のランタイムはこのバージョンの",
-					Global.definition.AppName,
-					"には対応していません。",
-					Environment.NewLine,
-					"最新版へ更新してください。"
-				}), "更新結果", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show($"最新のランタイムはこのバージョンの{Global.definition.AppName}には対応していません。{Environment.NewLine}最新版へ更新してください。", "更新結果", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 			}
-			else if (MessageBox.Show(string.Concat(new string[]
-			{
-				"新しいランタイムがリリースされています。",
-				Environment.NewLine,
-				this.ur.Definitions.DefVersion.ToString(),
-				" -> ",
-				updateData.DefVersion.ToString(),
-				Environment.NewLine,
-				"更新しますか？"
-			}), "更新の確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+			else if (MessageBox.Show($"新しいランタイムがリリースされています。{Environment.NewLine}{this.ur.Definitions.DefVersion} -> {updateData.DefVersion}{Environment.NewLine}更新しますか？", "更新の確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
 			{
 				this.dlClient.Dispose();
 				this.tempfile = Path.GetTempFileName();
@@ -230,7 +198,7 @@ namespace MasaoPlus.Dialogs
 				catch (Exception ex)
                 {
                     TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
-                    MessageBox.Show("更新できませんでした。" + Environment.NewLine + ex.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    MessageBox.Show($"更新できませんでした。{Environment.NewLine}{ex.Message}", "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
                     base.DialogResult = DialogResult.Retry;
 					base.Close();
@@ -269,7 +237,7 @@ namespace MasaoPlus.Dialogs
 				return;
 			}
 			Runtime runtime = this.runtimedatas[this.RuntimeViewer.SelectedIndices[0]];
-			if (MessageBox.Show(runtime.Definitions.Name + " をアンインストールします。" + Environment.NewLine + "本当によろしいですか？", "アンインストールの警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+			if (MessageBox.Show($"{runtime.Definitions.Name} をアンインストールします。{Environment.NewLine}本当によろしいですか？", "アンインストールの警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
 			{
 				return;
 			}

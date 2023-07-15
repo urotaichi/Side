@@ -107,18 +107,16 @@ namespace MasaoPlus.Dialogs
 					if (!Global.cpd.UseLayer && runtime.Definitions.LayerSize.bytesize != 0)
 					{
 						MessageBox.Show("レイヤー未使用プロジェクトからレイヤー使用プロジェクトへ移行します。" + Environment.NewLine + "レイヤー画像を指定してください。", "レイヤープロジェクトへの移行", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-						using (OpenFileDialog openFileDialog = new OpenFileDialog())
-						{
-							openFileDialog.DefaultExt = "*.gif";
-							openFileDialog.Filter = "gif画像 (*.gif)|*.gif|png画像 (*.png)|*.png|全てのファイル (*.*)|*.*";
-							openFileDialog.InitialDirectory = Global.cpd.where;
-							if (openFileDialog.ShowDialog() != DialogResult.OK)
-							{
-								return;
-							}
-							Global.cpd.project.Config.LayerImage = openFileDialog.FileName;
-						}
-					}
+                        using OpenFileDialog openFileDialog = new OpenFileDialog();
+                        openFileDialog.DefaultExt = "*.gif";
+                        openFileDialog.Filter = "gif画像 (*.gif)|*.gif|png画像 (*.png)|*.png|全てのファイル (*.*)|*.*";
+                        openFileDialog.InitialDirectory = Global.cpd.where;
+                        if (openFileDialog.ShowDialog() != DialogResult.OK)
+                        {
+                            return;
+                        }
+                        Global.cpd.project.Config.LayerImage = openFileDialog.FileName;
+                    }
 					if (MessageBox.Show("移行を開始します。この操作は取り消せません。" + Environment.NewLine + "よろしいですか？", "操作の確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) != DialogResult.Cancel)
 					{
 						this.StateLabel.Text = "プロジェクトを移行しています...";

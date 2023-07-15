@@ -15,12 +15,10 @@ namespace MasaoPlus
 			try
 			{
 				XmlSerializer xmlSerializer = new XmlSerializer(typeof(UpdateData));
-				using (FileStream fileStream = new FileStream(file, FileMode.Open))
-				{
-					UpdateData updateData = (UpdateData)xmlSerializer.Deserialize(fileStream);
-					result = updateData;
-				}
-			}
+                using FileStream fileStream = new FileStream(file, FileMode.Open);
+                UpdateData updateData = (UpdateData)xmlSerializer.Deserialize(fileStream);
+                result = updateData;
+            }
 			catch (Exception ex)
 			{
 				MessageBox.Show("アップデート定義を開けませんでした。" + Environment.NewLine + ex.Message, "オープン失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
@@ -34,11 +32,9 @@ namespace MasaoPlus
 			XmlSerializer xmlSerializer = new XmlSerializer(typeof(UpdateData));
 			try
 			{
-				using (FileStream fileStream = new FileStream(file, FileMode.Create))
-				{
-					xmlSerializer.Serialize(fileStream, this);
-				}
-			}
+                using FileStream fileStream = new FileStream(file, FileMode.Create);
+                xmlSerializer.Serialize(fileStream, this);
+            }
 			catch (Exception ex)
 			{
 				MessageBox.Show("更新データの保存に失敗しました。" + Environment.NewLine + ex.Message, "保存失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);

@@ -426,11 +426,9 @@ namespace MasaoPlus
                         
 					if (!base.Enabled)
 					{
-						using (Brush brush3 = new SolidBrush(Color.FromArgb(160, Color.White)))
-						{
-							e.Graphics.FillRectangle(brush3, e.ClipRectangle);
-						}
-					}
+                        using Brush brush3 = new SolidBrush(Color.FromArgb(160, Color.White));
+                        e.Graphics.FillRectangle(brush3, e.ClipRectangle);
+                    }
 				}
 			}
 			catch

@@ -17,12 +17,10 @@ namespace MasaoPlus
 			try
 			{
 				XmlSerializer xmlSerializer = new XmlSerializer(typeof(Runtime));
-				using (FileStream fileStream = new FileStream(file, FileMode.Open))
-				{
-					Runtime runtime = (Runtime)xmlSerializer.Deserialize(fileStream);
-					result = runtime;
-				}
-			}
+                using FileStream fileStream = new FileStream(file, FileMode.Open);
+                Runtime runtime = (Runtime)xmlSerializer.Deserialize(fileStream);
+                result = runtime;
+            }
 			catch (Exception ex)
 			{
 				MessageBox.Show("ランタイム定義を開けませんでした。" + Environment.NewLine + ex.Message, "オープン失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);

@@ -201,17 +201,15 @@ namespace MasaoPlus
 
 		private void BPSelect_Click(object sender, EventArgs e)
 		{
-			using (System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog())
-			{
-				openFileDialog.CheckFileExists = true;
-				openFileDialog.Filter = "アプリケーション(*.exe)|*.exe";
-				openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-				if (openFileDialog.ShowDialog() == DialogResult.OK)
-				{
-					this.BrowPath.Text = openFileDialog.FileName;
-				}
-			}
-		}
+            using System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            openFileDialog.CheckFileExists = true;
+            openFileDialog.Filter = "アプリケーション(*.exe)|*.exe";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.BrowPath.Text = openFileDialog.FileName;
+            }
+        }
 
 		private bool UseUAC;
 

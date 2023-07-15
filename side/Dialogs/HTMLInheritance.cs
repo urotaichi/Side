@@ -32,7 +32,7 @@ namespace MasaoPlus.Dialogs
 			Application.DoEvents();
 			if (!Directory.Exists(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir)))
 			{
-				MessageBox.Show("ランタイムフォルダが見つかりません。" + Environment.NewLine + "Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+				MessageBox.Show($"ランタイムフォルダが見つかりません。{Environment.NewLine}Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				base.DialogResult = DialogResult.Cancel;
 				base.Close();
 				return;
@@ -67,25 +67,18 @@ namespace MasaoPlus.Dialogs
 							}
 							else
 							{
-								MessageBox.Show(string.Concat(new string[]
-								{
-									"必須ファイルが欠落しています。",
-									Environment.NewLine,
-									Path.GetFileName(text),
-									" : ",
-									string.Join(",", array2)
-								}), "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+								MessageBox.Show($"必須ファイルが欠落しています。{Environment.NewLine}{Path.GetFileName(text)} : {string.Join(",", array2)}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 							}
 						}
 					}
 					else
 					{
-						MessageBox.Show("ランタイムフォルダが見つかりません:" + Path.GetFileName(text), "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+						MessageBox.Show($"ランタイムフォルダが見つかりません:{Path.GetFileName(text)}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 					}
 				}
 				catch (Exception ex)
 				{
-					MessageBox.Show("読み込めませんでした:" + Path.GetFileName(text) + Environment.NewLine + ex.Message, "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+					MessageBox.Show($"読み込めませんでした:{Path.GetFileName(text)}{Environment.NewLine}{ex.Message}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				}
 			}
 			if (this.RuntimeSet.Items.Count == 0)
@@ -104,16 +97,14 @@ namespace MasaoPlus.Dialogs
 
 		private void RootDirBrowse_Click(object sender, EventArgs e)
 		{
-			using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
-			{
-				folderBrowserDialog.Description = "プロジェクトのルートディレクトリを選択してください。";
-				folderBrowserDialog.SelectedPath = this.RootDir.Text;
-				if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-				{
-					this.RootDir.Text = folderBrowserDialog.SelectedPath;
-				}
-			}
-		}
+            using FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.Description = "プロジェクトのルートディレクトリを選択してください。";
+            folderBrowserDialog.SelectedPath = this.RootDir.Text;
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.RootDir.Text = folderBrowserDialog.SelectedPath;
+            }
+        }
 
 		private void ProjectName_TextChanged(object sender, EventArgs e)
 		{
@@ -151,20 +142,7 @@ namespace MasaoPlus.Dialogs
 				this.StatusText.Refresh();
 				Global.config.lastData.ProjDir = this.RootDir.Text;
 				string text = Path.Combine(this.RootDir.Text, this.ProjectName.Text);
-				if (Directory.Exists(text) && MessageBox.Show(string.Concat(new string[]
-				{
-					"ディレクトリ",
-					Environment.NewLine,
-					"\"",
-					text,
-					"\"",
-					Environment.NewLine,
-					"はすでに存在します。",
-					Environment.NewLine,
-					"中に含まれるファイルは上書きされてしまう事があります。",
-					Environment.NewLine,
-					"続行しますか？"
-				}), "プロジェクト生成警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+				if (Directory.Exists(text) && MessageBox.Show($"ディレクトリ{Environment.NewLine}\"{text}\"{Environment.NewLine}はすでに存在します。{Environment.NewLine}中に含まれるファイルは上書きされてしまう事があります。{Environment.NewLine}続行しますか？", "プロジェクト生成警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
 				{
 					return;
 				}
