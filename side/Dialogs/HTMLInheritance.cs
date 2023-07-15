@@ -31,7 +31,6 @@ namespace MasaoPlus.Dialogs
         {
             Application.DoEvents();
             if (!Directory.Exists(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir)))
-
             {
                 MessageBox.Show($"ランタイムフォルダが見つかりません。{Environment.NewLine}Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 DialogResult = DialogResult.Cancel;
@@ -149,10 +148,12 @@ namespace MasaoPlus.Dialogs
                 }
                 ProjectFile = Path.Combine(text, ProjectName.Text + Global.definition.ProjExt);
                 string text2 = Path.Combine(Path.GetDirectoryName(runtimes[RuntimeSet.SelectedIndex]), Path.GetFileNameWithoutExtension(runtimes[RuntimeSet.SelectedIndex]));
-                Project project = new Project();
-                project.Name = ProjectName.Text;
-                project.Runtime = runtimedatas[RuntimeSet.SelectedIndex];
-                project.Config = ConfigurationOwner.LoadXML(Path.Combine(text2, runtimedatas[RuntimeSet.SelectedIndex].Definitions.Configurations));
+                Project project = new Project
+                {
+                    Name = ProjectName.Text,
+                    Runtime = runtimedatas[RuntimeSet.SelectedIndex],
+                    Config = ConfigurationOwner.LoadXML(Path.Combine(text2, runtimedatas[RuntimeSet.SelectedIndex].Definitions.Configurations))
+                };
                 if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                 {
                     project.LayerData = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.LayerSize.y];

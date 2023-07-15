@@ -23,7 +23,7 @@ namespace MasaoPlus
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ランタイム定義を開けませんでした。" + Environment.NewLine + ex.Message, "オープン失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"ランタイム定義を開けませんでした。{Environment.NewLine}{ex.Message}", "オープン失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 result = null;
             }
             return result;

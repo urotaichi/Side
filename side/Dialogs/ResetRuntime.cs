@@ -26,7 +26,7 @@ namespace MasaoPlus.Dialogs
                 StateLabel.Refresh();
                 if (!Directory.Exists(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir)))
                 {
-                    MessageBox.Show("ランタイムフォルダが見つかりません。" + Environment.NewLine + "Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    MessageBox.Show($"ランタイムフォルダが見つかりません。{Environment.NewLine}Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     DialogResult = DialogResult.Cancel;
                     Close();
                 }
@@ -55,24 +55,17 @@ namespace MasaoPlus.Dialogs
                                 }
                                 else
                                 {
-                                    MessageBox.Show(string.Concat(new string[]
-                                    {
-                                        "必須ファイルが欠落しています。",
-                                        Environment.NewLine,
-                                        Path.GetFileName(text),
-                                        " : ",
-                                        string.Join(",", array2)
-                                    }), "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                                    MessageBox.Show($"必須ファイルが欠落しています。{Environment.NewLine}{Path.GetFileName(text)} : {string.Join(",", array2)}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("ランタイムフォルダが見つかりません:" + Path.GetFileName(text), "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                                MessageBox.Show($"ランタイムフォルダが見つかりません:{Path.GetFileName(text)}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                             }
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("読み込めませんでした:" + Path.GetFileName(text) + Environment.NewLine + ex.Message, "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            MessageBox.Show($"読み込めませんでした:{Path.GetFileName(text)}{Environment.NewLine}{ex.Message}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                         }
                     }
                     if (RuntimeView.Items.Count == 0)
@@ -106,7 +99,7 @@ namespace MasaoPlus.Dialogs
                     string nRPath = runtimes[RuntimeView.SelectedIndices[0]];
                     if (!Global.cpd.UseLayer && runtime.Definitions.LayerSize.bytesize != 0)
                     {
-                        MessageBox.Show("レイヤー未使用プロジェクトからレイヤー使用プロジェクトへ移行します。" + Environment.NewLine + "レイヤー画像を指定してください。", "レイヤープロジェクトへの移行", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        MessageBox.Show($"レイヤー未使用プロジェクトからレイヤー使用プロジェクトへ移行します。{Environment.NewLine}レイヤー画像を指定してください。", "レイヤープロジェクトへの移行", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         using OpenFileDialog openFileDialog = new OpenFileDialog();
                         openFileDialog.DefaultExt = "*.gif";
                         openFileDialog.Filter = "gif画像 (*.gif)|*.gif|png画像 (*.png)|*.png|全てのファイル (*.*)|*.*";
@@ -117,7 +110,7 @@ namespace MasaoPlus.Dialogs
                         }
                         Global.cpd.project.Config.LayerImage = openFileDialog.FileName;
                     }
-                    if (MessageBox.Show("移行を開始します。この操作は取り消せません。" + Environment.NewLine + "よろしいですか？", "操作の確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) != DialogResult.Cancel)
+                    if (MessageBox.Show($"移行を開始します。この操作は取り消せません。{Environment.NewLine}よろしいですか？", "操作の確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) != DialogResult.Cancel)
                     {
                         StateLabel.Text = "プロジェクトを移行しています...";
                         StateLabel.Refresh();
@@ -139,14 +132,7 @@ namespace MasaoPlus.Dialogs
 
         private void NoTouch_CheckedChanged(object sender, EventArgs e)
         {
-            if (NoTouch.Checked && MessageBox.Show(string.Concat(new string[]
-            {
-                "データを移行しないと、編集できなくなったり、破損したりする恐れがあります。",
-                Environment.NewLine,
-                "データを完全を失ってしまう事もあるかもしれません。",
-                Environment.NewLine,
-                "本当にいいんですか？"
-            }), "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+            if (NoTouch.Checked && MessageBox.Show($"データを移行しないと、編集できなくなったり、破損したりする恐れがあります。{Environment.NewLine}データを完全を失ってしまう事もあるかもしれません。{Environment.NewLine}本当にいいんですか？", "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
             {
                 NoTouch.Checked = false;
             }
@@ -157,7 +143,7 @@ namespace MasaoPlus.Dialogs
         private void MoveProject(string nRPath, Runtime nR)
         {
             Project project = new Project();
-            ChipDataClass chipDataClass = null;
+            ChipDataClass chipDataClass;
             try
             {
                 project.Config = ConfigurationOwner.LoadXML(Path.Combine(Path.Combine(Path.GetDirectoryName(nRPath), Path.GetFileNameWithoutExtension(nRPath)), nR.Definitions.Configurations));
@@ -166,7 +152,7 @@ namespace MasaoPlus.Dialogs
             }
             catch
             {
-                MessageBox.Show("移行に失敗しました。" + Environment.NewLine + "移行先の設定が読み込めませんでした。", "移行失敗", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand);
+                MessageBox.Show($"移行に失敗しました。{Environment.NewLine}移行先の設定が読み込めませんでした。", "移行失敗", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand);
                 return;
             }
             StateLabel.Text = "設定を移行しています...";
@@ -175,14 +161,7 @@ namespace MasaoPlus.Dialogs
             int num2 = 0;
             foreach (ConfigParam configParam in project.Config.Configurations)
             {
-                StateLabel.Text = string.Concat(new object[]
-                {
-                    "設定を移行しています...(",
-                    num2.ToString(),
-                    "/",
-                    project.Config.Configurations.Length,
-                    ")"
-                });
+                StateLabel.Text = $"設定を移行しています...({num2}/{project.Config.Configurations.Length})";
                 StateLabel.Refresh();
                 bool flag = false;
                 foreach (ConfigParam configParam2 in Global.cpd.project.Config.Configurations)
@@ -253,14 +232,7 @@ namespace MasaoPlus.Dialogs
                     string text3 = Path.Combine(Global.cpd.where, Path.GetFileName(text2));
                     if (File.Exists(text3))
                     {
-                        if (MessageBox.Show(string.Concat(new string[]
-                        {
-                            text3,
-                            Environment.NewLine,
-                            "はすでに存在しています。",
-                            Environment.NewLine,
-                            "上書きしますか？"
-                        }), "上書きの警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+                        if (MessageBox.Show($"{text3}{Environment.NewLine}はすでに存在しています。{Environment.NewLine}上書きしますか？", "上書きの警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
                         {
                             goto IL_B9B;
                         }
@@ -271,7 +243,7 @@ namespace MasaoPlus.Dialogs
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("ファイルのコピーに失敗しました。" + Environment.NewLine + ex.Message, "コピー失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        MessageBox.Show($"ファイルのコピーに失敗しました。{Environment.NewLine}{ex.Message}", "コピー失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     }
                 }
             IL_B9B:;
@@ -309,14 +281,7 @@ namespace MasaoPlus.Dialogs
 
             for (int k = 0; k < project.Runtime.Definitions.StageSize.y; k++)
             {
-                StateLabel.Text = string.Concat(new string[]
-                {
-                        "ステージを移行しています...(",
-                        k.ToString(),
-                        "/",
-                        project.Runtime.Definitions.StageSize.y.ToString(),
-                        ")"
-                });
+                StateLabel.Text = $"ステージを移行しています...({k}/{project.Runtime.Definitions.StageSize.y})";
                 StateLabel.Refresh();
                 StringBuilder stringBuilder = new StringBuilder();
                 if (k < StageData.Length)
@@ -400,14 +365,7 @@ namespace MasaoPlus.Dialogs
 
             for (int num6 = 0; num6 < project.Runtime.Definitions.LayerSize.y; num6++)
             {
-                StateLabel.Text = string.Concat(new string[]
-                {
-                            "レイヤーを移行しています...(",
-                            num6.ToString(),
-                            "/",
-                            project.Runtime.Definitions.LayerSize.y.ToString(),
-                            ")"
-                });
+                StateLabel.Text = $"レイヤーを移行しています...({num6}/{project.Runtime.Definitions.LayerSize.y})";
                 StateLabel.Refresh();
                 StringBuilder stringBuilder = new StringBuilder();
                 if (Global.cpd.UseLayer)
@@ -505,14 +463,7 @@ namespace MasaoPlus.Dialogs
 
             for (int k = 0; k < project.Runtime.Definitions.MapSize.y; k++)
             {
-                StateLabel.Text = string.Concat(new string[]
-                {
-                        "地図画面を移行しています...(",
-                        k.ToString(),
-                        "/",
-                        project.Runtime.Definitions.MapSize.y.ToString(),
-                        ")"
-                });
+                StateLabel.Text = $"地図画面を移行しています...({k}/{project.Runtime.Definitions.MapSize.y})";
                 StateLabel.Refresh();
                 StringBuilder stringBuilder = new StringBuilder();
                 if (k < MapData.Length)

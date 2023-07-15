@@ -60,10 +60,12 @@ namespace MasaoPlus.Dialogs
             Enabled = false;
             OKBtn.Text = "生成中...";
             OKBtn.Refresh();
-            Project project = new Project();
-            project.Name = NewProjName.Text;
-            project.Runtime = PrevProject.Runtime;
-            project.Config = PrevProject.Config;
+            Project project = new Project
+            {
+                Name = NewProjName.Text,
+                Runtime = PrevProject.Runtime,
+                Config = PrevProject.Config
+            };
             if (PrevProject.Runtime.Definitions.LayerSize.bytesize != 0)
             {
                 project.LayerData = new string[PrevProject.Runtime.Definitions.LayerSize.y];

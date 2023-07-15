@@ -112,12 +112,14 @@ namespace MasaoPlus
                 RegistProjFile.Enabled = false;
                 if (UseUAC)
                 {
-                    ProcessStartInfo processStartInfo = new ProcessStartInfo();
-                    processStartInfo.UseShellExecute = true;
-                    processStartInfo.WorkingDirectory = Application.StartupPath;
-                    processStartInfo.FileName = Path.GetFileName(Application.ExecutablePath);
-                    processStartInfo.Arguments = "/reg";
-                    processStartInfo.Verb = "runas";
+                    ProcessStartInfo processStartInfo = new ProcessStartInfo
+                    {
+                        UseShellExecute = true,
+                        WorkingDirectory = Application.StartupPath,
+                        FileName = Path.GetFileName(Application.ExecutablePath),
+                        Arguments = "/reg",
+                        Verb = "runas"
+                    };
                     try
                     {
                         Process process = Process.Start(processStartInfo);
@@ -127,7 +129,7 @@ namespace MasaoPlus
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("関連付けを実行できませんでした。" + Environment.NewLine + ex.Message, "関連付け処理失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        MessageBox.Show($"関連付けを実行できませんでした。{Environment.NewLine}{ex.Message}", "関連付け処理失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                         goto IL_AE;
                     }
                 }
@@ -149,12 +151,14 @@ namespace MasaoPlus
                 RegistProjFile.Enabled = false;
                 if (UseUAC)
                 {
-                    ProcessStartInfo processStartInfo = new ProcessStartInfo();
-                    processStartInfo.UseShellExecute = true;
-                    processStartInfo.WorkingDirectory = Application.StartupPath;
-                    processStartInfo.FileName = Path.GetFileName(Application.ExecutablePath);
-                    processStartInfo.Arguments = "/unreg";
-                    processStartInfo.Verb = "runas";
+                    ProcessStartInfo processStartInfo = new ProcessStartInfo
+                    {
+                        UseShellExecute = true,
+                        WorkingDirectory = Application.StartupPath,
+                        FileName = Path.GetFileName(Application.ExecutablePath),
+                        Arguments = "/unreg",
+                        Verb = "runas"
+                    };
                     try
                     {
                         Process process = Process.Start(processStartInfo);
@@ -164,7 +168,7 @@ namespace MasaoPlus
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("関連付けを実行できませんでした。" + Environment.NewLine + ex.Message, "関連付け処理失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        MessageBox.Show($"関連付けを実行できませんでした。{Environment.NewLine}{ex.Message}", "関連付け処理失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                         goto IL_AE;
                     }
                 }
@@ -190,7 +194,7 @@ namespace MasaoPlus
         {
             if (ReuseDraw.Checked)
             {
-                if (FormShown && MessageBox.Show("この機能は未だ多くの問題を抱えています。" + Environment.NewLine + "本当にオンにしますか？", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+                if (FormShown && MessageBox.Show($"この機能は未だ多くの問題を抱えています。{Environment.NewLine}本当にオンにしますか？", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
                 {
                     ReuseDraw.Checked = false;
                     return;

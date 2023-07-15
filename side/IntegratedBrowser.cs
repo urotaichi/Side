@@ -17,7 +17,7 @@ namespace MasaoPlus
             InitializeAsync();
         }
 
-        private void Browser_StatusTextChanged(object sender, Object e)
+        private void Browser_StatusTextChanged(object sender, object e)
         {
             Status.Text = Browser.CoreWebView2.StatusBarText;
         }
@@ -43,7 +43,7 @@ namespace MasaoPlus
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("ブラウザを起動できませんでした。" + Environment.NewLine + ex.Message, "外部アプリケーション起動エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    MessageBox.Show($"ブラウザを起動できませんでした。{Environment.NewLine}{ex.Message}", "外部アプリケーション起動エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 }
                 return true;
             }
@@ -123,7 +123,7 @@ namespace MasaoPlus
             }
             catch (Exception ex)
             {
-                MessageBox.Show("ブラウザを起動できませんでした。" + Environment.NewLine + ex.Message, "外部アプリケーション起動エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"ブラウザを起動できませんでした。{Environment.NewLine}{ex.Message}", "外部アプリケーション起動エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
 

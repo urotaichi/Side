@@ -19,7 +19,7 @@
 			this.MainTab = new global::System.Windows.Forms.TabControl();
 			this.A = new global::System.Windows.Forms.TabPage();
             this.UseWorldmap = new global::System.Windows.Forms.CheckBox();
-            this.Use3rdMapData = new global::System.Windows.Forms.CheckBox();
+            if (!Global.cpd.runtime.Definitions.Package.Contains("28")) this.Use3rdMapData = new global::System.Windows.Forms.CheckBox();
 			this.label17 = new global::System.Windows.Forms.Label();
 			this.label15 = new global::System.Windows.Forms.Label();
 			this.ProjNum = new global::System.Windows.Forms.NumericUpDown();
@@ -147,13 +147,16 @@
 			this.UseWorldmap.TabIndex = 10;
 			this.UseWorldmap.Text = "マップを利用してステージ選択する(&M)";
 			this.UseWorldmap.UseVisualStyleBackColor = true;
-            this.Use3rdMapData.AutoSize = true;
-            this.Use3rdMapData.Location = new global::System.Drawing.Point(6, 125);
-            this.Use3rdMapData.Name = "Use3rdMapData";
-            this.Use3rdMapData.Size = new global::System.Drawing.Size(198, 16);
-            this.Use3rdMapData.TabIndex = 10;
-            this.Use3rdMapData.Text = "第3版マップデータを有効にする(FX版のみ)(&L)";
-            this.Use3rdMapData.UseVisualStyleBackColor = true;
+			if (!Global.cpd.runtime.Definitions.Package.Contains("28"))
+            {
+                this.Use3rdMapData.AutoSize = true;
+                this.Use3rdMapData.Location = new global::System.Drawing.Point(6, 125);
+                this.Use3rdMapData.Name = "Use3rdMapData";
+                this.Use3rdMapData.Size = new global::System.Drawing.Size(198, 16);
+                this.Use3rdMapData.TabIndex = 10;
+                this.Use3rdMapData.Text = "第3版マップデータを有効にする(FX版のみ)(&L)";
+                this.Use3rdMapData.UseVisualStyleBackColor = true;
+            }
             this.label17.AutoSize = true;
 			this.label17.Location = new global::System.Drawing.Point(88, 53);
 			this.label17.Name = "label17";

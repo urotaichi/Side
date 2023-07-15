@@ -50,7 +50,7 @@ namespace MasaoPlus
                     {
                         if (Subsystem.InstallRuntime(text))
                         {
-                            MessageBox.Show("指定されたランタイム " + Path.GetFileName(text) + " をインストールしました。", "新しいランタイムのインストール", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                            MessageBox.Show($"指定されたランタイム {Path.GetFileName(text)} をインストールしました。", "新しいランタイムのインストール", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         }
                         Global.state.ParseCommandline = true;
                     }
@@ -68,9 +68,7 @@ namespace MasaoPlus
 
                     if (key == null || key.GetValue("pv") == null)
                     {
-                        DialogResult result = MessageBox.Show("Sideを起動するにはWebView2 ランタイムのインストールが必要です。" + Environment.NewLine +
-                            "WebView2 ランタイムをインストールします。" + Environment.NewLine +
-                            "(インストール後、PCの再起動が必要な場合があります)",
+                        DialogResult result = MessageBox.Show($"Sideを起動するにはWebView2 ランタイムのインストールが必要です。{Environment.NewLine}WebView2 ランタイムをインストールします。{Environment.NewLine}(インストール後、PCの再起動が必要な場合があります)",
                             "WebView2 ランタイムのインストール",
                             MessageBoxButtons.YesNo);
                         if (result == DialogResult.Yes)
@@ -99,7 +97,7 @@ namespace MasaoPlus
                 {
                     using StreamWriter streamWriter = new StreamWriter(Global.definition.Dump, true);
                     streamWriter.WriteLine("------------------------------------------------------------");
-                    streamWriter.WriteLine("| Reported:" + DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"));
+                    streamWriter.WriteLine($"| Reported:{DateTime.Now:yyyy/MM/dd HH:mm:ss}");
                     streamWriter.WriteLine("------------------------------------------------------------");
                     streamWriter.WriteLine(ex.Message);
                     streamWriter.WriteLine(ex.Source);
@@ -112,20 +110,7 @@ namespace MasaoPlus
                     MessageBox.Show("Error Dump Output Failed.", "Error Handling Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     Application.Exit();
                 }
-                MessageBox.Show(string.Concat(new string[]
-                {
-                    Global.definition.AppName,
-                    "に致命的な障害が発生しました。",
-                    Environment.NewLine,
-                    Environment.NewLine,
-                    ex.Message,
-                    Environment.NewLine,
-                    "強制終了します。ご迷惑をお掛けし、申し訳ございません。",
-                    Environment.NewLine,
-                    Environment.NewLine,
-                    Global.definition.Dump,
-                    "にエラーダンプを出力しました。"
-                }), Global.definition.AppNameFull + " Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"{Global.definition.AppName}に致命的な障害が発生しました。{Environment.NewLine}{Environment.NewLine}{ex.Message}{Environment.NewLine}強制終了します。ご迷惑をお掛けし、申し訳ございません。{Environment.NewLine}{Environment.NewLine}{Global.definition.Dump}にエラーダンプを出力しました。", $"{Global.definition.AppNameFull} Fatal Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 try
                 {
                     Process.Start("notepad", Global.definition.Dump);

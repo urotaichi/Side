@@ -705,10 +705,10 @@ namespace MasaoPlus
             {
                 array = Global.cpd.Layerchip;
             }
-            ChipData chipData = default;
+
             foreach (ChipsData chipsData in array)
             {
-                chipData = chipsData.GetCSChip();
+                ChipData chipData = chipsData.GetCSChip();
                 if (chipData.description == "")
                 {
                     ChipList.Items.Add(chipData.name);
@@ -718,93 +718,37 @@ namespace MasaoPlus
                     string description;
                     if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
                     {
-                        switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+                        description = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
                         {
-                            case 1:
-                                description = "停止";
-                                break;
-                            case 2:
-                                description = "左右移動";
-                                break;
-                            case 3:
-                                description = "上下移動";
-                                break;
-                            case 4:
-                                description = "左回り";
-                                break;
-                            case 5:
-                                description = "右回り";
-                                break;
-                            case 6:
-                                description = "四角形左回り";
-                                break;
-                            case 7:
-                                description = "四角形右回り";
-                                break;
-                            case 8:
-                                description = "HPが半分になると左へ移動";
-                                break;
-                            case 9:
-                                description = "HPが減ると左と右へ移動";
-                                break;
-                            case 10:
-                                description = "HPが半分になると上へ移動";
-                                break;
-                            case 11:
-                                description = "HPが減ると上と下へ移動";
-                                break;
-                            case 12:
-                                description = "HPが半分になると下へ移動";
-                                break;
-                            case 13:
-                                description = "HPが減ると下と上へ移動";
-                                break;
-                            case 14:
-                                description = "画面の端で方向転換";
-                                break;
-                            case 15:
-                                description = "ジグザグ移動";
-                                break;
-                            case 16:
-                                description = "画面の内側を左回り";
-                                break;
-                            case 17:
-                                description = "画面の内側を右回り";
-                                break;
-                            case 18:
-                                description = "HPが半分以下になると左右移動";
-                                break;
-                            case 19:
-                                description = "HPが1/3以下になると左右移動";
-                                break;
-                            case 20:
-                                description = "HPが半分以下になると左回り";
-                                break;
-                            case 21:
-                                description = "HPが1/3以下になると左回り";
-                                break;
-                            case 22:
-                                description = "斜め上へ往復";
-                                break;
-                            case 23:
-                                description = "斜め下へ往復";
-                                break;
-                            case 24:
-                                description = "中央で停止";
-                                break;
-                            case 25:
-                                description = "中央で停止 主人公の方を向く";
-                                break;
-                            case 26:
-                                description = "巨大化  中央から";
-                                break;
-                            case 27:
-                                description = "巨大化  右から";
-                                break;
-                            default:
-                                description = "";
-                                break;
-                        }
+                            1 => "停止",
+                            2 => "左右移動",
+                            3 => "上下移動",
+                            4 => "左回り",
+                            5 => "右回り",
+                            6 => "四角形左回り",
+                            7 => "四角形右回り",
+                            8 => "HPが半分になると左へ移動",
+                            9 => "HPが減ると左と右へ移動",
+                            10 => "HPが半分になると上へ移動",
+                            11 => "HPが減ると上と下へ移動",
+                            12 => "HPが半分になると下へ移動",
+                            13 => "HPが減ると下と上へ移動",
+                            14 => "画面の端で方向転換",
+                            15 => "ジグザグ移動",
+                            16 => "画面の内側を左回り",
+                            17 => "画面の内側を右回り",
+                            18 => "HPが半分以下になると左右移動",
+                            19 => "HPが1/3以下になると左右移動",
+                            20 => "HPが半分以下になると左回り",
+                            21 => "HPが1/3以下になると左回り",
+                            22 => "斜め上へ往復",
+                            23 => "斜め下へ往復",
+                            24 => "中央で停止",
+                            25 => "中央で停止 主人公の方を向く",
+                            26 => "巨大化  中央から",
+                            27 => "巨大化  右から",
+                            _ => "",
+                        };
                     }
                     else description = "";
 
@@ -952,93 +896,37 @@ namespace MasaoPlus
                     string description;
                     if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
                     {
-                        switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+                        description = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
                         {
-                            case 1:
-                                description = "停止";
-                                break;
-                            case 2:
-                                description = "左右移動";
-                                break;
-                            case 3:
-                                description = "上下移動";
-                                break;
-                            case 4:
-                                description = "左回り";
-                                break;
-                            case 5:
-                                description = "右回り";
-                                break;
-                            case 6:
-                                description = "四角形左回り";
-                                break;
-                            case 7:
-                                description = "四角形右回り";
-                                break;
-                            case 8:
-                                description = "HPが半分になると左へ移動";
-                                break;
-                            case 9:
-                                description = "HPが減ると左と右へ移動";
-                                break;
-                            case 10:
-                                description = "HPが半分になると上へ移動";
-                                break;
-                            case 11:
-                                description = "HPが減ると上と下へ移動";
-                                break;
-                            case 12:
-                                description = "HPが半分になると下へ移動";
-                                break;
-                            case 13:
-                                description = "HPが減ると下と上へ移動";
-                                break;
-                            case 14:
-                                description = "画面の端で方向転換";
-                                break;
-                            case 15:
-                                description = "ジグザグ移動";
-                                break;
-                            case 16:
-                                description = "画面の内側を左回り";
-                                break;
-                            case 17:
-                                description = "画面の内側を右回り";
-                                break;
-                            case 18:
-                                description = "HPが半分以下になると左右移動";
-                                break;
-                            case 19:
-                                description = "HPが1/3以下になると左右移動";
-                                break;
-                            case 20:
-                                description = "HPが半分以下になると左回り";
-                                break;
-                            case 21:
-                                description = "HPが1/3以下になると左回り";
-                                break;
-                            case 22:
-                                description = "斜め上へ往復";
-                                break;
-                            case 23:
-                                description = "斜め下へ往復";
-                                break;
-                            case 24:
-                                description = "中央で停止";
-                                break;
-                            case 25:
-                                description = "中央で停止 主人公の方を向く";
-                                break;
-                            case 26:
-                                description = "巨大化  中央から";
-                                break;
-                            case 27:
-                                description = "巨大化  右から";
-                                break;
-                            default:
-                                description = "";
-                                break;
-                        }
+                            1 => "停止",
+                            2 => "左右移動",
+                            3 => "上下移動",
+                            4 => "左回り",
+                            5 => "右回り",
+                            6 => "四角形左回り",
+                            7 => "四角形右回り",
+                            8 => "HPが半分になると左へ移動",
+                            9 => "HPが減ると左と右へ移動",
+                            10 => "HPが半分になると上へ移動",
+                            11 => "HPが減ると上と下へ移動",
+                            12 => "HPが半分になると下へ移動",
+                            13 => "HPが減ると下と上へ移動",
+                            14 => "画面の端で方向転換",
+                            15 => "ジグザグ移動",
+                            16 => "画面の内側を左回り",
+                            17 => "画面の内側を右回り",
+                            18 => "HPが半分以下になると左右移動",
+                            19 => "HPが1/3以下になると左右移動",
+                            20 => "HPが半分以下になると左回り",
+                            21 => "HPが1/3以下になると左回り",
+                            22 => "斜め上へ往復",
+                            23 => "斜め下へ往復",
+                            24 => "中央で停止",
+                            25 => "中央で停止 主人公の方を向く",
+                            26 => "巨大化  中央から",
+                            27 => "巨大化  右から",
+                            _ => "",
+                        };
                     }
                     else description = "";
 
@@ -1481,9 +1369,9 @@ namespace MasaoPlus
         public void MoveMainDesigner(Size Scroll)
         {
             State state = Global.state;
-            state.MapPoint.X = state.MapPoint.X + Scroll.Width;
+            state.MapPoint.X += Scroll.Width;
             State state2 = Global.state;
-            state2.MapPoint.Y = state2.MapPoint.Y + Scroll.Height;
+            state2.MapPoint.Y += Scroll.Height;
             Global.state.AdjustMapPoint();
             Global.MainWnd.CommitScrollbar();
             MainDesigner.Refresh();
@@ -2042,7 +1930,7 @@ namespace MasaoPlus
             saveFileDialog.FileName = Path.GetFileName(Global.cpd.filename);
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                DialogResult dialogResult = MessageBox.Show("保存先のディレクトリに元のディレクトリのファイルをコピーしますか？" + Environment.NewLine + "移動しないとテスト実行に失敗したり、編集に失敗したりする恐れがあります。", "ファイルのコピー", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                DialogResult dialogResult = MessageBox.Show($"保存先のディレクトリに元のディレクトリのファイルをコピーしますか？{Environment.NewLine}移動しないとテスト実行に失敗したり、編集に失敗したりする恐れがあります。", "ファイルのコピー", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (dialogResult == DialogResult.Yes)
                 {
                     foreach (string text in Directory.GetFiles(Global.cpd.where, "*", SearchOption.TopDirectoryOnly))

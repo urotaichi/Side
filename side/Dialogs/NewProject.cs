@@ -331,10 +331,12 @@ namespace MasaoPlus.Dialogs
                 }
                 string text2 = Path.Combine(text, ProjectName.Text + Global.definition.ProjExt);
                 string text3 = Path.Combine(Path.GetDirectoryName(runtimes[RuntimeSet.SelectedIndex]), Path.GetFileNameWithoutExtension(runtimes[RuntimeSet.SelectedIndex]));
-                Project project = new Project();
-                project.Name = ProjectName.Text;
-                project.Runtime = runtimedatas[RuntimeSet.SelectedIndex];
-                project.Config = ConfigurationOwner.LoadXML(Path.Combine(text3, runtimedatas[RuntimeSet.SelectedIndex].Definitions.Configurations));
+                Project project = new Project
+                {
+                    Name = ProjectName.Text,
+                    Runtime = runtimedatas[RuntimeSet.SelectedIndex],
+                    Config = ConfigurationOwner.LoadXML(Path.Combine(text3, runtimedatas[RuntimeSet.SelectedIndex].Definitions.Configurations))
+                };
                 if (TitleImage.Text != "")
                 {
                     list.Add(project.Config.TitleImage);

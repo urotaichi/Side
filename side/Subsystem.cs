@@ -49,7 +49,7 @@ namespace MasaoPlus
             {
                 foreach (HTMLReplaceData htmlreplaceData in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
                 {
-                    text = text.Replace("<?" + htmlreplaceData.Name + ">", htmlreplaceData.Value);
+                    text = text.Replace($"<?{htmlreplaceData.Name}>", htmlreplaceData.Value);
                 }
             }
             foreach (string value in text.Split(new string[]
@@ -436,24 +436,31 @@ namespace MasaoPlus
                         case "backcolor_@_s":
                         case "backcolor_@_t":
                         case "backcolor_@_f":
+                        case "message_name_@":
                             if (configParam.Value == "0,255,255") goto IL_718;
                             else break;
                         case "kaishi_@":
+                        case "message_back_@":
                             if (configParam.Value == "0,0,0") goto IL_718;
                             else break;
                         case "scorecolor_@":
                             if (configParam.Value == "0,0,255") goto IL_718;
                             else break;
                         case "grenade_@1":
+                        case "message_border_@":
+                        case "message_text_@":
+                        case "gauge_border_@":
                             if (configParam.Value == "255,255,255") goto IL_718;
                             else break;
                         case "grenade_@2":
+                        case "gauge_back_@1":
                             if (configParam.Value == "255,255,0") goto IL_718;
                             else break;
                         case "mizunohadou_@":
                             if (configParam.Value == "0,32,255") goto IL_718;
                             else break;
                         case "firebar_@1":
+                        case "gauge_back_@2":
                             if (configParam.Value == "255,0,0") goto IL_718;
                             else break;
                         case "firebar_@2":

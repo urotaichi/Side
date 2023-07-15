@@ -12,35 +12,22 @@ namespace MasaoPlus
         {
             get
             {
-                string typestr;
-                switch (typestr = Typestr)
+                return Typestr switch
                 {
-                    case "bool":
-                        return Types.b;
-                    case "bool21":
-                        return Types.b2;
-                    case "bool10":
-                        return Types.b0;
-                    case "int":
-                        return Types.i;
-                    case "string":
-                        return Types.s;
-                    case "text":
-                        return Types.t;
-                    case "file":
-                        return Types.f;
-                    case "file_img":
-                        return Types.f_i;
-                    case "file_audio":
-                        return Types.f_a;
-                    case "list":
-                        return Types.l;
-                    case "list_athletic":
-                        return Types.l_a;
-                    case "color":
-                        return Types.c;
-                }
-                return Types.UnKnown;
+                    "bool" => Types.b,
+                    "bool21" => Types.b2,
+                    "bool10" => Types.b0,
+                    "int" => Types.i,
+                    "string" => Types.s,
+                    "text" => Types.t,
+                    "file" => Types.f,
+                    "file_img" => Types.f_i,
+                    "file_audio" => Types.f_a,
+                    "list" => Types.l,
+                    "list_athletic" => Types.l_a,
+                    "color" => Types.c,
+                    _ => Types.UnKnown,
+                };
             }
         }
 

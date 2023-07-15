@@ -156,7 +156,6 @@ namespace MasaoPlus
                         default:
                             return;
                     }
-                    break;
             }
         }
 
@@ -187,9 +186,9 @@ namespace MasaoPlus
             int num = StageTextEditor.GetFirstCharIndexOfCurrentLine();
             int lineFromCharIndex = StageTextEditor.GetLineFromCharIndex(num);
             num = StageTextEditor.SelectionStart - num;
-            TextPositionInfo.Text = lineFromCharIndex.ToString() + "行 " + num.ToString() + "文字";
+            TextPositionInfo.Text = $"{lineFromCharIndex}行 {num}文字";
             int length = StageTextEditor.Lines[lineFromCharIndex].Length;
-            LineInfo.Text = StageTextEditor.Lines.Length.ToString() + "行 " + length.ToString() + "文字";
+            LineInfo.Text = $"{StageTextEditor.Lines.Length}行 {length}文字";
             if (length == Global.state.GetCByteWidth)
             {
                 TextStatus.Text = "完了";
@@ -198,11 +197,11 @@ namespace MasaoPlus
             if (length > Global.state.GetCByteWidth)
             {
                 int num2 = length - Global.state.GetCByteWidth;
-                TextStatus.Text = "現在の行は" + num2.ToString() + "文字過剰です。";
+                TextStatus.Text = $"現在の行は{num2}文字過剰です。";
                 return;
             }
             int num3 = Global.state.GetCByteWidth - length;
-            TextStatus.Text = "現在の行は" + num3.ToString() + "文字足りていません。";
+            TextStatus.Text = $"現在の行は{num3}文字足りていません。";
         }
 
         private void TextLineNo_Paint(object sender, PaintEventArgs e)

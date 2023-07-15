@@ -34,7 +34,7 @@ namespace MasaoPlus.Dialogs
             MapF.Text = Global.cpd.runtime.DefaultConfigurations.MapParam;
             ProjNum.Value = Global.cpd.project.Config.StageNum;
             UseWorldmap.Checked = Global.cpd.project.Config.UseWorldmap;
-            Use3rdMapData.Checked = Global.cpd.project.Use3rdMapData;
+            if (!Global.cpd.runtime.Definitions.Package.Contains("28")) Use3rdMapData.Checked = Global.cpd.project.Use3rdMapData;
 
             OutHeader.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
             OutMiddle.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.MiddleHTML);
@@ -74,7 +74,7 @@ namespace MasaoPlus.Dialogs
             Global.cpd.runtime.DefaultConfigurations.FooterHTML = Subsystem.EncodeBase64(OutFooter.Text);
 
             Global.cpd.project.Config.UseWorldmap = UseWorldmap.Checked;
-            if (Global.cpd.project.Use3rdMapData = Use3rdMapData.Checked)
+            if (!Global.cpd.runtime.Definitions.Package.Contains("28") && (Global.cpd.project.Use3rdMapData = Use3rdMapData.Checked))
             {
                 Project.Convert3rdMapData(Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize.bytesize);
                 Project.Convert3rdMapData(Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize.bytesize);

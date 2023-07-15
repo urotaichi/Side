@@ -915,12 +915,14 @@ namespace MasaoPlus
             Bitmap bitmap = new Bitmap(b.Width, b.Height, PixelFormat.Format32bppArgb);
             using (Graphics graphics = Graphics.FromImage(bitmap))
             {
-                ColorMatrix colorMatrix = new ColorMatrix();
-                colorMatrix.Matrix00 = 1f;
-                colorMatrix.Matrix11 = 1f;
-                colorMatrix.Matrix22 = 1f;
-                colorMatrix.Matrix33 = 0.5f;
-                colorMatrix.Matrix44 = 1f;
+                ColorMatrix colorMatrix = new ColorMatrix
+                {
+                    Matrix00 = 1f,
+                    Matrix11 = 1f,
+                    Matrix22 = 1f,
+                    Matrix33 = 0.5f,
+                    Matrix44 = 1f
+                };
                 using ImageAttributes imageAttributes = new ImageAttributes();
                 imageAttributes.SetColorMatrix(colorMatrix);
                 graphics.DrawImage(b, new Rectangle(0, 0, b.Width, b.Height), 0, 0, b.Width, b.Height, GraphicsUnit.Pixel, imageAttributes);
@@ -1439,7 +1441,6 @@ namespace MasaoPlus
                                     default:
                                         return;
                                 }
-                                break;
                         }
                     }
                     else
@@ -1584,7 +1585,6 @@ namespace MasaoPlus
                         default:
                             return;
                     }
-                    break;
             }
         }
 
@@ -1769,7 +1769,7 @@ namespace MasaoPlus
         }
 
         // マップ文字列から特定の座標の文字(String型)を取り出す。通常は1文字。レイヤーは2文字。
-        private String getMapChipString(int x, int y, List<char[]> newmap)
+        private string getMapChipString(int x, int y, List<char[]> newmap)
         {
             var c = new char[Global.state.GetCByte];
 
@@ -1778,7 +1778,7 @@ namespace MasaoPlus
                 c[i] = newmap[y][x * Global.state.GetCByte + i];
             }
 
-            return new String(c);
+            return new string(c);
         }
 
         private void GUIDesigner_MouseMove(object sender, MouseEventArgs e)
@@ -1835,9 +1835,9 @@ namespace MasaoPlus
                                         Size size = new Size(MouseStartPoint.X - e.X, MouseStartPoint.Y - e.Y);
                                         MouseStartPoint = new Point(e.X, e.Y);
                                         State state = Global.state;
-                                        state.MapPoint.X = state.MapPoint.X + size.Width;
+                                        state.MapPoint.X += size.Width;
                                         State state2 = Global.state;
-                                        state2.MapPoint.Y = state2.MapPoint.Y + size.Height;
+                                        state2.MapPoint.Y += size.Height;
                                         Global.state.AdjustMapPoint();
                                         Refresh();
                                         Global.MainWnd.CommitScrollbar();
@@ -2046,9 +2046,9 @@ namespace MasaoPlus
                 }
             }
             State state = Global.state;
-            state.MapPoint.X = state.MapPoint.X + point.X * chipSize.Width;
+            state.MapPoint.X += point.X * chipSize.Width;
             State state2 = Global.state;
-            state2.MapPoint.Y = state2.MapPoint.Y + point.Y * chipSize.Height;
+            state2.MapPoint.Y += point.Y * chipSize.Height;
             Global.state.AdjustMapPoint();
             Refresh();
             Global.MainWnd.CommitScrollbar();
@@ -2501,7 +2501,6 @@ namespace MasaoPlus
 
         public void RedrawMap(Graphics g, Rectangle rect)
         {
-            GraphicsState transState;
             Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
             using Bitmap bitmap = new Bitmap(rect.Width * chipsize.Width, rect.Height * chipsize.Height, PixelFormat.Format32bppArgb);
             using (Graphics graphics = Graphics.FromImage(bitmap))

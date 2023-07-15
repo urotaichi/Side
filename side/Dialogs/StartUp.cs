@@ -57,21 +57,7 @@ namespace MasaoPlus.Dialogs
         private void OpenFile_Click(object sender, EventArgs e)
         {
             using OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = string.Concat(new string[]
-            {
-                    Global.definition.AppName,
-                    "プロジェクト及びHTML/XML(*.html,*.xml,*",
-                    Global.definition.ProjExt,
-                    ")|*.html;*.xml;*",
-                    Global.definition.ProjExt,
-                    "|",
-                    Global.definition.AppName,
-                    " プロジェクト (*",
-                    Global.definition.ProjExt,
-                    ")|*",
-                    Global.definition.ProjExt,
-                    "|HTML/XML ドキュメント(*.htm*;*.xml)|*.htm*;*.xml|全てのファイル|*.*"
-            });
+            openFileDialog.Filter = $"{Global.definition.AppName}プロジェクト及びHTML/XML(*.html,*.xml,*{Global.definition.ProjExt})|*.html;*.xml;*{Global.definition.ProjExt}|{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}|HTML/XML ドキュメント(*.htm*;*.xml)|*.htm*;*.xml|全てのファイル|*.*";
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {

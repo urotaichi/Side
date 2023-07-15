@@ -32,10 +32,10 @@ namespace MasaoPlus
             }
             try
             {
-                string value = "\"" + Application.ExecutablePath + "\" %1";
-                string text = Global.definition.AppName + " " + FileType;
+                string value = $"\"{Application.ExecutablePath}\" %1";
+                string text = $"{Global.definition.AppName} {FileType}";
                 string str = "open";
-                string value2 = Global.definition.AppName + "で開く(&O)";
+                string value2 = $"{Global.definition.AppName}で開く(&O)";
                 string executablePath = Application.ExecutablePath;
                 int num = 0;
                 RegistryKey registryKey = Registry.ClassesRoot.CreateSubKey(ext);
@@ -43,18 +43,18 @@ namespace MasaoPlus
                 registryKey.Close();
                 RegistryKey registryKey2 = Registry.ClassesRoot.CreateSubKey(text);
                 registryKey2.SetValue("", Description);
-                registryKey2 = registryKey2.CreateSubKey("shell\\" + str);
+                registryKey2 = registryKey2.CreateSubKey($"shell\\{str}");
                 registryKey2.SetValue("", value2);
                 registryKey2 = registryKey2.CreateSubKey("command");
                 registryKey2.SetValue("", value);
                 registryKey2.Close();
-                RegistryKey registryKey3 = Registry.ClassesRoot.CreateSubKey(text + "\\DefaultIcon");
-                registryKey3.SetValue("", executablePath + "," + num.ToString());
+                RegistryKey registryKey3 = Registry.ClassesRoot.CreateSubKey($"{text}\\DefaultIcon");
+                registryKey3.SetValue("", $"{executablePath},{num}");
                 registryKey3.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("関連付けに失敗しました。" + Environment.NewLine + ex.Message, "関連付け処理失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"関連付けに失敗しました。{Environment.NewLine}{ex.Message}", "関連付け処理失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
 
@@ -71,7 +71,7 @@ namespace MasaoPlus
                 MessageBox.Show("関連付けする権限がありません。", "関連付け失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return;
             }
-            string subkey = Global.definition.AppName + " " + FileType;
+            string subkey = $"{Global.definition.AppName} {FileType}";
             try
             {
                 Registry.ClassesRoot.DeleteSubKeyTree(ext);
@@ -79,7 +79,7 @@ namespace MasaoPlus
             }
             catch (Exception ex)
             {
-                MessageBox.Show("関連付けの解除に失敗しました。" + Environment.NewLine + ex.Message, "関連付け処理失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"関連付けの解除に失敗しました。{Environment.NewLine}{ex.Message}", "関連付け処理失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
 

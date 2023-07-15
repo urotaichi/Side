@@ -62,9 +62,11 @@ namespace MasaoPlus.Controls
                         case ConfigParam.Types.b:
                         case ConfigParam.Types.b0:
                             {
-                                DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new DataGridViewCheckBoxCell();
-                                dataGridViewCheckBoxCell.TrueValue = "true";
-                                dataGridViewCheckBoxCell.FalseValue = "false";
+                                DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new DataGridViewCheckBoxCell
+                                {
+                                    TrueValue = "true",
+                                    FalseValue = "false"
+                                };
                                 bool flag;
                                 if (bool.TryParse(configParam.Value, out flag))
                                 {
@@ -79,9 +81,11 @@ namespace MasaoPlus.Controls
                             }
                         case ConfigParam.Types.b2:
                             {
-                                DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new DataGridViewCheckBoxCell();
-                                dataGridViewCheckBoxCell.TrueValue = "false";
-                                dataGridViewCheckBoxCell.FalseValue = "true";
+                                DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new DataGridViewCheckBoxCell
+                                {
+                                    TrueValue = "false",
+                                    FalseValue = "true"
+                                };
                                 bool flag;
                                 if (bool.TryParse(configParam.Value, out flag))
                                 {
@@ -96,17 +100,21 @@ namespace MasaoPlus.Controls
                             }
                         case ConfigParam.Types.i:
                             {
-                                DataGridViewNumericUpdownCell dataGridViewNumericUpdownCell = new DataGridViewNumericUpdownCell();
-                                dataGridViewNumericUpdownCell.Value = configParam.Value;
+                                DataGridViewNumericUpdownCell dataGridViewNumericUpdownCell = new DataGridViewNumericUpdownCell
+                                {
+                                    Value = configParam.Value
+                                };
                                 ConfView[1, OrigIdx.Count - 1] = dataGridViewNumericUpdownCell;
                                 break;
                             }
                         case ConfigParam.Types.t:
                             if (Global.config.localSystem.UsePropExTextEditor)
                             {
-                                DataGridViewButtonCell dataGridViewButtonCell = new DataGridViewButtonCell();
-                                dataGridViewButtonCell.Value = configParam.Value;
-                                dataGridViewButtonCell.FlatStyle = FlatStyle.Popup;
+                                DataGridViewButtonCell dataGridViewButtonCell = new DataGridViewButtonCell
+                                {
+                                    Value = configParam.Value,
+                                    FlatStyle = FlatStyle.Popup
+                                };
                                 ConfView[1, OrigIdx.Count - 1] = dataGridViewButtonCell;
                             }
                             else
@@ -121,9 +129,11 @@ namespace MasaoPlus.Controls
                         case ConfigParam.Types.f_i:
                         case ConfigParam.Types.f_a:
                             {
-                                DataGridViewButtonCell dataGridViewButtonCell2 = new DataGridViewButtonCell();
-                                dataGridViewButtonCell2.Value = configParam.Value + "...";
-                                dataGridViewButtonCell2.FlatStyle = FlatStyle.Popup;
+                                DataGridViewButtonCell dataGridViewButtonCell2 = new DataGridViewButtonCell
+                                {
+                                    Value = configParam.Value + "...",
+                                    FlatStyle = FlatStyle.Popup
+                                };
                                 ConfView[1, OrigIdx.Count - 1] = dataGridViewButtonCell2;
                                 break;
                             }
@@ -170,8 +180,10 @@ namespace MasaoPlus.Controls
                             }
                         case ConfigParam.Types.c:
                             {
-                                DataGridViewButtonCell dataGridViewButtonCell3 = new DataGridViewButtonCell();
-                                dataGridViewButtonCell3.Value = configParam.Value;
+                                DataGridViewButtonCell dataGridViewButtonCell3 = new DataGridViewButtonCell
+                                {
+                                    Value = configParam.Value
+                                };
                                 Colors colors = new Colors(configParam.Value);
                                 dataGridViewButtonCell3.Style.BackColor = colors.c;
                                 dataGridViewButtonCell3.Style.SelectionBackColor = colors.c;
@@ -180,48 +192,22 @@ namespace MasaoPlus.Controls
                                 break;
                             }
                     }
-                    switch (configParam.Category)
+                    ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = configParam.Category switch
                     {
-                        case "システム":
-                            ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.LightCyan;
-                            break;
-                        case "表示":
-                            ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.AliceBlue;
-                            break;
-                        case "BGM":
-                            ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.GhostWhite;
-                            break;
-                        case "効果音":
-                            ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.SeaShell;
-                            break;
-                        case "仕掛け":
-                            ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.MistyRose;
-                            break;
-                        case "画像":
-                            ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.Honeydew;
-                            break;
-                        case "装備":
-                            ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.MintCream;
-                            break;
-                        case "敵":
-                            ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.Lavender;
-                            break;
-                        case "お店":
-                            ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.LavenderBlush;
-                            break;
-                        case "地図":
-                            ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.Azure;
-                            break;
-                        case "オリジナルボス":
-                            ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.LightYellow;
-                            break;
-                        case "リンク土管":
-                            ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.MistyRose;
-                            break;
-                        case "メッセージ":
-                            ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.OldLace;
-                            break;
-                    }
+                        "システム" => Color.LightCyan,
+                        "表示" => Color.AliceBlue,
+                        "BGM" => Color.GhostWhite,
+                        "効果音" => Color.SeaShell,
+                        "仕掛け" => Color.MistyRose,
+                        "画像" => Color.Honeydew,
+                        "装備" => Color.MintCream,
+                        "敵" => Color.Lavender,
+                        "お店" => Color.LavenderBlush,
+                        "地図" => Color.Azure,
+                        "オリジナルボス" => Color.LightYellow,
+                        "リンク土管" => Color.MistyRose,
+                        "メッセージ" => Color.OldLace,
+                    };
                 }
             }
             if (Global.config.localSystem.WrapPropText) ConfView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -278,16 +264,7 @@ namespace MasaoPlus.Controls
                         string text = Path.Combine(Global.cpd.where, Path.GetFileName(openFileDialog.FileName));
                         if (Path.GetDirectoryName(openFileDialog.FileName) != Global.cpd.where)
                         {
-                            if (MessageBox.Show(string.Concat(new string[]
-                            {
-                            "ファイルはプロジェクトディレクトリに含まれていません。",
-                            Environment.NewLine,
-                            "プロジェクトディレクトリへコピーします。",
-                            Environment.NewLine,
-                            "また、同じ名前のファイルがある場合は上書きされます。",
-                            Environment.NewLine,
-                            "よろしいですか？"
-                            }), "ファイルの追加", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                            if (MessageBox.Show($"ファイルはプロジェクトディレクトリに含まれていません。{Environment.NewLine}プロジェクトディレクトリへコピーします。{Environment.NewLine}また、同じ名前のファイルがある場合は上書きされます。{Environment.NewLine}よろしいですか？", "ファイルの追加", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                             {
                                 return;
                             }
@@ -297,7 +274,7 @@ namespace MasaoPlus.Controls
                             }
                             catch (IOException)
                             {
-                                MessageBox.Show("ファイルをコピーできませんでした。" + Environment.NewLine + "ファイルのコピー先を再指定してください。", "コピー失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                                MessageBox.Show($"ファイルをコピーできませんでした。{Environment.NewLine}ファイルのコピー先を再指定してください。", "コピー失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                                 bool flag = false;
                                 while (!flag)
                                 {
@@ -313,7 +290,7 @@ namespace MasaoPlus.Controls
                                     }
                                     if (File.Exists(saveFileDialog.FileName))
                                     {
-                                        MessageBox.Show("上書きはできません。" + Environment.NewLine + "元のファイルを消すか、別のファイルを指定してください。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                                        MessageBox.Show($"上書きはできません。{Environment.NewLine}元のファイルを消すか、別のファイルを指定してください。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                                     }
                                     else if (Path.GetDirectoryName(saveFileDialog.FileName) != Global.cpd.where)
                                     {
@@ -510,7 +487,6 @@ namespace MasaoPlus.Controls
                         if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
                         {
                             ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
-                            num2 = 0;
                         }
                         if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                         {
@@ -544,7 +520,7 @@ namespace MasaoPlus.Controls
                             List<string> list = new List<string>(array);
                             if (list.Count > configParam.Rows)
                             {
-                                MessageBox.Show("行数が最大値を超えています。" + Environment.NewLine + "超えた行は削除されます。", "行の超過", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                                MessageBox.Show($"行数が最大値を超えています。{Environment.NewLine}超えた行は削除されます。", "行の超過", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                                 list.RemoveRange(configParam.Rows, list.Count - configParam.Rows);
                             }
                             else if (list.Count < configParam.Rows)

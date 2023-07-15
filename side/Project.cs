@@ -24,7 +24,7 @@ namespace MasaoPlus
             }
             catch (Exception ex)
             {
-                MessageBox.Show("プロジェクトファイルを開けませんでした。" + Environment.NewLine + ex.Message, "オープン失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"プロジェクトファイルを開けませんでした。{Environment.NewLine}{ex.Message}", "オープン失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 result = null;
             }
             return result;
@@ -54,7 +54,7 @@ namespace MasaoPlus
             }
             catch (Exception ex)
             {
-                MessageBox.Show("プロジェクトの保存に失敗しました。" + Environment.NewLine + ex.Message, "保存失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"プロジェクトの保存に失敗しました。{Environment.NewLine}{ex.Message}", "保存失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
 

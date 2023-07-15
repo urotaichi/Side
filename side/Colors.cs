@@ -22,13 +22,7 @@ namespace MasaoPlus
 
         public override string ToString()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.Append(r.ToString());
-            stringBuilder.Append(",");
-            stringBuilder.Append(g.ToString());
-            stringBuilder.Append(",");
-            stringBuilder.Append(b.ToString());
-            return stringBuilder.ToString();
+            return $"{r},{g},{b}";
         }
 
         public Colors(string color)
@@ -39,7 +33,7 @@ namespace MasaoPlus
             });
             if (array.Length < 3)
             {
-                throw new Exception("色の取得に失敗しました:" + color);
+                throw new Exception($"色の取得に失敗しました:{color}");
             }
             try
             {
@@ -49,15 +43,7 @@ namespace MasaoPlus
             }
             catch (Exception ex)
             {
-                throw new Exception(string.Concat(new string[]
-                {
-                    "色の取得に失敗しました:",
-                    color,
-                    "\n",
-                    ex.Message,
-                    "\nst:",
-                    ex.StackTrace
-                }));
+                throw new Exception($"色の取得に失敗しました:{color}\n{ex.Message}\nst:{ex.StackTrace}");
             }
         }
 

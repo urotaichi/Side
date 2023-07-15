@@ -21,7 +21,7 @@ namespace MasaoPlus
             }
             catch (Exception ex)
             {
-                MessageBox.Show("アップデート定義を開けませんでした。" + Environment.NewLine + ex.Message, "オープン失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"アップデート定義を開けませんでした。{Environment.NewLine}{ex.Message}", "オープン失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 result = null;
             }
             return result;
@@ -37,7 +37,7 @@ namespace MasaoPlus
             }
             catch (Exception ex)
             {
-                MessageBox.Show("更新データの保存に失敗しました。" + Environment.NewLine + ex.Message, "保存失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"更新データの保存に失敗しました。{Environment.NewLine}{ex.Message}", "保存失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
             }
         }
 
