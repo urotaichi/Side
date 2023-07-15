@@ -8,7 +8,7 @@ namespace MasaoPlus
 	public struct ConfigParam
 	{
 		[XmlIgnore]
-		public ConfigParam.Types Type
+		public Types Type
 		{
 			get
 			{

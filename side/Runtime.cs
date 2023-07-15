@@ -61,9 +61,9 @@ namespace MasaoPlus
 			return list.ToArray();
 		}
 
-		public Runtime.DefinedData Definitions = new Runtime.DefinedData();
+		public DefinedData Definitions = new DefinedData();
 
-		public Runtime.ConfigurationData DefaultConfigurations = new Runtime.ConfigurationData();
+		public ConfigurationData DefaultConfigurations = new ConfigurationData();
 
 		[Serializable]
 		public class DefinedData
@@ -112,11 +112,11 @@ namespace MasaoPlus
 
 			public string MapName = "";
 
-			public Runtime.DefinedData.StageSizeData StageSize = new Runtime.DefinedData.StageSizeData();
+			public StageSizeData StageSize = new StageSizeData();
 
-			public Runtime.DefinedData.StageSizeData LayerSize = new Runtime.DefinedData.StageSizeData();
+			public StageSizeData LayerSize = new StageSizeData();
 
-			public Runtime.DefinedData.StageSizeData MapSize = new Runtime.DefinedData.StageSizeData();
+			public StageSizeData MapSize = new StageSizeData();
 
 			public int MaxAthleticNumber;
 

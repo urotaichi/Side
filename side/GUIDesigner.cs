@@ -13,7 +13,7 @@ namespace MasaoPlus
 {
     public class GUIDesigner : UserControl, IDisposable
 	{
-		public GUIDesigner.EditTool CurrentTool
+		public EditTool CurrentTool
 		{
 			get
 			{
@@ -27,7 +27,7 @@ namespace MasaoPlus
 			}
 		}
 
-		public GUIDesigner.CopyPasteTool CopyPaste
+		public CopyPasteTool CopyPaste
 		{
 			get
 			{
@@ -48,7 +48,7 @@ namespace MasaoPlus
 			}
 		}
 
-		public event GUIDesigner.ChangeBuffer ChangeBufferInvoke;
+		public event ChangeBuffer ChangeBufferInvoke;
 
 		private bool BufferingDraw
 		{
@@ -700,10 +700,10 @@ namespace MasaoPlus
 				g.DrawImage(Global.MainWnd.MainDesigner.DrawChizuOrig, -16, -24);
 			}
 
-			ChipsData chipsData = default(ChipsData);
-			ChipData c = default(ChipData);
-			new List<GUIDesigner.KeepDrawData>();
-			List<GUIDesigner.KeepDrawData> list = new List<GUIDesigner.KeepDrawData>();
+			ChipsData chipsData;
+			ChipData c;
+			new List<KeepDrawData>();
+			List<KeepDrawData> list = new List<KeepDrawData>();
 			int num = 0;
 			g.PixelOffsetMode = PixelOffsetMode.Half;
 			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
@@ -747,14 +747,14 @@ namespace MasaoPlus
 						}
 						else
 						{ // 標準サイズの画像はリストに追加後、↓で描画
-							list.Add(new GUIDesigner.KeepDrawData(c, new Point(num2, num), chipsData.character));
+							list.Add(new KeepDrawData(c, new Point(num2, num), chipsData.character));
 						}
 					}
 					num2++;
 				}
 				num++;
 			}
-			foreach (GUIDesigner.KeepDrawData keepDrawData in list)
+			foreach (KeepDrawData keepDrawData in list)
 			{
 				ChipData cschip = keepDrawData.cd;
 				if (Global.state.UseBuffered)
@@ -2870,9 +2870,9 @@ namespace MasaoPlus
 
 		private Bitmap BackLayerBmp;
 
-		private GUIDesigner.EditTool curTool;
+		private EditTool curTool;
 
-		private GUIDesigner.CopyPasteTool cpaste;
+		private CopyPasteTool cpaste;
 
 		public List<string[]> StageBuffer = new List<string[]>();
 
@@ -2882,7 +2882,7 @@ namespace MasaoPlus
 
 		public Rectangle DrawRectangle = default(Rectangle);
 
-		public GUIDesigner.DirectDrawMode DrawMode;
+		public DirectDrawMode DrawMode;
 
 		private bool bdraw = true;
 

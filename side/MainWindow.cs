@@ -17,7 +17,7 @@ namespace MasaoPlus
 {
 	public partial class MainWindow : Form
 	{
-		public event MainWindow.MainDesignerScrollInvoke MainDesignerScroll;
+		public event MainDesignerScrollInvoke MainDesignerScroll;
 
 		public MainWindow()
 		{
@@ -678,7 +678,7 @@ namespace MasaoPlus
 
 		public void ChipItemReady()
 		{
-			MainWindow.CRID method = new MainWindow.CRID(this.ChipItemReadyInvoke);
+            CRID method = new CRID(this.ChipItemReadyInvoke);
 			base.Invoke(method);
 		}
 

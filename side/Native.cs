@@ -11,7 +11,7 @@ namespace MasaoPlus
 	{
 		public static Rectangle GetNormalWindowLocation(Form form)
 		{
-			Native.USER32.WINDOWPLACEMENT windowplacement = default(Native.USER32.WINDOWPLACEMENT);
+            USER32.WINDOWPLACEMENT windowplacement = default(USER32.WINDOWPLACEMENT);
 			windowplacement.Length = Marshal.SizeOf(windowplacement);
 			Native.USER32.GetWindowPlacement((int)form.Handle, ref windowplacement);
 			return new Rectangle(windowplacement.rcNormalPosition.left, windowplacement.rcNormalPosition.top, windowplacement.rcNormalPosition.right - windowplacement.rcNormalPosition.left, windowplacement.rcNormalPosition.bottom - windowplacement.rcNormalPosition.top);
@@ -93,7 +93,7 @@ namespace MasaoPlus
 		public static class USER32
 		{
 			[DllImport("user32.dll")]
-			public static extern bool GetWindowPlacement(int hWnd, ref Native.USER32.WINDOWPLACEMENT lpwndpl);
+			public static extern bool GetWindowPlacement(int hWnd, ref WINDOWPLACEMENT lpwndpl);
 
 			[DllImport("user32.dll")]
 			public static extern IntPtr GetDC(IntPtr hWnd);
@@ -138,11 +138,11 @@ namespace MasaoPlus
 
 				public int showCmd;
 
-				public Native.USER32.POINT ptMinPosition;
+				public POINT ptMinPosition;
 
-				public Native.USER32.POINT ptMaxPosition;
+				public POINT ptMaxPosition;
 
-				public Native.USER32.RECT rcNormalPosition;
+				public RECT rcNormalPosition;
 			}
 		}
 

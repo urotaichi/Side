@@ -30,13 +30,13 @@ namespace MasaoPlus
             xmlSerializer.Serialize(fileStream, this);
         }
 
-		public Config.Draw draw = new Config.Draw();
+		public Draw draw = new Draw();
 
-		public Config.LocalSystem localSystem = new Config.LocalSystem();
+		public LocalSystem localSystem = new LocalSystem();
 
-		public Config.TestRun testRun = new Config.TestRun();
+		public TestRun testRun = new TestRun();
 
-		public Config.LastData lastData = new Config.LastData();
+		public LastData lastData = new LastData();
 
 		public class Draw
 		{
@@ -60,7 +60,7 @@ namespace MasaoPlus
 
 			public bool UseBufferingMemoryDraw = true;
 
-			public Config.Draw.SelectionDrawMode SelDrawMode;
+			public SelectionDrawMode SelDrawMode;
 
 			public bool SkipFirstChip = true;
 

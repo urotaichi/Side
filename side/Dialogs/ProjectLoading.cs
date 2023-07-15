@@ -18,13 +18,13 @@ namespace MasaoPlus.Dialogs
 		private void ProjectLoading_Shown(object sender, EventArgs e)
 		{
 			Application.DoEvents();
-			ProjectLoading.LoadProjectDlg loadProjectDlg = new ProjectLoading.LoadProjectDlg(this.LoadProject);
+            LoadProjectDlg loadProjectDlg = new LoadProjectDlg(this.LoadProject);
 			loadProjectDlg.BeginInvoke(new AsyncCallback(this.EndInv), null);
 		}
 
 		public void EndInv(IAsyncResult iar)
 		{
-			ProjectLoading.LoadProjectDlg method = new ProjectLoading.LoadProjectDlg(this.EndInvInv);
+            LoadProjectDlg method = new LoadProjectDlg(this.EndInvInv);
 			try
 			{
 				base.Invoke(method);
@@ -106,8 +106,8 @@ namespace MasaoPlus.Dialogs
 					if (Global.cpd.UseLayer)
 					{
 						Global.cpd.EditingLayer = Global.cpd.project.LayerData;
-					}
-					Global.MainWnd.MainDesigner.CreateDrawItemReference();
+                    }
+                    Global.MainWnd.MainDesigner.CreateDrawItemReference();
 					this.SetState("画像を準備しています...");
 					Global.MainWnd.MainDesigner.PrepareImages();
 					this.SetState("グラフィカルデザイナを初期化しています...");
@@ -138,7 +138,7 @@ namespace MasaoPlus.Dialogs
 
 		private void SetState(string text)
 		{
-			ProjectLoading.SetStateDelg method = new ProjectLoading.SetStateDelg(this.SetStateInv);
+            SetStateDelg method = new SetStateDelg(this.SetStateInv);
 			base.Invoke(method, new object[]
 			{
 				text

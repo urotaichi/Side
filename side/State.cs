@@ -135,7 +135,7 @@ namespace MasaoPlus
 			}
 		}
 
-		public event State.UpdateCurrentChip UpdateCurrentChipInvoke;
+		public event UpdateCurrentChip UpdateCurrentChipInvoke;
 
 		public bool EditingForeground
 		{
