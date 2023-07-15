@@ -108,15 +108,15 @@ namespace MasaoPlus.Controls
 		{
 			if (this.Pressed)
 			{
-				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default(Point), base.Size), Border3DStyle.SunkenInner);
+				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default, base.Size), Border3DStyle.SunkenInner);
 			}
 			else if (this.Entered || this.Defaulting)
 			{
-				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default(Point), base.Size), Border3DStyle.RaisedOuter);
+				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default, base.Size), Border3DStyle.RaisedOuter);
 			}
 			else
 			{
-				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default(Point), base.Size), Border3DStyle.Flat);
+				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default, base.Size), Border3DStyle.Flat);
 			}
 			if (this.Focusing)
 			{

@@ -11,7 +11,7 @@ namespace MasaoPlus
 	{
 		public static Rectangle GetNormalWindowLocation(Form form)
 		{
-            USER32.WINDOWPLACEMENT windowplacement = default(USER32.WINDOWPLACEMENT);
+            USER32.WINDOWPLACEMENT windowplacement = default;
 			windowplacement.Length = Marshal.SizeOf(windowplacement);
 			Native.USER32.GetWindowPlacement((int)form.Handle, ref windowplacement);
 			return new Rectangle(windowplacement.rcNormalPosition.left, windowplacement.rcNormalPosition.top, windowplacement.rcNormalPosition.right - windowplacement.rcNormalPosition.left, windowplacement.rcNormalPosition.bottom - windowplacement.rcNormalPosition.top);

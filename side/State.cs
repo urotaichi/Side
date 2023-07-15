@@ -176,11 +176,11 @@ namespace MasaoPlus
 
 		public bool TransparentUnactiveLayer = true;
 
-		public Point MapPoint = default(Point);
+		public Point MapPoint = default;
 
-		public Size MapMoveMax = default(Size);
+		public Size MapMoveMax = default;
 
-		private ChipsData CurrentChipData = default(ChipsData);
+		private ChipsData CurrentChipData = default;
 
 		public Process Testrun;
 

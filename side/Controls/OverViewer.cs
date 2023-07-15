@@ -68,7 +68,7 @@ namespace MasaoPlus.Controls
 			{
 				byte* ptr = null;
 				int num = 765 / Global.cpd.Mapchip.Length;
-				Color color = default(Color);
+				Color color = default;
 				ChipsData[] array = Global.cpd.Mapchip;
 				if (!Global.state.EditingForeground)
 				{
@@ -134,7 +134,7 @@ namespace MasaoPlus.Controls
 		{
 			if (this.Source == null)
 			{
-				e.Graphics.FillRectangle(Brushes.Black, new Rectangle(default(Point), this.Size));
+				e.Graphics.FillRectangle(Brushes.Black, new Rectangle(default, this.Size));
 				return;
 			}
 			e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;

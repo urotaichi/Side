@@ -33,7 +33,7 @@ namespace MasaoPlus
 		{
 			TextureBrush textureBrush = null;
 			bool flag = false;
-			Size size = default(Size);
+			Size size = default;
 			bool flag2 = (double)backColor.GetBrightness() < 0.5;
 			lock (typeof(DrawEx))
 			{

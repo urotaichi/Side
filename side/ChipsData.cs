@@ -11,7 +11,7 @@ namespace MasaoPlus
 		{
 			if (this.Chips == null)
 			{
-				return default(ChipData);
+				return default;
 			}
 			if (this.relation == "" || this.relation == null || !Global.state.ChipRegister.ContainsKey(this.relation))
 			{

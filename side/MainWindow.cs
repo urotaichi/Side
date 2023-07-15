@@ -248,7 +248,7 @@ namespace MasaoPlus
 		// ステータスバーっぽいところに表示される小さいアイコンや文字
 		private void MainDesigner_MouseMove(object sender, MouseEventArgs e)
 		{
-			Point p = default(Point);
+			Point p = default;
 			p.X = (e.X + Global.state.MapPoint.X) / this.MainDesigner.CurrentChipSize.Width;
 			p.Y = (e.Y + Global.state.MapPoint.Y) / this.MainDesigner.CurrentChipSize.Height;
 			this.GuiPositionInfo.Text = p.X.ToString() + "," + p.Y.ToString();
@@ -704,7 +704,7 @@ namespace MasaoPlus
 			{
 				array = Global.cpd.Layerchip;
 			}
-			ChipData chipData = default(ChipData);
+			ChipData chipData = default;
 			foreach (ChipsData chipsData in array)
 			{
 				chipData = chipsData.GetCSChip();
@@ -1157,14 +1157,14 @@ namespace MasaoPlus
 									imageAttributes.SetColorMatrix(colorMatrix);
 									e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-this.ChipImage.Width / 2, -this.ChipImage.Height / 2), this.ChipImage.Size), cschip.pattern.X, cschip.pattern.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height, GraphicsUnit.Pixel, imageAttributes);
 								}
-								else e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-this.ChipImage.Width / 2, -this.ChipImage.Height / 2), this.ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
+								else e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-this.ChipImage.Width / 2, -this.ChipImage.Height / 2), this.ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
 								break;
 						}
 					}
 				}
 				else
 				{
-					e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig, new Rectangle(new Point(0, 0), this.ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
+					e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig, new Rectangle(new Point(0, 0), this.ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
 				}
 			}
 		}
@@ -1670,7 +1670,7 @@ namespace MasaoPlus
 											imageAttributes.SetColorMatrix(colorMatrix);
 											e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
 										}
-										else e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+										else e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
 										break;
 								}
 							}
@@ -1679,7 +1679,7 @@ namespace MasaoPlus
 						else
 						{
 							cschip = Global.cpd.Layerchip[i].GetCSChip();
-							e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig, new Rectangle(e.Bounds.Location, new Size(e.Bounds.Height, e.Bounds.Height)), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+							e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig, new Rectangle(e.Bounds.Location, new Size(e.Bounds.Height, e.Bounds.Height)), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
 						}
 						width = e.Bounds.Height;
 					break;
@@ -1705,7 +1705,7 @@ namespace MasaoPlus
 							transState = e.Graphics.Save();
 							
 							e.Graphics.TranslateTransform(e.Bounds.X, e.Bounds.Y);
-							if (cschip.size == default(Size))
+							if (cschip.size == default)
 							{
 								switch (cschip.name)
 								{
@@ -1791,7 +1791,7 @@ namespace MasaoPlus
 						else
 						{
 							cschip = Global.cpd.Layerchip[i].GetCSChip();
-							if (cschip.size == default(Size))
+							if (cschip.size == default)
 							{
 								e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig, new Rectangle(e.Bounds.Location, chipsize), new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 								width = chipsize.Width;

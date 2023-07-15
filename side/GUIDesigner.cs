@@ -267,7 +267,7 @@ namespace MasaoPlus
 				{
 					return this.BackLayerBmp.Size;
 				}
-				return default(Size);
+				return default;
 			}
 		}
 
@@ -286,7 +286,7 @@ namespace MasaoPlus
 				{
 					return new Size((int)((double)this.BackLayerBmp.Width * Global.config.draw.ZoomIndex), (int)((double)this.BackLayerBmp.Height * Global.config.draw.ZoomIndex));
 				}
-				return default(Size);
+				return default;
 			}
 		}
 
@@ -294,7 +294,7 @@ namespace MasaoPlus
 		{
 			get
 			{
-				Size result = default(Size);
+				Size result = default;
 				if (Global.cpd.project == null)
 				{
 					return result;
@@ -355,7 +355,7 @@ namespace MasaoPlus
 		private void DrawExtendSizeMap(ChipData cschip, Graphics g, Point p, bool foreground, string chara){
 			GraphicsState transState;
 			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
-			if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
+			if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd)
 			{ // 拡張画像　背面
 				g.DrawImage(this.DrawExOrig,
 					new Rectangle(new Point(p.X * chipsize.Width - cschip.center.X, p.Y * chipsize.Height - cschip.center.Y), chipsize),
@@ -478,7 +478,7 @@ namespace MasaoPlus
 				}
 				g.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, p.X * chipsize.Width, p.Y * chipsize.Height, new Rectangle(point, chipsize), GraphicsUnit.Pixel);
 			}
-			else if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
+			else if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
 			{ // 拡張画像　前面
 				g.DrawImage(this.DrawExOrig,
 					new Rectangle(new Point(p.X * chipsize.Width - cschip.center.X, p.Y * chipsize.Height - cschip.center.Y), chipsize),
@@ -488,7 +488,7 @@ namespace MasaoPlus
 		private void DrawNormalSizeMap(ChipData cschip, Graphics g, Point p, bool foreground, string chara, int x){
 			GraphicsState transState;
 			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
-			if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
+			if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd)
 			{ // 拡張画像　背面
 				g.DrawImage(this.DrawExOrig,
 					new Rectangle(p.X * chipsize.Width, p.Y * chipsize.Height, chipsize.Width, chipsize.Height),
@@ -596,7 +596,7 @@ namespace MasaoPlus
 					new Rectangle(p.X * chipsize.Width, p.Y * chipsize.Height, chipsize.Width, chipsize.Height),
 					new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 			}
-			if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
+			if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
 			{ // 拡張画像　前面
 				g.DrawImage(this.DrawExOrig,
 						new Rectangle(p.X * chipsize.Width, p.Y * chipsize.Height, chipsize.Width, chipsize.Height),
@@ -735,7 +735,7 @@ namespace MasaoPlus
 						else if (foreground) chipsData = this.DrawItemRef[text];
 						else chipsData = this.DrawLayerRef[text];
 						c = chipsData.GetCSChip();
-						if (c.size != default(Size)) // 標準サイズより大きい
+						if (c.size != default) // 標準サイズより大きい
 						{
 							if (Global.state.UseBuffered)
 							{
@@ -1240,7 +1240,7 @@ namespace MasaoPlus
 					IntPtr hdc = e.Graphics.GetHdc();
 					BitmapData bitmapData = new BitmapData();
 					this.ForegroundBuffer.LockBits(new Rectangle(0, 0, this.ForegroundBuffer.Width, this.ForegroundBuffer.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb, bitmapData);
-					Native.GDI32.BITMAPINFOHEADER bitmapinfoheader = default(Native.GDI32.BITMAPINFOHEADER);
+					Native.GDI32.BITMAPINFOHEADER bitmapinfoheader = default;
 					bitmapinfoheader.biSize = (uint)sizeof(Native.GDI32.BITMAPINFOHEADER);
 					bitmapinfoheader.biWidth = bitmapData.Width;
 					bitmapinfoheader.biHeight = bitmapData.Height;
@@ -1474,7 +1474,7 @@ namespace MasaoPlus
 					{
 						if (this.CurrentTool == GUIDesigner.EditTool.Cursor && Global.config.draw.RightClickMenu)
 						{
-							this.MouseStartPoint = default(Point);
+							this.MouseStartPoint = default;
 							this.MouseStartPoint.X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex));
 							this.MouseStartPoint.Y = (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex));
 							this.CursorContextMenu.Show(this, new Point(e.X, e.Y));
@@ -1547,7 +1547,7 @@ namespace MasaoPlus
 				{
 					Environment.NewLine
 				}, StringSplitOptions.None);
-				ChipsData cd = default(ChipsData);
+				ChipsData cd = default;
 				Point point = new Point(0, 0);
 				for (int j = rectangle.Top; j < rectangle.Bottom; j++)
 				{
@@ -1825,7 +1825,7 @@ namespace MasaoPlus
 						{
 							return;
 						}
-						Rectangle drawRectangle = default(Rectangle);
+						Rectangle drawRectangle = default;
 						this.MouseLastPoint = point;
 						if (this.MouseStartPoint.X > this.MouseLastPoint.X)
 						{
@@ -1893,7 +1893,7 @@ namespace MasaoPlus
 							{
 								return;
 							}
-							Rectangle drawRectangle2 = default(Rectangle);
+							Rectangle drawRectangle2 = default;
 							this.MouseLastPoint = point3;
 							bool flag = false;
 							if (this.MouseStartPoint.X > this.MouseLastPoint.X)
@@ -1940,7 +1940,7 @@ namespace MasaoPlus
 							{
 								return;
 							}
-							Rectangle drawRectangle3 = default(Rectangle);
+							Rectangle drawRectangle3 = default;
 							this.MouseLastPoint = point4;
 							if (this.MouseStartPoint.X > this.MouseLastPoint.X)
 							{
@@ -2027,7 +2027,7 @@ namespace MasaoPlus
 		public void EnsureScroll(int x, int y)
 		{
 			Size chipSize = Global.cpd.runtime.Definitions.ChipSize;
-			Point point = default(Point);
+			Point point = default;
 			if (x < base.Width / 2)
 			{
 				if (x < chipSize.Width)
@@ -2097,7 +2097,7 @@ namespace MasaoPlus
 					double num = 1.0 / Global.config.draw.ZoomIndex;
 					using (Graphics.FromImage(this.ForeLayerBmp))
 					{
-						Rectangle rectangle = default(Rectangle);
+						Rectangle rectangle = default;
 						if (this.MouseStartPoint.X > this.MouseLastPoint.X)
 						{
 							rectangle.X = this.MouseLastPoint.X;
@@ -2202,7 +2202,7 @@ namespace MasaoPlus
 					case GUIDesigner.EditTool.Line:
 					{
 						this.DrawMode = GUIDesigner.DirectDrawMode.None;
-						Rectangle dr = default(Rectangle);
+						Rectangle dr = default;
 						int num2 = 0;
 						if (this.MouseStartPoint.X > this.MouseLastPoint.X)
 						{
@@ -2251,7 +2251,7 @@ namespace MasaoPlus
 					{
 						this.EnsureScroll(e.X, e.Y);
 						Global.MainWnd.UpdateStatus("描画しています...");
-						Rectangle rectangle2 = default(Rectangle);
+						Rectangle rectangle2 = default;
 						if (this.MouseStartPoint.X > this.MouseLastPoint.X)
 						{
 							rectangle2.X = this.MouseLastPoint.X;
@@ -2457,7 +2457,7 @@ namespace MasaoPlus
 			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
 			if (Global.state.EditingForeground)
 			{ // 標準レイヤー
-				Size size = default(Size);
+				Size size = default;
 				if (cd.character != null)
 				{
 					if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && cd.character == "Z")
@@ -2476,7 +2476,7 @@ namespace MasaoPlus
 					}
 				}
 				ChipsData chipsData = default; // 置く前から元々あったチップデータのサイズ
-				ChipData chipData = default(ChipData);
+				ChipData chipData = default;
 				if (this.DrawItemRef.ContainsKey(stageChar))
 				{
 					if (Global.state.MapEditMode) chipsData = this.DrawWorldRef[stageChar];
@@ -2488,7 +2488,7 @@ namespace MasaoPlus
 						size = this.GetLargerSize(size, new Size(chipData.view_size.Width, Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height));
 					else size = this.GetLargerSize(size, (chipData.view_size != default)?chipData.view_size:chipData.size);	//サイズを比較して、大きい方に合わせる
 				}
-				if (size == default(Size)) this.RedrawMap(g, new Rectangle(MapPos, new Size(1, 1)));
+				if (size == default) this.RedrawMap(g, new Rectangle(MapPos, new Size(1, 1)));
 				else
 				{
 					Point largerPoint = this.GetLargerPoint(cd.GetCSChip().center, chipData.center);
@@ -2513,7 +2513,7 @@ namespace MasaoPlus
 					ChipsData chipsData2 = this.DrawLayerRef[stageChar];
 					size2 = this.GetLargerSize(size2, cschip2.size);
 				}
-				if (size2 == default(Size)) this.RedrawMap(g, new Rectangle(MapPos, new Size(1, 1)));
+				if (size2 == default) this.RedrawMap(g, new Rectangle(MapPos, new Size(1, 1)));
 				else
 				{
 					Point largerPoint2 = this.GetLargerPoint(cschip.center, cschip2.center);
@@ -2581,7 +2581,7 @@ namespace MasaoPlus
                                 goto IL_514;
                             }
                             ChipData cschip = chipsData.GetCSChip();
-                            if (cschip.size != default(Size)) DrawExtendSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character);
+                            if (cschip.size != default) DrawExtendSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character);
                         }
                     IL_514:;
                     }
@@ -2633,7 +2633,7 @@ namespace MasaoPlus
                                 goto IL_9DD;
                             }
                             ChipData cschip = chipsData.GetCSChip();
-                            if (cschip.size == default(Size)) DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X);
+                            if (cschip.size == default) DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X);
                         }
                     IL_9DD:;
                     }
@@ -2880,7 +2880,7 @@ namespace MasaoPlus
 
 		public string ClipedString;
 
-		public Rectangle DrawRectangle = default(Rectangle);
+		public Rectangle DrawRectangle = default;
 
 		public DirectDrawMode DrawMode;
 
@@ -2904,9 +2904,9 @@ namespace MasaoPlus
 
 		private int EditMap = -1;
 
-		private Point MouseStartPoint = default(Point);
+		private Point MouseStartPoint = default;
 
-		private Point MouseLastPoint = default(Point);
+		private Point MouseLastPoint = default;
 
 		private bool MousePressed;
 

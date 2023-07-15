@@ -189,7 +189,7 @@ namespace MasaoPlus
 			}
 			set
 			{
-				Colors colors = default(Colors);
+				Colors colors = default;
 				colors.c = value;
 				this.Configurations[this.RelIndex[0]].Value = colors.ToString();
 			}
@@ -205,7 +205,7 @@ namespace MasaoPlus
 			}
 			set
 			{
-				Colors colors = default(Colors);
+				Colors colors = default;
 				colors.c = value;
 				this.Configurations[this.RelIndex[1]].Value = colors.ToString();
 			}
@@ -221,7 +221,7 @@ namespace MasaoPlus
 			}
 			set
 			{
-				Colors colors = default(Colors);
+				Colors colors = default;
 				colors.c = value;
 				this.Configurations[this.RelIndex[2]].Value = colors.ToString();
 			}
@@ -237,7 +237,7 @@ namespace MasaoPlus
 			}
 			set
 			{
-				Colors colors = default(Colors);
+				Colors colors = default;
 				colors.c = value;
 				this.Configurations[this.RelIndex[3]].Value = colors.ToString();
 			}
@@ -253,7 +253,7 @@ namespace MasaoPlus
 			}
 			set
 			{
-				Colors colors = default(Colors);
+				Colors colors = default;
 				colors.c = value;
 				this.Configurations[this.RelIndex[4]].Value = colors.ToString();
 			}
@@ -378,7 +378,7 @@ namespace MasaoPlus
 			}
 			set
 			{
-				Colors colors = default(Colors);
+				Colors colors = default;
 				colors.c = value;
 				this.Configurations[this.RelIndex[13]].Value = colors.ToString();
 			}
@@ -394,7 +394,7 @@ namespace MasaoPlus
 			}
 			set
 			{
-				Colors colors = default(Colors);
+				Colors colors = default;
 				colors.c = value;
 				this.Configurations[this.RelIndex[14]].Value = colors.ToString();
 			}
@@ -410,7 +410,7 @@ namespace MasaoPlus
 			}
 			set
 			{
-				Colors colors = default(Colors);
+				Colors colors = default;
 				colors.c = value;
 				this.Configurations[this.RelIndex[15]].Value = colors.ToString();
 			}
@@ -426,7 +426,7 @@ namespace MasaoPlus
 			}
 			set
 			{
-				Colors colors = default(Colors);
+				Colors colors = default;
 				colors.c = value;
 				this.Configurations[this.RelIndex[16]].Value = colors.ToString();
 			}
@@ -442,7 +442,7 @@ namespace MasaoPlus
 			}
 			set
 			{
-				Colors colors = default(Colors);
+				Colors colors = default;
 				colors.c = value;
 				this.Configurations[this.RelIndex[17]].Value = colors.ToString();
 			}

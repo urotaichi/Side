@@ -474,7 +474,7 @@ namespace MasaoPlus.Dialogs
 							}
 						}
 
-						Colors colors = default(Colors);
+						Colors colors = default;
 						colors.r = array2[0];
 						colors.g = array2[1];
 						colors.b = array2[2];
