@@ -68,7 +68,7 @@ namespace MasaoPlus.Dialogs
                 {
                     string sourceFileName = Path.Combine(Global.cpd.where, obj.ToString());
                     string text = Path.Combine(mdir, obj.ToString());
-                    if (!File.Exists(text) || MessageBox.Show(text + "はすでに存在しています。" + Environment.NewLine + "上書きしてもよろしいですか？", "上書きの確認", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.No)
+                    if (!File.Exists(text) || MessageBox.Show($"{text}はすでに存在しています。{Environment.NewLine}上書きしてもよろしいですか？", "上書きの確認", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.No)
                     {
                         File.Copy(sourceFileName, text, true);
                     }

@@ -330,46 +330,19 @@ namespace MasaoPlus.Dialogs
                         case ConfigParam.Types.t:
                             {
                                 string name = project.Config.Configurations[num].Name;
-
-                                switch (name) // 個別に初期値を設定
+                                project.Config.Configurations[num].Value = name switch // 個別に初期値を設定
                                 {
-                                    case "serifu1":
-                                        project.Config.Configurations[num].Value =
-                                            "人の命は、お金では買えないと言われています。\r\nしかし、お店へ行けば、ＳＣＯＲＥで買えます。\r\n0";
-                                        break;
-                                    case "serifu2":
-                                        project.Config.Configurations[num].Value =
-                                            "時は金なりと、言われています。しかし、\r\nお店なら、時間も買えます。\r\n店員さんて、グレートですね。";
-                                        break;
-                                    case "serifu3":
-                                        project.Config.Configurations[num].Value =
-                                            "おはようございます。星と数字が付いた扉が、\r\nありますよね。あれは、ですねえ、その数だけ\r\n人面星を取ると、開くので、ございます。";
-                                        break;
-                                    case "serifu4":
-                                        project.Config.Configurations[num].Value =
-                                            "LAST STAGEというのは、最終面の事ですわ。\r\nこれをクリアーすると、エンディングに、\r\n行けますのよ。がんばって下さいね。";
-                                        break;
-                                    case "serifu_key2_on":
-                                        project.Config.Configurations[num].Value =
-                                            "３つのＫＥＹ２がないと、\r\nここから先へは進めないぜ。\r\nどこかで見つ付けてくれ。";
-                                        break;
-                                    case "hitokoto1":
-                                        project.Config.Configurations[num].Value =
-                                            "今日は、いい天気だね。\r\n0\r\n0";
-                                        break;
-                                    case "hitokoto2":
-                                        project.Config.Configurations[num].Value =
-                                            "ついに、ここまで来ましたね。\r\n0\r\n0";
-                                        break;
-                                    case "hitokoto3":
-                                        project.Config.Configurations[num].Value =
-                                            "オレは、世界一になる男だ。\r\n0\r\n0";
-                                        break;
-                                    case "hitokoto4":
-                                        project.Config.Configurations[num].Value =
-                                            "んちゃ！\r\n0\r\n0";
-                                        break;
-                                }
+                                    "serifu1" => "人の命は、お金では買えないと言われています。\r\nしかし、お店へ行けば、ＳＣＯＲＥで買えます。\r\n0",
+                                    "serifu2" => "時は金なりと、言われています。しかし、\r\nお店なら、時間も買えます。\r\n店員さんて、グレートですね。",
+                                    "serifu3" => "おはようございます。星と数字が付いた扉が、\r\nありますよね。あれは、ですねえ、その数だけ\r\n人面星を取ると、開くので、ございます。",
+                                    "serifu4" => "LAST STAGEというのは、最終面の事ですわ。\r\nこれをクリアーすると、エンディングに、\r\n行けますのよ。がんばって下さいね。",
+                                    "serifu_key2_on" => "３つのＫＥＹ２がないと、\r\nここから先へは進めないぜ。\r\nどこかで見つ付けてくれ。",
+                                    "hitokoto1" => "今日は、いい天気だね。\r\n0\r\n0",
+                                    "hitokoto2" => "ついに、ここまで来ましたね。\r\n0\r\n0",
+                                    "hitokoto3" => "オレは、世界一になる男だ。\r\n0\r\n0",
+                                    "hitokoto4" => "んちゃ！\r\n0\r\n0",
+                                    _ => throw new NotImplementedException()
+                                };
 
                                 List<string> list2 = new List<string>();
 
@@ -383,9 +356,9 @@ namespace MasaoPlus.Dialogs
                                     name = text_name_regex.Replace(name, string.Empty);
                                 }
 
-                                while (dictionary.ContainsKey(name + "-" + num2.ToString()))
+                                while (dictionary.ContainsKey($"{name}-{num2}"))
                                 {
-                                    list2.Add(dictionary[name + "-" + num2.ToString()]);
+                                    list2.Add(dictionary[$"{name}-{num2}"]);
                                     num2++;
                                 }
                                 if (list2.Count > 0)
@@ -421,9 +394,9 @@ namespace MasaoPlus.Dialogs
                             {
                                 string[] array = new string[]
                                 {
-                            "red",
-                            "green",
-                            "blue"
+                                    "red",
+                                    "green",
+                                    "blue"
                                 };
                                 int[] array2 = new int[3];
                                 string name = project.Config.Configurations[num].Name, param_name;
@@ -596,14 +569,7 @@ namespace MasaoPlus.Dialogs
                     if (!(Path.GetFileName(text3) == runtimedatas[RuntimeSet.SelectedIndex].Definitions.Configurations))
                     {
                         string text4 = Path.Combine(text, Path.GetFileName(text3));
-                        if (!File.Exists(text4) || MessageBox.Show(string.Concat(new string[]
-                        {
-                            text4,
-                            Environment.NewLine,
-                            "はすでに存在しています。",
-                            Environment.NewLine,
-                            "上書きしてもよろしいですか？"
-                        }), "上書きの警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.No)
+                        if (!File.Exists(text4) || MessageBox.Show($"{text4}{Environment.NewLine}はすでに存在しています。{Environment.NewLine}上書きしてもよろしいですか？", "上書きの警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.No)
                         {
                             File.Copy(text3, text4, true);
                         }
@@ -620,14 +586,7 @@ namespace MasaoPlus.Dialogs
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Concat(new string[]
-                {
-                    "プロジェクト生成に失敗しました。",
-                    Environment.NewLine,
-                    ex.Message,
-                    Environment.NewLine,
-                    ex.StackTrace
-                }), "プロジェクト生成エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"プロジェクト生成に失敗しました。{Environment.NewLine}{ex.Message}{Environment.NewLine}{ex.StackTrace}", "プロジェクト生成エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return;
             }
             finally
