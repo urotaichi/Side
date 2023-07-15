@@ -4,67 +4,67 @@ using System.Text;
 
 namespace MasaoPlus
 {
-	public struct Colors
-	{
-		public Color c
-		{
-			get
-			{
-				return Color.FromArgb(r, g, b);
-			}
-			set
-			{
-				r = value.R;
-				g = value.G;
-				b = value.B;
-			}
-		}
+    public struct Colors
+    {
+        public Color c
+        {
+            get
+            {
+                return Color.FromArgb(r, g, b);
+            }
+            set
+            {
+                r = value.R;
+                g = value.G;
+                b = value.B;
+            }
+        }
 
-		public override string ToString()
-		{
-			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.Append(r.ToString());
-			stringBuilder.Append(",");
-			stringBuilder.Append(g.ToString());
-			stringBuilder.Append(",");
-			stringBuilder.Append(b.ToString());
-			return stringBuilder.ToString();
-		}
+        public override string ToString()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(r.ToString());
+            stringBuilder.Append(",");
+            stringBuilder.Append(g.ToString());
+            stringBuilder.Append(",");
+            stringBuilder.Append(b.ToString());
+            return stringBuilder.ToString();
+        }
 
-		public Colors(string color)
-		{
-			string[] array = color.Split(new char[]
-			{
-				','
-			});
-			if (array.Length < 3)
-			{
-				throw new Exception("色の取得に失敗しました:" + color);
-			}
-			try
-			{
-				r = int.Parse(array[0]);
-				g = int.Parse(array[1]);
-				b = int.Parse(array[2]);
-			}
-			catch (Exception ex)
-			{
-				throw new Exception(string.Concat(new string[]
-				{
-					"色の取得に失敗しました:",
-					color,
-					"\n",
-					ex.Message,
-					"\nst:",
-					ex.StackTrace
-				}));
-			}
-		}
+        public Colors(string color)
+        {
+            string[] array = color.Split(new char[]
+            {
+                ','
+            });
+            if (array.Length < 3)
+            {
+                throw new Exception("色の取得に失敗しました:" + color);
+            }
+            try
+            {
+                r = int.Parse(array[0]);
+                g = int.Parse(array[1]);
+                b = int.Parse(array[2]);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(string.Concat(new string[]
+                {
+                    "色の取得に失敗しました:",
+                    color,
+                    "\n",
+                    ex.Message,
+                    "\nst:",
+                    ex.StackTrace
+                }));
+            }
+        }
 
-		public int r;
+        public int r;
 
-		public int g;
+        public int g;
 
-		public int b;
-	}
+        public int b;
+    }
 }

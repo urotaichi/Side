@@ -4,24 +4,24 @@ using System.Xml.Serialization;
 
 namespace MasaoPlus
 {
-	public struct ChipData
-	{
-		[XmlAttribute("value")]
-		public string value;
+    public struct ChipData
+    {
+        [XmlAttribute("value")]
+        public string value;
 
-		public Point pattern;
+        public Point pattern;
 
-		public Size size;
+        public Size size;
 
-		public Size view_size;
+        public Size view_size;
 
-		public Point center;
+        public Point center;
 
-		public int rotate;
+        public int rotate;
 
-		public float scale;
+        public float scale;
 
-		public int repeat;
+        public int repeat;
 
         public int repeat_x;
 
@@ -29,10 +29,10 @@ namespace MasaoPlus
 
         public Point xdraw;
 
-		public bool xdbackgrnd;
+        public bool xdbackgrnd;
 
-		public string name;
+        public string name;
 
-		public string description;
-	}
+        public string description;
+    }
 }

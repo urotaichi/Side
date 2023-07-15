@@ -8,43 +8,43 @@ using MasaoPlus.Properties;
 
 namespace MasaoPlus.Dialogs
 {
-	public partial class StartUp : Form
-	{
-		public StartUp()
-		{
-			InitializeComponent();
+    public partial class StartUp : Form
+    {
+        public StartUp()
+        {
+            InitializeComponent();
             DialogResult = DialogResult.None;
-		}
+        }
 
-		private void StartUp_Load(object sender, EventArgs e)
-		{
-			WelcomeLabel.Text = Global.definition.AppNameFull + " v" + Global.definition.Version;
-		}
+        private void StartUp_Load(object sender, EventArgs e)
+        {
+            WelcomeLabel.Text = Global.definition.AppNameFull + " v" + Global.definition.Version;
+        }
 
-		private void StartUp_Shown(object sender, EventArgs e)
-		{
-			Application.DoEvents();
-			if (Global.config.localSystem.CheckAutoUpdate)
-			{
-				Subsystem.UpdateAutoCheck();
-			}
-		}
+        private void StartUp_Shown(object sender, EventArgs e)
+        {
+            Application.DoEvents();
+            if (Global.config.localSystem.CheckAutoUpdate)
+            {
+                Subsystem.UpdateAutoCheck();
+            }
+        }
 
-		private void StartUp_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			if (DialogResult != DialogResult.OK)
-			{
-				Application.Exit();
-			}
-		}
+        private void StartUp_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (DialogResult != DialogResult.OK)
+            {
+                Application.Exit();
+            }
+        }
 
-		private void Exit_Click(object sender, EventArgs e)
-		{
-			Application.Exit();
-		}
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
-		private void NewProj_Click(object sender, EventArgs e)
-		{
+        private void NewProj_Click(object sender, EventArgs e)
+        {
             using NewProject newProject = new NewProject();
             if (newProject.ShowDialog() == DialogResult.OK)
             {
@@ -54,8 +54,8 @@ namespace MasaoPlus.Dialogs
             }
         }
 
-		private void OpenFile_Click(object sender, EventArgs e)
-		{
+        private void OpenFile_Click(object sender, EventArgs e)
+        {
             using OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = string.Concat(new string[]
             {
@@ -94,29 +94,29 @@ namespace MasaoPlus.Dialogs
             }
         }
 
-		private void ExMenu_Click(object sender, EventArgs e)
-		{
-			ExMenuStrip.Show(ExMenu, new Point(0, ExMenu.Height));
-		}
+        private void ExMenu_Click(object sender, EventArgs e)
+        {
+            ExMenuStrip.Show(ExMenu, new Point(0, ExMenu.Height));
+        }
 
-		private void CallConfig_Click(object sender, EventArgs e)
-		{
+        private void CallConfig_Click(object sender, EventArgs e)
+        {
             using SideConfig sideConfig = new SideConfig();
             sideConfig.ShowDialog();
         }
 
-		private void CallRuntimeManager_Click(object sender, EventArgs e)
-		{
-			DialogResult dialogResult = DialogResult.Retry;
-			while (dialogResult == DialogResult.Retry)
-			{
+        private void CallRuntimeManager_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = DialogResult.Retry;
+            while (dialogResult == DialogResult.Retry)
+            {
                 using RuntimeManager runtimeManager = new RuntimeManager();
                 dialogResult = runtimeManager.ShowDialog();
             }
-		}
+        }
 
-		private void CallSideUpdate_Click(object sender, EventArgs e)
-		{
+        private void CallSideUpdate_Click(object sender, EventArgs e)
+        {
             using WebUpdate webUpdate = new WebUpdate();
             if (webUpdate.ShowDialog() == DialogResult.Retry)
             {
@@ -125,8 +125,8 @@ namespace MasaoPlus.Dialogs
             }
         }
 
-		private void InheritNew_Click(object sender, EventArgs e)
-		{
+        private void InheritNew_Click(object sender, EventArgs e)
+        {
             using OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}";
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
@@ -142,6 +142,6 @@ namespace MasaoPlus.Dialogs
             }
         }
 
-		public string ProjectPath = "";
-	}
+        public string ProjectPath = "";
+    }
 }
