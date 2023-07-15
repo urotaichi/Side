@@ -2,8 +2,8 @@
 <MasaoRuntime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Definitions>
     <Name>ロードランナー正男</Name>
-    <DefVersion>4.4</DefVersion>
-    <RequireLower>2.911</RequireLower>
+    <DefVersion>4.5</DefVersion>
+    <RequireLower>2.912</RequireLower>
     <Author>RYO</Author>
     <Update>https://urotaichi.com/other/side/mc_r.xml</Update>
     <!--各種ファイルの指定-->
