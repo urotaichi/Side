@@ -128,7 +128,7 @@ namespace MasaoPlus
 				{
 					get
 					{
-						return this.x * this.bytesize;
+						return x * bytesize;
 					}
 				}
 

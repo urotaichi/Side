@@ -17,13 +17,13 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.curTool;
+				return curTool;
 			}
 			set
 			{
-				this.BufferingDraw = value != GUIDesigner.EditTool.Pen;
-				this.curTool = value;
-				this.Refresh();
+				BufferingDraw = value != GUIDesigner.EditTool.Pen;
+				curTool = value;
+				Refresh();
 			}
 		}
 
@@ -31,20 +31,20 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.cpaste;
+				return cpaste;
 			}
 			set
 			{
 				if (value == GUIDesigner.CopyPasteTool.None)
 				{
-					this.BufferingDraw = this.CurrentTool != GUIDesigner.EditTool.Pen;
+					BufferingDraw = CurrentTool != GUIDesigner.EditTool.Pen;
 				}
 				else
 				{
-					this.BufferingDraw = true;
+					BufferingDraw = true;
 				}
-				this.cpaste = value;
-				this.Refresh();
+				cpaste = value;
+				Refresh();
 			}
 		}
 
@@ -54,16 +54,16 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.bdraw;
+				return bdraw;
 			}
 			set
 			{
-				if (value && !this.bdraw)
+				if (value && !bdraw)
 				{
-					this.bufpos = -1;
-					this.Refresh();
+					bufpos = -1;
+					Refresh();
 				}
-				this.bdraw = value;
+				bdraw = value;
 			}
 		}
 
@@ -73,84 +73,84 @@ namespace MasaoPlus
 			Global.config.draw.ExtendDraw = EnableExDraw;
 			if (Global.cpd.UseLayer)
 			{
-				this.UpdateBackgroundBuffer();
-				g.DrawImage(this.BackLayerBmp, new Point(0, 0));
+				UpdateBackgroundBuffer();
+				g.DrawImage(BackLayerBmp, new Point(0, 0));
 			}
-			this.UpdateForegroundBuffer();
-			g.DrawImage(this.ForeLayerBmp, new Point(0, 0));
+			UpdateForegroundBuffer();
+			g.DrawImage(ForeLayerBmp, new Point(0, 0));
 			Global.config.draw.ExtendDraw = extendDraw;
-			this.UpdateForegroundBuffer();
-			this.UpdateBackgroundBuffer();
-			this.InitTransparent();
-			this.bufpos = -1;
-			this.Refresh();
+			UpdateForegroundBuffer();
+			UpdateBackgroundBuffer();
+			InitTransparent();
+			bufpos = -1;
+			Refresh();
 		}
 
 		public void ClearBuffer()
 		{
-			this.StageBuffer.Clear();
-			if (this.ChangeBufferInvoke != null)
+			StageBuffer.Clear();
+			if (ChangeBufferInvoke != null)
 			{
-				this.ChangeBufferInvoke();
+				ChangeBufferInvoke();
 			}
 		}
 
 		public void AddBuffer()
 		{
-			if (this.StageBuffer.Count > this.BufferCurrent + 1)
+			if (StageBuffer.Count > BufferCurrent + 1)
 			{
-				this.StageBuffer.RemoveRange(this.BufferCurrent + 1, this.StageBuffer.Count - (this.BufferCurrent + 1));
+				StageBuffer.RemoveRange(BufferCurrent + 1, StageBuffer.Count - (BufferCurrent + 1));
 			}
 			if (Global.state.EditingForeground)
 			{
-				this.StageBuffer.Add((string[])Global.cpd.EditingMap.Clone());
+				StageBuffer.Add((string[])Global.cpd.EditingMap.Clone());
 			}
 			else
 			{
-				this.StageBuffer.Add((string[])Global.cpd.EditingLayer.Clone());
+				StageBuffer.Add((string[])Global.cpd.EditingLayer.Clone());
 			}
-			this.BufferCurrent = this.StageBuffer.Count - 1;
-			if (this.BufferCurrent != 0)
+			BufferCurrent = StageBuffer.Count - 1;
+			if (BufferCurrent != 0)
 			{
 				Global.state.EditFlag = true;
 			}
-			if (this.ChangeBufferInvoke != null)
+			if (ChangeBufferInvoke != null)
 			{
-				this.ChangeBufferInvoke();
+				ChangeBufferInvoke();
 			}
 		}
 
 		public void Undo()
 		{
-			if (this.BufferCurrent <= 0)
+			if (BufferCurrent <= 0)
 			{
 				return;
 			}
 			Global.state.EditFlag = true;
 			Global.MainWnd.UpdateStatus("描画しています...");
-			this.BufferCurrent--;
+			BufferCurrent--;
 			if (Global.state.EditingForeground)
 			{
 				switch (Global.state.EdittingStage)
 				{
 				case 0:
-					Global.cpd.project.StageData = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.StageData = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingMap = Global.cpd.project.StageData;
 					break;
 				case 1:
-					Global.cpd.project.StageData2 = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.StageData2 = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingMap = Global.cpd.project.StageData2;
 					break;
 				case 2:
-					Global.cpd.project.StageData3 = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.StageData3 = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingMap = Global.cpd.project.StageData3;
 					break;
 				case 3:
-					Global.cpd.project.StageData4 = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.StageData4 = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingMap = Global.cpd.project.StageData4;
 					break;
 				case 4:
-					Global.cpd.project.MapData = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.MapData = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingMap = Global.cpd.project.MapData;
 					break;
 				}
@@ -160,63 +160,63 @@ namespace MasaoPlus
 				switch (Global.state.EdittingStage)
 				{
 				case 0:
-					Global.cpd.project.LayerData = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.LayerData = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingLayer = Global.cpd.project.LayerData;
 					break;
 				case 1:
-					Global.cpd.project.LayerData2 = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.LayerData2 = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
 					break;
 				case 2:
-					Global.cpd.project.LayerData3 = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.LayerData3 = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
 					break;
 				case 3:
-					Global.cpd.project.LayerData4 = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.LayerData4 = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
 					break;
 				}
 			}
-			if (this.ChangeBufferInvoke != null)
+			if (ChangeBufferInvoke != null)
 			{
-				this.ChangeBufferInvoke();
+				ChangeBufferInvoke();
 			}
-			this.StageSourceToDrawBuffer();
-			this.Refresh();
+			StageSourceToDrawBuffer();
+			Refresh();
 			Global.MainWnd.UpdateStatus("完了");
 		}
 
 		public void Redo()
 		{
-			if (this.BufferCurrent >= this.StageBuffer.Count - 1)
+			if (BufferCurrent >= StageBuffer.Count - 1)
 			{
 				return;
 			}
 			Global.state.EditFlag = true;
 			Global.MainWnd.UpdateStatus("描画しています...");
-			this.BufferCurrent++;
+			BufferCurrent++;
 			if (Global.state.EditingForeground)
 			{
 				switch (Global.state.EdittingStage)
 				{
 				case 0:
-					Global.cpd.project.StageData = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.StageData = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingMap = Global.cpd.project.StageData;
 					break;
 				case 1:
-					Global.cpd.project.StageData2 = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.StageData2 = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingMap = Global.cpd.project.StageData2;
 					break;
 				case 2:
-					Global.cpd.project.StageData3 = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.StageData3 = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingMap = Global.cpd.project.StageData3;
 					break;
 				case 3:
-					Global.cpd.project.StageData4 = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.StageData4 = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingMap = Global.cpd.project.StageData4;
 					break;
 				case 4:
-					Global.cpd.project.MapData = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.MapData = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingMap = Global.cpd.project.MapData;
 					break;
 				}
@@ -226,29 +226,29 @@ namespace MasaoPlus
 				switch (Global.state.EdittingStage)
 				{
 				case 0:
-					Global.cpd.project.LayerData = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.LayerData = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingLayer = Global.cpd.project.LayerData;
 					break;
 				case 1:
-					Global.cpd.project.LayerData2 = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.LayerData2 = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
 					break;
 				case 2:
-					Global.cpd.project.LayerData3 = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.LayerData3 = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
 					break;
 				case 3:
-					Global.cpd.project.LayerData4 = (string[])this.StageBuffer[this.BufferCurrent].Clone();
+					Global.cpd.project.LayerData4 = (string[])StageBuffer[BufferCurrent].Clone();
 					Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
 					break;
 				}
 			}
-			if (this.ChangeBufferInvoke != null)
+			if (ChangeBufferInvoke != null)
 			{
-				this.ChangeBufferInvoke();
+				ChangeBufferInvoke();
 			}
-			this.StageSourceToDrawBuffer();
-			this.Refresh();
+			StageSourceToDrawBuffer();
+			Refresh();
 			Global.MainWnd.UpdateStatus("完了");
 		}
 
@@ -258,14 +258,14 @@ namespace MasaoPlus
 			{
 				if (Global.state.EditingForeground)
 				{
-					if (this.ForeLayerBmp != null)
+					if (ForeLayerBmp != null)
 					{
-						return this.ForeLayerBmp.Size;
+						return ForeLayerBmp.Size;
 					}
 				}
-				else if (this.BackLayerBmp != null)
+				else if (BackLayerBmp != null)
 				{
-					return this.BackLayerBmp.Size;
+					return BackLayerBmp.Size;
 				}
 				return default;
 			}
@@ -277,14 +277,14 @@ namespace MasaoPlus
 			{
 				if (Global.state.EditingForeground)
 				{
-					if (this.ForeLayerBmp != null)
+					if (ForeLayerBmp != null)
 					{
-						return new Size((int)((double)this.ForeLayerBmp.Width * Global.config.draw.ZoomIndex), (int)((double)this.ForeLayerBmp.Height * Global.config.draw.ZoomIndex));
+						return new Size((int)((double)ForeLayerBmp.Width * Global.config.draw.ZoomIndex), (int)((double)ForeLayerBmp.Height * Global.config.draw.ZoomIndex));
 					}
 				}
-				else if (this.BackLayerBmp != null)
+				else if (BackLayerBmp != null)
 				{
-					return new Size((int)((double)this.BackLayerBmp.Width * Global.config.draw.ZoomIndex), (int)((double)this.BackLayerBmp.Height * Global.config.draw.ZoomIndex));
+					return new Size((int)((double)BackLayerBmp.Width * Global.config.draw.ZoomIndex), (int)((double)BackLayerBmp.Height * Global.config.draw.ZoomIndex));
 				}
 				return default;
 			}
@@ -307,7 +307,7 @@ namespace MasaoPlus
 
 		public GUIDesigner()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 			base.SetStyle(ControlStyles.ResizeRedraw, true);
 			base.SetStyle(ControlStyles.DoubleBuffer, true);
 			base.SetStyle(ControlStyles.UserPaint, true);
@@ -318,10 +318,10 @@ namespace MasaoPlus
 		{
 			if (Global.state.EditingForeground)
 			{
-				this.UpdateForegroundBuffer();
+				UpdateForegroundBuffer();
 				return;
 			}
-			this.UpdateBackgroundBuffer();
+			UpdateBackgroundBuffer();
 		}
 
 		public void InitTransparent()
@@ -330,26 +330,26 @@ namespace MasaoPlus
 			{
 				if (Global.state.EditingForeground)
 				{
-					this.HalfTransparentBitmap2(ref this.BackLayerBmp);
+					HalfTransparentBitmap2(ref BackLayerBmp);
 					return;
 				}
-				this.HalfTransparentBitmap2(ref this.ForeLayerBmp);
+				HalfTransparentBitmap2(ref ForeLayerBmp);
 			}
 		}
 
 		public void ForceBufferResize()
 		{
-			if (this.ForeLayerBmp != null)
+			if (ForeLayerBmp != null)
 			{
-				this.ForeLayerBmp.Dispose();
-				this.ForeLayerBmp = null;
+				ForeLayerBmp.Dispose();
+				ForeLayerBmp = null;
 			}
-			if (this.BackLayerBmp != null)
+			if (BackLayerBmp != null)
 			{
-				this.BackLayerBmp.Dispose();
-				this.BackLayerBmp = null;
+				BackLayerBmp.Dispose();
+				BackLayerBmp = null;
 			}
-			this.bufpos = -1;
+			bufpos = -1;
 		}
 
 		private void DrawExtendSizeMap(ChipData cschip, Graphics g, Point p, bool foreground, string chara){
@@ -357,7 +357,7 @@ namespace MasaoPlus
 			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
 			if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd)
 			{ // 拡張画像　背面
-				g.DrawImage(this.DrawExOrig,
+				g.DrawImage(DrawExOrig,
 					new Rectangle(new Point(p.X * chipsize.Width - cschip.center.X, p.Y * chipsize.Height - cschip.center.Y), chipsize),
 					new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
 			}
@@ -365,7 +365,7 @@ namespace MasaoPlus
 			{ // 標準パターン画像
 				if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chara == "Z")
 				{
-					g.DrawImage(this.DrawOribossOrig, p.X * chipsize.Width, p.Y * chipsize.Height);
+					g.DrawImage(DrawOribossOrig, p.X * chipsize.Width, p.Y * chipsize.Height);
 				}
 				else
 				{
@@ -376,7 +376,7 @@ namespace MasaoPlus
 						g.TranslateTransform(p.X * chipsize.Width - cschip.center.X + cschip.size.Width / 2, p.Y * chipsize.Height - cschip.center.Y + cschip.size.Height / 2);
 					g.RotateTransform(cschip.rotate);
 					if (cschip.scale != default) g.ScaleTransform(cschip.scale, cschip.scale);
-					g.DrawImage(this.DrawChipOrig,
+					g.DrawImage(DrawChipOrig,
 						new Rectangle(-cschip.size.Width / 2, -cschip.size.Height / 2, cschip.size.Width, cschip.size.Height),
 						new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
 					g.Restore(transState);
@@ -384,7 +384,7 @@ namespace MasaoPlus
 			}
 			else
 			{ // 背景レイヤー画像
-				g.DrawImage(this.DrawLayerOrig,
+				g.DrawImage(DrawLayerOrig,
 					new Rectangle(p.X * chipsize.Width - cschip.center.X, p.Y * chipsize.Height - cschip.center.Y, cschip.size.Width, cschip.size.Height),
 					new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
 			}
@@ -480,7 +480,7 @@ namespace MasaoPlus
 			}
 			else if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
 			{ // 拡張画像　前面
-				g.DrawImage(this.DrawExOrig,
+				g.DrawImage(DrawExOrig,
 					new Rectangle(new Point(p.X * chipsize.Width - cschip.center.X, p.Y * chipsize.Height - cschip.center.Y), chipsize),
 					new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
 			}
@@ -490,7 +490,7 @@ namespace MasaoPlus
 			Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
 			if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd)
 			{ // 拡張画像　背面
-				g.DrawImage(this.DrawExOrig,
+				g.DrawImage(DrawExOrig,
 					new Rectangle(p.X * chipsize.Width, p.Y * chipsize.Height, chipsize.Width, chipsize.Height),
 					new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
 			}
@@ -545,7 +545,7 @@ namespace MasaoPlus
 						{
 							for (int j = 0; j < cschip.repeat; j++)
 							{
-								g.DrawImage(this.DrawChipOrig,
+								g.DrawImage(DrawChipOrig,
 									new Rectangle(-chipsize.Width / 2 + j * chipsize.Width * Math.Sign(cschip.rotate), -chipsize.Height / 2, chipsize.Width, chipsize.Height),
 									new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 							}
@@ -554,7 +554,7 @@ namespace MasaoPlus
 						{
 							for (int j = 0; j < cschip.repeat_x; j++)
 							{
-								g.DrawImage(this.DrawChipOrig,
+								g.DrawImage(DrawChipOrig,
 									new Rectangle(-chipsize.Width / 2 + j * chipsize.Width, -chipsize.Height / 2, chipsize.Width, chipsize.Height),
 									new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 							}
@@ -563,7 +563,7 @@ namespace MasaoPlus
 						{
 							for (int j = 0; j < cschip.repeat_y; j++)
 							{
-								g.DrawImage(this.DrawChipOrig,
+								g.DrawImage(DrawChipOrig,
 									new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2 + j * chipsize.Height, chipsize.Width, chipsize.Height),
 									new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 							}
@@ -581,9 +581,9 @@ namespace MasaoPlus
 							};
 							using var imageAttributes = new ImageAttributes();
 							imageAttributes.SetColorMatrix(colorMatrix);
-							g.DrawImage(this.DrawChipOrig, new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
+							g.DrawImage(DrawChipOrig, new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
 						}
-						else g.DrawImage(this.DrawChipOrig,
+						else g.DrawImage(DrawChipOrig,
 							new Rectangle(-chipsize.Width / 2, -chipsize.Height / 2, chipsize.Width, chipsize.Height),
 							new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 						break;
@@ -592,13 +592,13 @@ namespace MasaoPlus
 			}
 			else
 			{ // 背景レイヤー画像
-				g.DrawImage(this.DrawLayerOrig,
+				g.DrawImage(DrawLayerOrig,
 					new Rectangle(p.X * chipsize.Width, p.Y * chipsize.Height, chipsize.Width, chipsize.Height),
 					new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 			}
 			if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
 			{ // 拡張画像　前面
-				g.DrawImage(this.DrawExOrig,
+				g.DrawImage(DrawExOrig,
 						new Rectangle(p.X * chipsize.Width, p.Y * chipsize.Height, chipsize.Width, chipsize.Height),
 						new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
 			}
@@ -607,32 +607,32 @@ namespace MasaoPlus
 		public void UpdateForegroundBuffer()
 		{
 			bool flag = false;
-			if (this.ForeLayerBmp == null)
+			if (ForeLayerBmp == null)
 			{
 				if (Global.state.MapEditMode)
 				{
-					this.ForeLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.MapSize.x * Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.MapSize.y * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb);
+					ForeLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.MapSize.x * Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.MapSize.y * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb);
 				}
 				else
 				{
-					this.ForeLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.StageSize.x * Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.StageSize.y * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb);
+					ForeLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.StageSize.x * Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.StageSize.y * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb);
 				}
 			}
 			else if (!Global.state.UseBuffered)
 			{
 				flag = true;
 			}
-			using (Graphics graphics = Graphics.FromImage(this.ForeLayerBmp))
+			using (Graphics graphics = Graphics.FromImage(ForeLayerBmp))
 			{
 				if (flag)
 				{
 					graphics.CompositingMode = CompositingMode.SourceCopy;
-					graphics.FillRectangle(Brushes.Transparent, new Rectangle(0, 0, this.ForeLayerBmp.Width, this.ForeLayerBmp.Height));
+					graphics.FillRectangle(Brushes.Transparent, new Rectangle(0, 0, ForeLayerBmp.Width, ForeLayerBmp.Height));
 					graphics.CompositingMode = CompositingMode.SourceOver;
 				}
-				this.MakeDrawBuffer(graphics, true);
+				MakeDrawBuffer(graphics, true);
 			}
-			this.bufpos = -1;
+			bufpos = -1;
 		}
 
 		public void UpdateBackgroundBuffer()
@@ -642,25 +642,25 @@ namespace MasaoPlus
 			{
 				return;
 			}
-			if (this.BackLayerBmp == null)
+			if (BackLayerBmp == null)
 			{
-				this.BackLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.LayerSize.x * Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.LayerSize.y * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb);
+				BackLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.LayerSize.x * Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.LayerSize.y * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb);
 			}
 			else if (!Global.state.UseBuffered)
 			{
 				flag = true;
 			}
-			using (Graphics graphics = Graphics.FromImage(this.BackLayerBmp))
+			using (Graphics graphics = Graphics.FromImage(BackLayerBmp))
 			{
 				if (flag)
 				{
 					graphics.CompositingMode = CompositingMode.SourceCopy;
-					graphics.FillRectangle(Brushes.Transparent, new Rectangle(0, 0, this.BackLayerBmp.Width, this.BackLayerBmp.Height));
+					graphics.FillRectangle(Brushes.Transparent, new Rectangle(0, 0, BackLayerBmp.Width, BackLayerBmp.Height));
 					graphics.CompositingMode = CompositingMode.SourceOver;
 				}
-				this.MakeDrawBuffer(graphics, false);
+				MakeDrawBuffer(graphics, false);
 			}
-			this.bufpos = -1;
+			bufpos = -1;
 		}
 
 		private void MakeDrawBuffer(Graphics g, bool foreground)
@@ -675,10 +675,10 @@ namespace MasaoPlus
 					if (Global.state.ChipRegister.ContainsKey("second_gazou_scroll_x")) second_gazou_scroll_x = int.Parse(Global.state.ChipRegister["second_gazou_scroll_x"]);
 					if (Global.state.ChipRegister.ContainsKey("second_gazou_scroll_y")) second_gazou_scroll_y = int.Parse(Global.state.ChipRegister["second_gazou_scroll_y"]);
 
-					Image SecondHaikeiOrig = this.DrawSecondHaikeiOrig;
-					if (Global.state.EdittingStage == 1) SecondHaikeiOrig = this.DrawSecondHaikei2Orig;
-					else if (Global.state.EdittingStage == 2) SecondHaikeiOrig = this.DrawSecondHaikei3Orig;
-					else if (Global.state.EdittingStage == 3) SecondHaikeiOrig = this.DrawSecondHaikei4Orig;
+					Image SecondHaikeiOrig = DrawSecondHaikeiOrig;
+					if (Global.state.EdittingStage == 1) SecondHaikeiOrig = DrawSecondHaikei2Orig;
+					else if (Global.state.EdittingStage == 2) SecondHaikeiOrig = DrawSecondHaikei3Orig;
+					else if (Global.state.EdittingStage == 3) SecondHaikeiOrig = DrawSecondHaikei4Orig;
 					g.DrawImage(SecondHaikeiOrig, second_gazou_scroll_x, second_gazou_scroll_y);
 				}
 				// 背景画像固定表示
@@ -688,10 +688,10 @@ namespace MasaoPlus
 					if (Global.state.ChipRegister.ContainsKey("gazou_scroll_x")) gazou_scroll_x = int.Parse(Global.state.ChipRegister["gazou_scroll_x"]);
 					if (Global.state.ChipRegister.ContainsKey("gazou_scroll_y")) gazou_scroll_y = int.Parse(Global.state.ChipRegister["gazou_scroll_y"]);
 
-					Image HaikeiOrig = this.DrawHaikeiOrig;
-					if (Global.state.EdittingStage == 1) HaikeiOrig = this.DrawHaikei2Orig;
-					else if (Global.state.EdittingStage == 2) HaikeiOrig = this.DrawHaikei3Orig;
-					else if (Global.state.EdittingStage == 3) HaikeiOrig = this.DrawHaikei4Orig;
+					Image HaikeiOrig = DrawHaikeiOrig;
+					if (Global.state.EdittingStage == 1) HaikeiOrig = DrawHaikei2Orig;
+					else if (Global.state.EdittingStage == 2) HaikeiOrig = DrawHaikei3Orig;
+					else if (Global.state.EdittingStage == 3) HaikeiOrig = DrawHaikei4Orig;
 					g.DrawImage(HaikeiOrig, gazou_scroll_x, gazou_scroll_y);
 				}
 			}
@@ -729,11 +729,11 @@ namespace MasaoPlus
 					{
 						text = Global.cpd.EditingLayer[num].Substring(num2 * Global.cpd.project.Runtime.Definitions.LayerSize.bytesize, Global.cpd.project.Runtime.Definitions.LayerSize.bytesize);
 					}
-					if ((!Global.state.UseBuffered || ((!foreground || this.ForePrevDrawn == null || !(this.ForePrevDrawn[num].Substring(Global.state.MapEditMode ? (num2 * Global.cpd.project.Runtime.Definitions.MapSize.bytesize) : (num2 * Global.cpd.project.Runtime.Definitions.StageSize.bytesize), Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize.bytesize : Global.cpd.project.Runtime.Definitions.StageSize.bytesize) == text)) && (foreground || this.BackPrevDrawn == null || !(this.BackPrevDrawn[num].Substring(num2 * Global.cpd.project.Runtime.Definitions.LayerSize.bytesize, Global.cpd.project.Runtime.Definitions.LayerSize.bytesize) == text)))) && (!Global.config.draw.SkipFirstChip || ((!foreground || !text.Equals(Global.cpd.Mapchip[0].character)) && (foreground || !text.Equals(Global.cpd.Layerchip[0].character)))) && ((foreground && this.DrawItemRef.ContainsKey(text)) || (!foreground && this.DrawLayerRef.ContainsKey(text))))
+					if ((!Global.state.UseBuffered || ((!foreground || ForePrevDrawn == null || !(ForePrevDrawn[num].Substring(Global.state.MapEditMode ? (num2 * Global.cpd.project.Runtime.Definitions.MapSize.bytesize) : (num2 * Global.cpd.project.Runtime.Definitions.StageSize.bytesize), Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize.bytesize : Global.cpd.project.Runtime.Definitions.StageSize.bytesize) == text)) && (foreground || BackPrevDrawn == null || !(BackPrevDrawn[num].Substring(num2 * Global.cpd.project.Runtime.Definitions.LayerSize.bytesize, Global.cpd.project.Runtime.Definitions.LayerSize.bytesize) == text)))) && (!Global.config.draw.SkipFirstChip || ((!foreground || !text.Equals(Global.cpd.Mapchip[0].character)) && (foreground || !text.Equals(Global.cpd.Layerchip[0].character)))) && ((foreground && DrawItemRef.ContainsKey(text)) || (!foreground && DrawLayerRef.ContainsKey(text))))
 					{
-						if (Global.state.MapEditMode) chipsData = this.DrawWorldRef[text];
-						else if (foreground) chipsData = this.DrawItemRef[text];
-						else chipsData = this.DrawLayerRef[text];
+						if (Global.state.MapEditMode) chipsData = DrawWorldRef[text];
+						else if (foreground) chipsData = DrawItemRef[text];
+						else chipsData = DrawLayerRef[text];
 						c = chipsData.GetCSChip();
 						if (c.size != default) // 標準サイズより大きい
 						{
@@ -774,7 +774,7 @@ namespace MasaoPlus
 					int oriboss_x = default, oriboss_y = default;
 					if (Global.state.ChipRegister.ContainsKey("oriboss_x")) oriboss_x = int.Parse(Global.state.ChipRegister["oriboss_x"]);
 					if (Global.state.ChipRegister.ContainsKey("oriboss_y")) oriboss_y = int.Parse(Global.state.ChipRegister["oriboss_y"]);
-					g.DrawImage(this.DrawOribossOrig, oriboss_x * chipsize.Width, oriboss_y * chipsize.Height);
+					g.DrawImage(DrawOribossOrig, oriboss_x * chipsize.Width, oriboss_y * chipsize.Height);
 					if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
 					{
 						Point p = default;
@@ -873,20 +873,20 @@ namespace MasaoPlus
 					if (Global.state.ChipRegister.ContainsKey("second_gazou_scroll_x")) second_gazou_scroll_x = int.Parse(Global.state.ChipRegister["second_gazou_scroll_x"]);
 					if (Global.state.ChipRegister.ContainsKey("second_gazou_scroll_y")) second_gazou_scroll_y = int.Parse(Global.state.ChipRegister["second_gazou_scroll_y"]);
 
-					Image SecondHaikeiOrig = this.DrawSecondHaikeiOrig;
-					if (Global.state.EdittingStage == 2) SecondHaikeiOrig = this.DrawSecondHaikei2Orig;
-					else if (Global.state.EdittingStage == 3) SecondHaikeiOrig = this.DrawSecondHaikei3Orig;
-					else if (Global.state.EdittingStage == 4) SecondHaikeiOrig = this.DrawSecondHaikei4Orig;
+					Image SecondHaikeiOrig = DrawSecondHaikeiOrig;
+					if (Global.state.EdittingStage == 2) SecondHaikeiOrig = DrawSecondHaikei2Orig;
+					else if (Global.state.EdittingStage == 3) SecondHaikeiOrig = DrawSecondHaikei3Orig;
+					else if (Global.state.EdittingStage == 4) SecondHaikeiOrig = DrawSecondHaikei4Orig;
 					g.DrawImage(SecondHaikeiOrig, second_gazou_scroll_x, second_gazou_scroll_y);
 				}
 			}
 			if (foreground)
 			{
-				this.ForePrevDrawn = (string[])Global.cpd.EditingMap.Clone();
+				ForePrevDrawn = (string[])Global.cpd.EditingMap.Clone();
 			}
 			else
 			{
-				this.BackPrevDrawn = (string[])Global.cpd.EditingLayer.Clone();
+				BackPrevDrawn = (string[])Global.cpd.EditingLayer.Clone();
 			}
 			list.Clear();
 		}
@@ -894,7 +894,7 @@ namespace MasaoPlus
 		public void TransparentStageClip(Bitmap b, Rectangle stagearea)
 		{
 			Size chipSize = Global.cpd.runtime.Definitions.ChipSize;
-			this.TransparentClip(b, new Rectangle(stagearea.X * chipSize.Width, stagearea.Y * chipSize.Height, stagearea.Width * chipSize.Width, stagearea.Height * chipSize.Height));
+			TransparentClip(b, new Rectangle(stagearea.X * chipSize.Width, stagearea.Y * chipSize.Height, stagearea.Width * chipSize.Width, stagearea.Height * chipSize.Height));
 		}
 
 		public unsafe void TransparentClip(Bitmap b, Rectangle area)
@@ -914,7 +914,7 @@ namespace MasaoPlus
 			}
 			catch
 			{
-				this.StageSourceToDrawBuffer();
+				StageSourceToDrawBuffer();
 			}
 		}
 
@@ -959,22 +959,22 @@ namespace MasaoPlus
 
 		public void CreateDrawItemReference()
 		{
-			this.DrawItemRef.Clear();
+			DrawItemRef.Clear();
 			foreach (ChipsData value in Global.cpd.Mapchip)
 			{
-				this.DrawItemRef.Add(value.character, value);
+				DrawItemRef.Add(value.character, value);
 			}
-			this.DrawWorldRef.Clear();
+			DrawWorldRef.Clear();
 			foreach (ChipsData value2 in Global.cpd.Worldchip)
 			{
-				this.DrawWorldRef.Add(value2.character, value2);
+				DrawWorldRef.Add(value2.character, value2);
 			}
 			if (Global.cpd.UseLayer)
 			{
-				this.DrawLayerRef.Clear();
+				DrawLayerRef.Clear();
 				foreach (ChipsData value3 in Global.cpd.Layerchip)
 				{
-					this.DrawLayerRef.Add(value3.character, value3);
+					DrawLayerRef.Add(value3.character, value3);
 				}
 			}
 		}
@@ -982,95 +982,95 @@ namespace MasaoPlus
 		// 画像準備
 		public void PrepareImages()
 		{
-			if (this.DrawChipOrig != null)
+			if (DrawChipOrig != null)
 			{
-				this.DrawChipOrig.Dispose();
-				this.DrawChipOrig = null;
+				DrawChipOrig.Dispose();
+				DrawChipOrig = null;
 			}
-			if (this.DrawMask != null)
+			if (DrawMask != null)
 			{
-				this.DrawMask.Dispose();
-				this.DrawMask = null;
+				DrawMask.Dispose();
+				DrawMask = null;
 			}
-			if (this.DrawLayerOrig != null)
+			if (DrawLayerOrig != null)
 			{
-				this.DrawLayerOrig.Dispose();
-				this.DrawLayerOrig = null;
+				DrawLayerOrig.Dispose();
+				DrawLayerOrig = null;
 			}
-			if (this.DrawLayerMask != null)
+			if (DrawLayerMask != null)
 			{
-				this.DrawLayerMask.Dispose();
-				this.DrawLayerMask = null;
+				DrawLayerMask.Dispose();
+				DrawLayerMask = null;
 			}
-			if (this.DrawOribossOrig != null)
+			if (DrawOribossOrig != null)
 			{
-				this.DrawOribossOrig.Dispose();
-				this.DrawOribossOrig = null;
+				DrawOribossOrig.Dispose();
+				DrawOribossOrig = null;
 			}
-			if (this.DrawOribossMask != null)
+			if (DrawOribossMask != null)
 			{
-				this.DrawOribossMask.Dispose();
-				this.DrawOribossMask = null;
+				DrawOribossMask.Dispose();
+				DrawOribossMask = null;
 			}
-			if (this.DrawExOrig != null)
+			if (DrawExOrig != null)
 			{
-				this.DrawExOrig.Dispose();
-				this.DrawExOrig = null;
+				DrawExOrig.Dispose();
+				DrawExOrig = null;
 			}
-			if (this.DrawExMask != null)
+			if (DrawExMask != null)
 			{
-				this.DrawExMask.Dispose();
-				this.DrawExMask = null;
+				DrawExMask.Dispose();
+				DrawExMask = null;
 			}
-			if (this.DrawHaikeiOrig != null)
+			if (DrawHaikeiOrig != null)
 			{
-				this.DrawHaikeiOrig.Dispose();
-				this.DrawHaikeiOrig = null;
+				DrawHaikeiOrig.Dispose();
+				DrawHaikeiOrig = null;
 			}
-			if (this.DrawHaikei2Orig != null)
+			if (DrawHaikei2Orig != null)
 			{
-				this.DrawHaikei2Orig.Dispose();
-				this.DrawHaikei2Orig = null;
+				DrawHaikei2Orig.Dispose();
+				DrawHaikei2Orig = null;
 			}
-			if (this.DrawHaikei3Orig != null)
+			if (DrawHaikei3Orig != null)
 			{
-				this.DrawHaikei3Orig.Dispose();
-				this.DrawHaikei3Orig = null;
+				DrawHaikei3Orig.Dispose();
+				DrawHaikei3Orig = null;
 			}
-			if (this.DrawHaikei4Orig != null)
+			if (DrawHaikei4Orig != null)
 			{
-				this.DrawHaikei4Orig.Dispose();
-				this.DrawHaikei4Orig = null;
+				DrawHaikei4Orig.Dispose();
+				DrawHaikei4Orig = null;
 			}
-			if (this.DrawSecondHaikeiOrig != null)
+			if (DrawSecondHaikeiOrig != null)
 			{
-				this.DrawSecondHaikeiOrig.Dispose();
-				this.DrawSecondHaikeiOrig = null;
+				DrawSecondHaikeiOrig.Dispose();
+				DrawSecondHaikeiOrig = null;
 			}
-			if (this.DrawSecondHaikei2Orig != null)
+			if (DrawSecondHaikei2Orig != null)
 			{
-				this.DrawSecondHaikei2Orig.Dispose();
-				this.DrawSecondHaikei2Orig = null;
+				DrawSecondHaikei2Orig.Dispose();
+				DrawSecondHaikei2Orig = null;
 			}
-			if (this.DrawSecondHaikei3Orig != null)
+			if (DrawSecondHaikei3Orig != null)
 			{
-				this.DrawSecondHaikei3Orig.Dispose();
-				this.DrawSecondHaikei3Orig = null;
+				DrawSecondHaikei3Orig.Dispose();
+				DrawSecondHaikei3Orig = null;
 			}
-			if (this.DrawSecondHaikei4Orig != null)
+			if (DrawSecondHaikei4Orig != null)
 			{
-				this.DrawSecondHaikei4Orig.Dispose();
-				this.DrawSecondHaikei4Orig = null;
+				DrawSecondHaikei4Orig.Dispose();
+				DrawSecondHaikei4Orig = null;
 			}
-			if (this.DrawChizuOrig != null)
+			if (DrawChizuOrig != null)
 			{
-				this.DrawChizuOrig.Dispose();
-				this.DrawChizuOrig = null;
+				DrawChizuOrig.Dispose();
+				DrawChizuOrig = null;
 			}
 			string filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.PatternImage);
 			FileStream fs;
-			this.DrawChipOrig = Image.FromStream(File.OpenRead(filename), false, false);
-            this.DrawMask = new Bitmap(this.DrawChipOrig.Width, this.DrawChipOrig.Height);
+			DrawChipOrig = Image.FromStream(File.OpenRead(filename), false, false);
+            DrawMask = new Bitmap(DrawChipOrig.Width, DrawChipOrig.Height);
 			ColorMap[] remapTable = new ColorMap[]
 			{
 				new ColorMap()
@@ -1078,21 +1078,21 @@ namespace MasaoPlus
 			using (ImageAttributes imageAttributes = new ImageAttributes())
 			{
 				imageAttributes.SetRemapTable(remapTable);
-                using Graphics graphics = Graphics.FromImage(this.DrawMask);
-                graphics.FillRectangle(Brushes.White, new Rectangle(0, 0, this.DrawMask.Width, this.DrawMask.Height));
-                graphics.DrawImage(this.DrawChipOrig, new Rectangle(0, 0, this.DrawMask.Width, this.DrawMask.Height), 0, 0, this.DrawMask.Width, this.DrawMask.Height, GraphicsUnit.Pixel, imageAttributes);
+                using Graphics graphics = Graphics.FromImage(DrawMask);
+                graphics.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawMask.Width, DrawMask.Height));
+                graphics.DrawImage(DrawChipOrig, new Rectangle(0, 0, DrawMask.Width, DrawMask.Height), 0, 0, DrawMask.Width, DrawMask.Height, GraphicsUnit.Pixel, imageAttributes);
             }
 
 			if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.LayerImage);
-				this.DrawLayerOrig = Image.FromStream(File.OpenRead(filename), false, false);
-                this.DrawLayerMask = new Bitmap(this.DrawLayerOrig.Width, this.DrawLayerOrig.Height);
+				DrawLayerOrig = Image.FromStream(File.OpenRead(filename), false, false);
+                DrawLayerMask = new Bitmap(DrawLayerOrig.Width, DrawLayerOrig.Height);
                 using ImageAttributes imageAttributes2 = new ImageAttributes();
                 imageAttributes2.SetRemapTable(remapTable);
-                using Graphics graphics2 = Graphics.FromImage(this.DrawLayerMask);
-                graphics2.FillRectangle(Brushes.White, new Rectangle(0, 0, this.DrawLayerMask.Width, this.DrawLayerMask.Height));
-                graphics2.DrawImage(this.DrawLayerOrig, new Rectangle(0, 0, this.DrawLayerMask.Width, this.DrawLayerMask.Height), 0, 0, this.DrawLayerMask.Width, this.DrawLayerMask.Height, GraphicsUnit.Pixel, imageAttributes2);
+                using Graphics graphics2 = Graphics.FromImage(DrawLayerMask);
+                graphics2.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawLayerMask.Width, DrawLayerMask.Height));
+                graphics2.DrawImage(DrawLayerOrig, new Rectangle(0, 0, DrawLayerMask.Width, DrawLayerMask.Height), 0, 0, DrawLayerMask.Width, DrawLayerMask.Height, GraphicsUnit.Pixel, imageAttributes2);
             }
 
 			if (Global.cpd.project.Config.OribossImage != null)//オリジナルボスを使うとき
@@ -1100,117 +1100,117 @@ namespace MasaoPlus
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.OribossImage);
 				fs = File.OpenRead(filename);
 
-				this.DrawOribossOrig = Image.FromStream(fs, false, false);
-				this.DrawOribossMask = new Bitmap(this.DrawOribossOrig.Width, this.DrawOribossOrig.Height);
+				DrawOribossOrig = Image.FromStream(fs, false, false);
+				DrawOribossMask = new Bitmap(DrawOribossOrig.Width, DrawOribossOrig.Height);
                 using ImageAttributes imageAttributes4 = new ImageAttributes();
                 imageAttributes4.SetRemapTable(remapTable);
-                using Graphics graphics4 = Graphics.FromImage(this.DrawOribossMask);
-                graphics4.FillRectangle(Brushes.White, new Rectangle(0, 0, this.DrawOribossMask.Width, this.DrawOribossMask.Height));
-                graphics4.DrawImage(this.DrawOribossOrig, new Rectangle(0, 0, this.DrawOribossMask.Width, this.DrawOribossMask.Height), 0, 0, this.DrawOribossMask.Width, this.DrawOribossMask.Height, GraphicsUnit.Pixel, imageAttributes4);
+                using Graphics graphics4 = Graphics.FromImage(DrawOribossMask);
+                graphics4.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawOribossMask.Width, DrawOribossMask.Height));
+                graphics4.DrawImage(DrawOribossOrig, new Rectangle(0, 0, DrawOribossMask.Width, DrawOribossMask.Height), 0, 0, DrawOribossMask.Width, DrawOribossMask.Height, GraphicsUnit.Pixel, imageAttributes4);
             }
 
 			filename = Path.Combine(Global.cpd.where, Global.cpd.runtime.Definitions.ChipExtender);
-			this.DrawExOrig = Image.FromStream(File.OpenRead(filename), false, false);
-			this.DrawExMask = new Bitmap(this.DrawExOrig.Width, this.DrawExOrig.Height);
+			DrawExOrig = Image.FromStream(File.OpenRead(filename), false, false);
+			DrawExMask = new Bitmap(DrawExOrig.Width, DrawExOrig.Height);
 			using (ImageAttributes imageAttributes3 = new ImageAttributes())
 			{
 				imageAttributes3.SetRemapTable(remapTable);
-                using Graphics graphics3 = Graphics.FromImage(this.DrawExMask);
-                graphics3.FillRectangle(Brushes.White, new Rectangle(0, 0, this.DrawExMask.Width, this.DrawExMask.Height));
-                graphics3.DrawImage(this.DrawExOrig, new Rectangle(0, 0, this.DrawExMask.Width, this.DrawExMask.Height), 0, 0, this.DrawExMask.Width, this.DrawExMask.Height, GraphicsUnit.Pixel, imageAttributes3);
+                using Graphics graphics3 = Graphics.FromImage(DrawExMask);
+                graphics3.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawExMask.Width, DrawExMask.Height));
+                graphics3.DrawImage(DrawExOrig, new Rectangle(0, 0, DrawExMask.Width, DrawExMask.Height), 0, 0, DrawExMask.Width, DrawExMask.Height, GraphicsUnit.Pixel, imageAttributes3);
             }
-			using (Bitmap drawExMask = this.DrawExMask)
+			using (Bitmap drawExMask = DrawExMask)
 			{
-				this.DrawExMask = DrawEx.MakeMask(drawExMask);
+				DrawExMask = DrawEx.MakeMask(drawExMask);
 			}
 			if (Global.cpd.project.Config.HaikeiImage != null)//ステージ1背景画像
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.HaikeiImage);
 				fs = File.OpenRead(filename);
 
-				this.DrawHaikeiOrig = Image.FromStream(fs, false, false);
+				DrawHaikeiOrig = Image.FromStream(fs, false, false);
 			}
 			if (Global.cpd.project.Config.HaikeiImage2 != null)//ステージ2背景画像
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.HaikeiImage2);
 				fs = File.OpenRead(filename);
 
-				this.DrawHaikei2Orig = Image.FromStream(fs, false, false);
+				DrawHaikei2Orig = Image.FromStream(fs, false, false);
 			}
 			if (Global.cpd.project.Config.HaikeiImage3 != null)//ステージ3背景画像
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.HaikeiImage3);
 				fs = File.OpenRead(filename);
 
-				this.DrawHaikei3Orig = Image.FromStream(fs, false, false);
+				DrawHaikei3Orig = Image.FromStream(fs, false, false);
 			}
 			if (Global.cpd.project.Config.HaikeiImage4 != null)//ステージ4背景画像
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.HaikeiImage4);
 				fs = File.OpenRead(filename);
 
-				this.DrawHaikei4Orig = Image.FromStream(fs, false, false);
+				DrawHaikei4Orig = Image.FromStream(fs, false, false);
 			}
 			if (Global.cpd.project.Config.SecondHaikeiImage != null)//ステージ1セカンド背景画像
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.SecondHaikeiImage);
 				fs = File.OpenRead(filename);
 
-				this.DrawSecondHaikeiOrig = Image.FromStream(fs, false, false);
+				DrawSecondHaikeiOrig = Image.FromStream(fs, false, false);
 			}
 			if (Global.cpd.project.Config.SecondHaikeiImage2 != null)//ステージ2セカンド背景画像
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.SecondHaikeiImage2);
 				fs = File.OpenRead(filename);
 
-				this.DrawSecondHaikei2Orig = Image.FromStream(fs, false, false);
+				DrawSecondHaikei2Orig = Image.FromStream(fs, false, false);
 			}
 			if (Global.cpd.project.Config.SecondHaikeiImage3 != null)//ステージ3セカンド背景画像
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.SecondHaikeiImage3);
 				fs = File.OpenRead(filename);
 
-				this.DrawSecondHaikei3Orig = Image.FromStream(fs, false, false);
+				DrawSecondHaikei3Orig = Image.FromStream(fs, false, false);
 			}
 			if (Global.cpd.project.Config.SecondHaikeiImage4 != null)//ステージ4セカンド背景画像
 			{
 				filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.SecondHaikeiImage4);
 				fs = File.OpenRead(filename);
 
-				this.DrawSecondHaikei4Orig = Image.FromStream(fs, false, false);
+				DrawSecondHaikei4Orig = Image.FromStream(fs, false, false);
 			}
 			// 地図画面の背景
 			filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.ChizuImage);
 			fs = File.OpenRead(filename);
 
-			this.DrawChizuOrig = Image.FromStream(fs, false, false);
+			DrawChizuOrig = Image.FromStream(fs, false, false);
 		}
 
 		protected unsafe override void OnPaint(PaintEventArgs e)
 		{
-			if (this.ForeLayerBmp == null)
+			if (ForeLayerBmp == null)
 			{
 				return;
 			}
-			int num = (base.Width < (int)((double)this.ForeLayerBmp.Width * Global.config.draw.ZoomIndex)) ? base.Width : ((int)((double)this.ForeLayerBmp.Width * Global.config.draw.ZoomIndex));
-			int num2 = (base.Height < (int)((double)this.ForeLayerBmp.Height * Global.config.draw.ZoomIndex)) ? base.Height : ((int)((double)this.ForeLayerBmp.Height * Global.config.draw.ZoomIndex));
-			if (Global.config.draw.UseBufferingDraw && this.BufferingDraw && (this.bufpos != this.BufferCurrent || this.zi != Global.config.draw.ZoomIndex || this.DULayer != Global.state.DrawUnactiveLayer || this.TULayer != Global.state.TransparentUnactiveLayer || this.FLayer != Global.state.EditingForeground || this.EditMap != Global.state.EdittingStage))
+			int num = (base.Width < (int)((double)ForeLayerBmp.Width * Global.config.draw.ZoomIndex)) ? base.Width : ((int)((double)ForeLayerBmp.Width * Global.config.draw.ZoomIndex));
+			int num2 = (base.Height < (int)((double)ForeLayerBmp.Height * Global.config.draw.ZoomIndex)) ? base.Height : ((int)((double)ForeLayerBmp.Height * Global.config.draw.ZoomIndex));
+			if (Global.config.draw.UseBufferingDraw && BufferingDraw && (bufpos != BufferCurrent || zi != Global.config.draw.ZoomIndex || DULayer != Global.state.DrawUnactiveLayer || TULayer != Global.state.TransparentUnactiveLayer || FLayer != Global.state.EditingForeground || EditMap != Global.state.EdittingStage))
 			{
-				this.bufpos = this.BufferCurrent;
-				this.DULayer = Global.state.DrawUnactiveLayer;
-				this.TULayer = Global.state.TransparentUnactiveLayer;
-				this.FLayer = Global.state.EditingForeground;
-				if (this.zi != Global.config.draw.ZoomIndex || this.EditMap != Global.state.EdittingStage)
+				bufpos = BufferCurrent;
+				DULayer = Global.state.DrawUnactiveLayer;
+				TULayer = Global.state.TransparentUnactiveLayer;
+				FLayer = Global.state.EditingForeground;
+				if (zi != Global.config.draw.ZoomIndex || EditMap != Global.state.EdittingStage)
 				{
-					this.zi = Global.config.draw.ZoomIndex;
-					this.ForegroundBuffer.Dispose();
-					this.ForegroundBuffer = new Bitmap((int)((double)this.ForeLayerBmp.Width * this.zi), (int)((double)this.ForeLayerBmp.Height * this.zi), PixelFormat.Format24bppRgb);
+					zi = Global.config.draw.ZoomIndex;
+					ForegroundBuffer.Dispose();
+					ForegroundBuffer = new Bitmap((int)((double)ForeLayerBmp.Width * zi), (int)((double)ForeLayerBmp.Height * zi), PixelFormat.Format24bppRgb);
 				}
-				this.EditMap = Global.state.EdittingStage;
-                using Graphics graphics = Graphics.FromImage(this.ForegroundBuffer);
+				EditMap = Global.state.EdittingStage;
+                using Graphics graphics = Graphics.FromImage(ForegroundBuffer);
                 using (Brush brush = new SolidBrush(Global.state.Background))
                 {
-                    graphics.FillRectangle(brush, new Rectangle(0, 0, this.ForegroundBuffer.Width, this.ForegroundBuffer.Height));
+                    graphics.FillRectangle(brush, new Rectangle(0, 0, ForegroundBuffer.Width, ForegroundBuffer.Height));
                 }
                 if (Global.config.draw.StageInterpolation)
                 {
@@ -1222,24 +1222,24 @@ namespace MasaoPlus
                 }
                 if (Global.cpd.UseLayer && (!Global.state.EditingForeground || Global.state.DrawUnactiveLayer))
                 {
-                    graphics.DrawImage(this.BackLayerBmp, new Rectangle(new Point(0, 0), this.ForegroundBuffer.Size), new Rectangle(0, 0, this.BackLayerBmp.Width, this.BackLayerBmp.Height), GraphicsUnit.Pixel);
+                    graphics.DrawImage(BackLayerBmp, new Rectangle(new Point(0, 0), ForegroundBuffer.Size), new Rectangle(0, 0, BackLayerBmp.Width, BackLayerBmp.Height), GraphicsUnit.Pixel);
                 }
                 if (!Global.cpd.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
                 {
-                    graphics.DrawImage(this.ForeLayerBmp, new Rectangle(new Point(0, 0), this.ForegroundBuffer.Size), new Rectangle(0, 0, this.ForeLayerBmp.Width, this.ForeLayerBmp.Height), GraphicsUnit.Pixel);
+                    graphics.DrawImage(ForeLayerBmp, new Rectangle(new Point(0, 0), ForegroundBuffer.Size), new Rectangle(0, 0, ForeLayerBmp.Width, ForeLayerBmp.Height), GraphicsUnit.Pixel);
                 }
                 if (Global.config.draw.UseBufferingMemoryDraw)
                 {
-                    this.ForegroundBuffer.RotateFlip(RotateFlipType.Rotate180FlipX);
+                    ForegroundBuffer.RotateFlip(RotateFlipType.Rotate180FlipX);
                 }
             }
-			if (Global.config.draw.UseBufferingDraw && this.BufferingDraw)
+			if (Global.config.draw.UseBufferingDraw && BufferingDraw)
 			{
 				if (Global.config.draw.UseBufferingMemoryDraw)
 				{
 					IntPtr hdc = e.Graphics.GetHdc();
 					BitmapData bitmapData = new BitmapData();
-					this.ForegroundBuffer.LockBits(new Rectangle(0, 0, this.ForegroundBuffer.Width, this.ForegroundBuffer.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb, bitmapData);
+					ForegroundBuffer.LockBits(new Rectangle(0, 0, ForegroundBuffer.Width, ForegroundBuffer.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb, bitmapData);
 					Native.GDI32.BITMAPINFOHEADER bitmapinfoheader = default;
 					bitmapinfoheader.biSize = (uint)sizeof(Native.GDI32.BITMAPINFOHEADER);
 					bitmapinfoheader.biWidth = bitmapData.Width;
@@ -1248,12 +1248,12 @@ namespace MasaoPlus
 					bitmapinfoheader.biBitCount = 24;
 					int ysrc = (Global.state.MapMoveMax.Height > 0) ? (Global.state.MapMoveMax.Height - Global.state.MapPoint.Y) : 0;
 					Native.GDI32.StretchDIBits(hdc, 0, 0, num, num2, Global.state.MapPoint.X, ysrc, num, num2, bitmapData.Scan0, (IntPtr)((void*)(&bitmapinfoheader)), 0U, 13369376U);
-					this.ForegroundBuffer.UnlockBits(bitmapData);
+					ForegroundBuffer.UnlockBits(bitmapData);
 					e.Graphics.ReleaseHdc(hdc);
 				}
 				else
 				{
-					e.Graphics.DrawImage(this.ForegroundBuffer, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPoint, new Size(num, num2)), GraphicsUnit.Pixel);
+					e.Graphics.DrawImage(ForegroundBuffer, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPoint, new Size(num, num2)), GraphicsUnit.Pixel);
 				}
 			}
 			else
@@ -1273,16 +1273,16 @@ namespace MasaoPlus
 				double num3 = 1.0 / Global.config.draw.ZoomIndex;
 				if (Global.cpd.UseLayer && (!Global.state.EditingForeground || Global.state.DrawUnactiveLayer))
 				{
-					e.Graphics.DrawImage(this.BackLayerBmp, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)((double)num * num3), (int)((double)num2 * num3))), GraphicsUnit.Pixel);
+					e.Graphics.DrawImage(BackLayerBmp, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)((double)num * num3), (int)((double)num2 * num3))), GraphicsUnit.Pixel);
 				}
 				if (!Global.cpd.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
 				{
-					e.Graphics.DrawImage(this.ForeLayerBmp, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)((double)num * num3), (int)((double)num2 * num3))), GraphicsUnit.Pixel);
+					e.Graphics.DrawImage(ForeLayerBmp, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)((double)num * num3), (int)((double)num2 * num3))), GraphicsUnit.Pixel);
 				}
 			}
-			if (this.DrawMode != GUIDesigner.DirectDrawMode.None)
+			if (DrawMode != GUIDesigner.DirectDrawMode.None)
 			{
-				Rectangle drawRectangle = this.DrawRectangle;
+				Rectangle drawRectangle = DrawRectangle;
 				drawRectangle.X *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
 				drawRectangle.Y *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
 				drawRectangle.Width *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
@@ -1290,7 +1290,7 @@ namespace MasaoPlus
 				drawRectangle.X -= Global.state.MapPoint.X;
 				drawRectangle.Y -= Global.state.MapPoint.Y;
                 using Brush brush3 = new SolidBrush(Color.FromArgb(Global.config.draw.AlphaBlending ? 160 : 255, DrawEx.GetForegroundColor(Global.state.Background)));
-                if (this.DrawMode == GUIDesigner.DirectDrawMode.Rectangle)
+                if (DrawMode == GUIDesigner.DirectDrawMode.Rectangle)
                 {
                     e.Graphics.FillRectangle(brush3, drawRectangle);
                 }
@@ -1301,7 +1301,7 @@ namespace MasaoPlus
                     drawRectangle.Y += (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex) / 2;
                     drawRectangle.Width -= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
                     drawRectangle.Height -= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
-                    if (this.DrawMode == GUIDesigner.DirectDrawMode.RevLine)
+                    if (DrawMode == GUIDesigner.DirectDrawMode.RevLine)
                     {
                         e.Graphics.DrawLine(pen, new Point(drawRectangle.X, drawRectangle.Bottom), new Point(drawRectangle.Right, drawRectangle.Top));
                     }
@@ -1332,100 +1332,100 @@ namespace MasaoPlus
 
 		void IDisposable.Dispose()
 		{
-			if (this.DrawMask != null)
+			if (DrawMask != null)
 			{
-				this.DrawMask.Dispose();
-				this.DrawMask = null;
+				DrawMask.Dispose();
+				DrawMask = null;
 			}
-			if (this.DrawChipOrig != null)
+			if (DrawChipOrig != null)
 			{
-				this.DrawChipOrig.Dispose();
-				this.DrawChipOrig = null;
+				DrawChipOrig.Dispose();
+				DrawChipOrig = null;
 			}
-			if (this.DrawLayerMask != null)
+			if (DrawLayerMask != null)
 			{
-				this.DrawLayerMask.Dispose();
-				this.DrawLayerMask = null;
+				DrawLayerMask.Dispose();
+				DrawLayerMask = null;
 			}
-			if (this.DrawLayerOrig != null)
+			if (DrawLayerOrig != null)
 			{
-				this.DrawLayerOrig.Dispose();
-				this.DrawLayerOrig = null;
+				DrawLayerOrig.Dispose();
+				DrawLayerOrig = null;
 			}
-			if (this.ForeLayerBmp != null)
+			if (ForeLayerBmp != null)
 			{
-				this.ForeLayerBmp.Dispose();
-				this.ForeLayerBmp = null;
+				ForeLayerBmp.Dispose();
+				ForeLayerBmp = null;
 			}
-			if (this.BackLayerBmp != null)
+			if (BackLayerBmp != null)
 			{
-				this.BackLayerBmp.Dispose();
-				this.BackLayerBmp = null;
+				BackLayerBmp.Dispose();
+				BackLayerBmp = null;
 			}
-			if (this.DrawOribossMask != null)
+			if (DrawOribossMask != null)
 			{
-				this.DrawOribossMask.Dispose();
-				this.DrawOribossMask = null;
+				DrawOribossMask.Dispose();
+				DrawOribossMask = null;
 			}
-			if (this.DrawOribossOrig != null)
+			if (DrawOribossOrig != null)
 			{
-				this.DrawOribossOrig.Dispose();
-				this.DrawOribossOrig = null;
+				DrawOribossOrig.Dispose();
+				DrawOribossOrig = null;
 			}
-			if (this.DrawExOrig != null)
+			if (DrawExOrig != null)
 			{
-				this.DrawExOrig.Dispose();
-				this.DrawExOrig = null;
+				DrawExOrig.Dispose();
+				DrawExOrig = null;
 			}
-			if (this.DrawExMask != null)
+			if (DrawExMask != null)
 			{
-				this.DrawExMask.Dispose();
-				this.DrawExMask = null;
+				DrawExMask.Dispose();
+				DrawExMask = null;
 			}
-			if (this.DrawHaikeiOrig != null)
+			if (DrawHaikeiOrig != null)
 			{
-				this.DrawHaikeiOrig.Dispose();
-				this.DrawHaikeiOrig = null;
+				DrawHaikeiOrig.Dispose();
+				DrawHaikeiOrig = null;
 			}
-			if (this.DrawHaikei2Orig != null)
+			if (DrawHaikei2Orig != null)
 			{
-				this.DrawHaikei2Orig.Dispose();
-				this.DrawHaikei2Orig = null;
+				DrawHaikei2Orig.Dispose();
+				DrawHaikei2Orig = null;
 			}
-			if (this.DrawHaikei3Orig != null)
+			if (DrawHaikei3Orig != null)
 			{
-				this.DrawHaikei3Orig.Dispose();
-				this.DrawHaikei3Orig = null;
+				DrawHaikei3Orig.Dispose();
+				DrawHaikei3Orig = null;
 			}
-			if (this.DrawHaikei4Orig != null)
+			if (DrawHaikei4Orig != null)
 			{
-				this.DrawHaikei4Orig.Dispose();
-				this.DrawHaikei4Orig = null;
+				DrawHaikei4Orig.Dispose();
+				DrawHaikei4Orig = null;
 			}
-			if (this.DrawSecondHaikeiOrig != null)
+			if (DrawSecondHaikeiOrig != null)
 			{
-				this.DrawSecondHaikeiOrig.Dispose();
-				this.DrawSecondHaikeiOrig = null;
+				DrawSecondHaikeiOrig.Dispose();
+				DrawSecondHaikeiOrig = null;
 			}
-			if (this.DrawSecondHaikei2Orig != null)
+			if (DrawSecondHaikei2Orig != null)
 			{
-				this.DrawSecondHaikei2Orig.Dispose();
-				this.DrawSecondHaikei2Orig = null;
+				DrawSecondHaikei2Orig.Dispose();
+				DrawSecondHaikei2Orig = null;
 			}
-			if (this.DrawSecondHaikei3Orig != null)
+			if (DrawSecondHaikei3Orig != null)
 			{
-				this.DrawSecondHaikei3Orig.Dispose();
-				this.DrawSecondHaikei3Orig = null;
+				DrawSecondHaikei3Orig.Dispose();
+				DrawSecondHaikei3Orig = null;
 			}
-			if (this.DrawSecondHaikei4Orig != null)
+			if (DrawSecondHaikei4Orig != null)
 			{
-				this.DrawSecondHaikei4Orig.Dispose();
-				this.DrawSecondHaikei4Orig = null;
+				DrawSecondHaikei4Orig.Dispose();
+				DrawSecondHaikei4Orig = null;
 			}
-			if (this.DrawChizuOrig != null)
+			if (DrawChizuOrig != null)
 			{
-				this.DrawChizuOrig.Dispose();
-				this.DrawChizuOrig = null;
+				DrawChizuOrig.Dispose();
+				DrawChizuOrig = null;
 			}
 		}
 
@@ -1435,34 +1435,34 @@ namespace MasaoPlus
 			{
 				if (e.Button == MouseButtons.Right)
 				{ // 右クリック時
-					if (this.CopyPaste == GUIDesigner.CopyPasteTool.Paste)
+					if (CopyPaste == GUIDesigner.CopyPasteTool.Paste)
 					{
 						Global.MainWnd.CopyPasteInit();
-						this.Refresh();
+						Refresh();
 						return;
 					}
-					if (this.MousePressed)
+					if (MousePressed)
 					{
-						this.MousePressed = false;
-						switch (this.CopyPaste)
+						MousePressed = false;
+						switch (CopyPaste)
 						{
 						case GUIDesigner.CopyPasteTool.Copy:
 						case GUIDesigner.CopyPasteTool.Cut:
 							Global.MainWnd.CopyPasteInit();
-							this.Refresh();
+							Refresh();
 							return;
 						default:
-							switch (this.CurrentTool)
+							switch (CurrentTool)
 							{
 							case GUIDesigner.EditTool.Line:
-								this.EnsureScroll(e.X, e.Y);
-								this.DrawMode = GUIDesigner.DirectDrawMode.None;
-								this.Refresh();
+								EnsureScroll(e.X, e.Y);
+								DrawMode = GUIDesigner.DirectDrawMode.None;
+								Refresh();
 								return;
 							case GUIDesigner.EditTool.Rect:
-								this.EnsureScroll(e.X, e.Y);
-								this.DrawMode = GUIDesigner.DirectDrawMode.None;
-								this.Refresh();
+								EnsureScroll(e.X, e.Y);
+								DrawMode = GUIDesigner.DirectDrawMode.None;
+								Refresh();
 								return;
 							default:
 								return;
@@ -1472,12 +1472,12 @@ namespace MasaoPlus
 					}
 					else
 					{
-						if (this.CurrentTool == GUIDesigner.EditTool.Cursor && Global.config.draw.RightClickMenu)
+						if (CurrentTool == GUIDesigner.EditTool.Cursor && Global.config.draw.RightClickMenu)
 						{
-							this.MouseStartPoint = default;
-							this.MouseStartPoint.X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex));
-							this.MouseStartPoint.Y = (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex));
-							this.CursorContextMenu.Show(this, new Point(e.X, e.Y));
+							MouseStartPoint = default;
+							MouseStartPoint.X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex));
+							MouseStartPoint.Y = (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex));
+							CursorContextMenu.Show(this, new Point(e.X, e.Y));
 							return;
 						}
 
@@ -1489,23 +1489,23 @@ namespace MasaoPlus
 						});
 						if (Global.state.MapEditMode)
 						{
-							if (this.DrawItemRef.ContainsKey(stageChar))
+							if (DrawItemRef.ContainsKey(stageChar))
 							{
-								Global.state.CurrentChip = this.DrawWorldRef[stageChar];
+								Global.state.CurrentChip = DrawWorldRef[stageChar];
 								return;
 							}
 						}
 						else if (Global.state.EditingForeground)
 						{
-							if (this.DrawItemRef.ContainsKey(stageChar))
+							if (DrawItemRef.ContainsKey(stageChar))
 							{
-								Global.state.CurrentChip = this.DrawItemRef[stageChar];
+								Global.state.CurrentChip = DrawItemRef[stageChar];
 								return;
 							}
 						}
-						else if (this.DrawLayerRef.ContainsKey(stageChar))
+						else if (DrawLayerRef.ContainsKey(stageChar))
 						{
-							Global.state.CurrentChip = this.DrawLayerRef[stageChar];
+							Global.state.CurrentChip = DrawLayerRef[stageChar];
 							return;
 						}
 					}
@@ -1530,20 +1530,20 @@ namespace MasaoPlus
 				}
 				return;
 			}
-			this.MousePressed = true;
-			switch (this.CopyPaste)
+			MousePressed = true;
+			switch (CopyPaste)
 			{
 			case GUIDesigner.CopyPasteTool.Copy:
 			case GUIDesigner.CopyPasteTool.Cut:
-				this.MouseStartPoint = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
-				this.MouseLastPoint = this.MouseStartPoint;
+				MouseStartPoint = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+				MouseLastPoint = MouseStartPoint;
 				return;
 			case GUIDesigner.CopyPasteTool.Paste:
 			{
-				this.EnsureScroll(e.X, e.Y);
+				EnsureScroll(e.X, e.Y);
 				Global.MainWnd.UpdateStatus("描画しています...");
-				Rectangle rectangle = new Rectangle(this.MouseLastPoint, this.GetBufferSize());
-				string[] array = this.ClipedString.Split(new string[]
+				Rectangle rectangle = new Rectangle(MouseLastPoint, GetBufferSize());
+				string[] array = ClipedString.Split(new string[]
 				{
 					Environment.NewLine
 				}, StringSplitOptions.None);
@@ -1552,49 +1552,49 @@ namespace MasaoPlus
 				for (int j = rectangle.Top; j < rectangle.Bottom; j++)
 				{
 					point.X = 0;
-					char[] array2 = this.PutItemTextStart(j);
+					char[] array2 = PutItemTextStart(j);
 					if (array2 != null)
 					{
 						for (int k = rectangle.Left; k < rectangle.Right; k++)
 						{
 							cd.character = array[point.Y].Substring(point.X * Global.state.GetCByte, Global.state.GetCByte);
-							this.PutItemText(ref array2, new Point(k, j), cd);
+							PutItemText(ref array2, new Point(k, j), cd);
 							point.X++;
 						}
-						this.PutItemTextEnd(array2, j);
+						PutItemTextEnd(array2, j);
 						point.Y++;
 					}
 				}
 				Global.MainWnd.CopyPasteInit();
-				this.StageSourceToDrawBuffer();
-				this.AddBuffer();
-				this.MousePressed = false;
-				this.DrawMode = GUIDesigner.DirectDrawMode.None;
+				StageSourceToDrawBuffer();
+				AddBuffer();
+				MousePressed = false;
+				DrawMode = GUIDesigner.DirectDrawMode.None;
 				Global.MainWnd.UpdateStatus("完了");
-				this.Refresh();
+				Refresh();
 				return;
 			}
 			default:
-				switch (this.CurrentTool)
+				switch (CurrentTool)
 				{
 				case GUIDesigner.EditTool.Cursor:
-					this.MouseStartPoint = new Point(e.X, e.Y);
+					MouseStartPoint = new Point(e.X, e.Y);
 					return;
 				case GUIDesigner.EditTool.Pen:
-					this.MouseLastPoint = new Point(-1, -1);
-					this.GUIDesigner_MouseMove(this, e);
+					MouseLastPoint = new Point(-1, -1);
+					GUIDesigner_MouseMove(this, e);
 					return;
 				case GUIDesigner.EditTool.Line:
 				case GUIDesigner.EditTool.Rect:
-					this.MouseStartPoint = new Point(
+					MouseStartPoint = new Point(
 						(int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)),
 						(int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex))
 					);
-					this.MouseLastPoint = this.MouseStartPoint;
+					MouseLastPoint = MouseStartPoint;
 					return;
 				case GUIDesigner.EditTool.Fill:
 					Global.MainWnd.UpdateStatus("塗り潰しています...");
-					this.FillStart(Global.state.CurrentChip,
+					FillStart(Global.state.CurrentChip,
 						new Point(
 							(int)(
 								(double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)
@@ -1604,9 +1604,9 @@ namespace MasaoPlus
 							)
 						)
 					);
-					this.StageSourceToDrawBuffer();
-					this.AddBuffer();
-					this.Refresh();
+					StageSourceToDrawBuffer();
+					AddBuffer();
+					Refresh();
 					Global.MainWnd.UpdateStatus("完了");
 					return;
 				default:
@@ -1624,16 +1624,16 @@ namespace MasaoPlus
 			{
 				return;
 			}
-			this.repls.Clear();
+			repls.Clear();
 			if (Global.state.EditingForeground)
 			{
 				int num = 0;
 				while (Global.state.MapEditMode ? (num < Global.cpd.project.Runtime.Definitions.MapSize.y) : (num < Global.cpd.runtime.Definitions.StageSize.y))
 				{
-					char[] array = this.PutItemTextStart(num);
+					char[] array = PutItemTextStart(num);
 					if (array != null)
 					{
-						this.repls.Add(array);
+						repls.Add(array);
 					}
 					num++;
 				}
@@ -1642,10 +1642,10 @@ namespace MasaoPlus
 			{
 				for (int i = 0; i < Global.cpd.runtime.Definitions.LayerSize.y; i++)
 				{
-					char[] array2 = this.PutItemTextStart(i);
+					char[] array2 = PutItemTextStart(i);
 					if (array2 != null)
 					{
-						this.repls.Add(array2);
+						repls.Add(array2);
 					}
 				}
 			}
@@ -1657,26 +1657,26 @@ namespace MasaoPlus
 			}
 			if (Global.state.MapEditMode)
 			{
-				if (this.DrawWorldRef.ContainsKey(stageChar) && this.CheckChar(pt, this.DrawWorldRef[stageChar]))
+				if (DrawWorldRef.ContainsKey(stageChar) && CheckChar(pt, DrawWorldRef[stageChar]))
 				{
-					this.FillThis(this.DrawWorldRef[stageChar], repl, pt);
+					FillThis(DrawWorldRef[stageChar], repl, pt);
 				}
 			}
 			else if (Global.state.EditingForeground)
 			{
-				if (this.DrawItemRef.ContainsKey(stageChar) && this.CheckChar(pt, this.DrawItemRef[stageChar]))
+				if (DrawItemRef.ContainsKey(stageChar) && CheckChar(pt, DrawItemRef[stageChar]))
 				{
-					this.FillThis(this.DrawItemRef[stageChar], repl, pt);
+					FillThis(DrawItemRef[stageChar], repl, pt);
 				}
 			}
-			else if (this.DrawLayerRef.ContainsKey(stageChar) && this.CheckChar(pt, this.DrawLayerRef[stageChar]))
+			else if (DrawLayerRef.ContainsKey(stageChar) && CheckChar(pt, DrawLayerRef[stageChar]))
 			{
-				this.FillThis(this.DrawLayerRef[stageChar], repl, pt);
+				FillThis(DrawLayerRef[stageChar], repl, pt);
 			}
 
 			for (int j = 0; j < Global.state.GetCSSize.y; j++)
 			{
-				this.PutItemTextEnd(this.repls[j], j);
+				PutItemTextEnd(repls[j], j);
 			}
 		}
 
@@ -1686,12 +1686,12 @@ namespace MasaoPlus
 			var queue = new Queue<BufStr>();
 
             queue.Enqueue(new BufStr(
-				this.scanLeft(pt, this.repls, old),
-				this.scanRight(pt, this.repls, old),
+				scanLeft(pt, repls, old),
+				scanRight(pt, repls, old),
                 pt.Y
 			));
 
-            var newmap = new List<char[]>(this.repls);
+            var newmap = new List<char[]>(repls);
 
             while (queue.Count > 0) {
 				int left = queue.Peek().left;
@@ -1699,16 +1699,16 @@ namespace MasaoPlus
 				int y = queue.Peek().y;
 				queue.Dequeue();
 
-                this.updateLine(left, right, y, repl);
+                updateLine(left, right, y, repl);
 
 				// 上下を探索
 				if (0 < y)
 				{
-					this.searchLine(left, right, y - 1, newmap, old, queue);
+					searchLine(left, right, y - 1, newmap, old, queue);
 				}
 				if (y < Global.state.GetCSSize.y - 1)
 				{
-					this.searchLine(left, right, y + 1, newmap, old, queue);
+					searchLine(left, right, y + 1, newmap, old, queue);
 				}
 			}
         }
@@ -1717,7 +1717,7 @@ namespace MasaoPlus
 		{
 			int result = pt.X;
 
-            while (0 < result && this.getMapChipString(result - 1, pt.Y, newmap).Equals(old.character))
+            while (0 < result && getMapChipString(result - 1, pt.Y, newmap).Equals(old.character))
             {
                 result--;
             }
@@ -1728,7 +1728,7 @@ namespace MasaoPlus
 		{
 			int result = pt.X;
 
-            while (result < Global.state.GetCSSize.x - 1 && this.getMapChipString(result + 1, pt.Y, newmap).Equals(old.character))
+            while (result < Global.state.GetCSSize.x - 1 && getMapChipString(result + 1, pt.Y, newmap).Equals(old.character))
             {
                 result++;
             }
@@ -1742,7 +1742,7 @@ namespace MasaoPlus
 			{
 				for (int i = 0; i < Global.state.GetCByte; i++)
 				{
-					this.repls[y][x * Global.state.GetCByte + i] = repl.character[i];
+					repls[y][x * Global.state.GetCByte + i] = repl.character[i];
 				}
 			}
 		}
@@ -1752,13 +1752,13 @@ namespace MasaoPlus
 			int l = -1;
 			for (int x = left; x <= right; x++)
 			{
-				var c = this.getMapChipString(x, y, newmap);
+				var c = getMapChipString(x, y, newmap);
 
 				if (c.Equals(old.character) && l == -1)
 				{
 					if (x == left)
 					{
-						l = this.scanLeft(new Point(x, y), newmap, old);
+						l = scanLeft(new Point(x, y), newmap, old);
 					}
 					else
 					{
@@ -1774,7 +1774,7 @@ namespace MasaoPlus
 			}
 			if (l != -1)
 			{
-				int r = this.scanRight(new Point(right, y), newmap, old);
+				int r = scanRight(new Point(right, y), newmap, old);
 				queue.Enqueue(new BufStr(l, r, y));
 			}
 		}
@@ -1787,7 +1787,7 @@ namespace MasaoPlus
 			}
 			for (int i = 0; i < Global.state.GetCByte; i++)
 			{
-				if (this.repls[pt.Y][pt.X * Global.state.GetCByte + i] != cd.character[i])
+				if (repls[pt.Y][pt.X * Global.state.GetCByte + i] != cd.character[i])
 				{
 					return false;
 				}
@@ -1810,163 +1810,163 @@ namespace MasaoPlus
 
         private void GUIDesigner_MouseMove(object sender, MouseEventArgs e)
 		{
-			if (this.CopyPaste != GUIDesigner.CopyPasteTool.Paste || this.MousePressed)
+			if (CopyPaste != GUIDesigner.CopyPasteTool.Paste || MousePressed)
 			{
-				if (this.MousePressed)
+				if (MousePressed)
 				{
-					switch (this.CopyPaste)
+					switch (CopyPaste)
 					{
 					case GUIDesigner.CopyPasteTool.Copy:
 					case GUIDesigner.CopyPasteTool.Cut:
 					{
-						this.EnsureScroll(e.X, e.Y);
+						EnsureScroll(e.X, e.Y);
 						Point point = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
-						if (point == this.MouseLastPoint)
+						if (point == MouseLastPoint)
 						{
 							return;
 						}
 						Rectangle drawRectangle = default;
-						this.MouseLastPoint = point;
-						if (this.MouseStartPoint.X > this.MouseLastPoint.X)
+						MouseLastPoint = point;
+						if (MouseStartPoint.X > MouseLastPoint.X)
 						{
-							drawRectangle.X = this.MouseLastPoint.X;
-							drawRectangle.Width = this.MouseStartPoint.X - this.MouseLastPoint.X;
+							drawRectangle.X = MouseLastPoint.X;
+							drawRectangle.Width = MouseStartPoint.X - MouseLastPoint.X;
 						}
 						else
 						{
-							drawRectangle.X = this.MouseStartPoint.X;
-							drawRectangle.Width = this.MouseLastPoint.X - this.MouseStartPoint.X;
+							drawRectangle.X = MouseStartPoint.X;
+							drawRectangle.Width = MouseLastPoint.X - MouseStartPoint.X;
 						}
-						if (this.MouseStartPoint.Y > this.MouseLastPoint.Y)
+						if (MouseStartPoint.Y > MouseLastPoint.Y)
 						{
-							drawRectangle.Y = this.MouseLastPoint.Y;
-							drawRectangle.Height = this.MouseStartPoint.Y - this.MouseLastPoint.Y;
+							drawRectangle.Y = MouseLastPoint.Y;
+							drawRectangle.Height = MouseStartPoint.Y - MouseLastPoint.Y;
 						}
 						else
 						{
-							drawRectangle.Y = this.MouseStartPoint.Y;
-							drawRectangle.Height = this.MouseLastPoint.Y - this.MouseStartPoint.Y;
+							drawRectangle.Y = MouseStartPoint.Y;
+							drawRectangle.Height = MouseLastPoint.Y - MouseStartPoint.Y;
 						}
 						drawRectangle.Width++;
 						drawRectangle.Height++;
-						this.DrawRectangle = drawRectangle;
-						this.DrawMode = GUIDesigner.DirectDrawMode.Rectangle;
-						this.Refresh();
+						DrawRectangle = drawRectangle;
+						DrawMode = GUIDesigner.DirectDrawMode.Rectangle;
+						Refresh();
 						return;
 					}
 					default:
-						switch (this.CurrentTool)
+						switch (CurrentTool)
 						{
 						case GUIDesigner.EditTool.Cursor:
 						{
-							Size size = new Size(this.MouseStartPoint.X - e.X, this.MouseStartPoint.Y - e.Y);
-							this.MouseStartPoint = new Point(e.X, e.Y);
+							Size size = new Size(MouseStartPoint.X - e.X, MouseStartPoint.Y - e.Y);
+							MouseStartPoint = new Point(e.X, e.Y);
 							State state = Global.state;
 							state.MapPoint.X = state.MapPoint.X + size.Width;
 							State state2 = Global.state;
 							state2.MapPoint.Y = state2.MapPoint.Y + size.Height;
 							Global.state.AdjustMapPoint();
-							this.Refresh();
+							Refresh();
 							Global.MainWnd.CommitScrollbar();
 							return;
 						}
 						case GUIDesigner.EditTool.Pen:
 						{
 							Point point2 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
-							if (point2 == this.MouseLastPoint)
+							if (point2 == MouseLastPoint)
 							{
 								return;
 							}
-							this.PutItem(new Point
+							PutItem(new Point
 							{
 								X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)),
 								Y = (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex))
 							});
-							this.MouseLastPoint = point2;
+							MouseLastPoint = point2;
 							return;
 						}
 						case GUIDesigner.EditTool.Line:
 						{
-							this.EnsureScroll(e.X, e.Y);
+							EnsureScroll(e.X, e.Y);
 							Point point3 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
-							if (point3 == this.MouseLastPoint)
+							if (point3 == MouseLastPoint)
 							{
 								return;
 							}
 							Rectangle drawRectangle2 = default;
-							this.MouseLastPoint = point3;
+							MouseLastPoint = point3;
 							bool flag = false;
-							if (this.MouseStartPoint.X > this.MouseLastPoint.X)
+							if (MouseStartPoint.X > MouseLastPoint.X)
 							{
-								drawRectangle2.X = this.MouseLastPoint.X;
-								drawRectangle2.Width = this.MouseStartPoint.X - this.MouseLastPoint.X;
+								drawRectangle2.X = MouseLastPoint.X;
+								drawRectangle2.Width = MouseStartPoint.X - MouseLastPoint.X;
 								flag = true;
 							}
 							else
 							{
-								drawRectangle2.X = this.MouseStartPoint.X;
-								drawRectangle2.Width = this.MouseLastPoint.X - this.MouseStartPoint.X;
+								drawRectangle2.X = MouseStartPoint.X;
+								drawRectangle2.Width = MouseLastPoint.X - MouseStartPoint.X;
 							}
-							if (this.MouseStartPoint.Y > this.MouseLastPoint.Y)
+							if (MouseStartPoint.Y > MouseLastPoint.Y)
 							{
-								drawRectangle2.Y = this.MouseLastPoint.Y;
-								drawRectangle2.Height = this.MouseStartPoint.Y - this.MouseLastPoint.Y;
+								drawRectangle2.Y = MouseLastPoint.Y;
+								drawRectangle2.Height = MouseStartPoint.Y - MouseLastPoint.Y;
 								flag = !flag;
 							}
 							else
 							{
-								drawRectangle2.Y = this.MouseStartPoint.Y;
-								drawRectangle2.Height = this.MouseLastPoint.Y - this.MouseStartPoint.Y;
+								drawRectangle2.Y = MouseStartPoint.Y;
+								drawRectangle2.Height = MouseLastPoint.Y - MouseStartPoint.Y;
 							}
 							drawRectangle2.Width++;
 							drawRectangle2.Height++;
-							this.DrawRectangle = drawRectangle2;
+							DrawRectangle = drawRectangle2;
 							if (flag)
 							{
-								this.DrawMode = GUIDesigner.DirectDrawMode.RevLine;
+								DrawMode = GUIDesigner.DirectDrawMode.RevLine;
 							}
 							else
 							{
-								this.DrawMode = GUIDesigner.DirectDrawMode.Line;
+								DrawMode = GUIDesigner.DirectDrawMode.Line;
 							}
-							this.Refresh();
+							Refresh();
 							return;
 						}
 						case GUIDesigner.EditTool.Rect:
 						{
-							this.EnsureScroll(e.X, e.Y);
+							EnsureScroll(e.X, e.Y);
 							Point point4 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
-							if (point4 == this.MouseLastPoint)
+							if (point4 == MouseLastPoint)
 							{
 								return;
 							}
 							Rectangle drawRectangle3 = default;
-							this.MouseLastPoint = point4;
-							if (this.MouseStartPoint.X > this.MouseLastPoint.X)
+							MouseLastPoint = point4;
+							if (MouseStartPoint.X > MouseLastPoint.X)
 							{
-								drawRectangle3.X = this.MouseLastPoint.X;
-								drawRectangle3.Width = this.MouseStartPoint.X - this.MouseLastPoint.X;
+								drawRectangle3.X = MouseLastPoint.X;
+								drawRectangle3.Width = MouseStartPoint.X - MouseLastPoint.X;
 							}
 							else
 							{
-								drawRectangle3.X = this.MouseStartPoint.X;
-								drawRectangle3.Width = this.MouseLastPoint.X - this.MouseStartPoint.X;
+								drawRectangle3.X = MouseStartPoint.X;
+								drawRectangle3.Width = MouseLastPoint.X - MouseStartPoint.X;
 							}
-							if (this.MouseStartPoint.Y > this.MouseLastPoint.Y)
+							if (MouseStartPoint.Y > MouseLastPoint.Y)
 							{
-								drawRectangle3.Y = this.MouseLastPoint.Y;
-								drawRectangle3.Height = this.MouseStartPoint.Y - this.MouseLastPoint.Y;
+								drawRectangle3.Y = MouseLastPoint.Y;
+								drawRectangle3.Height = MouseStartPoint.Y - MouseLastPoint.Y;
 							}
 							else
 							{
-								drawRectangle3.Y = this.MouseStartPoint.Y;
-								drawRectangle3.Height = this.MouseLastPoint.Y - this.MouseStartPoint.Y;
+								drawRectangle3.Y = MouseStartPoint.Y;
+								drawRectangle3.Height = MouseLastPoint.Y - MouseStartPoint.Y;
 							}
 							drawRectangle3.Width++;
 							drawRectangle3.Height++;
-							this.DrawRectangle = drawRectangle3;
-							this.DrawMode = GUIDesigner.DirectDrawMode.Rectangle;
-							this.Refresh();
+							DrawRectangle = drawRectangle3;
+							DrawMode = GUIDesigner.DirectDrawMode.Rectangle;
+							Refresh();
 							break;
 						}
 						default:
@@ -1977,31 +1977,31 @@ namespace MasaoPlus
 				}
 				return;
 			}
-			this.EnsureScroll(e.X, e.Y);
+			EnsureScroll(e.X, e.Y);
 			Point point5 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
-			if (point5 == this.MouseLastPoint)
+			if (point5 == MouseLastPoint)
 			{
 				return;
 			}
-			this.GetBufferSize();
+			GetBufferSize();
 			int width = Global.cpd.runtime.Definitions.ChipSize.Width;
 			double zoomIndex = Global.config.draw.ZoomIndex;
 			double num = 1.0 / Global.config.draw.ZoomIndex;
-			this.MouseLastPoint = point5;
-			Rectangle drawRectangle4 = new Rectangle(this.MouseLastPoint, this.GetBufferSize());
-			this.DrawRectangle = drawRectangle4;
-			this.DrawMode = GUIDesigner.DirectDrawMode.Rectangle;
-			this.Refresh();
+			MouseLastPoint = point5;
+			Rectangle drawRectangle4 = new Rectangle(MouseLastPoint, GetBufferSize());
+			DrawRectangle = drawRectangle4;
+			DrawMode = GUIDesigner.DirectDrawMode.Rectangle;
+			Refresh();
 		}
 
 		public bool CheckBuffer()
 		{
-			if (this.ClipedString == null || this.ClipedString.Length == 0)
+			if (ClipedString == null || ClipedString.Length == 0)
 			{
 				return false;
 			}
 			int num = -1;
-			foreach (string text in this.ClipedString.Split(new string[]
+			foreach (string text in ClipedString.Split(new string[]
 			{
 				Environment.NewLine
 			}, StringSplitOptions.None))
@@ -2017,7 +2017,7 @@ namespace MasaoPlus
 
 		private Size GetBufferSize()
 		{
-			string[] array = this.ClipedString.Split(new string[]
+			string[] array = ClipedString.Split(new string[]
 			{
 				Environment.NewLine
 			}, StringSplitOptions.None);
@@ -2077,46 +2077,46 @@ namespace MasaoPlus
 			State state2 = Global.state;
 			state2.MapPoint.Y = state2.MapPoint.Y + point.Y * chipSize.Height;
 			Global.state.AdjustMapPoint();
-			this.Refresh();
+			Refresh();
 			Global.MainWnd.CommitScrollbar();
 		}
 
 		private void GUIDesigner_MouseUp(object sender, MouseEventArgs e)
 		{
-			if (this.MousePressed)
+			if (MousePressed)
 			{
-				this.MousePressed = false;
-				switch (this.CopyPaste)
+				MousePressed = false;
+				switch (CopyPaste)
 				{
 				case GUIDesigner.CopyPasteTool.Copy:
 				case GUIDesigner.CopyPasteTool.Cut:
 				{
-					this.EnsureScroll(e.X, e.Y);
+					EnsureScroll(e.X, e.Y);
 					int width = Global.cpd.runtime.Definitions.ChipSize.Width;
 					double zoomIndex = Global.config.draw.ZoomIndex;
 					double num = 1.0 / Global.config.draw.ZoomIndex;
-					using (Graphics.FromImage(this.ForeLayerBmp))
+					using (Graphics.FromImage(ForeLayerBmp))
 					{
 						Rectangle rectangle = default;
-						if (this.MouseStartPoint.X > this.MouseLastPoint.X)
+						if (MouseStartPoint.X > MouseLastPoint.X)
 						{
-							rectangle.X = this.MouseLastPoint.X;
-							rectangle.Width = this.MouseStartPoint.X - this.MouseLastPoint.X;
+							rectangle.X = MouseLastPoint.X;
+							rectangle.Width = MouseStartPoint.X - MouseLastPoint.X;
 						}
 						else
 						{
-							rectangle.X = this.MouseStartPoint.X;
-							rectangle.Width = this.MouseLastPoint.X - this.MouseStartPoint.X;
+							rectangle.X = MouseStartPoint.X;
+							rectangle.Width = MouseLastPoint.X - MouseStartPoint.X;
 						}
-						if (this.MouseStartPoint.Y > this.MouseLastPoint.Y)
+						if (MouseStartPoint.Y > MouseLastPoint.Y)
 						{
-							rectangle.Y = this.MouseLastPoint.Y;
-							rectangle.Height = this.MouseStartPoint.Y - this.MouseLastPoint.Y;
+							rectangle.Y = MouseLastPoint.Y;
+							rectangle.Height = MouseStartPoint.Y - MouseLastPoint.Y;
 						}
 						else
 						{
-							rectangle.Y = this.MouseStartPoint.Y;
-							rectangle.Height = this.MouseLastPoint.Y - this.MouseStartPoint.Y;
+							rectangle.Y = MouseStartPoint.Y;
+							rectangle.Height = MouseLastPoint.Y - MouseStartPoint.Y;
 						}
 						StringBuilder stringBuilder = new StringBuilder();
 						try
@@ -2140,159 +2140,159 @@ namespace MasaoPlus
 						catch (IndexOutOfRangeException)
 						{
 							Global.MainWnd.CopyPasteInit();
-							this.Refresh();
+							Refresh();
 							Global.MainWnd.UpdateStatus("選択範囲が異常です。処理を実行できません");
 							break;
 						}
 						Clipboard.SetText(stringBuilder.ToString());
-						if (this.CopyPaste == GUIDesigner.CopyPasteTool.Cut)
+						if (CopyPaste == GUIDesigner.CopyPasteTool.Cut)
 						{
 							Global.MainWnd.UpdateStatus("切り取りしています...");
 							for (int j = rectangle.Top; j <= rectangle.Bottom; j++)
 							{
-								char[] array = this.PutItemTextStart(j);
+								char[] array = PutItemTextStart(j);
 								if (array != null)
 								{
 									for (int k = rectangle.Left; k <= rectangle.Right; k++)
 									{
 										if (Global.state.EditingForeground)
 										{
-											this.PutItemText(ref array, new Point(k, j), Global.cpd.Mapchip[0]);
+											PutItemText(ref array, new Point(k, j), Global.cpd.Mapchip[0]);
 										}
 										else
 										{
-											this.PutItemText(ref array, new Point(k, j), Global.cpd.Layerchip[0]);
+											PutItemText(ref array, new Point(k, j), Global.cpd.Layerchip[0]);
 										}
 									}
-									this.PutItemTextEnd(array, j);
+									PutItemTextEnd(array, j);
 								}
 							}
-							this.StageSourceToDrawBuffer();
-							this.AddBuffer();
-							this.DrawMode = GUIDesigner.DirectDrawMode.None;
+							StageSourceToDrawBuffer();
+							AddBuffer();
+							DrawMode = GUIDesigner.DirectDrawMode.None;
 						}
 						else
 						{
-							this.DrawMode = GUIDesigner.DirectDrawMode.None;
+							DrawMode = GUIDesigner.DirectDrawMode.None;
 						}
 					}
 					Global.MainWnd.CopyPasteInit();
 					Global.MainWnd.UpdateStatus("完了");
-					this.Refresh();
+					Refresh();
 					return;
 				}
 				case GUIDesigner.CopyPasteTool.Paste:
 					break;
 				default:
-					switch (this.CurrentTool)
+					switch (CurrentTool)
 					{
 					case GUIDesigner.EditTool.Pen:
-						this.GUIDesigner_MouseMove(sender, e);
-						this.AddBuffer();
+						GUIDesigner_MouseMove(sender, e);
+						AddBuffer();
 						if (Global.state.EditingForeground)
 						{
-							this.ForePrevDrawn = (string[])Global.cpd.EditingMap.Clone();
+							ForePrevDrawn = (string[])Global.cpd.EditingMap.Clone();
 						}
 						else
 						{
-							this.BackPrevDrawn = (string[])Global.cpd.EditingLayer.Clone();
+							BackPrevDrawn = (string[])Global.cpd.EditingLayer.Clone();
 						}
 						Global.MainWnd.UpdateStatus("完了");
 						return;
 					case GUIDesigner.EditTool.Line:
 					{
-						this.DrawMode = GUIDesigner.DirectDrawMode.None;
+						DrawMode = GUIDesigner.DirectDrawMode.None;
 						Rectangle dr = default;
 						int num2 = 0;
-						if (this.MouseStartPoint.X > this.MouseLastPoint.X)
+						if (MouseStartPoint.X > MouseLastPoint.X)
 						{
-							dr.X = this.MouseLastPoint.X;
-							dr.Width = this.MouseStartPoint.X - this.MouseLastPoint.X;
+							dr.X = MouseLastPoint.X;
+							dr.Width = MouseStartPoint.X - MouseLastPoint.X;
 							num2++;
 						}
 						else
 						{
-							dr.X = this.MouseStartPoint.X;
-							dr.Width = this.MouseLastPoint.X - this.MouseStartPoint.X;
+							dr.X = MouseStartPoint.X;
+							dr.Width = MouseLastPoint.X - MouseStartPoint.X;
 							num2--;
 						}
-						if (this.MouseStartPoint.Y > this.MouseLastPoint.Y)
+						if (MouseStartPoint.Y > MouseLastPoint.Y)
 						{
-							dr.Y = this.MouseLastPoint.Y;
-							dr.Height = this.MouseStartPoint.Y - this.MouseLastPoint.Y;
+							dr.Y = MouseLastPoint.Y;
+							dr.Height = MouseStartPoint.Y - MouseLastPoint.Y;
 							num2++;
 						}
 						else
 						{
-							dr.Y = this.MouseStartPoint.Y;
-							dr.Height = this.MouseLastPoint.Y - this.MouseStartPoint.Y;
+							dr.Y = MouseStartPoint.Y;
+							dr.Height = MouseLastPoint.Y - MouseStartPoint.Y;
 							num2--;
 						}
 						Global.MainWnd.UpdateStatus("線を描画しています...");
 						if (Global.state.EditingForeground)
 						{
-							using (Graphics graphics2 = Graphics.FromImage(this.ForeLayerBmp))
+							using (Graphics graphics2 = Graphics.FromImage(ForeLayerBmp))
 							{
-								this.DrawLine(graphics2, dr, num2 != 0);
+								DrawLine(graphics2, dr, num2 != 0);
 								goto IL_5AE;
 							}
 						}
-						using (Graphics graphics3 = Graphics.FromImage(this.BackLayerBmp))
+						using (Graphics graphics3 = Graphics.FromImage(BackLayerBmp))
 						{
-							this.DrawLine(graphics3, dr, num2 != 0);
+							DrawLine(graphics3, dr, num2 != 0);
 						}
 						IL_5AE:
-						this.AddBuffer();
+						AddBuffer();
 						Global.MainWnd.UpdateStatus("完了");
-						this.Refresh();
+						Refresh();
 						return;
 					}
 					case GUIDesigner.EditTool.Rect:
 					{
-						this.EnsureScroll(e.X, e.Y);
+						EnsureScroll(e.X, e.Y);
 						Global.MainWnd.UpdateStatus("描画しています...");
 						Rectangle rectangle2 = default;
-						if (this.MouseStartPoint.X > this.MouseLastPoint.X)
+						if (MouseStartPoint.X > MouseLastPoint.X)
 						{
-							rectangle2.X = this.MouseLastPoint.X;
-							rectangle2.Width = this.MouseStartPoint.X - this.MouseLastPoint.X;
+							rectangle2.X = MouseLastPoint.X;
+							rectangle2.Width = MouseStartPoint.X - MouseLastPoint.X;
 						}
 						else
 						{
-							rectangle2.X = this.MouseStartPoint.X;
-							rectangle2.Width = this.MouseLastPoint.X - this.MouseStartPoint.X;
+							rectangle2.X = MouseStartPoint.X;
+							rectangle2.Width = MouseLastPoint.X - MouseStartPoint.X;
 						}
-						if (this.MouseStartPoint.Y > this.MouseLastPoint.Y)
+						if (MouseStartPoint.Y > MouseLastPoint.Y)
 						{
-							rectangle2.Y = this.MouseLastPoint.Y;
-							rectangle2.Height = this.MouseStartPoint.Y - this.MouseLastPoint.Y;
+							rectangle2.Y = MouseLastPoint.Y;
+							rectangle2.Height = MouseStartPoint.Y - MouseLastPoint.Y;
 						}
 						else
 						{
-							rectangle2.Y = this.MouseStartPoint.Y;
-							rectangle2.Height = this.MouseLastPoint.Y - this.MouseStartPoint.Y;
+							rectangle2.Y = MouseStartPoint.Y;
+							rectangle2.Height = MouseLastPoint.Y - MouseStartPoint.Y;
 						}
 						for (int l = rectangle2.Top; l <= rectangle2.Bottom; l++)
 						{
-							char[] array2 = this.PutItemTextStart(l);
+							char[] array2 = PutItemTextStart(l);
 							if (array2 != null)
 							{
 								for (int m = rectangle2.Left; m <= rectangle2.Right; m++)
 								{
-									this.PutItemText(ref array2, new Point(m, l), Global.state.CurrentChip);
+									PutItemText(ref array2, new Point(m, l), Global.state.CurrentChip);
 								}
-								this.PutItemTextEnd(array2, l);
+								PutItemTextEnd(array2, l);
 							}
 						}
-						this.StageSourceToDrawBuffer();
-						this.AddBuffer();
-						this.DrawMode = GUIDesigner.DirectDrawMode.None;
+						StageSourceToDrawBuffer();
+						AddBuffer();
+						DrawMode = GUIDesigner.DirectDrawMode.None;
 						Global.MainWnd.UpdateStatus("完了");
-						this.Refresh();
+						Refresh();
 						return;
 					}
 					default:
-						this.GUIDesigner_MouseMove(sender, e);
+						GUIDesigner_MouseMove(sender, e);
 						break;
 					}
 					break;
@@ -2334,7 +2334,7 @@ namespace MasaoPlus
 			Point mapPos = point2;
 			while (Math.Abs((int)Math.Round(num)) <= dr.Width && (int)Math.Round(num2) <= dr.Height)
 			{
-				this.PutItem(g, mapPos, Global.state.CurrentChip);
+				PutItem(g, mapPos, Global.state.CurrentChip);
 				num += (double)point.X + (double)pointF.X;
 				num2 += (double)point.Y + (double)pointF.Y;
 				mapPos.X = point2.X + (int)Math.Round(num);
@@ -2342,18 +2342,18 @@ namespace MasaoPlus
 			}
 			if (Global.state.EditingForeground)
 			{
-				this.ForePrevDrawn = (string[])Global.cpd.EditingMap.Clone();
+				ForePrevDrawn = (string[])Global.cpd.EditingMap.Clone();
 			}
 			else
 			{
-				this.BackPrevDrawn = (string[])Global.cpd.EditingLayer.Clone();
+				BackPrevDrawn = (string[])Global.cpd.EditingLayer.Clone();
 			}
-			this.Refresh();
+			Refresh();
 		}
 
 		public void PutItem(Point MapPos)
 		{
-			this.PutItem(MapPos, Global.state.CurrentChip);
+			PutItem(MapPos, Global.state.CurrentChip);
 		}
 
 		public void PutItem(Point MapPos, ChipsData cd)
@@ -2363,19 +2363,19 @@ namespace MasaoPlus
 			{
 				if (Global.state.EditingForeground)
 				{
-					graphics = Graphics.FromImage(this.ForeLayerBmp);
+					graphics = Graphics.FromImage(ForeLayerBmp);
 				}
 				else
 				{
-					graphics = Graphics.FromImage(this.BackLayerBmp);
+					graphics = Graphics.FromImage(BackLayerBmp);
 				}
-				this.PutItem(graphics, MapPos, cd);
+				PutItem(graphics, MapPos, cd);
 			}
 			finally
 			{
 				graphics.Dispose();
 			}
-			this.Refresh();
+			Refresh();
 		}
 
 		public void PutItemText(ref char[] ca, Point MapPos, ChipsData cd)
@@ -2462,7 +2462,7 @@ namespace MasaoPlus
 				{
 					if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && cd.character == "Z")
 					{
-						size = this.DrawOribossOrig.Size;
+						size = DrawOribossOrig.Size;
 					}
 					else {
 						size = (cd.GetCSChip().view_size != default) ? cd.GetCSChip().view_size : cd.GetCSChip().size; // 置きたいチップデータのサイズ
@@ -2477,28 +2477,28 @@ namespace MasaoPlus
 				}
 				ChipsData chipsData = default; // 置く前から元々あったチップデータのサイズ
 				ChipData chipData = default;
-				if (this.DrawItemRef.ContainsKey(stageChar))
+				if (DrawItemRef.ContainsKey(stageChar))
 				{
-					if (Global.state.MapEditMode) chipsData = this.DrawWorldRef[stageChar];
-					else chipsData = this.DrawItemRef[stageChar];
+					if (Global.state.MapEditMode) chipsData = DrawWorldRef[stageChar];
+					else chipsData = DrawItemRef[stageChar];
 					chipData = chipsData.GetCSChip();
 					if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
-						size = this.GetLargerSize(size, this.DrawOribossOrig.Size);
+						size = GetLargerSize(size, DrawOribossOrig.Size);
 					else if (chipData.name.Contains("曲線による") && chipData.name.Contains("坂") || chipData.name == "半円" && !chipData.description.Contains("乗れる"))
-						size = this.GetLargerSize(size, new Size(chipData.view_size.Width, Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height));
-					else size = this.GetLargerSize(size, (chipData.view_size != default)?chipData.view_size:chipData.size);	//サイズを比較して、大きい方に合わせる
+						size = GetLargerSize(size, new Size(chipData.view_size.Width, Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height));
+					else size = GetLargerSize(size, (chipData.view_size != default)?chipData.view_size:chipData.size);	//サイズを比較して、大きい方に合わせる
 				}
-				if (size == default) this.RedrawMap(g, new Rectangle(MapPos, new Size(1, 1)));
+				if (size == default) RedrawMap(g, new Rectangle(MapPos, new Size(1, 1)));
 				else
 				{
-					Point largerPoint = this.GetLargerPoint(cd.GetCSChip().center, chipData.center);
+					Point largerPoint = GetLargerPoint(cd.GetCSChip().center, chipData.center);
 					if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
 					{
-						if (cd.character == "Z") largerPoint = this.GetLargerPoint(new Point(0, 0), chipData.center);
-						else if (chipsData.character == "Z") largerPoint = this.GetLargerPoint(cd.GetCSChip().center, new Point(0, 0));
+						if (cd.character == "Z") largerPoint = GetLargerPoint(new Point(0, 0), chipData.center);
+						else if (chipsData.character == "Z") largerPoint = GetLargerPoint(cd.GetCSChip().center, new Point(0, 0));
 					}
 					Rectangle rectangle = new Rectangle(MapPos.X * chipsize.Width - largerPoint.X, MapPos.Y * chipsize.Height - largerPoint.Y, size.Width, size.Height);
-					this.RedrawMap(g,
+					RedrawMap(g,
 						new Rectangle((int)Math.Ceiling((decimal)rectangle.X / chipsize.Width), (int)Math.Ceiling((decimal)rectangle.Y / chipsize.Height),
 							(int)Math.Ceiling((decimal)rectangle.Width / chipsize.Width), (int)Math.Ceiling((decimal)rectangle.Height / chipsize.Height)));
 				}
@@ -2508,17 +2508,17 @@ namespace MasaoPlus
 				ChipData cschip = cd.GetCSChip();
 				Size size2 = cschip.size;
 				ChipData cschip2 = default(ChipsData).GetCSChip();
-				if (this.DrawLayerRef.ContainsKey(stageChar))
+				if (DrawLayerRef.ContainsKey(stageChar))
 				{
-					ChipsData chipsData2 = this.DrawLayerRef[stageChar];
-					size2 = this.GetLargerSize(size2, cschip2.size);
+					ChipsData chipsData2 = DrawLayerRef[stageChar];
+					size2 = GetLargerSize(size2, cschip2.size);
 				}
-				if (size2 == default) this.RedrawMap(g, new Rectangle(MapPos, new Size(1, 1)));
+				if (size2 == default) RedrawMap(g, new Rectangle(MapPos, new Size(1, 1)));
 				else
 				{
-					Point largerPoint2 = this.GetLargerPoint(cschip.center, cschip2.center);
+					Point largerPoint2 = GetLargerPoint(cschip.center, cschip2.center);
 					Rectangle rectangle2 = new Rectangle(MapPos.X * chipsize.Width - largerPoint2.X, MapPos.Y * chipsize.Height - largerPoint2.Y, size2.Width, size2.Height);
-					this.RedrawMap(g,
+					RedrawMap(g,
 						new Rectangle(rectangle2.X / chipsize.Width, rectangle2.Y / chipsize.Height,
 							rectangle2.Width / chipsize.Width, rectangle2.Height / chipsize.Height));
 				}
@@ -2548,26 +2548,26 @@ namespace MasaoPlus
                             ChipsData chipsData;
                             if (Global.state.EditingForeground)
                             {
-                                if (!this.DrawItemRef.ContainsKey(stageChar))
+                                if (!DrawItemRef.ContainsKey(stageChar))
                                 {
                                     goto IL_514;
                                 }
                                 if (Global.state.MapEditMode)
                                 {
-                                    chipsData = this.DrawWorldRef[stageChar];
+                                    chipsData = DrawWorldRef[stageChar];
                                 }
                                 else
                                 {
-                                    chipsData = this.DrawItemRef[stageChar];
+                                    chipsData = DrawItemRef[stageChar];
                                 }
                             }
                             else
                             {
-                                if (!this.DrawLayerRef.ContainsKey(stageChar))
+                                if (!DrawLayerRef.ContainsKey(stageChar))
                                 {
                                     goto IL_514;
                                 }
-                                chipsData = this.DrawLayerRef[stageChar];
+                                chipsData = DrawLayerRef[stageChar];
                             }
                             if (Global.state.EditingForeground)
                             {
@@ -2600,26 +2600,26 @@ namespace MasaoPlus
                             ChipsData chipsData;
                             if (Global.state.EditingForeground)
                             {
-                                if (!this.DrawItemRef.ContainsKey(stageChar))
+                                if (!DrawItemRef.ContainsKey(stageChar))
                                 {
                                     goto IL_9DD;
                                 }
                                 if (Global.state.MapEditMode)
                                 {
-                                    chipsData = this.DrawWorldRef[stageChar];
+                                    chipsData = DrawWorldRef[stageChar];
                                 }
                                 else
                                 {
-                                    chipsData = this.DrawItemRef[stageChar];
+                                    chipsData = DrawItemRef[stageChar];
                                 }
                             }
                             else
                             {
-                                if (!this.DrawLayerRef.ContainsKey(stageChar))
+                                if (!DrawLayerRef.ContainsKey(stageChar))
                                 {
                                     goto IL_9DD;
                                 }
-                                chipsData = this.DrawLayerRef[stageChar];
+                                chipsData = DrawLayerRef[stageChar];
                             }
                             if (Global.state.EditingForeground)
                             {
@@ -2646,9 +2646,9 @@ namespace MasaoPlus
 
 		private void GUIDesigner_MouseCaptureChanged(object sender, EventArgs e)
 		{
-			if (this.MousePressed)
+			if (MousePressed)
 			{
-				this.GUIDesigner_MouseUp(sender, new MouseEventArgs(MouseButtons.None, 1, Cursor.Position.X, Cursor.Position.Y, 0));
+				GUIDesigner_MouseUp(sender, new MouseEventArgs(MouseButtons.None, 1, Cursor.Position.X, Cursor.Position.Y, 0));
 			}
 		}
 
@@ -2659,10 +2659,10 @@ namespace MasaoPlus
 				switch (e.KeyCode)
 				{
 				case Keys.Y:
-					this.Redo();
+					Redo();
 					break;
 				case Keys.Z:
-					this.Undo();
+					Undo();
 					return;
 				default:
 					return;
@@ -2672,7 +2672,7 @@ namespace MasaoPlus
 
 		private void QuickTestRun_Click(object sender, EventArgs e)
 		{
-			Point mouseStartPoint = this.MouseStartPoint;
+			Point mouseStartPoint = MouseStartPoint;
 			if (GUIDesigner.StageText.IsOverflow(mouseStartPoint))
 			{
 				return;
@@ -2691,27 +2691,27 @@ namespace MasaoPlus
 
 		private void PickChip_Click(object sender, EventArgs e)
 		{
-			Point mouseStartPoint = this.MouseStartPoint;
+			Point mouseStartPoint = MouseStartPoint;
 			string stageChar = GUIDesigner.StageText.GetStageChar(mouseStartPoint);
 			if (Global.state.MapEditMode)
 			{
-				if (this.DrawWorldRef.ContainsKey(stageChar))
+				if (DrawWorldRef.ContainsKey(stageChar))
 				{
-					Global.state.CurrentChip = this.DrawWorldRef[stageChar];
+					Global.state.CurrentChip = DrawWorldRef[stageChar];
 					return;
 				}
 			}
 			else if (Global.state.EditingForeground)
 			{
-				if (this.DrawItemRef.ContainsKey(stageChar))
+				if (DrawItemRef.ContainsKey(stageChar))
 				{
-					Global.state.CurrentChip = this.DrawItemRef[stageChar];
+					Global.state.CurrentChip = DrawItemRef[stageChar];
 					return;
 				}
 			}
-			else if (this.DrawLayerRef.ContainsKey(stageChar))
+			else if (DrawLayerRef.ContainsKey(stageChar))
 			{
-				Global.state.CurrentChip = this.DrawLayerRef[stageChar];
+				Global.state.CurrentChip = DrawLayerRef[stageChar];
 			}
 		}
 
@@ -2719,21 +2719,21 @@ namespace MasaoPlus
 		{
 			Global.MainWnd.GuiCut.Checked = true;
 			Global.MainWnd.GuiCut_Click(sender, e);
-			this.Refresh();
+			Refresh();
 		}
 
 		private void MenuCopy_Click(object sender, EventArgs e)
 		{
 			Global.MainWnd.GuiCopy.Checked = true;
 			Global.MainWnd.GuiCopy_Click(sender, e);
-			this.Refresh();
+			Refresh();
 		}
 
 		private void MenuPaste_Click(object sender, EventArgs e)
 		{
 			Global.MainWnd.GuiPaste.Checked = true;
 			Global.MainWnd.GuiPaste_Click(sender, e);
-			this.Refresh();
+			Refresh();
 		}
 
 		private void DoTestrun_Click(object sender, EventArgs e)
@@ -2748,95 +2748,95 @@ namespace MasaoPlus
 
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing && this.components != null)
+			if (disposing && components != null)
 			{
-				this.components.Dispose();
+				components.Dispose();
 			}
 			base.Dispose(disposing);
 		}
 
 		private void InitializeComponent()
 		{
-			this.components = new Container();
-			this.CursorContextMenu = new ContextMenuStrip(this.components);
-			this.QuickTestRun = new ToolStripMenuItem();
-			this.PickChip = new ToolStripMenuItem();
-			this.toolStripMenuItem3 = new ToolStripSeparator();
-			this.MenuCut = new ToolStripMenuItem();
-			this.MenuCopy = new ToolStripMenuItem();
-			this.MenuPaste = new ToolStripMenuItem();
-			this.toolStripMenuItem2 = new ToolStripSeparator();
-			this.DoTestrun = new ToolStripMenuItem();
-			this.ProjectConfig = new ToolStripMenuItem();
-			this.CursorContextMenu.SuspendLayout();
+			components = new Container();
+			CursorContextMenu = new ContextMenuStrip(components);
+			QuickTestRun = new ToolStripMenuItem();
+			PickChip = new ToolStripMenuItem();
+			toolStripMenuItem3 = new ToolStripSeparator();
+			MenuCut = new ToolStripMenuItem();
+			MenuCopy = new ToolStripMenuItem();
+			MenuPaste = new ToolStripMenuItem();
+			toolStripMenuItem2 = new ToolStripSeparator();
+			DoTestrun = new ToolStripMenuItem();
+			ProjectConfig = new ToolStripMenuItem();
+			CursorContextMenu.SuspendLayout();
 			base.SuspendLayout();
-			this.CursorContextMenu.Items.AddRange(new ToolStripItem[]
+			CursorContextMenu.Items.AddRange(new ToolStripItem[]
 			{
-				this.QuickTestRun,
-				this.PickChip,
-				this.toolStripMenuItem3,
-				this.MenuCut,
-				this.MenuCopy,
-				this.MenuPaste,
-				this.toolStripMenuItem2,
-				this.DoTestrun,
-				this.ProjectConfig
+				QuickTestRun,
+				PickChip,
+				toolStripMenuItem3,
+				MenuCut,
+				MenuCopy,
+				MenuPaste,
+				toolStripMenuItem2,
+				DoTestrun,
+				ProjectConfig
 			});
-			this.CursorContextMenu.Name = "CursorContextMenu";
-			this.CursorContextMenu.Size = new Size(275, 170);
-			this.QuickTestRun.Image = Resources.testrunplace;
-			this.QuickTestRun.Name = "QuickTestRun";
-			this.QuickTestRun.ShortcutKeyDisplayString = "MiddleClick";
-			this.QuickTestRun.Size = new Size(274, 22);
-			this.QuickTestRun.Text = "ここからテスト実行(&R)";
-			this.QuickTestRun.Click += this.QuickTestRun_Click;
-			this.PickChip.Name = "PickChip";
-			this.PickChip.ShortcutKeyDisplayString = "";
-			this.PickChip.Size = new Size(274, 22);
-			this.PickChip.Text = "直下のチップを拾う(&P)";
-			this.PickChip.Click += this.PickChip_Click;
-			this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-			this.toolStripMenuItem3.Size = new Size(271, 6);
-			this.MenuCut.Image = Resources.cut;
-			this.MenuCut.Name = "MenuCut";
-			this.MenuCut.ShortcutKeyDisplayString = "Ctrl+X";
-			this.MenuCut.Size = new Size(274, 22);
-			this.MenuCut.Text = "切り取り(&X)";
-			this.MenuCut.Click += this.MenuCut_Click;
-			this.MenuCopy.Image = Resources.copy;
-			this.MenuCopy.Name = "MenuCopy";
-			this.MenuCopy.ShortcutKeyDisplayString = "Ctrl+C";
-			this.MenuCopy.Size = new Size(274, 22);
-			this.MenuCopy.Text = "コピー(&C)";
-			this.MenuCopy.Click += this.MenuCopy_Click;
-			this.MenuPaste.Image = Resources.paste;
-			this.MenuPaste.Name = "MenuPaste";
-			this.MenuPaste.ShortcutKeyDisplayString = "Ctrl+V";
-			this.MenuPaste.Size = new Size(274, 22);
-			this.MenuPaste.Text = "貼り付け(&V)";
-			this.MenuPaste.Click += this.MenuPaste_Click;
-			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-			this.toolStripMenuItem2.Size = new Size(271, 6);
-			this.DoTestrun.Image = Resources.testrunstage;
-			this.DoTestrun.Name = "DoTestrun";
-			this.DoTestrun.ShortcutKeyDisplayString = "Ctrl+Space";
-			this.DoTestrun.Size = new Size(274, 22);
-			this.DoTestrun.Text = "テスト実行(&T)";
-			this.DoTestrun.Click += this.DoTestrun_Click;
-			this.ProjectConfig.Image = Resources.map_edit;
-			this.ProjectConfig.Name = "ProjectConfig";
-			this.ProjectConfig.ShortcutKeyDisplayString = "F2";
-			this.ProjectConfig.Size = new Size(274, 22);
-			this.ProjectConfig.Text = "プロジェクト設定(&P)";
-			this.ProjectConfig.Click += this.ProjectConfig_Click;
+			CursorContextMenu.Name = "CursorContextMenu";
+			CursorContextMenu.Size = new Size(275, 170);
+			QuickTestRun.Image = Resources.testrunplace;
+			QuickTestRun.Name = "QuickTestRun";
+			QuickTestRun.ShortcutKeyDisplayString = "MiddleClick";
+			QuickTestRun.Size = new Size(274, 22);
+			QuickTestRun.Text = "ここからテスト実行(&R)";
+			QuickTestRun.Click += QuickTestRun_Click;
+			PickChip.Name = "PickChip";
+			PickChip.ShortcutKeyDisplayString = "";
+			PickChip.Size = new Size(274, 22);
+			PickChip.Text = "直下のチップを拾う(&P)";
+			PickChip.Click += PickChip_Click;
+			toolStripMenuItem3.Name = "toolStripMenuItem3";
+			toolStripMenuItem3.Size = new Size(271, 6);
+			MenuCut.Image = Resources.cut;
+			MenuCut.Name = "MenuCut";
+			MenuCut.ShortcutKeyDisplayString = "Ctrl+X";
+			MenuCut.Size = new Size(274, 22);
+			MenuCut.Text = "切り取り(&X)";
+			MenuCut.Click += MenuCut_Click;
+			MenuCopy.Image = Resources.copy;
+			MenuCopy.Name = "MenuCopy";
+			MenuCopy.ShortcutKeyDisplayString = "Ctrl+C";
+			MenuCopy.Size = new Size(274, 22);
+			MenuCopy.Text = "コピー(&C)";
+			MenuCopy.Click += MenuCopy_Click;
+			MenuPaste.Image = Resources.paste;
+			MenuPaste.Name = "MenuPaste";
+			MenuPaste.ShortcutKeyDisplayString = "Ctrl+V";
+			MenuPaste.Size = new Size(274, 22);
+			MenuPaste.Text = "貼り付け(&V)";
+			MenuPaste.Click += MenuPaste_Click;
+			toolStripMenuItem2.Name = "toolStripMenuItem2";
+			toolStripMenuItem2.Size = new Size(271, 6);
+			DoTestrun.Image = Resources.testrunstage;
+			DoTestrun.Name = "DoTestrun";
+			DoTestrun.ShortcutKeyDisplayString = "Ctrl+Space";
+			DoTestrun.Size = new Size(274, 22);
+			DoTestrun.Text = "テスト実行(&T)";
+			DoTestrun.Click += DoTestrun_Click;
+			ProjectConfig.Image = Resources.map_edit;
+			ProjectConfig.Name = "ProjectConfig";
+			ProjectConfig.ShortcutKeyDisplayString = "F2";
+			ProjectConfig.Size = new Size(274, 22);
+			ProjectConfig.Text = "プロジェクト設定(&P)";
+			ProjectConfig.Click += ProjectConfig_Click;
 			base.Name = "GUIDesigner";
 			base.Size = new Size(315, 177);
-			base.MouseCaptureChanged += this.GUIDesigner_MouseCaptureChanged;
-			base.MouseMove += this.GUIDesigner_MouseMove;
-			base.MouseDown += this.GUIDesigner_MouseDown;
-			base.MouseUp += this.GUIDesigner_MouseUp;
-			base.KeyDown += this.GUIDesigner_KeyDown;
-			this.CursorContextMenu.ResumeLayout(false);
+			base.MouseCaptureChanged += GUIDesigner_MouseCaptureChanged;
+			base.MouseMove += GUIDesigner_MouseMove;
+			base.MouseDown += GUIDesigner_MouseDown;
+			base.MouseUp += GUIDesigner_MouseUp;
+			base.KeyDown += GUIDesigner_KeyDown;
+			CursorContextMenu.ResumeLayout(false);
 			base.ResumeLayout(false);
 		}
 
@@ -3001,8 +3001,8 @@ namespace MasaoPlus
 		{
 			public KeepDrawData(ChipData c, Point p, string chara)
 			{
-				this.cd = c;
-				this.pos = p;
+				cd = c;
+				pos = p;
 				this.chara = chara;
 			}
 

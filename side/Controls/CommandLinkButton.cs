@@ -11,9 +11,9 @@ namespace MasaoPlus.Controls
 	{
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing && this.components != null)
+			if (disposing && components != null)
 			{
-				this.components.Dispose();
+				components.Dispose();
 			}
 			base.Dispose(disposing);
 		}
@@ -21,14 +21,14 @@ namespace MasaoPlus.Controls
 		private void InitializeComponent()
 		{
 			base.SuspendLayout();
-			base.MouseLeave += this.CommandLinkButton_MouseLeave;
-			base.Leave += this.CommandLinkButton_Leave;
-			base.KeyUp += this.CommandLinkButton_KeyUp;
-			base.MouseDown += this.CommandLinkButton_MouseDown;
-			base.Enter += this.CommandLinkButton_Enter;
-			base.MouseUp += this.CommandLinkButton_MouseUp;
-			base.MouseEnter += this.CommandLinkButton_MouseEnter;
-			base.KeyDown += this.CommandLinkButton_KeyDown;
+			base.MouseLeave += CommandLinkButton_MouseLeave;
+			base.Leave += CommandLinkButton_Leave;
+			base.KeyUp += CommandLinkButton_KeyUp;
+			base.MouseDown += CommandLinkButton_MouseDown;
+			base.Enter += CommandLinkButton_Enter;
+			base.MouseUp += CommandLinkButton_MouseUp;
+			base.MouseEnter += CommandLinkButton_MouseEnter;
+			base.KeyDown += CommandLinkButton_KeyDown;
 			base.ResumeLayout(false);
 		}
 
@@ -36,11 +36,11 @@ namespace MasaoPlus.Controls
 		{
 			get
 			{
-				return this.text;
+				return text;
 			}
 			set
 			{
-				this.text = value;
+				text = value;
 			}
 		}
 
@@ -50,11 +50,11 @@ namespace MasaoPlus.Controls
 		{
 			get
 			{
-				return this.description;
+				return description;
 			}
 			set
 			{
-				this.description = value;
+				description = value;
 			}
 		}
 
@@ -62,12 +62,12 @@ namespace MasaoPlus.Controls
 		{
 			get
 			{
-				return this.entered;
+				return entered;
 			}
 			set
 			{
-				this.entered = value;
-				this.Refresh();
+				entered = value;
+				Refresh();
 			}
 		}
 
@@ -75,12 +75,12 @@ namespace MasaoPlus.Controls
 		{
 			get
 			{
-				return this.focusing;
+				return focusing;
 			}
 			set
 			{
-				this.focusing = value;
-				this.Refresh();
+				focusing = value;
+				Refresh();
 			}
 		}
 
@@ -88,29 +88,29 @@ namespace MasaoPlus.Controls
 		{
 			get
 			{
-				return this.pressed;
+				return pressed;
 			}
 			set
 			{
-				this.pressed = value;
-				this.Refresh();
+				pressed = value;
+				Refresh();
 			}
 		}
 
 		public CommandLinkButton()
 		{
-			base.GotFocus += this.CommandLinkButton_GotFocus;
-			base.LostFocus += this.CommandLinkButton_LostFocus;
-			this.InitializeComponent();
+			base.GotFocus += CommandLinkButton_GotFocus;
+			base.LostFocus += CommandLinkButton_LostFocus;
+			InitializeComponent();
 		}
 
 		protected override void OnPaint(PaintEventArgs pe)
 		{
-			if (this.Pressed)
+			if (Pressed)
 			{
 				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default, base.Size), Border3DStyle.SunkenInner);
 			}
-			else if (this.Entered || this.Defaulting)
+			else if (Entered || Defaulting)
 			{
 				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default, base.Size), Border3DStyle.RaisedOuter);
 			}
@@ -118,64 +118,64 @@ namespace MasaoPlus.Controls
 			{
 				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default, base.Size), Border3DStyle.Flat);
 			}
-			if (this.Focusing)
+			if (Focusing)
 			{
 				ControlPaint.DrawFocusRectangle(pe.Graphics, new Rectangle(3, 3, base.Width - 6, base.Height - 6));
 			}
 			FontStyle fontStyle = FontStyle.Bold;
-			if (this.Entered)
+			if (Entered)
 			{
 				fontStyle |= FontStyle.Underline;
 			}
-			using (Font font = new Font(this.Font, fontStyle))
+			using (Font font = new Font(Font, fontStyle))
 			{
-				TextRenderer.DrawText(pe.Graphics, this.text, font, new Point(3, 3), Color.Blue);
-				Size size = TextRenderer.MeasureText(this.text, font);
-				TextRenderer.DrawText(pe.Graphics, this.description, this.Font, new Point(3, 5 + size.Height), Color.Black);
+				TextRenderer.DrawText(pe.Graphics, text, font, new Point(3, 3), Color.Blue);
+				Size size = TextRenderer.MeasureText(text, font);
+				TextRenderer.DrawText(pe.Graphics, description, Font, new Point(3, 5 + size.Height), Color.Black);
 			}
 			base.OnPaint(pe);
 		}
 
 		private void CommandLinkButton_MouseEnter(object sender, EventArgs e)
 		{
-			this.Entered = true;
+			Entered = true;
 		}
 
 		private void CommandLinkButton_MouseLeave(object sender, EventArgs e)
 		{
-			this.Entered = false;
+			Entered = false;
 		}
 
 		private void CommandLinkButton_Enter(object sender, EventArgs e)
 		{
-			this.Focusing = true;
+			Focusing = true;
 		}
 
 		private void CommandLinkButton_Leave(object sender, EventArgs e)
 		{
-			this.Focusing = false;
+			Focusing = false;
 		}
 
 		private void CommandLinkButton_LostFocus(object sender, EventArgs e)
 		{
-			this.Focusing = false;
+			Focusing = false;
 		}
 
 		private void CommandLinkButton_GotFocus(object sender, EventArgs e)
 		{
-			this.Focusing = true;
+			Focusing = true;
 		}
 
 		private void CommandLinkButton_MouseDown(object sender, MouseEventArgs e)
 		{
 			base.Focus();
-			this.Pressed = true;
+			Pressed = true;
 		}
 
 		private void CommandLinkButton_MouseUp(object sender, MouseEventArgs e)
 		{
-			this.Pressed = false;
-			this.Click(this, new EventArgs());
+			Pressed = false;
+			Click(this, new EventArgs());
 		}
 
 		private void CommandLinkButton_KeyDown(object sender, KeyEventArgs e)
@@ -183,7 +183,7 @@ namespace MasaoPlus.Controls
 			base.Focus();
 			if (e.Modifiers == Keys.None && e.KeyCode == Keys.Space)
 			{
-				this.Pressed = true;
+				Pressed = true;
 			}
 		}
 
@@ -191,8 +191,8 @@ namespace MasaoPlus.Controls
 		{
 			if (e.Modifiers == Keys.None && e.KeyCode == Keys.Space)
 			{
-				this.Pressed = false;
-				this.Click(this, new EventArgs());
+				Pressed = false;
+				Click(this, new EventArgs());
 			}
 		}
 
@@ -200,26 +200,26 @@ namespace MasaoPlus.Controls
 		{
 			get
 			{
-				return this.dr;
+				return dr;
 			}
 			set
 			{
-				this.dr = value;
+				dr = value;
 			}
 		}
 
 		public void NotifyDefault(bool value)
 		{
-			this.Defaulting = value;
-			this.Refresh();
+			Defaulting = value;
+			Refresh();
 		}
 
 		public void PerformClick()
 		{
-			this.Pressed = true;
+			Pressed = true;
 			Application.DoEvents();
 			Thread.Sleep(1);
-			this.Pressed = false;
+			Pressed = false;
 		}
 
 		private IContainer components;

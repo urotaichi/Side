@@ -14,17 +14,17 @@ namespace MasaoPlus.Dialogs
 	{
 		public HTMLInheritance(string pf)
 		{
-			this.InitializeComponent();
-			this.ParseFile = pf;
+			InitializeComponent();
+			ParseFile = pf;
 		}
 
 		private void Inheritance_Load(object sender, EventArgs e)
 		{
-			this.TargetFile.Text = this.ParseFile;
-			this.ProjectName.Text = Path.GetFileNameWithoutExtension(this.ParseFile);
-			this.RootDir.Text = Global.config.lastData.ProjDirF;
-			this.OK.Text = "お待ちください...";
-			this.OK.Enabled = false;
+			TargetFile.Text = ParseFile;
+			ProjectName.Text = Path.GetFileNameWithoutExtension(ParseFile);
+			RootDir.Text = Global.config.lastData.ProjDirF;
+			OK.Text = "お待ちください...";
+			OK.Enabled = false;
 		}
 
 		private void Inheritance_Shown(object sender, EventArgs e)
@@ -51,10 +51,10 @@ namespace MasaoPlus.Dialogs
 							string[] array2 = Runtime.CheckFiles(text2, runtime);
 							if (array2.Length == 0)
 							{
-								this.runtimes.Add(text);
-								this.runtimedatas.Add(runtime);
-								this.runtimeuselayer.Add(runtime.Definitions.LayerSize.bytesize != 0);
-								this.RuntimeSet.Items.Add(string.Concat(new string[]
+								runtimes.Add(text);
+								runtimedatas.Add(runtime);
+								runtimeuselayer.Add(runtime.Definitions.LayerSize.bytesize != 0);
+								RuntimeSet.Items.Add(string.Concat(new string[]
 								{
 									runtime.Definitions.Name,
 									" [Author:",
@@ -81,7 +81,7 @@ namespace MasaoPlus.Dialogs
 					MessageBox.Show($"読み込めませんでした:{Path.GetFileName(text)}{Environment.NewLine}{ex.Message}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				}
 			}
-			if (this.RuntimeSet.Items.Count == 0)
+			if (RuntimeSet.Items.Count == 0)
 			{
 				MessageBox.Show("利用可能なランタイムがありません。", "ランタイムロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				base.DialogResult = DialogResult.Cancel;
@@ -89,46 +89,46 @@ namespace MasaoPlus.Dialogs
 			}
 			else
 			{
-				this.RuntimeSet.SelectedIndex = 0;
+				RuntimeSet.SelectedIndex = 0;
 			}
-			this.OK.Enabled = true;
-			this.OK.Text = "OK";
+			OK.Enabled = true;
+			OK.Text = "OK";
 		}
 
 		private void RootDirBrowse_Click(object sender, EventArgs e)
 		{
             using FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             folderBrowserDialog.Description = "プロジェクトのルートディレクトリを選択してください。";
-            folderBrowserDialog.SelectedPath = this.RootDir.Text;
+            folderBrowserDialog.SelectedPath = RootDir.Text;
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                this.RootDir.Text = folderBrowserDialog.SelectedPath;
+                RootDir.Text = folderBrowserDialog.SelectedPath;
             }
         }
 
 		private void ProjectName_TextChanged(object sender, EventArgs e)
 		{
-			this.ValidationText();
+			ValidationText();
 		}
 
 		private void RootDir_TextChanged(object sender, EventArgs e)
 		{
-			this.ValidationText();
+			ValidationText();
 		}
 
 		private void ValidationText()
 		{
-			if (this.ProjectName.Text == "")
+			if (ProjectName.Text == "")
 			{
-				this.OK.Enabled = false;
+				OK.Enabled = false;
 				return;
 			}
-			if (this.RootDir.Text == "" || !Directory.Exists(this.RootDir.Text))
+			if (RootDir.Text == "" || !Directory.Exists(RootDir.Text))
 			{
-				this.OK.Enabled = false;
+				OK.Enabled = false;
 				return;
 			}
-			this.OK.Enabled = true;
+			OK.Enabled = true;
 		}
 
 		private void OK_Click(object sender, EventArgs e)
@@ -136,35 +136,35 @@ namespace MasaoPlus.Dialogs
 			try
 			{
 				base.Enabled = false;
-				this.OK.Text = "生成中...";
-				this.OK.Refresh();
-				this.StatusText.Text = "プロジェクト生成準備中...";
-				this.StatusText.Refresh();
-				Global.config.lastData.ProjDir = this.RootDir.Text;
-				string text = Path.Combine(this.RootDir.Text, this.ProjectName.Text);
+				OK.Text = "生成中...";
+				OK.Refresh();
+				StatusText.Text = "プロジェクト生成準備中...";
+				StatusText.Refresh();
+				Global.config.lastData.ProjDir = RootDir.Text;
+				string text = Path.Combine(RootDir.Text, ProjectName.Text);
 				if (Directory.Exists(text) && MessageBox.Show($"ディレクトリ{Environment.NewLine}\"{text}\"{Environment.NewLine}はすでに存在します。{Environment.NewLine}中に含まれるファイルは上書きされてしまう事があります。{Environment.NewLine}続行しますか？", "プロジェクト生成警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
 				{
 					return;
 				}
-				this.ProjectFile = Path.Combine(text, this.ProjectName.Text + Global.definition.ProjExt);
-				string text2 = Path.Combine(Path.GetDirectoryName(this.runtimes[this.RuntimeSet.SelectedIndex]), Path.GetFileNameWithoutExtension(this.runtimes[this.RuntimeSet.SelectedIndex]));
+				ProjectFile = Path.Combine(text, ProjectName.Text + Global.definition.ProjExt);
+				string text2 = Path.Combine(Path.GetDirectoryName(runtimes[RuntimeSet.SelectedIndex]), Path.GetFileNameWithoutExtension(runtimes[RuntimeSet.SelectedIndex]));
 				Project project = new Project();
-				project.Name = this.ProjectName.Text;
-				project.Runtime = this.runtimedatas[this.RuntimeSet.SelectedIndex];
-				project.Config = ConfigurationOwner.LoadXML(Path.Combine(text2, this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.Configurations));
+				project.Name = ProjectName.Text;
+				project.Runtime = runtimedatas[RuntimeSet.SelectedIndex];
+				project.Config = ConfigurationOwner.LoadXML(Path.Combine(text2, runtimedatas[RuntimeSet.SelectedIndex].Definitions.Configurations));
 				if (project.Runtime.Definitions.LayerSize.bytesize != 0)
 				{
-					project.LayerData = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
-					project.LayerData2 = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
-					project.LayerData3 = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
-					project.LayerData4 = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
+					project.LayerData = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
+					project.LayerData2 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
+					project.LayerData3 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
+					project.LayerData4 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
 				}
-				project.StageData = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.StageSize.y];
-				project.StageData2 = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.StageSize.y];
-				project.StageData3 = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.StageSize.y];
-				project.StageData4 = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.StageSize.y];
-				project.MapData = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.MapSize.y];
-				ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(text2, this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.ChipDefinition));
+				project.StageData = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.StageSize.y];
+				project.StageData2 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.StageSize.y];
+				project.StageData3 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.StageSize.y];
+				project.StageData4 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.StageSize.y];
+				project.MapData = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.MapSize.y];
+				ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(text2, runtimedatas[RuntimeSet.SelectedIndex].Definitions.ChipDefinition));
 				string character = chipDataClass.Mapchip[0].character;
 				for (int i = 0; i < project.StageData.Length; i++)
 				{
@@ -204,12 +204,12 @@ namespace MasaoPlus.Dialogs
 					project.LayerData3 = (string[])project.LayerData.Clone();
 					project.LayerData4 = (string[])project.LayerData.Clone();
 				}
-				this.StatusText.Text = "HTMLデータ取得準備中...";
-				this.StatusText.Refresh();
+				StatusText.Text = "HTMLデータ取得準備中...";
+				StatusText.Refresh();
 				string input = "";
 				try
 				{
-					input = Subsystem.LoadUnknownTextFile(this.ParseFile);
+					input = Subsystem.LoadUnknownTextFile(ParseFile);
 				}
 				catch
 				{
@@ -218,7 +218,7 @@ namespace MasaoPlus.Dialogs
 					base.Close();
 				}
 				List<string> list = new List<string>();
-				if (this.SeekHeaderFooter.Checked)
+				if (SeekHeaderFooter.Checked)
 				{
 					Regex regex = new Regex("^.*?<[ ]*?APPLET .*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 					Match match = regex.Match(input);
@@ -233,8 +233,8 @@ namespace MasaoPlus.Dialogs
 						project.Runtime.DefaultConfigurations.FooterHTML = match.Value;
 					}
 				}
-				this.StatusText.Text = "HTMLデータ取得中...";
-				this.StatusText.Refresh();
+				StatusText.Text = "HTMLデータ取得中...";
+				StatusText.Refresh();
 
 				Regex regex2 = new Regex(@"<[ ]*PARAM[ ]+NAME=""(?<name>.*?)""[ ]+VALUE=""(?<value>.*?)"".*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 				Regex regex_script = new Regex(@"<[ ]*?script.*?>.*?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
@@ -248,38 +248,38 @@ namespace MasaoPlus.Dialogs
 					dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
 					match2 = match2.NextMatch();
 				}
-				this.StatusText.Text = "マップソース生成中...";
-				this.StatusText.Refresh();
-				this.GetMapSource(ref project.MapData, project.Runtime.Definitions.MapName, project.Runtime.Definitions.MapSize, ref dictionary, chipDataClass.WorldChip);
-				this.StatusText.Text = "ステージソース生成中[1/4]...";
-				this.StatusText.Refresh();
-				this.GetMapSource(ref project.StageData, project.Runtime.Definitions.ParamName, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
-				this.StatusText.Text = "ステージソース生成中[2/4]...";
-				this.StatusText.Refresh();
-				this.GetMapSource(ref project.StageData2, project.Runtime.Definitions.ParamName2, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
-				this.StatusText.Text = "ステージソース生成中[3/4]...";
-				this.StatusText.Refresh();
-				this.GetMapSource(ref project.StageData3, project.Runtime.Definitions.ParamName3, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
-				this.StatusText.Text = "ステージソース生成中[4/4]...";
-				this.StatusText.Refresh();
-				this.GetMapSource(ref project.StageData4, project.Runtime.Definitions.ParamName4, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
+				StatusText.Text = "マップソース生成中...";
+				StatusText.Refresh();
+				GetMapSource(ref project.MapData, project.Runtime.Definitions.MapName, project.Runtime.Definitions.MapSize, ref dictionary, chipDataClass.WorldChip);
+				StatusText.Text = "ステージソース生成中[1/4]...";
+				StatusText.Refresh();
+				GetMapSource(ref project.StageData, project.Runtime.Definitions.ParamName, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
+				StatusText.Text = "ステージソース生成中[2/4]...";
+				StatusText.Refresh();
+				GetMapSource(ref project.StageData2, project.Runtime.Definitions.ParamName2, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
+				StatusText.Text = "ステージソース生成中[3/4]...";
+				StatusText.Refresh();
+				GetMapSource(ref project.StageData3, project.Runtime.Definitions.ParamName3, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
+				StatusText.Text = "ステージソース生成中[4/4]...";
+				StatusText.Refresh();
+				GetMapSource(ref project.StageData4, project.Runtime.Definitions.ParamName4, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
 				if (project.Runtime.Definitions.LayerSize.bytesize != 0)
 				{
-					this.StatusText.Text = "レイヤーソース生成中[1/4]...";
-					this.StatusText.Refresh();
-					this.GetMapSource(ref project.LayerData, project.Runtime.Definitions.LayerName, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
-					this.StatusText.Text = "レイヤーソース生成中[2/4]...";
-					this.StatusText.Refresh();
-					this.GetMapSource(ref project.LayerData2, project.Runtime.Definitions.LayerName2, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
-					this.StatusText.Text = "レイヤーソース生成中[3/4]...";
-					this.StatusText.Refresh();
-					this.GetMapSource(ref project.LayerData3, project.Runtime.Definitions.LayerName3, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
-					this.StatusText.Text = "レイヤーソース生成中[4/4]...";
-					this.StatusText.Refresh();
-					this.GetMapSource(ref project.LayerData4, project.Runtime.Definitions.LayerName4, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
+					StatusText.Text = "レイヤーソース生成中[1/4]...";
+					StatusText.Refresh();
+					GetMapSource(ref project.LayerData, project.Runtime.Definitions.LayerName, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
+					StatusText.Text = "レイヤーソース生成中[2/4]...";
+					StatusText.Refresh();
+					GetMapSource(ref project.LayerData2, project.Runtime.Definitions.LayerName2, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
+					StatusText.Text = "レイヤーソース生成中[3/4]...";
+					StatusText.Refresh();
+					GetMapSource(ref project.LayerData3, project.Runtime.Definitions.LayerName3, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
+					StatusText.Text = "レイヤーソース生成中[4/4]...";
+					StatusText.Refresh();
+					GetMapSource(ref project.LayerData4, project.Runtime.Definitions.LayerName4, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
 				}
-				this.StatusText.Text = "パラメータ反映中...";
-				this.StatusText.Refresh();
+				StatusText.Text = "パラメータ反映中...";
+				StatusText.Refresh();
 
 				var s = string.Join(string.Empty, project.MapData);
 				string Mapdata = new string(s.Except(s.Where(ch => s.Count(c => c == ch) > 1)).ToArray()); // 地図画面データを圧縮
@@ -579,7 +579,7 @@ namespace MasaoPlus.Dialogs
 				Directory.CreateDirectory(text);
 				foreach (string text3 in Directory.GetFiles(text2, "*", SearchOption.TopDirectoryOnly))
 				{
-					if (!(Path.GetFileName(text3) == this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.Configurations))
+					if (!(Path.GetFileName(text3) == runtimedatas[RuntimeSet.SelectedIndex].Definitions.Configurations))
 					{
 						string text4 = Path.Combine(text, Path.GetFileName(text3));
 						if (!File.Exists(text4) || MessageBox.Show(string.Concat(new string[]
@@ -597,12 +597,12 @@ namespace MasaoPlus.Dialogs
 				}
 				foreach (string text5 in list)
 				{
-					if (File.Exists(Path.Combine(Path.GetDirectoryName(this.ParseFile), text5)))
+					if (File.Exists(Path.Combine(Path.GetDirectoryName(ParseFile), text5)))
 					{
-						File.Copy(Path.Combine(Path.GetDirectoryName(this.ParseFile), text5), Path.Combine(text, Path.GetFileName(text5)), true);
+						File.Copy(Path.Combine(Path.GetDirectoryName(ParseFile), text5), Path.Combine(text, Path.GetFileName(text5)), true);
 					}
 				}
-				project.SaveXML(this.ProjectFile);
+				project.SaveXML(ProjectFile);
 			}
 			catch (Exception ex)
 			{
@@ -618,7 +618,7 @@ namespace MasaoPlus.Dialogs
 			}
 			finally
 			{
-				this.OK.Text = "OK";
+				OK.Text = "OK";
 				base.Enabled = true;
 			}
 			base.DialogResult = DialogResult.OK;

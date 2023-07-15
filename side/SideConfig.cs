@@ -13,37 +13,37 @@ namespace MasaoPlus
 	{
 		public SideConfig()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 		}
 
 		private void SideConfig_Load(object sender, EventArgs e)
 		{
-			this.OutputFileEncode.Text = Global.config.localSystem.FileEncoding.WebName;
-			this.UseZoomInterp.Checked = Global.config.draw.StageInterpolation;
-			this.UseClassicCLInterp.Checked = Global.config.draw.ClassicChipListInterpolation;
-			this.CursorPageScroll.Checked = Global.config.draw.PageScroll;
-			this.TempFileName.Text = Global.config.testRun.TempFile;
-			this.UseIntegBrow.Checked = Global.config.testRun.UseIntegratedBrowser;
-			this.UnuseIntegBrow.Enabled = !this.UseIntegBrow.Checked;
-			this.KillExternalBrow.Checked = Global.config.testRun.KillTestrunOnFocus;
-			this.BrowPath.Text = Global.config.localSystem.UsingWebBrowser;
-			this.UseQTRun.Checked = Global.config.testRun.QuickTestrun;
+			OutputFileEncode.Text = Global.config.localSystem.FileEncoding.WebName;
+			UseZoomInterp.Checked = Global.config.draw.StageInterpolation;
+			UseClassicCLInterp.Checked = Global.config.draw.ClassicChipListInterpolation;
+			CursorPageScroll.Checked = Global.config.draw.PageScroll;
+			TempFileName.Text = Global.config.testRun.TempFile;
+			UseIntegBrow.Checked = Global.config.testRun.UseIntegratedBrowser;
+			UnuseIntegBrow.Enabled = !UseIntegBrow.Checked;
+			KillExternalBrow.Checked = Global.config.testRun.KillTestrunOnFocus;
+			BrowPath.Text = Global.config.localSystem.UsingWebBrowser;
+			UseQTRun.Checked = Global.config.testRun.QuickTestrun;
 			OperatingSystem osversion = Environment.OSVersion;
-			this.ReversePosition.Checked = Global.config.localSystem.ReverseTabView;
-			this.EnableAutoUpdate.Checked = Global.config.localSystem.CheckAutoUpdate;
-			this.RCContextMenu.Checked = Global.config.draw.RightClickMenu;
-			this.ExDraw.Checked = Global.config.draw.ExtendDraw;
-			this.EnableAlpha.Checked = Global.config.draw.AlphaBlending;
-			this.ClassicSelectionMode.SelectedIndex = (int)Global.config.draw.SelDrawMode;
-			this.BufferingDraw.Checked = Global.config.draw.UseBufferingDraw;
-			this.ChipSkip.Checked = Global.config.draw.SkipFirstChip;
-			this.ReuseDraw.Checked = Global.config.draw.SkipBufferedDraw;
-			this.IntegrateEditorId.Checked = Global.config.localSystem.IntegrateEditorId;
-			this.UsePropTextDialog.Checked = Global.config.localSystem.UsePropExTextEditor;
-			this.OutPutInititalSourceCode.Checked = Global.config.localSystem.OutPutInititalSourceCode;
-			this.WrapPropText.Checked = Global.config.localSystem.WrapPropText;
-			this.StartWithCL.Checked = Global.config.draw.StartUpWithClassicCL;
-			this.WheelHorz.Checked = Global.config.draw.HScrollDefault;
+			ReversePosition.Checked = Global.config.localSystem.ReverseTabView;
+			EnableAutoUpdate.Checked = Global.config.localSystem.CheckAutoUpdate;
+			RCContextMenu.Checked = Global.config.draw.RightClickMenu;
+			ExDraw.Checked = Global.config.draw.ExtendDraw;
+			EnableAlpha.Checked = Global.config.draw.AlphaBlending;
+			ClassicSelectionMode.SelectedIndex = (int)Global.config.draw.SelDrawMode;
+			BufferingDraw.Checked = Global.config.draw.UseBufferingDraw;
+			ChipSkip.Checked = Global.config.draw.SkipFirstChip;
+			ReuseDraw.Checked = Global.config.draw.SkipBufferedDraw;
+			IntegrateEditorId.Checked = Global.config.localSystem.IntegrateEditorId;
+			UsePropTextDialog.Checked = Global.config.localSystem.UsePropExTextEditor;
+			OutPutInititalSourceCode.Checked = Global.config.localSystem.OutPutInititalSourceCode;
+			WrapPropText.Checked = Global.config.localSystem.WrapPropText;
+			StartWithCL.Checked = Global.config.draw.StartUpWithClassicCL;
+			WheelHorz.Checked = Global.config.draw.HScrollDefault;
 			if (!Native.CheckRegistryAddmittion())
 			{
 				if (osversion.Version.Major >= 6)
@@ -51,66 +51,66 @@ namespace MasaoPlus
 					RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System", false);
 					if (registryKey == null || (int)registryKey.GetValue("EnableLUA") != 0)
 					{
-						Native.USER32.SendMessage(this.RegistProjFile.Handle, 5644U, 0, 1);
-						Native.USER32.SendMessage(this.UnregistProjFile.Handle, 5644U, 0, 1);
-						this.UseUAC = true;
+						Native.USER32.SendMessage(RegistProjFile.Handle, 5644U, 0, 1);
+						Native.USER32.SendMessage(UnregistProjFile.Handle, 5644U, 0, 1);
+						UseUAC = true;
 					}
 					else
 					{
-						this.RegistProjFile.Enabled = false;
-						this.UnregistProjFile.Enabled = false;
+						RegistProjFile.Enabled = false;
+						UnregistProjFile.Enabled = false;
 					}
 				}
 				else
 				{
-					this.RegistProjFile.Enabled = false;
-					this.UnregistProjFile.Enabled = false;
+					RegistProjFile.Enabled = false;
+					UnregistProjFile.Enabled = false;
 				}
 			}
-			this.FormShown = true;
+			FormShown = true;
 		}
 
 		private void Accept_Click(object sender, EventArgs e)
 		{
-			Global.config.localSystem.FileEncoding = Encoding.GetEncoding(this.OutputFileEncode.Items[this.OutputFileEncode.SelectedIndex].ToString());
-			Global.config.draw.StageInterpolation = this.UseZoomInterp.Checked;
-			Global.config.draw.ClassicChipListInterpolation = this.UseClassicCLInterp.Checked;
-			Global.config.draw.PageScroll = this.CursorPageScroll.Checked;
-			Global.config.testRun.TempFile = this.TempFileName.Text;
-			Global.config.testRun.UseIntegratedBrowser = this.UseIntegBrow.Checked;
-			Global.config.testRun.KillTestrunOnFocus = this.KillExternalBrow.Checked;
-			Global.config.localSystem.UsingWebBrowser = this.BrowPath.Text;
-			Global.config.testRun.QuickTestrun = this.UseQTRun.Checked;
-			Global.config.localSystem.ReverseTabView = this.ReversePosition.Checked;
-			Global.config.localSystem.CheckAutoUpdate = this.EnableAutoUpdate.Checked;
-			Global.config.draw.RightClickMenu = this.RCContextMenu.Checked;
-			Global.config.draw.ExtendDraw = this.ExDraw.Checked;
-			Global.config.draw.AlphaBlending = this.EnableAlpha.Checked;
-			Global.config.draw.SelDrawMode = (Config.Draw.SelectionDrawMode)this.ClassicSelectionMode.SelectedIndex;
-			Global.config.draw.UseBufferingDraw = this.BufferingDraw.Checked;
-			Global.config.draw.SkipFirstChip = this.ChipSkip.Checked;
-			Global.config.draw.SkipBufferedDraw = this.ReuseDraw.Checked;
-			Global.config.localSystem.IntegrateEditorId = this.IntegrateEditorId.Checked;
-			Global.config.localSystem.UsePropExTextEditor = this.UsePropTextDialog.Checked;
-			Global.config.localSystem.OutPutInititalSourceCode = this.OutPutInititalSourceCode.Checked;
-			Global.config.localSystem.WrapPropText = this.WrapPropText.Checked;
-			Global.config.draw.StartUpWithClassicCL = this.StartWithCL.Checked;
-			Global.config.draw.HScrollDefault = this.WheelHorz.Checked;
+			Global.config.localSystem.FileEncoding = Encoding.GetEncoding(OutputFileEncode.Items[OutputFileEncode.SelectedIndex].ToString());
+			Global.config.draw.StageInterpolation = UseZoomInterp.Checked;
+			Global.config.draw.ClassicChipListInterpolation = UseClassicCLInterp.Checked;
+			Global.config.draw.PageScroll = CursorPageScroll.Checked;
+			Global.config.testRun.TempFile = TempFileName.Text;
+			Global.config.testRun.UseIntegratedBrowser = UseIntegBrow.Checked;
+			Global.config.testRun.KillTestrunOnFocus = KillExternalBrow.Checked;
+			Global.config.localSystem.UsingWebBrowser = BrowPath.Text;
+			Global.config.testRun.QuickTestrun = UseQTRun.Checked;
+			Global.config.localSystem.ReverseTabView = ReversePosition.Checked;
+			Global.config.localSystem.CheckAutoUpdate = EnableAutoUpdate.Checked;
+			Global.config.draw.RightClickMenu = RCContextMenu.Checked;
+			Global.config.draw.ExtendDraw = ExDraw.Checked;
+			Global.config.draw.AlphaBlending = EnableAlpha.Checked;
+			Global.config.draw.SelDrawMode = (Config.Draw.SelectionDrawMode)ClassicSelectionMode.SelectedIndex;
+			Global.config.draw.UseBufferingDraw = BufferingDraw.Checked;
+			Global.config.draw.SkipFirstChip = ChipSkip.Checked;
+			Global.config.draw.SkipBufferedDraw = ReuseDraw.Checked;
+			Global.config.localSystem.IntegrateEditorId = IntegrateEditorId.Checked;
+			Global.config.localSystem.UsePropExTextEditor = UsePropTextDialog.Checked;
+			Global.config.localSystem.OutPutInititalSourceCode = OutPutInititalSourceCode.Checked;
+			Global.config.localSystem.WrapPropText = WrapPropText.Checked;
+			Global.config.draw.StartUpWithClassicCL = StartWithCL.Checked;
+			Global.config.draw.HScrollDefault = WheelHorz.Checked;
 			base.Close();
 		}
 
 		private void UseIntegBrow_CheckedChanged(object sender, EventArgs e)
 		{
-			this.UnuseIntegBrow.Enabled = !this.UseIntegBrow.Checked;
+			UnuseIntegBrow.Enabled = !UseIntegBrow.Checked;
 		}
 
 		private void RegistProjFile_Click(object sender, EventArgs e)
 		{
 			try
 			{
-				this.UnregistProjFile.Enabled = false;
-				this.RegistProjFile.Enabled = false;
-				if (this.UseUAC)
+				UnregistProjFile.Enabled = false;
+				RegistProjFile.Enabled = false;
+				if (UseUAC)
 				{
 					ProcessStartInfo processStartInfo = new ProcessStartInfo();
 					processStartInfo.UseShellExecute = true;
@@ -136,8 +136,8 @@ namespace MasaoPlus
 			}
 			finally
 			{
-				this.UnregistProjFile.Enabled = true;
-				this.RegistProjFile.Enabled = true;
+				UnregistProjFile.Enabled = true;
+				RegistProjFile.Enabled = true;
 			}
 		}
 
@@ -145,9 +145,9 @@ namespace MasaoPlus
 		{
 			try
 			{
-				this.UnregistProjFile.Enabled = false;
-				this.RegistProjFile.Enabled = false;
-				if (this.UseUAC)
+				UnregistProjFile.Enabled = false;
+				RegistProjFile.Enabled = false;
+				if (UseUAC)
 				{
 					ProcessStartInfo processStartInfo = new ProcessStartInfo();
 					processStartInfo.UseShellExecute = true;
@@ -173,29 +173,29 @@ namespace MasaoPlus
 			}
 			finally
 			{
-				this.UnregistProjFile.Enabled = true;
-				this.RegistProjFile.Enabled = true;
+				UnregistProjFile.Enabled = true;
+				RegistProjFile.Enabled = true;
 			}
 		}
 
 		private void ChipSkip_CheckedChanged(object sender, EventArgs e)
 		{
-			if (this.ChipSkip.Checked)
+			if (ChipSkip.Checked)
 			{
-				this.ReuseDraw.Checked = false;
+				ReuseDraw.Checked = false;
 			}
 		}
 
 		private void ReuseDraw_CheckedChanged(object sender, EventArgs e)
 		{
-			if (this.ReuseDraw.Checked)
+			if (ReuseDraw.Checked)
 			{
-				if (this.FormShown && MessageBox.Show("この機能は未だ多くの問題を抱えています。" + Environment.NewLine + "本当にオンにしますか？", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+				if (FormShown && MessageBox.Show("この機能は未だ多くの問題を抱えています。" + Environment.NewLine + "本当にオンにしますか？", "警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
 				{
-					this.ReuseDraw.Checked = false;
+					ReuseDraw.Checked = false;
 					return;
 				}
-				this.ChipSkip.Checked = false;
+				ChipSkip.Checked = false;
 			}
 		}
 
@@ -207,7 +207,7 @@ namespace MasaoPlus
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                this.BrowPath.Text = openFileDialog.FileName;
+                BrowPath.Text = openFileDialog.FileName;
             }
         }
 

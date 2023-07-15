@@ -26,7 +26,7 @@ namespace MasaoPlus
 		{
 			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
             using FileStream fileStream = new FileStream(file, FileMode.Create);
-            this.localSystem.FileEncStr = this.localSystem.FileEncoding.WebName;
+            localSystem.FileEncStr = localSystem.FileEncoding.WebName;
             xmlSerializer.Serialize(fileStream, this);
         }
 
@@ -126,11 +126,11 @@ namespace MasaoPlus
 			{
 				get
 				{
-					if (this.ProjDir == "")
+					if (ProjDir == "")
 					{
 						return Path.Combine(Application.StartupPath, "projects");
 					}
-					return this.ProjDir;
+					return ProjDir;
 				}
 			}
 
@@ -138,11 +138,11 @@ namespace MasaoPlus
 			{
 				get
 				{
-					if (this.PictDir == "")
+					if (PictDir == "")
 					{
 						return Path.Combine(Application.StartupPath, "pictures\\default");
 					}
-					return this.PictDir;
+					return PictDir;
 				}
 			}
 

@@ -11,20 +11,20 @@ namespace MasaoPlus.Dialogs
 	{
 		public ProjectLoading(string LoadProject)
 		{
-			this.load = LoadProject;
-			this.InitializeComponent();
+			load = LoadProject;
+			InitializeComponent();
 		}
 
 		private void ProjectLoading_Shown(object sender, EventArgs e)
 		{
 			Application.DoEvents();
-            LoadProjectDlg loadProjectDlg = new LoadProjectDlg(this.LoadProject);
-			loadProjectDlg.BeginInvoke(new AsyncCallback(this.EndInv), null);
+            LoadProjectDlg loadProjectDlg = new LoadProjectDlg(LoadProject);
+			loadProjectDlg.BeginInvoke(new AsyncCallback(EndInv), null);
 		}
 
 		public void EndInv(IAsyncResult iar)
 		{
-            LoadProjectDlg method = new LoadProjectDlg(this.EndInvInv);
+            LoadProjectDlg method = new LoadProjectDlg(EndInvInv);
 			try
 			{
 				base.Invoke(method);
@@ -48,12 +48,12 @@ namespace MasaoPlus.Dialogs
 				try
 				{
 					Global.state.ChipRegister = new Dictionary<string, string>();
-					Global.cpd.project = Project.ParseXML(this.load);
+					Global.cpd.project = Project.ParseXML(load);
 					if (Global.cpd.project.ProjVer != 0.0 && Global.cpd.project.ProjVer < Global.definition.CProjVer)
 					{
 						if (MessageBox.Show($"古いバージョンのプロジェクトファイルが指定されました。{Environment.NewLine}プロジェクトファイルのアップグレードを試みます。{Environment.NewLine}よろしいですか？", "レガシー プロジェクト ファイルの読み込み", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
 						{
-							this.SetState("プロジェクトをコンバートしています...");
+							SetState("プロジェクトをコンバートしています...");
 							double projVer = Global.cpd.project.ProjVer;
 							MessageBox.Show($"このプロジェクトファイルはサポートされていません。{Environment.NewLine}通常の読み込みを試みます。", "コンバート エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 						}
@@ -70,9 +70,9 @@ namespace MasaoPlus.Dialogs
 						base.DialogResult = DialogResult.Abort;
 						base.Close();
 					}
-					this.SetState("プロジェクト設定を読み込んでいます...");
-					Global.cpd.where = Path.GetDirectoryName(this.load);
-					Global.cpd.filename = this.load;
+					SetState("プロジェクト設定を読み込んでいます...");
+					Global.cpd.where = Path.GetDirectoryName(load);
+					Global.cpd.filename = load;
 					Global.state.Background = Global.cpd.project.Config.Background;
 					Global.cpd.runtime = Global.cpd.project.Runtime;
 					string[] array = Runtime.CheckFiles(Global.cpd.where, Global.cpd.runtime, false);
@@ -83,8 +83,8 @@ namespace MasaoPlus.Dialogs
 						base.DialogResult = DialogResult.Abort;
 						base.Close();
 					}
-					this.SetState("チップデータを読み込んでいます...");
-					ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(Path.GetDirectoryName(this.load), Global.cpd.runtime.Definitions.ChipDefinition));
+					SetState("チップデータを読み込んでいます...");
+					ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(Path.GetDirectoryName(load), Global.cpd.runtime.Definitions.ChipDefinition));
 					if (Global.cpd.UseLayer)
                     {
                         for (int i = 0; i < chipDataClass.Layerchip.Length; i++)
@@ -108,9 +108,9 @@ namespace MasaoPlus.Dialogs
 						Global.cpd.EditingLayer = Global.cpd.project.LayerData;
                     }
                     Global.MainWnd.MainDesigner.CreateDrawItemReference();
-					this.SetState("画像を準備しています...");
+					SetState("画像を準備しています...");
 					Global.MainWnd.MainDesigner.PrepareImages();
-					this.SetState("グラフィカルデザイナを初期化しています...");
+					SetState("グラフィカルデザイナを初期化しています...");
 					Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
 					if (Global.cpd.UseLayer)
 					{
@@ -120,9 +120,9 @@ namespace MasaoPlus.Dialogs
 					{
 						Global.MainWnd.MainDesigner.InitTransparent();
 					}
-					this.SetState("チップリストを作成しています...");
+					SetState("チップリストを作成しています...");
 					Global.MainWnd.ChipItemReady();
-					this.SetState("編集を開始します...");
+					SetState("編集を開始します...");
 				}
 				catch (InvalidOperationException)
 				{
@@ -138,7 +138,7 @@ namespace MasaoPlus.Dialogs
 
 		private void SetState(string text)
 		{
-            SetStateDelg method = new SetStateDelg(this.SetStateInv);
+            SetStateDelg method = new SetStateDelg(SetStateInv);
 			base.Invoke(method, new object[]
 			{
 				text
@@ -147,8 +147,8 @@ namespace MasaoPlus.Dialogs
 
 		private void SetStateInv(string text)
 		{
-			this.WaiterText.Text = text;
-			this.WaiterText.Refresh();
+			WaiterText.Text = text;
+			WaiterText.Refresh();
 		}
 
 		private string load = "";

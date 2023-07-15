@@ -12,9 +12,9 @@ namespace MasaoPlus.Controls
 	{
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing && this.components != null)
+			if (disposing && components != null)
 			{
-				this.components.Dispose();
+				components.Dispose();
 			}
 			base.Dispose(disposing);
 		}
@@ -22,7 +22,7 @@ namespace MasaoPlus.Controls
 		private void InitializeComponent()
 		{
 			base.SuspendLayout();
-			base.Paint += this.OverViewer_Paint;
+			base.Paint += OverViewer_Paint;
 			base.ResumeLayout(false);
 		}
 
@@ -34,7 +34,7 @@ namespace MasaoPlus.Controls
 				{
 					return new Size(180, 30);
 				}
-				return new Size(this.Source.Size.Width * this.ppb, this.Source.Size.Height * this.ppb);
+				return new Size(Source.Size.Width * ppb, Source.Size.Height * ppb);
 			}
 			set
 			{
@@ -43,12 +43,12 @@ namespace MasaoPlus.Controls
 
 		public OverViewer()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 			base.SetStyle(ControlStyles.ResizeRedraw, true);
 			base.SetStyle(ControlStyles.DoubleBuffer, true);
 			base.SetStyle(ControlStyles.UserPaint, true);
 			base.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-			this.CreateDrawSource();
+			CreateDrawSource();
 		}
 
 		public void CreateDrawSource()
@@ -57,13 +57,13 @@ namespace MasaoPlus.Controls
 			{
 				return;
 			}
-			this.Source = new Bitmap(Global.cpd.runtime.Definitions.StageSize.x, Global.cpd.runtime.Definitions.StageSize.y);
-			this.UpdateDrawSource();
+			Source = new Bitmap(Global.cpd.runtime.Definitions.StageSize.x, Global.cpd.runtime.Definitions.StageSize.y);
+			UpdateDrawSource();
 		}
 
 		public unsafe void UpdateDrawSource()
 		{
-			BitmapData bitmapData = this.Source.LockBits(new Rectangle(new Point(0, 0), this.Source.Size), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
+			BitmapData bitmapData = Source.LockBits(new Rectangle(new Point(0, 0), Source.Size), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
 			try
 			{
 				byte* ptr = null;
@@ -125,25 +125,25 @@ namespace MasaoPlus.Controls
 			}
 			finally
 			{
-				this.Source.UnlockBits(bitmapData);
+				Source.UnlockBits(bitmapData);
 			}
-			this.Refresh();
+			Refresh();
 		}
 
 		private void OverViewer_Paint(object sender, PaintEventArgs e)
 		{
-			if (this.Source == null)
+			if (Source == null)
 			{
-				e.Graphics.FillRectangle(Brushes.Black, new Rectangle(default, this.Size));
+				e.Graphics.FillRectangle(Brushes.Black, new Rectangle(default, Size));
 				return;
 			}
 			e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-			e.Graphics.DrawImage(this.Source, new Rectangle(0, 0, this.Source.Width * this.ppb, this.Source.Height * this.ppb));
+			e.Graphics.DrawImage(Source, new Rectangle(0, 0, Source.Width * ppb, Source.Height * ppb));
 			Point mapPointTranslatedMap = Global.state.MapPointTranslatedMap;
-			mapPointTranslatedMap.X *= this.ppb;
-			mapPointTranslatedMap.Y *= this.ppb;
-            using Pen pen = new Pen(Brushes.White, (float)this.ppb);
-            e.Graphics.DrawRectangle(pen, new Rectangle(mapPointTranslatedMap, new Size((int)((double)(Global.MainWnd.MainDesigner.Size.Width / Global.cpd.runtime.Definitions.ChipSize.Width * this.ppb) / Global.config.draw.ZoomIndex), (int)((double)(Global.MainWnd.MainDesigner.Size.Height / Global.cpd.runtime.Definitions.ChipSize.Height * this.ppb) / Global.config.draw.ZoomIndex))));
+			mapPointTranslatedMap.X *= ppb;
+			mapPointTranslatedMap.Y *= ppb;
+            using Pen pen = new Pen(Brushes.White, (float)ppb);
+            e.Graphics.DrawRectangle(pen, new Rectangle(mapPointTranslatedMap, new Size((int)((double)(Global.MainWnd.MainDesigner.Size.Width / Global.cpd.runtime.Definitions.ChipSize.Width * ppb) / Global.config.draw.ZoomIndex), (int)((double)(Global.MainWnd.MainDesigner.Size.Height / Global.cpd.runtime.Definitions.ChipSize.Height * ppb) / Global.config.draw.ZoomIndex))));
         }
 
 		private IContainer components;

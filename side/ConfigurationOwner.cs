@@ -33,8 +33,8 @@ namespace MasaoPlus
 		// パラメータ設定読み込み
 		public void ConfigReady()
 		{
-			this.Categories = new List<string>();
-			this.RelIndex = new int[28];
+			Categories = new List<string>();
+			RelIndex = new int[28];
 			bool[] array = new bool[12];
 			array[0] = false;
 			array[1] = false;
@@ -44,16 +44,16 @@ namespace MasaoPlus
 			array[5] = false;
 			array[6] = false;
 			array[7] = false;
-			for (int i = 0; i < this.Configurations.Length; i++)
+			for (int i = 0; i < Configurations.Length; i++)
 			{
-				ConfigParam configParam = this.Configurations[i];
+				ConfigParam configParam = Configurations[i];
 				if (configParam.Category == null)
 				{
-					this.Configurations[i].Category = "未設定";
+					Configurations[i].Category = "未設定";
 				}
-				if (!this.Categories.Contains(configParam.Category))
+				if (!Categories.Contains(configParam.Category))
 				{
-					this.Categories.Add(configParam.Category);
+					Categories.Add(configParam.Category);
 				}
 				if (configParam.ChipRelation != null && configParam.ChipRelation != "")
 				{
@@ -69,103 +69,103 @@ namespace MasaoPlus
 				switch (configParam.Relation)
 				{
 				case "BACKGROUND":
-					this.RelIndex[0] = i;
+					RelIndex[0] = i;
 					array[0] = true;
 					break;
 				case "BACKGROUND2":
-					this.RelIndex[1] = i;
+					RelIndex[1] = i;
 					array[1] = true;
 					break;
 				case "BACKGROUND3":
-					this.RelIndex[2] = i;
+					RelIndex[2] = i;
 					array[2] = true;
 					break;
 				case "BACKGROUND4":
-					this.RelIndex[3] = i;
+					RelIndex[3] = i;
 					array[3] = true;
 					break;
 				case "BACKGROUNDM":
-					this.RelIndex[4] = i;
+					RelIndex[4] = i;
 					array[4] = true;
 					break;
 				case "TITLE":
-					this.RelIndex[5] = i;
+					RelIndex[5] = i;
 					array[5] = true;
 					break;
 				case "ENDING":
-					this.RelIndex[6] = i;
+					RelIndex[6] = i;
 					array[6] = true;
 					break;
 				case "GAMEOVER":
-					this.RelIndex[7] = i;
+					RelIndex[7] = i;
 					array[7] = true;
 					break;
 				case "PATTERN":
-					this.RelIndex[8] = i;
+					RelIndex[8] = i;
 					array[8] = true;
 					break;
 				case "LAYERCHIP":
-					this.RelIndex[9] = i;
+					RelIndex[9] = i;
 					break;
 				case "STAGENUM":
-					this.RelIndex[10] = i;
+					RelIndex[10] = i;
 					array[9] = true;
 					break;
 				case "STAGESTART":
-					this.RelIndex[11] = i;
+					RelIndex[11] = i;
 					array[10] = true;
 					break;
 				case "STAGESELECT":
-					this.RelIndex[12] = i;
+					RelIndex[12] = i;
 					array[11] = true;
 					break;
 				}
 				switch (configParam.Name)
 				{
 				case "grenade_@1":
-					this.RelIndex[13] = i;
+					RelIndex[13] = i;
 					break;
 				case "grenade_@2":
-					this.RelIndex[14] = i;
+					RelIndex[14] = i;
 					break;
 				case "mizunohadou_@":
-					this.RelIndex[15] = i;
+					RelIndex[15] = i;
 					break;
 				case "firebar_@1":
-					this.RelIndex[16] = i;
+					RelIndex[16] = i;
 					break;
 				case "firebar_@2":
-					this.RelIndex[17] = i;
+					RelIndex[17] = i;
 					break;
 				case "filename_oriboss_left1":
-					this.RelIndex[18] = i;
+					RelIndex[18] = i;
 					break;
 				case "filename_haikei":
-					this.RelIndex[19] = i;
+					RelIndex[19] = i;
 					break;
 				case "filename_haikei2":
-					this.RelIndex[20] = i;
+					RelIndex[20] = i;
 					break;
 				case "filename_haikei3":
-					this.RelIndex[21] = i;
+					RelIndex[21] = i;
 					break;
 				case "filename_haikei4":
-					this.RelIndex[22] = i;
+					RelIndex[22] = i;
 					break;
 				case "filename_second_haikei":
-					this.RelIndex[23] = i;
+					RelIndex[23] = i;
 					break;
 				case "filename_second_haikei2":
-					this.RelIndex[24] = i;
+					RelIndex[24] = i;
 					break;
 				case "filename_second_haikei3":
-					this.RelIndex[25] = i;
+					RelIndex[25] = i;
 					break;
 				case "filename_second_haikei4":
-					this.RelIndex[26] = i;
+					RelIndex[26] = i;
 					break;
 				case "filename_chizu":
-					this.RelIndex[27] = i;
+					RelIndex[27] = i;
 					break;
 				}
 			}
@@ -184,14 +184,14 @@ namespace MasaoPlus
 		{
 			get
 			{
-				Colors colors = new Colors(this.Configurations[this.RelIndex[0]].Value);
+				Colors colors = new Colors(Configurations[RelIndex[0]].Value);
 				return colors.c;
 			}
 			set
 			{
 				Colors colors = default;
 				colors.c = value;
-				this.Configurations[this.RelIndex[0]].Value = colors.ToString();
+				Configurations[RelIndex[0]].Value = colors.ToString();
 			}
 		}
 
@@ -200,14 +200,14 @@ namespace MasaoPlus
 		{
 			get
 			{
-				Colors colors = new Colors(this.Configurations[this.RelIndex[1]].Value);
+				Colors colors = new Colors(Configurations[RelIndex[1]].Value);
 				return colors.c;
 			}
 			set
 			{
 				Colors colors = default;
 				colors.c = value;
-				this.Configurations[this.RelIndex[1]].Value = colors.ToString();
+				Configurations[RelIndex[1]].Value = colors.ToString();
 			}
 		}
 
@@ -216,14 +216,14 @@ namespace MasaoPlus
 		{
 			get
 			{
-				Colors colors = new Colors(this.Configurations[this.RelIndex[2]].Value);
+				Colors colors = new Colors(Configurations[RelIndex[2]].Value);
 				return colors.c;
 			}
 			set
 			{
 				Colors colors = default;
 				colors.c = value;
-				this.Configurations[this.RelIndex[2]].Value = colors.ToString();
+				Configurations[RelIndex[2]].Value = colors.ToString();
 			}
 		}
 
@@ -232,14 +232,14 @@ namespace MasaoPlus
 		{
 			get
 			{
-				Colors colors = new Colors(this.Configurations[this.RelIndex[3]].Value);
+				Colors colors = new Colors(Configurations[RelIndex[3]].Value);
 				return colors.c;
 			}
 			set
 			{
 				Colors colors = default;
 				colors.c = value;
-				this.Configurations[this.RelIndex[3]].Value = colors.ToString();
+				Configurations[RelIndex[3]].Value = colors.ToString();
 			}
 		}
 
@@ -248,14 +248,14 @@ namespace MasaoPlus
 		{
 			get
 			{
-				Colors colors = new Colors(this.Configurations[this.RelIndex[4]].Value);
+				Colors colors = new Colors(Configurations[RelIndex[4]].Value);
 				return colors.c;
 			}
 			set
 			{
 				Colors colors = default;
 				colors.c = value;
-				this.Configurations[this.RelIndex[4]].Value = colors.ToString();
+				Configurations[RelIndex[4]].Value = colors.ToString();
 			}
 		}
 
@@ -264,11 +264,11 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.Configurations[this.RelIndex[5]].Value;
+				return Configurations[RelIndex[5]].Value;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[5]].Value = value;
+				Configurations[RelIndex[5]].Value = value;
 			}
 		}
 
@@ -277,11 +277,11 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.Configurations[this.RelIndex[6]].Value;
+				return Configurations[RelIndex[6]].Value;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[6]].Value = value;
+				Configurations[RelIndex[6]].Value = value;
 			}
 		}
 
@@ -290,11 +290,11 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.Configurations[this.RelIndex[7]].Value;
+				return Configurations[RelIndex[7]].Value;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[7]].Value = value;
+				Configurations[RelIndex[7]].Value = value;
 			}
 		}
 
@@ -303,11 +303,11 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.Configurations[this.RelIndex[8]].Value;
+				return Configurations[RelIndex[8]].Value;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[8]].Value = value;
+				Configurations[RelIndex[8]].Value = value;
 			}
 		}
 
@@ -316,11 +316,11 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.Configurations[this.RelIndex[9]].Value;
+				return Configurations[RelIndex[9]].Value;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[9]].Value = value;
+				Configurations[RelIndex[9]].Value = value;
 			}
 		}
 
@@ -329,11 +329,11 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return int.Parse(this.Configurations[this.RelIndex[10]].Value);
+				return int.Parse(Configurations[RelIndex[10]].Value);
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[10]].Value = value.ToString();
+				Configurations[RelIndex[10]].Value = value.ToString();
 			}
 		}
 
@@ -342,11 +342,11 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return int.Parse(this.Configurations[this.RelIndex[11]].Value);
+				return int.Parse(Configurations[RelIndex[11]].Value);
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[11]].Value = value.ToString();
+				Configurations[RelIndex[11]].Value = value.ToString();
 			}
 		}
 
@@ -355,16 +355,16 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.Configurations[this.RelIndex[12]].Value == "2";
+				return Configurations[RelIndex[12]].Value == "2";
 			}
 			set
 			{
 				if (value)
 				{
-					this.Configurations[this.RelIndex[12]].Value = "2";
+					Configurations[RelIndex[12]].Value = "2";
 					return;
 				}
-				this.Configurations[this.RelIndex[12]].Value = "1";
+				Configurations[RelIndex[12]].Value = "1";
 			}
         }
 
@@ -373,14 +373,14 @@ namespace MasaoPlus
 		{
 			get
 			{
-				Colors colors = new Colors(this.Configurations[this.RelIndex[13]].Value);
+				Colors colors = new Colors(Configurations[RelIndex[13]].Value);
 				return colors.c;
 			}
 			set
 			{
 				Colors colors = default;
 				colors.c = value;
-				this.Configurations[this.RelIndex[13]].Value = colors.ToString();
+				Configurations[RelIndex[13]].Value = colors.ToString();
 			}
 		}
 
@@ -389,14 +389,14 @@ namespace MasaoPlus
 		{
 			get
 			{
-				Colors colors = new Colors(this.Configurations[this.RelIndex[14]].Value);
+				Colors colors = new Colors(Configurations[RelIndex[14]].Value);
 				return colors.c;
 			}
 			set
 			{
 				Colors colors = default;
 				colors.c = value;
-				this.Configurations[this.RelIndex[14]].Value = colors.ToString();
+				Configurations[RelIndex[14]].Value = colors.ToString();
 			}
 		}
 
@@ -405,14 +405,14 @@ namespace MasaoPlus
 		{
 			get
 			{
-				Colors colors = new Colors(this.Configurations[this.RelIndex[15]].Value);
+				Colors colors = new Colors(Configurations[RelIndex[15]].Value);
 				return colors.c;
 			}
 			set
 			{
 				Colors colors = default;
 				colors.c = value;
-				this.Configurations[this.RelIndex[15]].Value = colors.ToString();
+				Configurations[RelIndex[15]].Value = colors.ToString();
 			}
 		}
 
@@ -421,14 +421,14 @@ namespace MasaoPlus
 		{
 			get
 			{
-				Colors colors = new Colors(this.Configurations[this.RelIndex[16]].Value);
+				Colors colors = new Colors(Configurations[RelIndex[16]].Value);
 				return colors.c;
 			}
 			set
 			{
 				Colors colors = default;
 				colors.c = value;
-				this.Configurations[this.RelIndex[16]].Value = colors.ToString();
+				Configurations[RelIndex[16]].Value = colors.ToString();
 			}
 		}
 
@@ -437,14 +437,14 @@ namespace MasaoPlus
 		{
 			get
 			{
-				Colors colors = new Colors(this.Configurations[this.RelIndex[17]].Value);
+				Colors colors = new Colors(Configurations[RelIndex[17]].Value);
 				return colors.c;
 			}
 			set
 			{
 				Colors colors = default;
 				colors.c = value;
-				this.Configurations[this.RelIndex[17]].Value = colors.ToString();
+				Configurations[RelIndex[17]].Value = colors.ToString();
 			}
 		}
 
@@ -453,12 +453,12 @@ namespace MasaoPlus
 		{
 			get
 			{
-				if (this.RelIndex[18] != default) return this.Configurations[this.RelIndex[18]].Value;
+				if (RelIndex[18] != default) return Configurations[RelIndex[18]].Value;
 				else return null;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[18]].Value = value;
+				Configurations[RelIndex[18]].Value = value;
 			}
 		}
 
@@ -467,12 +467,12 @@ namespace MasaoPlus
 		{
 			get
 			{
-				if (this.RelIndex[19] != default) return this.Configurations[this.RelIndex[19]].Value;
+				if (RelIndex[19] != default) return Configurations[RelIndex[19]].Value;
 				else return null;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[19]].Value = value;
+				Configurations[RelIndex[19]].Value = value;
 			}
 		}
 
@@ -481,12 +481,12 @@ namespace MasaoPlus
 		{
 			get
 			{
-				if (this.RelIndex[20] != default) return this.Configurations[this.RelIndex[20]].Value;
+				if (RelIndex[20] != default) return Configurations[RelIndex[20]].Value;
 				else return null;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[20]].Value = value;
+				Configurations[RelIndex[20]].Value = value;
 			}
 		}
 
@@ -495,12 +495,12 @@ namespace MasaoPlus
 		{
 			get
 			{
-				if (this.RelIndex[21] != default) return this.Configurations[this.RelIndex[21]].Value;
+				if (RelIndex[21] != default) return Configurations[RelIndex[21]].Value;
 				else return null;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[21]].Value = value;
+				Configurations[RelIndex[21]].Value = value;
 			}
 		}
 
@@ -509,12 +509,12 @@ namespace MasaoPlus
 		{
 			get
 			{
-				if (this.RelIndex[22] != default) return this.Configurations[this.RelIndex[22]].Value;
+				if (RelIndex[22] != default) return Configurations[RelIndex[22]].Value;
 				else return null;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[22]].Value = value;
+				Configurations[RelIndex[22]].Value = value;
 			}
 		}
 
@@ -523,12 +523,12 @@ namespace MasaoPlus
 		{
 			get
 			{
-				if (this.RelIndex[23] != default) return this.Configurations[this.RelIndex[23]].Value;
+				if (RelIndex[23] != default) return Configurations[RelIndex[23]].Value;
 				else return null;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[23]].Value = value;
+				Configurations[RelIndex[23]].Value = value;
 			}
 		}
 
@@ -537,12 +537,12 @@ namespace MasaoPlus
 		{
 			get
 			{
-				if (this.RelIndex[24] != default) return this.Configurations[this.RelIndex[24]].Value;
+				if (RelIndex[24] != default) return Configurations[RelIndex[24]].Value;
 				else return null;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[24]].Value = value;
+				Configurations[RelIndex[24]].Value = value;
 			}
 		}
 
@@ -551,12 +551,12 @@ namespace MasaoPlus
 		{
 			get
 			{
-				if (this.RelIndex[25] != default) return this.Configurations[this.RelIndex[25]].Value;
+				if (RelIndex[25] != default) return Configurations[RelIndex[25]].Value;
 				else return null;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[25]].Value = value;
+				Configurations[RelIndex[25]].Value = value;
 			}
 		}
 
@@ -565,12 +565,12 @@ namespace MasaoPlus
 		{
 			get
 			{
-				if (this.RelIndex[26] != default) return this.Configurations[this.RelIndex[26]].Value;
+				if (RelIndex[26] != default) return Configurations[RelIndex[26]].Value;
 				else return null;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[26]].Value = value;
+				Configurations[RelIndex[26]].Value = value;
 			}
 		}
 
@@ -579,11 +579,11 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.Configurations[this.RelIndex[27]].Value;
+				return Configurations[RelIndex[27]].Value;
 			}
 			set
 			{
-				this.Configurations[this.RelIndex[27]].Value = value;
+				Configurations[RelIndex[27]].Value = value;
 			}
 		}
 

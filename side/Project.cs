@@ -45,7 +45,7 @@ namespace MasaoPlus
 
 		public void SaveXML(string file)
 		{
-			this.ProjVer = Global.definition.CProjVer;
+			ProjVer = Global.definition.CProjVer;
 			XmlSerializer xmlSerializer = new XmlSerializer(typeof(Project));
 			try
 			{

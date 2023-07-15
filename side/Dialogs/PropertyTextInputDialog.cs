@@ -9,17 +9,17 @@ namespace MasaoPlus.Dialogs
 	{
 		public PropertyTextInputDialog()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 		}
 
 		private void PropertyTextInputDialog_Shown(object sender, EventArgs e)
 		{
-			this.InputText.Text = this.InputStr;
+			InputText.Text = InputStr;
 		}
 
 		private void PropertyTextInputDialog_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			this.InputStr = this.InputText.Text;
+			InputStr = InputText.Text;
 		}
 
 		public string InputStr = "";

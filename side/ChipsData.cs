@@ -9,25 +9,25 @@ namespace MasaoPlus
 	{
 		public ChipData GetCSChip()
 		{
-			if (this.Chips == null)
+			if (Chips == null)
 			{
 				return default;
 			}
-			if (this.relation == "" || this.relation == null || !Global.state.ChipRegister.ContainsKey(this.relation))
+			if (relation == "" || relation == null || !Global.state.ChipRegister.ContainsKey(relation))
 			{
-				return this.Chips[0];
+				return Chips[0];
 			}
 			int num = 0;
-			string b = Global.state.ChipRegister[this.relation];
-			foreach (ChipData chipData in this.Chips)
+			string b = Global.state.ChipRegister[relation];
+			foreach (ChipData chipData in Chips)
 			{
 				if (chipData.value == b)
 				{
-					return this.Chips[num];
+					return Chips[num];
 				}
 				num++;
 			}
-			return this.Chips[0];
+			return Chips[0];
 		}
 
 		[XmlAttribute("char")]

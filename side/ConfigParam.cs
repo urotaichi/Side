@@ -13,7 +13,7 @@ namespace MasaoPlus
 			get
 			{
 				string typestr;
-				switch (typestr = this.Typestr)
+				switch (typestr = Typestr)
 				{
 				case "bool":
 					return ConfigParam.Types.b;

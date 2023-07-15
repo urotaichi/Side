@@ -13,7 +13,7 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.selectedIndex;
+				return selectedIndex;
 			}
 			set
 			{
@@ -64,8 +64,8 @@ namespace MasaoPlus
 					}
 					Global.state.CurrentChip = Global.cpd.Layerchip[value];
 				}
-				this.selectedIndex = value;
-				this.Refresh();
+				selectedIndex = value;
+				Refresh();
 			}
 		}
 
@@ -73,13 +73,13 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.vScr.Value;
+				return vScr.Value;
 			}
 			set
 			{
-				this.vScr.Value = this.vPosition;
-				this.vScr.Refresh();
-				this.MainPanel.Refresh();
+				vScr.Value = vPosition;
+				vScr.Refresh();
+				MainPanel.Refresh();
 			}
 		}
 
@@ -87,7 +87,7 @@ namespace MasaoPlus
 		{
 			get
 			{
-				int num = (int)Math.Floor((double)this.MainPanel.Width / (double)Global.cpd.runtime.Definitions.ChipSize.Width);
+				int num = (int)Math.Floor((double)MainPanel.Width / (double)Global.cpd.runtime.Definitions.ChipSize.Width);
 				if (num <= 0)
 				{
 					return 1;
@@ -98,24 +98,24 @@ namespace MasaoPlus
 
 		private void vScr_Scroll(object sender, ScrollEventArgs e)
 		{
-			this.MainPanel.Refresh();
+			MainPanel.Refresh();
 		}
 
 		private void SetMaxValue()
 		{
-			this.vScr.LargeChange = this.MainPanel.Height;
-			this.vScr.SmallChange = Global.cpd.runtime.Definitions.ChipSize.Height;
-			this.vScr.Maximum = this.GetVirtSize() - this.MainPanel.Height + this.vScr.LargeChange - 1;
+			vScr.LargeChange = MainPanel.Height;
+			vScr.SmallChange = Global.cpd.runtime.Definitions.ChipSize.Height;
+			vScr.Maximum = GetVirtSize() - MainPanel.Height + vScr.LargeChange - 1;
 		}
 
 		public GUIChipList()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 		}
 
 		public Point GetPosition(int idx)
 		{
-			int num = this.MainPanel.Width / Global.cpd.runtime.Definitions.ChipSize.Width;
+			int num = MainPanel.Width / Global.cpd.runtime.Definitions.ChipSize.Width;
 			if (num <= 0)
 			{
 				num = 1;
@@ -125,7 +125,7 @@ namespace MasaoPlus
 
 		public int GetVirtSize()
 		{
-			return this.GetVirtSize(this.MainPanel.Width);
+			return GetVirtSize(MainPanel.Width);
 		}
 
 		public int GetVirtSize(int wid)
@@ -153,22 +153,22 @@ namespace MasaoPlus
 
 		public void ResizeInvoke()
 		{
-			this.GUIChipList_Resize(this, new EventArgs());
+			GUIChipList_Resize(this, new EventArgs());
 		}
 
 		private void GUIChipList_Resize(object sender, EventArgs e)
 		{
-			if (this.GetVirtSize(base.Width) < base.Height)
+			if (GetVirtSize(base.Width) < base.Height)
 			{
-				this.vScr.Value = 0;
-				this.vScr.Visible = false;
+				vScr.Value = 0;
+				vScr.Visible = false;
 			}
 			else
 			{
-				this.vScr.Visible = true;
-				this.SetMaxValue();
+				vScr.Visible = true;
+				SetMaxValue();
 			}
-			this.MainPanel.Refresh();
+			MainPanel.Refresh();
 		}
 
 		private void AddChipData(ChipsData[] chipsData, int num, PaintEventArgs e, int inital = 0)
@@ -176,11 +176,11 @@ namespace MasaoPlus
             for (int i = inital; i < num; i++)
             {
                 ChipsData chipData = chipsData[i - inital];
-                Point point = this.GetPosition(i);
+                Point point = GetPosition(i);
 				Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
 				Rectangle rectangle = new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize);
-				rectangle.Y -= this.vPosition;
-				if (rectangle.Top > this.MainPanel.Height) break;
+				rectangle.Y -= vPosition;
+				if (rectangle.Top > MainPanel.Height) break;
 
 				if (rectangle.Bottom >= 0)
 				{
@@ -358,7 +358,7 @@ namespace MasaoPlus
 							&& ( Global.cpd.project.Use3rdMapData && Global.state.CurrentChip.code == chipData.code
 							|| !Global.cpd.project.Use3rdMapData && Global.state.CurrentChip.character == chipData.character))
 					{
-						if (i != this.selectedIndex) this.selectedIndex = i;
+						if (i != selectedIndex) selectedIndex = i;
 						switch (Global.config.draw.SelDrawMode)
 						{
 							case Config.Draw.SelectionDrawMode.SideOriginal:
@@ -449,7 +449,7 @@ namespace MasaoPlus
 				return;
 			}
 			int num = (int)Math.Floor((double)e.X / (double)Global.cpd.runtime.Definitions.ChipSize.Width);
-			num += (int)Math.Floor((double)(e.Y + this.vPosition) / (double)Global.cpd.runtime.Definitions.ChipSize.Height) * hMaxChip;
+			num += (int)Math.Floor((double)(e.Y + vPosition) / (double)Global.cpd.runtime.Definitions.ChipSize.Height) * hMaxChip;
 			int num2;
 			if (Global.state.MapEditMode)
 			{
@@ -471,14 +471,14 @@ namespace MasaoPlus
 			{
 				return;
 			}
-			this.SelectedIndex = num;
+			SelectedIndex = num;
 		}
 
 		private void MainPanel_MouseMove(object sender, MouseEventArgs e)
 		{
 			if (e.Button == MouseButtons.Left)
 			{
-				this.MainPanel_MouseDown(sender, e);
+				MainPanel_MouseDown(sender, e);
 			}
 		}
 
@@ -503,16 +503,16 @@ namespace MasaoPlus
 			switch (e.KeyCode)
 			{
 			case Keys.Left:
-				this.SelectedIndex--;
+				SelectedIndex--;
 				return;
 			case Keys.Up:
-				this.SelectedIndex -= this.hMaxChip;
+				SelectedIndex -= hMaxChip;
 				return;
 			case Keys.Right:
-				this.SelectedIndex++;
+				SelectedIndex++;
 				return;
 			case Keys.Down:
-				this.SelectedIndex += this.hMaxChip;
+				SelectedIndex += hMaxChip;
 				return;
 			default:
 				e.Handled = false;
@@ -522,44 +522,44 @@ namespace MasaoPlus
 
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing && this.components != null)
+			if (disposing && components != null)
 			{
-				this.components.Dispose();
+				components.Dispose();
 			}
 			base.Dispose(disposing);
 		}
 
 		private void InitializeComponent()
 		{
-			this.vScr = new VScrollBar();
-			this.MainPanel = new PictureBox();
-			((ISupportInitialize)this.MainPanel).BeginInit();
+			vScr = new VScrollBar();
+			MainPanel = new PictureBox();
+			((ISupportInitialize)MainPanel).BeginInit();
 			base.SuspendLayout();
-			this.vScr.Dock = DockStyle.Right;
-			this.vScr.Location = new Point(265, 0);
-			this.vScr.Name = "vScr";
-			this.vScr.Size = new Size(20, 264);
-			this.vScr.TabIndex = 0;
-			this.vScr.Scroll += this.vScr_Scroll;
-			this.MainPanel.Dock = DockStyle.Fill;
-			this.MainPanel.Location = new Point(0, 0);
-			this.MainPanel.Name = "MainPanel";
-			this.MainPanel.Size = new Size(265, 264);
-			this.MainPanel.TabIndex = 1;
-			this.MainPanel.TabStop = false;
-			this.MainPanel.MouseMove += this.MainPanel_MouseMove;
-			this.MainPanel.MouseDown += this.MainPanel_MouseDown;
-			this.MainPanel.Paint += this.MainPanel_Paint;
+			vScr.Dock = DockStyle.Right;
+			vScr.Location = new Point(265, 0);
+			vScr.Name = "vScr";
+			vScr.Size = new Size(20, 264);
+			vScr.TabIndex = 0;
+			vScr.Scroll += vScr_Scroll;
+			MainPanel.Dock = DockStyle.Fill;
+			MainPanel.Location = new Point(0, 0);
+			MainPanel.Name = "MainPanel";
+			MainPanel.Size = new Size(265, 264);
+			MainPanel.TabIndex = 1;
+			MainPanel.TabStop = false;
+			MainPanel.MouseMove += MainPanel_MouseMove;
+			MainPanel.MouseDown += MainPanel_MouseDown;
+			MainPanel.Paint += MainPanel_Paint;
 			base.AutoScaleDimensions = new SizeF(6f, 12f);
 			base.AutoScaleMode = AutoScaleMode.Font;
-			base.Controls.Add(this.MainPanel);
-			base.Controls.Add(this.vScr);
+			base.Controls.Add(MainPanel);
+			base.Controls.Add(vScr);
 			base.Name = "GUIChipList";
 			base.Size = new Size(285, 264);
-			base.PreviewKeyDown += this.GUIChipList_PreviewKeyDown;
-			base.Resize += this.GUIChipList_Resize;
-			base.KeyDown += this.GUIChipList_KeyDown;
-			((ISupportInitialize)this.MainPanel).EndInit();
+			base.PreviewKeyDown += GUIChipList_PreviewKeyDown;
+			base.Resize += GUIChipList_Resize;
+			base.KeyDown += GUIChipList_KeyDown;
+			((ISupportInitialize)MainPanel).EndInit();
 			base.ResumeLayout(false);
 		}
 

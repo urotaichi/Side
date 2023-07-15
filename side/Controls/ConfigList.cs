@@ -14,45 +14,45 @@ namespace MasaoPlus.Controls
 	{
 		public ConfigList()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 		}
 
 		public void Prepare()
 		{
-			this.ConfigSelector.Items.Clear();
-			this.ConfigSelector.Items.Add("全部");
+			ConfigSelector.Items.Clear();
+			ConfigSelector.Items.Add("全部");
 			foreach (string text in Global.cpd.project.Config.Categories)
 			{
-				if (text != null) this.ConfigSelector.Items.Add(text);
+				if (text != null) ConfigSelector.Items.Add(text);
 			}
-			this.ConfigSelector.SelectedIndex = 0;
+			ConfigSelector.SelectedIndex = 0;
 		}
 
 		public void Reload()
 		{
-			this.ConfigSelector_SelectedIndexChanged(this, new EventArgs());
+			ConfigSelector_SelectedIndexChanged(this, new EventArgs());
 		}
 
 
 		// 表示を変える
 		private void ConfigSelector_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (this.ConfigSelector.Items.Count < 1)
+			if (ConfigSelector.Items.Count < 1)
 			{
 				return;
 			}
-			this.OrigIdx.Clear();
-			this.ConfView.Rows.Clear();
+			OrigIdx.Clear();
+			ConfView.Rows.Clear();
 			for (int i = 0; i < Global.cpd.project.Config.Configurations.Length; i++)
 			{
 				ConfigParam configParam = Global.cpd.project.Config.Configurations[i];
-				if ((this.ConfigSelector.SelectedIndex == 0 || configParam.Category == Global.cpd.project.Config.Categories[this.ConfigSelector.SelectedIndex - 1]) && !(configParam.Relation == "STAGENUM") && !(configParam.Relation == "STAGESTART") && !(configParam.Relation == "STAGESELECT"))
+				if ((ConfigSelector.SelectedIndex == 0 || configParam.Category == Global.cpd.project.Config.Categories[ConfigSelector.SelectedIndex - 1]) && !(configParam.Relation == "STAGENUM") && !(configParam.Relation == "STAGESTART") && !(configParam.Relation == "STAGESELECT"))
 				{
-					if (configParam.Name == "width") this.width_index = i;
-					else if (configParam.Name == "height") this.height_index = i;
+					if (configParam.Name == "width") width_index = i;
+					else if (configParam.Name == "height") height_index = i;
 
-					this.OrigIdx.Add(i);
-					this.ConfView.Rows.Add(new string[]
+					OrigIdx.Add(i);
+					ConfView.Rows.Add(new string[]
 					{
 						configParam.Description,
 						configParam.Value
@@ -74,7 +74,7 @@ namespace MasaoPlus.Controls
 						{
 							dataGridViewCheckBoxCell.Value = false;
 						}
-						this.ConfView[1, this.OrigIdx.Count - 1] = dataGridViewCheckBoxCell;
+						ConfView[1, OrigIdx.Count - 1] = dataGridViewCheckBoxCell;
 						break;
 					}
 					case ConfigParam.Types.b2:
@@ -91,14 +91,14 @@ namespace MasaoPlus.Controls
 						{
 							dataGridViewCheckBoxCell.Value = false;
 						}
-						this.ConfView[1, this.OrigIdx.Count - 1] = dataGridViewCheckBoxCell;
+						ConfView[1, OrigIdx.Count - 1] = dataGridViewCheckBoxCell;
 						break;
 					}
 					case ConfigParam.Types.i:
 					{
 						DataGridViewNumericUpdownCell dataGridViewNumericUpdownCell = new DataGridViewNumericUpdownCell();
 						dataGridViewNumericUpdownCell.Value = configParam.Value;
-						this.ConfView[1, this.OrigIdx.Count - 1] = dataGridViewNumericUpdownCell;
+						ConfView[1, OrigIdx.Count - 1] = dataGridViewNumericUpdownCell;
 						break;
 					}
 					case ConfigParam.Types.t:
@@ -107,14 +107,14 @@ namespace MasaoPlus.Controls
 							DataGridViewButtonCell dataGridViewButtonCell = new DataGridViewButtonCell();
 							dataGridViewButtonCell.Value = configParam.Value;
 							dataGridViewButtonCell.FlatStyle = FlatStyle.Popup;
-							this.ConfView[1, this.OrigIdx.Count - 1] = dataGridViewButtonCell;
+							ConfView[1, OrigIdx.Count - 1] = dataGridViewButtonCell;
 						}
 						else
 						{
-							this.ConfView[1, this.OrigIdx.Count - 1].Value = configParam.Value;
-							this.ConfView[1, this.OrigIdx.Count - 1].Style.WrapMode = DataGridViewTriState.True;
-							this.ConfView[1, this.OrigIdx.Count - 1].Style.Alignment = DataGridViewContentAlignment.TopLeft;
-							this.ConfView[1, this.OrigIdx.Count - 1].ToolTipText = "Shift+Enterで改行できます。";
+							ConfView[1, OrigIdx.Count - 1].Value = configParam.Value;
+							ConfView[1, OrigIdx.Count - 1].Style.WrapMode = DataGridViewTriState.True;
+							ConfView[1, OrigIdx.Count - 1].Style.Alignment = DataGridViewContentAlignment.TopLeft;
+							ConfView[1, OrigIdx.Count - 1].ToolTipText = "Shift+Enterで改行できます。";
 						}
 						break;
 					case ConfigParam.Types.f:
@@ -124,7 +124,7 @@ namespace MasaoPlus.Controls
 						DataGridViewButtonCell dataGridViewButtonCell2 = new DataGridViewButtonCell();
 						dataGridViewButtonCell2.Value = configParam.Value + "...";
 						dataGridViewButtonCell2.FlatStyle = FlatStyle.Popup;
-						this.ConfView[1, this.OrigIdx.Count - 1] = dataGridViewButtonCell2;
+						ConfView[1, OrigIdx.Count - 1] = dataGridViewButtonCell2;
 						break;
 					}
 					case ConfigParam.Types.l:
@@ -141,7 +141,7 @@ namespace MasaoPlus.Controls
 						{
 							dataGridViewComboBoxCell.Value = configParam.ListItems[0];
 						}
-						this.ConfView[1, this.OrigIdx.Count - 1] = dataGridViewComboBoxCell;
+						ConfView[1, OrigIdx.Count - 1] = dataGridViewComboBoxCell;
 						break;
 					}
 					case ConfigParam.Types.l_a:
@@ -165,7 +165,7 @@ namespace MasaoPlus.Controls
 						{
 							dataGridViewComboBoxCell.Value = configParam.ListItems[0];
 						}
-						this.ConfView[1, this.OrigIdx.Count - 1] = dataGridViewComboBoxCell;
+						ConfView[1, OrigIdx.Count - 1] = dataGridViewComboBoxCell;
 						break;
 					}
 					case ConfigParam.Types.c:
@@ -176,60 +176,60 @@ namespace MasaoPlus.Controls
 						dataGridViewButtonCell3.Style.BackColor = colors.c;
 						dataGridViewButtonCell3.Style.SelectionBackColor = colors.c;
 						dataGridViewButtonCell3.FlatStyle = FlatStyle.Popup;
-						this.ConfView[1, this.OrigIdx.Count - 1] = dataGridViewButtonCell3;
+						ConfView[1, OrigIdx.Count - 1] = dataGridViewButtonCell3;
 						break;
 					}
 					}
 					switch (configParam.Category)
 					{
 						case "システム":
-							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.LightCyan;
+							ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.LightCyan;
 							break;
 						case "表示":
-							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.AliceBlue;
+							ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.AliceBlue;
 							break;
 						case "BGM":
-							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.GhostWhite;
+							ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.GhostWhite;
 							break;
 						case "効果音":
-							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.SeaShell;
+							ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.SeaShell;
 							break;
 						case "仕掛け":
-							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.MistyRose;
+							ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.MistyRose;
 							break;
 						case "画像":
-							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.Honeydew;
+							ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.Honeydew;
 							break;
 						case "装備":
-							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.MintCream;
+							ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.MintCream;
 							break;
 						case "敵":
-							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.Lavender;
+							ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.Lavender;
 							break;
 						case "お店":
-							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.LavenderBlush;
+							ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.LavenderBlush;
 							break;
 						case "地図":
-							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.Azure;
+							ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.Azure;
 							break;
 						case "オリジナルボス":
-							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.LightYellow;
+							ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.LightYellow;
 							break;
 						case "リンク土管":
-							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.MistyRose;
+							ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.MistyRose;
 							break;
 						case "メッセージ":
-							this.ConfView.Rows[this.OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.OldLace;
+							ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = Color.OldLace;
 							break;
 					}
 				}
 			}
-			if (Global.config.localSystem.WrapPropText) this.ConfView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+			if (Global.config.localSystem.WrapPropText) ConfView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 		}
 
 		private void ConfigSelector_Resize(object sender, EventArgs e)
 		{
-			this.ConfigSelector.Refresh();
+			ConfigSelector.Refresh();
 		}
 
 		private void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -238,11 +238,11 @@ namespace MasaoPlus.Controls
 			{
 				return;
 			}
-			if (e.RowIndex >= this.OrigIdx.Count || e.RowIndex < 0)
+			if (e.RowIndex >= OrigIdx.Count || e.RowIndex < 0)
 			{
 				return;
 			}
-			int num = this.OrigIdx[e.RowIndex];
+			int num = OrigIdx[e.RowIndex];
 			ConfigParam configParam = Global.cpd.project.Config.Configurations[num];
 			switch (configParam.Type)
 			{
@@ -253,7 +253,7 @@ namespace MasaoPlus.Controls
                         propertyTextInputDialog.InputStr = configParam.Value;
                         if (propertyTextInputDialog.ShowDialog() != DialogResult.Cancel)
                         {
-                            this.ConfView[e.ColumnIndex, e.RowIndex].Value = propertyTextInputDialog.InputStr;
+                            ConfView[e.ColumnIndex, e.RowIndex].Value = propertyTextInputDialog.InputStr;
                             Global.cpd.project.Config.Configurations[num].Value = propertyTextInputDialog.InputStr;
                         }
                         break;
@@ -327,7 +327,7 @@ namespace MasaoPlus.Controls
                                 }
 						}
 					}
-					this.ConfView[e.ColumnIndex, e.RowIndex].Value = Path.GetFileName(text) + "...";
+					ConfView[e.ColumnIndex, e.RowIndex].Value = Path.GetFileName(text) + "...";
 					Global.cpd.project.Config.Configurations[num].Value = Path.GetFileName(text);
 					string relation;
 					if (Global.cpd.project.Config.Configurations[num].Relation != null && Global.cpd.project.Config.Configurations[num].Relation != "" && (relation = Global.cpd.project.Config.Configurations[num].Relation) != null)
@@ -374,8 +374,8 @@ namespace MasaoPlus.Controls
 					if (colorDialog.ShowDialog() == DialogResult.OK)
 					{
 						colors.c = colorDialog.Color;
-						this.ConfView[e.ColumnIndex, e.RowIndex].Value = colors.ToString();
-						this.ConfView[e.ColumnIndex, e.RowIndex].Style.BackColor = colors.c;
+						ConfView[e.ColumnIndex, e.RowIndex].Value = colors.ToString();
+						ConfView[e.ColumnIndex, e.RowIndex].Style.BackColor = colors.c;
 						Global.cpd.project.Config.Configurations[num].Value = colors.ToString();
 						if (Global.cpd.project.Config.Configurations[num].Relation == "BACKGROUND" && Global.state.EdittingStage == 0)
 						{
@@ -416,24 +416,24 @@ namespace MasaoPlus.Controls
             {
                 return;
             }
-            if (e.RowIndex >= this.OrigIdx.Count || e.RowIndex < 0)
+            if (e.RowIndex >= OrigIdx.Count || e.RowIndex < 0)
             {
                 return;
             }
-            int num = this.OrigIdx[e.RowIndex];
+            int num = OrigIdx[e.RowIndex];
             ConfigParam configParam = Global.cpd.project.Config.Configurations[num];
 			if (configParam.Type == ConfigParam.Types.f_a)
             {
-                if (this.now_playing_item != num)
+                if (now_playing_item != num)
 				{
-					this.now_playing_item = num;
-					this.mediaPlayer.URL = Path.Combine(Global.cpd.where, configParam.Value);
-					this.mediaPlayer.controls.play();
+					now_playing_item = num;
+					mediaPlayer.URL = Path.Combine(Global.cpd.where, configParam.Value);
+					mediaPlayer.controls.play();
 				}
 				else
                 {
-                    this.now_playing_item = -1;
-                    this.mediaPlayer.controls.stop();
+                    now_playing_item = -1;
+                    mediaPlayer.controls.stop();
 				}
             }
         }
@@ -447,7 +447,7 @@ namespace MasaoPlus.Controls
 			if (e.Control is DataGridViewTextBoxEditingControl)
 			{
 				DataGridViewTextBoxEditingControl dataGridViewTextBoxEditingControl = (DataGridViewTextBoxEditingControl)e.Control;
-				dataGridViewTextBoxEditingControl.PreviewKeyDown += this.ct_PreviewKeyDown;
+				dataGridViewTextBoxEditingControl.PreviewKeyDown += ct_PreviewKeyDown;
 				dataGridViewTextBoxEditingControl.ScrollBars = ScrollBars.Both;
 			}
 		}
@@ -464,9 +464,9 @@ namespace MasaoPlus.Controls
 
 		private void ConfView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
 		{
-			if (this.ConfView.CurrentCellAddress.X == 1 && this.ConfView.IsCurrentCellDirty)
+			if (ConfView.CurrentCellAddress.X == 1 && ConfView.IsCurrentCellDirty)
 			{
-				this.ConfView.CommitEdit(DataGridViewDataErrorContexts.Commit);
+				ConfView.CommitEdit(DataGridViewDataErrorContexts.Commit);
 			}
 		}
 
@@ -476,50 +476,50 @@ namespace MasaoPlus.Controls
 			{
 				return;
 			}
-			if (e.RowIndex >= this.OrigIdx.Count || e.RowIndex < 0)
+			if (e.RowIndex >= OrigIdx.Count || e.RowIndex < 0)
 			{
 				return;
 			}
-			int num = this.OrigIdx[e.RowIndex];
+			int num = OrigIdx[e.RowIndex];
 			ConfigParam configParam = Global.cpd.project.Config.Configurations[num];
 			switch (configParam.Type)
 			{
 			case ConfigParam.Types.b:
 			case ConfigParam.Types.b2:
 			case ConfigParam.Types.b0:
-					if (configParam.Value == this.ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
+					if (configParam.Value == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
 				{
 					return;
 				}
-				Global.cpd.project.Config.Configurations[num].Value = this.ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
+				Global.cpd.project.Config.Configurations[num].Value = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
 				break;
 			case ConfigParam.Types.s:
-				if (this.ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+				if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
 				{
-					this.ConfView[e.ColumnIndex, e.RowIndex].Value = "";
+					ConfView[e.ColumnIndex, e.RowIndex].Value = "";
 				}
-				if (configParam.Value == this.ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
+				if (configParam.Value == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
 				{
 					return;
 				}
-				Global.cpd.project.Config.Configurations[num].Value = this.ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
+				Global.cpd.project.Config.Configurations[num].Value = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
 				break;
 			case ConfigParam.Types.i:
 			{
 				int num2;
-				if (this.ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+				if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
 				{
-					this.ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+					ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
 					num2 = 0;
 				}
-				if (!int.TryParse(this.ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
+				if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
 				{
 					MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-					if (configParam.Value.ToString() == this.ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
+					if (configParam.Value.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
 					{
 						return;
 					}
-					this.ConfView[e.ColumnIndex, e.RowIndex].Value = configParam.Value.ToString();
+					ConfView[e.ColumnIndex, e.RowIndex].Value = configParam.Value.ToString();
 					return;
 				}
 				else
@@ -530,11 +530,11 @@ namespace MasaoPlus.Controls
 			}
 			case ConfigParam.Types.t:
 			{
-				if (this.ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+				if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
 				{
-					this.ConfView[e.ColumnIndex, e.RowIndex].Value = "";
+					ConfView[e.ColumnIndex, e.RowIndex].Value = "";
 				}
-				string text = this.ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
+				string text = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
 				string[] array = text.Split(new string[]
 				{
 					Environment.NewLine
@@ -562,7 +562,7 @@ namespace MasaoPlus.Controls
 					return;
 				}
 				Global.cpd.project.Config.Configurations[num].Value = text;
-				this.ConfView[e.ColumnIndex, e.RowIndex].Value = text;
+				ConfView[e.ColumnIndex, e.RowIndex].Value = text;
 				break;
 			}
 			case ConfigParam.Types.f:
@@ -570,15 +570,15 @@ namespace MasaoPlus.Controls
 			case ConfigParam.Types.f_a:
 				return;
 			case ConfigParam.Types.l:
-				if (configParam.Value == (((DataGridViewComboBoxCell)this.ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(this.ConfView[e.ColumnIndex, e.RowIndex].Value) + 1).ToString())
+				if (configParam.Value == (((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1).ToString())
 				{
 					return;
 				}
-				Global.cpd.project.Config.Configurations[num].Value = (((DataGridViewComboBoxCell)this.ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(this.ConfView[e.ColumnIndex, e.RowIndex].Value) + 1).ToString();
+				Global.cpd.project.Config.Configurations[num].Value = (((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1).ToString();
 				if (Global.cpd.project.Config.Configurations[num].Name == "mcs_screen_size"){
 					if(Global.cpd.project.Config.Configurations[num].Value == "1") {
-							Global.cpd.project.Config.Configurations[this.width_index].Value = "640";
-							Global.cpd.project.Config.Configurations[this.height_index].Value = "480";
+							Global.cpd.project.Config.Configurations[width_index].Value = "640";
+							Global.cpd.project.Config.Configurations[height_index].Value = "480";
 							int tmp_y = Global.cpd.runtime.Definitions.MapSize.y;
 							Global.cpd.runtime.Definitions.MapSize.x = 19;
 							Global.cpd.runtime.Definitions.MapSize.y = 14;
@@ -596,8 +596,8 @@ namespace MasaoPlus.Controls
 							}
 					}
 					else if(Global.cpd.project.Config.Configurations[num].Value == "2") {
-							Global.cpd.project.Config.Configurations[this.width_index].Value = "512";
-							Global.cpd.project.Config.Configurations[this.height_index].Value = "320";
+							Global.cpd.project.Config.Configurations[width_index].Value = "512";
+							Global.cpd.project.Config.Configurations[height_index].Value = "320";
 							Global.cpd.runtime.Definitions.MapSize.x = 15;
 							Global.cpd.runtime.Definitions.MapSize.y = 9;
 						}
@@ -605,7 +605,7 @@ namespace MasaoPlus.Controls
 				break;
 			case ConfigParam.Types.l_a:
 			{
-				int configParam_num = ((DataGridViewComboBoxCell)this.ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(this.ConfView[e.ColumnIndex, e.RowIndex].Value) + 1;
+				int configParam_num = ((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1;
 				int MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
 				if (configParam_num <= MaxAthleticNumber && configParam.Value == configParam_num.ToString() || configParam_num > MaxAthleticNumber && configParam.Value == (configParam_num - 1 - MaxAthleticNumber + 1001).ToString())
 				{
@@ -629,88 +629,88 @@ namespace MasaoPlus.Controls
 		{
 			if (e.ColumnIndex == 1)
 			{
-				this.ConfView.BeginEdit(true);
+				ConfView.BeginEdit(true);
 			}
 		}
 
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing && this.components != null)
+			if (disposing && components != null)
 			{
-				this.components.Dispose();
+				components.Dispose();
 			}
 			base.Dispose(disposing);
 		}
 
 		private void InitializeComponent()
 		{
-			this.ConfigSelector = new ComboBox();
-			this.ConfView = new DataGridView();
-			this.CNames = new DataGridViewTextBoxColumn();
-			this.CValues = new DataGridViewTextBoxColumn();
-			((ISupportInitialize)this.ConfView).BeginInit();
+			ConfigSelector = new ComboBox();
+			ConfView = new DataGridView();
+			CNames = new DataGridViewTextBoxColumn();
+			CValues = new DataGridViewTextBoxColumn();
+			((ISupportInitialize)ConfView).BeginInit();
 			base.SuspendLayout();
 
-			this.ConfigSelector.Dock = DockStyle.Top;
-			this.ConfigSelector.DropDownStyle = ComboBoxStyle.DropDownList;
-			this.ConfigSelector.FlatStyle = FlatStyle.System;
-			this.ConfigSelector.FormattingEnabled = true;
-			this.ConfigSelector.Location = new Point(0, 0);
-			this.ConfigSelector.Name = "ConfigSelector";
-			this.ConfigSelector.Size = new Size(298, 20);
-			this.ConfigSelector.TabIndex = 3;
-			this.ConfigSelector.Resize += this.ConfigSelector_Resize;
-			this.ConfigSelector.SelectedIndexChanged += this.ConfigSelector_SelectedIndexChanged;
+			ConfigSelector.Dock = DockStyle.Top;
+			ConfigSelector.DropDownStyle = ComboBoxStyle.DropDownList;
+			ConfigSelector.FlatStyle = FlatStyle.System;
+			ConfigSelector.FormattingEnabled = true;
+			ConfigSelector.Location = new Point(0, 0);
+			ConfigSelector.Name = "ConfigSelector";
+			ConfigSelector.Size = new Size(298, 20);
+			ConfigSelector.TabIndex = 3;
+			ConfigSelector.Resize += ConfigSelector_Resize;
+			ConfigSelector.SelectedIndexChanged += ConfigSelector_SelectedIndexChanged;
 
 			//先頭行
-			this.ConfView.AllowUserToAddRows = false;
-			this.ConfView.AllowUserToDeleteRows = false;
-			this.ConfView.AllowUserToResizeRows = false;
-			this.ConfView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-			this.ConfView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-			this.ConfView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.ConfView.Columns.AddRange(new DataGridViewColumn[]
+			ConfView.AllowUserToAddRows = false;
+			ConfView.AllowUserToDeleteRows = false;
+			ConfView.AllowUserToResizeRows = false;
+			ConfView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+			ConfView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
+			ConfView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			ConfView.Columns.AddRange(new DataGridViewColumn[]
 			{
-				this.CNames,
-				this.CValues
+				CNames,
+				CValues
 			});
-			this.ConfView.Dock = DockStyle.Fill;
-			this.ConfView.EditMode = DataGridViewEditMode.EditOnEnter;
-			this.ConfView.Location = new Point(0, 20);
-			this.ConfView.MultiSelect = false;
-			this.ConfView.Name = "ConfView";
-			this.ConfView.RowHeadersVisible = false;
-			this.ConfView.RowTemplate.Height = 21;
-			this.ConfView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-			this.ConfView.Size = new Size(298, 338);
-			this.ConfView.TabIndex = 4;
-			this.ConfView.CellValueChanged += this.ConfView_CellValueChanged;
-			this.ConfView.CellClick += this.ConfView_CellClick;
-			this.ConfView.EditingControlShowing += this.ConfView_EditingControlShowing;
-			this.ConfView.CurrentCellDirtyStateChanged += this.ConfView_CurrentCellDirtyStateChanged;
-			this.ConfView.CellContentClick += this.ConfView_CellContentClick;
-            this.ConfView.CellDoubleClick += this.ConfView_PreviewAudio;
+			ConfView.Dock = DockStyle.Fill;
+			ConfView.EditMode = DataGridViewEditMode.EditOnEnter;
+			ConfView.Location = new Point(0, 20);
+			ConfView.MultiSelect = false;
+			ConfView.Name = "ConfView";
+			ConfView.RowHeadersVisible = false;
+			ConfView.RowTemplate.Height = 21;
+			ConfView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+			ConfView.Size = new Size(298, 338);
+			ConfView.TabIndex = 4;
+			ConfView.CellValueChanged += ConfView_CellValueChanged;
+			ConfView.CellClick += ConfView_CellClick;
+			ConfView.EditingControlShowing += ConfView_EditingControlShowing;
+			ConfView.CurrentCellDirtyStateChanged += ConfView_CurrentCellDirtyStateChanged;
+			ConfView.CellContentClick += ConfView_CellContentClick;
+            ConfView.CellDoubleClick += ConfView_PreviewAudio;
 
-            this.CNames.HeaderText = "項目名";
-			this.CNames.Name = "CNames";
-			this.CNames.ReadOnly = true;
-			this.CNames.SortMode = DataGridViewColumnSortMode.NotSortable;
-			this.CValues.FillWeight = 50f;
-			this.CValues.HeaderText = "値";
-			this.CValues.Name = "CValues";
-			this.CValues.SortMode = DataGridViewColumnSortMode.NotSortable;
+            CNames.HeaderText = "項目名";
+			CNames.Name = "CNames";
+			CNames.ReadOnly = true;
+			CNames.SortMode = DataGridViewColumnSortMode.NotSortable;
+			CValues.FillWeight = 50f;
+			CValues.HeaderText = "値";
+			CValues.Name = "CValues";
+			CValues.SortMode = DataGridViewColumnSortMode.NotSortable;
 			base.AutoScaleDimensions = new SizeF(6f, 12f);
 			base.AutoScaleMode = AutoScaleMode.Font;
-			base.Controls.Add(this.ConfView);
-			base.Controls.Add(this.ConfigSelector);
+			base.Controls.Add(ConfView);
+			base.Controls.Add(ConfigSelector);
 			base.Name = "ConfigList";
 			base.Size = new Size(298, 358);
-			((ISupportInitialize)this.ConfView).EndInit();
+			((ISupportInitialize)ConfView).EndInit();
 			base.ResumeLayout(false);
 
             // メディアプレーヤークラスのインスタンスを作成する
-            this.mediaPlayer = new WindowsMediaPlayer();
-            this.mediaPlayer.MediaError += this.PreviewAudio_error;
+            mediaPlayer = new WindowsMediaPlayer();
+            mediaPlayer.MediaError += PreviewAudio_error;
         }
 
 		private List<int> OrigIdx = new List<int>();

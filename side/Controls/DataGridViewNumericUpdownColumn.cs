@@ -29,11 +29,11 @@ namespace MasaoPlus.Controls
 		{
 			get
 			{
-				return this.maxValue;
+				return maxValue;
 			}
 			set
 			{
-				this.maxValue = value;
+				maxValue = value;
 			}
 		}
 
@@ -41,19 +41,19 @@ namespace MasaoPlus.Controls
 		{
 			get
 			{
-				return this.minValue;
+				return minValue;
 			}
 			set
 			{
-				this.minValue = value;
+				minValue = value;
 			}
 		}
 
 		public override object Clone()
 		{
 			DataGridViewNumericUpdownColumn dataGridViewNumericUpdownColumn = (DataGridViewNumericUpdownColumn)base.Clone();
-			dataGridViewNumericUpdownColumn.Max = this.Max;
-			dataGridViewNumericUpdownColumn.Min = this.Min;
+			dataGridViewNumericUpdownColumn.Max = Max;
+			dataGridViewNumericUpdownColumn.Min = Min;
 			return dataGridViewNumericUpdownColumn;
 		}
 

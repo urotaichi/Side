@@ -10,24 +10,24 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return Color.FromArgb(this.r, this.g, this.b);
+				return Color.FromArgb(r, g, b);
 			}
 			set
 			{
-				this.r = (int)value.R;
-				this.g = (int)value.G;
-				this.b = (int)value.B;
+				r = (int)value.R;
+				g = (int)value.G;
+				b = (int)value.B;
 			}
 		}
 
 		public override string ToString()
 		{
 			StringBuilder stringBuilder = new StringBuilder();
-			stringBuilder.Append(this.r.ToString());
+			stringBuilder.Append(r.ToString());
 			stringBuilder.Append(",");
-			stringBuilder.Append(this.g.ToString());
+			stringBuilder.Append(g.ToString());
 			stringBuilder.Append(",");
-			stringBuilder.Append(this.b.ToString());
+			stringBuilder.Append(b.ToString());
 			return stringBuilder.ToString();
 		}
 
@@ -43,9 +43,9 @@ namespace MasaoPlus
 			}
 			try
 			{
-				this.r = int.Parse(array[0]);
-				this.g = int.Parse(array[1]);
-				this.b = int.Parse(array[2]);
+				r = int.Parse(array[0]);
+				g = int.Parse(array[1]);
+				b = int.Parse(array[2]);
 			}
 			catch (Exception ex)
 			{

@@ -13,13 +13,13 @@ namespace MasaoPlus
 	{
 		public IntegratedBrowser()
 		{
-			this.InitializeComponent();
-			this.InitializeAsync();
+			InitializeComponent();
+			InitializeAsync();
 		}
 
 		private void Browser_StatusTextChanged(object sender, Object e)
 		{
-			this.Status.Text = this.Browser.CoreWebView2.StatusBarText;
+			Status.Text = Browser.CoreWebView2.StatusBarText;
 		}
 
 		public bool Navigate(string str)
@@ -38,7 +38,7 @@ namespace MasaoPlus
 					}
 					Process testrun = Global.state.Testrun;
 					base.Enabled = false;
-					this.Status.Text = "統合ブラウザは利用不可能です。";
+					Status.Text = "統合ブラウザは利用不可能です。";
 					return false;
 				}
 				catch (Exception ex)
@@ -48,7 +48,7 @@ namespace MasaoPlus
 				return true;
 			}
 			base.Enabled = true;
-			this.Browser.CoreWebView2.Navigate(str);
+			Browser.CoreWebView2.Navigate(str);
 			return true;
 		}
 
@@ -62,7 +62,7 @@ namespace MasaoPlus
 		private void Browser_Navigating(object sender, CoreWebView2NavigationStartingEventArgs e)
 		{
 			//this.Progress.Visible = true;
-			this.URL.Text = e.Uri.ToString();
+			URL.Text = e.Uri.ToString();
 		}
 
 		/*
@@ -86,17 +86,17 @@ namespace MasaoPlus
 
 		private void Back_Click(object sender, EventArgs e)
 		{
-			this.Browser.GoBack();
+			Browser.GoBack();
 		}
 
 		private void Forward_Click(object sender, EventArgs e)
 		{
-			this.Browser.GoForward();
+			Browser.GoForward();
 		}
 
 		private void Reload_Click(object sender, EventArgs e)
 		{
-			this.Browser.Reload();
+			Browser.Reload();
 		}
 
 		private void ReRun_Click(object sender, EventArgs e)
@@ -104,7 +104,7 @@ namespace MasaoPlus
 			if (Global.config.testRun.UseIntegratedBrowser)
 			{
 				Subsystem.MakeTestrun(0);
-				this.Browser.CoreWebView2.Navigate(Subsystem.GetTempFileWhere());
+				Browser.CoreWebView2.Navigate(Subsystem.GetTempFileWhere());
 			}
 		}
 
@@ -114,11 +114,11 @@ namespace MasaoPlus
 			{
 				if (Global.config.localSystem.UsingWebBrowser != "" && Global.config.localSystem.UsingWebBrowser != null)
 				{
-					Global.state.Testrun = Process.Start(Global.config.localSystem.UsingWebBrowser, this.Browser.Source.ToString());
+					Global.state.Testrun = Process.Start(Global.config.localSystem.UsingWebBrowser, Browser.Source.ToString());
 				}
 				else
 				{
-					Global.state.Testrun = Process.Start(this.Browser.Source.ToString());
+					Global.state.Testrun = Process.Start(Browser.Source.ToString());
 				}
 			}
 			catch (Exception ex)
@@ -129,119 +129,119 @@ namespace MasaoPlus
 
 		protected override void Dispose(bool disposing)
 		{
-			if (disposing && this.components != null)
+			if (disposing && components != null)
 			{
-				this.components.Dispose();
+				components.Dispose();
 			}
 			base.Dispose(disposing);
 		}
 
 		private void InitializeComponent()
 		{
-			this.components = new Container();
-			this.MainToolStrip = new ToolStrip();
-			this.Back = new ToolStripButton();
-			this.Forward = new ToolStripButton();
-			this.toolStripSeparator1 = new ToolStripSeparator();
-			this.Reload = new ToolStripButton();
-			this.ReRun = new ToolStripButton();
-			this.toolStripSeparator2 = new ToolStripSeparator();
-			this.URL = new ToolStripLabel();
-			this.OnWeb = new ToolStripButton();
-			this.MainStatusStrip = new StatusStrip();
-			this.Status = new ToolStripStatusLabel();
+			components = new Container();
+			MainToolStrip = new ToolStrip();
+			Back = new ToolStripButton();
+			Forward = new ToolStripButton();
+			toolStripSeparator1 = new ToolStripSeparator();
+			Reload = new ToolStripButton();
+			ReRun = new ToolStripButton();
+			toolStripSeparator2 = new ToolStripSeparator();
+			URL = new ToolStripLabel();
+			OnWeb = new ToolStripButton();
+			MainStatusStrip = new StatusStrip();
+			Status = new ToolStripStatusLabel();
 			//this.Progress = new ToolStripProgressBar();
-			this.Browser = new WebView2();
+			Browser = new WebView2();
 			//this.contextMenuStrip1 = new ContextMenuStrip(this.components);
 			//this.testToolStripMenuItem = new ToolStripMenuItem();
-			this.MainToolStrip.SuspendLayout();
-			this.MainStatusStrip.SuspendLayout();
+			MainToolStrip.SuspendLayout();
+			MainStatusStrip.SuspendLayout();
 			//this.contextMenuStrip1.SuspendLayout();
 			base.SuspendLayout();
-			this.MainToolStrip.Items.AddRange(new ToolStripItem[]
+			MainToolStrip.Items.AddRange(new ToolStripItem[]
 			{
-				this.Back,
-				this.Forward,
-				this.toolStripSeparator1,
-				this.Reload,
-				this.ReRun,
-				this.toolStripSeparator2,
-				this.URL,
-				this.OnWeb
+				Back,
+				Forward,
+				toolStripSeparator1,
+				Reload,
+				ReRun,
+				toolStripSeparator2,
+				URL,
+				OnWeb
 			});
-			this.MainToolStrip.Location = new Point(0, 0);
-			this.MainToolStrip.Name = "MainToolStrip";
-			this.MainToolStrip.Size = new Size(414, 25);
-			this.MainToolStrip.TabIndex = 0;
-			this.MainToolStrip.Text = "toolStrip1";
-			this.Back.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.Back.Image = Resources.back;
-			this.Back.ImageTransparentColor = Color.Magenta;
-			this.Back.Name = "Back";
-			this.Back.Size = new Size(23, 22);
-			this.Back.Text = "戻る";
-			this.Back.Click += this.Back_Click;
-			this.Forward.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.Forward.Image = Resources.next;
-			this.Forward.ImageTransparentColor = Color.Magenta;
-			this.Forward.Name = "Forward";
-			this.Forward.Size = new Size(23, 22);
-			this.Forward.Text = "進む";
-			this.Forward.Click += this.Forward_Click;
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new Size(6, 25);
-			this.Reload.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.Reload.Image = Resources.refresh;
-			this.Reload.ImageTransparentColor = Color.Magenta;
-			this.Reload.Name = "Reload";
-			this.Reload.Size = new Size(23, 22);
-			this.Reload.Text = "更新";
-			this.Reload.Click += this.Reload_Click;
-			this.ReRun.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.ReRun.Image = Resources.testrunstage;
-			this.ReRun.ImageTransparentColor = Color.Magenta;
-			this.ReRun.Name = "ReRun";
-			this.ReRun.Size = new Size(23, 22);
-			this.ReRun.Text = "再度テストラン";
-			this.ReRun.Click += this.ReRun_Click;
-			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new Size(6, 25);
-			this.URL.Name = "URL";
-			this.URL.Size = new Size(48, 22);
-			this.URL.Text = "No File";
-			this.URL.TextAlign = ContentAlignment.MiddleLeft;
-			this.OnWeb.Alignment = ToolStripItemAlignment.Right;
-			this.OnWeb.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.OnWeb.Image = Resources.web;
-			this.OnWeb.ImageTransparentColor = Color.Magenta;
-			this.OnWeb.Name = "OnWeb";
-			this.OnWeb.Size = new Size(23, 22);
-			this.OnWeb.Text = "関連付けられたブラウザで開く";
-			this.OnWeb.Click += this.OnWeb_Click;
-			this.MainStatusStrip.Items.AddRange(new ToolStripItem[]
+			MainToolStrip.Location = new Point(0, 0);
+			MainToolStrip.Name = "MainToolStrip";
+			MainToolStrip.Size = new Size(414, 25);
+			MainToolStrip.TabIndex = 0;
+			MainToolStrip.Text = "toolStrip1";
+			Back.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			Back.Image = Resources.back;
+			Back.ImageTransparentColor = Color.Magenta;
+			Back.Name = "Back";
+			Back.Size = new Size(23, 22);
+			Back.Text = "戻る";
+			Back.Click += Back_Click;
+			Forward.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			Forward.Image = Resources.next;
+			Forward.ImageTransparentColor = Color.Magenta;
+			Forward.Name = "Forward";
+			Forward.Size = new Size(23, 22);
+			Forward.Text = "進む";
+			Forward.Click += Forward_Click;
+			toolStripSeparator1.Name = "toolStripSeparator1";
+			toolStripSeparator1.Size = new Size(6, 25);
+			Reload.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			Reload.Image = Resources.refresh;
+			Reload.ImageTransparentColor = Color.Magenta;
+			Reload.Name = "Reload";
+			Reload.Size = new Size(23, 22);
+			Reload.Text = "更新";
+			Reload.Click += Reload_Click;
+			ReRun.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			ReRun.Image = Resources.testrunstage;
+			ReRun.ImageTransparentColor = Color.Magenta;
+			ReRun.Name = "ReRun";
+			ReRun.Size = new Size(23, 22);
+			ReRun.Text = "再度テストラン";
+			ReRun.Click += ReRun_Click;
+			toolStripSeparator2.Name = "toolStripSeparator2";
+			toolStripSeparator2.Size = new Size(6, 25);
+			URL.Name = "URL";
+			URL.Size = new Size(48, 22);
+			URL.Text = "No File";
+			URL.TextAlign = ContentAlignment.MiddleLeft;
+			OnWeb.Alignment = ToolStripItemAlignment.Right;
+			OnWeb.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			OnWeb.Image = Resources.web;
+			OnWeb.ImageTransparentColor = Color.Magenta;
+			OnWeb.Name = "OnWeb";
+			OnWeb.Size = new Size(23, 22);
+			OnWeb.Text = "関連付けられたブラウザで開く";
+			OnWeb.Click += OnWeb_Click;
+			MainStatusStrip.Items.AddRange(new ToolStripItem[]
 			{
-				this.Status,
+				Status,
 				//this.Progress
 			});
-			this.MainStatusStrip.Location = new Point(0, 197);
-			this.MainStatusStrip.Name = "MainStatusStrip";
-			this.MainStatusStrip.Size = new Size(414, 23);
-			this.MainStatusStrip.TabIndex = 1;
-			this.MainStatusStrip.Text = "statusStrip1";
-			this.Status.Name = "Status";
-			this.Status.Size = new Size(297, 18);
-			this.Status.Spring = true;
-			this.Status.Text = "完了";
-			this.Status.TextAlign = ContentAlignment.MiddleLeft;
+			MainStatusStrip.Location = new Point(0, 197);
+			MainStatusStrip.Name = "MainStatusStrip";
+			MainStatusStrip.Size = new Size(414, 23);
+			MainStatusStrip.TabIndex = 1;
+			MainStatusStrip.Text = "statusStrip1";
+			Status.Name = "Status";
+			Status.Size = new Size(297, 18);
+			Status.Spring = true;
+			Status.Text = "完了";
+			Status.TextAlign = ContentAlignment.MiddleLeft;
 			//this.Progress.Name = "Progress";
 			//this.Progress.Size = new Size(100, 17);
 			//this.Browser.ContextMenuStrip = this.contextMenuStrip1;
-			this.Browser.Dock = DockStyle.Fill;
-			this.Browser.Location = new Point(0, 25);
-			this.Browser.MinimumSize = new Size(20, 20);
-			this.Browser.Name = "Browser";
-			this.Browser.Size = new Size(414, 172);
-			this.Browser.TabIndex = 2;
+			Browser.Dock = DockStyle.Fill;
+			Browser.Location = new Point(0, 25);
+			Browser.MinimumSize = new Size(20, 20);
+			Browser.Name = "Browser";
+			Browser.Size = new Size(414, 172);
+			Browser.TabIndex = 2;
 			//this.Browser.ProgressChanged += this.Browser_ProgressChanged;
 			//this.Browser.DocumentCompleted += this.Browser_DocumentCompleted;
 			//this.Browser.Navigated += this.Browser_Navigated;
@@ -258,15 +258,15 @@ namespace MasaoPlus
 			//this.testToolStripMenuItem.Text = "Test";
 			base.AutoScaleDimensions = new SizeF(6f, 12f);
 			base.AutoScaleMode = AutoScaleMode.Font;
-			base.Controls.Add(this.Browser);
-			base.Controls.Add(this.MainStatusStrip);
-			base.Controls.Add(this.MainToolStrip);
+			base.Controls.Add(Browser);
+			base.Controls.Add(MainStatusStrip);
+			base.Controls.Add(MainToolStrip);
 			base.Name = "IntegratedBrowser";
 			base.Size = new Size(414, 220);
-			this.MainToolStrip.ResumeLayout(false);
-			this.MainToolStrip.PerformLayout();
-			this.MainStatusStrip.ResumeLayout(false);
-			this.MainStatusStrip.PerformLayout();
+			MainToolStrip.ResumeLayout(false);
+			MainToolStrip.PerformLayout();
+			MainStatusStrip.ResumeLayout(false);
+			MainStatusStrip.PerformLayout();
 			//this.contextMenuStrip1.ResumeLayout(false);
 			base.ResumeLayout(false);
 			base.PerformLayout();
@@ -274,11 +274,11 @@ namespace MasaoPlus
 		async void InitializeAsync()
 		{
 			var webView2Environment = await CoreWebView2Environment.CreateAsync(null, "cache");
-			await this.Browser.EnsureCoreWebView2Async(webView2Environment);
-            this.Browser.CoreWebView2.IsMuted = false;
-            this.Browser.CoreWebView2.StatusBarTextChanged += this.Browser_StatusTextChanged;
-			this.Browser.CoreWebView2.NavigationStarting += this.Browser_Navigating;
-			this.Browser.CoreWebView2.NewWindowRequested += this.CoreWebView2_NewWindowRequested;
+			await Browser.EnsureCoreWebView2Async(webView2Environment);
+            Browser.CoreWebView2.IsMuted = false;
+            Browser.CoreWebView2.StatusBarTextChanged += Browser_StatusTextChanged;
+			Browser.CoreWebView2.NavigationStarting += Browser_Navigating;
+			Browser.CoreWebView2.NewWindowRequested += CoreWebView2_NewWindowRequested;
 		}
 
 		private IContainer components;

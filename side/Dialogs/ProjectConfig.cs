@@ -12,39 +12,39 @@ namespace MasaoPlus.Dialogs
 	{
 		public ProjectConfig()
 		{
-			this.InitializeComponent();
-			this.OutHeader.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
-			this.OutMiddle.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
-			this.OutFooter.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
+			InitializeComponent();
+			OutHeader.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
+			OutMiddle.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
+			OutFooter.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
 		}
 
 		private void ProjectConfig_Load(object sender, EventArgs e)
 		{
-			this.ProjectName.Text = Global.cpd.project.Name;
-			this.OutDir.Text = Global.cpd.runtime.DefaultConfigurations.OutputDir;
-			this.OutExt.Text = Global.cpd.runtime.DefaultConfigurations.FileExt;
-			this.StageF.Text = Global.cpd.runtime.DefaultConfigurations.StageParam;
-			this.LayerF.Text = Global.cpd.runtime.DefaultConfigurations.LayerParam;
-			this.StageF2.Text = Global.cpd.runtime.DefaultConfigurations.StageParam2;
-			this.LayerF2.Text = Global.cpd.runtime.DefaultConfigurations.LayerParam2;
-			this.StageF3.Text = Global.cpd.runtime.DefaultConfigurations.StageParam3;
-			this.LayerF3.Text = Global.cpd.runtime.DefaultConfigurations.LayerParam3;
-			this.StageF4.Text = Global.cpd.runtime.DefaultConfigurations.StageParam4;
-			this.LayerF4.Text = Global.cpd.runtime.DefaultConfigurations.LayerParam4;
-			this.MapF.Text = Global.cpd.runtime.DefaultConfigurations.MapParam;
-			this.ProjNum.Value = Global.cpd.project.Config.StageNum;
-			this.UseWorldmap.Checked = Global.cpd.project.Config.UseWorldmap;
-            this.Use3rdMapData.Checked = Global.cpd.project.Use3rdMapData;
+			ProjectName.Text = Global.cpd.project.Name;
+			OutDir.Text = Global.cpd.runtime.DefaultConfigurations.OutputDir;
+			OutExt.Text = Global.cpd.runtime.DefaultConfigurations.FileExt;
+			StageF.Text = Global.cpd.runtime.DefaultConfigurations.StageParam;
+			LayerF.Text = Global.cpd.runtime.DefaultConfigurations.LayerParam;
+			StageF2.Text = Global.cpd.runtime.DefaultConfigurations.StageParam2;
+			LayerF2.Text = Global.cpd.runtime.DefaultConfigurations.LayerParam2;
+			StageF3.Text = Global.cpd.runtime.DefaultConfigurations.StageParam3;
+			LayerF3.Text = Global.cpd.runtime.DefaultConfigurations.LayerParam3;
+			StageF4.Text = Global.cpd.runtime.DefaultConfigurations.StageParam4;
+			LayerF4.Text = Global.cpd.runtime.DefaultConfigurations.LayerParam4;
+			MapF.Text = Global.cpd.runtime.DefaultConfigurations.MapParam;
+			ProjNum.Value = Global.cpd.project.Config.StageNum;
+			UseWorldmap.Checked = Global.cpd.project.Config.UseWorldmap;
+            Use3rdMapData.Checked = Global.cpd.project.Use3rdMapData;
 
-            this.OutHeader.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
-			this.OutMiddle.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.MiddleHTML);
-			this.OutFooter.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.FooterHTML);
+            OutHeader.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
+			OutMiddle.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.MiddleHTML);
+			OutFooter.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.FooterHTML);
 
 			if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
 			{
 				foreach (HTMLReplaceData htmlreplaceData in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
 				{
-					this.OutputReplaceView.Rows.Add(new string[]
+					OutputReplaceView.Rows.Add(new string[]
 					{
 						htmlreplaceData.Name,
 						htmlreplaceData.Value
@@ -55,26 +55,26 @@ namespace MasaoPlus.Dialogs
 
 		private void Accept_Click(object sender, EventArgs e)
 		{
-			Global.cpd.project.Name = this.ProjectName.Text;
-			Global.cpd.runtime.DefaultConfigurations.OutputDir = this.OutDir.Text;
-			Global.cpd.runtime.DefaultConfigurations.FileExt = this.OutExt.Text;
-			Global.cpd.runtime.DefaultConfigurations.StageParam = this.StageF.Text;
-			Global.cpd.runtime.DefaultConfigurations.LayerParam = this.LayerF.Text;
-			Global.cpd.runtime.DefaultConfigurations.StageParam2 = this.StageF2.Text;
-			Global.cpd.runtime.DefaultConfigurations.LayerParam2 = this.LayerF2.Text;
-			Global.cpd.runtime.DefaultConfigurations.StageParam3 = this.StageF3.Text;
-			Global.cpd.runtime.DefaultConfigurations.LayerParam3 = this.LayerF3.Text;
-			Global.cpd.runtime.DefaultConfigurations.StageParam4 = this.StageF4.Text;
-			Global.cpd.runtime.DefaultConfigurations.LayerParam4 = this.LayerF4.Text;
-			Global.cpd.runtime.DefaultConfigurations.MapParam = this.MapF.Text;
-			Global.cpd.project.Config.StageNum = (int)this.ProjNum.Value;
+			Global.cpd.project.Name = ProjectName.Text;
+			Global.cpd.runtime.DefaultConfigurations.OutputDir = OutDir.Text;
+			Global.cpd.runtime.DefaultConfigurations.FileExt = OutExt.Text;
+			Global.cpd.runtime.DefaultConfigurations.StageParam = StageF.Text;
+			Global.cpd.runtime.DefaultConfigurations.LayerParam = LayerF.Text;
+			Global.cpd.runtime.DefaultConfigurations.StageParam2 = StageF2.Text;
+			Global.cpd.runtime.DefaultConfigurations.LayerParam2 = LayerF2.Text;
+			Global.cpd.runtime.DefaultConfigurations.StageParam3 = StageF3.Text;
+			Global.cpd.runtime.DefaultConfigurations.LayerParam3 = LayerF3.Text;
+			Global.cpd.runtime.DefaultConfigurations.StageParam4 = StageF4.Text;
+			Global.cpd.runtime.DefaultConfigurations.LayerParam4 = LayerF4.Text;
+			Global.cpd.runtime.DefaultConfigurations.MapParam = MapF.Text;
+			Global.cpd.project.Config.StageNum = (int)ProjNum.Value;
 
-			Global.cpd.runtime.DefaultConfigurations.HeaderHTML = Subsystem.EncodeBase64(this.OutHeader.Text);
-			Global.cpd.runtime.DefaultConfigurations.MiddleHTML = Subsystem.EncodeBase64(this.OutMiddle.Text);
-			Global.cpd.runtime.DefaultConfigurations.FooterHTML = Subsystem.EncodeBase64(this.OutFooter.Text);
+			Global.cpd.runtime.DefaultConfigurations.HeaderHTML = Subsystem.EncodeBase64(OutHeader.Text);
+			Global.cpd.runtime.DefaultConfigurations.MiddleHTML = Subsystem.EncodeBase64(OutMiddle.Text);
+			Global.cpd.runtime.DefaultConfigurations.FooterHTML = Subsystem.EncodeBase64(OutFooter.Text);
 
-			Global.cpd.project.Config.UseWorldmap = this.UseWorldmap.Checked;
-			if (Global.cpd.project.Use3rdMapData = this.Use3rdMapData.Checked)
+			Global.cpd.project.Config.UseWorldmap = UseWorldmap.Checked;
+			if (Global.cpd.project.Use3rdMapData = Use3rdMapData.Checked)
 			{
 				Project.Convert3rdMapData(Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize.bytesize);
 				Project.Convert3rdMapData(Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize.bytesize);
@@ -90,7 +90,7 @@ namespace MasaoPlus.Dialogs
 			}
             Global.state.EditFlag = true;
 			List<HTMLReplaceData> list = new List<HTMLReplaceData>();
-			foreach (object obj in ((IEnumerable)this.OutputReplaceView.Rows))
+			foreach (object obj in ((IEnumerable)OutputReplaceView.Rows))
 			{
 				DataGridViewRow dataGridViewRow = (DataGridViewRow)obj;
 				if (dataGridViewRow.Cells[0].Value != null)
@@ -105,22 +105,22 @@ namespace MasaoPlus.Dialogs
 
 		private void TextUndo_Click(object sender, EventArgs e)
 		{
-			((RichTextBox)this.EditContext.SourceControl).Undo();
+			((RichTextBox)EditContext.SourceControl).Undo();
 		}
 
 		private void TextCut_Click(object sender, EventArgs e)
 		{
-			((RichTextBox)this.EditContext.SourceControl).Cut();
+			((RichTextBox)EditContext.SourceControl).Cut();
 		}
 
 		private void TextCopy_Click(object sender, EventArgs e)
 		{
-			((RichTextBox)this.EditContext.SourceControl).Copy();
+			((RichTextBox)EditContext.SourceControl).Copy();
 		}
 
 		private void TextPaste_Click(object sender, EventArgs e)
 		{
-			((RichTextBox)this.EditContext.SourceControl).Paste();
+			((RichTextBox)EditContext.SourceControl).Paste();
 		}
 	}
 }

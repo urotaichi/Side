@@ -22,13 +22,13 @@ namespace MasaoPlus
 		public MainWindow()
 		{
 			Global.MainWnd = this;
-			Global.state.UpdateCurrentChipInvoke += this.state_UpdateCurrentChipInvoke;
-			this.InitializeComponent();
-			this.MainDesigner.MouseMove += this.MainDesigner_MouseMove;
-			this.MainDesigner.ChangeBufferInvoke += this.MainDesigner_ChangeBufferInvoke;
-			this.MainEditor.PatternChipLayer.Click += this.EditPatternChip_Click;
-			this.MainEditor.BackgroundLayer.Click += this.EditBackground_Click;
-			this.MainDesigner.MouseWheel += this.MainDesigner_MouseWheel;
+			Global.state.UpdateCurrentChipInvoke += state_UpdateCurrentChipInvoke;
+			InitializeComponent();
+			MainDesigner.MouseMove += MainDesigner_MouseMove;
+			MainDesigner.ChangeBufferInvoke += MainDesigner_ChangeBufferInvoke;
+			MainEditor.PatternChipLayer.Click += EditPatternChip_Click;
+			MainEditor.BackgroundLayer.Click += EditBackground_Click;
+			MainDesigner.MouseWheel += MainDesigner_MouseWheel;
 		}
 
 		private void MainDesigner_MouseWheel(object sender, MouseEventArgs e)
@@ -46,79 +46,79 @@ namespace MasaoPlus
 				state2.MapPoint.Y -= num;
 			}
 			Global.state.AdjustMapPoint();
-			this.CommitScrollbar();
-			this.MainDesigner.Refresh();
+			CommitScrollbar();
+			MainDesigner.Refresh();
 		}
 
 		public void RefreshAll()
 		{
-			this.UpdateStatus("パラメータを反映しています...");
+			UpdateStatus("パラメータを反映しています...");
 			Global.state.ForceNoBuffering = true;
-			this.GuiChipList.Refresh();
-			this.ChipList.Refresh();
-			this.MainDesigner.UpdateBackgroundBuffer();
-			this.MainDesigner.UpdateForegroundBuffer();
-			this.MainDesigner.InitTransparent();
-			this.MainDesigner.Refresh();
-			this.MainDesigner_ChangeBufferInvoke();
+			GuiChipList.Refresh();
+			ChipList.Refresh();
+			MainDesigner.UpdateBackgroundBuffer();
+			MainDesigner.UpdateForegroundBuffer();
+			MainDesigner.InitTransparent();
+			MainDesigner.Refresh();
+			MainDesigner_ChangeBufferInvoke();
 			Global.state.ForceNoBuffering = false;
-			this.UpdateStatus("完了");
+			UpdateStatus("完了");
 		}
 
 		public void Testrun()
 		{
-			this.EditTab.SelectedIndex = 2;
+			EditTab.SelectedIndex = 2;
 		}
 
 		private void MainDesigner_ChangeBufferInvoke()
 		{
-			this.ItemUndo.Enabled = (this.MainDesigner.BufferCurrent != 0);
-			this.GMUndo.Enabled = this.ItemUndo.Enabled;
-			this.ItemRedo.Enabled = (this.MainDesigner.BufferCurrent != this.MainDesigner.StageBuffer.Count - 1);
-			this.GMRedo.Enabled = this.ItemRedo.Enabled;
+			ItemUndo.Enabled = (MainDesigner.BufferCurrent != 0);
+			GMUndo.Enabled = ItemUndo.Enabled;
+			ItemRedo.Enabled = (MainDesigner.BufferCurrent != MainDesigner.StageBuffer.Count - 1);
+			GMRedo.Enabled = ItemRedo.Enabled;
 		}
 
 		private void MainWindow_Load(object sender, EventArgs e)
 		{
-			this.MUpdateApp.Enabled = Global.definition.IsAutoUpdateEnabled;
+			MUpdateApp.Enabled = Global.definition.IsAutoUpdateEnabled;
 			base.SetDesktopLocation(Global.config.lastData.WndPoint.X, Global.config.lastData.WndPoint.Y);
 			base.Size = Global.config.lastData.WndSize;
 			base.WindowState = Global.config.lastData.WndState;
-			this.MainSplit.SplitterDistance = (int)((double)base.Width * Global.config.lastData.SpliterDist);
+			MainSplit.SplitterDistance = (int)((double)base.Width * Global.config.lastData.SpliterDist);
 			if (Global.config.localSystem.ReverseTabView)
 			{
-				this.EditTab.Parent = this.MainSplit.Panel1;
-				this.SideTab.Parent = this.MainSplit.Panel2;
+				EditTab.Parent = MainSplit.Panel1;
+				SideTab.Parent = MainSplit.Panel2;
 			}
 			else
 			{
-				this.SideTab.Parent = this.MainSplit.Panel1;
-				this.EditTab.Parent = this.MainSplit.Panel2;
+				SideTab.Parent = MainSplit.Panel1;
+				EditTab.Parent = MainSplit.Panel2;
 			}
 			if (Global.config.draw.StartUpWithClassicCL)
 			{
-				this.DrawType.SelectedIndex = 3;
+				DrawType.SelectedIndex = 3;
 			}
 			else
 			{
-				this.DrawType.SelectedIndex = 0;
+				DrawType.SelectedIndex = 0;
 			}
-			this.UpdateTitle();
-			this.ShowGrid.Checked = Global.config.draw.DrawGrid;
-			this.GMShowGrid.Checked = Global.config.draw.DrawGrid;
+			UpdateTitle();
+			ShowGrid.Checked = Global.config.draw.DrawGrid;
+			GMShowGrid.Checked = Global.config.draw.DrawGrid;
 			int num = (int)(Global.config.draw.ZoomIndex * 100.0);
 			if (num <= 50)
 			{
 				if (num == 25)
 				{
-					this.StageZoom25.Checked = true;
-					this.GMZoom25.Checked = true;
+					StageZoom25.Checked = true;
+					GMZoom25.Checked = true;
 					return;
 				}
 				if (num == 50)
 				{
-					this.StageZoom50.Checked = true;
-					this.GMZoom50.Checked = true;
+					StageZoom50.Checked = true;
+					GMZoom50.Checked = true;
 					return;
 				}
 			}
@@ -126,25 +126,25 @@ namespace MasaoPlus
 			{
 				if (num == 100)
 				{
-					this.StageZoom100.Checked = true;
-					this.GMZoom100.Checked = true;
+					StageZoom100.Checked = true;
+					GMZoom100.Checked = true;
 					return;
 				}
 				if (num == 200)
 				{
-					this.StageZoom200.Checked = true;
-					this.GMZoom200.Checked = true;
+					StageZoom200.Checked = true;
+					GMZoom200.Checked = true;
 					return;
 				}
 			}
-			this.StageZoom100.Checked = true;
-			this.GMZoom100.Checked = true;
+			StageZoom100.Checked = true;
+			GMZoom100.Checked = true;
 			Global.config.draw.ZoomIndex = 1.0;
 		}
 
 		private void MainWindow_Shown(object sender, EventArgs e)
 		{
-			this.EditorSystemPanel_Resize(this, new EventArgs());
+			EditorSystemPanel_Resize(this, new EventArgs());
 			string text = "";
 			if (Environment.GetCommandLineArgs().Length > 1 && !Global.state.ParseCommandline)
 			{
@@ -189,69 +189,69 @@ namespace MasaoPlus
 					return;
 				}
 			}
-			this.MainDesigner.AddBuffer();
-			this.EditorSystemPanel_Resize(this, new EventArgs());
-			this.UpdateScrollbar();
+			MainDesigner.AddBuffer();
+			EditorSystemPanel_Resize(this, new EventArgs());
+			UpdateScrollbar();
 			if (Global.cpd.UseLayer)
 			{
-				this.LayerState(true);
+				LayerState(true);
 			}
 			else
 			{
-				this.LayerState(false);
+				LayerState(false);
 			}
-			this.UpdateStageSelector();
+			UpdateStageSelector();
 		}
 
 		public void UpdateTitle()
 		{
 			if (Global.cpd.project == null)
 			{
-				this.Text = $"{Global.definition.AppNameFull} - {Global.definition.AppName}";
+				Text = $"{Global.definition.AppNameFull} - {Global.definition.AppName}";
 				return;
 			}
-            this.Text = Global.cpd.project.Name;
+            Text = Global.cpd.project.Name;
 			if (Global.state.EditFlag)
 			{
-                this.Text += "*";
+                Text += "*";
 			}
-			switch (this.EditTab.SelectedIndex)
+			switch (EditTab.SelectedIndex)
 			{
 			case 0:
-                this.Text += " [グラフィカルデザイナ] - ";
-				this.GMTool.Visible = true;
-				this.GMEdit.Visible = true;
-				this.GMStage.Visible = true;
-				this.TMEdit.Visible = false;
-				this.BMView.Visible = false;
+                Text += " [グラフィカルデザイナ] - ";
+				GMTool.Visible = true;
+				GMEdit.Visible = true;
+				GMStage.Visible = true;
+				TMEdit.Visible = false;
+				BMView.Visible = false;
 				break;
 			case 1:
-                this.Text += " [テキストエディタ] - ";
-				this.GMTool.Visible = false;
-				this.GMEdit.Visible = false;
-				this.GMStage.Visible = true;
-				this.TMEdit.Visible = true;
-				this.BMView.Visible = false;
+                Text += " [テキストエディタ] - ";
+				GMTool.Visible = false;
+				GMEdit.Visible = false;
+				GMStage.Visible = true;
+				TMEdit.Visible = true;
+				BMView.Visible = false;
 				break;
 			case 2:
-				this.Text += " [テスト実行] - ";
-				this.BMView.Visible = true;
-				this.GMTool.Visible = false;
-				this.GMEdit.Visible = false;
-				this.GMStage.Visible = false;
-				this.TMEdit.Visible = false;
+				Text += " [テスト実行] - ";
+				BMView.Visible = true;
+				GMTool.Visible = false;
+				GMEdit.Visible = false;
+				GMStage.Visible = false;
+				TMEdit.Visible = false;
 				break;
 			}
-            this.Text += Global.definition.AppName;
+            Text += Global.definition.AppName;
 		}
 
 		// ステータスバーっぽいところに表示される小さいアイコンや文字
 		private void MainDesigner_MouseMove(object sender, MouseEventArgs e)
 		{
 			Point p = default;
-			p.X = (e.X + Global.state.MapPoint.X) / this.MainDesigner.CurrentChipSize.Width;
-			p.Y = (e.Y + Global.state.MapPoint.Y) / this.MainDesigner.CurrentChipSize.Height;
-			this.GuiPositionInfo.Text = p.X.ToString() + "," + p.Y.ToString();
+			p.X = (e.X + Global.state.MapPoint.X) / MainDesigner.CurrentChipSize.Width;
+			p.Y = (e.Y + Global.state.MapPoint.Y) / MainDesigner.CurrentChipSize.Height;
+			GuiPositionInfo.Text = p.X.ToString() + "," + p.Y.ToString();
 			if (!GUIDesigner.StageText.IsOverflow(p))
 			{
 				int num = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize.bytesize : (Global.state.EditingForeground ? Global.cpd.runtime.Definitions.StageSize.bytesize : Global.cpd.runtime.Definitions.LayerSize.bytesize);
@@ -267,36 +267,36 @@ namespace MasaoPlus
 				ChipsData chipsData;
 				if (Global.state.MapEditMode)
 				{
-					if (text == Global.cpd.Worldchip[0].character || !this.MainDesigner.DrawWorldRef.ContainsKey(text))
+					if (text == Global.cpd.Worldchip[0].character || !MainDesigner.DrawWorldRef.ContainsKey(text))
 					{
-						this.ChipNavigator.Visible = false;
+						ChipNavigator.Visible = false;
 						return;
 					}
-					chipsData = this.MainDesigner.DrawWorldRef[text];
+					chipsData = MainDesigner.DrawWorldRef[text];
 				}
 				else if (Global.state.EditingForeground)
 				{
-					if (text == Global.cpd.Mapchip[0].character || !this.MainDesigner.DrawItemRef.ContainsKey(text))
+					if (text == Global.cpd.Mapchip[0].character || !MainDesigner.DrawItemRef.ContainsKey(text))
 					{
-						this.ChipNavigator.Visible = false;
+						ChipNavigator.Visible = false;
 						return;
 					}
-					chipsData = this.MainDesigner.DrawItemRef[text];
+					chipsData = MainDesigner.DrawItemRef[text];
 				}
 				else
 				{
-					if (text == Global.cpd.Layerchip[0].character || !this.MainDesigner.DrawLayerRef.ContainsKey(text))
+					if (text == Global.cpd.Layerchip[0].character || !MainDesigner.DrawLayerRef.ContainsKey(text))
 					{
-						this.ChipNavigator.Visible = false;
+						ChipNavigator.Visible = false;
 						return;
 					}
-					chipsData = this.MainDesigner.DrawLayerRef[text];
+					chipsData = MainDesigner.DrawLayerRef[text];
 				}
 				ChipData cschip = chipsData.GetCSChip();
 				Size size = (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size;
 				if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
-					size = this.MainDesigner.DrawOribossOrig.Size;
-                this.ChipNavigator.Image?.Dispose();
+					size = MainDesigner.DrawOribossOrig.Size;
+                ChipNavigator.Image?.Dispose();
 				Bitmap bitmap;
 				if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
 				{
@@ -313,7 +313,7 @@ namespace MasaoPlus
 					graphics.PixelOffsetMode = PixelOffsetMode.Half;
 					if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
 					{
-						graphics.DrawImage(this.MainDesigner.DrawOribossOrig, 0, 0, this.MainDesigner.DrawOribossOrig.Size.Width, this.MainDesigner.DrawOribossOrig.Size.Height);
+						graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, MainDesigner.DrawOribossOrig.Size.Width, MainDesigner.DrawOribossOrig.Size.Height);
 					}
 					else
 					{
@@ -368,18 +368,18 @@ namespace MasaoPlus
                                     };
                                     using var imageAttributes = new ImageAttributes();
                                     imageAttributes.SetColorMatrix(colorMatrix);
-                                    graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size), cschip.pattern.X, cschip.pattern.Y, size.Width, size.Height, GraphicsUnit.Pixel, imageAttributes);
+                                    graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size), cschip.pattern.X, cschip.pattern.Y, size.Width, size.Height, GraphicsUnit.Pixel, imageAttributes);
                                 }
-								else graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size), new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
+								else graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size), new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
 								break;
 						}
 					}
 				}
 				else
 				{
-					graphics.DrawImage(this.MainDesigner.DrawLayerOrig, new Rectangle(new Point(0, 0), size), new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
+					graphics.DrawImage(MainDesigner.DrawLayerOrig, new Rectangle(new Point(0, 0), size), new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
 				}
-				this.ChipNavigator.Image = (Image)bitmap.Clone();
+				ChipNavigator.Image = (Image)bitmap.Clone();
 				bitmap.Dispose();
 				string name, description;
 
@@ -428,111 +428,111 @@ namespace MasaoPlus
 					description = cschip.description;
 				}
 
-				this.ChipNavigator.Text = $"[{chipsData.character}]{name}/{description}";
-				this.ChipNavigator.Visible = true;
+				ChipNavigator.Text = $"[{chipsData.character}]{name}/{description}";
+				ChipNavigator.Visible = true;
 			}
 		}
 
 		public void CommitScrollbar()
 		{
-			this.GHorzScroll.Value = Global.state.MapPoint.X;
-			this.GVirtScroll.Value = Global.state.MapPoint.Y;
-			if (this.MainDesignerScroll != null)
+			GHorzScroll.Value = Global.state.MapPoint.X;
+			GVirtScroll.Value = Global.state.MapPoint.Y;
+			if (MainDesignerScroll != null)
 			{
-                this.MainDesignerScroll();
+                MainDesignerScroll();
 			}
 		}
 
 		public void UpdateScrollbar()
 		{
-			this.UpdateScrollbar(Global.config.draw.ZoomIndex);
+			UpdateScrollbar(Global.config.draw.ZoomIndex);
 		}
 
 		public void UpdateScrollbar(double oldZoomIndex)
 		{
 			double num = Global.config.draw.ZoomIndex / oldZoomIndex;
 			Point point = new Point((int)(GHorzScroll.Value * num), (int)(GVirtScroll.Value * num));
-			Size displaySize = this.MainDesigner.DisplaySize;
-			Size mapMoveMax = new Size(displaySize.Width - this.MainDesigner.Width, displaySize.Height - this.MainDesigner.Height);
+			Size displaySize = MainDesigner.DisplaySize;
+			Size mapMoveMax = new Size(displaySize.Width - MainDesigner.Width, displaySize.Height - MainDesigner.Height);
 			Global.state.MapMoveMax = mapMoveMax;
-			if (displaySize.Width <= this.MainDesigner.Width)
+			if (displaySize.Width <= MainDesigner.Width)
 			{
-				this.GHorzScroll.Enabled = false;
+				GHorzScroll.Enabled = false;
 			}
 			else
 			{
 				Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : Global.cpd.runtime.Definitions.StageSize;
-				this.GHorzScroll.Enabled = true;
-				this.GHorzScroll.LargeChange = (int)((double)displaySize.Width / ((double)stageSizeData.x / 4.0) * Global.config.draw.ZoomIndex);
-				this.GHorzScroll.Maximum = mapMoveMax.Width + this.GHorzScroll.LargeChange - 1;
+				GHorzScroll.Enabled = true;
+				GHorzScroll.LargeChange = (int)((double)displaySize.Width / ((double)stageSizeData.x / 4.0) * Global.config.draw.ZoomIndex);
+				GHorzScroll.Maximum = mapMoveMax.Width + GHorzScroll.LargeChange - 1;
 			}
-			if (displaySize.Height <= this.MainDesigner.Height)
+			if (displaySize.Height <= MainDesigner.Height)
 			{
-				this.GVirtScroll.Enabled = false;
+				GVirtScroll.Enabled = false;
 			}
 			else
 			{
 				Runtime.DefinedData.StageSizeData stageSizeData2 = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : Global.cpd.runtime.Definitions.StageSize;
-				this.GVirtScroll.Enabled = true;
-				this.GVirtScroll.LargeChange = (int)((double)displaySize.Height / ((double)stageSizeData2.y / 4.0) * Global.config.draw.ZoomIndex);
-				this.GVirtScroll.Maximum = mapMoveMax.Height + this.GVirtScroll.LargeChange - 1;
-				this.GVirtScroll.Maximum = mapMoveMax.Height + this.GVirtScroll.LargeChange - 1;
+				GVirtScroll.Enabled = true;
+				GVirtScroll.LargeChange = (int)((double)displaySize.Height / ((double)stageSizeData2.y / 4.0) * Global.config.draw.ZoomIndex);
+				GVirtScroll.Maximum = mapMoveMax.Height + GVirtScroll.LargeChange - 1;
+				GVirtScroll.Maximum = mapMoveMax.Height + GVirtScroll.LargeChange - 1;
 			}
-			if (this.GHorzScroll.Enabled)
+			if (GHorzScroll.Enabled)
 			{
 				if (point.X > mapMoveMax.Width)
 				{
-					this.GHorzScroll.Value = mapMoveMax.Width;
+					GHorzScroll.Value = mapMoveMax.Width;
 				}
 				else
 				{
-					this.GHorzScroll.Value = point.X;
+					GHorzScroll.Value = point.X;
 				}
 			}
 			else
 			{
-				this.GHorzScroll.Value = 0;
+				GHorzScroll.Value = 0;
 			}
-			Global.state.MapPoint.X = this.GHorzScroll.Value;
-			if (this.GVirtScroll.Enabled)
+			Global.state.MapPoint.X = GHorzScroll.Value;
+			if (GVirtScroll.Enabled)
 			{
 				if (point.Y > mapMoveMax.Height)
 				{
-					this.GVirtScroll.Value = mapMoveMax.Height;
+					GVirtScroll.Value = mapMoveMax.Height;
 				}
 				else
 				{
-					this.GVirtScroll.Value = point.Y;
+					GVirtScroll.Value = point.Y;
 				}
 			}
 			else
 			{
-				this.GVirtScroll.Value = 0;
+				GVirtScroll.Value = 0;
 			}
-			Global.state.MapPoint.Y = this.GVirtScroll.Value;
-			if (this.MainDesignerScroll != null)
+			Global.state.MapPoint.Y = GVirtScroll.Value;
+			if (MainDesignerScroll != null)
 			{
-				this.MainDesignerScroll();
+				MainDesignerScroll();
 			}
-			this.MainDesigner.Refresh();
+			MainDesigner.Refresh();
 		}
 
 		private void EditorSystemPanel_Resize(object sender, EventArgs e)
 		{
-			this.MainDesigner.Width = this.EditorSystemPanel.Width - 20;
-			this.MainDesigner.Height = this.EditorSystemPanel.Height - 20;
-			this.GVirtScroll.Left = this.MainDesigner.Width;
-			this.GVirtScroll.Height = this.MainDesigner.Height;
-			this.GVirtScroll.Refresh();
-			this.GHorzScroll.Width = this.MainDesigner.Width;
-			this.GHorzScroll.Top = this.MainDesigner.Height;
-			this.GHorzScroll.Refresh();
-			this.UpdateScrollbar();
+			MainDesigner.Width = EditorSystemPanel.Width - 20;
+			MainDesigner.Height = EditorSystemPanel.Height - 20;
+			GVirtScroll.Left = MainDesigner.Width;
+			GVirtScroll.Height = MainDesigner.Height;
+			GVirtScroll.Refresh();
+			GHorzScroll.Width = MainDesigner.Width;
+			GHorzScroll.Top = MainDesigner.Height;
+			GHorzScroll.Refresh();
+			UpdateScrollbar();
 		}
 
 		private void EditTab_Deselecting(object sender, TabControlCancelEventArgs e)
 		{
-			if (e.TabPageIndex == 1 && !this.MainEditor.CanConvertTextSource() && MessageBox.Show(string.Concat(new string[]
+			if (e.TabPageIndex == 1 && !MainEditor.CanConvertTextSource() && MessageBox.Show(string.Concat(new string[]
 			{
 				"ステージのテキストが規定の形式を満たしていないため、デザイナでの編集やテスト実行はできません。",
 				Environment.NewLine,
@@ -544,7 +544,7 @@ namespace MasaoPlus
 				e.Cancel = true;
             }
 
-            if (e.TabPageIndex == 2) this.IntegrateBrowser.Navigate("about:blank");
+            if (e.TabPageIndex == 2) IntegrateBrowser.Navigate("about:blank");
         }
 
 		private void EditTab_Selecting(object sender, TabControlCancelEventArgs e)
@@ -565,7 +565,7 @@ namespace MasaoPlus
 				{
 					Subsystem.MakeTestrun(Global.state.EdittingStage);
 				}
-				if (!this.IntegrateBrowser.Navigate(Subsystem.GetTempFileWhere()))
+				if (!IntegrateBrowser.Navigate(Subsystem.GetTempFileWhere()))
 				{
 					e.Cancel = true;
 				}
@@ -574,119 +574,119 @@ namespace MasaoPlus
 
 		private void EditTab_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (this.Restartupping)
+			if (Restartupping)
 			{
 				return;
 			}
-			if (this.EditTab.SelectedIndex == 1)
+			if (EditTab.SelectedIndex == 1)
 			{
-				if (this.StageConvert)
+				if (StageConvert)
 				{
 					if (Global.state.EditingForeground)
 					{
-						this.MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingMap).Clone();
+						MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingMap).Clone();
 					}
 					else
 					{
-						this.MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingLayer).Clone();
+						MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingLayer).Clone();
 					}
 				}
 				else
 				{
-					this.StageConvert = true;
+					StageConvert = true;
 				}
-				this.MainEditor.BufferClear();
-				this.MainEditor.AddBuffer();
-				this.ChipList.Enabled = false;
-				this.GuiChipList.Enabled = false;
-				this.MainEditor.InitEditor();
-				this.MSave.Enabled = false;
-				this.MSaveAs.Enabled = false;
-				this.MTSave.Enabled = false;
+				MainEditor.BufferClear();
+				MainEditor.AddBuffer();
+				ChipList.Enabled = false;
+				GuiChipList.Enabled = false;
+				MainEditor.InitEditor();
+				MSave.Enabled = false;
+				MSaveAs.Enabled = false;
+				MTSave.Enabled = false;
 			}
 			else
 			{
-				if (this.MainEditor.CanConvertTextSource())
+				if (MainEditor.CanConvertTextSource())
 				{
 					if (Global.state.EditingForeground)
 					{
 						switch (Global.state.EdittingStage)
 						{
 						case 0:
-							Global.cpd.project.StageData = (string[])this.MainEditor.StageTextEditor.Lines.Clone();
+							Global.cpd.project.StageData = (string[])MainEditor.StageTextEditor.Lines.Clone();
 							Global.cpd.EditingMap = Global.cpd.project.StageData;
 							break;
 						case 1:
-							Global.cpd.project.StageData2 = (string[])this.MainEditor.StageTextEditor.Lines.Clone();
+							Global.cpd.project.StageData2 = (string[])MainEditor.StageTextEditor.Lines.Clone();
 							Global.cpd.EditingMap = Global.cpd.project.StageData2;
 							break;
 						case 2:
-							Global.cpd.project.StageData3 = (string[])this.MainEditor.StageTextEditor.Lines.Clone();
+							Global.cpd.project.StageData3 = (string[])MainEditor.StageTextEditor.Lines.Clone();
 							Global.cpd.EditingMap = Global.cpd.project.StageData3;
 							break;
 						case 3:
-							Global.cpd.project.StageData4 = (string[])this.MainEditor.StageTextEditor.Lines.Clone();
+							Global.cpd.project.StageData4 = (string[])MainEditor.StageTextEditor.Lines.Clone();
 							Global.cpd.EditingMap = Global.cpd.project.StageData4;
 							break;
 						case 4:
-							Global.cpd.project.MapData = (string[])this.MainEditor.StageTextEditor.Lines.Clone();
+							Global.cpd.project.MapData = (string[])MainEditor.StageTextEditor.Lines.Clone();
 							Global.cpd.EditingMap = Global.cpd.project.MapData;
 							break;
 						}
-						this.MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingMap).Clone();
-						this.MainEditor.BufferClear();
-						this.MainEditor.AddBuffer();
+						MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingMap).Clone();
+						MainEditor.BufferClear();
+						MainEditor.AddBuffer();
 					}
 					else
 					{
 						switch (Global.state.EdittingStage)
 						{
 						case 0:
-							Global.cpd.project.LayerData = (string[])this.MainEditor.StageTextEditor.Lines.Clone();
+							Global.cpd.project.LayerData = (string[])MainEditor.StageTextEditor.Lines.Clone();
 							Global.cpd.EditingLayer = Global.cpd.project.LayerData;
 							break;
 						case 1:
-							Global.cpd.project.LayerData2 = (string[])this.MainEditor.StageTextEditor.Lines.Clone();
+							Global.cpd.project.LayerData2 = (string[])MainEditor.StageTextEditor.Lines.Clone();
 							Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
 							break;
 						case 2:
-							Global.cpd.project.LayerData3 = (string[])this.MainEditor.StageTextEditor.Lines.Clone();
+							Global.cpd.project.LayerData3 = (string[])MainEditor.StageTextEditor.Lines.Clone();
 							Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
 							break;
 						case 3:
-							Global.cpd.project.LayerData4 = (string[])this.MainEditor.StageTextEditor.Lines.Clone();
+							Global.cpd.project.LayerData4 = (string[])MainEditor.StageTextEditor.Lines.Clone();
 							Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
 							break;
 						}
-						this.MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingLayer).Clone();
-						this.MainEditor.BufferClear();
-						this.MainEditor.AddBuffer();
+						MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingLayer).Clone();
+						MainEditor.BufferClear();
+						MainEditor.AddBuffer();
 					}
-					this.MainDesigner.ClearBuffer();
-					this.MainDesigner.StageSourceToDrawBuffer();
-					this.MainDesigner.AddBuffer();
+					MainDesigner.ClearBuffer();
+					MainDesigner.StageSourceToDrawBuffer();
+					MainDesigner.AddBuffer();
 				}
-				this.ChipList.Enabled = true;
-				this.GuiChipList.Enabled = true;
-				this.MSave.Enabled = true;
-				this.MSaveAs.Enabled = true;
-				this.MTSave.Enabled = true;
-				this.UpdateStatus("完了");
+				ChipList.Enabled = true;
+				GuiChipList.Enabled = true;
+				MSave.Enabled = true;
+				MSaveAs.Enabled = true;
+				MTSave.Enabled = true;
+				UpdateStatus("完了");
 			}
-			this.UpdateTitle();
+			UpdateTitle();
         }
 
 		public void ChipItemReady()
 		{
-            CRID method = new CRID(this.ChipItemReadyInvoke);
+            CRID method = new CRID(ChipItemReadyInvoke);
 			base.Invoke(method);
 		}
 
 		// クラシックチップリスト以外
 		public void ChipItemReadyInvoke()
 		{
-			this.ChipList.BeginUpdate();
-			this.ChipList.Items.Clear();
+			ChipList.BeginUpdate();
+			ChipList.Items.Clear();
 			ChipsData[] array;
 			if (!Global.cpd.UseLayer || Global.state.EditingForeground)
 			{
@@ -710,7 +710,7 @@ namespace MasaoPlus
 				chipData = chipsData.GetCSChip();
 				if (chipData.description == "")
 				{
-					this.ChipList.Items.Add(chipData.name);
+					ChipList.Items.Add(chipData.name);
 				}
 				else if(Global.state.EditingForeground && chipsData.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
 				{
@@ -807,110 +807,110 @@ namespace MasaoPlus
 					}
 					else description = "";
 
-					this.ChipList.Items.Add($"オリジナルボス/{description}");
+					ChipList.Items.Add($"オリジナルボス/{description}");
 
 				}
 				else 
 				{
-					this.ChipList.Items.Add($"{chipData.name}/{chipData.description}");
+					ChipList.Items.Add($"{chipData.name}/{chipData.description}");
 				}
 			}
-			if (this.ChipList.Items.Count != 0)
+			if (ChipList.Items.Count != 0)
 			{
-				this.ChipList.SelectedIndex = 0;
+				ChipList.SelectedIndex = 0;
 			}
-			this.ChipList.EndUpdate();
+			ChipList.EndUpdate();
 		}
 
 		private void GVirtScroll_Scroll(object sender, ScrollEventArgs e)
 		{
-			Global.state.MapPoint.Y = this.GVirtScroll.Value;
-			this.MainDesigner.Refresh();
-			if (this.MainDesignerScroll != null)
+			Global.state.MapPoint.Y = GVirtScroll.Value;
+			MainDesigner.Refresh();
+			if (MainDesignerScroll != null)
 			{
-				this.MainDesignerScroll();
+				MainDesignerScroll();
 			}
 		}
 
 		private void GHorzScroll_Scroll(object sender, ScrollEventArgs e)
 		{
-			Global.state.MapPoint.X = this.GHorzScroll.Value;
-			this.MainDesigner.Refresh();
-			if (this.MainDesignerScroll != null)
+			Global.state.MapPoint.X = GHorzScroll.Value;
+			MainDesigner.Refresh();
+			if (MainDesignerScroll != null)
 			{
-				this.MainDesignerScroll();
+				MainDesignerScroll();
 			}
 		}
 
 		private void ShowGrid_Click(object sender, EventArgs e)
 		{
-			this.GMShowGrid.Checked = this.ShowGrid.Checked;
-			Global.config.draw.DrawGrid = this.ShowGrid.Checked;
-			this.MainDesigner.Refresh();
+			GMShowGrid.Checked = ShowGrid.Checked;
+			Global.config.draw.DrawGrid = ShowGrid.Checked;
+			MainDesigner.Refresh();
 		}
 
 		private void GMShowGrid_Click(object sender, EventArgs e)
 		{
-			this.ShowGrid.Checked = this.GMShowGrid.Checked;
-			Global.config.draw.DrawGrid = this.GMShowGrid.Checked;
-			this.MainDesigner.Refresh();
+			ShowGrid.Checked = GMShowGrid.Checked;
+			Global.config.draw.DrawGrid = GMShowGrid.Checked;
+			MainDesigner.Refresh();
 		}
 
 		private void ZoomInit()
 		{
-			this.StageZoom25.Checked = false;
-			this.StageZoom50.Checked = false;
-			this.StageZoom100.Checked = false;
-			this.StageZoom200.Checked = false;
-			this.GMZoom25.Checked = false;
-			this.GMZoom50.Checked = false;
-			this.GMZoom100.Checked = false;
-			this.GMZoom200.Checked = false;
+			StageZoom25.Checked = false;
+			StageZoom50.Checked = false;
+			StageZoom100.Checked = false;
+			StageZoom200.Checked = false;
+			GMZoom25.Checked = false;
+			GMZoom50.Checked = false;
+			GMZoom100.Checked = false;
+			GMZoom200.Checked = false;
 		}
 
 		private void StageZoom25_Click(object sender, EventArgs e)
 		{
-			this.ZoomInit();
-			this.StageZoom25.Checked = true;
-			this.GMZoom25.Checked = true;
+			ZoomInit();
+			StageZoom25.Checked = true;
+			GMZoom25.Checked = true;
 			double zoomIndex = Global.config.draw.ZoomIndex;
 			Global.config.draw.ZoomIndex = 0.25;
-			this.UpdateScrollbar(zoomIndex);
+			UpdateScrollbar(zoomIndex);
 		}
 
 		private void StageZoom50_Click(object sender, EventArgs e)
 		{
-			this.ZoomInit();
-			this.StageZoom50.Checked = true;
-			this.GMZoom50.Checked = true;
+			ZoomInit();
+			StageZoom50.Checked = true;
+			GMZoom50.Checked = true;
 			double zoomIndex = Global.config.draw.ZoomIndex;
 			Global.config.draw.ZoomIndex = 0.5;
-			this.UpdateScrollbar(zoomIndex);
+			UpdateScrollbar(zoomIndex);
 		}
 
 		private void StageZoom100_Click(object sender, EventArgs e)
 		{
-			this.ZoomInit();
-			this.StageZoom100.Checked = true;
-			this.GMZoom100.Checked = true;
+			ZoomInit();
+			StageZoom100.Checked = true;
+			GMZoom100.Checked = true;
 			double zoomIndex = Global.config.draw.ZoomIndex;
 			Global.config.draw.ZoomIndex = 1.0;
-			this.UpdateScrollbar(zoomIndex);
+			UpdateScrollbar(zoomIndex);
 		}
 
 		private void StageZoom200_Click(object sender, EventArgs e)
 		{
-			this.ZoomInit();
-			this.StageZoom200.Checked = true;
-			this.GMZoom200.Checked = true;
+			ZoomInit();
+			StageZoom200.Checked = true;
+			GMZoom200.Checked = true;
 			double zoomIndex = Global.config.draw.ZoomIndex;
 			Global.config.draw.ZoomIndex = 2.0;
-			this.UpdateScrollbar(zoomIndex);
+			UpdateScrollbar(zoomIndex);
 		}
 
 		private void ChipList_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			int i = this.ChipList.SelectedIndex;
+			int i = ChipList.SelectedIndex;
 
             if (i >= 0)
 			{
@@ -937,13 +937,13 @@ namespace MasaoPlus
 		// チップリストの左上
 		private void state_UpdateCurrentChipInvoke()
 		{
-			this.ChipImage.Refresh();
+			ChipImage.Refresh();
 			string chara = Global.state.CurrentChip.character;
 			if(Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) chara = Global.state.CurrentChip.code.ToString();
 
             if (Global.state.CurrentChip.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
-				this.ChipDescription.Text = "オリジナルボス";
-			else this.ChipDescription.Text = Global.state.CurrentChip.GetCSChip().name;
+				ChipDescription.Text = "オリジナルボス";
+			else ChipDescription.Text = Global.state.CurrentChip.GetCSChip().name;
 			if (Global.state.CurrentChip.GetCSChip().description != "")
 			{
 				if (Global.state.EditingForeground && Global.state.CurrentChip.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
@@ -1041,18 +1041,18 @@ namespace MasaoPlus
 					}
 					else description = "";
 
-					this.ChipChar.Text = $"[{chara}]{description}";
+					ChipChar.Text = $"[{chara}]{description}";
 
 				}
-				else this.ChipChar.Text = $"[{chara}]{Global.state.CurrentChip.GetCSChip().description}";
+				else ChipChar.Text = $"[{chara}]{Global.state.CurrentChip.GetCSChip().description}";
 			}
 			else
 			{
-				this.ChipChar.Text = $"[{chara}]";
+				ChipChar.Text = $"[{chara}]";
 			}
-			if (this.DrawType.SelectedIndex == 3)
+			if (DrawType.SelectedIndex == 3)
 			{
-				this.GuiChipList.Refresh();
+				GuiChipList.Refresh();
 				return;
 			}
 			int num = 0;
@@ -1062,7 +1062,7 @@ namespace MasaoPlus
 				{
 					if (Global.state.CurrentChip.character == chipsData.character)
 					{
-						this.ChipList.SelectedIndex = num;
+						ChipList.SelectedIndex = num;
 						return;
 					}
 					num++;
@@ -1075,7 +1075,7 @@ namespace MasaoPlus
 				{
 					if (Global.state.CurrentChip.character == chipsData2.character)
 					{
-						this.ChipList.SelectedIndex = num;
+						ChipList.SelectedIndex = num;
 						return;
 					}
 					num++;
@@ -1086,7 +1086,7 @@ namespace MasaoPlus
 			{
 				if (Global.state.CurrentChip.character == chipsData3.character)
 				{
-					this.ChipList.SelectedIndex = num;
+					ChipList.SelectedIndex = num;
 					return;
 				}
 				num++;
@@ -1096,7 +1096,7 @@ namespace MasaoPlus
 		// チップリストの左上
 		private void ChipImage_Paint(object sender, PaintEventArgs e)
 		{
-			if (this.MainDesigner.DrawChipOrig != null)
+			if (MainDesigner.DrawChipOrig != null)
 			{
 				e.Graphics.InterpolationMode = InterpolationMode.High;
 				ChipData cschip = Global.state.CurrentChip.GetCSChip();
@@ -1105,7 +1105,7 @@ namespace MasaoPlus
 					e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
 					if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.state.CurrentChip.character == "Z")
 					{
-						e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, this.ChipImage.Size.Width, this.ChipImage.Size.Height);
+						e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, ChipImage.Size.Width, ChipImage.Size.Height);
 					}
 					else
 					{
@@ -1135,10 +1135,10 @@ namespace MasaoPlus
                             case "スイッチ式ファイヤーバー":
                             case "スイッチ式動くＴ字型":
                             case "スイッチ式速く動くＴ字型":
-                                AthleticView.list[cschip.name].Main(cschip, e.Graphics, new Size(this.ChipImage.Width, this.ChipImage.Height));
+                                AthleticView.list[cschip.name].Main(cschip, e.Graphics, new Size(ChipImage.Width, ChipImage.Height));
                                 break;
                             default:
-								e.Graphics.TranslateTransform(this.ChipImage.Width / 2, this.ChipImage.Height / 2);
+								e.Graphics.TranslateTransform(ChipImage.Width / 2, ChipImage.Height / 2);
 								if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
 								// 水の半透明処理
@@ -1155,127 +1155,127 @@ namespace MasaoPlus
                                     };
                                     using var imageAttributes = new ImageAttributes();
 									imageAttributes.SetColorMatrix(colorMatrix);
-									e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-this.ChipImage.Width / 2, -this.ChipImage.Height / 2), this.ChipImage.Size), cschip.pattern.X, cschip.pattern.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height, GraphicsUnit.Pixel, imageAttributes);
+									e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-ChipImage.Width / 2, -ChipImage.Height / 2), ChipImage.Size), cschip.pattern.X, cschip.pattern.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height, GraphicsUnit.Pixel, imageAttributes);
 								}
-								else e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-this.ChipImage.Width / 2, -this.ChipImage.Height / 2), this.ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
+								else e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-ChipImage.Width / 2, -ChipImage.Height / 2), ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
 								break;
 						}
 					}
 				}
 				else
 				{
-					e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig, new Rectangle(new Point(0, 0), this.ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
+					e.Graphics.DrawImage(MainDesigner.DrawLayerOrig, new Rectangle(new Point(0, 0), ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
 				}
 			}
 		}
 
 		private void ItemReload_Click(object sender, EventArgs e)
 		{
-			this.UpdateStatus("描画中...");
+			UpdateStatus("描画中...");
 			Global.state.ForceNoBuffering = true;
 			int tickCount = Environment.TickCount;
-			this.MainDesigner.StageSourceToDrawBuffer();
-			this.MainDesigner.Refresh();
+			MainDesigner.StageSourceToDrawBuffer();
+			MainDesigner.Refresh();
 			Global.state.ForceNoBuffering = false;
-			this.UpdateStatus($"完了({Environment.TickCount - tickCount}ms)");
+			UpdateStatus($"完了({Environment.TickCount - tickCount}ms)");
 		}
 
 		public void UpdateStatus(string t)
 		{
-			this.CurrentStatus.Text = t;
-			this.GUIEditorStatus.Refresh();
+			CurrentStatus.Text = t;
+			GUIEditorStatus.Refresh();
 		}
 
 		private void ItemUncheck()
 		{
-			this.ItemCursor.Checked = false;
-			this.ItemPen.Checked = false;
-			this.ItemLine.Checked = false;
-			this.ItemRect.Checked = false;
-			this.ItemFill.Checked = false;
-			this.GMCursor.Checked = false;
-			this.GMPen.Checked = false;
-			this.GMLine.Checked = false;
-			this.GMRect.Checked = false;
-			this.GMFill.Checked = false;
+			ItemCursor.Checked = false;
+			ItemPen.Checked = false;
+			ItemLine.Checked = false;
+			ItemRect.Checked = false;
+			ItemFill.Checked = false;
+			GMCursor.Checked = false;
+			GMPen.Checked = false;
+			GMLine.Checked = false;
+			GMRect.Checked = false;
+			GMFill.Checked = false;
 		}
 
 		private void ItemCursor_Click(object sender, EventArgs e)
 		{
-			this.ItemUncheck();
-			this.ItemCursor.Checked = true;
-			this.GMCursor.Checked = true;
-			this.MainDesigner.CurrentTool = GUIDesigner.EditTool.Cursor;
+			ItemUncheck();
+			ItemCursor.Checked = true;
+			GMCursor.Checked = true;
+			MainDesigner.CurrentTool = GUIDesigner.EditTool.Cursor;
 		}
 
 		private void ItemPen_Click(object sender, EventArgs e)
 		{
-			this.ItemUncheck();
-			this.ItemPen.Checked = true;
-			this.GMPen.Checked = true;
-			this.MainDesigner.CurrentTool = GUIDesigner.EditTool.Pen;
+			ItemUncheck();
+			ItemPen.Checked = true;
+			GMPen.Checked = true;
+			MainDesigner.CurrentTool = GUIDesigner.EditTool.Pen;
 		}
 
 		private void ItemLine_Click(object sender, EventArgs e)
 		{
-			this.ItemUncheck();
-			this.ItemLine.Checked = true;
-			this.GMLine.Checked = true;
-			this.MainDesigner.CurrentTool = GUIDesigner.EditTool.Line;
+			ItemUncheck();
+			ItemLine.Checked = true;
+			GMLine.Checked = true;
+			MainDesigner.CurrentTool = GUIDesigner.EditTool.Line;
 		}
 
 		private void ItemRect_Click(object sender, EventArgs e)
 		{
-			this.ItemUncheck();
-			this.ItemRect.Checked = true;
-			this.GMRect.Checked = true;
-			this.MainDesigner.CurrentTool = GUIDesigner.EditTool.Rect;
+			ItemUncheck();
+			ItemRect.Checked = true;
+			GMRect.Checked = true;
+			MainDesigner.CurrentTool = GUIDesigner.EditTool.Rect;
 		}
 
 		private void ItemFill_Click(object sender, EventArgs e)
 		{
-			this.ItemUncheck();
-			this.ItemFill.Checked = true;
-			this.GMFill.Checked = true;
-			this.MainDesigner.CurrentTool = GUIDesigner.EditTool.Fill;
+			ItemUncheck();
+			ItemFill.Checked = true;
+			GMFill.Checked = true;
+			MainDesigner.CurrentTool = GUIDesigner.EditTool.Fill;
 		}
 
 		private void ItemUndo_Click(object sender, EventArgs e)
 		{
-			this.MainDesigner.Undo();
+			MainDesigner.Undo();
 		}
 
 		private void GMUndo_Click(object sender, EventArgs e)
 		{
-			this.ItemUndo_Click(this, new EventArgs());
+			ItemUndo_Click(this, new EventArgs());
 		}
 
 		private void ItemRedo_Click(object sender, EventArgs e)
 		{
-			this.MainDesigner.Redo();
+			MainDesigner.Redo();
 		}
 
 		private void GMRedo_Click(object sender, EventArgs e)
 		{
-			this.ItemRedo_Click(this, new EventArgs());
+			ItemRedo_Click(this, new EventArgs());
 		}
 
 		private void GMCut_Click(object sender, EventArgs e)
 		{
-			this.GuiCut.Checked = !this.GuiCut.Checked;
-			this.GuiCut_Click(sender, e);
+			GuiCut.Checked = !GuiCut.Checked;
+			GuiCut_Click(sender, e);
 		}
 
 		private void GMCopy_Click(object sender, EventArgs e)
 		{
-			this.GuiCopy.Checked = !this.GuiCopy.Checked;
-			this.GuiCopy_Click(sender, e);
+			GuiCopy.Checked = !GuiCopy.Checked;
+			GuiCopy_Click(sender, e);
 		}
 
 		private void GMPaste_Click(object sender, EventArgs e)
 		{
-			this.GuiPaste.Checked = !this.GuiPaste.Checked;
-			this.GuiPaste_Click(sender, e);
+			GuiPaste.Checked = !GuiPaste.Checked;
+			GuiPaste_Click(sender, e);
 		}
 
 		private void MainDesigner_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -1314,40 +1314,40 @@ namespace MasaoPlus
 					case Keys.Up:
 						if (Global.config.draw.PageScroll)
 						{
-							this.MoveMainDesigner(new Size(0, this.MainDesigner.Height * -1));
+							MoveMainDesigner(new Size(0, MainDesigner.Height * -1));
 							return;
 						}
-						this.MoveMainDesigner(new Size(0, Global.cpd.runtime.Definitions.ChipSize.Height * -1));
+						MoveMainDesigner(new Size(0, Global.cpd.runtime.Definitions.ChipSize.Height * -1));
 						return;
 					case Keys.Right:
 						if (Global.config.draw.PageScroll)
 						{
-							this.MoveMainDesigner(new Size(this.MainDesigner.Width, 0));
+							MoveMainDesigner(new Size(MainDesigner.Width, 0));
 							return;
 						}
-						this.MoveMainDesigner(new Size(Global.cpd.runtime.Definitions.ChipSize.Width, 0));
+						MoveMainDesigner(new Size(Global.cpd.runtime.Definitions.ChipSize.Width, 0));
 						return;
 					case Keys.Down:
 						if (Global.config.draw.PageScroll)
 						{
-							this.MoveMainDesigner(new Size(0, this.MainDesigner.Height));
+							MoveMainDesigner(new Size(0, MainDesigner.Height));
 							return;
 						}
-						this.MoveMainDesigner(new Size(0, Global.cpd.runtime.Definitions.ChipSize.Height));
+						MoveMainDesigner(new Size(0, Global.cpd.runtime.Definitions.ChipSize.Height));
 						return;
 					default:
 						switch (keyCode)
 						{
 						case Keys.C:
-							this.ItemCursor_Click(this, new EventArgs());
+							ItemCursor_Click(this, new EventArgs());
 							return;
 						case Keys.D:
-							this.ItemPen_Click(this, new EventArgs());
+							ItemPen_Click(this, new EventArgs());
 							return;
 						case Keys.E:
 							goto IL_2CF;
 						case Keys.F:
-							this.ItemFill_Click(this, new EventArgs());
+							ItemFill_Click(this, new EventArgs());
 							return;
 						default:
 							goto IL_2CF;
@@ -1355,58 +1355,58 @@ namespace MasaoPlus
 					}
 					if (Global.config.draw.PageScroll)
 					{
-						this.MoveMainDesigner(new Size(this.MainDesigner.Width * -1, 0));
+						MoveMainDesigner(new Size(MainDesigner.Width * -1, 0));
 						return;
 					}
-					this.MoveMainDesigner(new Size(Global.cpd.runtime.Definitions.ChipSize.Width * -1, 0));
+					MoveMainDesigner(new Size(Global.cpd.runtime.Definitions.ChipSize.Width * -1, 0));
 					return;
 				}
 				else
 				{
 					if (keyCode == Keys.R)
 					{
-						this.ItemRect_Click(this, new EventArgs());
+						ItemRect_Click(this, new EventArgs());
 						return;
 					}
 					if (keyCode == Keys.S)
 					{
-						this.ItemLine_Click(this, new EventArgs());
+						ItemLine_Click(this, new EventArgs());
 						return;
 					}
 					switch (keyCode)
 					{
 					case Keys.F1:
-						this.StageSelectionChange(0);
+						StageSelectionChange(0);
 						return;
 					case Keys.F2:
-						this.StageSelectionChange(1);
+						StageSelectionChange(1);
 						return;
 					case Keys.F3:
-						this.StageSelectionChange(2);
+						StageSelectionChange(2);
 						return;
 					case Keys.F4:
-						this.StageSelectionChange(3);
+						StageSelectionChange(3);
 						return;
 					case Keys.F6:
-						this.StageSelectionChange(4);
+						StageSelectionChange(4);
 						return;
 					case Keys.F7:
-						this.EditPatternChip_Click(this, new EventArgs());
+						EditPatternChip_Click(this, new EventArgs());
 						return;
 					case Keys.F8:
-						this.EditBackground_Click(this, new EventArgs());
+						EditBackground_Click(this, new EventArgs());
 						return;
 					case Keys.F9:
-						this.StageZoom25_Click(this, new EventArgs());
+						StageZoom25_Click(this, new EventArgs());
 						return;
 					case Keys.F10:
-						this.StageZoom50_Click(this, new EventArgs());
+						StageZoom50_Click(this, new EventArgs());
 						return;
 					case Keys.F11:
-						this.StageZoom100_Click(this, new EventArgs());
+						StageZoom100_Click(this, new EventArgs());
 						return;
 					case Keys.F12:
-						this.StageZoom200_Click(this, new EventArgs());
+						StageZoom200_Click(this, new EventArgs());
 						return;
 					}
 				}
@@ -1420,10 +1420,10 @@ namespace MasaoPlus
 				{
 					return;
 				}
-				if (this.MainDesigner.CurrentTool != GUIDesigner.EditTool.Cursor)
+				if (MainDesigner.CurrentTool != GUIDesigner.EditTool.Cursor)
 				{
-					this.OldET = this.MainDesigner.CurrentTool;
-					this.MainDesigner.CurrentTool = GUIDesigner.EditTool.Cursor;
+					OldET = MainDesigner.CurrentTool;
+					MainDesigner.CurrentTool = GUIDesigner.EditTool.Cursor;
 					return;
 				}
 			}
@@ -1435,13 +1435,13 @@ namespace MasaoPlus
 				{
 					if (keyCode2 == Keys.C)
 					{
-						this.GMCopy_Click(this, new EventArgs());
+						GMCopy_Click(this, new EventArgs());
 						goto IL_3E8;
 					}
 					if (keyCode2 == Keys.G)
 					{
-						this.ShowGrid.Checked = !this.ShowGrid.Checked;
-						this.ShowGrid_Click(this, new EventArgs());
+						ShowGrid.Checked = !ShowGrid.Checked;
+						ShowGrid_Click(this, new EventArgs());
 						goto IL_3E8;
 					}
 				}
@@ -1450,22 +1450,22 @@ namespace MasaoPlus
 					switch (keyCode2)
 					{
 					case Keys.V:
-						this.GMPaste_Click(this, new EventArgs());
+						GMPaste_Click(this, new EventArgs());
 						goto IL_3E8;
 					case Keys.W:
 						break;
 					case Keys.X:
-						this.GMCut_Click(this, new EventArgs());
+						GMCut_Click(this, new EventArgs());
 						goto IL_3E8;
 					default:
 						if (keyCode2 == Keys.F10)
 						{
-							this.ProjectConfig_Click(this, new EventArgs());
+							ProjectConfig_Click(this, new EventArgs());
 							goto IL_3E8;
 						}
 						if (keyCode2 == Keys.F11)
 						{
-							this.MSysConfig_Click(this, new EventArgs());
+							MSysConfig_Click(this, new EventArgs());
 							goto IL_3E8;
 						}
 						break;
@@ -1473,7 +1473,7 @@ namespace MasaoPlus
 				}
 				e.Handled = false;
 				IL_3E8:
-				this.MainDesigner.Focus();
+				MainDesigner.Focus();
 			}
 		}
 
@@ -1485,7 +1485,7 @@ namespace MasaoPlus
 			state2.MapPoint.Y = state2.MapPoint.Y + Scroll.Height;
 			Global.state.AdjustMapPoint();
 			Global.MainWnd.CommitScrollbar();
-			this.MainDesigner.Refresh();
+			MainDesigner.Refresh();
 		}
 
 		private void MainDesigner_KeyUp(object sender, KeyEventArgs e)
@@ -1496,86 +1496,86 @@ namespace MasaoPlus
 				{
 					return;
 				}
-				if (this.OldET != GUIDesigner.EditTool.Cursor && this.MainDesigner.CurrentTool == GUIDesigner.EditTool.Cursor)
+				if (OldET != GUIDesigner.EditTool.Cursor && MainDesigner.CurrentTool == GUIDesigner.EditTool.Cursor)
 				{
-					this.MainDesigner.CurrentTool = this.OldET;
-					this.OldET = GUIDesigner.EditTool.Cursor;
+					MainDesigner.CurrentTool = OldET;
+					OldET = GUIDesigner.EditTool.Cursor;
 				}
 			}
 		}
 
 		public void GuiCut_Click(object sender, EventArgs e)
 		{
-			if (this.GuiCut.Checked)
+			if (GuiCut.Checked)
 			{
-				this.GuiCopy.Checked = false;
-				this.GuiPaste.Checked = false;
-				this.MainDesigner.CopyPaste = GUIDesigner.CopyPasteTool.Cut;
+				GuiCopy.Checked = false;
+				GuiPaste.Checked = false;
+				MainDesigner.CopyPaste = GUIDesigner.CopyPasteTool.Cut;
 				return;
 			}
-			this.CopyPasteInit();
+			CopyPasteInit();
 		}
 
 		public void GuiCopy_Click(object sender, EventArgs e)
 		{
-			if (this.GuiCopy.Checked)
+			if (GuiCopy.Checked)
 			{
-				this.GuiCut.Checked = false;
-				this.GuiPaste.Checked = false;
-				this.MainDesigner.CopyPaste = GUIDesigner.CopyPasteTool.Copy;
+				GuiCut.Checked = false;
+				GuiPaste.Checked = false;
+				MainDesigner.CopyPaste = GUIDesigner.CopyPasteTool.Copy;
 				return;
 			}
-			this.CopyPasteInit();
+			CopyPasteInit();
 		}
 
 		public void GuiPaste_Click(object sender, EventArgs e)
 		{
-			if (!this.GuiPaste.Checked)
+			if (!GuiPaste.Checked)
 			{
-				this.CopyPasteInit();
+				CopyPasteInit();
 				return;
 			}
-			this.MainDesigner.ClipedString = Clipboard.GetText();
-			if (this.MainDesigner.CheckBuffer())
+			MainDesigner.ClipedString = Clipboard.GetText();
+			if (MainDesigner.CheckBuffer())
 			{
-				this.GuiCopy.Checked = false;
-				this.GuiCut.Checked = false;
-				this.MainDesigner.CopyPaste = GUIDesigner.CopyPasteTool.Paste;
+				GuiCopy.Checked = false;
+				GuiCut.Checked = false;
+				MainDesigner.CopyPaste = GUIDesigner.CopyPasteTool.Paste;
 				return;
 			}
-			this.CopyPasteInit();
-			this.UpdateStatus("クリップテキストが不正です");
+			CopyPasteInit();
+			UpdateStatus("クリップテキストが不正です");
 		}
 
 		public void CopyPasteInit()
 		{
-			this.GuiCopy.Checked = false;
-			this.GuiCut.Checked = false;
-			this.GuiPaste.Checked = false;
-			this.MainDesigner.CopyPaste = GUIDesigner.CopyPasteTool.None;
-			this.MainDesigner.Refresh();
+			GuiCopy.Checked = false;
+			GuiCut.Checked = false;
+			GuiPaste.Checked = false;
+			MainDesigner.CopyPaste = GUIDesigner.CopyPasteTool.None;
+			MainDesigner.Refresh();
 		}
 
 		private void GUIProjConfig_Click(object sender, EventArgs e)
 		{
-			this.ProjectConfig_Click(this, new EventArgs());
+			ProjectConfig_Click(this, new EventArgs());
 		}
 
 		private void DrawType_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (this.DrawType.SelectedIndex == 3)
+			if (DrawType.SelectedIndex == 3)
 			{
-				this.ChipList.Visible = false;
-				this.GuiChipList.Visible = true;
-				this.GuiChipList.ResizeInvoke();
-				this.GuiChipList.Refresh();
+				ChipList.Visible = false;
+				GuiChipList.Visible = true;
+				GuiChipList.ResizeInvoke();
+				GuiChipList.Refresh();
 				return;
 			}
-			this.ChipList.Visible = true;
-			this.GuiChipList.Visible = false;
-			this.ChipList.DrawMode = DrawMode.OwnerDrawFixed;
-			this.ChipList.DrawMode = DrawMode.OwnerDrawVariable;
-			this.ChipList.Refresh();
+			ChipList.Visible = true;
+			GuiChipList.Visible = false;
+			ChipList.DrawMode = DrawMode.OwnerDrawFixed;
+			ChipList.DrawMode = DrawMode.OwnerDrawVariable;
+			ChipList.Refresh();
 		}
 
 		private void ChipList_DrawItem(object sender, DrawItemEventArgs e)
@@ -1594,7 +1594,7 @@ namespace MasaoPlus
 				GraphicsState transState;
 				Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
 
-				switch (this.DrawType.SelectedIndex)
+				switch (DrawType.SelectedIndex)
 				{
 					case 0: // サムネイル
 						if (!Global.cpd.UseLayer || Global.state.EditingForeground)
@@ -1668,9 +1668,9 @@ namespace MasaoPlus
 											};
 											using var imageAttributes = new ImageAttributes();
 											imageAttributes.SetColorMatrix(colorMatrix);
-											e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
+											e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
 										}
-										else e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+										else e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
 										break;
 								}
 							}
@@ -1679,7 +1679,7 @@ namespace MasaoPlus
 						else
 						{
 							cschip = Global.cpd.Layerchip[i].GetCSChip();
-							e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig, new Rectangle(e.Bounds.Location, new Size(e.Bounds.Height, e.Bounds.Height)), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+							e.Graphics.DrawImage(MainDesigner.DrawLayerOrig, new Rectangle(e.Bounds.Location, new Size(e.Bounds.Height, e.Bounds.Height)), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
 						}
 						width = e.Bounds.Height;
 					break;
@@ -1752,9 +1752,9 @@ namespace MasaoPlus
 											};
 											using var imageAttributes = new ImageAttributes();
 											imageAttributes.SetColorMatrix(colorMatrix);
-											e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
+											e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
 										}
-										else e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+										else e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 										break;
 								}
 								width = chipsize.Width;
@@ -1780,7 +1780,7 @@ namespace MasaoPlus
 										}
 									e.Graphics.TranslateTransform(cschip.size.Width / 2, cschip.size.Height / 2);
 									if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
-									e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig,
+									e.Graphics.DrawImage(MainDesigner.DrawChipOrig,
 										new Rectangle(new Point(-cschip.size.Width / 2 + rotate_o, -cschip.size.Height / 2 + rotate_o), cschip.size),
 										new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
 								}
@@ -1793,12 +1793,12 @@ namespace MasaoPlus
 							cschip = Global.cpd.Layerchip[i].GetCSChip();
 							if (cschip.size == default)
 							{
-								e.Graphics.DrawImage(this.MainDesigner.DrawLayerOrig, new Rectangle(e.Bounds.Location, chipsize), new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+								e.Graphics.DrawImage(MainDesigner.DrawLayerOrig, new Rectangle(e.Bounds.Location, chipsize), new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
 								width = chipsize.Width;
 							}
 							else
 							{
-								e.Graphics.DrawImage(this.MainDesigner.DrawChipOrig, new Rectangle(e.Bounds.Location, cschip.size), new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
+								e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(e.Bounds.Location, cschip.size), new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
 								width = cschip.size.Width;
 							}
 						}
@@ -1807,7 +1807,7 @@ namespace MasaoPlus
 				e.Graphics.PixelOffsetMode = default;
 				e.Graphics.DrawString(((ListBox)sender).Items[i].ToString(), e.Font, brush, new Rectangle(e.Bounds.X + width, e.Bounds.Y, e.Bounds.Width - width, e.Bounds.Height));
 
-				if (!this.ChipList.Enabled) e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(160, Color.White)), e.Bounds); // 無効時に白くする
+				if (!ChipList.Enabled) e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(160, Color.White)), e.Bounds); // 無効時に白くする
 			}
 			catch
 			{
@@ -1820,11 +1820,11 @@ namespace MasaoPlus
             int i = e.Index;
             int chip_hight = Global.cpd.runtime.Definitions.ChipSize.Height;
 
-			switch (this.DrawType.SelectedIndex)
+			switch (DrawType.SelectedIndex)
 			{
 			case 0: // サムネイル
 			case 1: // テキスト
-				e.ItemHeight = this.ChipList.ItemHeight;
+				e.ItemHeight = ChipList.ItemHeight;
 				return;
 			case 2: // チップ
 				int height;
@@ -1888,39 +1888,39 @@ namespace MasaoPlus
 
 		private void TMUndo_Click(object sender, EventArgs e)
 		{
-			this.MainEditor.Undo();
+			MainEditor.Undo();
 		}
 
 		private void TMRedo_Click(object sender, EventArgs e)
 		{
-			this.MainEditor.Redo();
+			MainEditor.Redo();
 		}
 
 		private void TextCut_Click(object sender, EventArgs e)
 		{
-			this.MainEditor.StageTextEditor.Cut();
+			MainEditor.StageTextEditor.Cut();
 		}
 
 		private void TextCopy_Click(object sender, EventArgs e)
 		{
-			this.MainEditor.StageTextEditor.Copy();
+			MainEditor.StageTextEditor.Copy();
 		}
 
 		private void TextPaste_Click(object sender, EventArgs e)
 		{
-			this.MainEditor.StageTextEditor.Paste();
+			MainEditor.StageTextEditor.Paste();
 		}
 
 		private void ProjTestRun(object sender, EventArgs e)
 		{
-			this.EditTab.SelectedIndex = 2;
+			EditTab.SelectedIndex = 2;
 		}
 
 		private void MainWindow_Activated(object sender, EventArgs e)
 		{
-			if (this.EditTab.SelectedIndex == 0)
+			if (EditTab.SelectedIndex == 0)
 			{
-				this.MainDesigner.Refresh();
+				MainDesigner.Refresh();
             }
             if (Global.state.Testrun != null && Global.config.testRun.KillTestrunOnFocus)
             {
@@ -1944,26 +1944,26 @@ namespace MasaoPlus
 
 		private void MainDesigner_Enter(object sender, EventArgs e)
 		{
-			if (this.OldET != GUIDesigner.EditTool.Cursor && this.MainDesigner.CurrentTool == GUIDesigner.EditTool.Cursor)
+			if (OldET != GUIDesigner.EditTool.Cursor && MainDesigner.CurrentTool == GUIDesigner.EditTool.Cursor)
 			{
-				this.MainDesigner.CurrentTool = this.OldET;
-				this.OldET = GUIDesigner.EditTool.Cursor;
+				MainDesigner.CurrentTool = OldET;
+				OldET = GUIDesigner.EditTool.Cursor;
 			}
 		}
 
 		private void RestartUp(string su)
 		{
-			this.Restartupping = true;
-			this.MEditStage1_Click(this, new EventArgs());
-			this.EditPatternChip_Click(this, new EventArgs());
+			Restartupping = true;
+			MEditStage1_Click(this, new EventArgs());
+			EditPatternChip_Click(this, new EventArgs());
 			Global.state.EditingForeground = true;
-			this.EditTab.SelectedIndex = 0;
-			this.SideTab.SelectedIndex = 0;
-			this.ChipList.Enabled = true;
-			this.GuiChipList.Enabled = true;
-			this.MSave.Enabled = true;
-			this.MSaveAs.Enabled = true;
-			this.MTSave.Enabled = true;
+			EditTab.SelectedIndex = 0;
+			SideTab.SelectedIndex = 0;
+			ChipList.Enabled = true;
+			GuiChipList.Enabled = true;
+			MSave.Enabled = true;
+			MSaveAs.Enabled = true;
+			MTSave.Enabled = true;
 			Global.state.EditFlag = false;
 			using (ProjectLoading projectLoading = new ProjectLoading(su))
 			{
@@ -1974,28 +1974,28 @@ namespace MasaoPlus
 					return;
 				}
 			}
-			this.MainDesigner.ClearBuffer();
-			this.MainDesigner.AddBuffer();
-			this.EditorSystemPanel_Resize(this, new EventArgs());
-			this.UpdateScrollbar();
+			MainDesigner.ClearBuffer();
+			MainDesigner.AddBuffer();
+			EditorSystemPanel_Resize(this, new EventArgs());
+			UpdateScrollbar();
 			if (Global.cpd.UseLayer)
 			{
-				this.LayerState(true);
+				LayerState(true);
 			}
 			else
 			{
-				this.LayerState(false);
+				LayerState(false);
 			}
-			this.UpdateStageSelector();
-			this.Restartupping = false;
+			UpdateStageSelector();
+			Restartupping = false;
 		}
 
 		private void LayerState(bool enabled)
 		{
-			this.ViewUnactiveLayer.Enabled = enabled;
-			this.LayerMenu.Visible = enabled;
-			this.StageLayer.Visible = enabled;
-			this.MainEditor.StageLayer.Visible = enabled;
+			ViewUnactiveLayer.Enabled = enabled;
+			LayerMenu.Visible = enabled;
+			StageLayer.Visible = enabled;
+			MainEditor.StageLayer.Visible = enabled;
 		}
 
 		private void MNew_Click(object sender, EventArgs e)
@@ -2007,7 +2007,7 @@ namespace MasaoPlus
             using NewProject newProject = new NewProject();
             if (newProject.ShowDialog() == DialogResult.OK)
             {
-                this.RestartUp(newProject.CreatedProject);
+                RestartUp(newProject.CreatedProject);
             }
         }
 
@@ -2022,7 +2022,7 @@ namespace MasaoPlus
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                this.RestartUp(openFileDialog.FileName);
+                RestartUp(openFileDialog.FileName);
             }
         }
 
@@ -2030,7 +2030,7 @@ namespace MasaoPlus
 		{
 			Global.cpd.project.SaveXML(Global.cpd.filename);
 			Global.state.EditFlag = false;
-			this.UpdateStatus("保存しました");
+			UpdateStatus("保存しました");
 		}
 
 		private void MSaveAs_Click(object sender, EventArgs e)
@@ -2061,7 +2061,7 @@ namespace MasaoPlus
                 Global.cpd.where = Path.GetDirectoryName(saveFileDialog.FileName);
                 Global.cpd.filename = saveFileDialog.FileName;
             }
-            this.MSave_Click(this, new EventArgs());
+            MSave_Click(this, new EventArgs());
         }
 
 		private void MWriteHTML_Click(object sender, EventArgs e)
@@ -2106,53 +2106,53 @@ namespace MasaoPlus
 		private void ViewUnactiveLayer_Click(object sender, EventArgs e)
 		{
 			Global.state.DrawUnactiveLayer = !Global.state.DrawUnactiveLayer;
-			this.ViewUnactiveLayer.Checked = Global.state.DrawUnactiveLayer;
-			this.MDUnactiveLayer.Checked = Global.state.DrawUnactiveLayer;
-			if (!this.ViewUnactiveLayer.Checked)
+			ViewUnactiveLayer.Checked = Global.state.DrawUnactiveLayer;
+			MDUnactiveLayer.Checked = Global.state.DrawUnactiveLayer;
+			if (!ViewUnactiveLayer.Checked)
 			{
 				if (Global.state.TransparentUnactiveLayer)
 				{
-					this.TransparentUnactiveLayer.Enabled = false;
+					TransparentUnactiveLayer.Enabled = false;
 					if (Global.state.EditingForeground)
 					{
-						this.MainDesigner.UpdateBackgroundBuffer();
+						MainDesigner.UpdateBackgroundBuffer();
 					}
 					else
 					{
-						this.MainDesigner.UpdateForegroundBuffer();
+						MainDesigner.UpdateForegroundBuffer();
 					}
 				}
-				this.MTUnactiveLayer.Enabled = false;
+				MTUnactiveLayer.Enabled = false;
 			}
 			else
 			{
-				this.MainDesigner.InitTransparent();
-				this.TransparentUnactiveLayer.Enabled = true;
-				this.MTUnactiveLayer.Enabled = true;
+				MainDesigner.InitTransparent();
+				TransparentUnactiveLayer.Enabled = true;
+				MTUnactiveLayer.Enabled = true;
 			}
-			this.MainDesigner.Refresh();
+			MainDesigner.Refresh();
 		}
 
 		private void TransparentUnactiveLayer_Click(object sender, EventArgs e)
 		{
-			this.UpdateStatus("描画モードを切り替えています...");
+			UpdateStatus("描画モードを切り替えています...");
 			Global.state.TransparentUnactiveLayer = !Global.state.TransparentUnactiveLayer;
-			this.TransparentUnactiveLayer.Checked = Global.state.TransparentUnactiveLayer;
-			this.MTUnactiveLayer.Checked = Global.state.TransparentUnactiveLayer;
-			if (this.TransparentUnactiveLayer.Checked)
+			TransparentUnactiveLayer.Checked = Global.state.TransparentUnactiveLayer;
+			MTUnactiveLayer.Checked = Global.state.TransparentUnactiveLayer;
+			if (TransparentUnactiveLayer.Checked)
 			{
-				this.MainDesigner.InitTransparent();
+				MainDesigner.InitTransparent();
 			}
 			else if (Global.state.EditingForeground)
 			{
-				this.MainDesigner.UpdateBackgroundBuffer();
+				MainDesigner.UpdateBackgroundBuffer();
 			}
 			else
 			{
-				this.MainDesigner.UpdateForegroundBuffer();
+				MainDesigner.UpdateForegroundBuffer();
 			}
-			this.MainDesigner.Refresh();
-			this.UpdateStatus("完了");
+			MainDesigner.Refresh();
+			UpdateStatus("完了");
 		}
 
 		public void EditPatternChip_Click(object sender, EventArgs e)
@@ -2161,18 +2161,18 @@ namespace MasaoPlus
 			{
 				return;
 			}
-			if (!this.ChangePreCheck())
+			if (!ChangePreCheck())
 			{
 				return;
 			}
 			Global.state.EditingForeground = true;
-			this.EditPatternChip.Checked = true;
-			this.PatternChipLayer.Checked = true;
-			this.MainEditor.PatternChipLayer.Checked = true;
-			this.EditBackground.Checked = false;
-			this.BackgroundLayer.Checked = false;
-			this.MainEditor.BackgroundLayer.Checked = false;
-			this.UpdateLayer();
+			EditPatternChip.Checked = true;
+			PatternChipLayer.Checked = true;
+			MainEditor.PatternChipLayer.Checked = true;
+			EditBackground.Checked = false;
+			BackgroundLayer.Checked = false;
+			MainEditor.BackgroundLayer.Checked = false;
+			UpdateLayer();
 		}
 
 		public void EditBackground_Click(object sender, EventArgs e)
@@ -2181,23 +2181,23 @@ namespace MasaoPlus
 			{
 				return;
 			}
-			if (!this.ChangePreCheck())
+			if (!ChangePreCheck())
 			{
 				return;
 			}
 			Global.state.EditingForeground = false;
-			this.EditPatternChip.Checked = false;
-			this.PatternChipLayer.Checked = false;
-			this.MainEditor.PatternChipLayer.Checked = false;
-			this.EditBackground.Checked = true;
-			this.BackgroundLayer.Checked = true;
-			this.MainEditor.BackgroundLayer.Checked = true;
-			this.UpdateLayer();
+			EditPatternChip.Checked = false;
+			PatternChipLayer.Checked = false;
+			MainEditor.PatternChipLayer.Checked = false;
+			EditBackground.Checked = true;
+			BackgroundLayer.Checked = true;
+			MainEditor.BackgroundLayer.Checked = true;
+			UpdateLayer();
 		}
 
 		private bool ChangePreCheck()
 		{
-			return this.EditTab.SelectedIndex != 1 || this.MainEditor.CanConvertTextSource() || MessageBox.Show($"ステージのテキストが規定の形式を満たしていないため、テキストを反映できません。{Environment.NewLine}レイヤーを切り替えると、編集結果は失われます。{Environment.NewLine}続行してもよろしいですか？", "コンバート失敗", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) != DialogResult.Cancel;
+			return EditTab.SelectedIndex != 1 || MainEditor.CanConvertTextSource() || MessageBox.Show($"ステージのテキストが規定の形式を満たしていないため、テキストを反映できません。{Environment.NewLine}レイヤーを切り替えると、編集結果は失われます。{Environment.NewLine}続行してもよろしいですか？", "コンバート失敗", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) != DialogResult.Cancel;
 		}
 
 		private void StageSelectionChange(int newValue)
@@ -2206,71 +2206,71 @@ namespace MasaoPlus
 			{
 				return;
 			}
-			this.UpdateStatus("ステージを切り替えています...");
-			this.MEditStage1.Checked = false;
-			this.MEditStage2.Checked = false;
-			this.MEditStage3.Checked = false;
-			this.MEditStage4.Checked = false;
-			this.MEditMap.Checked = false;
+			UpdateStatus("ステージを切り替えています...");
+			MEditStage1.Checked = false;
+			MEditStage2.Checked = false;
+			MEditStage3.Checked = false;
+			MEditStage4.Checked = false;
+			MEditMap.Checked = false;
 			Global.state.MapEditMode = false;
 			switch (newValue)
 			{
 			case 0:
 				Global.cpd.EditingMap = Global.cpd.project.StageData;
 				Global.cpd.EditingLayer = Global.cpd.project.LayerData;
-				this.MEditStage1.Checked = true;
+				MEditStage1.Checked = true;
 				Global.state.Background = Global.cpd.project.Config.Background;
-				this.LayerState(Global.cpd.UseLayer);
+				LayerState(Global.cpd.UseLayer);
 				break;
 			case 1:
 				Global.cpd.EditingMap = Global.cpd.project.StageData2;
 				Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
-				this.MEditStage2.Checked = true;
+				MEditStage2.Checked = true;
 				Global.state.Background = Global.cpd.project.Config.Background2;
-				this.LayerState(Global.cpd.UseLayer);
+				LayerState(Global.cpd.UseLayer);
 				break;
 			case 2:
 				Global.cpd.EditingMap = Global.cpd.project.StageData3;
 				Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
-				this.MEditStage3.Checked = true;
+				MEditStage3.Checked = true;
 				Global.state.Background = Global.cpd.project.Config.Background3;
-				this.LayerState(Global.cpd.UseLayer);
+				LayerState(Global.cpd.UseLayer);
 				break;
 			case 3:
 				Global.cpd.EditingMap = Global.cpd.project.StageData4;
 				Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
-				this.MEditStage4.Checked = true;
+				MEditStage4.Checked = true;
 				Global.state.Background = Global.cpd.project.Config.Background4;
-				this.LayerState(Global.cpd.UseLayer);
+				LayerState(Global.cpd.UseLayer);
 				break;
 			case 4:
 				Global.cpd.EditingMap = Global.cpd.project.MapData;
-				this.MEditMap.Checked = true;
+				MEditMap.Checked = true;
 				Global.state.MapEditMode = true;
 				Global.state.Background = Global.cpd.project.Config.BackgroundM; // なぜか複数ステージでステージ開始時画面の背景色を使っている
-				this.LayerState(false);
+				LayerState(false);
 				Global.state.EditingForeground = true;
 				break;
 			}
 			Global.state.EdittingStage = newValue;
-			this.MainDesigner.ForceBufferResize();
-			this.UpdateLayer();
-			this.UpdateScrollbar();
+			MainDesigner.ForceBufferResize();
+			UpdateLayer();
+			UpdateScrollbar();
 		}
 
 		private void UpdateStageSelector()
 		{
-			this.MEditStage2.Enabled = (Global.cpd.project.Config.StageNum >= 2) || Global.cpd.project.Config.UseWorldmap;
-			this.MEditStage3.Enabled = (Global.cpd.project.Config.StageNum >= 3) || Global.cpd.project.Config.UseWorldmap;
-			this.MEditStage4.Enabled = (Global.cpd.project.Config.StageNum >= 4) || Global.cpd.project.Config.UseWorldmap;
-			this.MEditMap.Enabled = Global.cpd.project.Config.UseWorldmap;
+			MEditStage2.Enabled = (Global.cpd.project.Config.StageNum >= 2) || Global.cpd.project.Config.UseWorldmap;
+			MEditStage3.Enabled = (Global.cpd.project.Config.StageNum >= 3) || Global.cpd.project.Config.UseWorldmap;
+			MEditStage4.Enabled = (Global.cpd.project.Config.StageNum >= 4) || Global.cpd.project.Config.UseWorldmap;
+			MEditMap.Enabled = Global.cpd.project.Config.UseWorldmap;
 		}
 
 		private void UpdateLayer()
 		{
-			if (this.EditTab.SelectedIndex == 0)
+			if (EditTab.SelectedIndex == 0)
 			{
-				this.UpdateStatus("描画を更新しています...");
+				UpdateStatus("描画を更新しています...");
 				if (Global.state.EditingForeground)
 				{
 					Global.state.CurrentChip = Global.cpd.Mapchip[0];
@@ -2279,54 +2279,54 @@ namespace MasaoPlus
 				{
 					Global.state.CurrentChip = Global.cpd.Layerchip[0];
 				}
-				this.ChipItemReadyInvoke();
-				this.MainDesigner.ClearBuffer();
-				this.MainDesigner.UpdateForegroundBuffer();
-				this.MainDesigner.UpdateBackgroundBuffer();
+				ChipItemReadyInvoke();
+				MainDesigner.ClearBuffer();
+				MainDesigner.UpdateForegroundBuffer();
+				MainDesigner.UpdateBackgroundBuffer();
 				if (Global.state.TransparentUnactiveLayer)
 				{
-					this.MainDesigner.InitTransparent();
+					MainDesigner.InitTransparent();
 				}
-				this.MainDesigner.AddBuffer();
-				this.MainDesigner.Refresh();
-				this.UpdateStatus("完了");
+				MainDesigner.AddBuffer();
+				MainDesigner.Refresh();
+				UpdateStatus("完了");
 				return;
 			}
-			if (this.EditTab.SelectedIndex == 1)
+			if (EditTab.SelectedIndex == 1)
 			{
 				if (Global.state.EditingForeground)
 				{
-					Global.cpd.EditingLayer = (string[])this.MainEditor.StageTextEditor.Lines.Clone();
-					this.MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingMap).Clone();
-					this.MainEditor.BufferClear();
-					this.MainEditor.AddBuffer();
+					Global.cpd.EditingLayer = (string[])MainEditor.StageTextEditor.Lines.Clone();
+					MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingMap).Clone();
+					MainEditor.BufferClear();
+					MainEditor.AddBuffer();
 					return;
 				}
-				Global.cpd.EditingMap = (string[])this.MainEditor.StageTextEditor.Lines.Clone();
-				this.MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingLayer).Clone();
-				this.MainEditor.BufferClear();
-				this.MainEditor.AddBuffer();
+				Global.cpd.EditingMap = (string[])MainEditor.StageTextEditor.Lines.Clone();
+				MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingLayer).Clone();
+				MainEditor.BufferClear();
+				MainEditor.AddBuffer();
 			}
 		}
 
 		private void DrawType_Resize(object sender, EventArgs e)
 		{
-			this.DrawType.Refresh();
+			DrawType.Refresh();
 		}
 
 		public void MSysConfig_Click(object sender, EventArgs e)
 		{
             using SideConfig sideConfig = new SideConfig();
-            if (sideConfig.ShowDialog() == DialogResult.OK && this.EditTab.SelectedIndex == 0)
+            if (sideConfig.ShowDialog() == DialogResult.OK && EditTab.SelectedIndex == 0)
             {
-                this.UpdateStatus("描画を更新しています...");
-                this.GuiChipList.Refresh();
-                this.MainDesigner.UpdateBackgroundBuffer();
-                this.MainDesigner.UpdateForegroundBuffer();
-                this.MainDesigner.InitTransparent();
-                this.MainDesigner.Refresh();
-                this.MasaoConfigList.Reload();
-                this.UpdateStatus("完了");
+                UpdateStatus("描画を更新しています...");
+                GuiChipList.Refresh();
+                MainDesigner.UpdateBackgroundBuffer();
+                MainDesigner.UpdateForegroundBuffer();
+                MainDesigner.InitTransparent();
+                MainDesigner.Refresh();
+                MasaoConfigList.Reload();
+                UpdateStatus("完了");
             }
         }
 
@@ -2338,9 +2338,9 @@ namespace MasaoPlus
 
 		private void SideTab_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (this.SideTab.SelectedIndex == 1)
+			if (SideTab.SelectedIndex == 1)
 			{
-				this.MasaoConfigList.Prepare();
+				MasaoConfigList.Prepare();
 			}
 		}
 
@@ -2348,7 +2348,7 @@ namespace MasaoPlus
 		{
 			if (e.CloseReason != CloseReason.ApplicationExitCall)
 			{
-				Global.config.lastData.SpliterDist = (double)this.MainSplit.SplitterDistance / (double)base.Width;
+				Global.config.lastData.SpliterDist = (double)MainSplit.SplitterDistance / (double)base.Width;
 				Rectangle normalWindowLocation = Native.GetNormalWindowLocation(this);
 				Global.config.lastData.WndSize = normalWindowLocation.Size;
 				Global.config.lastData.WndPoint = normalWindowLocation.Location;
@@ -2381,11 +2381,11 @@ namespace MasaoPlus
 					}
 					if (e.Shift)
 					{
-						this.AllTestrun(this, new EventArgs());
+						AllTestrun(this, new EventArgs());
 					}
 					else
 					{
-						this.ProjTestRun(this, new EventArgs());
+						ProjTestRun(this, new EventArgs());
 					}
 					e.Handled = true;
 					return;
@@ -2396,26 +2396,26 @@ namespace MasaoPlus
 					{
 						return;
 					}
-					if (this.EditTab.SelectedIndex == 0)
+					if (EditTab.SelectedIndex == 0)
 					{
-						if (this.SideTab.SelectedIndex != 0)
+						if (SideTab.SelectedIndex != 0)
 						{
 							return;
 						}
-						if (this.MainDesigner.Focused)
+						if (MainDesigner.Focused)
 						{
-							if (this.DrawType.SelectedIndex < 3)
+							if (DrawType.SelectedIndex < 3)
 							{
-								this.ChipList.Focus();
+								ChipList.Focus();
 							}
 							else
 							{
-								this.GuiChipList.Focus();
+								GuiChipList.Focus();
 							}
 						}
 						else
 						{
-							this.MainDesigner.Focus();
+							MainDesigner.Focus();
 						}
 						e.Handled = true;
 					}
@@ -2429,7 +2429,7 @@ namespace MasaoPlus
 			{
 				projectConfig.ShowDialog();
 			}
-			this.UpdateStageSelector();
+			UpdateStageSelector();
 		}
 
 		private void MWriteStagePicture_Click(object sender, EventArgs e)
@@ -2496,15 +2496,15 @@ namespace MasaoPlus
 					return;
 				}
 			}
-			this.MainDesigner.ClearBuffer();
-			this.MainDesigner.AddBuffer();
-			this.EditorSystemPanel_Resize(this, new EventArgs());
+			MainDesigner.ClearBuffer();
+			MainDesigner.AddBuffer();
+			EditorSystemPanel_Resize(this, new EventArgs());
 			if (Global.cpd.UseLayer)
 			{
-				this.LayerState(true);
+				LayerState(true);
 				return;
 			}
-			this.LayerState(false);
+			LayerState(false);
 		}
 
 		private void InstalledRuntime_Click(object sender, EventArgs e)
@@ -2531,7 +2531,7 @@ namespace MasaoPlus
                 using ProjInheritance projInheritance = new ProjInheritance(openFileDialog.FileName);
                 if (projInheritance.ShowDialog() == DialogResult.OK)
                 {
-                    this.RestartUp(projInheritance.NewProjectName);
+                    RestartUp(projInheritance.NewProjectName);
                 }
             }
         }
@@ -2550,7 +2550,7 @@ namespace MasaoPlus
                 using HTMLInheritance htmlinheritance = new HTMLInheritance(openFileDialog.FileName);
                 if (htmlinheritance.ShowDialog() == DialogResult.OK)
                 {
-                    this.RestartUp(htmlinheritance.ProjectFile);
+                    RestartUp(htmlinheritance.ProjectFile);
                 }
             }
         }
@@ -2567,7 +2567,7 @@ namespace MasaoPlus
 
 		private void MStageRev_Click(object sender, EventArgs e)
 		{
-			this.UpdateStatus("ステージ反転処理中...");
+			UpdateStatus("ステージ反転処理中...");
 			List<string> list;
 			Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : Global.cpd.runtime.Definitions.StageSize;
 			for (int i = 0; i < stageSizeData.y; i++)
@@ -2597,80 +2597,80 @@ namespace MasaoPlus
 					Global.cpd.EditingLayer[k] = string.Join("", array2);
 				}
 			}
-			this.MainDesigner.ClearBuffer();
-			this.MainDesigner.AddBuffer();
-			this.MainDesigner.UpdateBackgroundBuffer();
-			this.MainDesigner.UpdateForegroundBuffer();
+			MainDesigner.ClearBuffer();
+			MainDesigner.AddBuffer();
+			MainDesigner.UpdateBackgroundBuffer();
+			MainDesigner.UpdateForegroundBuffer();
 			if (Global.state.TransparentUnactiveLayer)
 			{
-				this.MainDesigner.InitTransparent();
+				MainDesigner.InitTransparent();
 			}
-			this.MainDesigner.Refresh();
+			MainDesigner.Refresh();
 			Global.state.EditFlag = true;
-			this.UpdateStatus("完了");
+			UpdateStatus("完了");
 		}
 
 		private void MEditStage1_Click(object sender, EventArgs e)
 		{
-			this.StageSelectionChange(0);
+			StageSelectionChange(0);
 		}
 
 		private void MEditStage2_Click(object sender, EventArgs e)
 		{
-			this.StageSelectionChange(1);
+			StageSelectionChange(1);
 		}
 
 		private void MEditStage3_Click(object sender, EventArgs e)
 		{
-			this.StageSelectionChange(2);
+			StageSelectionChange(2);
 		}
 
 		private void MEditStage4_Click(object sender, EventArgs e)
 		{
-			this.StageSelectionChange(3);
+			StageSelectionChange(3);
 		}
 
 		private void MEditMap_Click(object sender, EventArgs e)
 		{
-			this.StageSelectionChange(4);
+			StageSelectionChange(4);
 		}
 
 		private void AllTestrun(object sender, EventArgs e)
 		{
 			Global.state.TestrunAll = true;
-			this.EditTab.SelectedIndex = 2;
+			EditTab.SelectedIndex = 2;
 		}
 
 		private void MReloadImage_Click(object sender, EventArgs e)
 		{
-			this.UpdateStatus("更新しています...");
+			UpdateStatus("更新しています...");
 			Global.MainWnd.MainDesigner.PrepareImages();
 			Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
 			Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
-			this.MainDesigner.Refresh();
-			this.UpdateStatus("完了");
+			MainDesigner.Refresh();
+			UpdateStatus("完了");
 		}
 
 		private void ShowOverView_Click(object sender, EventArgs e)
 		{
-			if (this.ovw == null)
+			if (ovw == null)
 			{
-				this.ovw = new OverViewWindow();
-				this.ovw.FormClosed += this.ovw_FormClosed;
-				this.ovw.Show(this);
-				this.ShowOverView.Checked = true;
+				ovw = new OverViewWindow();
+				ovw.FormClosed += ovw_FormClosed;
+				ovw.Show(this);
+				ShowOverView.Checked = true;
 				return;
 			}
-			this.ovw.Close();
-			this.ovw = null;
-			this.ShowOverView.Checked = false;
+			ovw.Close();
+			ovw = null;
+			ShowOverView.Checked = false;
 		}
 
 		private void ovw_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			this.ovw.Dispose();
-			this.ovw = null;
-			this.ShowOverView.Checked = false;
+			ovw.Dispose();
+			ovw = null;
+			ShowOverView.Checked = false;
 		}
 
 		public OverViewWindow ovw;

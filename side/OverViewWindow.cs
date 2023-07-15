@@ -10,35 +10,35 @@ namespace MasaoPlus
 	{
 		public OverViewWindow()
 		{
-			this.InitializeComponent();
-			this.UpdateView();
-			Global.MainWnd.MainDesigner.ChangeBufferInvoke += this.MainDesigner_ChangeBufferInvoke;
-			Global.MainWnd.MainDesignerScroll += this.MainWnd_MainDesignerScroll;
+			InitializeComponent();
+			UpdateView();
+			Global.MainWnd.MainDesigner.ChangeBufferInvoke += MainDesigner_ChangeBufferInvoke;
+			Global.MainWnd.MainDesignerScroll += MainWnd_MainDesignerScroll;
 		}
 
 		private void MainWnd_MainDesignerScroll()
 		{
-			this.UpdateView();
+			UpdateView();
 		}
 
 		private void MainDesigner_ChangeBufferInvoke()
 		{
-			this.UpdateView();
+			UpdateView();
 		}
 
 		public void UpdateView()
 		{
-			this.OverViewViewer.UpdateDrawSource();
-			this.mWndSize = new Size((int)((double)(Global.MainWnd.MainDesigner.Size.Width / Global.cpd.runtime.Definitions.ChipSize.Width * this.OverViewViewer.ppb) / Global.config.draw.ZoomIndex), (int)((double)(Global.MainWnd.MainDesigner.Size.Height / Global.cpd.runtime.Definitions.ChipSize.Height * this.OverViewViewer.ppb) / Global.config.draw.ZoomIndex));
-			this.cPoint = new Point(this.mWndSize.Width / 2, this.mWndSize.Height / 2);
+			OverViewViewer.UpdateDrawSource();
+			mWndSize = new Size((int)((double)(Global.MainWnd.MainDesigner.Size.Width / Global.cpd.runtime.Definitions.ChipSize.Width * OverViewViewer.ppb) / Global.config.draw.ZoomIndex), (int)((double)(Global.MainWnd.MainDesigner.Size.Height / Global.cpd.runtime.Definitions.ChipSize.Height * OverViewViewer.ppb) / Global.config.draw.ZoomIndex));
+			cPoint = new Point(mWndSize.Width / 2, mWndSize.Height / 2);
 		}
 
 		private void OverViewWindow_Load(object sender, EventArgs e)
 		{
-			base.ClientSize = this.OverViewViewer.Size;
+			base.ClientSize = OverViewViewer.Size;
 			if (Global.MainWnd.ovw == null)
 			{
-				this.Text += "(Spaceで閉じる)";
+				Text += "(Spaceで閉じる)";
 			}
 		}
 
@@ -77,7 +77,7 @@ namespace MasaoPlus
 			default:
 				return base.ProcessDialogKey(keyData);
 			}
-			this.Refresh();
+			Refresh();
 			return true;
 		}
 
@@ -85,12 +85,12 @@ namespace MasaoPlus
 		{
 			if (e.Button == MouseButtons.Left)
 			{
-				Point mapPointTranslatedMap = new Point((e.X - this.cPoint.X) / this.OverViewViewer.ppb, (e.Y - this.cPoint.Y) / this.OverViewViewer.ppb);
+				Point mapPointTranslatedMap = new Point((e.X - cPoint.X) / OverViewViewer.ppb, (e.Y - cPoint.Y) / OverViewViewer.ppb);
 				Global.state.MapPointTranslatedMap = mapPointTranslatedMap;
 				Global.state.AdjustMapPoint();
 				Global.MainWnd.CommitScrollbar();
 				Global.MainWnd.MainDesigner.Refresh();
-				this.Refresh();
+				Refresh();
 				if (Global.MainWnd.ovw != null)
 				{
 					Global.MainWnd.MainDesigner.Focus();
@@ -100,15 +100,15 @@ namespace MasaoPlus
 
 		private void OverViewViewer_MouseDown(object sender, MouseEventArgs e)
 		{
-			this.OverViewViewer_MouseMove(sender, e);
+			OverViewViewer_MouseMove(sender, e);
 		}
 
 		private void OverViewWindow_Activated(object sender, EventArgs e)
 		{
 			if (Global.MainWnd.ovw != null)
 			{
-				this.UpdateView();
-				this.Refresh();
+				UpdateView();
+				Refresh();
 			}
 		}
 

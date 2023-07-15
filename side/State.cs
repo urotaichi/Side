@@ -15,7 +15,7 @@ namespace MasaoPlus
 				{
 					return Global.cpd.runtime.Definitions.MapSize.bytesize;
 				}
-				if (!Global.cpd.UseLayer || this.EditingForeground)
+				if (!Global.cpd.UseLayer || EditingForeground)
 				{
 					return Global.cpd.runtime.Definitions.StageSize.bytesize;
 				}
@@ -31,7 +31,7 @@ namespace MasaoPlus
 				{
 					return Global.cpd.runtime.Definitions.MapSize.StageByteWidth;
 				}
-				if (!Global.cpd.UseLayer || this.EditingForeground)
+				if (!Global.cpd.UseLayer || EditingForeground)
 				{
 					return Global.cpd.runtime.Definitions.StageSize.StageByteWidth;
 				}
@@ -47,7 +47,7 @@ namespace MasaoPlus
 				{
 					return Global.cpd.runtime.Definitions.MapSize;
 				}
-				if (!Global.cpd.UseLayer || this.EditingForeground)
+				if (!Global.cpd.UseLayer || EditingForeground)
 				{
 					return Global.cpd.runtime.Definitions.StageSize;
 				}
@@ -57,29 +57,29 @@ namespace MasaoPlus
 
 		public void AdjustMapPoint()
 		{
-			if (this.MapPoint.X > this.MapMoveMax.Width)
+			if (MapPoint.X > MapMoveMax.Width)
 			{
-				this.MapPoint.X = this.MapMoveMax.Width;
+				MapPoint.X = MapMoveMax.Width;
 			}
-			else if (this.MapPoint.X < 0)
+			else if (MapPoint.X < 0)
 			{
-				this.MapPoint.X = 0;
+				MapPoint.X = 0;
 			}
-			if (this.MapPoint.Y > this.MapMoveMax.Height)
+			if (MapPoint.Y > MapMoveMax.Height)
 			{
-				this.MapPoint.Y = this.MapMoveMax.Height;
+				MapPoint.Y = MapMoveMax.Height;
 			}
-			else if (this.MapPoint.Y < 0)
+			else if (MapPoint.Y < 0)
 			{
-				this.MapPoint.Y = 0;
+				MapPoint.Y = 0;
 			}
-			if (this.MapMoveMax.Width <= 0)
+			if (MapMoveMax.Width <= 0)
 			{
-				this.MapPoint.X = 0;
+				MapPoint.X = 0;
 			}
-			if (this.MapMoveMax.Height <= 0)
+			if (MapMoveMax.Height <= 0)
 			{
-				this.MapPoint.Y = 0;
+				MapPoint.Y = 0;
 			}
 		}
 
@@ -88,7 +88,7 @@ namespace MasaoPlus
 			get
 			{
 				double num = 1.0 / Global.config.draw.ZoomIndex;
-				return new Point((int)((double)this.MapPoint.X * num), (int)((double)this.MapPoint.Y * num));
+				return new Point((int)((double)MapPoint.X * num), (int)((double)MapPoint.Y * num));
 			}
 		}
 
@@ -96,12 +96,12 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return new Point(this.MapPoint.X / Global.cpd.runtime.Definitions.ChipSize.Width, this.MapPoint.Y / Global.cpd.runtime.Definitions.ChipSize.Height);
+				return new Point(MapPoint.X / Global.cpd.runtime.Definitions.ChipSize.Width, MapPoint.Y / Global.cpd.runtime.Definitions.ChipSize.Height);
 			}
 			set
 			{
-				this.MapPoint.X = value.X * Global.cpd.runtime.Definitions.ChipSize.Width;
-				this.MapPoint.Y = value.Y * Global.cpd.runtime.Definitions.ChipSize.Height;
+				MapPoint.X = value.X * Global.cpd.runtime.Definitions.ChipSize.Width;
+				MapPoint.Y = value.Y * Global.cpd.runtime.Definitions.ChipSize.Height;
 			}
 		}
 
@@ -109,13 +109,13 @@ namespace MasaoPlus
 		{
 			get
 			{
-				Point mapPointTranslated = this.MapPointTranslated;
+				Point mapPointTranslated = MapPointTranslated;
 				return new Point(mapPointTranslated.X / Global.cpd.runtime.Definitions.ChipSize.Width, mapPointTranslated.Y / Global.cpd.runtime.Definitions.ChipSize.Height);
 			}
 			set
 			{
-				this.MapPoint.X = (int)((double)(value.X * Global.cpd.runtime.Definitions.ChipSize.Width) * Global.config.draw.ZoomIndex);
-				this.MapPoint.Y = (int)((double)(value.Y * Global.cpd.runtime.Definitions.ChipSize.Height) * Global.config.draw.ZoomIndex);
+				MapPoint.X = (int)((double)(value.X * Global.cpd.runtime.Definitions.ChipSize.Width) * Global.config.draw.ZoomIndex);
+				MapPoint.Y = (int)((double)(value.Y * Global.cpd.runtime.Definitions.ChipSize.Height) * Global.config.draw.ZoomIndex);
 			}
 		}
 
@@ -123,14 +123,14 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.CurrentChipData;
+				return CurrentChipData;
 			}
 			set
 			{
-				this.CurrentChipData = value;
-				if (this.UpdateCurrentChipInvoke != null)
+				CurrentChipData = value;
+				if (UpdateCurrentChipInvoke != null)
 				{
-					this.UpdateCurrentChipInvoke();
+					UpdateCurrentChipInvoke();
 				}
 			}
 		}
@@ -141,11 +141,11 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return !Global.cpd.UseLayer || this.efg;
+				return !Global.cpd.UseLayer || efg;
 			}
 			set
 			{
-				this.efg = value;
+				efg = value;
 			}
 		}
 
@@ -153,11 +153,11 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return this.editFlag;
+				return editFlag;
 			}
 			set
 			{
-				this.editFlag = value;
+				editFlag = value;
 				Global.MainWnd.UpdateTitle();
 			}
 		}
@@ -166,7 +166,7 @@ namespace MasaoPlus
 		{
 			get
 			{
-				return !this.ForceNoBuffering && Global.config.draw.SkipBufferedDraw;
+				return !ForceNoBuffering && Global.config.draw.SkipBufferedDraw;
 			}
 		}
 

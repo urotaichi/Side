@@ -12,13 +12,13 @@ namespace MasaoPlus.Dialogs
 	{
 		public StartUp()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 			base.DialogResult = DialogResult.None;
 		}
 
 		private void StartUp_Load(object sender, EventArgs e)
 		{
-			this.WelcomeLabel.Text = Global.definition.AppNameFull + " v" + Global.definition.Version;
+			WelcomeLabel.Text = Global.definition.AppNameFull + " v" + Global.definition.Version;
 		}
 
 		private void StartUp_Shown(object sender, EventArgs e)
@@ -48,7 +48,7 @@ namespace MasaoPlus.Dialogs
             using NewProject newProject = new NewProject();
             if (newProject.ShowDialog() == DialogResult.OK)
             {
-                this.ProjectPath = newProject.CreatedProject;
+                ProjectPath = newProject.CreatedProject;
                 base.DialogResult = DialogResult.OK;
                 base.Close();
             }
@@ -77,7 +77,7 @@ namespace MasaoPlus.Dialogs
             {
                 if (Path.GetExtension(openFileDialog.FileName) == Global.definition.ProjExt)
                 {
-                    this.ProjectPath = openFileDialog.FileName;
+                    ProjectPath = openFileDialog.FileName;
                     base.DialogResult = DialogResult.OK;
                     base.Close();
                 }
@@ -86,7 +86,7 @@ namespace MasaoPlus.Dialogs
                     using HTMLInheritance htmlinheritance = new HTMLInheritance(openFileDialog.FileName);
                     if (htmlinheritance.ShowDialog() == DialogResult.OK)
                     {
-                        this.ProjectPath = htmlinheritance.ProjectFile;
+                        ProjectPath = htmlinheritance.ProjectFile;
                         base.DialogResult = DialogResult.OK;
                         base.Close();
                     }
@@ -96,7 +96,7 @@ namespace MasaoPlus.Dialogs
 
 		private void ExMenu_Click(object sender, EventArgs e)
 		{
-			this.ExMenuStrip.Show(this.ExMenu, new Point(0, this.ExMenu.Height));
+			ExMenuStrip.Show(ExMenu, new Point(0, ExMenu.Height));
 		}
 
 		private void CallConfig_Click(object sender, EventArgs e)
@@ -142,7 +142,7 @@ namespace MasaoPlus.Dialogs
                 using ProjInheritance projInheritance = new ProjInheritance(openFileDialog.FileName);
                 if (projInheritance.DialogResult != DialogResult.Abort && projInheritance.ShowDialog() == DialogResult.OK)
                 {
-                    this.ProjectPath = projInheritance.NewProjectName;
+                    ProjectPath = projInheritance.NewProjectName;
                     base.DialogResult = DialogResult.OK;
                     base.Close();
                 }

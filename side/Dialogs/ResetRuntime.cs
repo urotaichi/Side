@@ -12,7 +12,7 @@ namespace MasaoPlus.Dialogs
 	{
 		public ResetRuntime()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 		}
 
 		private void ResetRuntime_Shown(object sender, EventArgs e)
@@ -21,9 +21,9 @@ namespace MasaoPlus.Dialogs
 			{
 				Application.DoEvents();
 				base.Enabled = false;
-				this.ChipMethod.SelectedIndex = 0;
-				this.StateLabel.Text = "ロード中...";
-				this.StateLabel.Refresh();
+				ChipMethod.SelectedIndex = 0;
+				StateLabel.Text = "ロード中...";
+				StateLabel.Refresh();
 				if (!Directory.Exists(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir)))
 				{
 					MessageBox.Show("ランタイムフォルダが見つかりません。" + Environment.NewLine + "Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
@@ -44,9 +44,9 @@ namespace MasaoPlus.Dialogs
 								string[] array2 = Runtime.CheckFiles(text2, runtime);
 								if (array2.Length == 0)
 								{
-									this.runtimes.Add(text);
-									this.runtimedatas.Add(runtime);
-									this.RuntimeView.Items.Add(new ListViewItem(new string[]
+									runtimes.Add(text);
+									runtimedatas.Add(runtime);
+									RuntimeView.Items.Add(new ListViewItem(new string[]
 									{
 										runtime.Definitions.Name,
 										runtime.Definitions.Author,
@@ -75,7 +75,7 @@ namespace MasaoPlus.Dialogs
 							MessageBox.Show("読み込めませんでした:" + Path.GetFileName(text) + Environment.NewLine + ex.Message, "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 						}
 					}
-					if (this.RuntimeView.Items.Count == 0)
+					if (RuntimeView.Items.Count == 0)
 					{
 						MessageBox.Show("利用可能なランタイムがありません。", "ランタイムロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 						base.DialogResult = DialogResult.Cancel;
@@ -85,8 +85,8 @@ namespace MasaoPlus.Dialogs
 			}
 			finally
 			{
-				this.StateLabel.Text = "";
-				this.StateLabel.Refresh();
+				StateLabel.Text = "";
+				StateLabel.Refresh();
 				base.Enabled = true;
 			}
 		}
@@ -96,14 +96,14 @@ namespace MasaoPlus.Dialogs
 			base.Enabled = false;
 			try
 			{
-				if (this.RuntimeView.SelectedIndices.Count == 0)
+				if (RuntimeView.SelectedIndices.Count == 0)
 				{
 					MessageBox.Show("ランタイムが選択されていません。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				}
 				else
 				{
-					Runtime runtime = this.runtimedatas[this.RuntimeView.SelectedIndices[0]];
-					string nRPath = this.runtimes[this.RuntimeView.SelectedIndices[0]];
+					Runtime runtime = runtimedatas[RuntimeView.SelectedIndices[0]];
+					string nRPath = runtimes[RuntimeView.SelectedIndices[0]];
 					if (!Global.cpd.UseLayer && runtime.Definitions.LayerSize.bytesize != 0)
 					{
 						MessageBox.Show("レイヤー未使用プロジェクトからレイヤー使用プロジェクトへ移行します。" + Environment.NewLine + "レイヤー画像を指定してください。", "レイヤープロジェクトへの移行", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -119,27 +119,27 @@ namespace MasaoPlus.Dialogs
                     }
 					if (MessageBox.Show("移行を開始します。この操作は取り消せません。" + Environment.NewLine + "よろしいですか？", "操作の確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) != DialogResult.Cancel)
 					{
-						this.StateLabel.Text = "プロジェクトを移行しています...";
-						this.StateLabel.Refresh();
-						this.MoveProject(nRPath, runtime);
+						StateLabel.Text = "プロジェクトを移行しています...";
+						StateLabel.Refresh();
+						MoveProject(nRPath, runtime);
 					}
 				}
 			}
 			finally
 			{
-				this.StateLabel.Text = "";
+				StateLabel.Text = "";
 				base.Enabled = true;
 			}
 		}
 
 		private void ChipDefinitionValidation_CheckedChanged(object sender, EventArgs e)
 		{
-			this.ChipMethod.Enabled = this.ChipDefinitionValidation.Checked;
+			ChipMethod.Enabled = ChipDefinitionValidation.Checked;
 		}
 
 		private void NoTouch_CheckedChanged(object sender, EventArgs e)
 		{
-			if (this.NoTouch.Checked && MessageBox.Show(string.Concat(new string[]
+			if (NoTouch.Checked && MessageBox.Show(string.Concat(new string[]
 			{
 				"データを移行しないと、編集できなくなったり、破損したりする恐れがあります。",
 				Environment.NewLine,
@@ -148,10 +148,10 @@ namespace MasaoPlus.Dialogs
 				"本当にいいんですか？"
 			}), "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
 			{
-				this.NoTouch.Checked = false;
+				NoTouch.Checked = false;
 			}
-			this.ChipDefinitionValidation.Enabled = !this.NoTouch.Checked;
-			this.ChipMethod.Enabled = !this.NoTouch.Checked;
+			ChipDefinitionValidation.Enabled = !NoTouch.Checked;
+			ChipMethod.Enabled = !NoTouch.Checked;
 		}
 
 		private void MoveProject(string nRPath, Runtime nR)
@@ -169,13 +169,13 @@ namespace MasaoPlus.Dialogs
 				MessageBox.Show("移行に失敗しました。" + Environment.NewLine + "移行先の設定が読み込めませんでした。", "移行失敗", MessageBoxButtons.OKCancel, MessageBoxIcon.Hand);
 				return;
 			}
-			this.StateLabel.Text = "設定を移行しています...";
-			this.StateLabel.Refresh();
+			StateLabel.Text = "設定を移行しています...";
+			StateLabel.Refresh();
 			int num = 0;
 			int num2 = 0;
 			foreach (ConfigParam configParam in project.Config.Configurations)
 			{
-				this.StateLabel.Text = string.Concat(new object[]
+				StateLabel.Text = string.Concat(new object[]
 				{
 					"設定を移行しています...(",
 					num2.ToString(),
@@ -183,7 +183,7 @@ namespace MasaoPlus.Dialogs
 					project.Config.Configurations.Length,
 					")"
 				});
-				this.StateLabel.Refresh();
+				StateLabel.Refresh();
 				bool flag = false;
 				foreach (ConfigParam configParam2 in Global.cpd.project.Config.Configurations)
 				{
@@ -200,10 +200,10 @@ namespace MasaoPlus.Dialogs
 				}
 				num++;
 			}
-			if (this.NoTouch.Checked) // 手を加えない（全部そのままコピー）
+			if (NoTouch.Checked) // 手を加えない（全部そのままコピー）
 			{
-				this.StateLabel.Text = "ステージをコピーしています...";
-				this.StateLabel.Refresh();
+				StateLabel.Text = "ステージをコピーしています...";
+				StateLabel.Refresh();
 				project.StageData = (string[])Global.cpd.project.StageData.Clone();
 				project.StageData2 = (string[])Global.cpd.project.StageData2.Clone();
 				project.StageData3 = (string[])Global.cpd.project.StageData3.Clone();
@@ -232,8 +232,8 @@ namespace MasaoPlus.Dialogs
 				character = chipDataClass.WorldChip[0].character;
 				project.MapData = MapDataCopy(project, Global.cpd.project.MapData, chipDataClass.WorldChip, character);
 			}
-			this.StateLabel.Text = "その他のデータを移行しています...";
-			this.StateLabel.Refresh();
+			StateLabel.Text = "その他のデータを移行しています...";
+			StateLabel.Refresh();
 			project.Config.ConfigReady();
 			project.Config.PatternImage = Global.cpd.project.Config.PatternImage;
 			project.Config.EndingImage = Global.cpd.project.Config.EndingImage;
@@ -244,8 +244,8 @@ namespace MasaoPlus.Dialogs
 			}
 			project.Name = Global.cpd.project.Name;
 			project.Config.TitleImage = Global.cpd.project.Config.TitleImage;
-			this.StateLabel.Text = "新ランタイムのファイルをコピーしています...";
-			this.StateLabel.Refresh();
+			StateLabel.Text = "新ランタイムのファイルをコピーしています...";
+			StateLabel.Refresh();
 			foreach (string text2 in Directory.GetFiles(Path.Combine(Path.GetDirectoryName(nRPath), Path.GetFileNameWithoutExtension(nRPath)), "*", SearchOption.TopDirectoryOnly))
 			{
 				if (!(Path.GetFileName(text2) == nR.Definitions.Configurations))
@@ -276,8 +276,8 @@ namespace MasaoPlus.Dialogs
 				}
 				IL_B9B:;
 			}
-			this.StateLabel.Text = "データを反映しています...";
-			this.StateLabel.Refresh();
+			StateLabel.Text = "データを反映しています...";
+			StateLabel.Refresh();
 			Global.cpd.project = project;
 			Global.state.Background = Global.cpd.project.Config.Background;
 			Global.cpd.runtime = Global.cpd.project.Runtime;
@@ -286,8 +286,8 @@ namespace MasaoPlus.Dialogs
 				Global.cpd.Layerchip = chipDataClass.Layerchip;
 			}
 			Global.cpd.Mapchip = chipDataClass.Mapchip;
-			this.StateLabel.Text = "編集システムを再スタートしています...";
-			this.StateLabel.Refresh();
+			StateLabel.Text = "編集システムを再スタートしています...";
+			StateLabel.Refresh();
 			Global.MainWnd.MainDesigner.PrepareImages();
 			Global.MainWnd.MainDesigner.CreateDrawItemReference();
 			Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
@@ -309,7 +309,7 @@ namespace MasaoPlus.Dialogs
 
 			for (int k = 0; k < project.Runtime.Definitions.StageSize.y; k++)
 			{
-				this.StateLabel.Text = string.Concat(new string[]
+				StateLabel.Text = string.Concat(new string[]
 				{
 						"ステージを移行しています...(",
 						k.ToString(),
@@ -317,7 +317,7 @@ namespace MasaoPlus.Dialogs
 						project.Runtime.Definitions.StageSize.y.ToString(),
 						")"
 				});
-				this.StateLabel.Refresh();
+				StateLabel.Refresh();
 				StringBuilder stringBuilder = new StringBuilder();
 				if (k < StageData.Length)
 				{
@@ -329,7 +329,7 @@ namespace MasaoPlus.Dialogs
 							break;
 						}
 						string text = StageData[k].Substring(l * Global.cpd.runtime.Definitions.StageSize.bytesize, Global.cpd.runtime.Definitions.StageSize.bytesize);
-						switch (this.ChipMethod.SelectedIndex)
+						switch (ChipMethod.SelectedIndex)
 						{
 							case 0: // 文字で合わせる
 								foreach (ChipsData chipsData in Mapchip)
@@ -400,7 +400,7 @@ namespace MasaoPlus.Dialogs
 
 			for (int num6 = 0; num6 < project.Runtime.Definitions.LayerSize.y; num6++)
 			{
-				this.StateLabel.Text = string.Concat(new string[]
+				StateLabel.Text = string.Concat(new string[]
 				{
 							"レイヤーを移行しています...(",
 							num6.ToString(),
@@ -408,7 +408,7 @@ namespace MasaoPlus.Dialogs
 							project.Runtime.Definitions.LayerSize.y.ToString(),
 							")"
 				});
-				this.StateLabel.Refresh();
+				StateLabel.Refresh();
 				StringBuilder stringBuilder = new StringBuilder();
 				if (Global.cpd.UseLayer)
 				{
@@ -422,7 +422,7 @@ namespace MasaoPlus.Dialogs
 								break;
 							}
 							string text = LayerData[num6].Substring(num7 * Global.cpd.runtime.Definitions.LayerSize.bytesize, Global.cpd.runtime.Definitions.LayerSize.bytesize);
-							switch (this.ChipMethod.SelectedIndex)
+							switch (ChipMethod.SelectedIndex)
 							{
 								case 0: // 文字で合わせる
 									foreach (ChipsData chipsData5 in Layerchip)
@@ -505,7 +505,7 @@ namespace MasaoPlus.Dialogs
 
 			for (int k = 0; k < project.Runtime.Definitions.MapSize.y; k++)
 			{
-				this.StateLabel.Text = string.Concat(new string[]
+				StateLabel.Text = string.Concat(new string[]
 				{
 						"地図画面を移行しています...(",
 						k.ToString(),
@@ -513,7 +513,7 @@ namespace MasaoPlus.Dialogs
 						project.Runtime.Definitions.MapSize.y.ToString(),
 						")"
 				});
-				this.StateLabel.Refresh();
+				StateLabel.Refresh();
 				StringBuilder stringBuilder = new StringBuilder();
 				if (k < MapData.Length)
 				{
@@ -525,7 +525,7 @@ namespace MasaoPlus.Dialogs
 							break;
 						}
 						string text = MapData[k].Substring(l * Global.cpd.runtime.Definitions.MapSize.bytesize, Global.cpd.runtime.Definitions.MapSize.bytesize);
-						switch (this.ChipMethod.SelectedIndex)
+						switch (ChipMethod.SelectedIndex)
 						{
 							case 0: // 文字で合わせる
 								foreach (ChipsData chipsData in Worldchip)

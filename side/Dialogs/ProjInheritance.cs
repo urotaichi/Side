@@ -11,12 +11,12 @@ namespace MasaoPlus.Dialogs
 	{
 		public ProjInheritance(string PrevProj)
 		{
-			this.InitializeComponent();
-			this.PrevProjPath = PrevProj;
+			InitializeComponent();
+			PrevProjPath = PrevProj;
 			try
 			{
-				this.PrevProject = Project.ParseXML(PrevProj);
-				if (this.PrevProject == null)
+				PrevProject = Project.ParseXML(PrevProj);
+				if (PrevProject == null)
 				{
 					throw new Exception("Project Analysis Failured.");
 				}
@@ -28,25 +28,25 @@ namespace MasaoPlus.Dialogs
 				base.Close();
 				return;
 			}
-			this.NewProjName.Text = this.PrevProject.Name + "_Inherited";
+			NewProjName.Text = PrevProject.Name + "_Inherited";
 		}
 
 		private void NewProjName_TextChanged(object sender, EventArgs e)
 		{
-			if (this.NewProjName.Text == "")
+			if (NewProjName.Text == "")
 			{
-				this.OKBtn.Enabled = false;
+				OKBtn.Enabled = false;
 				return;
 			}
-			this.OKBtn.Enabled = true;
+			OKBtn.Enabled = true;
 		}
 
 		private void OKBtn_Click(object sender, EventArgs e)
 		{
-			string text = Path.Combine(Path.GetDirectoryName(this.PrevProjPath), this.NewProjName.Text + Global.definition.ProjExt);
+			string text = Path.Combine(Path.GetDirectoryName(PrevProjPath), NewProjName.Text + Global.definition.ProjExt);
 			if (File.Exists(text) && MessageBox.Show(string.Concat(new string[]
 			{
-				this.NewProjName.Text,
+				NewProjName.Text,
 				Global.definition.ProjExt,
 				"は同じディレクトリに既に存在しています。",
 				Environment.NewLine,
@@ -58,30 +58,30 @@ namespace MasaoPlus.Dialogs
 				return;
 			}
 			base.Enabled = false;
-			this.OKBtn.Text = "生成中...";
-			this.OKBtn.Refresh();
+			OKBtn.Text = "生成中...";
+			OKBtn.Refresh();
 			Project project = new Project();
-			project.Name = this.NewProjName.Text;
-			project.Runtime = this.PrevProject.Runtime;
-			project.Config = this.PrevProject.Config;
-			if (this.PrevProject.Runtime.Definitions.LayerSize.bytesize != 0)
+			project.Name = NewProjName.Text;
+			project.Runtime = PrevProject.Runtime;
+			project.Config = PrevProject.Config;
+			if (PrevProject.Runtime.Definitions.LayerSize.bytesize != 0)
 			{
-				project.LayerData = new string[this.PrevProject.Runtime.Definitions.LayerSize.y];
-				project.LayerData2 = new string[this.PrevProject.Runtime.Definitions.LayerSize.y];
-				project.LayerData3 = new string[this.PrevProject.Runtime.Definitions.LayerSize.y];
-				project.LayerData4 = new string[this.PrevProject.Runtime.Definitions.LayerSize.y];
+				project.LayerData = new string[PrevProject.Runtime.Definitions.LayerSize.y];
+				project.LayerData2 = new string[PrevProject.Runtime.Definitions.LayerSize.y];
+				project.LayerData3 = new string[PrevProject.Runtime.Definitions.LayerSize.y];
+				project.LayerData4 = new string[PrevProject.Runtime.Definitions.LayerSize.y];
 			}
-			project.StageData = new string[this.PrevProject.Runtime.Definitions.StageSize.y];
-			project.StageData2 = new string[this.PrevProject.Runtime.Definitions.StageSize.y];
-			project.StageData3 = new string[this.PrevProject.Runtime.Definitions.StageSize.y];
-			project.StageData4 = new string[this.PrevProject.Runtime.Definitions.StageSize.y];
-			project.MapData = new string[this.PrevProject.Runtime.Definitions.MapSize.y];
-			ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(Path.GetDirectoryName(this.PrevProjPath), this.PrevProject.Runtime.Definitions.ChipDefinition));
+			project.StageData = new string[PrevProject.Runtime.Definitions.StageSize.y];
+			project.StageData2 = new string[PrevProject.Runtime.Definitions.StageSize.y];
+			project.StageData3 = new string[PrevProject.Runtime.Definitions.StageSize.y];
+			project.StageData4 = new string[PrevProject.Runtime.Definitions.StageSize.y];
+			project.MapData = new string[PrevProject.Runtime.Definitions.MapSize.y];
+			ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(Path.GetDirectoryName(PrevProjPath), PrevProject.Runtime.Definitions.ChipDefinition));
 			string character = chipDataClass.Mapchip[0].character;
-			for (int i = 0; i < this.PrevProject.StageData.Length; i++)
+			for (int i = 0; i < PrevProject.StageData.Length; i++)
 			{
 				StringBuilder stringBuilder = new StringBuilder();
-				for (int j = 0; j < this.PrevProject.Runtime.Definitions.StageSize.x; j++)
+				for (int j = 0; j < PrevProject.Runtime.Definitions.StageSize.x; j++)
 				{
 					stringBuilder.Append(character);
 				}
@@ -100,13 +100,13 @@ namespace MasaoPlus.Dialogs
 				}
 				project.MapData[k] = stringBuilder2.ToString();
 			}
-			if (this.PrevProject.Runtime.Definitions.LayerSize.bytesize != 0)
+			if (PrevProject.Runtime.Definitions.LayerSize.bytesize != 0)
 			{
 				character = chipDataClass.Layerchip[0].character;
-				for (int m = 0; m < this.PrevProject.LayerData.Length; m++)
+				for (int m = 0; m < PrevProject.LayerData.Length; m++)
 				{
 					StringBuilder stringBuilder3 = new StringBuilder();
-					for (int n = 0; n < this.PrevProject.Runtime.Definitions.LayerSize.x; n++)
+					for (int n = 0; n < PrevProject.Runtime.Definitions.LayerSize.x; n++)
 					{
 						stringBuilder3.Append(character);
 					}
@@ -117,7 +117,7 @@ namespace MasaoPlus.Dialogs
 				project.LayerData4 = (string[])project.LayerData.Clone();
 			}
 			project.SaveXML(text);
-			this.NewProjectName = text;
+			NewProjectName = text;
 			base.DialogResult = DialogResult.OK;
 			base.Close();
 		}

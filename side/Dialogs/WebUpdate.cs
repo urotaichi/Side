@@ -12,18 +12,18 @@ namespace MasaoPlus.Dialogs
 	{
 		public WebUpdate()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 		}
 
 		private void WebUpdate_Shown(object sender, EventArgs e)
 		{
-			this.SUpdate("更新を確認しています...");
+			SUpdate("更新を確認しています...");
 			if (Global.config.localSystem.UpdateServer != Global.definition.BaseUpdateServer && MessageBox.Show("アップデート接続先サーバーが変更されています。" + Environment.NewLine + "既定のサーバーを利用しますか？", "更新先の変更の検知", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
 				Global.config.localSystem.UpdateServer = Global.definition.BaseUpdateServer;
 			}
-			this.dlClient = new WebClient();
-			this.dlClient.Headers.Add("User-Agent", string.Concat(new string[]
+			dlClient = new WebClient();
+			dlClient.Headers.Add("User-Agent", string.Concat(new string[]
             {
                 Global.definition.AppName,
                 " - ",
@@ -32,13 +32,13 @@ namespace MasaoPlus.Dialogs
                 Global.definition.Version,
                 "(Windows NT 10.0; Win64; x64)"
             }));
-			this.dlClient.DownloadProgressChanged += this.dlClient_DownloadProgressChanged;
-			this.dlClient.DownloadFileCompleted += this.dlClient_DownloadFileCompleted;
-			this.tempfile = Path.GetTempFileName();
+			dlClient.DownloadProgressChanged += dlClient_DownloadProgressChanged;
+			dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted;
+			tempfile = Path.GetTempFileName();
 			Uri address = new Uri(Global.config.localSystem.UpdateServer);
 			try
 			{
-				this.dlClient.DownloadFileAsync(address, this.tempfile);
+				dlClient.DownloadFileAsync(address, tempfile);
 			}
 			catch (Exception ex)
 			{
@@ -50,8 +50,8 @@ namespace MasaoPlus.Dialogs
 
 		private void dlClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
 		{
-			this.dlClient.Dispose();
-			this.SUpdate("更新をチェックしています...");
+			dlClient.Dispose();
+			SUpdate("更新をチェックしています...");
 			if (e.Error != null)
 			{
 				MessageBox.Show("更新できませんでした。" + Environment.NewLine + e.Error.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
@@ -59,16 +59,16 @@ namespace MasaoPlus.Dialogs
 				base.Close();
 				return;
 			}
-			this.ud = UpdateData.ParseXML(this.tempfile);
-			File.Delete(this.tempfile);
-			if (this.ud.DefVersion <= Global.definition.CheckVersion)
+			ud = UpdateData.ParseXML(tempfile);
+			File.Delete(tempfile);
+			if (ud.DefVersion <= Global.definition.CheckVersion)
 			{
 				MessageBox.Show("最新版を利用しています。更新の必要はありません。", "更新結果", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 base.DialogResult = DialogResult.Abort;
 				base.Close();
 				return;
 			}
-			if (this.ud.RequireLower > Global.definition.CheckVersion)
+			if (ud.RequireLower > Global.definition.CheckVersion)
 			{
 				MessageBox.Show("このバージョンからの更新は、自動アップデートでは対応していません。" + Environment.NewLine + "公式サイトから手動で更新してください。", "自動更新非対応", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 base.DialogResult = DialogResult.Abort;
@@ -78,7 +78,7 @@ namespace MasaoPlus.Dialogs
 			if (MessageBox.Show(string.Concat(new string[]
 			{
 				"バージョン",
-				this.ud.Name.ToString(),
+				ud.Name.ToString(),
 				"がリリースされています。",
 				Environment.NewLine,
 				"ダウンロードしてインストールしてもよろしいですか？"
@@ -88,10 +88,10 @@ namespace MasaoPlus.Dialogs
 				base.Close();
 				return;
 			}
-			this.progressBar1.Value = 0;
-			this.SUpdate("パッケージをダウンロードしています...[1/2]");
-			this.dlClient = new WebClient();
-			this.dlClient.Headers.Add("User-Agent", string.Concat(new string[]
+			progressBar1.Value = 0;
+			SUpdate("パッケージをダウンロードしています...[1/2]");
+			dlClient = new WebClient();
+			dlClient.Headers.Add("User-Agent", string.Concat(new string[]
 			{
 				Global.definition.AppName,
 				" - ",
@@ -100,19 +100,19 @@ namespace MasaoPlus.Dialogs
 				Global.definition.Version,
                 "(Windows NT 10.0; Win64; x64)"
             }));
-			this.dlClient.DownloadProgressChanged += this.dlClient_DownloadProgressChanged;
-            this.dlClient.DownloadProgressChanged += this.dlClient_DownloadTaskbarManagerProgressChanged;
-            this.dlClient.DownloadFileCompleted += this.dlClient_DownloadFileCompleted2;
-			while (this.TemporaryFolder == null || Directory.Exists(this.TemporaryFolder))
+			dlClient.DownloadProgressChanged += dlClient_DownloadProgressChanged;
+            dlClient.DownloadProgressChanged += dlClient_DownloadTaskbarManagerProgressChanged;
+            dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted2;
+			while (TemporaryFolder == null || Directory.Exists(TemporaryFolder))
 			{
-				this.TemporaryFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+				TemporaryFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
 			}
-			Directory.CreateDirectory(this.TemporaryFolder);
-			this.tempfile = Path.Combine(this.TemporaryFolder, Path.GetFileName(this.ud.Update.Replace('/', '\\')));
-			Uri address = new Uri(this.ud.Update);
+			Directory.CreateDirectory(TemporaryFolder);
+			tempfile = Path.Combine(TemporaryFolder, Path.GetFileName(ud.Update.Replace('/', '\\')));
+			Uri address = new Uri(ud.Update);
 			try
 			{
-				this.dlClient.DownloadFileAsync(address, this.tempfile);
+				dlClient.DownloadFileAsync(address, tempfile);
 			}
 			catch (Exception ex)
             {
@@ -126,7 +126,7 @@ namespace MasaoPlus.Dialogs
 
 		private void dlClient_DownloadFileCompleted2(object sender, AsyncCompletedEventArgs e)
 		{
-			this.dlClient.Dispose();
+			dlClient.Dispose();
 			if (e.Error != null)
             {
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
@@ -136,10 +136,10 @@ namespace MasaoPlus.Dialogs
 				base.Close();
 				return;
 			}
-			this.progressBar1.Value = 0;
-			this.SUpdate("パッケージをダウンロードしています...[2/2]");
-			this.dlClient = new WebClient();
-			this.dlClient.Headers.Add("User-Agent", string.Concat(new string[]
+			progressBar1.Value = 0;
+			SUpdate("パッケージをダウンロードしています...[2/2]");
+			dlClient = new WebClient();
+			dlClient.Headers.Add("User-Agent", string.Concat(new string[]
 			{
 				Global.definition.AppName,
 				" - ",
@@ -148,14 +148,14 @@ namespace MasaoPlus.Dialogs
 				Global.definition.Version,
                 "(Windows NT 10.0; Win64; x64)"
             }));
-			this.dlClient.DownloadProgressChanged += this.dlClient_DownloadProgressChanged;
-            this.dlClient.DownloadProgressChanged += this.dlClient_DownloadTaskbarManagerProgressChanged;
-            this.dlClient.DownloadFileCompleted += this.dlClient_DownloadFileCompleted3;
-			this.runfile = Path.Combine(this.TemporaryFolder, Path.GetFileName(this.ud.Installer.Replace('/', '\\')));
-			Uri address = new Uri(this.ud.Installer);
+			dlClient.DownloadProgressChanged += dlClient_DownloadProgressChanged;
+            dlClient.DownloadProgressChanged += dlClient_DownloadTaskbarManagerProgressChanged;
+            dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted3;
+			runfile = Path.Combine(TemporaryFolder, Path.GetFileName(ud.Installer.Replace('/', '\\')));
+			Uri address = new Uri(ud.Installer);
 			try
 			{
-				this.dlClient.DownloadFileAsync(address, this.runfile);
+				dlClient.DownloadFileAsync(address, runfile);
 			}
 			catch (Exception ex)
             {
@@ -169,7 +169,7 @@ namespace MasaoPlus.Dialogs
 
 		private void dlClient_DownloadFileCompleted3(object sender, AsyncCompletedEventArgs e)
 		{
-			this.dlClient.Dispose();
+			dlClient.Dispose();
 			if (e.Error != null)
             {
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
@@ -180,22 +180,22 @@ namespace MasaoPlus.Dialogs
 				return;
             }
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
-            this.SUpdate("更新の準備をしています...");
+            SUpdate("更新の準備をしています...");
 			new UpdateData
 			{
-				Installer = Subsystem.ExtractZipArchive(this.tempfile),
+				Installer = Subsystem.ExtractZipArchive(tempfile),
 				Update = Application.StartupPath,
 				Name = Path.GetFileName(Application.ExecutablePath)
-			}.SaveXML(Path.Combine(this.TemporaryFolder, Global.definition.UpdateTempData));
-			this.SUpdate("更新を開始します...");
+			}.SaveXML(Path.Combine(TemporaryFolder, Global.definition.UpdateTempData));
+			SUpdate("更新を開始します...");
 			base.DialogResult = DialogResult.Retry;
 			base.Close();
 		}
 
 		private void dlClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
 		{
-			this.progressBar1.Value = e.ProgressPercentage;
-			this.progressBar1.Refresh();
+			progressBar1.Value = e.ProgressPercentage;
+			progressBar1.Refresh();
         }
 
         private void dlClient_DownloadTaskbarManagerProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -206,8 +206,8 @@ namespace MasaoPlus.Dialogs
 
         private void SUpdate(string state)
 		{
-			this.StateLabel.Text = state;
-			this.StateLabel.Refresh();
+			StateLabel.Text = state;
+			StateLabel.Refresh();
 		}
 
 		private WebClient dlClient;

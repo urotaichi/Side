@@ -12,15 +12,15 @@ namespace MasaoPlus.Dialogs
 	{
 		public NewProject()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 		}
 
 		private void NewProject_Load(object sender, EventArgs e)
 		{
-			this.RuntimeSet.DropDownWidth = base.Width - this.RuntimeSet.Left;
-			this.RootDir.Text = Global.config.lastData.ProjDirF;
-			this.OK.Text = "お待ちください...";
-			this.OK.Enabled = false;
+			RuntimeSet.DropDownWidth = base.Width - RuntimeSet.Left;
+			RootDir.Text = Global.config.lastData.ProjDirF;
+			OK.Text = "お待ちください...";
+			OK.Enabled = false;
 		}
 
 		private void NewProject_Shown(object sender, EventArgs e)
@@ -47,10 +47,10 @@ namespace MasaoPlus.Dialogs
 							string[] array2 = Runtime.CheckFiles(text2, runtime);
 							if (array2.Length == 0)
 							{
-								this.runtimes.Add(text);
-								this.runtimedatas.Add(runtime);
-								this.runtimeuselayer.Add(runtime.Definitions.LayerSize.bytesize != 0);
-								this.RuntimeSet.Items.Add($"{runtime.Definitions.Name} [Author:{runtime.Definitions.Author} Layer:"
+								runtimes.Add(text);
+								runtimedatas.Add(runtime);
+								runtimeuselayer.Add(runtime.Definitions.LayerSize.bytesize != 0);
+								RuntimeSet.Items.Add($"{runtime.Definitions.Name} [Author:{runtime.Definitions.Author} Layer:"
 									+ ((runtime.Definitions.LayerSize.bytesize != 0) ? "○" : "×")
 									+ $"] : {Path.GetFileName(text)}");
 							}
@@ -77,7 +77,7 @@ namespace MasaoPlus.Dialogs
 					MessageBox.Show("読み込めませんでした:" + Path.GetFileName(text) + Environment.NewLine + ex.Message, "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				}
 			}
-			if (this.RuntimeSet.Items.Count == 0)
+			if (RuntimeSet.Items.Count == 0)
 			{
 				MessageBox.Show("利用可能なランタイムがありません。", "ランタイムロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				base.DialogResult = DialogResult.Cancel;
@@ -85,35 +85,35 @@ namespace MasaoPlus.Dialogs
 			}
 			else
 			{
-				this.RuntimeSet.SelectedIndex = 0;
+				RuntimeSet.SelectedIndex = 0;
 			}
-			this.OK.Text = "OK";
-			this.CheckInput();
+			OK.Text = "OK";
+			CheckInput();
 		}
 
 		private void CheckInput()
 		{
-			if (this.ProjectName.Text != "" && this.RootDir.Text != "" && Directory.Exists(this.RootDir.Text) && (!this.LayerPattern.Enabled || this.LayerPattern.Text == "" || File.Exists(this.LayerPattern.Text)))
+			if (ProjectName.Text != "" && RootDir.Text != "" && Directory.Exists(RootDir.Text) && (!LayerPattern.Enabled || LayerPattern.Text == "" || File.Exists(LayerPattern.Text)))
 			{
 				string[] array = new string[]
 				{
-					this.MapChip.Text,
-					this.TitleImage.Text,
-					this.EndingImage.Text,
-					this.GameoverImage.Text
+					MapChip.Text,
+					TitleImage.Text,
+					EndingImage.Text,
+					GameoverImage.Text
 				};
 				foreach (string text in array)
 				{
 					if (text != "" && !File.Exists(text))
 					{
-						this.OK.Enabled = false;
+						OK.Enabled = false;
 						return;
 					}
 				}
-				this.OK.Enabled = true;
+				OK.Enabled = true;
 				return;
 			}
-			this.OK.Enabled = false;
+			OK.Enabled = false;
 		}
 
 		private void TextCheckNullable(object sender, EventArgs e)
@@ -129,7 +129,7 @@ namespace MasaoPlus.Dialogs
 				textBox.ForeColor = Color.White;
 				textBox.BackColor = Color.Red;
 			}
-			this.CheckInput();
+			CheckInput();
 		}
 
 		private void ValidText(object sender, EventArgs e)
@@ -145,7 +145,7 @@ namespace MasaoPlus.Dialogs
 				textBox.ForeColor = Color.White;
 				textBox.BackColor = Color.Red;
 			}
-			this.CheckInput();
+			CheckInput();
 		}
 
 		private void ValidPath(object sender, EventArgs e)
@@ -161,7 +161,7 @@ namespace MasaoPlus.Dialogs
 				textBox.ForeColor = Color.White;
 				textBox.BackColor = Color.Red;
 			}
-			this.CheckInput();
+			CheckInput();
 		}
 
 		private void ValidPathEmptiable(object sender, EventArgs e)
@@ -177,7 +177,7 @@ namespace MasaoPlus.Dialogs
 				textBox.ForeColor = Color.White;
 				textBox.BackColor = Color.Red;
 			}
-			this.CheckInput();
+			CheckInput();
 		}
 
 		private void ValidDir(object sender, EventArgs e)
@@ -193,17 +193,17 @@ namespace MasaoPlus.Dialogs
 				textBox.ForeColor = Color.White;
 				textBox.BackColor = Color.Red;
 			}
-			this.CheckInput();
+			CheckInput();
 		}
 
 		private void RootDirBrowse_Click(object sender, EventArgs e)
 		{
             using FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
             folderBrowserDialog.Description = "プロジェクトのルートディレクトリを選択してください。";
-            folderBrowserDialog.SelectedPath = this.RootDir.Text;
+            folderBrowserDialog.SelectedPath = RootDir.Text;
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
-                this.RootDir.Text = folderBrowserDialog.SelectedPath;
+                RootDir.Text = folderBrowserDialog.SelectedPath;
             }
         }
 
@@ -212,17 +212,17 @@ namespace MasaoPlus.Dialogs
             using OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.DefaultExt = "*.gif";
             openFileDialog.Filter = "画像(*.gif;*.png;*.bmp)|*.gif;*.png;*.bmp|全てのファイル (*.*)|*.*";
-            if (this.MapChip.Text != "")
+            if (MapChip.Text != "")
             {
-                openFileDialog.FileName = this.MapChip.Text;
+                openFileDialog.FileName = MapChip.Text;
             }
             else
             {
-                openFileDialog.FileName = this.RootDir.Text;
+                openFileDialog.FileName = RootDir.Text;
             }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                this.MapChip.Text = openFileDialog.FileName;
+                MapChip.Text = openFileDialog.FileName;
             }
         }
 
@@ -231,17 +231,17 @@ namespace MasaoPlus.Dialogs
             using OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.DefaultExt = "*.gif";
             openFileDialog.Filter = "画像(*.gif;*.png;*.bmp)|*.gif;*.png;*.bmp|全てのファイル (*.*)|*.*";
-            if (this.MapChip.Text != "")
+            if (MapChip.Text != "")
             {
-                openFileDialog.FileName = this.LayerPattern.Text;
+                openFileDialog.FileName = LayerPattern.Text;
             }
             else
             {
-                openFileDialog.FileName = this.RootDir.Text;
+                openFileDialog.FileName = RootDir.Text;
             }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                this.LayerPattern.Text = openFileDialog.FileName;
+                LayerPattern.Text = openFileDialog.FileName;
             }
         }
 
@@ -250,17 +250,17 @@ namespace MasaoPlus.Dialogs
             using OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.DefaultExt = "*.gif";
             openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
-            if (this.TitleImage.Text != "")
+            if (TitleImage.Text != "")
             {
-                openFileDialog.FileName = this.TitleImage.Text;
+                openFileDialog.FileName = TitleImage.Text;
             }
             else
             {
-                openFileDialog.FileName = this.RootDir.Text;
+                openFileDialog.FileName = RootDir.Text;
             }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                this.TitleImage.Text = openFileDialog.FileName;
+                TitleImage.Text = openFileDialog.FileName;
             }
         }
 
@@ -269,17 +269,17 @@ namespace MasaoPlus.Dialogs
             using OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.DefaultExt = "*.gif";
             openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
-            if (this.EndingImage.Text != "")
+            if (EndingImage.Text != "")
             {
-                openFileDialog.FileName = this.EndingImage.Text;
+                openFileDialog.FileName = EndingImage.Text;
             }
             else
             {
-                openFileDialog.FileName = this.RootDir.Text;
+                openFileDialog.FileName = RootDir.Text;
             }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                this.EndingImage.Text = openFileDialog.FileName;
+                EndingImage.Text = openFileDialog.FileName;
             }
         }
 
@@ -288,17 +288,17 @@ namespace MasaoPlus.Dialogs
             using OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.DefaultExt = "*.gif";
             openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
-            if (this.GameoverImage.Text != "")
+            if (GameoverImage.Text != "")
             {
-                openFileDialog.FileName = this.GameoverImage.Text;
+                openFileDialog.FileName = GameoverImage.Text;
             }
             else
             {
-                openFileDialog.FileName = this.RootDir.Text;
+                openFileDialog.FileName = RootDir.Text;
             }
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                this.GameoverImage.Text = openFileDialog.FileName;
+                GameoverImage.Text = openFileDialog.FileName;
             }
         }
 
@@ -308,10 +308,10 @@ namespace MasaoPlus.Dialogs
 			try
 			{
 				base.Enabled = false;
-				this.OK.Text = "生成中...";
-				this.OK.Refresh();
-				Global.config.lastData.ProjDir = this.RootDir.Text;
-				string text = Path.Combine(this.RootDir.Text, this.ProjectName.Text);
+				OK.Text = "生成中...";
+				OK.Refresh();
+				Global.config.lastData.ProjDir = RootDir.Text;
+				string text = Path.Combine(RootDir.Text, ProjectName.Text);
 				if (Directory.Exists(text) && MessageBox.Show(string.Concat(new string[]
 				{
 					"ディレクトリ",
@@ -329,49 +329,49 @@ namespace MasaoPlus.Dialogs
 				{
 					return;
 				}
-				string text2 = Path.Combine(text, this.ProjectName.Text + Global.definition.ProjExt);
-				string text3 = Path.Combine(Path.GetDirectoryName(this.runtimes[this.RuntimeSet.SelectedIndex]), Path.GetFileNameWithoutExtension(this.runtimes[this.RuntimeSet.SelectedIndex]));
+				string text2 = Path.Combine(text, ProjectName.Text + Global.definition.ProjExt);
+				string text3 = Path.Combine(Path.GetDirectoryName(runtimes[RuntimeSet.SelectedIndex]), Path.GetFileNameWithoutExtension(runtimes[RuntimeSet.SelectedIndex]));
 				Project project = new Project();
-				project.Name = this.ProjectName.Text;
-				project.Runtime = this.runtimedatas[this.RuntimeSet.SelectedIndex];
-				project.Config = ConfigurationOwner.LoadXML(Path.Combine(text3, this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.Configurations));
-				if (this.TitleImage.Text != "")
+				project.Name = ProjectName.Text;
+				project.Runtime = runtimedatas[RuntimeSet.SelectedIndex];
+				project.Config = ConfigurationOwner.LoadXML(Path.Combine(text3, runtimedatas[RuntimeSet.SelectedIndex].Definitions.Configurations));
+				if (TitleImage.Text != "")
 				{
 					list.Add(project.Config.TitleImage);
-					project.Config.TitleImage = Path.GetFileName(this.TitleImage.Text);
+					project.Config.TitleImage = Path.GetFileName(TitleImage.Text);
 				}
-				if (this.MapChip.Text != "")
+				if (MapChip.Text != "")
 				{
 					list.Add(project.Config.PatternImage);
-					project.Config.PatternImage = Path.GetFileName(this.MapChip.Text);
+					project.Config.PatternImage = Path.GetFileName(MapChip.Text);
 				}
-				if (this.EndingImage.Text != "")
+				if (EndingImage.Text != "")
 				{
 					list.Add(project.Config.EndingImage);
-					project.Config.EndingImage = Path.GetFileName(this.EndingImage.Text);
+					project.Config.EndingImage = Path.GetFileName(EndingImage.Text);
 				}
-				if (this.GameoverImage.Text != "")
+				if (GameoverImage.Text != "")
 				{
 					list.Add(project.Config.GameoverImage);
-					project.Config.GameoverImage = Path.GetFileName(this.GameoverImage.Text);
+					project.Config.GameoverImage = Path.GetFileName(GameoverImage.Text);
 				}
 				if (project.Runtime.Definitions.LayerSize.bytesize != 0)
 				{
-					if (this.LayerPattern.Text != "")
+					if (LayerPattern.Text != "")
 					{
-						project.Config.LayerImage = Path.GetFileName(this.LayerPattern.Text);
+						project.Config.LayerImage = Path.GetFileName(LayerPattern.Text);
 					}
-					project.LayerData = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
-					project.LayerData2 = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
-					project.LayerData3 = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
-					project.LayerData4 = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
+					project.LayerData = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
+					project.LayerData2 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
+					project.LayerData3 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
+					project.LayerData4 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
 				}
-				project.StageData = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.StageSize.y];
-				project.StageData2 = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.StageSize.y];
-				project.StageData3 = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.StageSize.y];
-				project.StageData4 = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.StageSize.y];
-				project.MapData = new string[this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.MapSize.y];
-				project.Config.StageNum = (int)this.StageNum.Value;
+				project.StageData = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.StageSize.y];
+				project.StageData2 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.StageSize.y];
+				project.StageData3 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.StageSize.y];
+				project.StageData4 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.StageSize.y];
+				project.MapData = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.MapSize.y];
+				project.Config.StageNum = (int)StageNum.Value;
 				ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(text3, project.Runtime.Definitions.ChipDefinition));
 				string character = chipDataClass.Mapchip[0].character;
 				for (int i = 0; i < project.StageData.Length; i++)
@@ -415,7 +415,7 @@ namespace MasaoPlus.Dialogs
 				Directory.CreateDirectory(text);
 				foreach (string text4 in Directory.GetFiles(text3, "*", SearchOption.TopDirectoryOnly))
 				{
-					if (!(Path.GetFileName(text4) == this.runtimedatas[this.RuntimeSet.SelectedIndex].Definitions.Configurations) && !list.Contains(Path.GetFileName(text4)))
+					if (!(Path.GetFileName(text4) == runtimedatas[RuntimeSet.SelectedIndex].Definitions.Configurations) && !list.Contains(Path.GetFileName(text4)))
 					{
 						string text5 = Path.Combine(text, Path.GetFileName(text4));
 						if (!File.Exists(text5) || MessageBox.Show(string.Concat(new string[]
@@ -431,28 +431,28 @@ namespace MasaoPlus.Dialogs
 						}
 					}
 				}
-				if (this.TitleImage.Text != "")
+				if (TitleImage.Text != "")
 				{
-					File.Copy(this.TitleImage.Text, Path.Combine(text, project.Config.TitleImage), true);
+					File.Copy(TitleImage.Text, Path.Combine(text, project.Config.TitleImage), true);
 				}
-				if (this.MapChip.Text != "")
+				if (MapChip.Text != "")
 				{
-					File.Copy(this.MapChip.Text, Path.Combine(text, project.Config.PatternImage), true);
+					File.Copy(MapChip.Text, Path.Combine(text, project.Config.PatternImage), true);
 				}
-				if (this.EndingImage.Text != "")
+				if (EndingImage.Text != "")
 				{
-					File.Copy(this.EndingImage.Text, Path.Combine(text, project.Config.EndingImage), true);
+					File.Copy(EndingImage.Text, Path.Combine(text, project.Config.EndingImage), true);
 				}
-				if (this.GameoverImage.Text != "")
+				if (GameoverImage.Text != "")
 				{
-					File.Copy(this.GameoverImage.Text, Path.Combine(text, project.Config.GameoverImage), true);
+					File.Copy(GameoverImage.Text, Path.Combine(text, project.Config.GameoverImage), true);
 				}
-				if (project.Runtime.Definitions.LayerSize.bytesize != 0 && this.LayerPattern.Text != "")
+				if (project.Runtime.Definitions.LayerSize.bytesize != 0 && LayerPattern.Text != "")
 				{
-					File.Copy(this.LayerPattern.Text, Path.Combine(text, project.Config.LayerImage), true);
+					File.Copy(LayerPattern.Text, Path.Combine(text, project.Config.LayerImage), true);
 				}
 				project.SaveXML(text2);
-				this.CreatedProject = text2;
+				CreatedProject = text2;
 			}
 			catch (Exception ex)
 			{
@@ -468,7 +468,7 @@ namespace MasaoPlus.Dialogs
 			}
 			finally
 			{
-				this.OK.Text = "OK";
+				OK.Text = "OK";
 				base.Enabled = true;
 			}
 			base.DialogResult = DialogResult.OK;
@@ -477,36 +477,36 @@ namespace MasaoPlus.Dialogs
 
 		private void RuntimeSet_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			if (this.RuntimeSet.SelectedIndex != -1)
+			if (RuntimeSet.SelectedIndex != -1)
 			{
-				this.LayerPattern.Enabled = this.runtimeuselayer[this.RuntimeSet.SelectedIndex];
-				this.LayerPatternBrowse.Enabled = this.runtimeuselayer[this.RuntimeSet.SelectedIndex];
-				this.LPLabel.Enabled = this.runtimeuselayer[this.RuntimeSet.SelectedIndex];
-				if (this.runtimeuselayer[this.RuntimeSet.SelectedIndex])
+				LayerPattern.Enabled = runtimeuselayer[RuntimeSet.SelectedIndex];
+				LayerPatternBrowse.Enabled = runtimeuselayer[RuntimeSet.SelectedIndex];
+				LPLabel.Enabled = runtimeuselayer[RuntimeSet.SelectedIndex];
+				if (runtimeuselayer[RuntimeSet.SelectedIndex])
 				{
-					this.LayerUnsupNotice.Visible = false;
-					this.ValidPathEmptiable(this.LayerPattern, new EventArgs());
+					LayerUnsupNotice.Visible = false;
+					ValidPathEmptiable(LayerPattern, new EventArgs());
 				}
 				else
 				{
-					this.LayerPattern.BackColor = Color.LightGray;
-					this.LayerPattern.ForeColor = Color.Gray;
-					this.LayerUnsupNotice.Visible = true;
+					LayerPattern.BackColor = Color.LightGray;
+					LayerPattern.ForeColor = Color.Gray;
+					LayerUnsupNotice.Visible = true;
 				}
 			}
-			this.CheckInput();
+			CheckInput();
 		}
 
 		private void UseDefaultPict_Click(object sender, EventArgs e)
 		{
-			this.MapChip.Text = Path.Combine(Global.config.lastData.PictDirF, Global.config.lastData.DefaultChip);
-			if (this.LayerPattern.Enabled)
+			MapChip.Text = Path.Combine(Global.config.lastData.PictDirF, Global.config.lastData.DefaultChip);
+			if (LayerPattern.Enabled)
 			{
-				this.LayerPattern.Text = Path.Combine(Global.config.lastData.PictDirF, Global.config.lastData.DefaultLayerChip);
+				LayerPattern.Text = Path.Combine(Global.config.lastData.PictDirF, Global.config.lastData.DefaultLayerChip);
 			}
-			this.TitleImage.Text = Path.Combine(Global.config.lastData.PictDirF, Global.config.lastData.DefaultTitleImage);
-			this.EndingImage.Text = Path.Combine(Global.config.lastData.PictDirF, Global.config.lastData.DefaultEndingImage);
-			this.GameoverImage.Text = Path.Combine(Global.config.lastData.PictDirF, Global.config.lastData.DefaultGameoverImage);
+			TitleImage.Text = Path.Combine(Global.config.lastData.PictDirF, Global.config.lastData.DefaultTitleImage);
+			EndingImage.Text = Path.Combine(Global.config.lastData.PictDirF, Global.config.lastData.DefaultEndingImage);
+			GameoverImage.Text = Path.Combine(Global.config.lastData.PictDirF, Global.config.lastData.DefaultGameoverImage);
 		}
 
 		public string CreatedProject = "";

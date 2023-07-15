@@ -11,12 +11,12 @@ namespace MasaoPlus.Dialogs
 	{
 		public VersionInfo()
 		{
-			this.InitializeComponent();
+			InitializeComponent();
 		}
 
 		private void VersionInfo_Load(object sender, EventArgs e)
 		{
-			this.VersionLabel.Text = Global.definition.Version;
+			VersionLabel.Text = Global.definition.Version;
 		}
 
 		private void LinkLabelClicked(object sender, LinkLabelLinkClickedEventArgs e)

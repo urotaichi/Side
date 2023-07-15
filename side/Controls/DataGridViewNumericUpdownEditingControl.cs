@@ -12,9 +12,9 @@ namespace MasaoPlus.Controls
 
 		public void ApplyCellStyleToEditingControl(DataGridViewCellStyle dataGridViewCellStyle)
 		{
-			this.Font = dataGridViewCellStyle.Font;
-			this.ForeColor = dataGridViewCellStyle.ForeColor;
-			this.BackColor = dataGridViewCellStyle.BackColor;
+			Font = dataGridViewCellStyle.Font;
+			ForeColor = dataGridViewCellStyle.ForeColor;
+			BackColor = dataGridViewCellStyle.BackColor;
 			DataGridViewContentAlignment alignment = dataGridViewCellStyle.Alignment;
 			if (alignment <= DataGridViewContentAlignment.MiddleCenter)
 			{
@@ -62,11 +62,11 @@ namespace MasaoPlus.Controls
 		{
 			get
 			{
-				return this.dataGridView;
+				return dataGridView;
 			}
 			set
 			{
-				this.dataGridView = value;
+				dataGridView = value;
 			}
 		}
 
@@ -74,11 +74,11 @@ namespace MasaoPlus.Controls
 		{
 			get
 			{
-				return this.GetEditingControlFormattedValue(DataGridViewDataErrorContexts.Formatting);
+				return GetEditingControlFormattedValue(DataGridViewDataErrorContexts.Formatting);
 			}
 			set
 			{
-				this.Text = (string)value;
+				Text = (string)value;
 			}
 		}
 
@@ -86,11 +86,11 @@ namespace MasaoPlus.Controls
 		{
 			get
 			{
-				return this.rowIndex;
+				return rowIndex;
 			}
 			set
 			{
-				this.rowIndex = value;
+				rowIndex = value;
 			}
 		}
 
@@ -98,11 +98,11 @@ namespace MasaoPlus.Controls
 		{
 			get
 			{
-				return this.valueChanged;
+				return valueChanged;
 			}
 			set
 			{
-				this.valueChanged = value;
+				valueChanged = value;
 			}
 		}
 
@@ -151,8 +151,8 @@ namespace MasaoPlus.Controls
 		protected override void OnValueChanged(EventArgs e)
 		{
 			base.OnValueChanged(e);
-			this.valueChanged = true;
-			this.dataGridView.NotifyCurrentCellDirty(true);
+			valueChanged = true;
+			dataGridView.NotifyCurrentCellDirty(true);
 		}
 
 		private DataGridView dataGridView;

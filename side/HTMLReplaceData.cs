@@ -9,8 +9,8 @@ namespace MasaoPlus
 	{
 		public HTMLReplaceData(string n, string v)
 		{
-			this.Name = n;
-			this.Value = v;
+			Name = n;
+			Value = v;
 		}
 
 		[XmlAttribute("name")]
