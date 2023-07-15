@@ -34,7 +34,7 @@ namespace MasaoPlus
 		private void MainDesigner_MouseWheel(object sender, MouseEventArgs e)
 		{
 			int num = e.Delta / 120 * Global.cpd.runtime.Definitions.ChipSize.Height;
-			bool flag = (Control.ModifierKeys & Keys.Shift) == Keys.Shift;
+			bool flag = (ModifierKeys & Keys.Shift) == Keys.Shift;
 			if ((!flag && Global.config.draw.HScrollDefault) || (flag && !Global.config.draw.HScrollDefault))
 			{
 				State state = Global.state;
@@ -81,10 +81,10 @@ namespace MasaoPlus
 		private void MainWindow_Load(object sender, EventArgs e)
 		{
 			MUpdateApp.Enabled = Global.definition.IsAutoUpdateEnabled;
-			base.SetDesktopLocation(Global.config.lastData.WndPoint.X, Global.config.lastData.WndPoint.Y);
-			base.Size = Global.config.lastData.WndSize;
-			base.WindowState = Global.config.lastData.WndState;
-			MainSplit.SplitterDistance = (int)((double)base.Width * Global.config.lastData.SpliterDist);
+            SetDesktopLocation(Global.config.lastData.WndPoint.X, Global.config.lastData.WndPoint.Y);
+            Size = Global.config.lastData.WndSize;
+            WindowState = Global.config.lastData.WndState;
+			MainSplit.SplitterDistance = (int)(Width * Global.config.lastData.SpliterDist);
 			if (Global.config.localSystem.ReverseTabView)
 			{
 				EditTab.Parent = MainSplit.Panel1;
@@ -174,7 +174,7 @@ namespace MasaoPlus
                 using StartUp startUp = new StartUp();
                 if (startUp.ShowDialog() != DialogResult.OK)
                 {
-                    base.Close();
+                    Close();
                     Application.Exit();
                     return;
                 }
@@ -184,7 +184,7 @@ namespace MasaoPlus
 			{
 				if (projectLoading.ShowDialog() == DialogResult.Abort)
 				{
-					base.Close();
+                    Close();
 					Application.Restart();
 					return;
 				}
@@ -463,7 +463,7 @@ namespace MasaoPlus
 			{
 				Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : Global.cpd.runtime.Definitions.StageSize;
 				GHorzScroll.Enabled = true;
-				GHorzScroll.LargeChange = (int)((double)displaySize.Width / ((double)stageSizeData.x / 4.0) * Global.config.draw.ZoomIndex);
+				GHorzScroll.LargeChange = (int)(displaySize.Width / (stageSizeData.x / 4.0) * Global.config.draw.ZoomIndex);
 				GHorzScroll.Maximum = mapMoveMax.Width + GHorzScroll.LargeChange - 1;
 			}
 			if (displaySize.Height <= MainDesigner.Height)
@@ -474,7 +474,7 @@ namespace MasaoPlus
 			{
 				Runtime.DefinedData.StageSizeData stageSizeData2 = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : Global.cpd.runtime.Definitions.StageSize;
 				GVirtScroll.Enabled = true;
-				GVirtScroll.LargeChange = (int)((double)displaySize.Height / ((double)stageSizeData2.y / 4.0) * Global.config.draw.ZoomIndex);
+				GVirtScroll.LargeChange = (int)(displaySize.Height / (stageSizeData2.y / 4.0) * Global.config.draw.ZoomIndex);
 				GVirtScroll.Maximum = mapMoveMax.Height + GVirtScroll.LargeChange - 1;
 				GVirtScroll.Maximum = mapMoveMax.Height + GVirtScroll.LargeChange - 1;
 			}
@@ -679,7 +679,7 @@ namespace MasaoPlus
 		public void ChipItemReady()
 		{
             CRID method = new CRID(ChipItemReadyInvoke);
-			base.Invoke(method);
+            Invoke(method);
 		}
 
 		// クラシックチップリスト以外
@@ -1969,7 +1969,7 @@ namespace MasaoPlus
 			{
 				if (projectLoading.ShowDialog() == DialogResult.Abort)
 				{
-					base.Close();
+                    Close();
 					Application.Restart();
 					return;
 				}
@@ -2092,7 +2092,7 @@ namespace MasaoPlus
 
 		private void MExit_Click(object sender, EventArgs e)
 		{
-			base.Close();
+            Close();
 		}
 
 		private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -2348,11 +2348,11 @@ namespace MasaoPlus
 		{
 			if (e.CloseReason != CloseReason.ApplicationExitCall)
 			{
-				Global.config.lastData.SpliterDist = (double)MainSplit.SplitterDistance / (double)base.Width;
+				Global.config.lastData.SpliterDist = MainSplit.SplitterDistance / (double)Width;
 				Rectangle normalWindowLocation = Native.GetNormalWindowLocation(this);
 				Global.config.lastData.WndSize = normalWindowLocation.Size;
 				Global.config.lastData.WndPoint = normalWindowLocation.Location;
-				Global.config.lastData.WndState = base.WindowState;
+				Global.config.lastData.WndState = WindowState;
 				Global.config.SaveXML(Path.Combine(Application.StartupPath, Global.definition.ConfigFile));
 				if (Global.state.RunFile != null)
 				{
@@ -2561,7 +2561,7 @@ namespace MasaoPlus
             if (webUpdate.ShowDialog() == DialogResult.Retry)
             {
                 Global.state.RunFile = (string)webUpdate.runfile.Clone();
-                base.Close();
+                Close();
             }
         }
 

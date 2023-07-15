@@ -21,7 +21,7 @@ namespace MasaoPlus
 			}
 			set
 			{
-				BufferingDraw = value != GUIDesigner.EditTool.Pen;
+				BufferingDraw = value != EditTool.Pen;
 				curTool = value;
 				Refresh();
 			}
@@ -35,9 +35,9 @@ namespace MasaoPlus
 			}
 			set
 			{
-				if (value == GUIDesigner.CopyPasteTool.None)
+				if (value == CopyPasteTool.None)
 				{
-					BufferingDraw = CurrentTool != GUIDesigner.EditTool.Pen;
+					BufferingDraw = CurrentTool != EditTool.Pen;
 				}
 				else
 				{
@@ -279,12 +279,12 @@ namespace MasaoPlus
 				{
 					if (ForeLayerBmp != null)
 					{
-						return new Size((int)((double)ForeLayerBmp.Width * Global.config.draw.ZoomIndex), (int)((double)ForeLayerBmp.Height * Global.config.draw.ZoomIndex));
+						return new Size((int)(ForeLayerBmp.Width * Global.config.draw.ZoomIndex), (int)(ForeLayerBmp.Height * Global.config.draw.ZoomIndex));
 					}
 				}
 				else if (BackLayerBmp != null)
 				{
-					return new Size((int)((double)BackLayerBmp.Width * Global.config.draw.ZoomIndex), (int)((double)BackLayerBmp.Height * Global.config.draw.ZoomIndex));
+					return new Size((int)(BackLayerBmp.Width * Global.config.draw.ZoomIndex), (int)(BackLayerBmp.Height * Global.config.draw.ZoomIndex));
 				}
 				return default;
 			}
@@ -299,8 +299,8 @@ namespace MasaoPlus
 				{
 					return result;
 				}
-				result.Width = (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
-				result.Height = (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
+				result.Width = (int)(Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
+				result.Height = (int)(Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
 				return result;
 			}
 		}
@@ -308,10 +308,10 @@ namespace MasaoPlus
 		public GUIDesigner()
 		{
 			InitializeComponent();
-			base.SetStyle(ControlStyles.ResizeRedraw, true);
-			base.SetStyle(ControlStyles.DoubleBuffer, true);
-			base.SetStyle(ControlStyles.UserPaint, true);
-			base.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.ResizeRedraw, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 		}
 
 		public void StageSourceToDrawBuffer()
@@ -1192,8 +1192,8 @@ namespace MasaoPlus
 			{
 				return;
 			}
-			int num = (base.Width < (int)((double)ForeLayerBmp.Width * Global.config.draw.ZoomIndex)) ? base.Width : ((int)((double)ForeLayerBmp.Width * Global.config.draw.ZoomIndex));
-			int num2 = (base.Height < (int)((double)ForeLayerBmp.Height * Global.config.draw.ZoomIndex)) ? base.Height : ((int)((double)ForeLayerBmp.Height * Global.config.draw.ZoomIndex));
+			int num = (Width < (int)(ForeLayerBmp.Width * Global.config.draw.ZoomIndex)) ? Width : ((int)(ForeLayerBmp.Width * Global.config.draw.ZoomIndex));
+			int num2 = (Height < (int)(ForeLayerBmp.Height * Global.config.draw.ZoomIndex)) ? Height : ((int)(ForeLayerBmp.Height * Global.config.draw.ZoomIndex));
 			if (Global.config.draw.UseBufferingDraw && BufferingDraw && (bufpos != BufferCurrent || zi != Global.config.draw.ZoomIndex || DULayer != Global.state.DrawUnactiveLayer || TULayer != Global.state.TransparentUnactiveLayer || FLayer != Global.state.EditingForeground || EditMap != Global.state.EdittingStage))
 			{
 				bufpos = BufferCurrent;
@@ -1204,7 +1204,7 @@ namespace MasaoPlus
 				{
 					zi = Global.config.draw.ZoomIndex;
 					ForegroundBuffer.Dispose();
-					ForegroundBuffer = new Bitmap((int)((double)ForeLayerBmp.Width * zi), (int)((double)ForeLayerBmp.Height * zi), PixelFormat.Format24bppRgb);
+					ForegroundBuffer = new Bitmap((int)(ForeLayerBmp.Width * zi), (int)(ForeLayerBmp.Height * zi), PixelFormat.Format24bppRgb);
 				}
 				EditMap = Global.state.EdittingStage;
                 using Graphics graphics = Graphics.FromImage(ForegroundBuffer);
@@ -1273,35 +1273,35 @@ namespace MasaoPlus
 				double num3 = 1.0 / Global.config.draw.ZoomIndex;
 				if (Global.cpd.UseLayer && (!Global.state.EditingForeground || Global.state.DrawUnactiveLayer))
 				{
-					e.Graphics.DrawImage(BackLayerBmp, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)((double)num * num3), (int)((double)num2 * num3))), GraphicsUnit.Pixel);
+					e.Graphics.DrawImage(BackLayerBmp, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)(num * num3), (int)(num2 * num3))), GraphicsUnit.Pixel);
 				}
 				if (!Global.cpd.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
 				{
-					e.Graphics.DrawImage(ForeLayerBmp, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)((double)num * num3), (int)((double)num2 * num3))), GraphicsUnit.Pixel);
+					e.Graphics.DrawImage(ForeLayerBmp, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)(num * num3), (int)(num2 * num3))), GraphicsUnit.Pixel);
 				}
 			}
-			if (DrawMode != GUIDesigner.DirectDrawMode.None)
+			if (DrawMode != DirectDrawMode.None)
 			{
 				Rectangle drawRectangle = DrawRectangle;
-				drawRectangle.X *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
-				drawRectangle.Y *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
-				drawRectangle.Width *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
-				drawRectangle.Height *= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
+				drawRectangle.X *= (int)(Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
+				drawRectangle.Y *= (int)(Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
+				drawRectangle.Width *= (int)(Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
+				drawRectangle.Height *= (int)(Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
 				drawRectangle.X -= Global.state.MapPoint.X;
 				drawRectangle.Y -= Global.state.MapPoint.Y;
                 using Brush brush3 = new SolidBrush(Color.FromArgb(Global.config.draw.AlphaBlending ? 160 : 255, DrawEx.GetForegroundColor(Global.state.Background)));
-                if (DrawMode == GUIDesigner.DirectDrawMode.Rectangle)
+                if (DrawMode == DirectDrawMode.Rectangle)
                 {
                     e.Graphics.FillRectangle(brush3, drawRectangle);
                 }
                 else
                 {
-                    using Pen pen = new Pen(brush3, (float)((int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) / 4));
-                    drawRectangle.X += (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) / 2;
-                    drawRectangle.Y += (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex) / 2;
-                    drawRectangle.Width -= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
-                    drawRectangle.Height -= (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
-                    if (DrawMode == GUIDesigner.DirectDrawMode.RevLine)
+                    using Pen pen = new Pen(brush3, (int)(Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) / 4);
+                    drawRectangle.X += (int)(Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) / 2;
+                    drawRectangle.Y += (int)(Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex) / 2;
+                    drawRectangle.Width -= (int)(Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
+                    drawRectangle.Height -= (int)(Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
+                    if (DrawMode == DirectDrawMode.RevLine)
                     {
                         e.Graphics.DrawLine(pen, new Point(drawRectangle.X, drawRectangle.Bottom), new Point(drawRectangle.Right, drawRectangle.Top));
                     }
@@ -1315,13 +1315,13 @@ namespace MasaoPlus
 			{ // グリッドを表示
 
 				// 横方向のグリッド
-				int num4 = (int)((double)(Global.state.MapPointTranslated.X % Global.cpd.runtime.Definitions.ChipSize.Width) * Global.config.draw.ZoomIndex);
+				int num4 = (int)(Global.state.MapPointTranslated.X % Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
 				// 縦方向のグリッド
-				int num5 = (int)((double)(Global.state.MapPointTranslated.Y % Global.cpd.runtime.Definitions.ChipSize.Height) * Global.config.draw.ZoomIndex);
+				int num5 = (int)(Global.state.MapPointTranslated.Y % Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
 
-				DrawEx.DrawGridEx(e.Graphics, new Rectangle(0, (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex) - num5, num, num2), new Size(Global.definition.GridInterval, (int)((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex)), Global.state.Background);
+				DrawEx.DrawGridEx(e.Graphics, new Rectangle(0, (int)(Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex) - num5, num, num2), new Size(Global.definition.GridInterval, (int)(Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex)), Global.state.Background);
 
-				DrawEx.DrawGridEx(e.Graphics, new Rectangle((int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) - num4, 0, num, num2), new Size((int)((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex), Global.definition.GridInterval), Global.state.Background);
+				DrawEx.DrawGridEx(e.Graphics, new Rectangle((int)(Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex) - num4, 0, num, num2), new Size((int)(Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex), Global.definition.GridInterval), Global.state.Background);
 			}
 		}
 
@@ -1435,7 +1435,7 @@ namespace MasaoPlus
 			{
 				if (e.Button == MouseButtons.Right)
 				{ // 右クリック時
-					if (CopyPaste == GUIDesigner.CopyPasteTool.Paste)
+					if (CopyPaste == CopyPasteTool.Paste)
 					{
 						Global.MainWnd.CopyPasteInit();
 						Refresh();
@@ -1446,22 +1446,22 @@ namespace MasaoPlus
 						MousePressed = false;
 						switch (CopyPaste)
 						{
-						case GUIDesigner.CopyPasteTool.Copy:
-						case GUIDesigner.CopyPasteTool.Cut:
+						case CopyPasteTool.Copy:
+						case CopyPasteTool.Cut:
 							Global.MainWnd.CopyPasteInit();
 							Refresh();
 							return;
 						default:
 							switch (CurrentTool)
 							{
-							case GUIDesigner.EditTool.Line:
+							case EditTool.Line:
 								EnsureScroll(e.X, e.Y);
-								DrawMode = GUIDesigner.DirectDrawMode.None;
+								DrawMode = DirectDrawMode.None;
 								Refresh();
 								return;
-							case GUIDesigner.EditTool.Rect:
+							case EditTool.Rect:
 								EnsureScroll(e.X, e.Y);
-								DrawMode = GUIDesigner.DirectDrawMode.None;
+								DrawMode = DirectDrawMode.None;
 								Refresh();
 								return;
 							default:
@@ -1472,20 +1472,20 @@ namespace MasaoPlus
 					}
 					else
 					{
-						if (CurrentTool == GUIDesigner.EditTool.Cursor && Global.config.draw.RightClickMenu)
+						if (CurrentTool == EditTool.Cursor && Global.config.draw.RightClickMenu)
 						{
 							MouseStartPoint = default;
-							MouseStartPoint.X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex));
-							MouseStartPoint.Y = (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex));
+							MouseStartPoint.X = (int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex));
+							MouseStartPoint.Y = (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex));
 							CursorContextMenu.Show(this, new Point(e.X, e.Y));
 							return;
 						}
 
 						// チップを拾う
-						string stageChar = GUIDesigner.StageText.GetStageChar(new Point
+						string stageChar = StageText.GetStageChar(new Point
 						{
-							X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)),
-							Y = (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex))
+							X = (int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)),
+							Y = (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex))
 						});
 						if (Global.state.MapEditMode)
 						{
@@ -1512,8 +1512,8 @@ namespace MasaoPlus
 				}
 				else if (e.Button == MouseButtons.Middle && Global.config.testRun.QuickTestrun)
 				{ // 中央クリック時
-					Point p = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
-					if (GUIDesigner.StageText.IsOverflow(p))
+					Point p = new Point((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+					if (StageText.IsOverflow(p))
 					{
 						return;
 					}
@@ -1533,12 +1533,12 @@ namespace MasaoPlus
 			MousePressed = true;
 			switch (CopyPaste)
 			{
-			case GUIDesigner.CopyPasteTool.Copy:
-			case GUIDesigner.CopyPasteTool.Cut:
-				MouseStartPoint = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+			case CopyPasteTool.Copy:
+			case CopyPasteTool.Cut:
+				MouseStartPoint = new Point((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
 				MouseLastPoint = MouseStartPoint;
 				return;
-			case GUIDesigner.CopyPasteTool.Paste:
+			case CopyPasteTool.Paste:
 			{
 				EnsureScroll(e.X, e.Y);
 				Global.MainWnd.UpdateStatus("描画しています...");
@@ -1569,7 +1569,7 @@ namespace MasaoPlus
 				StageSourceToDrawBuffer();
 				AddBuffer();
 				MousePressed = false;
-				DrawMode = GUIDesigner.DirectDrawMode.None;
+				DrawMode = DirectDrawMode.None;
 				Global.MainWnd.UpdateStatus("完了");
 				Refresh();
 				return;
@@ -1577,30 +1577,30 @@ namespace MasaoPlus
 			default:
 				switch (CurrentTool)
 				{
-				case GUIDesigner.EditTool.Cursor:
+				case EditTool.Cursor:
 					MouseStartPoint = new Point(e.X, e.Y);
 					return;
-				case GUIDesigner.EditTool.Pen:
+				case EditTool.Pen:
 					MouseLastPoint = new Point(-1, -1);
 					GUIDesigner_MouseMove(this, e);
 					return;
-				case GUIDesigner.EditTool.Line:
-				case GUIDesigner.EditTool.Rect:
+				case EditTool.Line:
+				case EditTool.Rect:
 					MouseStartPoint = new Point(
-						(int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)),
-						(int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex))
+						(int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)),
+						(int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex))
 					);
 					MouseLastPoint = MouseStartPoint;
 					return;
-				case GUIDesigner.EditTool.Fill:
+				case EditTool.Fill:
 					Global.MainWnd.UpdateStatus("塗り潰しています...");
 					FillStart(Global.state.CurrentChip,
 						new Point(
 							(int)(
-								(double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)
+                                (e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)
 							),
 							(int)(
-								(double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)
+                                (e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)
 							)
 						)
 					);
@@ -1620,7 +1620,7 @@ namespace MasaoPlus
 		private void FillStart(ChipsData repl, Point pt)
 		{
 			// 画面外なら終了
-			if (GUIDesigner.StageText.IsOverflow(pt))
+			if (StageText.IsOverflow(pt))
 			{
 				return;
 			}
@@ -1649,7 +1649,7 @@ namespace MasaoPlus
 					}
 				}
 			}
-			string stageChar = GUIDesigner.StageText.GetStageChar(pt);
+			string stageChar = StageText.GetStageChar(pt);
             // 塗りつぶしたマスと同じなら終了
             if (stageChar == repl.character)
 			{
@@ -1781,7 +1781,7 @@ namespace MasaoPlus
 
 		private bool CheckChar(Point pt, ChipsData cd)
 		{
-			if (GUIDesigner.StageText.IsOverflow(pt))
+			if (StageText.IsOverflow(pt))
 			{
 				return false;
 			}
@@ -1810,17 +1810,17 @@ namespace MasaoPlus
 
         private void GUIDesigner_MouseMove(object sender, MouseEventArgs e)
 		{
-			if (CopyPaste != GUIDesigner.CopyPasteTool.Paste || MousePressed)
+			if (CopyPaste != CopyPasteTool.Paste || MousePressed)
 			{
 				if (MousePressed)
 				{
 					switch (CopyPaste)
 					{
-					case GUIDesigner.CopyPasteTool.Copy:
-					case GUIDesigner.CopyPasteTool.Cut:
+					case CopyPasteTool.Copy:
+					case CopyPasteTool.Cut:
 					{
 						EnsureScroll(e.X, e.Y);
-						Point point = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+						Point point = new Point((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
 						if (point == MouseLastPoint)
 						{
 							return;
@@ -1850,14 +1850,14 @@ namespace MasaoPlus
 						drawRectangle.Width++;
 						drawRectangle.Height++;
 						DrawRectangle = drawRectangle;
-						DrawMode = GUIDesigner.DirectDrawMode.Rectangle;
+						DrawMode = DirectDrawMode.Rectangle;
 						Refresh();
 						return;
 					}
 					default:
 						switch (CurrentTool)
 						{
-						case GUIDesigner.EditTool.Cursor:
+						case EditTool.Cursor:
 						{
 							Size size = new Size(MouseStartPoint.X - e.X, MouseStartPoint.Y - e.Y);
 							MouseStartPoint = new Point(e.X, e.Y);
@@ -1870,25 +1870,25 @@ namespace MasaoPlus
 							Global.MainWnd.CommitScrollbar();
 							return;
 						}
-						case GUIDesigner.EditTool.Pen:
+						case EditTool.Pen:
 						{
-							Point point2 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+							Point point2 = new Point((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
 							if (point2 == MouseLastPoint)
 							{
 								return;
 							}
 							PutItem(new Point
 							{
-								X = (int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)),
-								Y = (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex))
+								X = (int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)),
+								Y = (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex))
 							});
 							MouseLastPoint = point2;
 							return;
 						}
-						case GUIDesigner.EditTool.Line:
+						case EditTool.Line:
 						{
 							EnsureScroll(e.X, e.Y);
-							Point point3 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+							Point point3 = new Point((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
 							if (point3 == MouseLastPoint)
 							{
 								return;
@@ -1923,19 +1923,19 @@ namespace MasaoPlus
 							DrawRectangle = drawRectangle2;
 							if (flag)
 							{
-								DrawMode = GUIDesigner.DirectDrawMode.RevLine;
+								DrawMode = DirectDrawMode.RevLine;
 							}
 							else
 							{
-								DrawMode = GUIDesigner.DirectDrawMode.Line;
+								DrawMode = DirectDrawMode.Line;
 							}
 							Refresh();
 							return;
 						}
-						case GUIDesigner.EditTool.Rect:
+						case EditTool.Rect:
 						{
 							EnsureScroll(e.X, e.Y);
-							Point point4 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+							Point point4 = new Point((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
 							if (point4 == MouseLastPoint)
 							{
 								return;
@@ -1965,7 +1965,7 @@ namespace MasaoPlus
 							drawRectangle3.Width++;
 							drawRectangle3.Height++;
 							DrawRectangle = drawRectangle3;
-							DrawMode = GUIDesigner.DirectDrawMode.Rectangle;
+							DrawMode = DirectDrawMode.Rectangle;
 							Refresh();
 							break;
 						}
@@ -1978,7 +1978,7 @@ namespace MasaoPlus
 				return;
 			}
 			EnsureScroll(e.X, e.Y);
-			Point point5 = new Point((int)((double)(e.X + Global.state.MapPoint.X) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((double)(e.Y + Global.state.MapPoint.Y) / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
+			Point point5 = new Point((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex)));
 			if (point5 == MouseLastPoint)
 			{
 				return;
@@ -1990,7 +1990,7 @@ namespace MasaoPlus
 			MouseLastPoint = point5;
 			Rectangle drawRectangle4 = new Rectangle(MouseLastPoint, GetBufferSize());
 			DrawRectangle = drawRectangle4;
-			DrawMode = GUIDesigner.DirectDrawMode.Rectangle;
+			DrawMode = DirectDrawMode.Rectangle;
 			Refresh();
 		}
 
@@ -2028,7 +2028,7 @@ namespace MasaoPlus
 		{
 			Size chipSize = Global.cpd.runtime.Definitions.ChipSize;
 			Point point = default;
-			if (x < base.Width / 2)
+			if (x < Width / 2)
 			{
 				if (x < chipSize.Width)
 				{
@@ -2041,16 +2041,16 @@ namespace MasaoPlus
 			}
 			else
 			{
-				if (base.Width - x < chipSize.Width)
+				if (Width - x < chipSize.Width)
 				{
 					point.X++;
 				}
-				if (base.Width - x < chipSize.Width / 2)
+				if (Width - x < chipSize.Width / 2)
 				{
 					point.X += 2;
 				}
 			}
-			if (y < base.Height / 2)
+			if (y < Height / 2)
 			{
 				if (y < chipSize.Height)
 				{
@@ -2063,11 +2063,11 @@ namespace MasaoPlus
 			}
 			else
 			{
-				if (base.Height - y < chipSize.Height)
+				if (Height - y < chipSize.Height)
 				{
 					point.Y++;
 				}
-				if (base.Height - y < chipSize.Height / 2)
+				if (Height - y < chipSize.Height / 2)
 				{
 					point.Y += 2;
 				}
@@ -2088,8 +2088,8 @@ namespace MasaoPlus
 				MousePressed = false;
 				switch (CopyPaste)
 				{
-				case GUIDesigner.CopyPasteTool.Copy:
-				case GUIDesigner.CopyPasteTool.Cut:
+				case CopyPasteTool.Copy:
+				case CopyPasteTool.Cut:
 				{
 					EnsureScroll(e.X, e.Y);
 					int width = Global.cpd.runtime.Definitions.ChipSize.Width;
@@ -2145,7 +2145,7 @@ namespace MasaoPlus
 							break;
 						}
 						Clipboard.SetText(stringBuilder.ToString());
-						if (CopyPaste == GUIDesigner.CopyPasteTool.Cut)
+						if (CopyPaste == CopyPasteTool.Cut)
 						{
 							Global.MainWnd.UpdateStatus("切り取りしています...");
 							for (int j = rectangle.Top; j <= rectangle.Bottom; j++)
@@ -2169,11 +2169,11 @@ namespace MasaoPlus
 							}
 							StageSourceToDrawBuffer();
 							AddBuffer();
-							DrawMode = GUIDesigner.DirectDrawMode.None;
+							DrawMode = DirectDrawMode.None;
 						}
 						else
 						{
-							DrawMode = GUIDesigner.DirectDrawMode.None;
+							DrawMode = DirectDrawMode.None;
 						}
 					}
 					Global.MainWnd.CopyPasteInit();
@@ -2181,12 +2181,12 @@ namespace MasaoPlus
 					Refresh();
 					return;
 				}
-				case GUIDesigner.CopyPasteTool.Paste:
+				case CopyPasteTool.Paste:
 					break;
 				default:
 					switch (CurrentTool)
 					{
-					case GUIDesigner.EditTool.Pen:
+					case EditTool.Pen:
 						GUIDesigner_MouseMove(sender, e);
 						AddBuffer();
 						if (Global.state.EditingForeground)
@@ -2199,9 +2199,9 @@ namespace MasaoPlus
 						}
 						Global.MainWnd.UpdateStatus("完了");
 						return;
-					case GUIDesigner.EditTool.Line:
+					case EditTool.Line:
 					{
-						DrawMode = GUIDesigner.DirectDrawMode.None;
+						DrawMode = DirectDrawMode.None;
 						Rectangle dr = default;
 						int num2 = 0;
 						if (MouseStartPoint.X > MouseLastPoint.X)
@@ -2247,7 +2247,7 @@ namespace MasaoPlus
 						Refresh();
 						return;
 					}
-					case GUIDesigner.EditTool.Rect:
+					case EditTool.Rect:
 					{
 						EnsureScroll(e.X, e.Y);
 						Global.MainWnd.UpdateStatus("描画しています...");
@@ -2286,7 +2286,7 @@ namespace MasaoPlus
 						}
 						StageSourceToDrawBuffer();
 						AddBuffer();
-						DrawMode = GUIDesigner.DirectDrawMode.None;
+						DrawMode = DirectDrawMode.None;
 						Global.MainWnd.UpdateStatus("完了");
 						Refresh();
 						return;
@@ -2309,11 +2309,11 @@ namespace MasaoPlus
 				point.Y = 1;
 				if (L2R)
 				{
-					pointF.X = (float)dr.Width / (float)dr.Height;
+					pointF.X = dr.Width / (float)dr.Height;
 				}
 				else
 				{
-					pointF.X = (float)dr.Width / (float)dr.Height * -1f;
+					pointF.X = dr.Width / (float)dr.Height * -1f;
 				}
 			}
 			else
@@ -2326,7 +2326,7 @@ namespace MasaoPlus
 				{
 					point.X = -1;
 				}
-				pointF.Y = (float)dr.Height / (float)dr.Width;
+				pointF.Y = dr.Height / (float)dr.Width;
 			}
 			double num = 0.0;
 			double num2 = 0.0;
@@ -2335,8 +2335,8 @@ namespace MasaoPlus
 			while (Math.Abs((int)Math.Round(num)) <= dr.Width && (int)Math.Round(num2) <= dr.Height)
 			{
 				PutItem(g, mapPos, Global.state.CurrentChip);
-				num += (double)point.X + (double)pointF.X;
-				num2 += (double)point.Y + (double)pointF.Y;
+				num += point.X + (double)pointF.X;
+				num2 += point.Y + (double)pointF.Y;
 				mapPos.X = point2.X + (int)Math.Round(num);
 				mapPos.Y = point2.Y + (int)Math.Round(num2);
 			}
@@ -2380,7 +2380,7 @@ namespace MasaoPlus
 
 		public void PutItemText(ref char[] ca, Point MapPos, ChipsData cd)
 		{
-			if (GUIDesigner.StageText.IsOverflow(MapPos))
+			if (StageText.IsOverflow(MapPos))
 			{
 				return;
 			}
@@ -2434,8 +2434,8 @@ namespace MasaoPlus
 		// チップを置いたとき
 		public void PutItem(Graphics g, Point MapPos, ChipsData cd)
 		{
-			if (GUIDesigner.StageText.IsOverflow(MapPos)) return;
-			string stageChar = GUIDesigner.StageText.GetStageChar(MapPos);
+			if (StageText.IsOverflow(MapPos)) return;
+			string stageChar = StageText.GetStageChar(MapPos);
 			if (Global.state.MapEditMode && cd.character.Equals(stageChar)
                 || !Global.state.MapEditMode && (!Global.cpd.project.Use3rdMapData && cd.character.Equals(stageChar)
 					|| Global.cpd.project.Use3rdMapData && cd.code.Equals(stageChar))) return;
@@ -2542,9 +2542,9 @@ namespace MasaoPlus
                     for (int j = rect.X; j < rect.Right; j++)
                     {
                         point.X++;
-                        if (!GUIDesigner.StageText.IsOverflow(new Point(j, i)))
+                        if (!StageText.IsOverflow(new Point(j, i)))
                         {
-                            string stageChar = GUIDesigner.StageText.GetStageChar(new Point(j, i));
+                            string stageChar = StageText.GetStageChar(new Point(j, i));
                             ChipsData chipsData;
                             if (Global.state.EditingForeground)
                             {
@@ -2594,9 +2594,9 @@ namespace MasaoPlus
                     for (int l = rect.X; l < rect.Right; l++)
                     {
                         point.X++;
-                        if (!GUIDesigner.StageText.IsOverflow(new Point(l, k)))
+                        if (!StageText.IsOverflow(new Point(l, k)))
                         {
-                            string stageChar = GUIDesigner.StageText.GetStageChar(new Point(l, k));
+                            string stageChar = StageText.GetStageChar(new Point(l, k));
                             ChipsData chipsData;
                             if (Global.state.EditingForeground)
                             {
@@ -2673,7 +2673,7 @@ namespace MasaoPlus
 		private void QuickTestRun_Click(object sender, EventArgs e)
 		{
 			Point mouseStartPoint = MouseStartPoint;
-			if (GUIDesigner.StageText.IsOverflow(mouseStartPoint))
+			if (StageText.IsOverflow(mouseStartPoint))
 			{
 				return;
 			}
@@ -2692,7 +2692,7 @@ namespace MasaoPlus
 		private void PickChip_Click(object sender, EventArgs e)
 		{
 			Point mouseStartPoint = MouseStartPoint;
-			string stageChar = GUIDesigner.StageText.GetStageChar(mouseStartPoint);
+			string stageChar = StageText.GetStageChar(mouseStartPoint);
 			if (Global.state.MapEditMode)
 			{
 				if (DrawWorldRef.ContainsKey(stageChar))
@@ -2769,7 +2769,7 @@ namespace MasaoPlus
 			DoTestrun = new ToolStripMenuItem();
 			ProjectConfig = new ToolStripMenuItem();
 			CursorContextMenu.SuspendLayout();
-			base.SuspendLayout();
+            SuspendLayout();
 			CursorContextMenu.Items.AddRange(new ToolStripItem[]
 			{
 				QuickTestRun,
@@ -2829,15 +2829,15 @@ namespace MasaoPlus
 			ProjectConfig.Size = new Size(274, 22);
 			ProjectConfig.Text = "プロジェクト設定(&P)";
 			ProjectConfig.Click += ProjectConfig_Click;
-			base.Name = "GUIDesigner";
-			base.Size = new Size(315, 177);
-			base.MouseCaptureChanged += GUIDesigner_MouseCaptureChanged;
-			base.MouseMove += GUIDesigner_MouseMove;
-			base.MouseDown += GUIDesigner_MouseDown;
-			base.MouseUp += GUIDesigner_MouseUp;
-			base.KeyDown += GUIDesigner_KeyDown;
+            Name = "GUIDesigner";
+            Size = new Size(315, 177);
+            MouseCaptureChanged += GUIDesigner_MouseCaptureChanged;
+            MouseMove += GUIDesigner_MouseMove;
+            MouseDown += GUIDesigner_MouseDown;
+            MouseUp += GUIDesigner_MouseUp;
+            KeyDown += GUIDesigner_KeyDown;
 			CursorContextMenu.ResumeLayout(false);
-			base.ResumeLayout(false);
+            ResumeLayout(false);
 		}
 
 		public Image DrawChipOrig;
@@ -2958,7 +2958,7 @@ namespace MasaoPlus
 
 			public static string GetStageChar(Point p)
 			{
-				if (GUIDesigner.StageText.IsOverflow(p))
+				if (IsOverflow(p))
 				{
 					return Global.cpd.Mapchip[0].character;
 				}

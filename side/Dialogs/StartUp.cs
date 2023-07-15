@@ -13,7 +13,7 @@ namespace MasaoPlus.Dialogs
 		public StartUp()
 		{
 			InitializeComponent();
-			base.DialogResult = DialogResult.None;
+            DialogResult = DialogResult.None;
 		}
 
 		private void StartUp_Load(object sender, EventArgs e)
@@ -32,7 +32,7 @@ namespace MasaoPlus.Dialogs
 
 		private void StartUp_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			if (base.DialogResult != DialogResult.OK)
+			if (DialogResult != DialogResult.OK)
 			{
 				Application.Exit();
 			}
@@ -49,8 +49,8 @@ namespace MasaoPlus.Dialogs
             if (newProject.ShowDialog() == DialogResult.OK)
             {
                 ProjectPath = newProject.CreatedProject;
-                base.DialogResult = DialogResult.OK;
-                base.Close();
+                DialogResult = DialogResult.OK;
+                Close();
             }
         }
 
@@ -78,8 +78,8 @@ namespace MasaoPlus.Dialogs
                 if (Path.GetExtension(openFileDialog.FileName) == Global.definition.ProjExt)
                 {
                     ProjectPath = openFileDialog.FileName;
-                    base.DialogResult = DialogResult.OK;
-                    base.Close();
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
                 else
                 {
@@ -87,8 +87,8 @@ namespace MasaoPlus.Dialogs
                     if (htmlinheritance.ShowDialog() == DialogResult.OK)
                     {
                         ProjectPath = htmlinheritance.ProjectFile;
-                        base.DialogResult = DialogResult.OK;
-                        base.Close();
+                        DialogResult = DialogResult.OK;
+                        Close();
                     }
                 }
             }
@@ -121,21 +121,14 @@ namespace MasaoPlus.Dialogs
             if (webUpdate.ShowDialog() == DialogResult.Retry)
             {
                 Global.state.RunFile = (string)webUpdate.runfile.Clone();
-                base.Close();
+                Close();
             }
         }
 
 		private void InheritNew_Click(object sender, EventArgs e)
 		{
             using OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = string.Concat(new string[]
-            {
-                    Global.definition.AppName,
-                    " プロジェクト (*",
-                    Global.definition.ProjExt,
-                    ")|*",
-                    Global.definition.ProjExt
-            });
+            openFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}";
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -143,8 +136,8 @@ namespace MasaoPlus.Dialogs
                 if (projInheritance.DialogResult != DialogResult.Abort && projInheritance.ShowDialog() == DialogResult.OK)
                 {
                     ProjectPath = projInheritance.NewProjectName;
-                    base.DialogResult = DialogResult.OK;
-                    base.Close();
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
             }
         }

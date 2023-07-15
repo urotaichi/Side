@@ -59,7 +59,7 @@ namespace MasaoPlus
 						}
 					}
 					textureBrush = new TextureBrush(bitmap);
-					textureBrush.TranslateTransform((float)num2, (float)num3);
+					textureBrush.TranslateTransform(num2, num3);
 					bitmap.Dispose();
 				}
 			}
@@ -69,9 +69,9 @@ namespace MasaoPlus
 
 		public static Color GetForegroundColor(Color c)
 		{
-			int red = DrawEx.plus128((int)c.R);
-			int green = DrawEx.plus128((int)c.G);
-			int blue = DrawEx.plus128((int)c.B);
+			int red = plus128(c.R);
+			int green = plus128(c.G);
+			int blue = plus128(c.B);
 			return Color.FromArgb(red, green, blue);
 		}
 
@@ -87,7 +87,7 @@ namespace MasaoPlus
 
 		public static double ToHalfAdjust(double dValue, int iDigits)
 		{
-			double num = Math.Pow(10.0, (double)iDigits);
+			double num = Math.Pow(10.0, iDigits);
 			if (dValue <= 0.0)
 			{
 				return Math.Ceiling(dValue * num - 0.5) / num;

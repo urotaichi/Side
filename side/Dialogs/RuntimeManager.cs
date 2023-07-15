@@ -20,7 +20,7 @@ namespace MasaoPlus.Dialogs
 		{
 			Application.DoEvents();
 			Text = "ランタイムをロードしています...";
-			base.Enabled = false;
+            Enabled = false;
 			if (!Directory.Exists(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir)))
 			{
 				MessageBox.Show($"ランタイムフォルダが見つかりません。{Environment.NewLine}Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
@@ -72,7 +72,7 @@ namespace MasaoPlus.Dialogs
 			finally
 			{
 				Text = "ランタイム マネージャ";
-				base.Enabled = true;
+                Enabled = true;
 			}
 			if (RuntimeViewer.Items.Count == 0)
 			{
@@ -89,7 +89,7 @@ namespace MasaoPlus.Dialogs
             {
                 try
                 {
-                    base.Enabled = false;
+                    Enabled = false;
                     Text = "ランタイムをインストールしています...";
                     if (Subsystem.InstallRuntime(openFileDialog.FileName))
                     {
@@ -98,8 +98,8 @@ namespace MasaoPlus.Dialogs
                 }
                 finally
                 {
-                    base.DialogResult = DialogResult.Retry;
-                    base.Close();
+                    DialogResult = DialogResult.Retry;
+                    Close();
                 }
             }
         }
@@ -144,7 +144,7 @@ namespace MasaoPlus.Dialogs
 			string update = runtimedatas[RuntimeViewer.SelectedIndices[0]].Definitions.Update;
 			Text = "更新を受信しています...";
 			DownProgress.Visible = true;
-			base.Enabled = false;
+            Enabled = false;
 			tempfile = Path.GetTempFileName();
 			dlClient = new WebClient();
 			dlClient.DownloadProgressChanged += dlClient_DownloadProgressChanged;
@@ -157,8 +157,8 @@ namespace MasaoPlus.Dialogs
 			catch (Exception ex)
 			{
 				MessageBox.Show($"更新できませんでした。{Environment.NewLine}{ex.Message}", "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-				base.DialogResult = DialogResult.Retry;
-				base.Close();
+                DialogResult = DialogResult.Retry;
+                Close();
 			}
 		}
 
@@ -167,8 +167,8 @@ namespace MasaoPlus.Dialogs
 			if (e.Error != null)
             {
                 MessageBox.Show($"更新できませんでした。{Environment.NewLine}{e.Error.Message}", "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                base.DialogResult = DialogResult.Retry;
-				base.Close();
+                DialogResult = DialogResult.Retry;
+                Close();
 				return;
 			}
 			UpdateData updateData = UpdateData.ParseXML(tempfile);
@@ -200,13 +200,13 @@ namespace MasaoPlus.Dialogs
                     TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
                     MessageBox.Show($"更新できませんでした。{Environment.NewLine}{ex.Message}", "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
-                    base.DialogResult = DialogResult.Retry;
-					base.Close();
+                    DialogResult = DialogResult.Retry;
+                    Close();
 				}
             }
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
-            base.DialogResult = DialogResult.Retry;
-			base.Close();
+            DialogResult = DialogResult.Retry;
+            Close();
 		}
 
 		private void dlClient_DownloadFileCompleted_Package(object sender, AsyncCompletedEventArgs e)
@@ -214,8 +214,8 @@ namespace MasaoPlus.Dialogs
             Text = "ランタイムをインストールしています...";
 			Subsystem.InstallRuntime(tempfile);
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
-            base.DialogResult = DialogResult.Retry;
-			base.Close();
+            DialogResult = DialogResult.Retry;
+            Close();
 		}
 
 		private void dlClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -246,8 +246,8 @@ namespace MasaoPlus.Dialogs
 			string path2 = Path.Combine(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path));
 			Directory.Delete(path2, true);
 			MessageBox.Show("アンインストールしました。", "アンインストール完了", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-			base.DialogResult = DialogResult.Retry;
-			base.Close();
+            DialogResult = DialogResult.Retry;
+            Close();
 		}
 
 		private WebClient dlClient;

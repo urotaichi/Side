@@ -31,7 +31,7 @@ namespace MasaoPlus.Dialogs
 
 		private void OKButton_Click(object sender, EventArgs e)
 		{
-			base.Close();
+            Close();
 		}
 	}
 }

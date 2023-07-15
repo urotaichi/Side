@@ -20,16 +20,16 @@ namespace MasaoPlus.Controls
 
 		private void InitializeComponent()
 		{
-			base.SuspendLayout();
-			base.MouseLeave += CommandLinkButton_MouseLeave;
-			base.Leave += CommandLinkButton_Leave;
-			base.KeyUp += CommandLinkButton_KeyUp;
-			base.MouseDown += CommandLinkButton_MouseDown;
-			base.Enter += CommandLinkButton_Enter;
-			base.MouseUp += CommandLinkButton_MouseUp;
-			base.MouseEnter += CommandLinkButton_MouseEnter;
-			base.KeyDown += CommandLinkButton_KeyDown;
-			base.ResumeLayout(false);
+            SuspendLayout();
+            MouseLeave += CommandLinkButton_MouseLeave;
+            Leave += CommandLinkButton_Leave;
+            KeyUp += CommandLinkButton_KeyUp;
+            MouseDown += CommandLinkButton_MouseDown;
+            Enter += CommandLinkButton_Enter;
+            MouseUp += CommandLinkButton_MouseUp;
+            MouseEnter += CommandLinkButton_MouseEnter;
+            KeyDown += CommandLinkButton_KeyDown;
+            ResumeLayout(false);
 		}
 
 		public override string Text
@@ -99,8 +99,8 @@ namespace MasaoPlus.Controls
 
 		public CommandLinkButton()
 		{
-			base.GotFocus += CommandLinkButton_GotFocus;
-			base.LostFocus += CommandLinkButton_LostFocus;
+            GotFocus += CommandLinkButton_GotFocus;
+            LostFocus += CommandLinkButton_LostFocus;
 			InitializeComponent();
 		}
 
@@ -108,19 +108,19 @@ namespace MasaoPlus.Controls
 		{
 			if (Pressed)
 			{
-				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default, base.Size), Border3DStyle.SunkenInner);
+				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default, Size), Border3DStyle.SunkenInner);
 			}
 			else if (Entered || Defaulting)
 			{
-				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default, base.Size), Border3DStyle.RaisedOuter);
+				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default, Size), Border3DStyle.RaisedOuter);
 			}
 			else
 			{
-				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default, base.Size), Border3DStyle.Flat);
+				ControlPaint.DrawBorder3D(pe.Graphics, new Rectangle(default, Size), Border3DStyle.Flat);
 			}
 			if (Focusing)
 			{
-				ControlPaint.DrawFocusRectangle(pe.Graphics, new Rectangle(3, 3, base.Width - 6, base.Height - 6));
+				ControlPaint.DrawFocusRectangle(pe.Graphics, new Rectangle(3, 3, Width - 6, Height - 6));
 			}
 			FontStyle fontStyle = FontStyle.Bold;
 			if (Entered)
@@ -168,7 +168,7 @@ namespace MasaoPlus.Controls
 
 		private void CommandLinkButton_MouseDown(object sender, MouseEventArgs e)
 		{
-			base.Focus();
+            Focus();
 			Pressed = true;
 		}
 
@@ -180,7 +180,7 @@ namespace MasaoPlus.Controls
 
 		private void CommandLinkButton_KeyDown(object sender, KeyEventArgs e)
 		{
-			base.Focus();
+            Focus();
 			if (e.Modifiers == Keys.None && e.KeyCode == Keys.Space)
 			{
 				Pressed = true;

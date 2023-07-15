@@ -649,7 +649,7 @@ namespace MasaoPlus.Controls
 			CNames = new DataGridViewTextBoxColumn();
 			CValues = new DataGridViewTextBoxColumn();
 			((ISupportInitialize)ConfView).BeginInit();
-			base.SuspendLayout();
+            SuspendLayout();
 
 			ConfigSelector.Dock = DockStyle.Top;
 			ConfigSelector.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -699,14 +699,14 @@ namespace MasaoPlus.Controls
 			CValues.HeaderText = "値";
 			CValues.Name = "CValues";
 			CValues.SortMode = DataGridViewColumnSortMode.NotSortable;
-			base.AutoScaleDimensions = new SizeF(6f, 12f);
-			base.AutoScaleMode = AutoScaleMode.Font;
-			base.Controls.Add(ConfView);
-			base.Controls.Add(ConfigSelector);
-			base.Name = "ConfigList";
-			base.Size = new Size(298, 358);
+            AutoScaleDimensions = new SizeF(6f, 12f);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(ConfView);
+            Controls.Add(ConfigSelector);
+            Name = "ConfigList";
+            Size = new Size(298, 358);
 			((ISupportInitialize)ConfView).EndInit();
-			base.ResumeLayout(false);
+            ResumeLayout(false);
 
             // メディアプレーヤークラスのインスタンスを作成する
             mediaPlayer = new WindowsMediaPlayer();

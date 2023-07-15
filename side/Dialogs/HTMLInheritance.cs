@@ -33,8 +33,8 @@ namespace MasaoPlus.Dialogs
 			if (!Directory.Exists(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir)))
 			{
 				MessageBox.Show($"ランタイムフォルダが見つかりません。{Environment.NewLine}Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-				base.DialogResult = DialogResult.Cancel;
-				base.Close();
+                DialogResult = DialogResult.Cancel;
+                Close();
 				return;
 			}
 			string[] files = Directory.GetFiles(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir), "*.xml", SearchOption.TopDirectoryOnly);
@@ -84,8 +84,8 @@ namespace MasaoPlus.Dialogs
 			if (RuntimeSet.Items.Count == 0)
 			{
 				MessageBox.Show("利用可能なランタイムがありません。", "ランタイムロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-				base.DialogResult = DialogResult.Cancel;
-				base.Close();
+                DialogResult = DialogResult.Cancel;
+                Close();
 			}
 			else
 			{
@@ -135,7 +135,7 @@ namespace MasaoPlus.Dialogs
 		{
 			try
 			{
-				base.Enabled = false;
+                Enabled = false;
 				OK.Text = "生成中...";
 				OK.Refresh();
 				StatusText.Text = "プロジェクト生成準備中...";
@@ -214,8 +214,8 @@ namespace MasaoPlus.Dialogs
 				catch
 				{
 					MessageBox.Show("ファイルをロードできませんでした。", "コンバート失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-					base.DialogResult = DialogResult.Cancel;
-					base.Close();
+                    DialogResult = DialogResult.Cancel;
+                    Close();
 				}
 				List<string> list = new List<string>();
 				if (SeekHeaderFooter.Checked)
@@ -619,10 +619,10 @@ namespace MasaoPlus.Dialogs
 			finally
 			{
 				OK.Text = "OK";
-				base.Enabled = true;
+                Enabled = true;
 			}
-			base.DialogResult = DialogResult.OK;
-			base.Close();
+            DialogResult = DialogResult.OK;
+            Close();
 		}
 
 		private bool GetMapSource(ref string[] overwrite, string f, Runtime.DefinedData.StageSizeData StageSizeData, ref Dictionary<string, string> Params, ChipsData[] MapChip, int Split = 0)

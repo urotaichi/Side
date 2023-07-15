@@ -96,7 +96,7 @@ namespace MasaoPlus
 			Global.config.localSystem.WrapPropText = WrapPropText.Checked;
 			Global.config.draw.StartUpWithClassicCL = StartWithCL.Checked;
 			Global.config.draw.HScrollDefault = WheelHorz.Checked;
-			base.Close();
+            Close();
 		}
 
 		private void UseIntegBrow_CheckedChanged(object sender, EventArgs e)

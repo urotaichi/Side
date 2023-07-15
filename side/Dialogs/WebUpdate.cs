@@ -43,8 +43,8 @@ namespace MasaoPlus.Dialogs
 			catch (Exception ex)
 			{
 				MessageBox.Show("更新できませんでした。" + Environment.NewLine + ex.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                base.DialogResult = DialogResult.Abort;
-				base.Close();
+                DialogResult = DialogResult.Abort;
+                Close();
 			}
 		}
 
@@ -55,8 +55,8 @@ namespace MasaoPlus.Dialogs
 			if (e.Error != null)
 			{
 				MessageBox.Show("更新できませんでした。" + Environment.NewLine + e.Error.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                base.DialogResult = DialogResult.Abort;
-				base.Close();
+                DialogResult = DialogResult.Abort;
+                Close();
 				return;
 			}
 			ud = UpdateData.ParseXML(tempfile);
@@ -64,15 +64,15 @@ namespace MasaoPlus.Dialogs
 			if (ud.DefVersion <= Global.definition.CheckVersion)
 			{
 				MessageBox.Show("最新版を利用しています。更新の必要はありません。", "更新結果", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                base.DialogResult = DialogResult.Abort;
-				base.Close();
+                DialogResult = DialogResult.Abort;
+                Close();
 				return;
 			}
 			if (ud.RequireLower > Global.definition.CheckVersion)
 			{
 				MessageBox.Show("このバージョンからの更新は、自動アップデートでは対応していません。" + Environment.NewLine + "公式サイトから手動で更新してください。", "自動更新非対応", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                base.DialogResult = DialogResult.Abort;
-				base.Close();
+                DialogResult = DialogResult.Abort;
+                Close();
 				return;
 			}
 			if (MessageBox.Show(string.Concat(new string[]
@@ -84,8 +84,8 @@ namespace MasaoPlus.Dialogs
 				"ダウンロードしてインストールしてもよろしいですか？"
 			}), Global.definition.AppName + "の更新", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
-                base.DialogResult = DialogResult.Abort;
-				base.Close();
+                DialogResult = DialogResult.Abort;
+                Close();
 				return;
 			}
 			progressBar1.Value = 0;
@@ -119,8 +119,8 @@ namespace MasaoPlus.Dialogs
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
                 MessageBox.Show("更新できませんでした。" + Environment.NewLine + ex.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
-                base.DialogResult = DialogResult.Abort;
-				base.Close();
+                DialogResult = DialogResult.Abort;
+                Close();
 			}
 		}
 
@@ -132,8 +132,8 @@ namespace MasaoPlus.Dialogs
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
                 MessageBox.Show("更新できませんでした。" + Environment.NewLine + e.Error.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
-                base.DialogResult = DialogResult.Abort;
-				base.Close();
+                DialogResult = DialogResult.Abort;
+                Close();
 				return;
 			}
 			progressBar1.Value = 0;
@@ -162,8 +162,8 @@ namespace MasaoPlus.Dialogs
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
                 MessageBox.Show("更新できませんでした。" + Environment.NewLine + ex.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
-                base.DialogResult = DialogResult.Abort;
-				base.Close();
+                DialogResult = DialogResult.Abort;
+                Close();
 			}
 		}
 
@@ -175,8 +175,8 @@ namespace MasaoPlus.Dialogs
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
                 MessageBox.Show("更新できませんでした。" + Environment.NewLine + e.Error.Message, "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
-                base.DialogResult = DialogResult.Abort;
-				base.Close();
+                DialogResult = DialogResult.Abort;
+                Close();
 				return;
             }
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
@@ -188,8 +188,8 @@ namespace MasaoPlus.Dialogs
 				Name = Path.GetFileName(Application.ExecutablePath)
 			}.SaveXML(Path.Combine(TemporaryFolder, Global.definition.UpdateTempData));
 			SUpdate("更新を開始します...");
-			base.DialogResult = DialogResult.Retry;
-			base.Close();
+            DialogResult = DialogResult.Retry;
+            Close();
 		}
 
 		private void dlClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)

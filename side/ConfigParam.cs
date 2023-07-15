@@ -16,31 +16,31 @@ namespace MasaoPlus
 				switch (typestr = Typestr)
 				{
 				case "bool":
-					return ConfigParam.Types.b;
+					return Types.b;
 				case "bool21":
-					return ConfigParam.Types.b2;
+					return Types.b2;
 				case "bool10":
-					return ConfigParam.Types.b0;
+					return Types.b0;
 				case "int":
-					return ConfigParam.Types.i;
+					return Types.i;
 				case "string":
-					return ConfigParam.Types.s;
+					return Types.s;
 				case "text":
-					return ConfigParam.Types.t;
+					return Types.t;
 				case "file":
-					return ConfigParam.Types.f;
+					return Types.f;
 				case "file_img":
-					return ConfigParam.Types.f_i;
+					return Types.f_i;
 				case "file_audio":
-					return ConfigParam.Types.f_a;
+					return Types.f_a;
 				case "list":
-					return ConfigParam.Types.l;
+					return Types.l;
 				case "list_athletic":
-					return ConfigParam.Types.l_a;
+					return Types.l_a;
 				case "color":
-					return ConfigParam.Types.c;
+					return Types.c;
 				}
-				return ConfigParam.Types.UnKnown;
+				return Types.UnKnown;
 			}
 		}
 

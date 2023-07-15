@@ -13,19 +13,19 @@ namespace MasaoPlus
 		{
             USER32.WINDOWPLACEMENT windowplacement = default;
 			windowplacement.Length = Marshal.SizeOf(windowplacement);
-			Native.USER32.GetWindowPlacement((int)form.Handle, ref windowplacement);
+            USER32.GetWindowPlacement((int)form.Handle, ref windowplacement);
 			return new Rectangle(windowplacement.rcNormalPosition.left, windowplacement.rcNormalPosition.top, windowplacement.rcNormalPosition.right - windowplacement.rcNormalPosition.left, windowplacement.rcNormalPosition.bottom - windowplacement.rcNormalPosition.top);
 		}
 
 		public static void SetSideFileRelate()
 		{
-			Native.SetFileRelate(Global.definition.ProjExt, Global.definition.ProjFileType, Global.definition.ProjFileDescription);
-			Native.SetFileRelate(Global.definition.RuntimeArchiveExt, Global.definition.RuntimeFileType, Global.definition.RuntimeFileDescription);
+            SetFileRelate(Global.definition.ProjExt, Global.definition.ProjFileType, Global.definition.ProjFileDescription);
+            SetFileRelate(Global.definition.RuntimeArchiveExt, Global.definition.RuntimeFileType, Global.definition.RuntimeFileDescription);
 		}
 
 		public static void SetFileRelate(string ext, string FileType, string Description)
 		{
-			if (!Native.CheckRegistryAddmittion())
+			if (!CheckRegistryAddmittion())
 			{
 				MessageBox.Show("関連付けする権限がありません。", "関連付け失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				return;
@@ -60,13 +60,13 @@ namespace MasaoPlus
 
 		public static void DeleteSideFileRelate()
 		{
-			Native.DeleteFileRelate(Global.definition.ProjExt, Global.definition.ProjFileType);
-			Native.DeleteFileRelate(Global.definition.RuntimeArchiveExt, Global.definition.RuntimeFileType);
+            DeleteFileRelate(Global.definition.ProjExt, Global.definition.ProjFileType);
+            DeleteFileRelate(Global.definition.RuntimeArchiveExt, Global.definition.RuntimeFileType);
 		}
 
 		public static void DeleteFileRelate(string ext, string FileType)
 		{
-			if (!Native.CheckRegistryAddmittion())
+			if (!CheckRegistryAddmittion())
 			{
 				MessageBox.Show("関連付けする権限がありません。", "関連付け失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				return;

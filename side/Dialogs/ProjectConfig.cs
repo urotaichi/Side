@@ -90,7 +90,7 @@ namespace MasaoPlus.Dialogs
 			}
             Global.state.EditFlag = true;
 			List<HTMLReplaceData> list = new List<HTMLReplaceData>();
-			foreach (object obj in ((IEnumerable)OutputReplaceView.Rows))
+			foreach (object obj in OutputReplaceView.Rows)
 			{
 				DataGridViewRow dataGridViewRow = (DataGridViewRow)obj;
 				if (dataGridViewRow.Cells[0].Value != null)
@@ -99,8 +99,8 @@ namespace MasaoPlus.Dialogs
 				}
 			}
 			Global.cpd.runtime.DefaultConfigurations.OutputReplace = list.ToArray();
-			base.DialogResult = DialogResult.OK;
-			base.Close();
+            DialogResult = DialogResult.OK;
+            Close();
 		}
 
 		private void TextUndo_Click(object sender, EventArgs e)

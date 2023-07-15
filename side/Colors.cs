@@ -14,9 +14,9 @@ namespace MasaoPlus
 			}
 			set
 			{
-				r = (int)value.R;
-				g = (int)value.G;
-				b = (int)value.B;
+				r = value.R;
+				g = value.G;
+				b = value.B;
 			}
 		}
 

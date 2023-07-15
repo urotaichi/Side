@@ -24,8 +24,8 @@ namespace MasaoPlus.Dialogs
 			catch (Exception ex)
 			{
 				MessageBox.Show("プロジェクトをロードできませんでした。" + Environment.NewLine + "ErrorReason:" + ex.Message, "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-				base.DialogResult = DialogResult.Abort;
-				base.Close();
+                DialogResult = DialogResult.Abort;
+                Close();
 				return;
 			}
 			NewProjName.Text = PrevProject.Name + "_Inherited";
@@ -57,7 +57,7 @@ namespace MasaoPlus.Dialogs
 			{
 				return;
 			}
-			base.Enabled = false;
+            Enabled = false;
 			OKBtn.Text = "生成中...";
 			OKBtn.Refresh();
 			Project project = new Project();
@@ -118,8 +118,8 @@ namespace MasaoPlus.Dialogs
 			}
 			project.SaveXML(text);
 			NewProjectName = text;
-			base.DialogResult = DialogResult.OK;
-			base.Close();
+            DialogResult = DialogResult.OK;
+            Close();
 		}
 
 		public string NewProjectName = "";

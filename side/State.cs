@@ -88,7 +88,7 @@ namespace MasaoPlus
 			get
 			{
 				double num = 1.0 / Global.config.draw.ZoomIndex;
-				return new Point((int)((double)MapPoint.X * num), (int)((double)MapPoint.Y * num));
+				return new Point((int)(MapPoint.X * num), (int)(MapPoint.Y * num));
 			}
 		}
 
@@ -114,8 +114,8 @@ namespace MasaoPlus
 			}
 			set
 			{
-				MapPoint.X = (int)((double)(value.X * Global.cpd.runtime.Definitions.ChipSize.Width) * Global.config.draw.ZoomIndex);
-				MapPoint.Y = (int)((double)(value.Y * Global.cpd.runtime.Definitions.ChipSize.Height) * Global.config.draw.ZoomIndex);
+				MapPoint.X = (int)(value.X * Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
+				MapPoint.Y = (int)(value.Y * Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
 			}
 		}
 

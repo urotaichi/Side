@@ -17,7 +17,7 @@ namespace MasaoPlus.Dialogs
 
 		private void NewProject_Load(object sender, EventArgs e)
 		{
-			RuntimeSet.DropDownWidth = base.Width - RuntimeSet.Left;
+			RuntimeSet.DropDownWidth = Width - RuntimeSet.Left;
 			RootDir.Text = Global.config.lastData.ProjDirF;
 			OK.Text = "お待ちください...";
 			OK.Enabled = false;
@@ -29,8 +29,8 @@ namespace MasaoPlus.Dialogs
 			if (!Directory.Exists(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir)))
 			{
 				MessageBox.Show("ランタイムフォルダが見つかりません。" + Environment.NewLine + "Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-				base.DialogResult = DialogResult.Cancel;
-				base.Close();
+                DialogResult = DialogResult.Cancel;
+                Close();
 				return;
 			}
 			string[] files = Directory.GetFiles(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir), "*.xml", SearchOption.TopDirectoryOnly);
@@ -80,8 +80,8 @@ namespace MasaoPlus.Dialogs
 			if (RuntimeSet.Items.Count == 0)
 			{
 				MessageBox.Show("利用可能なランタイムがありません。", "ランタイムロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-				base.DialogResult = DialogResult.Cancel;
-				base.Close();
+                DialogResult = DialogResult.Cancel;
+                Close();
 			}
 			else
 			{
@@ -307,7 +307,7 @@ namespace MasaoPlus.Dialogs
 			List<string> list = new List<string>();
 			try
 			{
-				base.Enabled = false;
+                Enabled = false;
 				OK.Text = "生成中...";
 				OK.Refresh();
 				Global.config.lastData.ProjDir = RootDir.Text;
@@ -469,10 +469,10 @@ namespace MasaoPlus.Dialogs
 			finally
 			{
 				OK.Text = "OK";
-				base.Enabled = true;
+                Enabled = true;
 			}
-			base.DialogResult = DialogResult.OK;
-			base.Close();
+            DialogResult = DialogResult.OK;
+            Close();
 		}
 
 		private void RuntimeSet_SelectedIndexChanged(object sender, EventArgs e)

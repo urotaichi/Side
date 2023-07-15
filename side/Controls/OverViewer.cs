@@ -21,9 +21,9 @@ namespace MasaoPlus.Controls
 
 		private void InitializeComponent()
 		{
-			base.SuspendLayout();
-			base.Paint += OverViewer_Paint;
-			base.ResumeLayout(false);
+            SuspendLayout();
+            Paint += OverViewer_Paint;
+            ResumeLayout(false);
 		}
 
 		public new Size Size
@@ -44,10 +44,10 @@ namespace MasaoPlus.Controls
 		public OverViewer()
 		{
 			InitializeComponent();
-			base.SetStyle(ControlStyles.ResizeRedraw, true);
-			base.SetStyle(ControlStyles.DoubleBuffer, true);
-			base.SetStyle(ControlStyles.UserPaint, true);
-			base.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            SetStyle(ControlStyles.ResizeRedraw, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 			CreateDrawSource();
 		}
 
@@ -142,8 +142,8 @@ namespace MasaoPlus.Controls
 			Point mapPointTranslatedMap = Global.state.MapPointTranslatedMap;
 			mapPointTranslatedMap.X *= ppb;
 			mapPointTranslatedMap.Y *= ppb;
-            using Pen pen = new Pen(Brushes.White, (float)ppb);
-            e.Graphics.DrawRectangle(pen, new Rectangle(mapPointTranslatedMap, new Size((int)((double)(Global.MainWnd.MainDesigner.Size.Width / Global.cpd.runtime.Definitions.ChipSize.Width * ppb) / Global.config.draw.ZoomIndex), (int)((double)(Global.MainWnd.MainDesigner.Size.Height / Global.cpd.runtime.Definitions.ChipSize.Height * ppb) / Global.config.draw.ZoomIndex))));
+            using Pen pen = new Pen(Brushes.White, ppb);
+            e.Graphics.DrawRectangle(pen, new Rectangle(mapPointTranslatedMap, new Size((int)(Global.MainWnd.MainDesigner.Size.Width / Global.cpd.runtime.Definitions.ChipSize.Width * ppb / Global.config.draw.ZoomIndex), (int)(Global.MainWnd.MainDesigner.Size.Height / Global.cpd.runtime.Definitions.ChipSize.Height * ppb / Global.config.draw.ZoomIndex))));
         }
 
 		private IContainer components;

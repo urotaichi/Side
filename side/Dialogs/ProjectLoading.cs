@@ -27,7 +27,7 @@ namespace MasaoPlus.Dialogs
             LoadProjectDlg method = new LoadProjectDlg(EndInvInv);
 			try
 			{
-				base.Invoke(method);
+                Invoke(method);
 			}
 			catch
 			{
@@ -37,8 +37,8 @@ namespace MasaoPlus.Dialogs
 		public void EndInvInv()
 		{
 			Global.MainWnd.UpdateTitle();
-			base.DialogResult = DialogResult.OK;
-			base.Close();
+            DialogResult = DialogResult.OK;
+            Close();
 		}
 
 		public void LoadProject()
@@ -60,15 +60,15 @@ namespace MasaoPlus.Dialogs
 						else
 						{
 							MessageBox.Show($"プロジェクトをロードできませんでした。{Environment.NewLine}アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-							base.DialogResult = DialogResult.Abort;
-							base.Close();
+                            DialogResult = DialogResult.Abort;
+                            Close();
 						}
 					}
 					if (Global.cpd.project == null)
 					{
 						MessageBox.Show($"プロジェクトをロードできませんでした。{Environment.NewLine}アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-						base.DialogResult = DialogResult.Abort;
-						base.Close();
+                        DialogResult = DialogResult.Abort;
+                        Close();
 					}
 					SetState("プロジェクト設定を読み込んでいます...");
 					Global.cpd.where = Path.GetDirectoryName(load);
@@ -80,8 +80,8 @@ namespace MasaoPlus.Dialogs
 					{
 						MessageBox.Show($"必須ファイルが欠落しています。{Environment.NewLine}{string.Join(",", array)}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 						MessageBox.Show($"プロジェクトをロードできませんでした。{Environment.NewLine}アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-						base.DialogResult = DialogResult.Abort;
-						base.Close();
+                        DialogResult = DialogResult.Abort;
+                        Close();
 					}
 					SetState("チップデータを読み込んでいます...");
 					ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(Path.GetDirectoryName(load), Global.cpd.runtime.Definitions.ChipDefinition));
@@ -139,7 +139,7 @@ namespace MasaoPlus.Dialogs
 		private void SetState(string text)
 		{
             SetStateDelg method = new SetStateDelg(SetStateInv);
-			base.Invoke(method, new object[]
+            Invoke(method, new object[]
 			{
 				text
 			});

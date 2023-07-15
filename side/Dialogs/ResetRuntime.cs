@@ -20,15 +20,15 @@ namespace MasaoPlus.Dialogs
 			try
 			{
 				Application.DoEvents();
-				base.Enabled = false;
+                Enabled = false;
 				ChipMethod.SelectedIndex = 0;
 				StateLabel.Text = "ロード中...";
 				StateLabel.Refresh();
 				if (!Directory.Exists(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir)))
 				{
 					MessageBox.Show("ランタイムフォルダが見つかりません。" + Environment.NewLine + "Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-					base.DialogResult = DialogResult.Cancel;
-					base.Close();
+                    DialogResult = DialogResult.Cancel;
+                    Close();
 				}
 				else
 				{
@@ -78,8 +78,8 @@ namespace MasaoPlus.Dialogs
 					if (RuntimeView.Items.Count == 0)
 					{
 						MessageBox.Show("利用可能なランタイムがありません。", "ランタイムロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-						base.DialogResult = DialogResult.Cancel;
-						base.Close();
+                        DialogResult = DialogResult.Cancel;
+                        Close();
 					}
 				}
 			}
@@ -87,13 +87,13 @@ namespace MasaoPlus.Dialogs
 			{
 				StateLabel.Text = "";
 				StateLabel.Refresh();
-				base.Enabled = true;
+                Enabled = true;
 			}
 		}
 
 		private void Accept_Click(object sender, EventArgs e)
 		{
-			base.Enabled = false;
+            Enabled = false;
 			try
 			{
 				if (RuntimeView.SelectedIndices.Count == 0)
@@ -128,7 +128,7 @@ namespace MasaoPlus.Dialogs
 			finally
 			{
 				StateLabel.Text = "";
-				base.Enabled = true;
+                Enabled = true;
 			}
 		}
 
@@ -299,8 +299,8 @@ namespace MasaoPlus.Dialogs
 			Global.MainWnd.EditPatternChip_Click(this, new EventArgs());
 			Global.state.EditingForeground = true;
 			Global.state.EditFlag = true;
-			base.DialogResult = DialogResult.OK;
-			base.Close();
+            DialogResult = DialogResult.OK;
+            Close();
 		}
 
 		private string[] StageDataCopy(Project project, string[] StageData, ChipsData[] Mapchip, string nullcharacter)

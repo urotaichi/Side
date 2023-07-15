@@ -29,13 +29,13 @@ namespace MasaoPlus
 		public void UpdateView()
 		{
 			OverViewViewer.UpdateDrawSource();
-			mWndSize = new Size((int)((double)(Global.MainWnd.MainDesigner.Size.Width / Global.cpd.runtime.Definitions.ChipSize.Width * OverViewViewer.ppb) / Global.config.draw.ZoomIndex), (int)((double)(Global.MainWnd.MainDesigner.Size.Height / Global.cpd.runtime.Definitions.ChipSize.Height * OverViewViewer.ppb) / Global.config.draw.ZoomIndex));
+			mWndSize = new Size((int)(Global.MainWnd.MainDesigner.Size.Width / Global.cpd.runtime.Definitions.ChipSize.Width * OverViewViewer.ppb / Global.config.draw.ZoomIndex), (int)(Global.MainWnd.MainDesigner.Size.Height / Global.cpd.runtime.Definitions.ChipSize.Height * OverViewViewer.ppb / Global.config.draw.ZoomIndex));
 			cPoint = new Point(mWndSize.Width / 2, mWndSize.Height / 2);
 		}
 
 		private void OverViewWindow_Load(object sender, EventArgs e)
 		{
-			base.ClientSize = OverViewViewer.Size;
+            ClientSize = OverViewViewer.Size;
 			if (Global.MainWnd.ovw == null)
 			{
 				Text += "(Spaceで閉じる)";
@@ -53,7 +53,7 @@ namespace MasaoPlus
 				}
 				if (Global.MainWnd.ovw == null)
 				{
-					base.Close();
+                    Close();
 				}
 			}
 		}

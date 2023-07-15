@@ -416,7 +416,7 @@ namespace MasaoPlus
 			TextBoxOwnerPanel.SuspendLayout();
 			TextEditorStatus.SuspendLayout();
 			TextEditorTool.SuspendLayout();
-			base.SuspendLayout();
+            SuspendLayout();
 			TextEditorTable.BackColor = SystemColors.Control;
 			TextEditorTable.ColumnCount = 2;
 			TextEditorTable.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40f));
@@ -609,14 +609,14 @@ namespace MasaoPlus
 			TextTestRun.Size = new Size(23, 22);
 			TextTestRun.Text = "テスト実行";
 			TextTestRun.Click += TextTestRun_Click;
-			base.AutoScaleDimensions = new SizeF(6f, 12f);
-			base.AutoScaleMode = AutoScaleMode.Font;
-			base.Controls.Add(TextEditorTable);
-			base.Controls.Add(TextEditorTool);
-			base.Controls.Add(TextEditorStatus);
-			base.Name = "TextEditor";
-			base.Size = new Size(553, 267);
-			base.Load += TextEditor_Load;
+            AutoScaleDimensions = new SizeF(6f, 12f);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(TextEditorTable);
+            Controls.Add(TextEditorTool);
+            Controls.Add(TextEditorStatus);
+            Name = "TextEditor";
+            Size = new Size(553, 267);
+            Load += TextEditor_Load;
 			TextEditorTable.ResumeLayout(false);
 			((ISupportInitialize)TextRuler).EndInit();
 			((ISupportInitialize)TextLineNo).EndInit();
@@ -625,8 +625,8 @@ namespace MasaoPlus
 			TextEditorStatus.PerformLayout();
 			TextEditorTool.ResumeLayout(false);
 			TextEditorTool.PerformLayout();
-			base.ResumeLayout(false);
-			base.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 		}
 
 		private List<string> TextBuffer = new List<string>();

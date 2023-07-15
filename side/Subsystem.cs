@@ -14,16 +14,16 @@ namespace MasaoPlus
 	{
 		public static void MakeTestrun(int startup)
 		{
-            using StreamWriter streamWriter = new StreamWriter(Subsystem.GetTempFileWhere(), false, Global.config.localSystem.FileEncoding);
-            string value = Subsystem.MakeHTMLCode(startup);
+            using StreamWriter streamWriter = new StreamWriter(GetTempFileWhere(), false, Global.config.localSystem.FileEncoding);
+            string value = MakeHTMLCode(startup);
             streamWriter.Write(value);
             streamWriter.Close();
         }
 
 		public static void MakeTestrun(int startup, int replace, string[] sts)
 		{
-            using StreamWriter streamWriter = new StreamWriter(Subsystem.GetTempFileWhere(), false, Global.config.localSystem.FileEncoding);
-            string value = Subsystem.MakeHTMLCode(startup, replace, sts);
+            using StreamWriter streamWriter = new StreamWriter(GetTempFileWhere(), false, Global.config.localSystem.FileEncoding);
+            string value = MakeHTMLCode(startup, replace, sts);
             streamWriter.Write(value);
             streamWriter.Close();
         }
@@ -35,7 +35,7 @@ namespace MasaoPlus
 
 		public static string MakeHTMLCode(int StartStage)
 		{
-			return Subsystem.MakeHTMLCode(StartStage, -1, null);
+			return MakeHTMLCode(StartStage, -1, null);
 		}
 
 		public static string MakeHTMLCode(int StartStage, int ReplaceStage, string[] sts)
@@ -44,7 +44,7 @@ namespace MasaoPlus
 			StringBuilder stringBuilder = new StringBuilder();
 
 			// ヘッダーを出力
-			string text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
+			string text = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
 			if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
 			{
 				foreach (HTMLReplaceData htmlreplaceData in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
@@ -69,40 +69,40 @@ namespace MasaoPlus
 			}
 
 			//パラメータを出力
-			stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize, true));
+			stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize, true));
 			if (Global.cpd.project.Config.StageNum >= 2)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize));
+				stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize));
 			}
 			if (Global.cpd.project.Config.StageNum >= 3)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize));
+				stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize));
 			}
 			if (Global.cpd.project.Config.StageNum >= 4)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize));
+				stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize));
 			}
 
 			if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize));
+				stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize));
 				if (Global.cpd.project.Config.StageNum >= 2)
 				{
-					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize));
+					stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize));
 				}
 				if (Global.cpd.project.Config.StageNum >= 3)
 				{
-					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize));
+					stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize));
 				}
 				if (Global.cpd.project.Config.StageNum >= 4)
 				{
-					stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize));
+					stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize));
 				}
 			}
 
 			if (Global.cpd.project.Config.UseWorldmap)
 			{
-				stringBuilder.AppendLine(Subsystem.MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.MapParam, 0, Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize));
+				stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.MapParam, 0, Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize));
 			}
 
 			string parameter = Global.cpd.runtime.DefaultConfigurations.Parameter;
@@ -800,7 +800,7 @@ namespace MasaoPlus
 			}
 
 			// 中間を出力
-			text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.MiddleHTML);
+			text = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.MiddleHTML);
 			if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
 			{
 				foreach (HTMLReplaceData htmlreplaceData in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
@@ -843,7 +843,7 @@ namespace MasaoPlus
 			}
 
 			//フッターを出力
-			text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.FooterHTML);
+			text = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.FooterHTML);
 			if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
 			{
 				foreach (HTMLReplaceData htmlreplaceData2 in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
@@ -978,7 +978,7 @@ namespace MasaoPlus
 				array = new byte[fileStream.Length];
 				fileStream.Read(array, 0, array.Length);
 			}
-			return Subsystem.GetCode(array).GetString(array);
+			return GetCode(array).GetString(array);
 		}
 
 		public static Encoding GetCode(byte[] byts)
@@ -1144,38 +1144,30 @@ namespace MasaoPlus
 
 		public static bool InstallRuntime(string Source)
 		{
-			string text = Subsystem.ExtractZipArchive(Source);
+			string text = ExtractZipArchive(Source);
 			string[] files = Directory.GetFiles(text, "*.xml", SearchOption.TopDirectoryOnly);
 			if (files.Length != 1)
 			{
-				MessageBox.Show("ランタイムを特定できません。" + Environment.NewLine + "インストールに失敗しました。", "ランタイム インストール エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+				MessageBox.Show($"ランタイムを特定できません。{Environment.NewLine}インストールに失敗しました。", "ランタイム インストール エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				return false;
 			}
 			string fileName = Path.GetFileName(files[0]);
 			if (!File.Exists(Path.Combine(text, fileName)))
 			{
-				MessageBox.Show("定義ファイルの展開に失敗しました。" + Environment.NewLine + "インストールに失敗しました。", "ランタイム インストール エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+				MessageBox.Show($"定義ファイルの展開に失敗しました。{Environment.NewLine}インストールに失敗しました。", "ランタイム インストール エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				return false;
 			}
 			Runtime runtime = Runtime.ParseXML(Path.Combine(text, fileName));
 			if (Global.definition.CheckVersion < runtime.Definitions.RequireLower)
 			{
-				MessageBox.Show(string.Concat(new string[]
-				{
-					"定義ファイルはこのバージョンの",
-					Global.definition.AppName,
-					"には対応していません。",
-					Environment.NewLine,
-					Global.definition.AppName,
-					"を最新のバージョンへ更新してください。"
-				}), "インストール拒否", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+				MessageBox.Show($"定義ファイルはこのバージョンの{Global.definition.AppName}には対応していません。{Environment.NewLine}{Global.definition.AppName}を最新のバージョンへ更新してください。", "インストール拒否", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 				return false;
 			}
 			string text2 = Path.Combine(Application.StartupPath, Global.definition.RuntimeDir);
 			string text3 = Path.Combine(text2, fileName);
 			if (File.Exists(text3))
 			{
-				if (MessageBox.Show(fileName + "はすでに存在します。" + Environment.NewLine + "上書きインストールして更新しますか?", "ランタイムパッケージの更新", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+				if (MessageBox.Show($"{fileName}はすでに存在します。{Environment.NewLine}上書きインストールして更新しますか?", "ランタイムパッケージの更新", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
 				{
 					using (SaveFileDialog saveFileDialog = new SaveFileDialog())
 					{
@@ -1191,14 +1183,7 @@ namespace MasaoPlus
 					}
 				}
 				Runtime runtime2 = Runtime.ParseXML(text3);
-				if (runtime2.Definitions.DefVersion >= runtime.Definitions.DefVersion && MessageBox.Show(string.Concat(new string[]
-				{
-					"上書きインストールしようとしているランタイムは、",
-					Environment.NewLine,
-					"現在のランタイムと同等か、それより過去のバージョンです。",
-					Environment.NewLine,
-					"上書きしてよろしいですか？"
-				}), "ダウングレード警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+				if (runtime2.Definitions.DefVersion >= runtime.Definitions.DefVersion && MessageBox.Show($"上書きインストールしようとしているランタイムは、{Environment.NewLine}現在のランタイムと同等か、それより過去のバージョンです。{Environment.NewLine}上書きしてよろしいですか？", "ダウングレード警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
 				{
 					return false;
 				}
@@ -1226,26 +1211,18 @@ namespace MasaoPlus
 			{
 				return;
 			}
-			if (Global.config.localSystem.UpdateServer != Global.definition.BaseUpdateServer && MessageBox.Show("アップデート接続先サーバーが変更されています。" + Environment.NewLine + "既定のサーバーを利用しますか？", "更新先の変更の検知", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+			if (Global.config.localSystem.UpdateServer != Global.definition.BaseUpdateServer && MessageBox.Show($"アップデート接続先サーバーが変更されています。{Environment.NewLine}既定のサーバーを利用しますか？", "更新先の変更の検知", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
 				Global.config.localSystem.UpdateServer = Global.definition.BaseUpdateServer;
 			}
-			Subsystem.dlClient = new WebClient();
-			Subsystem.dlClient.Headers.Add("User-Agent", string.Concat(new string[]
-            {
-                Global.definition.AppName,
-                " - ",
-                Global.definition.AppNameFull,
-                "/",
-                Global.definition.Version,
-                "(Windows NT 10.0; Win64; x64)"
-            }));
-			Subsystem.dlClient.DownloadFileCompleted += Subsystem.dlClient_DownloadFileCompleted;
-			Subsystem.tempfile = Path.GetTempFileName();
+            dlClient = new WebClient();
+            dlClient.Headers.Add("User-Agent", $"{Global.definition.AppName} - {Global.definition.AppNameFull}/{Global.definition.Version}(Windows NT 10.0; Win64; x64)");
+            dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted;
+            tempfile = Path.GetTempFileName();
 			Uri address = new Uri(Global.config.localSystem.UpdateServer);
 			try
 			{
-				Subsystem.dlClient.DownloadFileAsync(address, Subsystem.tempfile);
+                dlClient.DownloadFileAsync(address, tempfile);
 			}
 			catch
 			{
@@ -1254,29 +1231,20 @@ namespace MasaoPlus
 
 		private static void dlClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
 		{
-			Subsystem.dlClient.Dispose();
+            dlClient.Dispose();
 			if (e.Error != null)
 			{
 				return;
 			}
-			UpdateData updateData = UpdateData.ParseXML(Subsystem.tempfile);
-			File.Delete(Subsystem.tempfile);
+			UpdateData updateData = UpdateData.ParseXML(tempfile);
+			File.Delete(tempfile);
 			if (updateData.DefVersion <= Global.definition.CheckVersion)
 			{
 				return;
 			}
-			if (MessageBox.Show(string.Concat(new string[]
+			if (MessageBox.Show($"Sideの新しいバージョンが公開されています。{Environment.NewLine}(バージョン {updateData.Name}){Environment.NewLine}更新しますか？", "Sideの更新", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.No)
 			{
-				"Sideの新しいバージョンが公開されています。",
-				Environment.NewLine,
-				"(バージョン ",
-				updateData.Name.ToString(),
-				")",
-				Environment.NewLine,
-				"更新しますか？"
-			}), "Sideの更新", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.No)
-			{
-				MessageBox.Show("自動更新チェックはオフになります。" + Environment.NewLine + "再度有効にする場合はエディタオプションより設定してください。", "更新の中止", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+				MessageBox.Show($"自動更新チェックはオフになります。{Environment.NewLine}再度有効にする場合はエディタオプションより設定してください。", "更新の中止", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 				Global.config.localSystem.CheckAutoUpdate = false;
 				return;
 			}

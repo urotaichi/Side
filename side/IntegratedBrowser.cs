@@ -37,7 +37,7 @@ namespace MasaoPlus
 						Global.state.Testrun = Process.Start(str);
 					}
 					Process testrun = Global.state.Testrun;
-					base.Enabled = false;
+                    Enabled = false;
 					Status.Text = "統合ブラウザは利用不可能です。";
 					return false;
 				}
@@ -47,7 +47,7 @@ namespace MasaoPlus
 				}
 				return true;
 			}
-			base.Enabled = true;
+            Enabled = true;
 			Browser.CoreWebView2.Navigate(str);
 			return true;
 		}
@@ -156,8 +156,8 @@ namespace MasaoPlus
 			//this.testToolStripMenuItem = new ToolStripMenuItem();
 			MainToolStrip.SuspendLayout();
 			MainStatusStrip.SuspendLayout();
-			//this.contextMenuStrip1.SuspendLayout();
-			base.SuspendLayout();
+            //this.contextMenuStrip1.SuspendLayout();
+            SuspendLayout();
 			MainToolStrip.Items.AddRange(new ToolStripItem[]
 			{
 				Back,
@@ -242,34 +242,34 @@ namespace MasaoPlus
 			Browser.Name = "Browser";
 			Browser.Size = new Size(414, 172);
 			Browser.TabIndex = 2;
-			//this.Browser.ProgressChanged += this.Browser_ProgressChanged;
-			//this.Browser.DocumentCompleted += this.Browser_DocumentCompleted;
-			//this.Browser.Navigated += this.Browser_Navigated;
-			/*
+            //this.Browser.ProgressChanged += this.Browser_ProgressChanged;
+            //this.Browser.DocumentCompleted += this.Browser_DocumentCompleted;
+            //this.Browser.Navigated += this.Browser_Navigated;
+            /*
 			this.contextMenuStrip1.Items.AddRange(new ToolStripItem[]
 			{
 				this.testToolStripMenuItem
 			});
 			*/
-			//this.contextMenuStrip1.Name = "contextMenuStrip1";
-			//this.contextMenuStrip1.Size = new Size(102, 26);
-			//this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-			//this.testToolStripMenuItem.Size = new Size(101, 22);
-			//this.testToolStripMenuItem.Text = "Test";
-			base.AutoScaleDimensions = new SizeF(6f, 12f);
-			base.AutoScaleMode = AutoScaleMode.Font;
-			base.Controls.Add(Browser);
-			base.Controls.Add(MainStatusStrip);
-			base.Controls.Add(MainToolStrip);
-			base.Name = "IntegratedBrowser";
-			base.Size = new Size(414, 220);
+            //this.contextMenuStrip1.Name = "contextMenuStrip1";
+            //this.contextMenuStrip1.Size = new Size(102, 26);
+            //this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            //this.testToolStripMenuItem.Size = new Size(101, 22);
+            //this.testToolStripMenuItem.Text = "Test";
+            AutoScaleDimensions = new SizeF(6f, 12f);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(Browser);
+            Controls.Add(MainStatusStrip);
+            Controls.Add(MainToolStrip);
+            Name = "IntegratedBrowser";
+            Size = new Size(414, 220);
 			MainToolStrip.ResumeLayout(false);
 			MainToolStrip.PerformLayout();
 			MainStatusStrip.ResumeLayout(false);
 			MainStatusStrip.PerformLayout();
-			//this.contextMenuStrip1.ResumeLayout(false);
-			base.ResumeLayout(false);
-			base.PerformLayout();
+            //this.contextMenuStrip1.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
 		}
 		async void InitializeAsync()
 		{

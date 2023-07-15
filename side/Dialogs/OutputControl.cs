@@ -58,7 +58,7 @@ namespace MasaoPlus.Dialogs
 
 		private void OK_Click(object sender, EventArgs e)
 		{
-			base.Enabled = false;
+            Enabled = false;
 			OK.Text = "出力中...";
 			OK.Refresh();
 			Application.DoEvents();
@@ -74,8 +74,8 @@ namespace MasaoPlus.Dialogs
 					}
 				}
 			}
-			base.DialogResult = DialogResult.OK;
-			base.Close();
+            DialogResult = DialogResult.OK;
+            Close();
 		}
 
 		private string mdir;

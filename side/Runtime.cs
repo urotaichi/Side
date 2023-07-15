@@ -31,7 +31,7 @@ namespace MasaoPlus
 
 		public static string[] CheckFiles(string cdir, Runtime chkr)
 		{
-			return Runtime.CheckFiles(cdir, chkr, true);
+			return CheckFiles(cdir, chkr, true);
 		}
 
 		public static string[] CheckFiles(string cdir, Runtime chkr, bool CheckConfig)

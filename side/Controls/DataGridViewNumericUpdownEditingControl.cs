@@ -7,7 +7,7 @@ namespace MasaoPlus.Controls
 	{
 		public DataGridViewNumericUpdownEditingControl()
 		{
-			base.TabStop = false;
+            TabStop = false;
 		}
 
 		public void ApplyCellStyleToEditingControl(DataGridViewCellStyle dataGridViewCellStyle)
@@ -49,13 +49,13 @@ namespace MasaoPlus.Controls
 					goto IL_6A;
 				}
 			}
-			base.TextAlign = HorizontalAlignment.Center;
+            TextAlign = HorizontalAlignment.Center;
 			return;
 			IL_6A:
-			base.TextAlign = HorizontalAlignment.Right;
+            TextAlign = HorizontalAlignment.Right;
 			return;
 			IL_72:
-			base.TextAlign = HorizontalAlignment.Left;
+            TextAlign = HorizontalAlignment.Left;
 		}
 
 		public DataGridView EditingControlDataGridView
@@ -132,12 +132,12 @@ namespace MasaoPlus.Controls
 
 		public object GetEditingControlFormattedValue(DataGridViewDataErrorContexts context)
 		{
-			return base.Value.ToString();
+			return Value.ToString();
 		}
 
 		public void PrepareEditingControlForEdit(bool selectAll)
 		{
-			base.Focus();
+            Focus();
 		}
 
 		public bool RepositionEditingControlOnValueChange

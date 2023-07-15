@@ -8,10 +8,10 @@ namespace MasaoPlus.Controls
 		public override void InitializeEditingControl(int rowIndex, object initialFormattedValue, DataGridViewCellStyle dataGridViewCellStyle)
 		{
 			base.InitializeEditingControl(rowIndex, initialFormattedValue, dataGridViewCellStyle);
-			DataGridViewNumericUpdownEditingControl dataGridViewNumericUpdownEditingControl = base.DataGridView.EditingControl as DataGridViewNumericUpdownEditingControl;
+			DataGridViewNumericUpdownEditingControl dataGridViewNumericUpdownEditingControl = DataGridView.EditingControl as DataGridViewNumericUpdownEditingControl;
 			if (dataGridViewNumericUpdownEditingControl != null)
 			{
-				DataGridViewNumericUpdownColumn dataGridViewNumericUpdownColumn = base.OwningColumn as DataGridViewNumericUpdownColumn;
+				DataGridViewNumericUpdownColumn dataGridViewNumericUpdownColumn = OwningColumn as DataGridViewNumericUpdownColumn;
 				if (dataGridViewNumericUpdownColumn == null)
 				{
 					dataGridViewNumericUpdownEditingControl.Minimum = -9999999m;
@@ -22,7 +22,7 @@ namespace MasaoPlus.Controls
 					dataGridViewNumericUpdownEditingControl.Maximum = dataGridViewNumericUpdownColumn.Max;
 					dataGridViewNumericUpdownEditingControl.Minimum = dataGridViewNumericUpdownColumn.Min;
 				}
-				dataGridViewNumericUpdownEditingControl.Value = ((base.Value != dataGridViewNumericUpdownEditingControl) ? int.Parse(base.Value.ToString()) : 0);
+				dataGridViewNumericUpdownEditingControl.Value = ((Value != dataGridViewNumericUpdownEditingControl) ? int.Parse(Value.ToString()) : 0);
 			}
 		}
 
