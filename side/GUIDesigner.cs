@@ -713,7 +713,6 @@ namespace MasaoPlus
             Runtime.DefinedData.StageSizeData StageSize = Global.cpd.project.Runtime.Definitions.StageSize;
             Runtime.DefinedData.StageSizeData LayerSize = Global.cpd.project.Runtime.Definitions.LayerSize;
 
-
             while (Global.state.MapEditMode ? (num < MapSize.y) : (num < StageSize.y))
             {
                 int num2 = 0;
@@ -724,16 +723,19 @@ namespace MasaoPlus
                     {
                         if (Global.state.MapEditMode)
                         {
-                            text = Global.cpd.EditingMap[num].Substring(num2 * MapSize.bytesize, MapSize.bytesize);
+                            if (Global.cpd.project.Use3rdMapData) text = Global.cpd.EditingMap[num].Split(',')[num2];
+                            else text = Global.cpd.EditingMap[num].Substring(num2 * MapSize.bytesize, MapSize.bytesize);
                         }
                         else
                         {
-                            text = Global.cpd.EditingMap[num].Substring(num2 * StageSize.bytesize, StageSize.bytesize);
+                            if (Global.cpd.project.Use3rdMapData) text = Global.cpd.EditingMap[num].Split(',')[num2];
+                            else text = Global.cpd.EditingMap[num].Substring(num2 * StageSize.bytesize, StageSize.bytesize);
                         }
                     }
                     else
                     {
-                        text = Global.cpd.EditingLayer[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize);
+                        if (Global.cpd.project.Use3rdMapData) text = Global.cpd.EditingLayer[num].Split(',')[num2];
+                        else text = Global.cpd.EditingLayer[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize);
                     }
                     if (
                         (!Global.state.UseBuffered
@@ -937,6 +939,7 @@ namespace MasaoPlus
             foreach (ChipsData value in Global.cpd.Mapchip)
             {
                 DrawItemRef.Add(value.character, value);
+                DrawItemRef.Add(ChipDataClass.CodeToChar(value.character), value);
             }
             DrawWorldRef.Clear();
             foreach (ChipsData value2 in Global.cpd.Worldchip)
@@ -949,6 +952,7 @@ namespace MasaoPlus
                 foreach (ChipsData value3 in Global.cpd.Layerchip)
                 {
                     DrawLayerRef.Add(value3.character, value3);
+                    DrawLayerRef.Add(ChipDataClass.CodeToChar(value3.character, 2), value3);
                 }
             }
         }
