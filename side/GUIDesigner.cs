@@ -669,8 +669,7 @@ namespace MasaoPlus
                     {
                         if (Global.state.MapEditMode)
                         {
-                            if (Global.cpd.project.Use3rdMapData) text = Global.cpd.EditingMap[num].Split(',')[num2];
-                            else text = Global.cpd.EditingMap[num].Substring(num2 * MapSize.bytesize, MapSize.bytesize);
+                            text = Global.cpd.EditingMap[num].Substring(num2 * MapSize.bytesize, MapSize.bytesize);
                         }
                         else
                         {
@@ -2378,8 +2377,8 @@ namespace MasaoPlus
             string stageChar = StageText.GetStageChar(MapPos);
             if (Global.state.MapEditMode && cd.character.Equals(stageChar)
                 || !Global.state.MapEditMode && (!Global.cpd.project.Use3rdMapData && cd.character.Equals(stageChar)
-                    || Global.cpd.project.Use3rdMapData && cd.code.ToString().Equals(stageChar))) return;
-            if (Global.cpd.project.Use3rdMapData)
+                    || Global.cpd.project.Use3rdMapData && cd.code == int.Parse(stageChar))) return;
+            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
             {
                 if (Global.state.EditingForeground)
                 {
@@ -2522,7 +2521,7 @@ namespace MasaoPlus
                                     else chipsData = DrawItemRef[stageChar];
                                 }
 
-                                if (Global.cpd.project.Use3rdMapData && chipsData.code == Global.cpd.Mapchip[0].code
+                                if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode && chipsData.code == Global.cpd.Mapchip[0].code
                                    || !Global.cpd.project.Use3rdMapData && chipsData.character.Equals(Global.cpd.Mapchip[0].character))
                                 {
                                     goto IL_514;
@@ -2577,7 +2576,7 @@ namespace MasaoPlus
                                     else chipsData = DrawItemRef[stageChar];
                                 }
 
-                                if (Global.cpd.project.Use3rdMapData && chipsData.code == Global.cpd.Mapchip[0].code
+                                if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode && chipsData.code == Global.cpd.Mapchip[0].code
                                    || !Global.cpd.project.Use3rdMapData && chipsData.character.Equals(Global.cpd.Mapchip[0].character))
                                 {
                                     goto IL_9DD;
@@ -2930,12 +2929,12 @@ namespace MasaoPlus
             {
                 if (IsOverflow(p))
                 {
-                    if(Global.cpd.project.Use3rdMapData) return Global.cpd.Mapchip[0].code.ToString();
+                    if(Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) return Global.cpd.Mapchip[0].code.ToString();
                     else return Global.cpd.Mapchip[0].character;
                 }
                 if (Global.state.EditingForeground)
                 {
-                    if (Global.cpd.project.Use3rdMapData) return Global.cpd.EditingMap[p.Y].Split(',')[p.X];
+                    if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) return Global.cpd.EditingMap[p.Y].Split(',')[p.X];
                     else return Global.cpd.EditingMap[p.Y].Substring(p.X * Global.state.GetCByte, Global.state.GetCByte);
                 }
                 if (Global.cpd.project.Use3rdMapData) return Global.cpd.EditingLayer[p.Y].Split(',')[p.X];

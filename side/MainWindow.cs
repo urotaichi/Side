@@ -251,18 +251,20 @@ namespace MasaoPlus
             Point p = default;
             p.X = (e.X + Global.state.MapPoint.X) / MainDesigner.CurrentChipSize.Width;
             p.Y = (e.Y + Global.state.MapPoint.Y) / MainDesigner.CurrentChipSize.Height;
-            GuiPositionInfo.Text = p.X.ToString() + "," + p.Y.ToString();
+            GuiPositionInfo.Text = $"{p.X},{p.Y}";
             if (!GUIDesigner.StageText.IsOverflow(p))
             {
                 int num = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize.bytesize : (Global.state.EditingForeground ? Global.cpd.runtime.Definitions.StageSize.bytesize : Global.cpd.runtime.Definitions.LayerSize.bytesize);
                 string text;
                 if (Global.state.EditingForeground)
                 {
-                    text = Global.cpd.EditingMap[p.Y].Substring(p.X * num, num);
+                    if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) text = Global.cpd.EditingMap[p.Y].Split(',')[p.X];
+                    else text = Global.cpd.EditingMap[p.Y].Substring(p.X * num, num);
                 }
                 else
                 {
-                    text = Global.cpd.EditingLayer[p.Y].Substring(p.X * num, num);
+                    if (Global.cpd.project.Use3rdMapData) text = Global.cpd.EditingLayer[p.Y].Split(',')[p.X];
+                    else text = Global.cpd.EditingLayer[p.Y].Substring(p.X * num, num);
                 }
                 ChipsData chipsData;
                 if (Global.state.MapEditMode)
@@ -276,21 +278,25 @@ namespace MasaoPlus
                 }
                 else if (Global.state.EditingForeground)
                 {
-                    if (text == Global.cpd.Mapchip[0].character || !MainDesigner.DrawItemRef.ContainsKey(text))
+                    if (Global.cpd.project.Use3rdMapData && (int.Parse(text) == Global.cpd.Mapchip[0].code || !MainDesigner.DrawItemCodeRef.ContainsKey(text))
+                        || !Global.cpd.project.Use3rdMapData && (text == Global.cpd.Mapchip[0].character || !MainDesigner.DrawItemRef.ContainsKey(text)))
                     {
                         ChipNavigator.Visible = false;
                         return;
                     }
-                    chipsData = MainDesigner.DrawItemRef[text];
+                    if (Global.cpd.project.Use3rdMapData) chipsData = MainDesigner.DrawItemCodeRef[text];
+                    else chipsData = MainDesigner.DrawItemRef[text];
                 }
                 else
                 {
-                    if (text == Global.cpd.Layerchip[0].character || !MainDesigner.DrawLayerRef.ContainsKey(text))
+                    if (Global.cpd.project.Use3rdMapData && (int.Parse(text) == Global.cpd.Layerchip[0].code || !MainDesigner.DrawLayerCodeRef.ContainsKey(text))
+                        || !Global.cpd.project.Use3rdMapData && (text == Global.cpd.Layerchip[0].character || !MainDesigner.DrawLayerRef.ContainsKey(text)))
                     {
                         ChipNavigator.Visible = false;
                         return;
                     }
-                    chipsData = MainDesigner.DrawLayerRef[text];
+                    if (Global.cpd.project.Use3rdMapData) chipsData = MainDesigner.DrawLayerCodeRef[text];
+                    else chipsData = MainDesigner.DrawLayerRef[text];
                 }
                 ChipData cschip = chipsData.GetCSChip();
                 Size size = (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size;
@@ -429,7 +435,8 @@ namespace MasaoPlus
                     description = cschip.description;
                 }
 
-                ChipNavigator.Text = $"[{chipsData.character}]{name}/{description}";
+                if(Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) ChipNavigator.Text = $"[{chipsData.code}]{name}/{description}";
+                else ChipNavigator.Text = $"[{chipsData.character}]{name}/{description}";
                 ChipNavigator.Visible = true;
             }
         }
