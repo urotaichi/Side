@@ -752,10 +752,12 @@ namespace MasaoPlus
                         ) && (
                             !Global.config.draw.SkipFirstChip
                                 || (
-                                    (!foreground || !text.Equals(Global.cpd.Mapchip[0].character)) && (foreground || !text.Equals(Global.cpd.Layerchip[0].character))
+                                    (!foreground || !text.Equals(Global.cpd.Mapchip[0].character) || !text.Equals(Global.cpd.Mapchip[0].code))
+                                    && (foreground || !text.Equals(Global.cpd.Layerchip[0].character) || !text.Equals(Global.cpd.Layerchip[0].code))
                                 )
                         ) && (
-                        (foreground && DrawItemRef.ContainsKey(text)) || (!foreground && DrawLayerRef.ContainsKey(text))
+                        (foreground && (DrawItemRef.ContainsKey(text) || DrawItemCodeRef.ContainsKey(int.Parse(text))))
+                        || (!foreground && (DrawLayerRef.ContainsKey(text) || DrawLayerCodeRef.ContainsKey(int.Parse(text))))
                         )
                     )
                     {
@@ -939,7 +941,7 @@ namespace MasaoPlus
             foreach (ChipsData value in Global.cpd.Mapchip)
             {
                 DrawItemRef.Add(value.character, value);
-                DrawItemRef.Add(ChipDataClass.CodeToChar(value.character), value);
+                DrawItemCodeRef.Add(value.code, value);
             }
             DrawWorldRef.Clear();
             foreach (ChipsData value2 in Global.cpd.Worldchip)
@@ -952,7 +954,7 @@ namespace MasaoPlus
                 foreach (ChipsData value3 in Global.cpd.Layerchip)
                 {
                     DrawLayerRef.Add(value3.character, value3);
-                    DrawLayerRef.Add(ChipDataClass.CodeToChar(value3.character, 2), value3);
+                    DrawLayerCodeRef.Add(value3.code, value3);
                 }
             }
         }
@@ -2842,6 +2844,10 @@ namespace MasaoPlus
         public Dictionary<string, ChipsData> DrawLayerRef = new Dictionary<string, ChipsData>();
 
         public Dictionary<string, ChipsData> DrawWorldRef = new Dictionary<string, ChipsData>();
+
+        public Dictionary<int, ChipsData> DrawItemCodeRef = new Dictionary<int, ChipsData>();
+
+        public Dictionary<int, ChipsData> DrawLayerCodeRef = new Dictionary<int, ChipsData>();
 
         private Bitmap ForeLayerBmp;
 

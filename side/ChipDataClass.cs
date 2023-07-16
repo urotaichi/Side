@@ -41,18 +41,17 @@ namespace MasaoPlus
             }
         }
 
-        public static string CodeToChar(object code, int length = 1)
+        public static string CodeToChar(int code, int length = 1)
         {
-            int c = int.Parse((string)code);
             if (length == 2)
             {
-                if (c == 0) return "..";
-                else return c.ToString("x2");
+                if (code == 0) return "..";
+                else return code.ToString("x2");
             }
             else
             {
-                if (c == 0) return ".";
-                else return ((char)c).ToString();
+                if (code == 0) return ".";
+                else return ((char)code).ToString();
             }
         }
 

@@ -28,7 +28,7 @@ namespace MasaoPlus.Dialogs
             Application.DoEvents();
             if (!Directory.Exists(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir)))
             {
-                MessageBox.Show("ランタイムフォルダが見つかりません。" + Environment.NewLine + "Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"ランタイムフォルダが見つかりません。{Environment.NewLine}Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 DialogResult = DialogResult.Cancel;
                 Close();
                 return;
@@ -56,14 +56,7 @@ namespace MasaoPlus.Dialogs
                             }
                             else
                             {
-                                MessageBox.Show(string.Concat(new string[]
-                                {
-                                    "必須ファイルが欠落しています。",
-                                    Environment.NewLine,
-                                    Path.GetFileName(text),
-                                    " : ",
-                                    string.Join(",", array2)
-                                }), "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                                MessageBox.Show($"必須ファイルが欠落しています。{Environment.NewLine}{Path.GetFileName(text)} : {string.Join(",", array2)}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                             }
                         }
                     }
@@ -74,7 +67,7 @@ namespace MasaoPlus.Dialogs
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("読み込めませんでした:" + Path.GetFileName(text) + Environment.NewLine + ex.Message, "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    MessageBox.Show($"読み込めませんでした:{Path.GetFileName(text)}{Environment.NewLine}{ex.Message}", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 }
             }
             if (RuntimeSet.Items.Count == 0)
@@ -312,20 +305,7 @@ namespace MasaoPlus.Dialogs
                 OK.Refresh();
                 Global.config.lastData.ProjDir = RootDir.Text;
                 string text = Path.Combine(RootDir.Text, ProjectName.Text);
-                if (Directory.Exists(text) && MessageBox.Show(string.Concat(new string[]
-                {
-                    "ディレクトリ",
-                    Environment.NewLine,
-                    "\"",
-                    text,
-                    "\"",
-                    Environment.NewLine,
-                    "はすでに存在します。",
-                    Environment.NewLine,
-                    "中に含まれるファイルは上書きされてしまう事があります。",
-                    Environment.NewLine,
-                    "続行しますか？"
-                }), "プロジェクト生成警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                if (Directory.Exists(text) && MessageBox.Show($"ディレクトリ{Environment.NewLine}\"{text}\"{Environment.NewLine}はすでに存在します。{Environment.NewLine}中に含まれるファイルは上書きされてしまう事があります。{Environment.NewLine}続行しますか？", "プロジェクト生成警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                 {
                     return;
                 }
@@ -420,14 +400,7 @@ namespace MasaoPlus.Dialogs
                     if (!(Path.GetFileName(text4) == runtimedatas[RuntimeSet.SelectedIndex].Definitions.Configurations) && !list.Contains(Path.GetFileName(text4)))
                     {
                         string text5 = Path.Combine(text, Path.GetFileName(text4));
-                        if (!File.Exists(text5) || MessageBox.Show(string.Concat(new string[]
-                        {
-                            text5,
-                            Environment.NewLine,
-                            "はすでに存在しています。",
-                            Environment.NewLine,
-                            "上書きしてもよろしいですか？"
-                        }), "上書きの警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.No)
+                        if (!File.Exists(text5) || MessageBox.Show($"{text5}{Environment.NewLine}はすでに存在しています。{Environment.NewLine}上書きしてもよろしいですか？", "上書きの警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.No)
                         {
                             File.Copy(text4, text5, true);
                         }
@@ -458,14 +431,7 @@ namespace MasaoPlus.Dialogs
             }
             catch (Exception ex)
             {
-                MessageBox.Show(string.Concat(new string[]
-                {
-                    "プロジェクト生成に失敗しました。",
-                    Environment.NewLine,
-                    ex.Message,
-                    Environment.NewLine,
-                    ex.StackTrace
-                }), "プロジェクト生成エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"プロジェクト生成に失敗しました。{Environment.NewLine}{ex.Message}{Environment.NewLine}{ex.StackTrace}", "プロジェクト生成エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return;
             }
             finally
