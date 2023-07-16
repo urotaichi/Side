@@ -392,91 +392,37 @@ namespace MasaoPlus
             if (chara == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 &&
                 Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
             {
-                Point point = default;
-                switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+                Point point = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
                 {
-                    case 1:
-                        point = new Point(352, 256);
-                        break;
-                    case 2:
-                        point = new Point(96, 0);
-                        break;
-                    case 3:
-                        point = new Point(64, 0);
-                        break;
-                    case 4:
-                        point = new Point(256, 0);
-                        break;
-                    case 5:
-                        point = new Point(288, 0);
-                        break;
-                    case 6:
-                        point = new Point(288, 448);
-                        break;
-                    case 7:
-                        point = new Point(320, 448);
-                        break;
-                    case 8:
-                        point = new Point(32, 32);
-                        break;
-                    case 9:
-                        point = new Point(96, 0);
-                        break;
-                    case 10:
-                        point = new Point(0, 32);
-                        break;
-                    case 11:
-                        point = new Point(64, 0);
-                        break;
-                    case 12:
-                        point = new Point(96, 32);
-                        break;
-                    case 13:
-                        point = new Point(64, 0);
-                        break;
-                    case 14:
-                        point = new Point(352, 448);
-                        break;
-                    case 15:
-                        point = new Point(416, 448);
-                        break;
-                    case 16:
-                        point = new Point(288, 448);
-                        break;
-                    case 17:
-                        point = new Point(320, 448);
-                        break;
-                    case 18:
-                        point = new Point(96, 0);
-                        break;
-                    case 19:
-                        point = new Point(96, 0);
-                        break;
-                    case 20:
-                        point = new Point(256, 0);
-                        break;
-                    case 21:
-                        point = new Point(256, 0);
-                        break;
-                    case 22:
-                        point = new Point(352, 448);
-                        break;
-                    case 23:
-                        point = new Point(384, 448);
-                        break;
-                    case 24:
-                        point = new Point(32, 32);
-                        break;
-                    case 25:
-                        point = new Point(32, 32);
-                        break;
-                    case 26:
-                        point = new Point(32, 128);
-                        break;
-                    case 27:
-                        point = new Point(32, 128);
-                        break;
-                }
+                    1 => new Point(352, 256),
+                    2 => new Point(96, 0),
+                    3 => new Point(64, 0),
+                    4 => new Point(256, 0),
+                    5 => new Point(288, 0),
+                    6 => new Point(288, 448),
+                    7 => new Point(320, 448),
+                    8 => new Point(32, 32),
+                    9 => new Point(96, 0),
+                    10 => new Point(0, 32),
+                    11 => new Point(64, 0),
+                    12 => new Point(96, 32),
+                    13 => new Point(64, 0),
+                    14 => new Point(352, 448),
+                    15 => new Point(416, 448),
+                    16 => new Point(288, 448),
+                    17 => new Point(320, 448),
+                    18 => new Point(96, 0),
+                    19 => new Point(96, 0),
+                    20 => new Point(256, 0),
+                    21 => new Point(256, 0),
+                    22 => new Point(352, 448),
+                    23 => new Point(384, 448),
+                    24 => new Point(32, 32),
+                    25 => new Point(32, 32),
+                    26 => new Point(32, 128),
+                    27 => new Point(32, 128),
+                    _ => throw new ArgumentException(),
+                };
                 g.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, p.X * chipsize.Width, p.Y * chipsize.Height, new Rectangle(point, chipsize), GraphicsUnit.Pixel);
             }
             else if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
@@ -950,6 +896,13 @@ namespace MasaoPlus
             {
                 DrawItemRef.Add(value.character, value);
                 DrawItemCodeRef.Add(value.code.ToString(), value);
+            }
+            if (Global.cpd.project.Use3rdMapData)
+            {
+                foreach (ChipsData value in Global.cpd.VarietyChip)
+                {
+                    DrawItemCodeRef.Add(value.code.ToString(), value);
+                }
             }
             DrawWorldRef.Clear();
             foreach (ChipsData value2 in Global.cpd.Worldchip)
@@ -2425,27 +2378,45 @@ namespace MasaoPlus
             string stageChar = StageText.GetStageChar(MapPos);
             if (Global.state.MapEditMode && cd.character.Equals(stageChar)
                 || !Global.state.MapEditMode && (!Global.cpd.project.Use3rdMapData && cd.character.Equals(stageChar)
-                    || Global.cpd.project.Use3rdMapData && cd.code.Equals(stageChar))) return;
-            for (int i = 0; i < Global.state.GetCByte; i++)
+                    || Global.cpd.project.Use3rdMapData && cd.code.ToString().Equals(stageChar))) return;
+            if (Global.cpd.project.Use3rdMapData)
             {
                 if (Global.state.EditingForeground)
                 {
-                    char[] array = Global.cpd.EditingMap[MapPos.Y].ToCharArray();
-                    array[MapPos.X * Global.state.GetCByte + i] = cd.character[i];
-                    Global.cpd.EditingMap[MapPos.Y] = new string(array);
+                    string[] array = Global.cpd.EditingMap[MapPos.Y].Split(',');
+                    array[MapPos.X] = cd.code.ToString();
+                    Global.cpd.EditingMap[MapPos.Y] = string.Join(",", array);
                 }
                 else
                 {
-                    char[] array2 = Global.cpd.EditingLayer[MapPos.Y].ToCharArray();
-                    array2[MapPos.X * Global.state.GetCByte + i] = cd.character[i];
-                    Global.cpd.EditingLayer[MapPos.Y] = new string(array2);
+                    string[] array2 = Global.cpd.EditingLayer[MapPos.Y].Split(',');
+                    array2[MapPos.X] = cd.code.ToString();
+                    Global.cpd.EditingLayer[MapPos.Y] = string.Join(",", array2);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Global.state.GetCByte; i++)
+                {
+                    if (Global.state.EditingForeground)
+                    {
+                        char[] array = Global.cpd.EditingMap[MapPos.Y].ToCharArray();
+                        array[MapPos.X * Global.state.GetCByte + i] = cd.character[i];
+                        Global.cpd.EditingMap[MapPos.Y] = new string(array);
+                    }
+                    else
+                    {
+                        char[] array2 = Global.cpd.EditingLayer[MapPos.Y].ToCharArray();
+                        array2[MapPos.X * Global.state.GetCByte + i] = cd.character[i];
+                        Global.cpd.EditingLayer[MapPos.Y] = new string(array2);
+                    }
                 }
             }
             Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
             if (Global.state.EditingForeground)
             { // 標準レイヤー
                 Size size = default;
-                if (cd.character != null)
+                if (cd.character != null && cd.code != default)
                 {
                     if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && cd.character == "Z")
                     {
@@ -2465,10 +2436,13 @@ namespace MasaoPlus
                 }
                 ChipsData chipsData = default; // 置く前から元々あったチップデータのサイズ
                 ChipData chipData = default;
-                if (DrawItemRef.ContainsKey(stageChar))
+                if (DrawItemRef.ContainsKey(stageChar) || DrawItemCodeRef.ContainsKey(stageChar))
                 {
                     if (Global.state.MapEditMode) chipsData = DrawWorldRef[stageChar];
-                    else chipsData = DrawItemRef[stageChar];
+                    else {
+                        if (Global.cpd.project.Use3rdMapData) chipsData = DrawItemCodeRef[stageChar];
+                        else chipsData = DrawItemRef[stageChar];
+                    }
                     chipData = chipsData.GetCSChip();
                     if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
                         size = GetLargerSize(size, DrawOribossOrig.Size);
@@ -2496,9 +2470,8 @@ namespace MasaoPlus
                 ChipData cschip = cd.GetCSChip();
                 Size size2 = cschip.size;
                 ChipData cschip2 = default(ChipsData).GetCSChip();
-                if (DrawLayerRef.ContainsKey(stageChar))
+                if (DrawLayerRef.ContainsKey(stageChar) || DrawLayerCodeRef.ContainsKey(stageChar))
                 {
-                    ChipsData chipsData2 = DrawLayerRef[stageChar];
                     size2 = GetLargerSize(size2, cschip2.size);
                 }
                 if (size2 == default) RedrawMap(g, new Rectangle(MapPos, new Size(1, 1)));
@@ -2535,7 +2508,7 @@ namespace MasaoPlus
                             ChipsData chipsData;
                             if (Global.state.EditingForeground)
                             {
-                                if (!DrawItemRef.ContainsKey(stageChar))
+                                if (!DrawItemRef.ContainsKey(stageChar) && !DrawItemCodeRef.ContainsKey(stageChar))
                                 {
                                     goto IL_514;
                                 }
@@ -2545,27 +2518,30 @@ namespace MasaoPlus
                                 }
                                 else
                                 {
-                                    chipsData = DrawItemRef[stageChar];
+                                    if (Global.cpd.project.Use3rdMapData) chipsData = DrawItemCodeRef[stageChar];
+                                    else chipsData = DrawItemRef[stageChar];
+                                }
+
+                                if (Global.cpd.project.Use3rdMapData && chipsData.code == Global.cpd.Mapchip[0].code
+                                   || !Global.cpd.project.Use3rdMapData && chipsData.character.Equals(Global.cpd.Mapchip[0].character))
+                                {
+                                    goto IL_514;
                                 }
                             }
                             else
                             {
-                                if (!DrawLayerRef.ContainsKey(stageChar))
+                                if (!DrawLayerRef.ContainsKey(stageChar) && !DrawLayerCodeRef.ContainsKey(stageChar))
                                 {
                                     goto IL_514;
                                 }
-                                chipsData = DrawLayerRef[stageChar];
-                            }
-                            if (Global.state.EditingForeground)
-                            {
-                                if (chipsData.character.Equals(Global.cpd.Mapchip[0].character))
+                                if (Global.cpd.project.Use3rdMapData) chipsData = DrawLayerCodeRef[stageChar];
+                                else chipsData = DrawLayerRef[stageChar];
+                                
+                                if (Global.cpd.project.Use3rdMapData && chipsData.code == Global.cpd.Layerchip[0].code
+                                   || !Global.cpd.project.Use3rdMapData && chipsData.character.Equals(Global.cpd.Layerchip[0].character))
                                 {
                                     goto IL_514;
                                 }
-                            }
-                            else if (chipsData.character.Equals(Global.cpd.Layerchip[0].character))
-                            {
-                                goto IL_514;
                             }
                             ChipData cschip = chipsData.GetCSChip();
                             if (cschip.size != default) DrawExtendSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character);
@@ -2587,7 +2563,7 @@ namespace MasaoPlus
                             ChipsData chipsData;
                             if (Global.state.EditingForeground)
                             {
-                                if (!DrawItemRef.ContainsKey(stageChar))
+                                if (!DrawItemRef.ContainsKey(stageChar) && !DrawItemCodeRef.ContainsKey(stageChar))
                                 {
                                     goto IL_9DD;
                                 }
@@ -2597,27 +2573,30 @@ namespace MasaoPlus
                                 }
                                 else
                                 {
-                                    chipsData = DrawItemRef[stageChar];
+                                    if (Global.cpd.project.Use3rdMapData) chipsData = DrawItemCodeRef[stageChar];
+                                    else chipsData = DrawItemRef[stageChar];
+                                }
+
+                                if (Global.cpd.project.Use3rdMapData && chipsData.code == Global.cpd.Mapchip[0].code
+                                   || !Global.cpd.project.Use3rdMapData && chipsData.character.Equals(Global.cpd.Mapchip[0].character))
+                                {
+                                    goto IL_9DD;
                                 }
                             }
                             else
                             {
-                                if (!DrawLayerRef.ContainsKey(stageChar))
+                                if (!DrawLayerRef.ContainsKey(stageChar) && !DrawLayerCodeRef.ContainsKey(stageChar))
                                 {
                                     goto IL_9DD;
                                 }
-                                chipsData = DrawLayerRef[stageChar];
-                            }
-                            if (Global.state.EditingForeground)
-                            {
-                                if (chipsData.character.Equals(Global.cpd.Mapchip[0].character))
+                                if (Global.cpd.project.Use3rdMapData) chipsData = DrawLayerCodeRef[stageChar];
+                                else chipsData = DrawLayerRef[stageChar];
+
+                                if (Global.cpd.project.Use3rdMapData && chipsData.code == Global.cpd.Layerchip[0].code
+                                   || !Global.cpd.project.Use3rdMapData && chipsData.character.Equals(Global.cpd.Layerchip[0].character))
                                 {
                                     goto IL_9DD;
                                 }
-                            }
-                            else if (chipsData.character.Equals(Global.cpd.Layerchip[0].character))
-                            {
-                                goto IL_9DD;
                             }
                             ChipData cschip = chipsData.GetCSChip();
                             if (cschip.size == default) DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X);
@@ -2951,13 +2930,16 @@ namespace MasaoPlus
             {
                 if (IsOverflow(p))
                 {
-                    return Global.cpd.Mapchip[0].character;
+                    if(Global.cpd.project.Use3rdMapData) return Global.cpd.Mapchip[0].code.ToString();
+                    else return Global.cpd.Mapchip[0].character;
                 }
                 if (Global.state.EditingForeground)
                 {
-                    return Global.cpd.EditingMap[p.Y].Substring(p.X * Global.state.GetCByte, Global.state.GetCByte);
+                    if (Global.cpd.project.Use3rdMapData) return Global.cpd.EditingMap[p.Y].Split(',')[p.X];
+                    else return Global.cpd.EditingMap[p.Y].Substring(p.X * Global.state.GetCByte, Global.state.GetCByte);
                 }
-                return Global.cpd.EditingLayer[p.Y].Substring(p.X * Global.state.GetCByte, Global.state.GetCByte);
+                if (Global.cpd.project.Use3rdMapData) return Global.cpd.EditingLayer[p.Y].Split(',')[p.X];
+                else return Global.cpd.EditingLayer[p.Y].Substring(p.X * Global.state.GetCByte, Global.state.GetCByte);
             }
         }
 
