@@ -27,6 +27,35 @@ namespace MasaoPlus
             return result;
         }
 
+        public static int CharToCode(string character)
+        {
+            if(character.Length == 2)
+            {
+                if (character.Equals("..")) return 0;
+                else return int.Parse(character, System.Globalization.NumberStyles.HexNumber);
+            }
+            else
+            {
+                if (character.Equals(".")) return 0;
+                else return character.ToCharArray(0, 1)[0];
+            }
+        }
+
+        public static string CodeToChar(object code, int length)
+        {
+            int c = int.Parse((string)code);
+            if (length == 2)
+            {
+                if (c == 0) return "..";
+                else return c.ToString("x2");
+            }
+            else
+            {
+                if (c == 0) return ".";
+                else return ((char)c).ToString();
+            }
+        }
+
         public ChipsData[] Mapchip = new ChipsData[0];
 
         public ChipsData[] Layerchip = new ChipsData[0];
