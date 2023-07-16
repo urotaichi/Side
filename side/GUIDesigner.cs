@@ -756,14 +756,22 @@ namespace MasaoPlus
                                     && (foreground || !text.Equals(Global.cpd.Layerchip[0].character) || !text.Equals(Global.cpd.Layerchip[0].code))
                                 )
                         ) && (
-                        (foreground && (DrawItemRef.ContainsKey(text) || DrawItemCodeRef.ContainsKey(int.Parse(text))))
-                        || (!foreground && (DrawLayerRef.ContainsKey(text) || DrawLayerCodeRef.ContainsKey(int.Parse(text))))
+                        (foreground && (DrawItemRef.ContainsKey(text) || DrawItemCodeRef.ContainsKey(text)))
+                        || (!foreground && (DrawLayerRef.ContainsKey(text) || DrawLayerCodeRef.ContainsKey(text)))
                         )
                     )
                     {
                         if (Global.state.MapEditMode) chipsData = DrawWorldRef[text];
-                        else if (foreground) chipsData = DrawItemRef[text];
-                        else chipsData = DrawLayerRef[text];
+                        else if (foreground)
+                        {
+                            if (Global.cpd.project.Use3rdMapData) chipsData = DrawItemCodeRef[text];
+                            else chipsData = DrawItemRef[text];
+                        }
+                        else
+                        {
+                            if (Global.cpd.project.Use3rdMapData) chipsData = DrawLayerCodeRef[text];
+                            else chipsData = DrawLayerRef[text];
+                        }
                         c = chipsData.GetCSChip();
                         if (c.size != default) // 標準サイズより大きい
                         {
@@ -941,7 +949,7 @@ namespace MasaoPlus
             foreach (ChipsData value in Global.cpd.Mapchip)
             {
                 DrawItemRef.Add(value.character, value);
-                DrawItemCodeRef.Add(value.code, value);
+                DrawItemCodeRef.Add(value.code.ToString(), value);
             }
             DrawWorldRef.Clear();
             foreach (ChipsData value2 in Global.cpd.Worldchip)
@@ -954,7 +962,7 @@ namespace MasaoPlus
                 foreach (ChipsData value3 in Global.cpd.Layerchip)
                 {
                     DrawLayerRef.Add(value3.character, value3);
-                    DrawLayerCodeRef.Add(value3.code, value3);
+                    DrawLayerCodeRef.Add(value3.code.ToString(), value3);
                 }
             }
         }
@@ -2845,9 +2853,9 @@ namespace MasaoPlus
 
         public Dictionary<string, ChipsData> DrawWorldRef = new Dictionary<string, ChipsData>();
 
-        public Dictionary<int, ChipsData> DrawItemCodeRef = new Dictionary<int, ChipsData>();
+        public Dictionary<string, ChipsData> DrawItemCodeRef = new Dictionary<string, ChipsData>();
 
-        public Dictionary<int, ChipsData> DrawLayerCodeRef = new Dictionary<int, ChipsData>();
+        public Dictionary<string, ChipsData> DrawLayerCodeRef = new Dictionary<string, ChipsData>();
 
         private Bitmap ForeLayerBmp;
 
