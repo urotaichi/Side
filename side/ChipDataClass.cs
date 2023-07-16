@@ -41,7 +41,7 @@ namespace MasaoPlus
             }
         }
 
-        public static string CodeToChar(object code, int length)
+        public static string CodeToChar(object code, int length = 1)
         {
             int c = int.Parse((string)code);
             if (length == 2)
