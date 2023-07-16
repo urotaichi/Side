@@ -89,15 +89,13 @@ namespace MasaoPlus.Dialogs
                     {
                         for (int i = 0; i < chipDataClass.Layerchip.Length; i++)
                         {
-                            if (chipDataClass.Layerchip[i].character == "..") chipDataClass.Layerchip[i].code = 0;
-                            else chipDataClass.Layerchip[i].code = int.Parse(chipDataClass.Layerchip[i].character, System.Globalization.NumberStyles.HexNumber);
+                            chipDataClass.Layerchip[i].code = ChipDataClass.CharToCode(chipDataClass.Layerchip[i].character);
                         }
                         Global.cpd.Layerchip = chipDataClass.Layerchip;
                     }
                     for (int i = 0; i < chipDataClass.Mapchip.Length; i++)
                     {
-                        if (chipDataClass.Mapchip[i].character == ".") chipDataClass.Mapchip[i].code = 0;
-                        else if (chipDataClass.Mapchip[i].code == default) chipDataClass.Mapchip[i].code = chipDataClass.Mapchip[i].character.ToCharArray(0, 1)[0];
+                        chipDataClass.Mapchip[i].code = ChipDataClass.CharToCode(chipDataClass.Mapchip[i].character);
                     }
                     Global.cpd.Mapchip = chipDataClass.Mapchip;
                     Global.cpd.Worldchip = chipDataClass.WorldChip;
