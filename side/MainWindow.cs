@@ -891,7 +891,7 @@ namespace MasaoPlus
         {
             ChipImage.Refresh();
             string chara = Global.state.CurrentChip.character;
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) chara = Global.state.CurrentChip.code.ToString();
+            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) chara = Global.state.CurrentChip.code;
 
             if (Global.state.CurrentChip.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
                 ChipDescription.Text = "オリジナルボス";
