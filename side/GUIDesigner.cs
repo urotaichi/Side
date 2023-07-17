@@ -2343,21 +2343,43 @@ namespace MasaoPlus
                                     Global.MainWnd.UpdateStatus("切り取りしています...");
                                     for (int j = rectangle.Top; j <= rectangle.Bottom; j++)
                                     {
-                                        char[] array = PutItemTextStart(j);
-                                        if (array != null)
+                                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
                                         {
-                                            for (int k = rectangle.Left; k <= rectangle.Right; k++)
+                                            string[] array = PutItemTextCodeStart(j);
+                                            if (array != null)
                                             {
-                                                if (Global.state.EditingForeground)
+                                                for (int k = rectangle.Left; k <= rectangle.Right; k++)
                                                 {
-                                                    PutItemText(ref array, new Point(k, j), Global.cpd.Mapchip[0]);
+                                                    if (Global.state.EditingForeground)
+                                                    {
+                                                        PutItemText(ref array, new Point(k, j), Global.cpd.Mapchip[0]);
+                                                    }
+                                                    else
+                                                    {
+                                                        PutItemText(ref array, new Point(k, j), Global.cpd.Layerchip[0]);
+                                                    }
                                                 }
-                                                else
-                                                {
-                                                    PutItemText(ref array, new Point(k, j), Global.cpd.Layerchip[0]);
-                                                }
+                                                PutItemTextEnd(array, j);
                                             }
-                                            PutItemTextEnd(array, j);
+                                        }
+                                        else
+                                        {
+                                            char[] array = PutItemTextStart(j);
+                                            if (array != null)
+                                            {
+                                                for (int k = rectangle.Left; k <= rectangle.Right; k++)
+                                                {
+                                                    if (Global.state.EditingForeground)
+                                                    {
+                                                        PutItemText(ref array, new Point(k, j), Global.cpd.Mapchip[0]);
+                                                    }
+                                                    else
+                                                    {
+                                                        PutItemText(ref array, new Point(k, j), Global.cpd.Layerchip[0]);
+                                                    }
+                                                }
+                                                PutItemTextEnd(array, j);
+                                            }
                                         }
                                     }
                                     StageSourceToDrawBuffer();
