@@ -222,7 +222,7 @@ namespace MasaoPlus.Controls
             Pressed = false;
         }
 
-        private IContainer components;
+        private readonly IContainer components;
 
         private string text;
 

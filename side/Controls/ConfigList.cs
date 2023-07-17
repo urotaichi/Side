@@ -692,9 +692,9 @@ namespace MasaoPlus.Controls
             mediaPlayer.MediaError += PreviewAudio_error;
         }
 
-        private List<int> OrigIdx = new List<int>();
+        private readonly List<int> OrigIdx = new List<int>();
 
-        private IContainer components;
+        private readonly IContainer components;
 
         private ComboBox ConfigSelector;
 

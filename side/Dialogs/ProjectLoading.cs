@@ -149,7 +149,7 @@ namespace MasaoPlus.Dialogs
             WaiterText.Refresh();
         }
 
-        private string load = "";
+        private readonly string load = "";
 
         private delegate void LoadProjectDlg();
 

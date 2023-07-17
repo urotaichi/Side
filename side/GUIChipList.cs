@@ -565,7 +565,7 @@ namespace MasaoPlus
 
         private int selectedIndex;
 
-        private IContainer components;
+        private readonly IContainer components;
 
         private VScrollBar vScr;
 

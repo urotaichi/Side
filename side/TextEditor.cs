@@ -628,15 +628,15 @@ namespace MasaoPlus
             PerformLayout();
         }
 
-        private List<string> TextBuffer = new List<string>();
+        private readonly List<string> TextBuffer = new List<string>();
 
-        private List<int> CursorBuffer = new List<int>();
+        private readonly List<int> CursorBuffer = new List<int>();
 
         private int ci = -1;
 
         private bool Buffering = true;
 
-        private IContainer components;
+        private readonly IContainer components;
 
         private TableLayoutPanel TextEditorTable;
 

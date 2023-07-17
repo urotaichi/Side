@@ -258,6 +258,6 @@ namespace MasaoPlus.Dialogs
 
         public List<Runtime> runtimedatas = new List<Runtime>();
 
-        private List<string> runtimefiles = new List<string>();
+        private readonly List<string> runtimefiles = new List<string>();
     }
 }

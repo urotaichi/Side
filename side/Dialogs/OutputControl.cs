@@ -78,6 +78,6 @@ namespace MasaoPlus.Dialogs
             Close();
         }
 
-        private string mdir;
+        private readonly string mdir;
     }
 }

@@ -679,6 +679,6 @@ namespace MasaoPlus.Dialogs
 
         public List<bool> runtimeuselayer = new List<bool>();
 
-        private string ParseFile = "";
+        private readonly string ParseFile = "";
     }
 }
