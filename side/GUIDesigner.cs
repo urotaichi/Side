@@ -1482,11 +1482,32 @@ namespace MasaoPlus
                     List<string> list = new List<string>();
                     foreach (string text in Global.cpd.EditingMap)
                     {
-                        list.Add(text.Replace(Global.cpd.Mapchip[1].character, Global.cpd.Mapchip[0].character));
+                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                        {
+                            string[] t = text.Split(',');
+                            for (int i = 0; i < t.Length; i++)
+                            {
+                                if (t[i] == Global.cpd.Mapchip[1].code) t[i] = Global.cpd.Mapchip[0].code;
+                            }
+                            list.Add(string.Join(",", t));
+                        }
+                        else
+                        {
+                             list.Add(text.Replace(Global.cpd.Mapchip[1].character, Global.cpd.Mapchip[0].character));
+                        }
                     }
-                    int num = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize.bytesize : Global.cpd.runtime.Definitions.StageSize.bytesize;
-                    list[p.Y] = list[p.Y].Remove(p.X * num, num);
-                    list[p.Y] = list[p.Y].Insert(p.X * num, Global.cpd.Mapchip[1].character);
+                    if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                    {
+                        string[] l = list[p.Y].Split(',');
+                        l[p.X] = Global.cpd.Mapchip[1].code;
+                        list[p.Y] = string.Join(",", l);
+                    }
+                    else
+                    {
+                        int num = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize.bytesize : Global.cpd.runtime.Definitions.StageSize.bytesize;
+                        list[p.Y] = list[p.Y].Remove(p.X * num, num);
+                        list[p.Y] = list[p.Y].Insert(p.X * num, Global.cpd.Mapchip[1].character);
+                    }
                     Global.state.QuickTestrunSource = list.ToArray();
                     Global.MainWnd.Testrun();
                 }
