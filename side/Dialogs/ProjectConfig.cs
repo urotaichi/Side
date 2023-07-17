@@ -74,19 +74,41 @@ namespace MasaoPlus.Dialogs
             Global.cpd.runtime.DefaultConfigurations.FooterHTML = Subsystem.EncodeBase64(OutFooter.Text);
 
             Global.cpd.project.Config.UseWorldmap = UseWorldmap.Checked;
-            if (!Global.cpd.runtime.Definitions.Package.Contains("28") && (Global.cpd.project.Use3rdMapData = Use3rdMapData.Checked))
+            if (!Global.cpd.runtime.Definitions.Package.Contains("28") && Global.cpd.project.Use3rdMapData != Use3rdMapData.Checked)
             {
-                Project.Convert3rdMapData(Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize.bytesize);
-                Project.Convert3rdMapData(Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize.bytesize);
-                Project.Convert3rdMapData(Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize.bytesize);
-                Project.Convert3rdMapData(Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize.bytesize);
-                if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
+                if (Use3rdMapData.Checked)
                 {
-                    Project.Convert3rdMapData(Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize.bytesize);
-                    Project.Convert3rdMapData(Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize.bytesize);
-                    Project.Convert3rdMapData(Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize.bytesize);
-                    Project.Convert3rdMapData(Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                    Project.Convert3rdMapData(Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize.bytesize);
+                    Project.Convert3rdMapData(Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize.bytesize);
+                    Project.Convert3rdMapData(Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize.bytesize);
+                    Project.Convert3rdMapData(Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize.bytesize);
+                    if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
+                    {
+                        Project.Convert3rdMapData(Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                        Project.Convert3rdMapData(Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                        Project.Convert3rdMapData(Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                        Project.Convert3rdMapData(Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                    }
                 }
+                else
+                {
+                    if (MessageBox.Show($"第3版マップデータから第2版マップデータに移行します。{Environment.NewLine}移行すると変種パーツやカスタムパーツが削除されます。{Environment.NewLine}本当に移行してもよろしいですか？", "移行の警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                    Project.Convert2ndMapData(Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize.bytesize);
+                    Project.Convert2ndMapData(Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize.bytesize);
+                    Project.Convert2ndMapData(Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize.bytesize);
+                    Project.Convert2ndMapData(Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize.bytesize);
+                    if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
+                    {
+                        Project.Convert2ndMapData(Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                        Project.Convert2ndMapData(Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                        Project.Convert2ndMapData(Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                        Project.Convert2ndMapData(Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                    }
+                }
+                Global.cpd.project.Use3rdMapData = Use3rdMapData.Checked;
             }
             Global.state.EditFlag = true;
             List<HTMLReplaceData> list = new List<HTMLReplaceData>();

@@ -23,12 +23,12 @@ namespace MasaoPlus.Dialogs
             }
             catch (Exception ex)
             {
-                MessageBox.Show("プロジェクトをロードできませんでした。" + Environment.NewLine + "ErrorReason:" + ex.Message, "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                MessageBox.Show($"プロジェクトをロードできませんでした。{Environment.NewLine}ErrorReason:{ex.Message}", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 DialogResult = DialogResult.Abort;
                 Close();
                 return;
             }
-            NewProjName.Text = PrevProject.Name + "_Inherited";
+            NewProjName.Text = $"{PrevProject.Name}_Inherited";
         }
 
         private void NewProjName_TextChanged(object sender, EventArgs e)
@@ -44,16 +44,7 @@ namespace MasaoPlus.Dialogs
         private void OKBtn_Click(object sender, EventArgs e)
         {
             string text = Path.Combine(Path.GetDirectoryName(PrevProjPath), NewProjName.Text + Global.definition.ProjExt);
-            if (File.Exists(text) && MessageBox.Show(string.Concat(new string[]
-            {
-                NewProjName.Text,
-                Global.definition.ProjExt,
-                "は同じディレクトリに既に存在しています。",
-                Environment.NewLine,
-                "上書きするとそのプロジェクトのデータを失ってしまいます。",
-                Environment.NewLine,
-                "本当に上書きしてもよろしいですか？"
-            }), "上書きの警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+            if (File.Exists(text) && MessageBox.Show($"{NewProjName.Text}{Global.definition.ProjExt}は同じディレクトリに既に存在しています。{Environment.NewLine}上書きするとそのプロジェクトのデータを失ってしまいます。{Environment.NewLine}本当に上書きしてもよろしいですか？", "上書きの警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
             {
                 return;
             }

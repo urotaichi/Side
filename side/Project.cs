@@ -94,6 +94,35 @@ namespace MasaoPlus
             }
         }
 
+        public static void Convert2ndMapData(string[] StageData, int bytesize = 1)
+        {
+            for (int i = 0; i < StageData.Length; i++)
+            {
+                if (!StageData[i].Contains(",")) continue;
+                string[] array = StageData[i].Split(',');
+                for (int j = 0; j < array.Length; j ++)
+                {
+                    if(int.TryParse(array[j], out int result))
+                    {
+                        string c = ChipDataClass.CodeToChar(result, bytesize);
+                        if (bytesize == 1 && Global.MainWnd.MainDesigner.DrawItemRef.ContainsKey(c) || bytesize == 2 && Global.MainWnd.MainDesigner.DrawLayerRef.ContainsKey(c))
+                        {
+                            array[j] = c;
+                        }
+                        else
+                        {
+                            array[j] = ChipDataClass.CodeToChar(0, bytesize);
+                        }
+                    }
+                    else
+                    {
+                        array[j] = ChipDataClass.CodeToChar(0, bytesize);
+                    }
+                }
+                StageData[i] = string.Join("", array);
+            }
+        }
+
         public string Name = "";
 
         public double ProjVer;
