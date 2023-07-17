@@ -1582,6 +1582,7 @@ namespace MasaoPlus
                 return;
             }
             repls.Clear();
+            replsCode.Clear();
             if (Global.state.EditingForeground)
             {
                 int num = 0;
