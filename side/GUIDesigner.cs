@@ -2213,14 +2213,28 @@ namespace MasaoPlus
                                     }
                                     for (int l = rectangle2.Top; l <= rectangle2.Bottom; l++)
                                     {
-                                        char[] array2 = PutItemTextStart(l);
-                                        if (array2 != null)
-                                        {
-                                            for (int m = rectangle2.Left; m <= rectangle2.Right; m++)
+                                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) {
+                                            string[] array2 = PutItemTextCodeStart(l);
+                                            if (array2 != null)
                                             {
-                                                PutItemText(ref array2, new Point(m, l), Global.state.CurrentChip);
+                                                for (int m = rectangle2.Left; m <= rectangle2.Right; m++)
+                                                {
+                                                    PutItemText(ref array2, new Point(m, l), Global.state.CurrentChip);
+                                                }
+                                                PutItemTextEnd(array2, l);
                                             }
-                                            PutItemTextEnd(array2, l);
+                                        }
+                                        else
+                                        {
+                                            char[] array2 = PutItemTextStart(l);
+                                            if (array2 != null)
+                                            {
+                                                for (int m = rectangle2.Left; m <= rectangle2.Right; m++)
+                                                {
+                                                    PutItemText(ref array2, new Point(m, l), Global.state.CurrentChip);
+                                                }
+                                                PutItemTextEnd(array2, l);
+                                            }
                                         }
                                     }
                                     StageSourceToDrawBuffer();
@@ -2329,6 +2343,15 @@ namespace MasaoPlus
             }
         }
 
+        public void PutItemText(ref string[] ca, Point MapPos, ChipsData cd)
+        {
+            if (StageText.IsOverflow(MapPos))
+            {
+                return;
+            }
+            ca[MapPos.X] = cd.code.ToString();
+        }
+
         public char[] PutItemTextStart(int Y)
         {
             if (Y < 0 || Y >= Global.state.GetCSSize.y)
@@ -2342,6 +2365,19 @@ namespace MasaoPlus
             return Global.cpd.EditingLayer[Y].ToCharArray();
         }
 
+        public string[] PutItemTextCodeStart(int Y)
+        {
+            if (Y < 0 || Y >= Global.state.GetCSSize.y || !Global.cpd.project.Use3rdMapData && Global.state.MapEditMode)
+            {
+                return null;
+            }
+            if (Global.state.EditingForeground)
+            {
+                return Global.cpd.EditingMap[Y].Split(',');
+            }
+            return Global.cpd.EditingLayer[Y].Split(',');
+        }
+
         public void PutItemTextEnd(char[] item, int Y)
         {
             if (Global.state.EditingForeground)
@@ -2350,6 +2386,17 @@ namespace MasaoPlus
                 return;
             }
             Global.cpd.EditingLayer[Y] = new string(item);
+        }
+
+        public void PutItemTextEnd(string[] item, int Y)
+        {
+            string result = string.Join(",", item);
+            if (Global.state.EditingForeground)
+            {
+                Global.cpd.EditingMap[Y] = result;
+                return;
+            }
+            Global.cpd.EditingLayer[Y] = result;
         }
 
         public Point GetLargerPoint(Point fst, Point snd)
