@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -1535,17 +1536,36 @@ namespace MasaoPlus
                         for (int j = rectangle.Top; j < rectangle.Bottom; j++)
                         {
                             point.X = 0;
-                            char[] array2 = PutItemTextStart(j);
-                            if (array2 != null)
+                            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
                             {
-                                for (int k = rectangle.Left; k < rectangle.Right; k++)
+                                string[] array2 = PutItemTextCodeStart(j);
+                                if (array2 != null)
                                 {
-                                    cd.character = array[point.Y].Substring(point.X * Global.state.GetCByte, Global.state.GetCByte);
-                                    PutItemText(ref array2, new Point(k, j), cd);
-                                    point.X++;
+                                    string[] arr = array[point.Y].Split(',');
+                                    for (int k = rectangle.Left; k < rectangle.Right; k++)
+                                    {
+                                        cd.code = arr[point.X];
+                                        PutItemText(ref array2, new Point(k, j), cd);
+                                        point.X++;
+                                    }
+                                    PutItemTextEnd(array2, j);
+                                    point.Y++;
                                 }
-                                PutItemTextEnd(array2, j);
-                                point.Y++;
+                            }
+                            else
+                            {
+                                char[] array2 = PutItemTextStart(j);
+                                if (array2 != null)
+                                {
+                                    for (int k = rectangle.Left; k < rectangle.Right; k++)
+                                    {
+                                        cd.character = array[point.Y].Substring(point.X * Global.state.GetCByte, Global.state.GetCByte);
+                                        PutItemText(ref array2, new Point(k, j), cd);
+                                        point.X++;
+                                    }
+                                    PutItemTextEnd(array2, j);
+                                    point.Y++;
+                                }
                             }
                         }
                         Global.MainWnd.CopyPasteInit();
@@ -2136,18 +2156,35 @@ namespace MasaoPlus
                 return false;
             }
             int num = -1;
-            foreach (string text in ClipedString.Split(new string[]
-            {
-                Environment.NewLine
-            }, StringSplitOptions.None))
-            {
-                if (num != -1 && text.Length != num)
+            string[] cp = ClipedString.Split(new string[]
                 {
-                    return false;
+                Environment.NewLine
+                }, StringSplitOptions.None);
+            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            {
+                foreach (string text in cp)
+                {
+                    int l = text.Split(',').Length;
+                    if (num != -1 && l != num)
+                    {
+                        return false;
+                    }
+                    num = l;
                 }
-                num = text.Length;
+                return num != 0 && num < Global.state.GetCByteWidth;
             }
-            return num != 0 && num < Global.state.GetCByteWidth;
+            else
+            {
+                foreach (string text in cp)
+                {
+                    if (num != -1 && text.Length != num)
+                    {
+                        return false;
+                    }
+                    num = text.Length;
+                }
+                return num != 0 && num < Global.state.GetCByteWidth;
+            }
         }
 
         private Size GetBufferSize()
@@ -2156,7 +2193,14 @@ namespace MasaoPlus
             {
                 Environment.NewLine
             }, StringSplitOptions.None);
-            return new Size(array[0].Length / Global.state.GetCByte, array.Length);
+            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            {
+                return new Size(array[0].Split(',').Length, array.Length);
+            }
+            else
+            {
+                return new Size(array[0].Length / Global.state.GetCByte, array.Length);
+            }
         }
 
         public void EnsureScroll(int x, int y)
@@ -2258,13 +2302,27 @@ namespace MasaoPlus
                                 {
                                     for (int i = rectangle.Top; i <= rectangle.Bottom; i++)
                                     {
-                                        if (Global.state.EditingForeground)
+                                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
                                         {
-                                            stringBuilder.Append(Global.cpd.EditingMap[i].Substring(rectangle.Left * Global.state.GetCByte, (rectangle.Width + 1) * Global.state.GetCByte));
+                                            if (Global.state.EditingForeground)
+                                            {
+                                                stringBuilder.Append(string.Join(",", Global.cpd.EditingMap[i].Split(',').Skip(rectangle.Left).Take(rectangle.Width + 1)));
+                                            }
+                                            else
+                                            {
+                                                stringBuilder.Append(string.Join(",", Global.cpd.EditingLayer[i].Split(',').Skip(rectangle.Left).Take(rectangle.Width + 1)));
+                                            }
                                         }
                                         else
                                         {
-                                            stringBuilder.Append(Global.cpd.EditingLayer[i].Substring(rectangle.Left * Global.state.GetCByte, (rectangle.Width + 1) * Global.state.GetCByte));
+                                            if (Global.state.EditingForeground)
+                                            {
+                                                stringBuilder.Append(Global.cpd.EditingMap[i].Substring(rectangle.Left * Global.state.GetCByte, (rectangle.Width + 1) * Global.state.GetCByte));
+                                            }
+                                            else
+                                            {
+                                                stringBuilder.Append(Global.cpd.EditingLayer[i].Substring(rectangle.Left * Global.state.GetCByte, (rectangle.Width + 1) * Global.state.GetCByte));
+                                            }
                                         }
                                         if (i != rectangle.Bottom)
                                         {

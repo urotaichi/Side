@@ -128,7 +128,14 @@ namespace MasaoPlus
                 {
                     get
                     {
-                        return x * bytesize;
+                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                        {
+                            return x;
+                        }
+                        else
+                        {
+                            return x * bytesize;
+                        }
                     }
                 }
 
