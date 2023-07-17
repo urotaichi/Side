@@ -2738,7 +2738,7 @@ namespace MasaoPlus
             if (Global.state.EditingForeground)
             { // 標準レイヤー
                 Size size = default;
-                if (cd.character != null && cd.code != default)
+                if (cd.character != null || cd.code != null)
                 {
                     if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && cd.character == "Z")
                     {
