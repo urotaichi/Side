@@ -687,11 +687,15 @@ namespace MasaoPlus
                             || (
                                 (!foreground
                                     || ForePrevDrawn == null
-                                    || !(ForePrevDrawn[num].Substring(Global.state.MapEditMode ? (num2 * MapSize.bytesize) : (num2 * StageSize.bytesize), Global.state.MapEditMode ? MapSize.bytesize : StageSize.bytesize) == text)
+                                    || !(Global.state.MapEditMode && ForePrevDrawn[num].Substring(num2 * MapSize.bytesize, MapSize.bytesize) == text
+                                        || !Global.state.MapEditMode
+                                            && (!Global.cpd.project.Use3rdMapData && ForePrevDrawn[num].Substring(num2 * StageSize.bytesize, StageSize.bytesize) == text
+                                                 || Global.cpd.project.Use3rdMapData && ForePrevDrawn[num].Split(',')[num2] == text))
                                 )
                                 && (foreground
                                     || BackPrevDrawn == null
-                                    || !(BackPrevDrawn[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize) == text)
+                                    || !(!Global.cpd.project.Use3rdMapData && BackPrevDrawn[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize) == text
+                                        || Global.cpd.project.Use3rdMapData && BackPrevDrawn[num].Split(',')[num2] == text)
                                     )
                                 )
                         ) && (
