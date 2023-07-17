@@ -37,7 +37,7 @@ namespace MasaoPlus
             else
             {
                 if (character.Equals(".")) return "0";
-                else return character.ToCharArray(0, 1)[0].ToString();
+                else return ((int)character.ToCharArray(0, 1)[0]).ToString();
             }
         }
 
