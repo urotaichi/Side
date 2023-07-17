@@ -278,7 +278,7 @@ namespace MasaoPlus
                 }
                 else if (Global.state.EditingForeground)
                 {
-                    if (Global.cpd.project.Use3rdMapData && (int.Parse(text) == Global.cpd.Mapchip[0].code || !MainDesigner.DrawItemCodeRef.ContainsKey(text))
+                    if (Global.cpd.project.Use3rdMapData && (text == Global.cpd.Mapchip[0].code || !MainDesigner.DrawItemCodeRef.ContainsKey(text))
                         || !Global.cpd.project.Use3rdMapData && (text == Global.cpd.Mapchip[0].character || !MainDesigner.DrawItemRef.ContainsKey(text)))
                     {
                         ChipNavigator.Visible = false;
@@ -289,7 +289,7 @@ namespace MasaoPlus
                 }
                 else
                 {
-                    if (Global.cpd.project.Use3rdMapData && (int.Parse(text) == Global.cpd.Layerchip[0].code || !MainDesigner.DrawLayerCodeRef.ContainsKey(text))
+                    if (Global.cpd.project.Use3rdMapData && (text == Global.cpd.Layerchip[0].code || !MainDesigner.DrawLayerCodeRef.ContainsKey(text))
                         || !Global.cpd.project.Use3rdMapData && (text == Global.cpd.Layerchip[0].character || !MainDesigner.DrawLayerRef.ContainsKey(text)))
                     {
                         ChipNavigator.Visible = false;

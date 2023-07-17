@@ -2424,7 +2424,7 @@ namespace MasaoPlus
             string stageChar = StageText.GetStageChar(MapPos);
             if (Global.state.MapEditMode && cd.character.Equals(stageChar)
                 || !Global.state.MapEditMode && (!Global.cpd.project.Use3rdMapData && cd.character.Equals(stageChar)
-                    || Global.cpd.project.Use3rdMapData && cd.code == int.Parse(stageChar))) return;
+                    || Global.cpd.project.Use3rdMapData && cd.code == stageChar)) return;
             if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
             {
                 if (Global.state.EditingForeground)
@@ -2926,7 +2926,9 @@ namespace MasaoPlus
 
         private bool MousePressed;
 
-        private List<char[]> repls = new List<char[]>();
+        private readonly List<char[]> repls = new List<char[]>();
+
+        private readonly List<string[]> replsCode = new List<string[]>();
 
         private struct BufStr
         {

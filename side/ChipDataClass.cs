@@ -27,17 +27,17 @@ namespace MasaoPlus
             return result;
         }
 
-        public static int CharToCode(string character)
+        public static string CharToCode(string character)
         {
             if(character.Length == 2)
             {
-                if (character.Equals("..")) return 0;
-                else return int.Parse(character, System.Globalization.NumberStyles.HexNumber);
+                if (character.Equals("..")) return "0";
+                else return int.Parse(character, System.Globalization.NumberStyles.HexNumber).ToString();
             }
             else
             {
-                if (character.Equals(".")) return 0;
-                else return character.ToCharArray(0, 1)[0];
+                if (character.Equals(".")) return "0";
+                else return character.ToCharArray(0, 1)[0].ToString();
             }
         }
 

@@ -34,7 +34,7 @@ namespace MasaoPlus
         public string character;
 
         [XmlAttribute("code")]
-        public int code;
+        public string code;
 
         [XmlAttribute("color")]
         public string color;
