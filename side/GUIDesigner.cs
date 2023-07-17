@@ -2844,8 +2844,10 @@ namespace MasaoPlus
                                     else chipsData = DrawItemRef[stageChar];
                                 }
 
-                                if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode && chipsData.code == Global.cpd.Mapchip[0].code
-                                   || !Global.cpd.project.Use3rdMapData && chipsData.character.Equals(Global.cpd.Mapchip[0].character))
+                                if (Global.state.MapEditMode && chipsData.character.Equals(Global.cpd.Mapchip[0].character)
+                                    || !Global.state.MapEditMode
+                                        && (Global.cpd.project.Use3rdMapData && chipsData.code == Global.cpd.Mapchip[0].code
+                                        || !Global.cpd.project.Use3rdMapData && chipsData.character.Equals(Global.cpd.Mapchip[0].character)))
                                 {
                                     goto IL_514;
                                 }
@@ -2899,8 +2901,10 @@ namespace MasaoPlus
                                     else chipsData = DrawItemRef[stageChar];
                                 }
 
-                                if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode && chipsData.code == Global.cpd.Mapchip[0].code
-                                   || !Global.cpd.project.Use3rdMapData && chipsData.character.Equals(Global.cpd.Mapchip[0].character))
+                                if (Global.state.MapEditMode && chipsData.character.Equals(Global.cpd.Mapchip[0].character)
+                                    || !Global.state.MapEditMode
+                                        && (Global.cpd.project.Use3rdMapData && chipsData.code == Global.cpd.Mapchip[0].code
+                                        || !Global.cpd.project.Use3rdMapData && chipsData.character.Equals(Global.cpd.Mapchip[0].character)))
                                 {
                                     goto IL_9DD;
                                 }
@@ -2968,11 +2972,32 @@ namespace MasaoPlus
             List<string> list = new List<string>();
             foreach (string text in Global.cpd.EditingMap)
             {
-                list.Add(text.Replace(Global.cpd.Mapchip[1].character, Global.cpd.Mapchip[0].character));
+                if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                {
+                    string[] t = text.Split(',');
+                    for (int i = 0; i < t.Length; i++)
+                    {
+                        if (t[i] == Global.cpd.Mapchip[1].code) t[i] = Global.cpd.Mapchip[0].code;
+                    }
+                    list.Add(string.Join(",", t));
+                }
+                else
+                {
+                    list.Add(text.Replace(Global.cpd.Mapchip[1].character, Global.cpd.Mapchip[0].character));
+                }
             }
-            int num = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize.bytesize : Global.cpd.runtime.Definitions.StageSize.bytesize;
-            list[mouseStartPoint.Y] = list[mouseStartPoint.Y].Remove(mouseStartPoint.X * num, num);
-            list[mouseStartPoint.Y] = list[mouseStartPoint.Y].Insert(mouseStartPoint.X * num, Global.cpd.Mapchip[1].character);
+            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            {
+                string[] l = list[mouseStartPoint.Y].Split(',');
+                l[mouseStartPoint.X] = Global.cpd.Mapchip[1].code;
+                list[mouseStartPoint.Y] = string.Join(",", l);
+            }
+            else
+            {
+                int num = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize.bytesize : Global.cpd.runtime.Definitions.StageSize.bytesize;
+                list[mouseStartPoint.Y] = list[mouseStartPoint.Y].Remove(mouseStartPoint.X * num, num);
+                list[mouseStartPoint.Y] = list[mouseStartPoint.Y].Insert(mouseStartPoint.X * num, Global.cpd.Mapchip[1].character);
+            }
             Global.state.QuickTestrunSource = list.ToArray();
             Global.MainWnd.Testrun();
         }
