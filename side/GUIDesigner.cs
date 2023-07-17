@@ -894,13 +894,13 @@ namespace MasaoPlus
             foreach (ChipsData value in Global.cpd.Mapchip)
             {
                 DrawItemRef.Add(value.character, value);
-                DrawItemCodeRef.Add(value.code.ToString(), value);
+                DrawItemCodeRef.Add(value.code, value);
             }
             if (Global.cpd.project.Use3rdMapData)
             {
                 foreach (ChipsData value in Global.cpd.VarietyChip)
                 {
-                    DrawItemCodeRef.Add(value.code.ToString(), value);
+                    DrawItemCodeRef.Add(value.code, value);
                 }
             }
             DrawWorldRef.Clear();
@@ -914,7 +914,7 @@ namespace MasaoPlus
                 foreach (ChipsData value3 in Global.cpd.Layerchip)
                 {
                     DrawLayerRef.Add(value3.character, value3);
-                    DrawLayerCodeRef.Add(value3.code.ToString(), value3);
+                    DrawLayerCodeRef.Add(value3.code, value3);
                 }
             }
         }
@@ -1436,16 +1436,35 @@ namespace MasaoPlus
                         }
                         else if (Global.state.EditingForeground)
                         {
-                            if (DrawItemRef.ContainsKey(stageChar))
+                            if (Global.cpd.project.Use3rdMapData)
+                            {
+                                if (DrawItemCodeRef.ContainsKey(stageChar))
+                                {
+                                    Global.state.CurrentChip = DrawItemCodeRef[stageChar];
+                                    return;
+                                }
+                            }
+                            else if (DrawItemRef.ContainsKey(stageChar))
                             {
                                 Global.state.CurrentChip = DrawItemRef[stageChar];
                                 return;
                             }
                         }
-                        else if (DrawLayerRef.ContainsKey(stageChar))
+                        else
                         {
-                            Global.state.CurrentChip = DrawLayerRef[stageChar];
-                            return;
+                            if (Global.cpd.project.Use3rdMapData)
+                            {
+                                if (DrawLayerCodeRef.ContainsKey(stageChar))
+                                {
+                                    Global.state.CurrentChip = DrawLayerCodeRef[stageChar];
+                                    return;
+                                }
+                            }
+                            else if (DrawLayerRef.ContainsKey(stageChar))
+                            {
+                                Global.state.CurrentChip = DrawLayerRef[stageChar];
+                                return;
+                            }
                         }
                     }
                 }
@@ -1568,10 +1587,21 @@ namespace MasaoPlus
                 int num = 0;
                 while (Global.state.MapEditMode ? (num < Global.cpd.project.Runtime.Definitions.MapSize.y) : (num < Global.cpd.runtime.Definitions.StageSize.y))
                 {
-                    char[] array = PutItemTextStart(num);
-                    if (array != null)
+                    if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
                     {
-                        repls.Add(array);
+                        string[] array = PutItemTextCodeStart(num);
+                        if (array != null)
+                        {
+                            replsCode.Add(array);
+                        }
+                    }
+                    else
+                    {
+                        char[] array = PutItemTextStart(num);
+                        if (array != null)
+                        {
+                            repls.Add(array);
+                        }
                     }
                     num++;
                 }
@@ -1580,16 +1610,29 @@ namespace MasaoPlus
             {
                 for (int i = 0; i < Global.cpd.runtime.Definitions.LayerSize.y; i++)
                 {
-                    char[] array2 = PutItemTextStart(i);
-                    if (array2 != null)
+                    if (Global.cpd.project.Use3rdMapData)
                     {
-                        repls.Add(array2);
+                        string[] array2 = PutItemTextCodeStart(i);
+                        if (array2 != null)
+                        {
+                            replsCode.Add(array2);
+                        }
+                    }
+                    else
+                    {
+                        char[] array2 = PutItemTextStart(i);
+                        if (array2 != null)
+                        {
+                            repls.Add(array2);
+                        }
                     }
                 }
             }
             string stageChar = StageText.GetStageChar(pt);
             // 塗りつぶしたマスと同じなら終了
-            if (stageChar == repl.character)
+            if (Global.state.MapEditMode && stageChar == repl.character
+                || !Global.state.MapEditMode && (Global.cpd.project.Use3rdMapData && stageChar == repl.code
+                    || !Global.cpd.project.Use3rdMapData && stageChar == repl.character))
             {
                 return;
             }
@@ -1602,19 +1645,71 @@ namespace MasaoPlus
             }
             else if (Global.state.EditingForeground)
             {
-                if (DrawItemRef.ContainsKey(stageChar) && CheckChar(pt, DrawItemRef[stageChar]))
+                if (Global.cpd.project.Use3rdMapData && DrawItemCodeRef.ContainsKey(stageChar) && CheckChar(pt, DrawItemCodeRef[stageChar]))
+                {
+                    FillThisCode(DrawItemCodeRef[stageChar], repl, pt);
+                }
+                else if (!Global.cpd.project.Use3rdMapData && DrawItemRef.ContainsKey(stageChar) && CheckChar(pt, DrawItemRef[stageChar]))
                 {
                     FillThis(DrawItemRef[stageChar], repl, pt);
                 }
             }
-            else if (DrawLayerRef.ContainsKey(stageChar) && CheckChar(pt, DrawLayerRef[stageChar]))
+            else
             {
-                FillThis(DrawLayerRef[stageChar], repl, pt);
+                if (Global.cpd.project.Use3rdMapData && DrawLayerCodeRef.ContainsKey(stageChar) && CheckChar(pt, DrawLayerCodeRef[stageChar]))
+                {
+                    FillThisCode(DrawLayerCodeRef[stageChar], repl, pt);
+                }
+                else if (!Global.cpd.project.Use3rdMapData && DrawLayerRef.ContainsKey(stageChar) && CheckChar(pt, DrawLayerRef[stageChar]))
+                {
+                    FillThis(DrawLayerRef[stageChar], repl, pt);
+                }
             }
 
             for (int j = 0; j < Global.state.GetCSSize.y; j++)
             {
-                PutItemTextEnd(repls[j], j);
+                if(Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                {
+                    PutItemTextEnd(replsCode[j], j);
+                }
+                else
+                {
+                    PutItemTextEnd(repls[j], j);
+                }
+            }
+        }
+
+        // 塗りつぶす前のチップデータ、塗りつぶすチップデータ、塗りつぶし開始座標
+        private void FillThisCode(ChipsData old, ChipsData repl, Point pt)
+        {
+            var queue = new Queue<BufStr>();
+
+            queue.Enqueue(new BufStr(
+                scanLeft(pt, replsCode, old),
+                scanRight(pt, replsCode, old),
+                pt.Y
+            ));
+
+            var newmap = new List<string[]>(replsCode);
+
+            while (queue.Count > 0)
+            {
+                int left = queue.Peek().left;
+                int right = queue.Peek().right;
+                int y = queue.Peek().y;
+                queue.Dequeue();
+
+                updateLine(left, right, y, repl);
+
+                // 上下を探索
+                if (0 < y)
+                {
+                    searchLine(left, right, y - 1, newmap, old, queue);
+                }
+                if (y < Global.state.GetCSSize.y - 1)
+                {
+                    searchLine(left, right, y + 1, newmap, old, queue);
+                }
             }
         }
 
@@ -1652,6 +1747,17 @@ namespace MasaoPlus
             }
         }
 
+        private int scanLeft(Point pt, List<string[]> newmap, ChipsData old)
+        {
+            int result = pt.X;
+
+            while (0 < result && newmap[pt.Y][result - 1].Equals(old.code))
+            {
+                result--;
+            }
+            return result;
+        }
+
         private int scanLeft(Point pt, List<char[]> newmap, ChipsData old)
         {
             int result = pt.X;
@@ -1659,6 +1765,17 @@ namespace MasaoPlus
             while (0 < result && getMapChipString(result - 1, pt.Y, newmap).Equals(old.character))
             {
                 result--;
+            }
+            return result;
+        }
+
+        private int scanRight(Point pt, List<string[]> newmap, ChipsData old)
+        {
+            int result = pt.X;
+
+            while (result < Global.state.GetCSSize.x - 1 && newmap[pt.Y][result + 1].Equals(old.code))
+            {
+                result++;
             }
             return result;
         }
@@ -1676,13 +1793,56 @@ namespace MasaoPlus
 
         private void updateLine(int left, int right, int y, ChipsData repl)
         {
-            //マップの文字を書き換える
+            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            {
+                //マップの文字を書き換える
+                for (int x = left; x <= right; x++)
+                {
+                     replsCode[y][x] = repl.code;
+                }
+            }
+            else
+            {
+                //マップの文字を書き換える
+                for (int x = left; x <= right; x++)
+                {
+                    for (int i = 0; i < Global.state.GetCByte; i++)
+                    {
+                        repls[y][x * Global.state.GetCByte + i] = repl.character[i];
+                    }
+                }
+            }
+        }
+
+        private void searchLine(int left, int right, int y, List<string[]> newmap, ChipsData old, Queue<BufStr> queue)
+        {
+            int l = -1;
             for (int x = left; x <= right; x++)
             {
-                for (int i = 0; i < Global.state.GetCByte; i++)
+                var c = newmap[y][x];
+
+                if (c.Equals(old.code) && l == -1)
                 {
-                    repls[y][x * Global.state.GetCByte + i] = repl.character[i];
+                    if (x == left)
+                    {
+                        l = scanLeft(new Point(x, y), newmap, old);
+                    }
+                    else
+                    {
+                        l = x;
+                    }
                 }
+                else if (!c.Equals(old.code) && l != -1)
+                {
+                    int r = x - 1;
+                    queue.Enqueue(new BufStr(l, r, y));
+                    l = -1;
+                }
+            }
+            if (l != -1)
+            {
+                int r = scanRight(new Point(right, y), newmap, old);
+                queue.Enqueue(new BufStr(l, r, y));
             }
         }
 
@@ -1724,11 +1884,21 @@ namespace MasaoPlus
             {
                 return false;
             }
-            for (int i = 0; i < Global.state.GetCByte; i++)
+            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
             {
-                if (repls[pt.Y][pt.X * Global.state.GetCByte + i] != cd.character[i])
+                if (replsCode[pt.Y][pt.X] != cd.code)
                 {
                     return false;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Global.state.GetCByte; i++)
+                {
+                    if (repls[pt.Y][pt.X * Global.state.GetCByte + i] != cd.character[i])
+                    {
+                        return false;
+                    }
                 }
             }
             return true;
@@ -2331,6 +2501,15 @@ namespace MasaoPlus
             Refresh();
         }
 
+        public void PutItemText(ref string[] ca, Point MapPos, ChipsData cd)
+        {
+            if (StageText.IsOverflow(MapPos))
+            {
+                return;
+            }
+            ca[MapPos.X] = cd.code;
+        }
+
         public void PutItemText(ref char[] ca, Point MapPos, ChipsData cd)
         {
             if (StageText.IsOverflow(MapPos))
@@ -2341,28 +2520,6 @@ namespace MasaoPlus
             {
                 ca[MapPos.X * Global.state.GetCByte + i] = cd.character[i];
             }
-        }
-
-        public void PutItemText(ref string[] ca, Point MapPos, ChipsData cd)
-        {
-            if (StageText.IsOverflow(MapPos))
-            {
-                return;
-            }
-            ca[MapPos.X] = cd.code.ToString();
-        }
-
-        public char[] PutItemTextStart(int Y)
-        {
-            if (Y < 0 || Y >= Global.state.GetCSSize.y)
-            {
-                return null;
-            }
-            if (Global.state.EditingForeground)
-            {
-                return Global.cpd.EditingMap[Y].ToCharArray();
-            }
-            return Global.cpd.EditingLayer[Y].ToCharArray();
         }
 
         public string[] PutItemTextCodeStart(int Y)
@@ -2378,14 +2535,17 @@ namespace MasaoPlus
             return Global.cpd.EditingLayer[Y].Split(',');
         }
 
-        public void PutItemTextEnd(char[] item, int Y)
+        public char[] PutItemTextStart(int Y)
         {
+            if (Y < 0 || Y >= Global.state.GetCSSize.y)
+            {
+                return null;
+            }
             if (Global.state.EditingForeground)
             {
-                Global.cpd.EditingMap[Y] = new string(item);
-                return;
+                return Global.cpd.EditingMap[Y].ToCharArray();
             }
-            Global.cpd.EditingLayer[Y] = new string(item);
+            return Global.cpd.EditingLayer[Y].ToCharArray();
         }
 
         public void PutItemTextEnd(string[] item, int Y)
@@ -2397,6 +2557,16 @@ namespace MasaoPlus
                 return;
             }
             Global.cpd.EditingLayer[Y] = result;
+        }
+
+        public void PutItemTextEnd(char[] item, int Y)
+        {
+            if (Global.state.EditingForeground)
+            {
+                Global.cpd.EditingMap[Y] = new string(item);
+                return;
+            }
+            Global.cpd.EditingLayer[Y] = new string(item);
         }
 
         public Point GetLargerPoint(Point fst, Point snd)
@@ -2430,13 +2600,13 @@ namespace MasaoPlus
                 if (Global.state.EditingForeground)
                 {
                     string[] array = Global.cpd.EditingMap[MapPos.Y].Split(',');
-                    array[MapPos.X] = cd.code.ToString();
+                    array[MapPos.X] = cd.code;
                     Global.cpd.EditingMap[MapPos.Y] = string.Join(",", array);
                 }
                 else
                 {
                     string[] array2 = Global.cpd.EditingLayer[MapPos.Y].Split(',');
-                    array2[MapPos.X] = cd.code.ToString();
+                    array2[MapPos.X] = cd.code;
                     Global.cpd.EditingLayer[MapPos.Y] = string.Join(",", array2);
                 }
             }
@@ -2978,7 +3148,7 @@ namespace MasaoPlus
             {
                 if (IsOverflow(p))
                 {
-                    if(Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) return Global.cpd.Mapchip[0].code.ToString();
+                    if(Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) return Global.cpd.Mapchip[0].code;
                     else return Global.cpd.Mapchip[0].character;
                 }
                 if (Global.state.EditingForeground)
