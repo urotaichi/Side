@@ -207,6 +207,7 @@ namespace MasaoPlus.Controls
                         "オリジナルボス" => Color.LightYellow,
                         "リンク土管" => Color.MistyRose,
                         "メッセージ" => Color.OldLace,
+                        _ => default,
                     };
                 }
             }
