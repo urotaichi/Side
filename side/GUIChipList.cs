@@ -261,91 +261,37 @@ namespace MasaoPlus
                     if (chipData.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 &&
                         Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
                     {
-                        Point p = default;
-                        switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
+                        Point p = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
                         {
-                            case 1:
-                                p = new Point(352, 256);
-                                break;
-                            case 2:
-                                p = new Point(96, 0);
-                                break;
-                            case 3:
-                                p = new Point(64, 0);
-                                break;
-                            case 4:
-                                p = new Point(256, 0);
-                                break;
-                            case 5:
-                                p = new Point(288, 0);
-                                break;
-                            case 6:
-                                p = new Point(288, 448);
-                                break;
-                            case 7:
-                                p = new Point(320, 448);
-                                break;
-                            case 8:
-                                p = new Point(32, 32);
-                                break;
-                            case 9:
-                                p = new Point(96, 0);
-                                break;
-                            case 10:
-                                p = new Point(0, 32);
-                                break;
-                            case 11:
-                                p = new Point(64, 0);
-                                break;
-                            case 12:
-                                p = new Point(96, 32);
-                                break;
-                            case 13:
-                                p = new Point(64, 0);
-                                break;
-                            case 14:
-                                p = new Point(352, 448);
-                                break;
-                            case 15:
-                                p = new Point(416, 448);
-                                break;
-                            case 16:
-                                p = new Point(288, 448);
-                                break;
-                            case 17:
-                                p = new Point(320, 448);
-                                break;
-                            case 18:
-                                p = new Point(96, 0);
-                                break;
-                            case 19:
-                                p = new Point(96, 0);
-                                break;
-                            case 20:
-                                p = new Point(256, 0);
-                                break;
-                            case 21:
-                                p = new Point(256, 0);
-                                break;
-                            case 22:
-                                p = new Point(352, 448);
-                                break;
-                            case 23:
-                                p = new Point(384, 448);
-                                break;
-                            case 24:
-                                p = new Point(32, 32);
-                                break;
-                            case 25:
-                                p = new Point(32, 32);
-                                break;
-                            case 26:
-                                p = new Point(32, 128);
-                                break;
-                            case 27:
-                                p = new Point(32, 128);
-                                break;
-                        }
+                            1 => new Point(352, 256),
+                            2 => new Point(96, 0),
+                            3 => new Point(64, 0),
+                            4 => new Point(256, 0),
+                            5 => new Point(288, 0),
+                            6 => new Point(288, 448),
+                            7 => new Point(320, 448),
+                            8 => new Point(32, 32),
+                            9 => new Point(96, 0),
+                            10 => new Point(0, 32),
+                            11 => new Point(64, 0),
+                            12 => new Point(96, 32),
+                            13 => new Point(64, 0),
+                            14 => new Point(352, 448),
+                            15 => new Point(416, 448),
+                            16 => new Point(288, 448),
+                            17 => new Point(320, 448),
+                            18 => new Point(96, 0),
+                            19 => new Point(96, 0),
+                            20 => new Point(256, 0),
+                            21 => new Point(256, 0),
+                            22 => new Point(352, 448),
+                            23 => new Point(384, 448),
+                            24 => new Point(32, 32),
+                            25 => new Point(32, 32),
+                            26 => new Point(32, 128),
+                            27 => new Point(32, 128),
+                            _ => throw new ArgumentException(),
+                        };
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(p, chipsize), GraphicsUnit.Pixel);
                     }
                     else if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
