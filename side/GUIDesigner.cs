@@ -3016,15 +3016,35 @@ namespace MasaoPlus
             }
             else if (Global.state.EditingForeground)
             {
-                if (DrawItemRef.ContainsKey(stageChar))
+                if (Global.cpd.project.Use3rdMapData)
+                {
+                    if (DrawItemCodeRef.ContainsKey(stageChar))
+                    {
+                        Global.state.CurrentChip = DrawItemCodeRef[stageChar];
+                        return;
+                    }
+                }
+                else if (DrawItemRef.ContainsKey(stageChar))
                 {
                     Global.state.CurrentChip = DrawItemRef[stageChar];
                     return;
                 }
             }
-            else if (DrawLayerRef.ContainsKey(stageChar))
+            else
             {
-                Global.state.CurrentChip = DrawLayerRef[stageChar];
+                if (Global.cpd.project.Use3rdMapData)
+                {
+                    if (DrawLayerCodeRef.ContainsKey(stageChar))
+                    {
+                        Global.state.CurrentChip = DrawLayerCodeRef[stageChar];
+                        return;
+                    }
+                }
+                else if (DrawLayerRef.ContainsKey(stageChar))
+                {
+                    Global.state.CurrentChip = DrawLayerRef[stageChar];
+                    return;
+                }
             }
         }
 
