@@ -128,10 +128,7 @@ namespace MasaoPlus
             set
             {
                 CurrentChipData = value;
-                if (UpdateCurrentChipInvoke != null)
-                {
-                    UpdateCurrentChipInvoke();
-                }
+                UpdateCurrentChipInvoke?.Invoke();
             }
         }
 

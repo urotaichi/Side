@@ -111,6 +111,8 @@ namespace MasaoPlus.Dialogs
                 }
                 Global.cpd.project.Use3rdMapData = Use3rdMapData.Checked;
                 Global.MainWnd.RefreshAll();
+                Global.MainWnd.MainDesigner.ClearBuffer();
+                Global.MainWnd.MainDesigner.AddBuffer();
             }
             Global.state.EditFlag = true;
             List<HTMLReplaceData> list = new List<HTMLReplaceData>();

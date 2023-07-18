@@ -90,10 +90,7 @@ namespace MasaoPlus
         public void ClearBuffer()
         {
             StageBuffer.Clear();
-            if (ChangeBufferInvoke != null)
-            {
-                ChangeBufferInvoke();
-            }
+            ChangeBufferInvoke?.Invoke();
         }
 
         public void AddBuffer()
@@ -115,10 +112,7 @@ namespace MasaoPlus
             {
                 Global.state.EditFlag = true;
             }
-            if (ChangeBufferInvoke != null)
-            {
-                ChangeBufferInvoke();
-            }
+            ChangeBufferInvoke?.Invoke();
         }
 
         public void Undo()
@@ -178,10 +172,7 @@ namespace MasaoPlus
                         break;
                 }
             }
-            if (ChangeBufferInvoke != null)
-            {
-                ChangeBufferInvoke();
-            }
+            ChangeBufferInvoke?.Invoke();
             StageSourceToDrawBuffer();
             Refresh();
             Global.MainWnd.UpdateStatus("完了");
@@ -244,10 +235,7 @@ namespace MasaoPlus
                         break;
                 }
             }
-            if (ChangeBufferInvoke != null)
-            {
-                ChangeBufferInvoke();
-            }
+            ChangeBufferInvoke?.Invoke();
             StageSourceToDrawBuffer();
             Refresh();
             Global.MainWnd.UpdateStatus("完了");

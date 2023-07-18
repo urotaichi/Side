@@ -445,10 +445,7 @@ namespace MasaoPlus
         {
             GHorzScroll.Value = Global.state.MapPoint.X;
             GVirtScroll.Value = Global.state.MapPoint.Y;
-            if (MainDesignerScroll != null)
-            {
-                MainDesignerScroll();
-            }
+            MainDesignerScroll?.Invoke();
         }
 
         public void UpdateScrollbar()
@@ -518,10 +515,7 @@ namespace MasaoPlus
                 GVirtScroll.Value = 0;
             }
             Global.state.MapPoint.Y = GVirtScroll.Value;
-            if (MainDesignerScroll != null)
-            {
-                MainDesignerScroll();
-            }
+            MainDesignerScroll?.Invoke();
             MainDesigner.Refresh();
         }
 
@@ -778,20 +772,14 @@ namespace MasaoPlus
         {
             Global.state.MapPoint.Y = GVirtScroll.Value;
             MainDesigner.Refresh();
-            if (MainDesignerScroll != null)
-            {
-                MainDesignerScroll();
-            }
+            MainDesignerScroll?.Invoke();
         }
 
         private void GHorzScroll_Scroll(object sender, ScrollEventArgs e)
         {
             Global.state.MapPoint.X = GHorzScroll.Value;
             MainDesigner.Refresh();
-            if (MainDesignerScroll != null)
-            {
-                MainDesignerScroll();
-            }
+            MainDesignerScroll?.Invoke();
         }
 
         private void ShowGrid_Click(object sender, EventArgs e)
