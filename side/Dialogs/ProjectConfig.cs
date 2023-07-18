@@ -78,6 +78,7 @@ namespace MasaoPlus.Dialogs
             {
                 if (Use3rdMapData.Checked)
                 {
+                    Global.MainWnd.MainDesigner.CreateDrawItemCodeReference();
                     Project.Convert3rdMapData(Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize.bytesize);
                     Project.Convert3rdMapData(Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize.bytesize);
                     Project.Convert3rdMapData(Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize.bytesize);
@@ -92,7 +93,7 @@ namespace MasaoPlus.Dialogs
                 }
                 else
                 {
-                    if (MessageBox.Show($"第3版マップデータから第2版マップデータに移行します。{Environment.NewLine}移行すると変種パーツやカスタムパーツが削除されます。{Environment.NewLine}本当に移行してもよろしいですか？", "移行の警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                    if (MessageBox.Show($"第3版マップデータから第2版マップデータに移行します。{Environment.NewLine}移行すると設置済みの変種パーツやカスタムパーツが削除されます。{Environment.NewLine}本当に移行してもよろしいですか？", "移行の警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                     {
                         return;
                     }
@@ -109,6 +110,7 @@ namespace MasaoPlus.Dialogs
                     }
                 }
                 Global.cpd.project.Use3rdMapData = Use3rdMapData.Checked;
+                Global.MainWnd.RefreshAll();
             }
             Global.state.EditFlag = true;
             List<HTMLReplaceData> list = new List<HTMLReplaceData>();

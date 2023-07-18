@@ -103,7 +103,6 @@
 			this.Cancel.TabIndex = 2;
 			this.Cancel.Text = "キャンセル";
 			this.Cancel.UseVisualStyleBackColor = true;
-			this.Accept.DialogResult = global::System.Windows.Forms.DialogResult.Cancel;
 			this.Accept.Location = new global::System.Drawing.Point(310, 310);
 			this.Accept.Name = "Accept";
 			this.Accept.Size = new global::System.Drawing.Size(109, 29);

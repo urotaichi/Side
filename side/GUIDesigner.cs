@@ -899,14 +899,6 @@ namespace MasaoPlus
             foreach (ChipsData value in Global.cpd.Mapchip)
             {
                 DrawItemRef.Add(value.character, value);
-                DrawItemCodeRef.Add(value.code, value);
-            }
-            if (Global.cpd.project.Use3rdMapData)
-            {
-                foreach (ChipsData value in Global.cpd.VarietyChip)
-                {
-                    DrawItemCodeRef.Add(value.code, value);
-                }
             }
             DrawWorldRef.Clear();
             foreach (ChipsData value2 in Global.cpd.Worldchip)
@@ -919,6 +911,29 @@ namespace MasaoPlus
                 foreach (ChipsData value3 in Global.cpd.Layerchip)
                 {
                     DrawLayerRef.Add(value3.character, value3);
+                }
+            }
+            if (Global.cpd.project.Use3rdMapData)
+            {
+                CreateDrawItemCodeReference();
+            }
+        }
+        public void CreateDrawItemCodeReference()
+        {
+            DrawItemCodeRef.Clear();
+            foreach (ChipsData value in Global.cpd.Mapchip)
+            {
+                DrawItemCodeRef.Add(value.code, value);
+            }
+            foreach (ChipsData value in Global.cpd.VarietyChip)
+            {
+                DrawItemCodeRef.Add(value.code, value);
+            }
+            if (Global.cpd.UseLayer)
+            {
+                DrawLayerCodeRef.Clear();
+                foreach (ChipsData value3 in Global.cpd.Layerchip)
+                {
                     DrawLayerCodeRef.Add(value3.code, value3);
                 }
             }
