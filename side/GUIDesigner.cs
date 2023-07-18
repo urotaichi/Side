@@ -648,87 +648,129 @@ namespace MasaoPlus
             Runtime.DefinedData.StageSizeData StageSize = Global.cpd.project.Runtime.Definitions.StageSize;
             Runtime.DefinedData.StageSizeData LayerSize = Global.cpd.project.Runtime.Definitions.LayerSize;
 
-            while (Global.state.MapEditMode ? (num < MapSize.y) : (num < StageSize.y))
+            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
             {
-                int num2 = 0;
-                while (Global.state.MapEditMode ? (num2 < MapSize.x) : (num2 < StageSize.x))
+                while (num < StageSize.y)
                 {
-                    string text;
-                    if (foreground)
+                    int num2 = 0;
+                    while (num2 < StageSize.x)
                     {
-                        if (Global.state.MapEditMode)
+                        string text;
+                        if (foreground)
                         {
-                            text = Global.cpd.EditingMap[num].Substring(num2 * MapSize.bytesize, MapSize.bytesize);
+                            text = Global.cpd.EditingMap[num].Split(',')[num2];
                         }
                         else
                         {
-                            if (Global.cpd.project.Use3rdMapData) text = Global.cpd.EditingMap[num].Split(',')[num2];
-                            else text = Global.cpd.EditingMap[num].Substring(num2 * StageSize.bytesize, StageSize.bytesize);
+                            text = Global.cpd.EditingLayer[num].Split(',')[num2];
                         }
-                    }
-                    else
-                    {
-                        if (Global.cpd.project.Use3rdMapData) text = Global.cpd.EditingLayer[num].Split(',')[num2];
-                        else text = Global.cpd.EditingLayer[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize);
-                    }
-                    if (
-                        (!Global.state.UseBuffered
-                            || (
-                                (!foreground
-                                    || ForePrevDrawn == null
-                                    || !(Global.state.MapEditMode && ForePrevDrawn[num].Substring(num2 * MapSize.bytesize, MapSize.bytesize) == text
-                                        || !Global.state.MapEditMode
-                                            && (!Global.cpd.project.Use3rdMapData && ForePrevDrawn[num].Substring(num2 * StageSize.bytesize, StageSize.bytesize) == text
-                                                 || Global.cpd.project.Use3rdMapData && ForePrevDrawn[num].Split(',')[num2] == text))
-                                )
-                                && (foreground
-                                    || BackPrevDrawn == null
-                                    || !(!Global.cpd.project.Use3rdMapData && BackPrevDrawn[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize) == text
-                                        || Global.cpd.project.Use3rdMapData && BackPrevDrawn[num].Split(',')[num2] == text)
-                                    )
-                                )
-                        ) && (
-                            !Global.config.draw.SkipFirstChip
+                        if (
+                            (!Global.state.UseBuffered
                                 || (
-                                    (!foreground || !text.Equals(Global.cpd.Mapchip[0].character) || !text.Equals(Global.cpd.Mapchip[0].code))
-                                    && (foreground || !text.Equals(Global.cpd.Layerchip[0].character) || !text.Equals(Global.cpd.Layerchip[0].code))
-                                )
-                        ) && (
-                        (foreground && (DrawItemRef.ContainsKey(text) || DrawItemCodeRef.ContainsKey(text)))
-                        || (!foreground && (DrawLayerRef.ContainsKey(text) || DrawLayerCodeRef.ContainsKey(text)))
+                                    (!foreground
+                                        || ForePrevDrawn == null
+                                        || !(ForePrevDrawn[num].Split(',')[num2] == text)
+                                    )
+                                    && (foreground
+                                        || BackPrevDrawn == null
+                                        || !(BackPrevDrawn[num].Split(',')[num2] == text)
+                                        )
+                                    )
+                            ) && (
+                                !Global.config.draw.SkipFirstChip
+                                    || (
+                                        (!foreground || !text.Equals(Global.cpd.Mapchip[0].code))
+                                        && (foreground || !text.Equals(Global.cpd.Layerchip[0].code))
+                                    )
+                            ) && (
+                            (foreground && DrawItemCodeRef.ContainsKey(text))
+                            || (!foreground && DrawLayerCodeRef.ContainsKey(text))
+                            )
                         )
-                    )
-                    {
-                        if (Global.state.MapEditMode) chipsData = DrawWorldRef[text];
-                        else if (foreground)
                         {
-                            if (Global.cpd.project.Use3rdMapData) chipsData = DrawItemCodeRef[text];
-                            else chipsData = DrawItemRef[text];
-                        }
-                        else
-                        {
-                            if (Global.cpd.project.Use3rdMapData) chipsData = DrawLayerCodeRef[text];
-                            else chipsData = DrawLayerRef[text];
-                        }
-                        c = chipsData.GetCSChip();
-                        if (c.size != default) // 標準サイズより大きい
-                        {
-                            if (Global.state.UseBuffered)
+                            if (foreground)
                             {
-                                g.CompositingMode = CompositingMode.SourceCopy;
-                                g.FillRectangle(Brushes.Transparent, new Rectangle(num2 * chipsize.Width - c.center.X, num * chipsize.Height - c.center.Y, c.size.Width, c.size.Height));
-                                g.CompositingMode = CompositingMode.SourceOver;
+                                chipsData = DrawItemCodeRef[text];
                             }
-                            DrawExtendSizeMap(c, g, new Point(num2, num), foreground, chipsData.character);
+                            else
+                            {
+                                chipsData = DrawLayerCodeRef[text];
+                            }
+                            c = chipsData.GetCSChip();
+                            if (c.size != default) // 標準サイズより大きい
+                            {
+                                if (Global.state.UseBuffered)
+                                {
+                                    g.CompositingMode = CompositingMode.SourceCopy;
+                                    g.FillRectangle(Brushes.Transparent, new Rectangle(num2 * chipsize.Width - c.center.X, num * chipsize.Height - c.center.Y, c.size.Width, c.size.Height));
+                                    g.CompositingMode = CompositingMode.SourceOver;
+                                }
+                                DrawExtendSizeMap(c, g, new Point(num2, num), foreground, chipsData.character);
+                            }
+                            else
+                            { // 標準サイズの画像はリストに追加後、↓で描画
+                                list.Add(new KeepDrawData(c, new Point(num2, num), chipsData.character));
+                            }
+                        }
+                        num2++;
+                    }
+                    num++;
+                }
+            }
+            else
+            {
+                while (Global.state.MapEditMode ? (num < MapSize.y) : (num < StageSize.y))
+                {
+                    int num2 = 0;
+                    while (Global.state.MapEditMode ? (num2 < MapSize.x) : (num2 < StageSize.x))
+                    {
+                        string text;
+                        if (foreground)
+                        {
+                            if (Global.state.MapEditMode)
+                            {
+                                text = Global.cpd.EditingMap[num].Substring(num2 * MapSize.bytesize, MapSize.bytesize);
+                            }
+                            else
+                            {
+                                text = Global.cpd.EditingMap[num].Substring(num2 * StageSize.bytesize, StageSize.bytesize);
+                            }
                         }
                         else
-                        { // 標準サイズの画像はリストに追加後、↓で描画
-                            list.Add(new KeepDrawData(c, new Point(num2, num), chipsData.character));
+                        {
+                            text = Global.cpd.EditingLayer[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize);
                         }
+                        if ((!Global.state.UseBuffered || ((!foreground || this.ForePrevDrawn == null || !(this.ForePrevDrawn[num].Substring(Global.state.MapEditMode ? (num2 * MapSize.bytesize) : (num2 * StageSize.bytesize), Global.state.MapEditMode ? MapSize.bytesize : StageSize.bytesize) == text)) && (foreground || this.BackPrevDrawn == null || !(this.BackPrevDrawn[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize) == text)))) && (!Global.config.draw.SkipFirstChip || ((!foreground || !text.Equals(Global.cpd.Mapchip[0].character)) && (foreground || !text.Equals(Global.cpd.Layerchip[0].character)))) && ((foreground && this.DrawItemRef.ContainsKey(text)) || (!foreground && this.DrawLayerRef.ContainsKey(text))))
+                        {
+                            if (Global.state.MapEditMode) chipsData = DrawWorldRef[text];
+                            else if (foreground)
+                            {
+                                chipsData = DrawItemRef[text];
+                            }
+                            else
+                            {
+                                chipsData = DrawLayerRef[text];
+                            }
+                            c = chipsData.GetCSChip();
+                            if (c.size != default) // 標準サイズより大きい
+                            {
+                                if (Global.state.UseBuffered)
+                                {
+                                    g.CompositingMode = CompositingMode.SourceCopy;
+                                    g.FillRectangle(Brushes.Transparent, new Rectangle(num2 * chipsize.Width - c.center.X, num * chipsize.Height - c.center.Y, c.size.Width, c.size.Height));
+                                    g.CompositingMode = CompositingMode.SourceOver;
+                                }
+                                DrawExtendSizeMap(c, g, new Point(num2, num), foreground, chipsData.character);
+                            }
+                            else
+                            { // 標準サイズの画像はリストに追加後、↓で描画
+                                list.Add(new KeepDrawData(c, new Point(num2, num), chipsData.character));
+                            }
+                        }
+                        num2++;
                     }
-                    num2++;
+                    num++;
                 }
-                num++;
             }
             foreach (KeepDrawData keepDrawData in list)
             {
