@@ -874,19 +874,21 @@ namespace MasaoPlus
             }
         }
 
-        // チップリストの左上
+        // チップリストの左上の文字
         private void state_UpdateCurrentChipInvoke()
         {
             ChipImage.Refresh();
-            string chara = Global.state.CurrentChip.character;
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) chara = Global.state.CurrentChip.code;
+            string chara;
+            ChipsData cc = Global.state.CurrentChip;
+            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) chara = cc.code;
+            else chara = cc.character;
 
-            if (Global.state.CurrentChip.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+            if (cc.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
                 ChipDescription.Text = "オリジナルボス";
-            else ChipDescription.Text = Global.state.CurrentChip.GetCSChip().name;
-            if (Global.state.CurrentChip.GetCSChip().description != "")
+            else ChipDescription.Text = cc.GetCSChip().name;
+            if (cc.GetCSChip().description != "")
             {
-                if (Global.state.EditingForeground && Global.state.CurrentChip.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+                if (Global.state.EditingForeground && cc.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
                 {
                     string description;
                     if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
@@ -928,7 +930,7 @@ namespace MasaoPlus
                     ChipChar.Text = $"[{chara}]{description}";
 
                 }
-                else ChipChar.Text = $"[{chara}]{Global.state.CurrentChip.GetCSChip().description}";
+                else ChipChar.Text = $"[{chara}]{cc.GetCSChip().description}";
             }
             else
             {
@@ -944,7 +946,7 @@ namespace MasaoPlus
             {
                 foreach (ChipsData chipsData in Global.cpd.Worldchip)
                 {
-                    if (Global.state.CurrentChip.character == chipsData.character)
+                    if (cc.character == chipsData.character)
                     {
                         ChipList.SelectedIndex = num;
                         return;
@@ -955,25 +957,52 @@ namespace MasaoPlus
             }
             if (!Global.cpd.UseLayer || Global.state.EditingForeground)
             {
-                foreach (ChipsData chipsData2 in Global.cpd.Mapchip)
+                if (Global.cpd.project.Use3rdMapData)
                 {
-                    if (Global.state.CurrentChip.character == chipsData2.character)
+                    foreach (ChipsData chipsData2 in Global.cpd.Mapchip)
+                    {
+                        if (cc.code == chipsData2.code)
+                        {
+                            ChipList.SelectedIndex = num;
+                            return;
+                        }
+                        num++;
+                    }
+                }
+                else
+                {
+                    foreach (ChipsData chipsData2 in Global.cpd.Mapchip)
+                    {
+                        if (cc.character == chipsData2.character)
+                        {
+                            ChipList.SelectedIndex = num;
+                            return;
+                        }
+                        num++;
+                    }
+                }
+                return;
+            }
+            foreach (ChipsData chipsData3 in Global.cpd.Layerchip)
+            {
+                if (Global.cpd.project.Use3rdMapData)
+                {
+                    if (cc.code == chipsData3.code)
                     {
                         ChipList.SelectedIndex = num;
                         return;
                     }
                     num++;
                 }
-                return;
-            }
-            foreach (ChipsData chipsData3 in Global.cpd.Layerchip)
-            {
-                if (Global.state.CurrentChip.character == chipsData3.character)
+                else
                 {
-                    ChipList.SelectedIndex = num;
-                    return;
+                    if (cc.character == chipsData3.character)
+                    {
+                        ChipList.SelectedIndex = num;
+                        return;
+                    }
+                    num++;
                 }
-                num++;
             }
         }
 

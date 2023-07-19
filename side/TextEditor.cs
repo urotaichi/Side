@@ -186,22 +186,48 @@ namespace MasaoPlus
             int num = StageTextEditor.GetFirstCharIndexOfCurrentLine();
             int lineFromCharIndex = StageTextEditor.GetLineFromCharIndex(num);
             num = StageTextEditor.SelectionStart - num;
-            TextPositionInfo.Text = $"{lineFromCharIndex}行 {num}文字";
-            int length = StageTextEditor.Lines[lineFromCharIndex].Length;
-            LineInfo.Text = $"{StageTextEditor.Lines.Length}行 {length}文字";
-            if (length == Global.state.GetCByteWidth)
+
+            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
             {
-                TextStatus.Text = "完了";
-                return;
+                string stagetext = StageTextEditor.Lines[lineFromCharIndex];
+                string[] stagetextarray = stagetext.Split(',');
+                string[] stagetextarray2 = new string(stagetext.ToCharArray(0,num)).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                TextPositionInfo.Text = $"{lineFromCharIndex}行 {stagetextarray2.Length}要素";
+                int length = stagetextarray.Length;
+                LineInfo.Text = $"{StageTextEditor.Lines.Length}行 {length}要素";
+                if (length == Global.state.GetCByteWidth)
+                {
+                    TextStatus.Text = "完了";
+                    return;
+                }
+                if (length > Global.state.GetCByteWidth)
+                {
+                    int num2 = length - Global.state.GetCByteWidth;
+                    TextStatus.Text = $"現在の行は{num2}要素過剰です。";
+                    return;
+                }
+                int num3 = Global.state.GetCByteWidth - length;
+                TextStatus.Text = $"現在の行は{num3}要素足りていません。";
             }
-            if (length > Global.state.GetCByteWidth)
+            else
             {
-                int num2 = length - Global.state.GetCByteWidth;
-                TextStatus.Text = $"現在の行は{num2}文字過剰です。";
-                return;
+                TextPositionInfo.Text = $"{lineFromCharIndex}行 {num}文字";
+                int length = StageTextEditor.Lines[lineFromCharIndex].Length;
+                LineInfo.Text = $"{StageTextEditor.Lines.Length}行 {length}文字";
+                if (length == Global.state.GetCByteWidth)
+                {
+                    TextStatus.Text = "完了";
+                    return;
+                }
+                if (length > Global.state.GetCByteWidth)
+                {
+                    int num2 = length - Global.state.GetCByteWidth;
+                    TextStatus.Text = $"現在の行は{num2}文字過剰です。";
+                    return;
+                }
+                int num3 = Global.state.GetCByteWidth - length;
+                TextStatus.Text = $"現在の行は{num3}文字足りていません。";
             }
-            int num3 = Global.state.GetCByteWidth - length;
-            TextStatus.Text = $"現在の行は{num3}文字足りていません。";
         }
 
         private void TextLineNo_Paint(object sender, PaintEventArgs e)
