@@ -34,7 +34,19 @@ namespace MasaoPlus.Dialogs
             MapF.Text = Global.cpd.runtime.DefaultConfigurations.MapParam;
             ProjNum.Value = Global.cpd.project.Config.StageNum;
             UseWorldmap.Checked = Global.cpd.project.Config.UseWorldmap;
-            if (!Global.cpd.runtime.Definitions.Package.Contains("28")) Use3rdMapData.Checked = Global.cpd.project.Use3rdMapData;
+            if (!Global.cpd.runtime.Definitions.Package.Contains("28"))
+            {
+                bool state = Global.cpd.project.Use3rdMapData;
+                StageF.Enabled = !state;
+                LayerF.Enabled = !state;
+                StageF2.Enabled = !state;
+                LayerF2.Enabled = !state;
+                StageF3.Enabled = !state;
+                LayerF3.Enabled = !state;
+                StageF4.Enabled = !state;
+                LayerF4.Enabled = !state;
+                Use3rdMapData.Checked = state;
+            }
 
             OutHeader.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
             OutMiddle.Text = Subsystem.DecodeBase64(Global.cpd.runtime.DefaultConfigurations.MiddleHTML);

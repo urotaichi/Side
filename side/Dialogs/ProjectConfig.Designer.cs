@@ -153,7 +153,7 @@
                 this.Use3rdMapData.Name = "Use3rdMapData";
                 this.Use3rdMapData.Size = new global::System.Drawing.Size(198, 16);
                 this.Use3rdMapData.TabIndex = 10;
-                this.Use3rdMapData.Text = "第3版マップデータを有効にする(FX版のみ)(&L)";
+                this.Use3rdMapData.Text = "第3版マップデータを有効にする(FX版のみ。有効時にステージフォーマットの設定が無効化されます。)(&L)";
                 this.Use3rdMapData.UseVisualStyleBackColor = true;
             }
             this.label17.AutoSize = true;
