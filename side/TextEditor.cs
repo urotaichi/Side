@@ -239,23 +239,35 @@ namespace MasaoPlus
             {
                 int num3 = StageTextEditor.GetFirstCharIndexFromLine(num2);
                 num3 = StageTextEditor.GetPositionFromCharIndex(num3).Y;
-                int num4 = (int)e.Graphics.MeasureString(num2.ToString(), StageTextEditor.Font).Width;
-                if (num2 == StageTextEditor.GetLineFromCharIndex(StageTextEditor.GetFirstCharIndexOfCurrentLine()))
+                int height = (int)e.Graphics.MeasureString(num2.ToString(), StageTextEditor.Font).Height;
+                Color textColor;
+                int length;
+                if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
                 {
-                    int height = (int)e.Graphics.MeasureString(num2.ToString(), StageTextEditor.Font).Height;
-                    e.Graphics.FillRectangle(Brushes.RoyalBlue, new Rectangle(new Point(0, num3), new Size(TextLineNo.Width, height)));
-                    DrawText(e.Graphics, num2.ToString(), StageTextEditor.Font, new Point(TextLineNo.Width - num4 - Global.definition.LineNoPaddingRight, num3 + Global.definition.LineNoPaddingTop), Color.White);
-                }
-                else if (StageTextEditor.Lines[num2].Length == Global.state.GetCByteWidth && num2 < Global.cpd.runtime.Definitions.StageSize.y)
-                {
-                    DrawText(e.Graphics, num2.ToString(), StageTextEditor.Font, new Point(TextLineNo.Width - num4 - Global.definition.LineNoPaddingRight, num3 + Global.definition.LineNoPaddingTop), Color.Black);
+                    length = StageTextEditor.Lines[num2].Split(',').Length;
                 }
                 else
                 {
-                    int height2 = (int)e.Graphics.MeasureString(num2.ToString(), StageTextEditor.Font).Height;
-                    e.Graphics.FillRectangle(Brushes.Red, new Rectangle(new Point(0, num3), new Size(TextLineNo.Width, height2)));
-                    DrawText(e.Graphics, num2.ToString(), StageTextEditor.Font, new Point(TextLineNo.Width - num4 - Global.definition.LineNoPaddingRight, num3 + Global.definition.LineNoPaddingTop), Color.White);
+                    length = StageTextEditor.Lines[num2].Length;
                 }
+
+                if (num2 == StageTextEditor.GetLineFromCharIndex(StageTextEditor.GetFirstCharIndexOfCurrentLine()))
+                {
+                    e.Graphics.FillRectangle(Brushes.RoyalBlue, new Rectangle(new Point(0, num3), new Size(TextLineNo.Width, height)));
+                    textColor = Color.White;
+                }
+                else if (length == Global.state.GetCByteWidth && num2 < Global.cpd.runtime.Definitions.StageSize.y)
+                {
+                    textColor = Color.Black;
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(Brushes.Red, new Rectangle(new Point(0, num3), new Size(TextLineNo.Width, height)));
+                    textColor = Color.White;
+                }
+
+                int num4 = (int)e.Graphics.MeasureString(num2.ToString(), StageTextEditor.Font).Width;
+                DrawText(e.Graphics, num2.ToString(), StageTextEditor.Font, new Point(TextLineNo.Width - num4 - Global.definition.LineNoPaddingRight, num3 + Global.definition.LineNoPaddingTop), textColor);
                 num2++;
             }
         }
@@ -279,7 +291,14 @@ namespace MasaoPlus
             }
             foreach (string text in StageTextEditor.Lines)
             {
-                if (text.Length != Global.state.GetCByteWidth)
+                if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) 
+                {
+                    if (text.Split(',').Length != Global.state.GetCByteWidth)
+                    {
+                        return false;
+                    }
+                }
+                else if (text.Length != Global.state.GetCByteWidth)
                 {
                     return false;
                 }
