@@ -11598,4 +11598,1423 @@
     <chips char="2" color="cyan"><chip><pattern><X>32</X><Y>704</Y></pattern><name>縦の道</name></chip></chips>
     <chips char="3" color="cyan"><chip><pattern><X>64</X><Y>704</Y></pattern><name>横の道</name></chip></chips>
   </WorldChip>
+  <VarietyChip>
+    <chips code="1001" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー</name><view_size><Width>160</Width><Height>64</Height></view_size>
+        <description>左回り</description></chip>
+    </chips>
+    <chips code="1002" color="yellow">
+      <chip><pattern><X>0</X><Y>576</Y></pattern><size><Width>96</Width><Height>32</Height></size>
+        <xdraw><X>96</X><Y>32</Y></xdraw><name>落ちる床</name>
+        <description>乗ると落ちる</description></chip>
+    </chips>
+    <chips code="1003" color="yellow">
+      <chip><pattern><X>0</X><Y>576</Y></pattern><size><Width>96</Width><Height>32</Height></size>
+        <name>落ちる床</name>
+        <description>ずっと乗っていると落ちる</description></chip>
+    </chips>
+    <chips code="1004" color="yellow">
+      <chip><pattern><X>0</X><Y>608</Y></pattern><size><Width>96</Width><Height>32</Height></size>
+        <xdraw><X>256</X><Y>0</Y></xdraw><name>動く床</name>
+        <description>左回り</description></chip>
+    </chips>
+    <chips code="1005" color="yellow">
+      <chip><pattern><X>0</X><Y>608</Y></pattern><size><Width>96</Width><Height>32</Height></size>
+        <xdraw><X>288</X><Y>0</Y></xdraw><name>動く床</name>
+        <description>右回り</description></chip>
+    </chips>
+    <chips code="1006" color="yellow">
+      <chip><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <center><X>0</X><Y>32</Y></center><name>乗れるカイオール</name>
+        <description>乗ると右へ進みます</description></chip>
+    </chips>
+    <chips code="1007" color="yellow">
+      <chip><pattern><X>64</X><Y>96</Y></pattern>
+        <name>ジャンプ台</name><description>高くジャンプできます</description></chip>
+    </chips>
+    <chips code="1008" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>0</X><Y>32</Y></xdraw><name>上ドッスンスン</name>
+        <description>上にプレスするドッスンスン</description></chip>
+    </chips>
+    <chips code="1009" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>32</X><Y>32</Y></xdraw><name>左ドッスンスン</name>
+        <description>左にプレスするドッスンスン</description></chip>
+    </chips>
+    <chips code="1010" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>64</X><Y>32</Y></xdraw><name>右ドッスンスン</name>
+        <description>右にプレスするドッスンスン</description></chip>
+    </chips>
+    <chips code="1011" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>128</X><Y>32</Y></xdraw><name>跳ねるドッスンスン</name>
+        <description>ボールのように跳ねるドッスンスン</description></chip>
+    </chips>
+    <chips code="1012" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>160</X><Y>32</Y></xdraw><name>上がらないドッスンスン</name>
+        <description>1度落ちると、もう動かないドッスンスン</description></chip>
+    </chips>
+    <chips code="1013" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>192</X><Y>32</Y></xdraw><name>エレベータードッスンスン　上</name>
+        <description>乗ると上昇するドッスンスン</description></chip>
+    </chips>
+    <chips code="1014" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>224</X><Y>32</Y></xdraw><name>エレベータードッスンスン　下</name>
+        <description>乗ると下降するドッスンスン</description></chip>
+    </chips>
+    <chips code="1015" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>256</X><Y>32</Y></xdraw><name>上下ドッスンスン</name>
+        <description>上下にプレスするドッスンスン</description></chip>
+    </chips>
+    <chips code="1016" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>32</Y></xdraw><name>左右ドッスンスン</name>
+        <description>左右にプレスするドッスンスン</description></chip>
+    </chips>
+    <chips code="1017" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>32</Y></xdraw><name>ロングレンジドッスンスン</name>
+        <description>当たるまで急降下するドッスンスン</description></chip>
+    </chips>
+    <chips code="1018" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>32</Y></center><name>ファイヤーバー2本</name><view_size><Width>192</Width><Height>96</Height></view_size>
+        <description>少し長めの右回りと左回りが1本ずつ</description></chip>
+    </chips>
+    <chips code="1019" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　左回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
+        <description>少し長めのが3本左回り</description></chip>
+    </chips>
+    <chips code="1020" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>32</Y></xdraw>
+        <center><X>96</X><Y>160</Y></center><name>ファイヤーバー3本　右回り</name><view_size><Width>288</Width><Height>352</Height></view_size>
+        <description>少し長めのが3本右回り</description></chip>
+    </chips>
+    <chips code="1021" color="yellow">
+      <chip><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>448</X><Y>32</Y></xdraw><name>隠しブロック</name>
+        <description>下から叩くとブロック４になる</description></chip>
+    </chips>
+    <chips code="1022" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>480</X><Y>32</Y></xdraw><name>？ブロック[右にブロック１が出る]</name>
+        <description>ブロック１が右に10個出現</description></chip>
+    </chips>
+    <chips code="1023" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>512</X><Y>32</Y></xdraw><name>？ブロック[左にブロック１が出る]</name>
+        <description>ブロック１が左に10個出現</description></chip>
+    </chips>
+    <chips code="1024" color="yellow">
+      <chip><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[ハシゴ]</name>
+        <description>上にハシゴが出現</description></chip>
+    </chips>
+    <chips code="1025" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>32</Y></center><name>シーソー</name><view_size><Width>352</Width><Height>160</Height></view_size>
+        <description>水平</description></chip>
+    </chips>
+    <chips code="1026" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
+        <description>左が下</description></chip>
+    </chips>
+    <chips code="1027" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>160</Y></center><name>シーソー</name><view_size><Width>224</Width><Height>320</Height></view_size>
+        <description>右が下</description></chip>
+    </chips>
+    <chips code="1028" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>160</Width><Height>224</Height></view_size>
+        <description>左右に揺れるブランコ</description></chip>
+    </chips>
+    <chips code="1029" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>0</Y></center><name>ブランコ</name><view_size><Width>544</Width><Height>224</Height></view_size>
+        <description>２個連続</description></chip>
+    </chips>
+    <chips code="1030" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>192</X><Y>0</Y></center><name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
+        <description>左側で上下にスウィングする足場</description></chip>
+    </chips>
+    <chips code="1031" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングバー</name><view_size><Width>224</Width><Height>64</Height></view_size>
+        <description>右側で上下にスウィングする足場</description></chip>
+    </chips>
+    <chips code="1032" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>64</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
+        <description>左側でスウィング</description></chip>
+    </chips>
+    <chips code="1033" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>64</Y></xdraw>
+        <name>スウィングファイヤーバー</name><view_size><Width>192</Width><Height>96</Height></view_size>
+        <description>右側でスウィング</description></chip>
+    </chips>
+    <chips code="1034" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が出る]</name>
+        <description>ブロック１が上に１０個出現</description></chip>
+    </chips>
+    <chips code="1035" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>320</X><Y>64</Y></xdraw><name>？ブロック[上にブロック１が２つ出る]</name>
+        <description>ブロック１が上に２個出現</description></chip>
+    </chips>
+    <chips code="1036" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>352</X><Y>64</Y></xdraw><name>？ブロック[右にブロック１が２つ出る]</name>
+        <description>ブロック１が右に２個出現</description></chip>
+    </chips>
+    <chips code="1037" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>384</X><Y>64</Y></xdraw><name>？ブロック[左にブロック１が２つ出る]</name>
+        <description>ブロック１が左に2個出現</description></chip>
+    </chips>
+    <chips code="1038" color="yellow">
+      <chip><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[ジャンプ台]</name><description>？ブロックからジャンプ台が出る</description></chip>
+    </chips>
+    <chips code="1039" color="yellow">
+      <chip><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[トゲ]</name><description>？ブロックから上向きのトゲが出現</description></chip>
+    </chips>
+    <chips code="1040" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>416</X><Y>64</Y></xdraw><name>？ブロック[周囲のトゲをコインに変換]</name>
+        <description>周囲10マスの上向きのトゲがコインになる</description></chip>
+    </chips>
+    <chips code="1041" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>448</X><Y>64</Y></xdraw><name>？ブロック[周囲のトゲをブロック１に変換]</name>
+        <description>周囲10マスの上向きのトゲがブロック１になる</description></chip>
+    </chips>
+    <chips code="1042" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>480</X><Y>64</Y></xdraw><name>？ブロック[周囲のブロック１をコインに変換]</name>
+        <description>周囲10マスのブロック１がコインになる</description></chip>
+    </chips>
+    <chips code="1043" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>512</X><Y>64</Y></xdraw><name>？ブロック[周囲のブロック４を消去]</name>
+        <description>周囲10マスのブロック４が消滅する</description></chip>
+    </chips>
+    <chips code="1044" color="yellow">
+      <chip><pattern><X>288</X><Y>96</Y></pattern><xdraw><X>0</X><Y>96</Y></xdraw><name>お店</name>
+        <description>アイテムを販売する人</description></chip>
+    </chips>
+    <chips code="1045" color="yellow">
+      <chip><pattern><X>224</X><Y>96</Y></pattern><xdraw><X>32</X><Y>96</Y></xdraw><name>ヘルメットかドリルをくれる人</name>
+        <description>ヘルメットかドリルを1つだけくれる</description></chip>
+    </chips>
+    <chips code="1046" color="yellow">
+      <chip><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>64</X><Y>96</Y></xdraw><name>グレネードかジェットをくれる人</name>
+        <description>グレネードかジェットを1つだけくれる</description></chip>
+    </chips>
+    <chips code="1047" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
+        <description>上へ伸びる</description></chip>
+    </chips>
+    <chips code="1048" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
+        <description>下へ伸びる</description></chip>
+    </chips>
+    <chips code="1049" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>32</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
+        <description>左へ伸びる　下に空白が１ブロック必要</description></chip>
+    </chips>
+    <chips code="1050" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>32</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
+        <description>右へ伸びる　下に空白が１ブロック必要</description></chip>
+    </chips>
+    <chips code="1051" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>96</Height></view_size>
+        <description>壁と壁の間で上下</description></chip>
+    </chips>
+    <chips code="1052" color="yellow">
+      <chip value="52"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>96</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>96</Width><Height>64</Height></view_size>
+        <description>壁と壁の間で左右</description></chip>
+    </chips>
+    <chips code="1053" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>288</X><Y>96</Y></xdraw><name>ドッスンスン</name>
+        <description>壁と壁の間で上下</description></chip>
+    </chips>
+    <chips code="1054" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>96</Y></xdraw><name>ドッスンスン</name>
+        <description>壁と壁の間で左右</description></chip>
+    </chips>
+    <chips code="1055" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>352</X><Y>96</Y></xdraw><name>ドッスンスン</name>
+        <description>乗ると左右移動</description></chip>
+    </chips>
+    <chips code="1056" color="yellow">
+      <chip><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>384</X><Y>96</Y></xdraw><name>火山</name>
+        <description>ブロック７から火山</description></chip>
+    </chips>
+    <chips code="1057" color="yellow">
+      <chip><pattern><X>192</X><Y>64</Y></pattern><xdraw><X>416</X><Y>96</Y></xdraw><name>逆火山</name>
+        <description>ブロック７から逆火山</description></chip>
+    </chips>
+    <chips code="1058" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>160</Width><Height>224</Height></view_size>
+        <description>左右に動く</description></chip>
+    </chips>
+    <chips code="1059" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>0</Y></xdraw>
+        <center><X>64</X><Y>160</Y></center><name>動くＴ字型</name><view_size><Width>576</Width><Height>224</Height></view_size>
+        <description>２個連続</description></chip>
+    </chips>
+    <chips code="1060" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>ロープ</name><view_size><Width>32</Width><Height>224</Height></view_size>
+        <description>ターザンロープ。</description></chip>
+    </chips>
+    <chips code="1061" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>128</Y></xdraw>
+        <name>ロープ</name><view_size><Width>352</Width><Height>224</Height></view_size>
+        <description>ターザンロープ。２本連続。</description></chip>
+    </chips>
+    <chips code="1062" color="yellow">
+      <chip><pattern><X>256</X><Y>576</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <xdraw><X>32</X><Y>128</Y></xdraw><name>乗れるカイオール</name>
+        <description>方向キーで移動</description></chip>
+    </chips>
+    <chips code="1063" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>128</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
+        <description>上へ速射</description></chip>
+    </chips>
+    <chips code="1064" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>64</Width><Height>192</Height></view_size>
+        <description>下へ速射</description></chip>
+    </chips>
+    <chips code="1065" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>128</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
+        <description>左へ速射　下に空白が１ブロック必要</description></chip>
+    </chips>
+    <chips code="1066" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>128</Y></xdraw>
+        <name>ファイヤーウォール</name><view_size><Width>192</Width><Height>64</Height></view_size>
+        <description>右へ速射　下に空白が１ブロック必要</description></chip>
+    </chips>
+    <chips code="1067" color="yellow">
+      <chip><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>192</X><Y>128</Y></xdraw><name>得点で開く扉</name>
+        <description>指定したスコア（得点）になると開く</description></chip>
+    </chips>
+    <chips code="1068" color="yellow">
+      <chip><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>224</X><Y>128</Y></xdraw><name>コインを全部取ると開く扉</name>
+        <description>コインを全部取ると開く</description></chip>
+    </chips>
+    <chips code="1069" color="yellow">
+      <chip><pattern><X>128</X><Y>672</Y></pattern><xdraw><X>256</X><Y>128</Y></xdraw><name>コインを全部取ると開く扉</name>
+        <description>周囲１０パーツ以内のコインを全部取ると開く</description></chip>
+    </chips>
+    <chips code="1070" color="yellow">
+      <chip><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>288</X><Y>128</Y></xdraw><name>左１５パーツ以内の雑魚敵を全部倒すと開く扉</name>
+        <description>左１５パーツ以内の雑魚敵を全部倒すと開く扉</description></chip>
+    </chips>
+    <chips code="1071" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
+        <description>右向き</description></chip>
+    </chips>
+    <chips code="1072" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>64</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>96</Height></view_size>
+        <description>左向き</description></chip>
+    </chips>
+    <chips code="1073" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>32</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
+        <description>天井</description></chip>
+    </chips>
+    <chips code="1074" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>96</Width><Height>128</Height></view_size>
+        <description>右の壁</description></chip>
+    </chips>
+    <chips code="1075" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>64</Y></center><name>人間大砲</name><view_size><Width>128</Width><Height>128</Height></view_size>
+        <description>左の壁</description></chip>
+    </chips>
+    <chips code="1076" color="yellow">
+      <chip><pattern><X>64</X><Y>96</Y></pattern><xdraw><X>480</X><Y>128</Y></xdraw><name>ジャンプ台</name>
+        <description>高性能なジャンプ台</description></chip>
+    </chips>
+    <chips code="1077" color="yellow">
+      <chip><pattern><X>96</X><Y>96</Y></pattern><rotate>-90</rotate><xdraw><X>512</X><Y>128</Y></xdraw><name>バネ</name>
+        <description>左へ飛ばすバネ</description></chip>
+    </chips>
+    <chips code="1078" color="yellow">
+      <chip><pattern><X>96</X><Y>96</Y></pattern><rotate>90</rotate><xdraw><X>0</X><Y>160</Y></xdraw><name>バネ</name>
+        <description>右へ飛ばすバネ</description></chip>
+    </chips>
+    <chips code="1079" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>160</Y></xdraw><name>スポット処理</name>
+        <description>小。この付近に近づくとスポット処理開始。</description></chip>
+    </chips>
+    <chips code="1080" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>160</Y></xdraw><name>スポット処理</name>
+        <description>中。この付近に近づくとスポット処理開始。</description></chip>
+    </chips>
+    <chips code="1081" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>160</Y></xdraw><name>スポット処理</name>
+        <description>大。この付近に近づくとスポット処理開始。</description></chip>
+    </chips>
+    <chips code="1082" color="yellow">
+      <chip><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
+        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+    </chips>
+    <chips code="1083" color="yellow">
+      <chip><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
+        <description>範囲拡大アイテム。このアイテムを取るとスポット処理の範囲が拡大。</description></chip>
+    </chips>
+    <chips code="1084" color="yellow">
+      <chip><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <xdraw><X>192</X><Y>160</Y></xdraw><name>人食いワカメ</name>
+        <description>上へ拡大縮小。当たるとゲームオーバー。</description></chip>
+    </chips>
+    <chips code="1085" color="yellow">
+      <chip><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <xdraw><X>224</X><Y>160</Y></xdraw><name>人食いワカメ</name>
+        <description>下へ拡大縮小。当たるとゲームオーバー。</description></chip>
+    </chips>
+    <chips code="1086" color="yellow">
+      <chip><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
+        <xdraw><X>256</X><Y>160</Y></xdraw><name>人食いワカメ</name>
+        <description>中央から拡大縮小。当たるとゲームオーバー。</description></chip>
+    </chips>
+    <chips code="1087" color="yellow">
+      <chip><pattern><X>64</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[ファイヤーボール]</name>
+        <description>水平に飛ぶ。</description></chip>
+    </chips>
+    <chips code="1088" color="yellow">
+      <chip><pattern><X>64</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[ファイヤーボール]</name>
+        <description>跳ねる。</description></chip>
+    </chips>
+    <chips code="1089" color="yellow">
+      <chip><pattern><X>64</X><Y>128</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[ファイヤーボール]</name>
+        <description>ダブル</description></chip>
+    </chips>
+    <chips code="1090" color="yellow">
+      <chip><pattern><X>288</X><Y>96</Y></pattern><xdraw><X>160</X><Y>160</Y></xdraw><name>ファイヤーボールセレクトの人</name>
+        <description>近づくとファイヤーボールをセレクトして、もらえる</description></chip>
+    </chips>
+    <chips code="1091" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>288</X><Y>160</Y></xdraw><name>ブロック１破壊砲発射</name>
+        <description>右にあるブロック１を破壊</description></chip>
+    </chips>
+    <chips code="1092" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>320</X><Y>160</Y></xdraw><name>ブロック１破壊砲発射</name>
+        <description>左にあるブロック１を破壊</description></chip>
+    </chips>
+    <chips code="1093" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>352</X><Y>160</Y></xdraw><name>ブロック１破壊砲発射</name>
+        <description>上にあるブロック１を破壊</description></chip>
+    </chips>
+    <chips code="1094" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>384</X><Y>160</Y></xdraw><name>ブロック１破壊砲発射</name>
+        <description>下にあるブロック１を破壊</description></chip>
+    </chips>
+    <chips code="1095" color="yellow">
+      <chip><pattern><X>288</X><Y>128</Y></pattern><xdraw><X>256</X><Y>448</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック[グレネード]</name>
+        <description>５発。Ｘキーで強力な弾を一発発射</description></chip>
+    </chips>
+    <chips code="1096" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><rotate>-3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>256</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+        <description>左回り</description></chip>
+    </chips>
+    <chips code="1097" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><rotate>3</rotate><scale>1.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>160</Width><Height>160</Height></view_size>
+        <center><X>64</X><Y>64</Y></center><xdraw><X>288</X><Y>0</Y></xdraw><name>回転するドッスンスン</name>
+        <description>右回り</description></chip>
+    </chips>
+    <chips code="1098" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><rotate>-2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>416</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+        <description>左回り</description></chip>
+    </chips>
+    <chips code="1099" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><rotate>2</rotate><scale>2.5</scale><size><Width>96</Width><Height>64</Height></size><view_size><Width>288</Width><Height>224</Height></view_size>
+        <center><X>128</X><Y>96</Y></center><xdraw><X>448</X><Y>160</Y></xdraw><name>回転する巨大ドッスンスン</name>
+        <description>右回り</description></chip>
+    </chips>
+    <chips code="1100" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>160</Y></xdraw><name>画面内で右強制スクロール</name>
+        <description>右に強制スクロールします</description></chip>
+    </chips>
+    <chips code="1101" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>160</Y></xdraw><name>画面内で左強制スクロール</name>
+        <description>左に強制スクロールします</description></chip>
+    </chips>
+    <chips code="1102" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>192</Y></xdraw><name>画面内で上強制スクロール</name>
+        <description>上に強制スクロールします</description></chip>
+    </chips>
+    <chips code="1103" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>32</X><Y>192</Y></xdraw><name>画面内で下強制スクロール</name>
+        <description>下に強制スクロールします</description></chip>
+    </chips>
+    <chips code="1104" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>192</Y></xdraw><name>画面内で右上強制スクロール</name>
+        <description>右上に強制スクロールします</description></chip>
+    </chips>
+    <chips code="1105" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>192</Y></xdraw><name>画面内で右下強制スクロール</name>
+        <description>右下に強制スクロールします</description></chip>
+    </chips>
+    <chips code="1106" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>192</Y></xdraw><name>画面内で左上強制スクロール</name>
+        <description>左上に強制スクロールします</description></chip>
+    </chips>
+    <chips code="1107" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>192</Y></xdraw><name>画面内で左下強制スクロール</name>
+        <description>左下に強制スクロールします</description></chip>
+    </chips>
+    <chips code="1108" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>192</Y></xdraw><name>スクロールスピードアップ</name>
+        <description>スクロールのスピードをアップします</description></chip>
+    </chips>
+    <chips code="1109" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>192</Y></xdraw><name>スクロールスピードダウン</name>
+        <description>スクロールのスピードをダウンします</description></chip>
+    </chips>
+    <chips code="1110" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>192</Y></xdraw><name>画面内で全方向スクロール</name>
+        <description>全方向でスクロールできるようにします</description></chip>
+    </chips>
+    <chips code="1111" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>192</Y></xdraw><name>画面内でスクロール停止</name>
+        <description>スクロールを停止します</description></chip>
+    </chips>
+    <chips code="1112" color="yellow">
+      <chip value="112"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>192</Y></xdraw><name>自分が重なると右強制スクロール</name>
+        <description>自分が重なると右に強制スクロールします</description></chip>
+    </chips>
+    <chips code="1113" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>192</Y></xdraw><name>自分が重なると上強制スクロール</name>
+        <description>自分が重なると上に強制スクロールします</description></chip>
+    </chips>
+    <chips code="1114" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>192</Y></xdraw><name>自分が重なると全方向スクロール</name>
+        <description>自分が重なると全方向できるようにします</description></chip>
+    </chips>
+    <chips code="1115" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>192</Y></xdraw><name>画面内で横固定縦自由スクロール</name>
+        <description>縦のみ自由にスクロールできるようにします</description></chip>
+    </chips>
+    <chips code="1116" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>192</Y></xdraw><name>画面内で右強制縦自由スクロール</name>
+        <description>右に強制スクロール、縦は自由にスクロールできるようにします</description></chip>
+    </chips>
+    <chips code="1117" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>480</X><Y>192</Y></xdraw><name>画面内で左進行用の視界</name>
+        <description>左進行用の視界に変更します</description></chip>
+    </chips>
+    <chips code="1118" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>192</Y></xdraw><name>画面内で右進行用の視界</name>
+        <description>右進行用の視界に変更します</description></chip>
+    </chips>
+    <chips code="1119" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
+        <description>曲線の上り坂です</description></chip>
+    </chips>
+    <chips code="1120" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
+        <description>曲線の下り坂です</description></chip>
+    </chips>
+    <chips code="1121" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による上り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
+        <description>線のみです</description></chip>
+    </chips>
+    <chips code="1122" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <name>曲線による下り坂</name><view_size><Width>256</Width><Height>128</Height></view_size>
+        <description>線のみです</description></chip>
+    </chips>
+    <chips code="1123" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>96</X><Y>96</Y></center><name>乗れる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
+        <description>乗れる円です</description></chip>
+    </chips>
+    <chips code="1124" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>160</X><Y>128</Y></center><name>乗れる円</name><view_size><Width>320</Width><Height>288</Height></view_size>
+        <description>大</description></chip>
+    </chips>
+    <chips code="1125" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
+        <description>乗れる</description></chip>
+    </chips>
+    <chips code="1126" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>64</Height></view_size>
+        <description>乗れる。線のみ</description></chip>
+    </chips>
+    <chips code="1127" color="yellow">
+      <chip><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
+        <description>左回り</description></chip>
+    </chips>
+    <chips code="1128" color="yellow">
+      <chip><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>160</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>320</Width><Height>320</Height></view_size>
+        <description>右回り</description></chip>
+    </chips>
+    <chips code="1129" color="yellow">
+      <chip><xdraw><X>256</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
+        <description>棒５本  左回り</description></chip>
+    </chips>
+    <chips code="1130" color="yellow">
+      <chip><xdraw><X>288</X><Y>0</Y></xdraw>
+        <center><X>160</X><Y>192</Y></center><pattern><X>0</X><Y>0</Y></pattern><name>人口太陽</name><view_size><Width>352</Width><Height>384</Height></view_size>
+        <description>棒５本  右回り</description></chip>
+    </chips>
+    <chips code="1131" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
+        <description>左回り</description></chip>
+    </chips>
+    <chips code="1132" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
+        <description>右回り</description></chip>
+    </chips>
+    <chips code="1133" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
+        <description>上下移動　下から</description></chip>
+    </chips>
+    <chips code="1134" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
+        <description>上下移動　上から</description></chip>
+    </chips>
+    <chips code="1135" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>512</X><Y>224</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
+        <description>乗ると上がる</description></chip>
+    </chips>
+    <chips code="1136" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>0</X><Y>256</Y></xdraw>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
+        <description>乗ると下がる</description></chip>
+    </chips>
+    <chips code="1137" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <name>半円</name><view_size><Width>256</Width><Height>128</Height></view_size>
+        <description>柱付き</description></chip>
+    </chips>
+    <chips code="1138" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
+        <description>乗ると下がる</description></chip>
+    </chips>
+    <chips code="1139" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>64</Y></center><name>円</name><view_size><Width>192</Width><Height>160</Height></view_size>
+        <description>乗ると下がる。降りると上がる。</description></chip>
+    </chips>
+    <chips code="1140" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>96</Y></center><name>円</name><view_size><Width>256</Width><Height>256</Height></view_size>
+        <description>上下移動。上から。</description></chip>
+    </chips>
+    <chips code="1141" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center> <name>円</name><view_size><Width>256</Width><Height>288</Height></view_size>
+        <description>上下移動。下から。</description></chip>
+    </chips>
+    <chips code="1142" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
+        <description>2本。左回り。</description></chip>
+    </chips>
+    <chips code="1143" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
+        <description>2本。右回り。</description></chip>
+    </chips>
+    <chips code="1144" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
+        <description>2本。高速左回り。</description></chip>
+    </chips>
+    <chips code="1145" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <name>ファイヤーリング</name><view_size><Width>320</Width><Height>320</Height></view_size>
+        <description>2本。高速右回り。</description></chip>
+    </chips>
+    <chips code="1146" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>320</X><Y>256</Y></xdraw><name>ドッスンスン</name>
+        <description>落ちるだけ</description></chip>
+    </chips>
+    <chips code="1147" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>352</X><Y>256</Y></xdraw><name>ドッスンスン</name>
+        <description>動かない</description></chip>
+    </chips>
+    <chips code="1148" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>384</X><Y>256</Y></xdraw><name>ドッスンスン</name>
+        <description>左右へ押せる</description></chip>
+    </chips>
+    <chips code="1149" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>416</X><Y>256</Y></xdraw><name>ドッスンスン</name>
+        <description>上へ押せる</description></chip>
+    </chips>
+    <chips code="1150" color="yellow">
+      <chip><pattern><X>96</X><Y>576</Y></pattern><size><Width>96</Width><Height>64</Height></size>
+        <center><X>32</X><Y>0</Y></center><xdraw><X>448</X><Y>256</Y></xdraw><name>ドッスンスン</name>
+        <description>その場で跳ねる</description></chip>
+    </chips>
+    <chips code="1151" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <description>長いロープです。</description></chip>
+    </chips>
+    <chips code="1152" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>96</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <description>右から</description></chip>
+    </chips>
+    <chips code="1153" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>288</Y></xdraw>
+        <name>長いロープ</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <description>つかまると動く</description></chip>
+    </chips>
+    <chips code="1154" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>288</Y></xdraw>
+        <center><X>224</X><Y>0</Y></center><name>長いロープ</name><view_size><Width>256</Width><Height>96</Height></view_size>
+        <description>つかまると左から動く</description></chip>
+    </chips>
+    <chips code="1155" color="yellow">
+      <chip><pattern><X>192</X><Y>0</Y></pattern><rotate>90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
+        <description>左向き。縦４つ。</description></chip>
+    </chips>
+    <chips code="1156" color="yellow">
+      <chip><pattern><X>192</X><Y>0</Y></pattern><rotate>-90</rotate><repeat>4</repeat><name>トゲ</name><view_size><Width>32</Width><Height>128</Height></view_size>
+        <description>右向き。縦４つ。</description></chip>
+    </chips>
+    <chips code="1157" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
+        <description>ここへ全部持って行くとクリアです。</description></chip>
+    </chips>
+    <chips code="1158" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>288</Y></xdraw>
+        <center><X>32</X><Y>0</Y></center><name>左右へ押せるドッスンスンのゴール</name><view_size><Width>96</Width><Height>64</Height></view_size>
+        <description>ロック機能付きです。</description></chip>
+    </chips>
+    <chips code="1159" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
+        <description>右へ一歩通行。縦４つ。</description></chip>
+    </chips>
+    <chips code="1160" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>32</Width><Height>128</Height></view_size>
+        <description>左へ一方通行。縦４つ。</description></chip>
+    </chips>
+    <chips code="1161" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
+        <description>上へ一方通行。横４つ。</description></chip>
+    </chips>
+    <chips code="1162" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name><view_size><Width>128</Width><Height>32</Height></view_size>
+        <description>下へ一方通行。横４つ。</description></chip>
+    </chips>
+    <chips code="1163" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>320</X><Y>288</Y></xdraw><name>一方通行</name>
+        <description>右へ一方通行。表示なし。縦４つ。</description></chip>
+    </chips>
+    <chips code="1164" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>352</X><Y>288</Y></xdraw><name>一方通行</name>
+        <description>左へ一方通行。表示なし。縦４つ。</description></chip>
+    </chips>
+    <chips code="1165" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>288</Y></xdraw><name>一方通行</name>
+        <description>上へ一方通行。表示なし。横４つ。</description></chip>
+    </chips>
+    <chips code="1166" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>288</Y></xdraw><name>一方通行</name>
+        <description>下へ一方通行。表示なし。横４つ。</description></chip>
+    </chips>
+    <chips code="1167" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <description>左右に揺れます。</description></chip>
+    </chips>
+    <chips code="1168" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <description>左から</description></chip>
+    </chips>
+    <chips code="1169" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <description>広角</description></chip>
+    </chips>
+    <chips code="1170" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>288</Y></xdraw>
+        <center><X>0</X><Y>224</Y></center><name>ゆれる棒</name><view_size><Width>32</Width><Height>256</Height></view_size>
+        <description>広角。左から。</description></chip>
+    </chips>
+    <chips code="1171" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>96</X><Y>96</Y></center><name>跳ねる円</name><view_size><Width>224</Width><Height>224</Height></view_size>
+        <description>上下に跳ねます。</description></chip>
+    </chips>
+    <chips code="1172" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>448</X><Y>256</Y></xdraw>
+        <center><X>128</X><Y>128</Y></center><name>跳ねる円</name><view_size><Width>288</Width><Height>288</Height></view_size>
+        <description>大</description></chip>
+    </chips>
+    <chips code="1173" color="yellow">
+      <chip value="173"><pattern><X>0</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
+        <name>ワープ土管１</name><description>下向き</description></chip>
+    </chips>
+    <chips code="1174" color="yellow">
+      <chip><pattern><X>64</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
+        <name>ワープ土管２</name><description>下向き</description></chip>
+    </chips>
+    <chips code="1175" color="yellow">
+      <chip><pattern><X>128</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
+        <name>ワープ土管３</name><description>下向き</description></chip>
+    </chips>
+    <chips code="1176" color="yellow">
+      <chip><pattern><X>192</X><Y>192</Y></pattern><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
+        <name>ワープ土管４</name><description>下向き</description></chip>
+    </chips>
+    <chips code="1177" color="yellow">
+      <chip><pattern><X>0</X><Y>192</Y></pattern><xdraw><X>224</X><Y>320</Y></xdraw><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
+        <name>ワープ土管１</name><description>下向き。上向き１につながります。</description></chip>
+    </chips>
+    <chips code="1178" color="yellow">
+      <chip><pattern><X>64</X><Y>192</Y></pattern><xdraw><X>256</X><Y>320</Y></xdraw><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
+        <name>ワープ土管２</name><description>下向き。上向き２につながります。</description></chip>
+    </chips>
+    <chips code="1179" color="yellow">
+      <chip><pattern><X>128</X><Y>192</Y></pattern><xdraw><X>288</X><Y>320</Y></xdraw><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
+        <name>ワープ土管３</name><description>下向き。上向き３につながります。</description></chip>
+    </chips>
+    <chips code="1180" color="yellow">
+      <chip><pattern><X>192</X><Y>192</Y></pattern><xdraw><X>320</X><Y>320</Y></xdraw><rotate>180</rotate><size><Width>64</Width><Height>32</Height></size>
+        <name>ワープ土管４</name><description>下向き。上向き４につながります。</description></chip>
+    </chips>
+    <chips code="1181" color="yellow">
+      <chip><pattern><X>0</X><Y>32</Y></pattern><name>コンティニュー</name>
+        <description>残り人数のみ。</description></chip>
+    </chips>
+    <chips code="1182" color="yellow">
+      <chip><pattern><X>0</X><Y>32</Y></pattern><xdraw><X>160</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>？ブロック</name><description>コンティニュー</description></chip>
+    </chips>
+    <chips code="1183" color="yellow">
+      <chip><pattern><X>0</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
+        <name>ワープ土管１</name><description>左向き。左右１につながる。</description></chip>
+    </chips>
+    <chips code="1184" color="yellow">
+      <chip><pattern><X>64</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
+        <name>ワープ土管２</name><description>左向き。左右２につながる。</description></chip>
+    </chips>
+    <chips code="1185" color="yellow">
+      <chip><pattern><X>128</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
+        <name>ワープ土管３</name><description>左向き。左右３につながる。</description></chip>
+    </chips>
+    <chips code="1186" color="yellow">
+      <chip><pattern><X>192</X><Y>192</Y></pattern><rotate>-90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
+        <name>ワープ土管４</name><description>左向き。左右４につながる。</description></chip>
+    </chips>
+    <chips code="1187" color="yellow">
+      <chip><pattern><X>0</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
+        <name>ワープ土管１</name><description>右向き。左右１につながる。</description></chip>
+    </chips>
+    <chips code="1188" color="yellow">
+      <chip><pattern><X>64</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
+        <name>ワープ土管２</name><description>右向き。左右２につながる。</description></chip>
+    </chips>
+    <chips code="1189" color="yellow">
+      <chip><pattern><X>128</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
+        <name>ワープ土管３</name><description>右向き。左右３につながる。</description></chip>
+    </chips>
+    <chips code="1190" color="yellow">
+      <chip><pattern><X>192</X><Y>192</Y></pattern><rotate>90</rotate><size><Width>64</Width><Height>32</Height></size><view_size><Width>32</Width><Height>64</Height></view_size>
+        <name>ワープ土管４</name><description>右向き。左右４につながる。</description></chip>
+    </chips>
+    <chips code="1191" color="yellow">
+      <chip><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>64</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
+        <description>周囲１０ブロック以内に影響</description></chip>
+    </chips>
+    <chips code="1192" color="yellow">
+      <chip><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>96</X><Y>352</Y></xdraw><name>スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
+        <description>周囲１０ブロック以内に影響</description></chip>
+    </chips>
+    <chips code="1193" color="yellow">
+      <chip><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>128</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
+        <description>ＯＮで開く</description></chip>
+    </chips>
+    <chips code="1194" color="yellow">
+      <chip><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>160</X><Y>352</Y></xdraw><name>スイッチ式の扉</name>
+        <description>ＯＮで閉まる</description></chip>
+    </chips>
+    <chips code="1195" color="yellow">
+      <chip><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>192</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
+        <description>ＯＮでブロック４</description></chip>
+    </chips>
+    <chips code="1196" color="yellow">
+      <chip><pattern><X>160</X><Y>0</Y></pattern><xdraw><X>224</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
+        <description>ＯＦＦでブロック４</description></chip>
+    </chips>
+    <chips code="1197" color="yellow">
+      <chip><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+    </chips>
+    <chips code="1198" color="yellow">
+      <chip><pattern><X>192</X><Y>0</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式トゲ</name><view_size><Width>128</Width><Height>32</Height></view_size>
+        <description>ＯＮで出現</description></chip>
+    </chips>
+    <chips code="1199" color="yellow">
+      <chip><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+    </chips>
+    <chips code="1200" color="yellow">
+      <chip><pattern><X>0</X><Y>96</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_y>10</repeat_y><name>スイッチ式ハシゴ</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
+    </chips>
+    <chips code="1201" color="yellow">
+      <chip><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式電撃バリア縦</name><view_size><Width>32</Width><Height>128</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+    </chips>
+    <chips code="1202" color="yellow">
+      <chip><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式電撃バリア縦</name><view_size><Width>32</Width><Height>128</Height></view_size>
+        <description>ＯＮで出現</description></chip>
+    </chips>
+    <chips code="1203" color="yellow">
+      <chip><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式電撃バリア横</name><view_size><Width>128</Width><Height>32</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+    </chips>
+    <chips code="1204" color="yellow">
+      <chip><pattern><X>32</X><Y>384</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式電撃バリア横</name><view_size><Width>128</Width><Height>32</Height></view_size>
+        <description>ＯＮで出現</description></chip>
+    </chips>
+    <chips code="1205" color="yellow">
+      <chip><pattern><X>0</X><Y>608</Y></pattern><size><Width>96</Width><Height>32</Height></size>
+        <xdraw><X>320</X><Y>352</Y></xdraw><name>スイッチ式動く床</name>
+        <description>ＯＮで上</description></chip>
+    </chips>
+    <chips code="1206" color="yellow">
+      <chip><pattern><X>0</X><Y>608</Y></pattern><size><Width>96</Width><Height>32</Height></size>
+        <xdraw><X>352</X><Y>352</Y></xdraw><name>スイッチ式動く床</name>
+        <description>ＯＮで下</description></chip>
+    </chips>
+    <chips code="1207" color="yellow">
+      <chip><pattern><X>0</X><Y>608</Y></pattern><size><Width>96</Width><Height>32</Height></size>
+        <xdraw><X>384</X><Y>352</Y></xdraw><name>スイッチ式動く床</name>
+        <description>ＯＮで右</description></chip>
+    </chips>
+    <chips code="1208" color="yellow">
+      <chip><pattern><X>0</X><Y>608</Y></pattern><size><Width>96</Width><Height>32</Height></size>
+        <xdraw><X>416</X><Y>352</Y></xdraw><name>スイッチ式動く床</name>
+        <description>ＯＮで左</description></chip>
+    </chips>
+    <chips code="1209" color="yellow">
+      <chip><pattern><X>0</X><Y>608</Y></pattern><size><Width>96</Width><Height>32</Height></size>
+        <xdraw><X>320</X><Y>352</Y></xdraw><name>スイッチ式長く動く床</name>
+        <description>ＯＮで上</description></chip>
+    </chips>
+    <chips code="1210" color="yellow">
+      <chip><pattern><X>0</X><Y>608</Y></pattern><size><Width>96</Width><Height>32</Height></size>
+        <xdraw><X>384</X><Y>352</Y></xdraw><name>スイッチ式長く動く床</name>
+        <description>ＯＮで右</description></chip>
+    </chips>
+    <chips code="1211" color="yellow">
+      <chip><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>448</X><Y>352</Y></xdraw><name>スイッチ  重なるとＯＮ／ＯＦＦ</name>
+        <description>周囲５ブロック以内に影響</description></chip>
+    </chips>
+    <chips code="1212" color="yellow">
+      <chip><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>480</X><Y>352</Y></xdraw><name>スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
+        <description>周囲５ブロック以内に影響</description></chip>
+    </chips>
+    <chips code="1213" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw><name>？ブロック  スイッチＯＮの動作</name>
+        <description>周囲１０ブロック以内に影響</description></chip>
+    </chips>
+    <chips code="1214" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>0</X><Y>384</Y></xdraw><name>？ブロック  スイッチＯＦＦの動作</name>
+        <description>周囲１０ブロック以内に影響</description></chip>
+    </chips>
+    <chips code="1215" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw><name>？ブロック  スイッチＯＮの動作</name>
+        <description>周囲５ブロック以内に影響</description></chip>
+    </chips>
+    <chips code="1216" color="yellow">
+      <chip><pattern><X>32</X><Y>128</Y></pattern><xdraw><X>64</X><Y>384</Y></xdraw><name>？ブロック  スイッチＯＦＦの動作</name>
+        <description>周囲５ブロック以内に影響</description></chip>
+    </chips>
+    <chips code="1217" color="yellow">
+      <chip><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>96</X><Y>384</Y></xdraw><name>連動スイッチ  重なるとＯＮ／ＯＦＦ</name>
+        <description>マップ全体に影響  同スイッチへ連動</description></chip>
+    </chips>
+    <chips code="1218" color="yellow">
+      <chip><pattern><X>32</X><Y>32</Y></pattern><xdraw><X>128</X><Y>384</Y></xdraw><name>連動スイッチ  ↑キーでＯＮ／ＯＦＦ</name>
+        <description>マップ全体に影響  同スイッチへ連動</description></chip>
+    </chips>
+    <chips code="1219" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
+        <description>上から左</description></chip>
+    </chips>
+    <chips code="1220" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
+        <description>上から右</description></chip>
+    </chips>
+    <chips code="1221" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
+        <description>左から上</description></chip>
+    </chips>
+    <chips code="1222" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
+        <description>右から上</description></chip>
+    </chips>
+    <chips code="1223" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>288</X><Y>384</Y></xdraw>
+        <center><X>160</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
+        <description>左から下</description></chip>
+    </chips>
+    <chips code="1224" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>320</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>192</Width><Height>32</Height></view_size>
+        <description>右から下</description></chip>
+    </chips>
+    <chips code="1225" color="yellow">
+      <chip value="225"><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>352</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
+        <description>下から左</description></chip>
+    </chips>
+    <chips code="1226" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>384</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>192</Height></view_size>
+        <description>下から右</description></chip>
+    </chips>
+    <chips code="1227" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>416</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
+        <description>右から左回り</description></chip>
+    </chips>
+    <chips code="1228" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>448</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
+        <description>左から右回り</description></chip>
+    </chips>
+    <chips code="1229" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>480</X><Y>384</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
+        <description>右から右回り</description></chip>
+    </chips>
+    <chips code="1230" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>512</X><Y>384</Y></xdraw>
+        <center><X>128</X><Y>0</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>160</Width><Height>32</Height></view_size>
+        <description>左から左回り</description></chip>
+    </chips>
+    <chips code="1231" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>0</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
+        <description>上から左回り</description></chip>
+    </chips>
+    <chips code="1232" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>32</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>128</Y></center><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
+        <description>上から右回り</description></chip>
+    </chips>
+    <chips code="1233" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>64</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
+        <description>下から右回り</description></chip>
+    </chips>
+    <chips code="1234" color="yellow">
+      <chip><pattern><X>0</X><Y>160</Y></pattern><xdraw><X>96</X><Y>416</Y></xdraw><name>スイッチ式ファイヤーバー</name><view_size><Width>32</Width><Height>160</Height></view_size>
+        <description>下から左回り</description></chip>
+    </chips>
+    <chips code="1235" color="yellow">
+      <chip><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>256</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+    </chips>
+    <chips code="1236" color="yellow">
+      <chip><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>288</X><Y>352</Y></xdraw><repeat_x>4</repeat_x><name>スイッチ式ブロック横</name><view_size><Width>128</Width><Height>32</Height></view_size>
+        <description>ＯＮで出現</description></chip>
+    </chips>
+    <chips code="1237" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>416</X><Y>352</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
+        <description>ＯＮで左</description></chip>
+    </chips>
+    <chips code="1238" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>384</X><Y>352</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
+        <description>ＯＮで右</description></chip>
+    </chips>
+    <chips code="1239" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>416</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
+        <description>ＯＮで左</description></chip>
+    </chips>
+    <chips code="1240" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>416</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式速く動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
+        <description>ＯＮで右</description></chip>
+    </chips>
+    <chips code="1241" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>224</X><Y>384</Y></xdraw>
+        <center><X>224</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
+        <description>ＯＮで左から上</description></chip>
+    </chips>
+    <chips code="1242" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
+        <description>ＯＮで上から左</description></chip>
+    </chips>
+    <chips code="1243" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>256</X><Y>384</Y></xdraw>
+        <center><X>0</X><Y>160</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>256</Width><Height>224</Height></view_size>
+        <description>ＯＮで右から上</description></chip>
+    </chips>
+    <chips code="1244" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>192</X><Y>384</Y></xdraw>
+        <center><X>64</X><Y>192</Y></center><name>スイッチ式動くＴ字型</name><view_size><Width>160</Width><Height>256</Height></view_size>
+        <description>ＯＮで上から右</description></chip>
+    </chips>
+    <chips code="1245" color="yellow">
+      <chip><pattern><X>96</X><Y>32</Y></pattern>
+        <name>ＫＥＹ１</name><description>落ちない</description></chip>
+    </chips>
+    <chips code="1246" color="yellow">
+      <chip><pattern><X>128</X><Y>32</Y></pattern>
+        <name>ＫＥＹ２</name><description>落ちない</description></chip>
+    </chips>
+    <chips code="1247" color="yellow">
+      <chip><pattern><X>96</X><Y>672</Y></pattern><xdraw><X>384</X><Y>416</Y></xdraw>
+        <name>ＫＥＹ１で開く扉</name><description>ＫＥＹ１が１つで開く扉</description></chip>
+    </chips>
+    <chips code="1248" color="yellow">
+      <chip><pattern><X>128</X><Y>672</Y></pattern><xdraw><X>416</X><Y>416</Y></xdraw>
+        <name>ＫＥＹ２で開く扉</name><description>ＫＥＹ２が１つで開く扉</description></chip>
+    </chips>
+    <chips code="1249" color="yellow">
+      <chip><pattern><X>96</X><Y>32</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ＫＥＹ１</name><description>落ちる</description></chip>
+    </chips>
+    <chips code="1250" color="yellow">
+      <chip><pattern><X>128</X><Y>32</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>ＫＥＹ２</name><description>落ちる</description></chip>
+    </chips>
+    <chips code="1251" color="yellow">
+      <chip><pattern><X>160</X><Y>672</Y></pattern><xdraw><X>448</X><Y>416</Y></xdraw>
+        <name>ＫＥＹ１が３つで開く扉</name></chip>
+    </chips>
+    <chips code="1252" color="yellow">
+      <chip><pattern><X>64</X><Y>672</Y></pattern><xdraw><X>480</X><Y>416</Y></xdraw>
+        <name>ＫＥＹ２が３つで開く扉</name></chip>
+    </chips>
+    <chips code="1253" color="yellow">
+      <chip><pattern><X>256</X><Y>64</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>乗ると壊れるブロック</name></chip>
+    </chips>
+    <chips code="1254" color="yellow">
+      <chip><pattern><X>224</X><Y>96</Y></pattern><xdraw><X>512</X><Y>416</Y></xdraw>
+        <name>ＫＥＹ１が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
+    </chips>
+    <chips code="1255" color="yellow">
+      <chip><pattern><X>256</X><Y>96</Y></pattern><xdraw><X>0</X><Y>448</Y></xdraw>
+        <name>ＫＥＹ２が３つでＯＮの動作の人</name><description>周囲１０ブロック以内に影響します。</description></chip>
+    </chips>
+    <chips code="1256" color="yellow">
+      <chip><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>192</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで消える</description></chip>
+    </chips>
+    <chips code="1257" color="yellow">
+      <chip><pattern><X>96</X><Y>64</Y></pattern><xdraw><X>224</X><Y>448</Y></xdraw><repeat_y>4</repeat_y><name>スイッチ式ブロック縦</name><view_size><Width>32</Width><Height>320</Height></view_size>
+        <description>ＯＮで出現</description></chip>
+    </chips>
+    <chips code="1258" color="yellow">
+      <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>352</Y></xdraw>
+        <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
+    </chips>
+    <chips code="1259" color="yellow">
+      <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>384</Y></xdraw>
+        <name>ファイヤーボール等で破壊 ＯＮの動作</name><description>周囲５ブロック以内に影響</description></chip>
+    </chips>
+    <chips code="1260" color="yellow">
+      <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>64</X><Y>448</Y></xdraw>
+        <name>しっぽで破壊 ＯＮの動作</name><description>周囲１０ブロック以内に影響</description></chip>
+    </chips>
+    <chips code="1261" color="yellow">
+      <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>32</X><Y>448</Y></xdraw>
+        <name>しっぽで破壊 ＯＮの動作</name><description>周囲５ブロック以内に影響</description></chip>
+    </chips>
+    <chips code="1262" color="yellow">
+      <chip><pattern><X>288</X><Y>96</Y></pattern><xdraw><X>96</X><Y>448</Y></xdraw>
+        <name>得点でグレネードを売る人</name></chip>
+    </chips>
+    <chips code="1263" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>128</X><Y>448</Y></xdraw>
+        <name>下キーで降りられる上り坂</name><description>背景レイヤー使用時は透明</description></chip>
+    </chips>
+    <chips code="1264" color="yellow">
+      <chip><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>160</X><Y>448</Y></xdraw>
+        <name>下キーで降りられる下り坂</name><description>背景レイヤー使用時は透明</description></chip>
+    </chips>
+    <chips code="5100" color="magenta">
+      <chip><pattern><X>0</X><Y>448</Y></pattern><xdraw><X>96</X><Y>0</Y></xdraw>
+        <name>亀</name><description>足元に空白があると向きを変える</description></chip>
+    </chips>
+    <chips code="5110" color="magenta">
+      <chip><pattern><X>0</X><Y>448</Y></pattern>
+        <name>亀</name><description>足元に空白があると落ちる</description></chip>
+    </chips>
+    <chips code="6200" color="magenta">
+      <chip><pattern><X>0</X><Y>448</Y></pattern><xdraw><X>512</X><Y>0</Y></xdraw>
+        <name>亀</name><description>主人公を追尾</description></chip>
+    </chips>
+    <chips code="5200" color="magenta">
+      <chip><pattern><X>96</X><Y>448</Y></pattern>
+        <name>ピカチー</name><description>電撃　水中で消える</description></chip>
+    </chips>
+    <chips code="5201" color="magenta">
+      <chip><pattern><X>96</X><Y>448</Y></pattern>
+        <name>ピカチー</name><description>みずでっぽう  水平発射</description></chip>
+    </chips>
+    <chips code="5202" color="magenta">
+      <chip><pattern><X>96</X><Y>448</Y></pattern>
+        <name>ピカチー</name><description>電撃３発　水中でも使える</description></chip>
+    </chips>
+    <chips code="5203" color="magenta">
+      <chip><pattern><X>96</X><Y>448</Y></pattern>
+        <name>ピカチー</name><description>プラズマ砲</description></chip>
+    </chips>
+    <chips code="6400" color="magenta">
+      <chip><pattern><X>96</X><Y>448</Y></pattern><xdraw><X>512</X><Y>0</Y></xdraw>
+        <name>ピカチー</name><description>主人公を追尾</description></chip>
+    </chips>
+    <chips code="5300" color="magenta">
+      <chip><pattern><X>0</X><Y>480</Y></pattern>
+        <name>チコリン</name><description>はっぱカッター</description></chip>
+    </chips>
+    <chips code="5301" color="magenta">
+      <chip><pattern><X>0</X><Y>480</Y></pattern>
+        <name>チコリン</name><description>はっぱカッター 地形で消える</description></chip>
+    </chips>
+    <chips code="5310" color="magenta">
+      <chip><pattern><X>0</X><Y>480</Y></pattern>
+        <name>チコリン</name><description>ヒノララシを８匹投げる</description></chip>
+    </chips>
+    <chips code="5311" color="magenta">
+      <chip><pattern><X>0</X><Y>480</Y></pattern>
+        <name>チコリン</name><description>ヒノララシを無限に投げる</description></chip>
+    </chips>
+    <chips code="5312" color="magenta">
+      <chip><pattern><X>0</X><Y>480</Y></pattern>
+        <name>チコリン</name><description>マリリを８匹投げる</description></chip>
+    </chips>
+    <chips code="5313" color="magenta">
+      <chip><pattern><X>0</X><Y>480</Y></pattern>
+        <name>チコリン</name><description>マリリを無限に投げる</description></chip>
+    </chips>
+    <chips code="5320" color="magenta">
+      <chip><pattern><X>0</X><Y>480</Y></pattern>
+        <name>チコリン</name><description>はっぱカッター 乱れ射ち</description></chip>
+    </chips>
+    <chips code="5330" color="magenta">
+      <chip><pattern><X>0</X><Y>480</Y></pattern>
+        <name>チコリン</name><description>ソーラービーム 左へ発射</description></chip>
+    </chips>
+    <chips code="5335" color="magenta">
+      <chip><pattern><X>0</X><Y>480</Y></pattern>
+        <name>チコリン</name><description>ソーラービーム 右へ発射</description></chip>
+    </chips>
+    <chips code="5400" color="magenta">
+      <chip><pattern><X>64</X><Y>480</Y></pattern>
+        <name>ヒノララシ</name><description>踏めません</description></chip>
+    </chips>
+    <chips code="5500" color="magenta">
+      <chip><pattern><X>224</X><Y>448</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
+        <name>ポッピー</name><description>上下移動</description></chip>
+    </chips>
+    <chips code="5510" color="magenta">
+      <chip><pattern><X>224</X><Y>448</Y></pattern>
+        <name>ポッピー</name><description>直進</description></chip>
+    </chips>
+    <chips code="5520" color="magenta">
+      <chip><pattern><X>224</X><Y>448</Y></pattern>
+        <name>ポッピー</name><description>火の粉</description></chip>
+    </chips>
+    <chips code="5530" color="magenta">
+      <chip><pattern><X>224</X><Y>448</Y></pattern>
+        <name>ポッピー</name><description>火の粉 ３連射</description></chip>
+    </chips>
+    <chips code="5540" color="magenta">
+      <chip><pattern><X>224</X><Y>448</Y></pattern>
+        <name>ポッピー</name><description>バブル光線３発</description></chip>
+    </chips>
+    <chips code="5550" color="magenta">
+      <chip><pattern><X>224</X><Y>448</Y></pattern>
+        <name>ポッピー</name><description>ハリケンブラスト</description></chip>
+    </chips>
+    <chips code="5600" color="magenta">
+      <chip><pattern><X>128</X><Y>480</Y></pattern>
+        <name>マリリ</name><description>ジャンプで進む</description></chip>
+    </chips>
+    <chips code="5601" color="magenta">
+      <chip><pattern><X>128</X><Y>480</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <name>マリリ</name><description>その場でジャンプ</description></chip>
+    </chips>
+    <chips code="5602" color="magenta">
+      <chip><pattern><X>128</X><Y>480</Y></pattern>
+        <name>マリリ</name><description>左右にジャンプ</description></chip>
+    </chips>
+    <chips code="5660" color="magenta">
+      <chip><pattern><X>128</X><Y>480</Y></pattern><xdraw><X>288</X><Y>32</Y></xdraw>
+        <name>マリリ</name><description>左右移動</description></chip>
+    </chips>
+    <chips code="5670" color="magenta">
+      <chip><pattern><X>128</X><Y>480</Y></pattern>
+        <name>マリリ</name><description>体当たり</description></chip>
+    </chips>
+    <chips code="5700" color="magenta">
+      <chip><pattern><X>256</X><Y>480</Y></pattern>
+        <name>ヤチャモ</name><description>火の粉</description></chip>
+    </chips>
+    <chips code="5701" color="magenta">
+      <chip><pattern><X>256</X><Y>480</Y></pattern>
+        <name>ヤチャモ</name><description>何もしない</description></chip>
+    </chips>
+    <chips code="5702" color="magenta">
+      <chip><pattern><X>256</X><Y>480</Y></pattern>
+        <name>ヤチャモ</name><description>グレネード</description></chip>
+    </chips>
+    <chips code="5703" color="magenta">
+      <chip><pattern><X>256</X><Y>480</Y></pattern>
+        <name>ヤチャモ</name><description>はっぱカッター３発</description></chip>
+    </chips>
+    <chips code="5704" color="magenta">
+      <chip><pattern><X>256</X><Y>480</Y></pattern>
+        <name>ヤチャモ</name><description>プラズマ砲</description></chip>
+    </chips>
+    <chips code="5710" color="magenta">
+      <chip><pattern><X>256</X><Y>480</Y></pattern>
+        <name>ヤチャモ</name><description>火の粉 速射</description></chip>
+    </chips>
+    <chips code="5711" color="magenta">
+      <chip><pattern><X>256</X><Y>480</Y></pattern>
+        <name>ヤチャモ</name><description>火の粉 ３連射</description></chip>
+    </chips>
+    <chips code="5720" color="magenta">
+      <chip><pattern><X>256</X><Y>480</Y></pattern>
+        <name>ヤチャモ</name><description>破壊光線 左へ発射</description></chip>
+    </chips>
+    <chips code="5725" color="magenta">
+      <chip><pattern><X>256</X><Y>480</Y></pattern>
+        <name>ヤチャモ</name><description>破壊光線 右へ発射</description></chip>
+    </chips>
+    <chips code="5800" color="magenta">
+      <chip><pattern><X>0</X><Y>512</Y></pattern>
+        <name>ミズタロウ</name><description>みずでっぽう</description></chip>
+    </chips>
+    <chips code="5801" color="magenta">
+      <chip><pattern><X>0</X><Y>512</Y></pattern>
+        <name>ミズタロウ</name><description>はっぱカッター３発</description></chip>
+    </chips>
+    <chips code="5802" color="magenta">
+      <chip><pattern><X>0</X><Y>512</Y></pattern>
+        <name>ミズタロウ</name><description>電撃</description></chip>
+    </chips>
+    <chips code="5803" color="magenta">
+      <chip><pattern><X>0</X><Y>512</Y></pattern>
+        <name>ミズタロウ</name><description>みずでっぽう 水平発射</description></chip>
+    </chips>
+    <chips code="5804" color="magenta">
+      <chip><pattern><X>0</X><Y>512</Y></pattern>
+        <name>ミズタロウ</name><description>ハリケンブラスト</description></chip>
+    </chips>
+    <chips code="5900" color="magenta">
+      <chip><pattern><X>128</X><Y>512</Y></pattern>
+        <name>エアームズ</name><description>爆弾投下 壁に当たると止まる</description></chip>
+    </chips>
+    <chips code="5920" color="magenta">
+      <chip><pattern><X>128</X><Y>512</Y></pattern>
+        <name>エアームズ</name><description>その場で爆弾投下</description></chip>
+    </chips>
+    <chips code="5921" color="magenta">
+      <chip><pattern><X>128</X><Y>512</Y></pattern>
+        <name>エアームズ</name><description>その場でグレネード投下</description></chip>
+    </chips>
+    <chips code="5930" color="magenta">
+      <chip><pattern><X>128</X><Y>512</Y></pattern>
+        <name>エアームズ</name><description>左右に動いて爆弾投下</description></chip>
+    </chips>
+    <chips code="5950" color="magenta">
+      <chip><pattern><X>128</X><Y>512</Y></pattern>
+        <name>エアームズ</name><description>爆弾投下 壁に当たると向きを変える</description></chip>
+    </chips>
+    <chips code="6000" color="magenta">
+      <chip><pattern><X>192</X><Y>512</Y></pattern><xdraw><X>224</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>タイキング</name><description>左右移動　水中専用</description></chip>
+    </chips>
+    <chips code="6050" color="magenta">
+      <chip><pattern><X>192</X><Y>512</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
+        <name>タイキング</name><description>はねる</description></chip>
+    </chips>
+    <chips code="6060" color="magenta">
+      <chip><pattern><X>192</X><Y>512</Y></pattern><xdraw><X>512</X><Y>0</Y></xdraw>
+        <name>タイキング</name><description>縄張りをまもる</description></chip>
+    </chips>
+    <chips code="6070" color="magenta">
+      <chip><pattern><X>192</X><Y>512</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <name>タイキング</name><description>左回り</description></chip>
+    </chips>
+    <chips code="6080" color="magenta">
+      <chip><pattern><X>192</X><Y>512</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <name>タイキング</name><description>右回り</description></chip>
+    </chips>
+    <chips code="6100" color="magenta">
+      <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>224</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
+        <name>クラゲッソ</name><description>バブル光線　水中専用</description></chip>
+    </chips>
+    <chips code="6150" color="magenta">
+      <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
+        <name>クラゲッソ</name><description>近づくと落ちる</description></chip>
+    </chips>
+    <chips code="6160" color="magenta">
+      <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>0</Y></xdraw>
+        <name>クラゲッソ</name><description>縄張りをまもる</description></chip>
+    </chips>
+    <chips code="6170" color="magenta">
+      <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
+        <name>クラゲッソ</name><description>左回り</description></chip>
+    </chips>
+    <chips code="6180" color="magenta">
+      <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
+        <name>クラゲッソ</name><description>右回り</description></chip>
+    </chips>
+  </VarietyChip>
 </ChipDefinition>

@@ -7,686 +7,728 @@ using MasaoPlus.Properties;
 
 namespace MasaoPlus
 {
-	public class TextEditor : UserControl
-	{
-		public TextEditor()
-		{
-			this.InitializeComponent();
-		}
+    public class TextEditor : UserControl
+    {
+        public TextEditor()
+        {
+            InitializeComponent();
+        }
 
-		private void TextEditor_Load(object sender, EventArgs e)
-		{
-			this.StageTextEditor.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
-		}
+        private void TextEditor_Load(object sender, EventArgs e)
+        {
+            StageTextEditor.LanguageOption = RichTextBoxLanguageOptions.UIFonts;
+        }
 
-		public void InitEditor()
-		{
-			this.StageTextEditor.SelectionStart = 0;
-			this.TextLineNo.Refresh();
-			this.TextRuler.Refresh();
-		}
+        public void InitEditor()
+        {
+            StageTextEditor.SelectionStart = 0;
+            TextLineNo.Refresh();
+            TextRuler.Refresh();
+        }
 
-		public void AddBuffer()
-		{
-			if (this.Buffering)
-			{
-				if (this.TextBuffer.Count != this.ci + 1)
-				{
-					this.TextBuffer.RemoveRange(this.ci + 1, this.TextBuffer.Count - (this.ci + 1));
-					this.CursorBuffer.RemoveRange(this.ci + 1, this.CursorBuffer.Count - (this.ci + 1));
-				}
-				this.TextBuffer.Add((string)this.StageTextEditor.Text.Clone());
-				this.CursorBuffer.Add((this.StageTextEditor.SelectionStart == -1) ? 0 : this.StageTextEditor.SelectionStart);
-				this.ci = this.TextBuffer.Count - 1;
-				if (this.ci != 0)
-				{
-					Global.state.EditFlag = true;
-				}
-			}
-			this.SetUndoRedo();
-		}
+        public void AddBuffer()
+        {
+            if (Buffering)
+            {
+                if (TextBuffer.Count != ci + 1)
+                {
+                    TextBuffer.RemoveRange(ci + 1, TextBuffer.Count - (ci + 1));
+                    CursorBuffer.RemoveRange(ci + 1, CursorBuffer.Count - (ci + 1));
+                }
+                TextBuffer.Add((string)StageTextEditor.Text.Clone());
+                CursorBuffer.Add((StageTextEditor.SelectionStart == -1) ? 0 : StageTextEditor.SelectionStart);
+                ci = TextBuffer.Count - 1;
+                if (ci != 0)
+                {
+                    Global.state.EditFlag = true;
+                }
+            }
+            SetUndoRedo();
+        }
 
-		public void Undo()
-		{
-			if (this.ci <= 0)
-			{
-				return;
-			}
-			Global.state.EditFlag = true;
-			this.ci--;
-			this.Buffering = false;
-			this.StageTextEditor.Text = (string)this.TextBuffer[this.ci].Clone();
-			this.StageTextEditor.SelectionStart = this.CursorBuffer[this.ci];
-			this.Buffering = true;
-			this.SetUndoRedo();
-		}
+        public void Undo()
+        {
+            if (ci <= 0)
+            {
+                return;
+            }
+            Global.state.EditFlag = true;
+            ci--;
+            Buffering = false;
+            StageTextEditor.Text = (string)TextBuffer[ci].Clone();
+            StageTextEditor.SelectionStart = CursorBuffer[ci];
+            Buffering = true;
+            SetUndoRedo();
+        }
 
-		public void Redo()
-		{
-			if (this.ci >= this.TextBuffer.Count - 1)
-			{
-				return;
-			}
-			Global.state.EditFlag = true;
-			this.ci++;
-			this.Buffering = false;
-			this.StageTextEditor.Text = (string)this.TextBuffer[this.ci].Clone();
-			this.StageTextEditor.SelectionStart = this.CursorBuffer[this.ci];
-			this.Buffering = true;
-			this.SetUndoRedo();
-		}
+        public void Redo()
+        {
+            if (ci >= TextBuffer.Count - 1)
+            {
+                return;
+            }
+            Global.state.EditFlag = true;
+            ci++;
+            Buffering = false;
+            StageTextEditor.Text = (string)TextBuffer[ci].Clone();
+            StageTextEditor.SelectionStart = CursorBuffer[ci];
+            Buffering = true;
+            SetUndoRedo();
+        }
 
-		private void SetUndoRedo()
-		{
-			if (this.ci == 0)
-			{
-				this.TextUndo.Enabled = false;
-				Global.MainWnd.TMUndo.Enabled = false;
-			}
-			else
-			{
-				this.TextUndo.Enabled = true;
-				Global.MainWnd.TMUndo.Enabled = true;
-			}
-			if (this.ci == this.TextBuffer.Count - 1)
-			{
-				this.TextRedo.Enabled = false;
-				Global.MainWnd.TMRedo.Enabled = false;
-				return;
-			}
-			this.TextRedo.Enabled = true;
-			Global.MainWnd.TMRedo.Enabled = true;
-		}
+        private void SetUndoRedo()
+        {
+            if (ci == 0)
+            {
+                TextUndo.Enabled = false;
+                Global.MainWnd.TMUndo.Enabled = false;
+            }
+            else
+            {
+                TextUndo.Enabled = true;
+                Global.MainWnd.TMUndo.Enabled = true;
+            }
+            if (ci == TextBuffer.Count - 1)
+            {
+                TextRedo.Enabled = false;
+                Global.MainWnd.TMRedo.Enabled = false;
+                return;
+            }
+            TextRedo.Enabled = true;
+            Global.MainWnd.TMRedo.Enabled = true;
+        }
 
-		public void BufferClear()
-		{
-			this.TextBuffer.Clear();
-			this.CursorBuffer.Clear();
-			this.ci = this.TextBuffer.Count - 1;
-			this.SetUndoRedo();
-		}
+        public void BufferClear()
+        {
+            TextBuffer.Clear();
+            CursorBuffer.Clear();
+            ci = TextBuffer.Count - 1;
+            SetUndoRedo();
+        }
 
-		private void TextBoxOwnerPanel_Resize(object sender, EventArgs e)
-		{
-			this.StageTextEditor.Width = this.TextBoxOwnerPanel.Width - 2;
-			this.StageTextEditor.Height = this.TextBoxOwnerPanel.Height - 2;
-		}
+        private void TextBoxOwnerPanel_Resize(object sender, EventArgs e)
+        {
+            StageTextEditor.Width = TextBoxOwnerPanel.Width - 2;
+            StageTextEditor.Height = TextBoxOwnerPanel.Height - 2;
+        }
 
-		private void StageTextEditor_KeyDown(object sender, KeyEventArgs e)
-		{
-			this.TextLineNo.Refresh();
-			this.TextRuler.Refresh();
-			this.LineInfoUpdate();
-			if (!e.Control)
-			{
-				if (e.Modifiers == Keys.None)
-				{
-					switch (e.KeyCode)
-					{
-					case Keys.F7:
-						Global.MainWnd.EditPatternChip_Click(this, new EventArgs());
-						return;
-					case Keys.F8:
-						Global.MainWnd.EditBackground_Click(this, new EventArgs());
-						break;
-					default:
-						return;
-					}
-				}
-				return;
-			}
-			Keys keyCode = e.KeyCode;
-			switch (keyCode)
-			{
-			case Keys.Y:
-				this.Redo();
-				return;
-			case Keys.Z:
-				this.Undo();
-				return;
-			default:
-				switch (keyCode)
-				{
-				case Keys.F10:
-					Global.MainWnd.ProjectConfig_Click(this, new EventArgs());
-					return;
-				case Keys.F11:
-					Global.MainWnd.MSysConfig_Click(this, new EventArgs());
-					return;
-				default:
-					return;
-				}
-				break;
-			}
-		}
+        private void StageTextEditor_KeyDown(object sender, KeyEventArgs e)
+        {
+            TextLineNo.Refresh();
+            TextRuler.Refresh();
+            LineInfoUpdate();
+            if (!e.Control)
+            {
+                if (e.Modifiers == Keys.None)
+                {
+                    switch (e.KeyCode)
+                    {
+                        case Keys.F7:
+                            Global.MainWnd.EditPatternChip_Click(this, new EventArgs());
+                            return;
+                        case Keys.F8:
+                            Global.MainWnd.EditBackground_Click(this, new EventArgs());
+                            break;
+                        default:
+                            return;
+                    }
+                }
+                return;
+            }
+            Keys keyCode = e.KeyCode;
+            switch (keyCode)
+            {
+                case Keys.Y:
+                    Redo();
+                    return;
+                case Keys.Z:
+                    Undo();
+                    return;
+                default:
+                    switch (keyCode)
+                    {
+                        case Keys.F10:
+                            Global.MainWnd.ProjectConfig_Click(this, new EventArgs());
+                            return;
+                        case Keys.F11:
+                            Global.MainWnd.MSysConfig_Click(this, new EventArgs());
+                            return;
+                        default:
+                            return;
+                    }
+            }
+        }
 
-		private void StageTextEditor_KeyUp(object sender, KeyEventArgs e)
-		{
-		}
+        private void StageTextEditor_KeyUp(object sender, KeyEventArgs e)
+        {
+        }
 
-		private void StageTextEditor_MouseDown(object sender, MouseEventArgs e)
-		{
-		}
+        private void StageTextEditor_MouseDown(object sender, MouseEventArgs e)
+        {
+        }
 
-		private void StageTextEditor_VScroll(object sender, EventArgs e)
-		{
-			this.TextLineNo.Refresh();
-			this.TextRuler.Refresh();
-			this.LineInfoUpdate();
-		}
+        private void StageTextEditor_VScroll(object sender, EventArgs e)
+        {
+            TextLineNo.Refresh();
+            TextRuler.Refresh();
+            LineInfoUpdate();
+        }
 
-		private void LineInfoUpdate()
-		{
-			if (this.StageTextEditor.Text == "")
-			{
-				this.TextPositionInfo.Text = "";
-				this.LineInfo.Text = "";
-				this.TextStatus.Text = "入力がありません";
-				return;
-			}
-			int num = this.StageTextEditor.GetFirstCharIndexOfCurrentLine();
-			int lineFromCharIndex = this.StageTextEditor.GetLineFromCharIndex(num);
-			num = this.StageTextEditor.SelectionStart - num;
-			this.TextPositionInfo.Text = lineFromCharIndex.ToString() + "行 " + num.ToString() + "文字";
-			int length = this.StageTextEditor.Lines[lineFromCharIndex].Length;
-			this.LineInfo.Text = this.StageTextEditor.Lines.Length.ToString() + "行 " + length.ToString() + "文字";
-			if (length == Global.state.GetCByteWidth)
-			{
-				this.TextStatus.Text = "完了";
-				return;
-			}
-			if (length > Global.state.GetCByteWidth)
-			{
-				int num2 = length - Global.state.GetCByteWidth;
-				this.TextStatus.Text = "現在の行は" + num2.ToString() + "文字過剰です。";
-				return;
-			}
-			int num3 = Global.state.GetCByteWidth - length;
-			this.TextStatus.Text = "現在の行は" + num3.ToString() + "文字足りていません。";
-		}
+        private void LineInfoUpdate()
+        {
+            if (StageTextEditor.Text == "")
+            {
+                TextPositionInfo.Text = "";
+                LineInfo.Text = "";
+                TextStatus.Text = "入力がありません";
+                return;
+            }
+            int num = StageTextEditor.GetFirstCharIndexOfCurrentLine();
+            int lineFromCharIndex = StageTextEditor.GetLineFromCharIndex(num);
+            num = StageTextEditor.SelectionStart - num;
 
-		private void TextLineNo_Paint(object sender, PaintEventArgs e)
-		{
-			int num = Native.USER32.SendMessage(this.StageTextEditor.Handle, 206U, 0, 0);
-			int lastVisibleRowIndex = this.GetLastVisibleRowIndex();
-			int num2 = num;
-			while (num2 <= lastVisibleRowIndex && num2 < this.StageTextEditor.Lines.Length)
-			{
-				int num3 = this.StageTextEditor.GetFirstCharIndexFromLine(num2);
-				num3 = this.StageTextEditor.GetPositionFromCharIndex(num3).Y;
-				int num4 = (int)e.Graphics.MeasureString(num2.ToString(), this.StageTextEditor.Font).Width;
-				if (num2 == this.StageTextEditor.GetLineFromCharIndex(this.StageTextEditor.GetFirstCharIndexOfCurrentLine()))
-				{
-					int height = (int)e.Graphics.MeasureString(num2.ToString(), this.StageTextEditor.Font).Height;
-					e.Graphics.FillRectangle(Brushes.RoyalBlue, new Rectangle(new Point(0, num3), new Size(this.TextLineNo.Width, height)));
-					this.DrawText(e.Graphics, num2.ToString(), this.StageTextEditor.Font, new Point(this.TextLineNo.Width - num4 - Global.definition.LineNoPaddingRight, num3 + Global.definition.LineNoPaddingTop), Color.White);
-				}
-				else if (this.StageTextEditor.Lines[num2].Length == Global.state.GetCByteWidth && num2 < Global.cpd.runtime.Definitions.StageSize.y)
-				{
-					this.DrawText(e.Graphics, num2.ToString(), this.StageTextEditor.Font, new Point(this.TextLineNo.Width - num4 - Global.definition.LineNoPaddingRight, num3 + Global.definition.LineNoPaddingTop), Color.Black);
-				}
-				else
-				{
-					int height2 = (int)e.Graphics.MeasureString(num2.ToString(), this.StageTextEditor.Font).Height;
-					e.Graphics.FillRectangle(Brushes.Red, new Rectangle(new Point(0, num3), new Size(this.TextLineNo.Width, height2)));
-					this.DrawText(e.Graphics, num2.ToString(), this.StageTextEditor.Font, new Point(this.TextLineNo.Width - num4 - Global.definition.LineNoPaddingRight, num3 + Global.definition.LineNoPaddingTop), Color.White);
-				}
-				num2++;
-			}
-		}
+            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            {
+                string stagetext = StageTextEditor.Lines[lineFromCharIndex];
+                string[] stagetextarray = stagetext.Split(',');
+                string[] stagetextarray2 = new string(stagetext.ToCharArray(0,num)).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                TextPositionInfo.Text = $"{lineFromCharIndex}行 {stagetextarray2.Length}要素";
+                int length = stagetextarray.Length;
+                LineInfo.Text = $"{StageTextEditor.Lines.Length}行 {length}要素";
+                if (length == Global.state.GetCByteWidth)
+                {
+                    TextStatus.Text = "完了";
+                    return;
+                }
+                if (length > Global.state.GetCByteWidth)
+                {
+                    int num2 = length - Global.state.GetCByteWidth;
+                    TextStatus.Text = $"現在の行は{num2}要素過剰です。";
+                    return;
+                }
+                int num3 = Global.state.GetCByteWidth - length;
+                TextStatus.Text = $"現在の行は{num3}要素足りていません。";
+            }
+            else
+            {
+                TextPositionInfo.Text = $"{lineFromCharIndex}行 {num}文字";
+                int length = StageTextEditor.Lines[lineFromCharIndex].Length;
+                LineInfo.Text = $"{StageTextEditor.Lines.Length}行 {length}文字";
+                if (length == Global.state.GetCByteWidth)
+                {
+                    TextStatus.Text = "完了";
+                    return;
+                }
+                if (length > Global.state.GetCByteWidth)
+                {
+                    int num2 = length - Global.state.GetCByteWidth;
+                    TextStatus.Text = $"現在の行は{num2}文字過剰です。";
+                    return;
+                }
+                int num3 = Global.state.GetCByteWidth - length;
+                TextStatus.Text = $"現在の行は{num3}文字足りていません。";
+            }
+        }
 
-		private void DrawText(Graphics g, string s, Font f, Point p, Color c)
-		{
-			if (Global.config.localSystem.TextEditorGDIMode)
-			{
-				TextRenderer.DrawText(g, s, f, p, c);
-				return;
-			}
-			using (Brush brush = new SolidBrush(c))
-			{
-				g.DrawString(s, f, brush, p);
-			}
-		}
+        private void TextLineNo_Paint(object sender, PaintEventArgs e)
+        {
+            int num = Native.USER32.SendMessage(StageTextEditor.Handle, 206U, 0, 0);
+            int lastVisibleRowIndex = GetLastVisibleRowIndex();
+            int num2 = num;
+            while (num2 <= lastVisibleRowIndex && num2 < StageTextEditor.Lines.Length)
+            {
+                int num3 = StageTextEditor.GetFirstCharIndexFromLine(num2);
+                num3 = StageTextEditor.GetPositionFromCharIndex(num3).Y;
+                int height = (int)e.Graphics.MeasureString(num2.ToString(), StageTextEditor.Font).Height;
+                Color textColor;
+                int length;
+                if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                {
+                    length = StageTextEditor.Lines[num2].Split(',').Length;
+                }
+                else
+                {
+                    length = StageTextEditor.Lines[num2].Length;
+                }
 
-		public bool CanConvertTextSource()
-		{
-			if (this.StageTextEditor.Lines.Length != Global.state.GetCSSize.y)
-			{
-				return false;
-			}
-			foreach (string text in this.StageTextEditor.Lines)
-			{
-				if (text.Length != Global.state.GetCByteWidth)
-				{
-					return false;
-				}
-			}
-			return true;
-		}
+                if (num2 == StageTextEditor.GetLineFromCharIndex(StageTextEditor.GetFirstCharIndexOfCurrentLine()))
+                {
+                    e.Graphics.FillRectangle(Brushes.RoyalBlue, new Rectangle(new Point(0, num3), new Size(TextLineNo.Width, height)));
+                    textColor = Color.White;
+                }
+                else if (length == Global.state.GetCByteWidth && num2 < Global.cpd.runtime.Definitions.StageSize.y)
+                {
+                    textColor = Color.Black;
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(Brushes.Red, new Rectangle(new Point(0, num3), new Size(TextLineNo.Width, height)));
+                    textColor = Color.White;
+                }
 
-		private int GetLastVisibleRowIndex()
-		{
-			Point pt = new Point(0, this.StageTextEditor.Height);
-			int charIndexFromPosition = this.StageTextEditor.GetCharIndexFromPosition(pt);
-			return this.StageTextEditor.GetLineFromCharIndex(charIndexFromPosition);
-		}
+                int num4 = (int)e.Graphics.MeasureString(num2.ToString(), StageTextEditor.Font).Width;
+                DrawText(e.Graphics, num2.ToString(), StageTextEditor.Font, new Point(TextLineNo.Width - num4 - Global.definition.LineNoPaddingRight, num3 + Global.definition.LineNoPaddingTop), textColor);
+                num2++;
+            }
+        }
 
-		private void TextRuler_Paint(object sender, PaintEventArgs e)
-		{
-			int lineFromCharIndex = this.StageTextEditor.GetLineFromCharIndex(this.StageTextEditor.GetFirstCharIndexOfCurrentLine());
-			int rulerStep = Global.definition.RulerStep;
-			int num;
-			if (this.StageTextEditor.GetFirstCharIndexFromLine(lineFromCharIndex + 1) == -1)
-			{
-				num = this.StageTextEditor.TextLength - this.StageTextEditor.GetFirstCharIndexFromLine(lineFromCharIndex) - 1;
-			}
-			else
-			{
-				num = this.StageTextEditor.GetFirstCharIndexFromLine(lineFromCharIndex + 1) - this.StageTextEditor.GetFirstCharIndexFromLine(lineFromCharIndex) - 1;
-			}
-			int firstCharIndexFromLine = this.StageTextEditor.GetFirstCharIndexFromLine(lineFromCharIndex);
-			Point positionFromCharIndex = this.StageTextEditor.GetPositionFromCharIndex(this.StageTextEditor.SelectionStart);
-			Point positionFromCharIndex2 = this.StageTextEditor.GetPositionFromCharIndex(this.StageTextEditor.SelectionStart + 1);
-			e.Graphics.FillRectangle(Brushes.RoyalBlue, new Rectangle(new Point(positionFromCharIndex.X, 0), new Size((positionFromCharIndex2.X - positionFromCharIndex.X < 0) ? 5 : (positionFromCharIndex2.X - positionFromCharIndex.X), this.TextRuler.Height)));
-			bool flag = false;
-			for (int i = 0; i <= num; i += rulerStep)
-			{
-				if (Global.definition.RulerPutDot)
-				{
-					flag = (i % (rulerStep * 2) != 0);
-				}
-				positionFromCharIndex = this.StageTextEditor.GetPositionFromCharIndex(firstCharIndexFromLine + i);
-				if (positionFromCharIndex.X >= (flag ? 1 : ((int)e.Graphics.MeasureString(i.ToString(), this.StageTextEditor.Font).Width * -1)))
-				{
-					if (positionFromCharIndex.X > this.TextRuler.Width)
-					{
-						return;
-					}
-					if (flag)
-					{
-						e.Graphics.DrawLine(Pens.Black, new Point(positionFromCharIndex.X, this.TextRuler.Height / 2), new Point(positionFromCharIndex.X, this.TextRuler.Height));
-					}
-					else
-					{
-						e.Graphics.DrawLine(Pens.Black, new Point(positionFromCharIndex.X, 0), new Point(positionFromCharIndex.X, this.TextRuler.Height));
-						int num2 = (int)e.Graphics.MeasureString(i.ToString(), this.StageTextEditor.Font).Height;
-						this.DrawText(e.Graphics, i.ToString(), this.StageTextEditor.Font, new Point(positionFromCharIndex.X, this.TextRuler.Height - num2), Color.Black);
-					}
-				}
-			}
-		}
+        private void DrawText(Graphics g, string s, Font f, Point p, Color c)
+        {
+            if (Global.config.localSystem.TextEditorGDIMode)
+            {
+                TextRenderer.DrawText(g, s, f, p, c);
+                return;
+            }
+            using Brush brush = new SolidBrush(c);
+            g.DrawString(s, f, brush, p);
+        }
 
-		private void StageTextEditor_TextChanged(object sender, EventArgs e)
-		{
-			if (this.CanConvertTextSource())
-			{
-				this.EnableTranslate.Enabled = true;
-				this.EnableTranslate.Text = "テストプレイ/GUIコンバート可能";
-				this.TextTestRun.Enabled = true;
-				Global.MainWnd.TMTestRun.Enabled = true;
-			}
-			else
-			{
-				this.EnableTranslate.Enabled = false;
-				this.EnableTranslate.Text = "テストプレイ/GUIコンバート不可能";
-				this.TextTestRun.Enabled = false;
-				Global.MainWnd.TMTestRun.Enabled = false;
-			}
-			this.AddBuffer();
-		}
+        public bool CanConvertTextSource()
+        {
+            if (StageTextEditor.Lines.Length != Global.state.GetCSSize.y)
+            {
+                return false;
+            }
+            foreach (string text in StageTextEditor.Lines)
+            {
+                if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) 
+                {
+                    if (text.Split(',').Length != Global.state.GetCByteWidth)
+                    {
+                        return false;
+                    }
+                }
+                else if (text.Length != Global.state.GetCByteWidth)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
-		private void TextUndo_Click(object sender, EventArgs e)
-		{
-			this.Undo();
-		}
+        private int GetLastVisibleRowIndex()
+        {
+            Point pt = new Point(0, StageTextEditor.Height);
+            int charIndexFromPosition = StageTextEditor.GetCharIndexFromPosition(pt);
+            return StageTextEditor.GetLineFromCharIndex(charIndexFromPosition);
+        }
 
-		private void TextRedo_Click(object sender, EventArgs e)
-		{
-			this.Redo();
-		}
+        private void TextRuler_Paint(object sender, PaintEventArgs e)
+        {
+            int lineFromCharIndex = StageTextEditor.GetLineFromCharIndex(StageTextEditor.GetFirstCharIndexOfCurrentLine());
+            int rulerStep = Global.definition.RulerStep;
+            int num;
+            if (StageTextEditor.GetFirstCharIndexFromLine(lineFromCharIndex + 1) == -1)
+            {
+                num = StageTextEditor.TextLength - StageTextEditor.GetFirstCharIndexFromLine(lineFromCharIndex) - 1;
+            }
+            else
+            {
+                num = StageTextEditor.GetFirstCharIndexFromLine(lineFromCharIndex + 1) - StageTextEditor.GetFirstCharIndexFromLine(lineFromCharIndex) - 1;
+            }
+            int firstCharIndexFromLine = StageTextEditor.GetFirstCharIndexFromLine(lineFromCharIndex);
+            Point positionFromCharIndex = StageTextEditor.GetPositionFromCharIndex(StageTextEditor.SelectionStart);
+            Point positionFromCharIndex2 = StageTextEditor.GetPositionFromCharIndex(StageTextEditor.SelectionStart + 1);
+            e.Graphics.FillRectangle(Brushes.RoyalBlue, new Rectangle(new Point(positionFromCharIndex.X, 0), new Size((positionFromCharIndex2.X - positionFromCharIndex.X < 0) ? 5 : (positionFromCharIndex2.X - positionFromCharIndex.X), TextRuler.Height)));
+            bool flag = false;
+            for (int i = 0; i <= num; i += rulerStep)
+            {
+                if (Global.definition.RulerPutDot)
+                {
+                    flag = (i % (rulerStep * 2) != 0);
+                }
+                positionFromCharIndex = StageTextEditor.GetPositionFromCharIndex(firstCharIndexFromLine + i);
+                if (positionFromCharIndex.X >= (flag ? 1 : ((int)e.Graphics.MeasureString(i.ToString(), StageTextEditor.Font).Width * -1)))
+                {
+                    if (positionFromCharIndex.X > TextRuler.Width)
+                    {
+                        return;
+                    }
+                    if (flag)
+                    {
+                        e.Graphics.DrawLine(Pens.Black, new Point(positionFromCharIndex.X, TextRuler.Height / 2), new Point(positionFromCharIndex.X, TextRuler.Height));
+                    }
+                    else
+                    {
+                        e.Graphics.DrawLine(Pens.Black, new Point(positionFromCharIndex.X, 0), new Point(positionFromCharIndex.X, TextRuler.Height));
+                        int num2 = (int)e.Graphics.MeasureString(i.ToString(), StageTextEditor.Font).Height;
+                        DrawText(e.Graphics, i.ToString(), StageTextEditor.Font, new Point(positionFromCharIndex.X, TextRuler.Height - num2), Color.Black);
+                    }
+                }
+            }
+        }
 
-		private void TextCut_Click(object sender, EventArgs e)
-		{
-			this.StageTextEditor.Cut();
-		}
+        private void StageTextEditor_TextChanged(object sender, EventArgs e)
+        {
+            if (CanConvertTextSource())
+            {
+                EnableTranslate.Enabled = true;
+                EnableTranslate.Text = "テストプレイ/GUIコンバート可能";
+                TextTestRun.Enabled = true;
+                Global.MainWnd.TMTestRun.Enabled = true;
+            }
+            else
+            {
+                EnableTranslate.Enabled = false;
+                EnableTranslate.Text = "テストプレイ/GUIコンバート不可能";
+                TextTestRun.Enabled = false;
+                Global.MainWnd.TMTestRun.Enabled = false;
+            }
+            AddBuffer();
+        }
 
-		private void TextCopy_Click(object sender, EventArgs e)
-		{
-			this.StageTextEditor.Copy();
-		}
+        private void TextUndo_Click(object sender, EventArgs e)
+        {
+            Undo();
+        }
 
-		private void TextPaste_Click(object sender, EventArgs e)
-		{
-			this.StageTextEditor.Paste();
-		}
+        private void TextRedo_Click(object sender, EventArgs e)
+        {
+            Redo();
+        }
 
-		private void TextTestRun_Click(object sender, EventArgs e)
-		{
-			Global.MainWnd.Testrun();
-		}
+        private void TextCut_Click(object sender, EventArgs e)
+        {
+            StageTextEditor.Cut();
+        }
 
-		private void TextProjConfig_Click(object sender, EventArgs e)
-		{
-			Global.MainWnd.ProjectConfig_Click(sender, e);
-		}
+        private void TextCopy_Click(object sender, EventArgs e)
+        {
+            StageTextEditor.Copy();
+        }
 
-		private void StageTextEditor_SelectionChanged(object sender, EventArgs e)
-		{
-			this.TextLineNo.Refresh();
-			this.TextRuler.Refresh();
-			this.LineInfoUpdate();
-		}
+        private void TextPaste_Click(object sender, EventArgs e)
+        {
+            StageTextEditor.Paste();
+        }
 
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing && this.components != null)
-			{
-				this.components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+        private void TextTestRun_Click(object sender, EventArgs e)
+        {
+            Global.MainWnd.Testrun();
+        }
 
-		private void InitializeComponent()
-		{
-			this.TextEditorTable = new TableLayoutPanel();
-			this.TextRuler = new PictureBox();
-			this.TextLineNo = new PictureBox();
-			this.TextBoxOwnerPanel = new Panel();
-			this.StageTextEditor = new RichTextBox();
-			this.TextEditorStatus = new StatusStrip();
-			this.TextPositionInfo = new ToolStripStatusLabel();
-			this.TextStatus = new ToolStripStatusLabel();
-			this.LineInfo = new ToolStripStatusLabel();
-			this.EnableTranslate = new ToolStripStatusLabel();
-			this.TextEditorTool = new ToolStrip();
-			this.StageLayer = new ToolStripDropDownButton();
-			this.PatternChipLayer = new ToolStripMenuItem();
-			this.BackgroundLayer = new ToolStripMenuItem();
-			this.toolStripSeparator1 = new ToolStripSeparator();
-			this.TextUndo = new ToolStripButton();
-			this.TextRedo = new ToolStripButton();
-			this.toolStripSeparator5 = new ToolStripSeparator();
-			this.TextCut = new ToolStripButton();
-			this.TextCopy = new ToolStripButton();
-			this.TextPaste = new ToolStripButton();
-			this.toolStripSeparator9 = new ToolStripSeparator();
-			this.TextProjConfig = new ToolStripButton();
-			this.TextTestRun = new ToolStripButton();
-			this.TextEditorTable.SuspendLayout();
-			((ISupportInitialize)this.TextRuler).BeginInit();
-			((ISupportInitialize)this.TextLineNo).BeginInit();
-			this.TextBoxOwnerPanel.SuspendLayout();
-			this.TextEditorStatus.SuspendLayout();
-			this.TextEditorTool.SuspendLayout();
-			base.SuspendLayout();
-			this.TextEditorTable.BackColor = SystemColors.Control;
-			this.TextEditorTable.ColumnCount = 2;
-			this.TextEditorTable.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40f));
-			this.TextEditorTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f));
-			this.TextEditorTable.Controls.Add(this.TextRuler, 1, 0);
-			this.TextEditorTable.Controls.Add(this.TextLineNo, 0, 1);
-			this.TextEditorTable.Controls.Add(this.TextBoxOwnerPanel, 1, 1);
-			this.TextEditorTable.Dock = DockStyle.Fill;
-			this.TextEditorTable.Location = new Point(0, 25);
-			this.TextEditorTable.Name = "TextEditorTable";
-			this.TextEditorTable.RowCount = 2;
-			this.TextEditorTable.RowStyles.Add(new RowStyle(SizeType.Absolute, 23f));
-			this.TextEditorTable.RowStyles.Add(new RowStyle(SizeType.Percent, 100f));
-			this.TextEditorTable.RowStyles.Add(new RowStyle(SizeType.Absolute, 20f));
-			this.TextEditorTable.Size = new Size(553, 215);
-			this.TextEditorTable.TabIndex = 5;
-			this.TextRuler.BackColor = Color.White;
-			this.TextRuler.BorderStyle = BorderStyle.FixedSingle;
-			this.TextRuler.Dock = DockStyle.Fill;
-			this.TextRuler.Location = new Point(41, 1);
-			this.TextRuler.Margin = new Padding(1);
-			this.TextRuler.Name = "TextRuler";
-			this.TextRuler.Size = new Size(511, 21);
-			this.TextRuler.TabIndex = 2;
-			this.TextRuler.TabStop = false;
-			this.TextRuler.Paint += this.TextRuler_Paint;
-			this.TextLineNo.BackColor = Color.White;
-			this.TextLineNo.BorderStyle = BorderStyle.FixedSingle;
-			this.TextLineNo.Dock = DockStyle.Fill;
-			this.TextLineNo.Location = new Point(1, 24);
-			this.TextLineNo.Margin = new Padding(1);
-			this.TextLineNo.Name = "TextLineNo";
-			this.TextLineNo.Padding = new Padding(0, 0, 3, 0);
-			this.TextLineNo.Size = new Size(38, 190);
-			this.TextLineNo.TabIndex = 3;
-			this.TextLineNo.TabStop = false;
-			this.TextLineNo.Paint += this.TextLineNo_Paint;
-			this.TextBoxOwnerPanel.BackColor = Color.Gray;
-			this.TextBoxOwnerPanel.Controls.Add(this.StageTextEditor);
-			this.TextBoxOwnerPanel.Dock = DockStyle.Fill;
-			this.TextBoxOwnerPanel.Location = new Point(40, 23);
-			this.TextBoxOwnerPanel.Margin = new Padding(0);
-			this.TextBoxOwnerPanel.Name = "TextBoxOwnerPanel";
-			this.TextBoxOwnerPanel.Padding = new Padding(1);
-			this.TextBoxOwnerPanel.Size = new Size(513, 192);
-			this.TextBoxOwnerPanel.TabIndex = 1;
-			this.StageTextEditor.BorderStyle = BorderStyle.None;
-			this.StageTextEditor.DetectUrls = false;
-			this.StageTextEditor.Dock = DockStyle.Fill;
-			this.StageTextEditor.Font = new Font("ＭＳ ゴシック", 8.25f, FontStyle.Regular, GraphicsUnit.Point, 128);
-			this.StageTextEditor.Location = new Point(1, 1);
-			this.StageTextEditor.Margin = new Padding(1);
-			this.StageTextEditor.Name = "StageTextEditor";
-			this.StageTextEditor.Size = new Size(511, 190);
-			this.StageTextEditor.TabIndex = 0;
-			this.StageTextEditor.Text = "";
-			this.StageTextEditor.WordWrap = false;
-			this.StageTextEditor.KeyDown += this.StageTextEditor_KeyDown;
-			this.StageTextEditor.VScroll += this.StageTextEditor_VScroll;
-			this.StageTextEditor.MouseUp += this.StageTextEditor_MouseDown;
-			this.StageTextEditor.HScroll += this.StageTextEditor_VScroll;
-			this.StageTextEditor.SelectionChanged += this.StageTextEditor_SelectionChanged;
-			this.StageTextEditor.MouseMove += this.StageTextEditor_MouseDown;
-			this.StageTextEditor.MouseDown += this.StageTextEditor_MouseDown;
-			this.StageTextEditor.KeyUp += this.StageTextEditor_KeyUp;
-			this.StageTextEditor.TextChanged += this.StageTextEditor_TextChanged;
-			this.TextEditorStatus.Items.AddRange(new ToolStripItem[]
-			{
-				this.TextPositionInfo,
-				this.TextStatus,
-				this.LineInfo,
-				this.EnableTranslate
-			});
-			this.TextEditorStatus.Location = new Point(0, 240);
-			this.TextEditorStatus.Name = "TextEditorStatus";
-			this.TextEditorStatus.Size = new Size(553, 27);
-			this.TextEditorStatus.SizingGrip = false;
-			this.TextEditorStatus.TabIndex = 6;
-			this.TextEditorStatus.Text = "statusStrip1";
-			this.TextPositionInfo.BorderSides = ToolStripStatusLabelBorderSides.Right;
-			this.TextPositionInfo.Name = "TextPositionInfo";
-			this.TextPositionInfo.Size = new Size(42, 22);
-			this.TextPositionInfo.Text = "None";
-			this.TextPositionInfo.TextAlign = ContentAlignment.MiddleLeft;
-			this.TextStatus.Name = "TextStatus";
-			this.TextStatus.Size = new Size(226, 22);
-			this.TextStatus.Spring = true;
-			this.TextStatus.Text = "Ready.";
-			this.TextStatus.TextAlign = ContentAlignment.MiddleLeft;
-			this.LineInfo.BorderSides = (ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Right);
-			this.LineInfo.Name = "LineInfo";
-			this.LineInfo.Size = new Size(66, 22);
-			this.LineInfo.Text = "0行 0文字";
-			this.EnableTranslate.Enabled = false;
-			this.EnableTranslate.Name = "EnableTranslate";
-			this.EnableTranslate.Size = new Size(204, 22);
-			this.EnableTranslate.Text = "テストプレイ/GUIコンバート不可能";
-			this.TextEditorTool.Items.AddRange(new ToolStripItem[]
-			{
-				this.StageLayer,
-				this.toolStripSeparator1,
-				this.TextUndo,
-				this.TextRedo,
-				this.toolStripSeparator5,
-				this.TextCut,
-				this.TextCopy,
-				this.TextPaste,
-				this.toolStripSeparator9,
-				this.TextProjConfig,
-				this.TextTestRun
-			});
-			this.TextEditorTool.Location = new Point(0, 0);
-			this.TextEditorTool.Name = "TextEditorTool";
-			this.TextEditorTool.Size = new Size(553, 25);
-			this.TextEditorTool.TabIndex = 7;
-			this.TextEditorTool.Text = "toolStrip1";
-			this.StageLayer.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.StageLayer.DropDownItems.AddRange(new ToolStripItem[]
-			{
-				this.PatternChipLayer,
-				this.BackgroundLayer
-			});
-			this.StageLayer.Image = Resources.layers;
-			this.StageLayer.ImageTransparentColor = Color.Magenta;
-			this.StageLayer.Name = "StageLayer";
-			this.StageLayer.Size = new Size(29, 22);
-			this.StageLayer.Text = "レイヤーの変更";
-			this.PatternChipLayer.Checked = true;
-			this.PatternChipLayer.CheckState = CheckState.Checked;
-			this.PatternChipLayer.Name = "PatternChipLayer";
-			this.PatternChipLayer.ShortcutKeyDisplayString = "F7";
-			this.PatternChipLayer.Size = new Size(247, 22);
-			this.PatternChipLayer.Text = "パターンチップレイヤー(&P)";
-			this.BackgroundLayer.Name = "BackgroundLayer";
-			this.BackgroundLayer.ShortcutKeyDisplayString = "F8";
-			this.BackgroundLayer.Size = new Size(247, 22);
-			this.BackgroundLayer.Text = "背景チップレイヤー(&B)";
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new Size(6, 25);
-			this.TextUndo.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.TextUndo.Image = Resources.undo;
-			this.TextUndo.ImageTransparentColor = Color.Magenta;
-			this.TextUndo.Name = "TextUndo";
-			this.TextUndo.Size = new Size(23, 22);
-			this.TextUndo.Text = "元に戻す";
-			this.TextUndo.Click += this.TextUndo_Click;
-			this.TextRedo.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.TextRedo.Image = Resources.redo;
-			this.TextRedo.ImageTransparentColor = Color.Magenta;
-			this.TextRedo.Name = "TextRedo";
-			this.TextRedo.Size = new Size(23, 22);
-			this.TextRedo.Text = "やり直し";
-			this.TextRedo.Click += this.TextRedo_Click;
-			this.toolStripSeparator5.Name = "toolStripSeparator5";
-			this.toolStripSeparator5.Size = new Size(6, 25);
-			this.TextCut.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.TextCut.Image = Resources.cut;
-			this.TextCut.ImageTransparentColor = Color.Magenta;
-			this.TextCut.Name = "TextCut";
-			this.TextCut.Size = new Size(23, 22);
-			this.TextCut.Text = "切り取り";
-			this.TextCut.Click += this.TextCut_Click;
-			this.TextCopy.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.TextCopy.Image = Resources.copy;
-			this.TextCopy.ImageTransparentColor = Color.Magenta;
-			this.TextCopy.Name = "TextCopy";
-			this.TextCopy.Size = new Size(23, 22);
-			this.TextCopy.Text = "コピー";
-			this.TextCopy.Click += this.TextCopy_Click;
-			this.TextPaste.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.TextPaste.Image = Resources.paste;
-			this.TextPaste.ImageTransparentColor = Color.Magenta;
-			this.TextPaste.Name = "TextPaste";
-			this.TextPaste.Size = new Size(23, 22);
-			this.TextPaste.Text = "ペースト";
-			this.TextPaste.Click += this.TextPaste_Click;
-			this.toolStripSeparator9.Name = "toolStripSeparator9";
-			this.toolStripSeparator9.Size = new Size(6, 25);
-			this.TextProjConfig.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.TextProjConfig.Image = Resources.map_edit;
-			this.TextProjConfig.ImageTransparentColor = Color.Magenta;
-			this.TextProjConfig.Name = "TextProjConfig";
-			this.TextProjConfig.Size = new Size(23, 22);
-			this.TextProjConfig.Text = "プロジェクトの設定";
-			this.TextProjConfig.Click += this.TextProjConfig_Click;
-			this.TextTestRun.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			this.TextTestRun.Image = Resources.testrunstage;
-			this.TextTestRun.ImageTransparentColor = Color.Magenta;
-			this.TextTestRun.Name = "TextTestRun";
-			this.TextTestRun.Size = new Size(23, 22);
-			this.TextTestRun.Text = "テスト実行";
-			this.TextTestRun.Click += this.TextTestRun_Click;
-			base.AutoScaleDimensions = new SizeF(6f, 12f);
-			base.AutoScaleMode = AutoScaleMode.Font;
-			base.Controls.Add(this.TextEditorTable);
-			base.Controls.Add(this.TextEditorTool);
-			base.Controls.Add(this.TextEditorStatus);
-			base.Name = "TextEditor";
-			base.Size = new Size(553, 267);
-			base.Load += this.TextEditor_Load;
-			this.TextEditorTable.ResumeLayout(false);
-			((ISupportInitialize)this.TextRuler).EndInit();
-			((ISupportInitialize)this.TextLineNo).EndInit();
-			this.TextBoxOwnerPanel.ResumeLayout(false);
-			this.TextEditorStatus.ResumeLayout(false);
-			this.TextEditorStatus.PerformLayout();
-			this.TextEditorTool.ResumeLayout(false);
-			this.TextEditorTool.PerformLayout();
-			base.ResumeLayout(false);
-			base.PerformLayout();
-		}
+        private void TextProjConfig_Click(object sender, EventArgs e)
+        {
+            Global.MainWnd.ProjectConfig_Click(sender, e);
+        }
 
-		private List<string> TextBuffer = new List<string>();
+        private void StageTextEditor_SelectionChanged(object sender, EventArgs e)
+        {
+            TextLineNo.Refresh();
+            TextRuler.Refresh();
+            LineInfoUpdate();
+        }
 
-		private List<int> CursorBuffer = new List<int>();
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && components != null)
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		private int ci = -1;
+        private void InitializeComponent()
+        {
+            TextEditorTable = new TableLayoutPanel();
+            TextRuler = new PictureBox();
+            TextLineNo = new PictureBox();
+            TextBoxOwnerPanel = new Panel();
+            StageTextEditor = new RichTextBox();
+            TextEditorStatus = new StatusStrip();
+            TextPositionInfo = new ToolStripStatusLabel();
+            TextStatus = new ToolStripStatusLabel();
+            LineInfo = new ToolStripStatusLabel();
+            EnableTranslate = new ToolStripStatusLabel();
+            TextEditorTool = new ToolStrip();
+            StageLayer = new ToolStripDropDownButton();
+            PatternChipLayer = new ToolStripMenuItem();
+            BackgroundLayer = new ToolStripMenuItem();
+            toolStripSeparator1 = new ToolStripSeparator();
+            TextUndo = new ToolStripButton();
+            TextRedo = new ToolStripButton();
+            toolStripSeparator5 = new ToolStripSeparator();
+            TextCut = new ToolStripButton();
+            TextCopy = new ToolStripButton();
+            TextPaste = new ToolStripButton();
+            toolStripSeparator9 = new ToolStripSeparator();
+            TextProjConfig = new ToolStripButton();
+            TextTestRun = new ToolStripButton();
+            TextEditorTable.SuspendLayout();
+            ((ISupportInitialize)TextRuler).BeginInit();
+            ((ISupportInitialize)TextLineNo).BeginInit();
+            TextBoxOwnerPanel.SuspendLayout();
+            TextEditorStatus.SuspendLayout();
+            TextEditorTool.SuspendLayout();
+            SuspendLayout();
+            TextEditorTable.BackColor = SystemColors.Control;
+            TextEditorTable.ColumnCount = 2;
+            TextEditorTable.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40f));
+            TextEditorTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100f));
+            TextEditorTable.Controls.Add(TextRuler, 1, 0);
+            TextEditorTable.Controls.Add(TextLineNo, 0, 1);
+            TextEditorTable.Controls.Add(TextBoxOwnerPanel, 1, 1);
+            TextEditorTable.Dock = DockStyle.Fill;
+            TextEditorTable.Location = new Point(0, 25);
+            TextEditorTable.Name = "TextEditorTable";
+            TextEditorTable.RowCount = 2;
+            TextEditorTable.RowStyles.Add(new RowStyle(SizeType.Absolute, 23f));
+            TextEditorTable.RowStyles.Add(new RowStyle(SizeType.Percent, 100f));
+            TextEditorTable.RowStyles.Add(new RowStyle(SizeType.Absolute, 20f));
+            TextEditorTable.Size = new Size(553, 215);
+            TextEditorTable.TabIndex = 5;
+            TextRuler.BackColor = Color.White;
+            TextRuler.BorderStyle = BorderStyle.FixedSingle;
+            TextRuler.Dock = DockStyle.Fill;
+            TextRuler.Location = new Point(41, 1);
+            TextRuler.Margin = new Padding(1);
+            TextRuler.Name = "TextRuler";
+            TextRuler.Size = new Size(511, 21);
+            TextRuler.TabIndex = 2;
+            TextRuler.TabStop = false;
+            TextRuler.Paint += TextRuler_Paint;
+            TextLineNo.BackColor = Color.White;
+            TextLineNo.BorderStyle = BorderStyle.FixedSingle;
+            TextLineNo.Dock = DockStyle.Fill;
+            TextLineNo.Location = new Point(1, 24);
+            TextLineNo.Margin = new Padding(1);
+            TextLineNo.Name = "TextLineNo";
+            TextLineNo.Padding = new Padding(0, 0, 3, 0);
+            TextLineNo.Size = new Size(38, 190);
+            TextLineNo.TabIndex = 3;
+            TextLineNo.TabStop = false;
+            TextLineNo.Paint += TextLineNo_Paint;
+            TextBoxOwnerPanel.BackColor = Color.Gray;
+            TextBoxOwnerPanel.Controls.Add(StageTextEditor);
+            TextBoxOwnerPanel.Dock = DockStyle.Fill;
+            TextBoxOwnerPanel.Location = new Point(40, 23);
+            TextBoxOwnerPanel.Margin = new Padding(0);
+            TextBoxOwnerPanel.Name = "TextBoxOwnerPanel";
+            TextBoxOwnerPanel.Padding = new Padding(1);
+            TextBoxOwnerPanel.Size = new Size(513, 192);
+            TextBoxOwnerPanel.TabIndex = 1;
+            StageTextEditor.BorderStyle = BorderStyle.None;
+            StageTextEditor.DetectUrls = false;
+            StageTextEditor.Dock = DockStyle.Fill;
+            StageTextEditor.Font = new Font("ＭＳ ゴシック", 8.25f, FontStyle.Regular, GraphicsUnit.Point, 128);
+            StageTextEditor.Location = new Point(1, 1);
+            StageTextEditor.Margin = new Padding(1);
+            StageTextEditor.Name = "StageTextEditor";
+            StageTextEditor.Size = new Size(511, 190);
+            StageTextEditor.TabIndex = 0;
+            StageTextEditor.Text = "";
+            StageTextEditor.WordWrap = false;
+            StageTextEditor.KeyDown += StageTextEditor_KeyDown;
+            StageTextEditor.VScroll += StageTextEditor_VScroll;
+            StageTextEditor.MouseUp += StageTextEditor_MouseDown;
+            StageTextEditor.HScroll += StageTextEditor_VScroll;
+            StageTextEditor.SelectionChanged += StageTextEditor_SelectionChanged;
+            StageTextEditor.MouseMove += StageTextEditor_MouseDown;
+            StageTextEditor.MouseDown += StageTextEditor_MouseDown;
+            StageTextEditor.KeyUp += StageTextEditor_KeyUp;
+            StageTextEditor.TextChanged += StageTextEditor_TextChanged;
+            TextEditorStatus.Items.AddRange(new ToolStripItem[]
+            {
+                TextPositionInfo,
+                TextStatus,
+                LineInfo,
+                EnableTranslate
+            });
+            TextEditorStatus.Location = new Point(0, 240);
+            TextEditorStatus.Name = "TextEditorStatus";
+            TextEditorStatus.Size = new Size(553, 27);
+            TextEditorStatus.SizingGrip = false;
+            TextEditorStatus.TabIndex = 6;
+            TextEditorStatus.Text = "statusStrip1";
+            TextPositionInfo.BorderSides = ToolStripStatusLabelBorderSides.Right;
+            TextPositionInfo.Name = "TextPositionInfo";
+            TextPositionInfo.Size = new Size(42, 22);
+            TextPositionInfo.Text = "None";
+            TextPositionInfo.TextAlign = ContentAlignment.MiddleLeft;
+            TextStatus.Name = "TextStatus";
+            TextStatus.Size = new Size(226, 22);
+            TextStatus.Spring = true;
+            TextStatus.Text = "Ready.";
+            TextStatus.TextAlign = ContentAlignment.MiddleLeft;
+            LineInfo.BorderSides = (ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Right);
+            LineInfo.Name = "LineInfo";
+            LineInfo.Size = new Size(66, 22);
+            LineInfo.Text = "0行 0文字";
+            EnableTranslate.Enabled = false;
+            EnableTranslate.Name = "EnableTranslate";
+            EnableTranslate.Size = new Size(204, 22);
+            EnableTranslate.Text = "テストプレイ/GUIコンバート不可能";
+            TextEditorTool.Items.AddRange(new ToolStripItem[]
+            {
+                StageLayer,
+                toolStripSeparator1,
+                TextUndo,
+                TextRedo,
+                toolStripSeparator5,
+                TextCut,
+                TextCopy,
+                TextPaste,
+                toolStripSeparator9,
+                TextProjConfig,
+                TextTestRun
+            });
+            TextEditorTool.Location = new Point(0, 0);
+            TextEditorTool.Name = "TextEditorTool";
+            TextEditorTool.Size = new Size(553, 25);
+            TextEditorTool.TabIndex = 7;
+            TextEditorTool.Text = "toolStrip1";
+            StageLayer.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            StageLayer.DropDownItems.AddRange(new ToolStripItem[]
+            {
+                PatternChipLayer,
+                BackgroundLayer
+            });
+            StageLayer.Image = Resources.layers;
+            StageLayer.ImageTransparentColor = Color.Magenta;
+            StageLayer.Name = "StageLayer";
+            StageLayer.Size = new Size(29, 22);
+            StageLayer.Text = "レイヤーの変更";
+            PatternChipLayer.Checked = true;
+            PatternChipLayer.CheckState = CheckState.Checked;
+            PatternChipLayer.Name = "PatternChipLayer";
+            PatternChipLayer.ShortcutKeyDisplayString = "F7";
+            PatternChipLayer.Size = new Size(247, 22);
+            PatternChipLayer.Text = "パターンチップレイヤー(&P)";
+            BackgroundLayer.Name = "BackgroundLayer";
+            BackgroundLayer.ShortcutKeyDisplayString = "F8";
+            BackgroundLayer.Size = new Size(247, 22);
+            BackgroundLayer.Text = "背景チップレイヤー(&B)";
+            toolStripSeparator1.Name = "toolStripSeparator1";
+            toolStripSeparator1.Size = new Size(6, 25);
+            TextUndo.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            TextUndo.Image = Resources.undo;
+            TextUndo.ImageTransparentColor = Color.Magenta;
+            TextUndo.Name = "TextUndo";
+            TextUndo.Size = new Size(23, 22);
+            TextUndo.Text = "元に戻す";
+            TextUndo.Click += TextUndo_Click;
+            TextRedo.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            TextRedo.Image = Resources.redo;
+            TextRedo.ImageTransparentColor = Color.Magenta;
+            TextRedo.Name = "TextRedo";
+            TextRedo.Size = new Size(23, 22);
+            TextRedo.Text = "やり直し";
+            TextRedo.Click += TextRedo_Click;
+            toolStripSeparator5.Name = "toolStripSeparator5";
+            toolStripSeparator5.Size = new Size(6, 25);
+            TextCut.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            TextCut.Image = Resources.cut;
+            TextCut.ImageTransparentColor = Color.Magenta;
+            TextCut.Name = "TextCut";
+            TextCut.Size = new Size(23, 22);
+            TextCut.Text = "切り取り";
+            TextCut.Click += TextCut_Click;
+            TextCopy.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            TextCopy.Image = Resources.copy;
+            TextCopy.ImageTransparentColor = Color.Magenta;
+            TextCopy.Name = "TextCopy";
+            TextCopy.Size = new Size(23, 22);
+            TextCopy.Text = "コピー";
+            TextCopy.Click += TextCopy_Click;
+            TextPaste.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            TextPaste.Image = Resources.paste;
+            TextPaste.ImageTransparentColor = Color.Magenta;
+            TextPaste.Name = "TextPaste";
+            TextPaste.Size = new Size(23, 22);
+            TextPaste.Text = "ペースト";
+            TextPaste.Click += TextPaste_Click;
+            toolStripSeparator9.Name = "toolStripSeparator9";
+            toolStripSeparator9.Size = new Size(6, 25);
+            TextProjConfig.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            TextProjConfig.Image = Resources.map_edit;
+            TextProjConfig.ImageTransparentColor = Color.Magenta;
+            TextProjConfig.Name = "TextProjConfig";
+            TextProjConfig.Size = new Size(23, 22);
+            TextProjConfig.Text = "プロジェクトの設定";
+            TextProjConfig.Click += TextProjConfig_Click;
+            TextTestRun.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            TextTestRun.Image = Resources.testrunstage;
+            TextTestRun.ImageTransparentColor = Color.Magenta;
+            TextTestRun.Name = "TextTestRun";
+            TextTestRun.Size = new Size(23, 22);
+            TextTestRun.Text = "テスト実行";
+            TextTestRun.Click += TextTestRun_Click;
+            AutoScaleDimensions = new SizeF(6f, 12f);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(TextEditorTable);
+            Controls.Add(TextEditorTool);
+            Controls.Add(TextEditorStatus);
+            Name = "TextEditor";
+            Size = new Size(553, 267);
+            Load += TextEditor_Load;
+            TextEditorTable.ResumeLayout(false);
+            ((ISupportInitialize)TextRuler).EndInit();
+            ((ISupportInitialize)TextLineNo).EndInit();
+            TextBoxOwnerPanel.ResumeLayout(false);
+            TextEditorStatus.ResumeLayout(false);
+            TextEditorStatus.PerformLayout();
+            TextEditorTool.ResumeLayout(false);
+            TextEditorTool.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
+        }
 
-		private bool Buffering = true;
+        private readonly List<string> TextBuffer = new List<string>();
 
-		private IContainer components;
+        private readonly List<int> CursorBuffer = new List<int>();
 
-		private TableLayoutPanel TextEditorTable;
+        private int ci = -1;
 
-		private PictureBox TextRuler;
+        private bool Buffering = true;
 
-		private PictureBox TextLineNo;
+        private readonly IContainer components;
 
-		private Panel TextBoxOwnerPanel;
+        private TableLayoutPanel TextEditorTable;
 
-		private StatusStrip TextEditorStatus;
+        private PictureBox TextRuler;
 
-		private ToolStripStatusLabel TextPositionInfo;
+        private PictureBox TextLineNo;
 
-		private ToolStripStatusLabel TextStatus;
+        private Panel TextBoxOwnerPanel;
 
-		private ToolStripStatusLabel LineInfo;
+        private StatusStrip TextEditorStatus;
 
-		private ToolStripStatusLabel EnableTranslate;
+        private ToolStripStatusLabel TextPositionInfo;
 
-		private ToolStrip TextEditorTool;
+        private ToolStripStatusLabel TextStatus;
 
-		private ToolStripButton TextUndo;
+        private ToolStripStatusLabel LineInfo;
 
-		private ToolStripButton TextRedo;
+        private ToolStripStatusLabel EnableTranslate;
 
-		private ToolStripSeparator toolStripSeparator5;
+        private ToolStrip TextEditorTool;
 
-		private ToolStripButton TextCut;
+        private ToolStripButton TextUndo;
 
-		private ToolStripButton TextCopy;
+        private ToolStripButton TextRedo;
 
-		private ToolStripButton TextPaste;
+        private ToolStripSeparator toolStripSeparator5;
 
-		private ToolStripSeparator toolStripSeparator9;
+        private ToolStripButton TextCut;
 
-		private ToolStripButton TextProjConfig;
+        private ToolStripButton TextCopy;
 
-		private ToolStripButton TextTestRun;
+        private ToolStripButton TextPaste;
 
-		public RichTextBox StageTextEditor;
+        private ToolStripSeparator toolStripSeparator9;
 
-		private ToolStripSeparator toolStripSeparator1;
+        private ToolStripButton TextProjConfig;
 
-		public ToolStripDropDownButton StageLayer;
+        private ToolStripButton TextTestRun;
 
-		public ToolStripMenuItem PatternChipLayer;
+        public RichTextBox StageTextEditor;
 
-		public ToolStripMenuItem BackgroundLayer;
-	}
+        private ToolStripSeparator toolStripSeparator1;
+
+        public ToolStripDropDownButton StageLayer;
+
+        public ToolStripMenuItem PatternChipLayer;
+
+        public ToolStripMenuItem BackgroundLayer;
+    }
 }

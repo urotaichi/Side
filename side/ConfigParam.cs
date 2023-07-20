@@ -3,87 +3,74 @@ using System.Xml.Serialization;
 
 namespace MasaoPlus
 {
-	[XmlType("param")]
-	[Serializable]
-	public struct ConfigParam
-	{
-		[XmlIgnore]
-		public ConfigParam.Types Type
-		{
-			get
-			{
-				string typestr;
-				switch (typestr = this.Typestr)
-				{
-				case "bool":
-					return ConfigParam.Types.b;
-				case "bool21":
-					return ConfigParam.Types.b2;
-				case "bool10":
-					return ConfigParam.Types.b0;
-				case "int":
-					return ConfigParam.Types.i;
-				case "string":
-					return ConfigParam.Types.s;
-				case "text":
-					return ConfigParam.Types.t;
-				case "file":
-					return ConfigParam.Types.f;
-				case "file_img":
-					return ConfigParam.Types.f_i;
-				case "file_audio":
-					return ConfigParam.Types.f_a;
-				case "list":
-					return ConfigParam.Types.l;
-				case "list_athletic":
-					return ConfigParam.Types.l_a;
-				case "color":
-					return ConfigParam.Types.c;
-				}
-				return ConfigParam.Types.UnKnown;
-			}
-		}
+    [XmlType("param")]
+    [Serializable]
+    public struct ConfigParam
+    {
+        [XmlIgnore]
+        public Types Type
+        {
+            get
+            {
+                return Typestr switch
+                {
+                    "bool" => Types.b,
+                    "bool21" => Types.b2,
+                    "bool10" => Types.b0,
+                    "int" => Types.i,
+                    "string" => Types.s,
+                    "text" => Types.t,
+                    "file" => Types.f,
+                    "file_img" => Types.f_i,
+                    "file_audio" => Types.f_a,
+                    "list" => Types.l,
+                    "list_athletic" => Types.l_a,
+                    "color" => Types.c,
+                    _ => Types.UnKnown,
+                };
+            }
+        }
 
-		[XmlAttribute("type")]
-		public string Typestr;
+        [XmlAttribute("type")]
+        public string Typestr;
 
-		[XmlAttribute("value")]
-		public string Value;
+        [XmlAttribute("value")]
+        public string Value;
 
-		[XmlAttribute("desc")]
-		public string Description;
+        [XmlAttribute("desc")]
+        public string Description;
 
-		[XmlAttribute("name")]
-		public string Name;
+        [XmlAttribute("name")]
+        public string Name;
 
-		[XmlAttribute("rel")]
-		public string Relation;
+        [XmlAttribute("rel")]
+        public string Relation;
 
-		[XmlAttribute("chip")]
-		public string ChipRelation;
+        [XmlAttribute("chip")]
+        public string ChipRelation;
 
-		[XmlAttribute("category")]
-		public string Category;
+        [XmlAttribute("category")]
+        public string Category;
 
-		[XmlAttribute("row")]
-		public int Rows;
+        [XmlAttribute("row")]
+        public int Rows;
 
-		[XmlAttribute("stage")]
-		public int RequireStages;
+        [XmlAttribute("stage")]
+        public int RequireStages;
 
-		[XmlElement("list")]
-		public string[] ListItems;
+        [XmlElement("list")]
+        public string[] ListItems;
 
-		public enum Types
-		{
+        public enum Types
+        {
             b, b2, b0,
-			s,
-			i,
-			t,
+            s,
+            i,
+            t,
             f, f_i, f_a,
             l, l_a,
-			c,
-			UnKnown
-		}
-	}
+            c,
+            UnKnown
+        }
+    }
 }

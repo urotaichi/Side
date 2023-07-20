@@ -26,7 +26,8 @@ namespace MasaoPlus
     }
     internal static class AthleticView
     {
-        static AthleticView() {
+        static AthleticView()
+        {
             Pen pen, pen2;
             SolidBrush brush;
             double rad = 0;

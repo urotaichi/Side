@@ -18,7 +18,8 @@
 			this.Accept = new global::System.Windows.Forms.Button();
 			this.MainTab = new global::System.Windows.Forms.TabControl();
 			this.A = new global::System.Windows.Forms.TabPage();
-			this.UseWorldmap = new global::System.Windows.Forms.CheckBox();
+            this.UseWorldmap = new global::System.Windows.Forms.CheckBox();
+            if (!Global.cpd.runtime.Definitions.Package.Contains("28")) this.Use3rdMapData = new global::System.Windows.Forms.CheckBox();
 			this.label17 = new global::System.Windows.Forms.Label();
 			this.label15 = new global::System.Windows.Forms.Label();
 			this.ProjNum = new global::System.Windows.Forms.NumericUpDown();
@@ -102,7 +103,6 @@
 			this.Cancel.TabIndex = 2;
 			this.Cancel.Text = "キャンセル";
 			this.Cancel.UseVisualStyleBackColor = true;
-			this.Accept.DialogResult = global::System.Windows.Forms.DialogResult.Cancel;
 			this.Accept.Location = new global::System.Drawing.Point(310, 310);
 			this.Accept.Name = "Accept";
 			this.Accept.Size = new global::System.Drawing.Size(109, 29);
@@ -122,7 +122,8 @@
 			this.MainTab.Size = new global::System.Drawing.Size(522, 292);
 			this.MainTab.TabIndex = 0;
 			this.A.Controls.Add(this.UseWorldmap);
-			this.A.Controls.Add(this.label17);
+            this.A.Controls.Add(this.Use3rdMapData);
+            this.A.Controls.Add(this.label17);
 			this.A.Controls.Add(this.label15);
 			this.A.Controls.Add(this.ProjNum);
 			this.A.Controls.Add(this.ProjectName);
@@ -145,7 +146,17 @@
 			this.UseWorldmap.TabIndex = 10;
 			this.UseWorldmap.Text = "マップを利用してステージ選択する(&M)";
 			this.UseWorldmap.UseVisualStyleBackColor = true;
-			this.label17.AutoSize = true;
+			if (!Global.cpd.runtime.Definitions.Package.Contains("28"))
+            {
+                this.Use3rdMapData.AutoSize = true;
+                this.Use3rdMapData.Location = new global::System.Drawing.Point(6, 125);
+                this.Use3rdMapData.Name = "Use3rdMapData";
+                this.Use3rdMapData.Size = new global::System.Drawing.Size(198, 16);
+                this.Use3rdMapData.TabIndex = 10;
+                this.Use3rdMapData.Text = "第3版マップデータを有効にする(FX版のみ。有効時にステージフォーマットの設定が無効化されます。)(&L)";
+                this.Use3rdMapData.UseVisualStyleBackColor = true;
+            }
+            this.label17.AutoSize = true;
 			this.label17.Location = new global::System.Drawing.Point(88, 53);
 			this.label17.Name = "label17";
 			this.label17.Size = new global::System.Drawing.Size(92, 12);
@@ -646,7 +657,9 @@
 
 		private global::System.Windows.Forms.CheckBox UseWorldmap;
 
-		private global::System.Windows.Forms.ContextMenuStrip EditContext;
+        private global::System.Windows.Forms.CheckBox Use3rdMapData;
+
+        private global::System.Windows.Forms.ContextMenuStrip EditContext;
 
 		private global::System.Windows.Forms.ToolStripMenuItem TextUndo;
 
