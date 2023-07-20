@@ -241,7 +241,9 @@ namespace MasaoPlus.Dialogs
                 Regex regex2 = new Regex(@"<[ ]*PARAM[ ]+NAME=""(?<name>.*?)""[ ]+VALUE=""(?<value>.*?)"".*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 Regex regex_script = new Regex(@"<[ ]*?script.*?>.*?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 if (regex_script.IsMatch(input))
+                {
                     regex2 = new Regex(@"(""|')(?<name>.*?)(""|')\s*?:\s*?(""|')(?<value>.*?)(?<!\\)(""|')(,|\s*?)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                }
 
                 Dictionary<string, string> dictionary = new Dictionary<string, string>();
                 Match match2 = regex2.Match(input);
@@ -279,6 +281,10 @@ namespace MasaoPlus.Dialogs
                     StatusText.Text = "レイヤーソース生成中[4/4]...";
                     StatusText.Refresh();
                     GetMapSource(ref project.LayerData4, project.Runtime.Definitions.LayerName4, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
+                }
+                if(dictionary.ContainsKey("advanced-map") || dictionary.ContainsKey("advance-map"))
+                {
+                    // 第3版マップデータを含む場合の処理
                 }
                 StatusText.Text = "パラメータ反映中...";
                 StatusText.Refresh();
@@ -343,7 +349,7 @@ namespace MasaoPlus.Dialogs
                                     "hitokoto2" => "ついに、ここまで来ましたね。\r\n0\r\n0",
                                     "hitokoto3" => "オレは、世界一になる男だ。\r\n0\r\n0",
                                     "hitokoto4" => "んちゃ！\r\n0\r\n0",
-                                    _ => throw new NotImplementedException()
+                                    _ => ""
                                 };
 
                                 List<string> list2 = new List<string>();
