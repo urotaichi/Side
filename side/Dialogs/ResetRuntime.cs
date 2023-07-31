@@ -255,9 +255,24 @@ namespace MasaoPlus.Dialogs
             Global.cpd.runtime = Global.cpd.project.Runtime;
             if (Global.cpd.UseLayer)
             {
+                for (int i = 0; i < chipDataClass.Layerchip.Length; i++)
+                {
+                    chipDataClass.Layerchip[i].code = ChipDataClass.CharToCode(chipDataClass.Layerchip[i].character);
+                }
                 Global.cpd.Layerchip = chipDataClass.Layerchip;
             }
+            for (int i = 0; i < chipDataClass.Mapchip.Length; i++)
+            {
+                chipDataClass.Mapchip[i].code = ChipDataClass.CharToCode(chipDataClass.Mapchip[i].character);
+            }
             Global.cpd.Mapchip = chipDataClass.Mapchip;
+            Global.cpd.Worldchip = chipDataClass.WorldChip;
+            Global.cpd.VarietyChip = chipDataClass?.VarietyChip;
+            Global.cpd.EditingMap = Global.cpd.project.StageData;
+            if (Global.cpd.UseLayer)
+            {
+                Global.cpd.EditingLayer = Global.cpd.project.LayerData;
+            }
             StateLabel.Text = "編集システムを再スタートしています...";
             StateLabel.Refresh();
             Global.MainWnd.MainDesigner.PrepareImages();
