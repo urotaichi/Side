@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -179,6 +180,21 @@ namespace MasaoPlus.Dialogs
                 }
                 num++;
             }
+            project.Runtime.Definitions.StageSize = Global.cpd.project.Runtime.Definitions.StageSize;
+            project.Runtime.Definitions.LayerSize = Global.cpd.project.Runtime.Definitions.LayerSize;
+            project.Runtime.Definitions.MapSize = Global.cpd.project.Runtime.Definitions.MapSize;
+            project.Use3rdMapData = Global.cpd.project.Use3rdMapData;
+            if (Global.cpd.UseLayer)
+            {
+                for (int i = 0; i < chipDataClass.Layerchip.Length; i++)
+                {
+                    chipDataClass.Layerchip[i].code = ChipDataClass.CharToCode(chipDataClass.Layerchip[i].character);
+                }
+            }
+            for (int i = 0; i < chipDataClass.Mapchip.Length; i++)
+            {
+                chipDataClass.Mapchip[i].code = ChipDataClass.CharToCode(chipDataClass.Mapchip[i].character);
+            }
             if (NoTouch.Checked) // 手を加えない（全部そのままコピー）
             {
                 StateLabel.Text = "ステージをコピーしています...";
@@ -195,21 +211,23 @@ namespace MasaoPlus.Dialogs
             }
             else
             {
-                string character = chipDataClass.Mapchip[0].character;
-                project.StageData = StageDataCopy(project, Global.cpd.project.StageData, chipDataClass.Mapchip, character);
-                project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, chipDataClass.Mapchip, character);
-                project.StageData3 = StageDataCopy(project, Global.cpd.project.StageData3, chipDataClass.Mapchip, character);
-                project.StageData4 = StageDataCopy(project, Global.cpd.project.StageData4, chipDataClass.Mapchip, character);
+                ChipsData NullChip = chipDataClass.Mapchip[0];
+                project.StageData = StageDataCopy(project, Global.cpd.project.StageData, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip);
+                project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip);
+                project.StageData3 = StageDataCopy(project, Global.cpd.project.StageData3, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip);
+                project.StageData4 = StageDataCopy(project, Global.cpd.project.StageData4, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip);
+
                 if (project.Runtime.Definitions.LayerSize.bytesize != 0) // レイヤーあり
                 {
-                    character = chipDataClass.Layerchip[0].character;
-                    project.LayerData = LayerDataCopy(project, Global.cpd.project.LayerData, chipDataClass.Layerchip, character);
-                    project.LayerData2 = LayerDataCopy(project, Global.cpd.project.LayerData2, chipDataClass.Layerchip, character);
-                    project.LayerData3 = LayerDataCopy(project, Global.cpd.project.LayerData3, chipDataClass.Layerchip, character);
-                    project.LayerData4 = LayerDataCopy(project, Global.cpd.project.LayerData4, chipDataClass.Layerchip, character);
+                    NullChip = chipDataClass.Layerchip[0];
+                    project.LayerData = LayerDataCopy(project, Global.cpd.project.LayerData, chipDataClass.Layerchip, NullChip);
+                    project.LayerData2 = LayerDataCopy(project, Global.cpd.project.LayerData2, chipDataClass.Layerchip, NullChip);
+                    project.LayerData3 = LayerDataCopy(project, Global.cpd.project.LayerData3, chipDataClass.Layerchip, NullChip);
+                    project.LayerData4 = LayerDataCopy(project, Global.cpd.project.LayerData4, chipDataClass.Layerchip, NullChip);
                 }
-                character = chipDataClass.WorldChip[0].character;
-                project.MapData = MapDataCopy(project, Global.cpd.project.MapData, chipDataClass.WorldChip, character);
+
+                NullChip = chipDataClass.WorldChip[0];
+                project.MapData = MapDataCopy(project, Global.cpd.project.MapData, chipDataClass.WorldChip, NullChip);
             }
             StateLabel.Text = "その他のデータを移行しています...";
             StateLabel.Refresh();
@@ -255,15 +273,7 @@ namespace MasaoPlus.Dialogs
             Global.cpd.runtime = Global.cpd.project.Runtime;
             if (Global.cpd.UseLayer)
             {
-                for (int i = 0; i < chipDataClass.Layerchip.Length; i++)
-                {
-                    chipDataClass.Layerchip[i].code = ChipDataClass.CharToCode(chipDataClass.Layerchip[i].character);
-                }
                 Global.cpd.Layerchip = chipDataClass.Layerchip;
-            }
-            for (int i = 0; i < chipDataClass.Mapchip.Length; i++)
-            {
-                chipDataClass.Mapchip[i].code = ChipDataClass.CharToCode(chipDataClass.Mapchip[i].character);
             }
             Global.cpd.Mapchip = chipDataClass.Mapchip;
             Global.cpd.Worldchip = chipDataClass.WorldChip;
@@ -290,8 +300,12 @@ namespace MasaoPlus.Dialogs
             Close();
         }
 
-        private string[] StageDataCopy(Project project, string[] StageData, ChipsData[] Mapchip, string nullcharacter)
+        private string[] StageDataCopy(Project project, string[] StageData, ChipsData[] Mapchip, ChipsData nullchip)
         {
+            string nullcharacter;
+            if (project.Use3rdMapData) nullcharacter = nullchip.code;
+            else nullcharacter = nullchip.character;
+
             string[] result = new string[project.Runtime.Definitions.StageSize.y];
 
             for (int k = 0; k < project.Runtime.Definitions.StageSize.y; k++)
@@ -299,6 +313,7 @@ namespace MasaoPlus.Dialogs
                 StateLabel.Text = $"ステージを移行しています...({k}/{project.Runtime.Definitions.StageSize.y})";
                 StateLabel.Refresh();
                 StringBuilder stringBuilder = new StringBuilder();
+                string[] stagearray = new string[project.Runtime.Definitions.StageSize.x];
                 if (k < StageData.Length)
                 {
                     int l;
@@ -308,58 +323,114 @@ namespace MasaoPlus.Dialogs
                         {
                             break;
                         }
-                        string text = StageData[k].Substring(l * Global.cpd.runtime.Definitions.StageSize.bytesize, Global.cpd.runtime.Definitions.StageSize.bytesize);
-                        switch (ChipMethod.SelectedIndex)
-                        {
-                            case 0: // 文字で合わせる
-                                foreach (ChipsData chipsData in Mapchip)
-                                {
-                                    if (chipsData.character == text)
+                        string text;
+                        if (project.Use3rdMapData)
+                        { 
+                            text = StageData[k].Split(',')[l];
+                            switch (ChipMethod.SelectedIndex)
+                            {
+                                case 0: // 文字で合わせる
+                                    foreach (ChipsData chipsData in Mapchip)
                                     {
-                                        stringBuilder.Append(chipsData.character);
+                                        if (chipsData.code == text)
+                                        {
+                                            stagearray[l] = chipsData.code;
+                                            break;
+                                        }
+                                    }
+                                    break;
+                                case 1: // マップチップ（パターン画像）の位置で合わせる
+                                    {
+                                        ChipsData chipsData2 = Global.MainWnd.MainDesigner.DrawItemCodeRef[text];
+                                        foreach (ChipsData chipsData3 in Mapchip)
+                                        {
+                                            if (chipsData2.Chips[0].pattern == chipsData3.Chips[0].pattern)
+                                            {
+                                                stagearray[l] = chipsData3.code;
+                                                break;
+                                            }
+                                        }
                                         break;
                                     }
-                                }
-                                break;
-                            case 1: // マップチップの位置で合わせる
-                                {
-                                    ChipsData chipsData2 = Global.MainWnd.MainDesigner.DrawItemRef[text];
-                                    foreach (ChipsData chipsData3 in Mapchip)
+                                case 2: // 定義リストの順番で合わせる
                                     {
-                                        if (chipsData2.Chips[0].pattern == chipsData3.Chips[0].pattern)
+                                        int num3 = 0;
+                                        foreach (ChipsData chipsData4 in Global.cpd.Mapchip)
                                         {
-                                            stringBuilder.Append(chipsData3.character);
+                                            if (chipsData4.code == text)
+                                            {
+                                                break;
+                                            }
+                                            num3++;
+                                        }
+                                        if (num3 < Mapchip.Length)
+                                        {
+                                            stagearray[l] = Mapchip[num3].code;
+                                        }
+                                        else
+                                        {
+                                            stagearray[l] = nullcharacter;
+                                        }
+                                        break;
+                                    }
+                            }
+                        }
+                        else 
+                        { 
+                            text = StageData[k].Substring(l * Global.cpd.runtime.Definitions.StageSize.bytesize, Global.cpd.runtime.Definitions.StageSize.bytesize);
+                            switch (ChipMethod.SelectedIndex)
+                            {
+                                case 0: // 文字で合わせる
+                                    foreach (ChipsData chipsData in Mapchip)
+                                    {
+                                        if (chipsData.character == text)
+                                        {
+                                            stringBuilder.Append(chipsData.character);
                                             break;
                                         }
                                     }
                                     break;
-                                }
-                            case 2: // 定義リストの順番で合わせる
-                                {
-                                    int num3 = 0;
-                                    foreach (ChipsData chipsData4 in Global.cpd.Mapchip)
+                                case 1: // マップチップ（パターン画像）の位置で合わせる
                                     {
-                                        if (chipsData4.character == text)
+                                        ChipsData chipsData2 = Global.MainWnd.MainDesigner.DrawItemRef[text];
+                                        foreach (ChipsData chipsData3 in Mapchip)
                                         {
-                                            break;
+                                            if (chipsData2.Chips[0].pattern == chipsData3.Chips[0].pattern)
+                                            {
+                                                stringBuilder.Append(chipsData3.character);
+                                                break;
+                                            }
                                         }
-                                        num3++;
+                                        break;
                                     }
-                                    if (num3 < Mapchip.Length)
+                                case 2: // 定義リストの順番で合わせる
                                     {
-                                        stringBuilder.Append(Mapchip[num3].character);
+                                        int num3 = 0;
+                                        foreach (ChipsData chipsData4 in Global.cpd.Mapchip)
+                                        {
+                                            if (chipsData4.character == text)
+                                            {
+                                                break;
+                                            }
+                                            num3++;
+                                        }
+                                        if (num3 < Mapchip.Length)
+                                        {
+                                            stringBuilder.Append(Mapchip[num3].character);
+                                        }
+                                        else
+                                        {
+                                            stringBuilder.Append(nullcharacter);
+                                        }
+                                        break;
                                     }
-                                    else
-                                    {
-                                        stringBuilder.Append(nullcharacter);
-                                    }
-                                    break;
-                                }
+                            }
                         }
                     }
                     while (l < project.Runtime.Definitions.StageSize.x)
                     {
-                        stringBuilder.Append(nullcharacter);
+                        if (project.Use3rdMapData) stagearray[l] = nullcharacter;
+                        else stringBuilder.Append(nullcharacter);
                         l++;
                     }
                 }
@@ -367,15 +438,21 @@ namespace MasaoPlus.Dialogs
                 {
                     for (int num5 = 0; num5 < project.Runtime.Definitions.StageSize.x; num5++)
                     {
-                        stringBuilder.Append(nullcharacter);
+                        if (project.Use3rdMapData) stagearray[num5] = nullcharacter;
+                        else stringBuilder.Append(nullcharacter);
                     }
                 }
-                result[k] = stringBuilder.ToString();
+                if (project.Use3rdMapData) result[k] = string.Join(",", stagearray);
+                else result[k] = stringBuilder.ToString();
             }
             return result;
         }
-        private string[] LayerDataCopy(Project project, string[] LayerData, ChipsData[] Layerchip, string nullcharacter)
+        private string[] LayerDataCopy(Project project, string[] LayerData, ChipsData[] Layerchip, ChipsData nullchip)
         {
+            string nullcharacter;
+            if (project.Use3rdMapData) nullcharacter = nullchip.code;
+            else nullcharacter = nullchip.character;
+
             string[] result = new string[project.Runtime.Definitions.LayerSize.y];
 
             for (int num6 = 0; num6 < project.Runtime.Definitions.LayerSize.y; num6++)
@@ -383,6 +460,7 @@ namespace MasaoPlus.Dialogs
                 StateLabel.Text = $"レイヤーを移行しています...({num6}/{project.Runtime.Definitions.LayerSize.y})";
                 StateLabel.Refresh();
                 StringBuilder stringBuilder = new StringBuilder();
+                string[] stagearray = new string[project.Runtime.Definitions.LayerSize.x];
                 if (Global.cpd.UseLayer)
                 {
                     if (num6 < LayerData.Length)
@@ -394,58 +472,114 @@ namespace MasaoPlus.Dialogs
                             {
                                 break;
                             }
-                            string text = LayerData[num6].Substring(num7 * Global.cpd.runtime.Definitions.LayerSize.bytesize, Global.cpd.runtime.Definitions.LayerSize.bytesize);
-                            switch (ChipMethod.SelectedIndex)
+                            string text;
+                            if (project.Use3rdMapData)
                             {
-                                case 0: // 文字で合わせる
-                                    foreach (ChipsData chipsData5 in Layerchip)
-                                    {
-                                        if (chipsData5.character == text)
+                                text = LayerData[num6].Split(',')[num7];
+                                switch (ChipMethod.SelectedIndex)
+                                {
+                                    case 0: // 文字で合わせる
+                                        foreach (ChipsData chipsData5 in Layerchip)
                                         {
-                                            stringBuilder.Append(chipsData5.character);
+                                            if (chipsData5.code == text)
+                                            {
+                                                stagearray[num7] = chipsData5.code;
+                                                break;
+                                            }
+                                        }
+                                        break;
+                                    case 1: // マップチップ（レイヤー画像）の位置で合わせる
+                                        {
+                                            ChipsData chipsData6 = Global.MainWnd.MainDesigner.DrawLayerCodeRef[text];
+                                            foreach (ChipsData chipsData7 in Layerchip)
+                                            {
+                                                if (chipsData6.Chips[0].pattern == chipsData7.Chips[0].pattern)
+                                                {
+                                                    stagearray[num7] = chipsData7.code;
+                                                    break;
+                                                }
+                                            }
                                             break;
                                         }
-                                    }
-                                    break;
-                                case 1: // マップチップの位置で合わせる
-                                    {
-                                        ChipsData chipsData6 = Global.MainWnd.MainDesigner.DrawLayerRef[text];
-                                        foreach (ChipsData chipsData7 in Layerchip)
+                                    case 2: // 定義リストの順番で合わせる
                                         {
-                                            if (chipsData6.Chips[0].pattern == chipsData7.Chips[0].pattern)
+                                            int num10 = 0;
+                                            foreach (ChipsData chipsData8 in Global.cpd.Layerchip)
                                             {
-                                                stringBuilder.Append(chipsData7.character);
+                                                if (chipsData8.code == text)
+                                                {
+                                                    break;
+                                                }
+                                                num10++;
+                                            }
+                                            if (num10 < Layerchip.Length)
+                                            {
+                                                stagearray[num7] = Layerchip[num10].code;
+                                            }
+                                            else
+                                            {
+                                                stringBuilder.Append(nullcharacter);
+                                            }
+                                            break;
+                                        }
+                                }
+                            }
+                            else
+                            {
+                                text = LayerData[num6].Substring(num7 * Global.cpd.runtime.Definitions.LayerSize.bytesize, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                                switch (ChipMethod.SelectedIndex)
+                                {
+                                    case 0: // 文字で合わせる
+                                        foreach (ChipsData chipsData5 in Layerchip)
+                                        {
+                                            if (chipsData5.character == text)
+                                            {
+                                                stringBuilder.Append(chipsData5.character);
                                                 break;
                                             }
                                         }
                                         break;
-                                    }
-                                case 2: // 定義リストの順番で合わせる
-                                    {
-                                        int num10 = 0;
-                                        foreach (ChipsData chipsData8 in Global.cpd.Layerchip)
+                                    case 1: // マップチップ（レイヤー画像）の位置で合わせる
                                         {
-                                            if (chipsData8.character == text)
+                                            ChipsData chipsData6 = Global.MainWnd.MainDesigner.DrawLayerRef[text];
+                                            foreach (ChipsData chipsData7 in Layerchip)
                                             {
-                                                break;
+                                                if (chipsData6.Chips[0].pattern == chipsData7.Chips[0].pattern)
+                                                {
+                                                    stringBuilder.Append(chipsData7.character);
+                                                    break;
+                                                }
                                             }
-                                            num10++;
+                                            break;
                                         }
-                                        if (num10 < Layerchip.Length)
+                                    case 2: // 定義リストの順番で合わせる
                                         {
-                                            stringBuilder.Append(Layerchip[num10]);
+                                            int num10 = 0;
+                                            foreach (ChipsData chipsData8 in Global.cpd.Layerchip)
+                                            {
+                                                if (chipsData8.character == text)
+                                                {
+                                                    break;
+                                                }
+                                                num10++;
+                                            }
+                                            if (num10 < Layerchip.Length)
+                                            {
+                                                stringBuilder.Append(Layerchip[num10].character);
+                                            }
+                                            else
+                                            {
+                                                stringBuilder.Append(nullcharacter);
+                                            }
+                                            break;
                                         }
-                                        else
-                                        {
-                                            stringBuilder.Append(nullcharacter);
-                                        }
-                                        break;
-                                    }
+                                }
                             }
                         }
                         while (num7 < project.Runtime.Definitions.LayerSize.x)
                         {
-                            stringBuilder.Append(nullcharacter);
+                            if (project.Use3rdMapData) stagearray[num7] = nullcharacter;
+                            else stringBuilder.Append(nullcharacter);
                             num7++;
                         }
                     }
@@ -453,7 +587,8 @@ namespace MasaoPlus.Dialogs
                     {
                         for (int num12 = 0; num12 < project.Runtime.Definitions.LayerSize.x; num12++)
                         {
-                            stringBuilder.Append(nullcharacter);
+                            if (project.Use3rdMapData) stagearray[num12] = nullcharacter;
+                            else stringBuilder.Append(nullcharacter);
                         }
                     }
                 }
@@ -461,19 +596,22 @@ namespace MasaoPlus.Dialogs
                 {
                     for (int num13 = 0; num13 < project.LayerData.Length; num13++)
                     {
-                        stringBuilder = new StringBuilder();
                         for (int num14 = 0; num14 < project.Runtime.Definitions.LayerSize.x; num14++)
                         {
-                            stringBuilder.Append(nullcharacter);
+                            if (project.Use3rdMapData) stagearray[num14] = nullcharacter;
+                            else stringBuilder.Append(nullcharacter);
                         }
                     }
                 }
-                result[num6] = stringBuilder.ToString();
+                if (project.Use3rdMapData) result[num6] = string.Join(",", stagearray);
+                else result[num6] = stringBuilder.ToString();
             }
             return result;
         }
-        private string[] MapDataCopy(Project project, string[] MapData, ChipsData[] Worldchip, string nullcharacter)
+        private string[] MapDataCopy(Project project, string[] MapData, ChipsData[] Worldchip, ChipsData nullchip)
         {// 上記StageDataCopyとほぼ同じ
+            string nullcharacter = nullchip.character;
+
             string[] result = new string[project.Runtime.Definitions.MapSize.y];
 
             for (int k = 0; k < project.Runtime.Definitions.MapSize.y; k++)
@@ -503,7 +641,7 @@ namespace MasaoPlus.Dialogs
                                     }
                                 }
                                 break;
-                            case 1: // マップチップの位置で合わせる
+                            case 1: // マップチップ（パターン画像）の位置で合わせる
                                 {
                                     ChipsData chipsData2 = Global.MainWnd.MainDesigner.DrawItemRef[text];
                                     foreach (ChipsData chipsData3 in Worldchip)
