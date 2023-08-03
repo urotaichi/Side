@@ -670,21 +670,19 @@ namespace MasaoPlus
                                     (!foreground
                                         || ForePrevDrawn == null
                                         || !(ForePrevDrawn[num].Split(',')[num2] == text)
-                                    )
-                                    && (foreground
+                                    ) && (foreground
                                         || BackPrevDrawn == null
                                         || !(BackPrevDrawn[num].Split(',')[num2] == text)
-                                        )
+                                    )
+                                   )
+                            ) && (!Global.config.draw.SkipFirstChip
+                                || (
+                                    (!foreground || !text.Equals(Global.cpd.Mapchip[0].code))
+                                    && (foreground || !text.Equals(Global.cpd.Layerchip[0].code))
                                     )
                             ) && (
-                                !Global.config.draw.SkipFirstChip
-                                    || (
-                                        (!foreground || !text.Equals(Global.cpd.Mapchip[0].code))
-                                        && (foreground || !text.Equals(Global.cpd.Layerchip[0].code))
-                                    )
-                            ) && (
-                            (foreground && DrawItemCodeRef.ContainsKey(text))
-                            || (!foreground && DrawLayerCodeRef.ContainsKey(text))
+                                (foreground && DrawItemCodeRef.ContainsKey(text))
+                                || (!foreground && DrawLayerCodeRef.ContainsKey(text))
                             )
                         )
                         {
@@ -740,7 +738,27 @@ namespace MasaoPlus
                         {
                             text = Global.cpd.EditingLayer[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize);
                         }
-                        if ((!Global.state.UseBuffered || ((!foreground || this.ForePrevDrawn == null || !(this.ForePrevDrawn[num].Substring(Global.state.MapEditMode ? (num2 * MapSize.bytesize) : (num2 * StageSize.bytesize), Global.state.MapEditMode ? MapSize.bytesize : StageSize.bytesize) == text)) && (foreground || this.BackPrevDrawn == null || !(this.BackPrevDrawn[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize) == text)))) && (!Global.config.draw.SkipFirstChip || ((!foreground || !text.Equals(Global.cpd.Mapchip[0].character)) && (foreground || !text.Equals(Global.cpd.Layerchip[0].character)))) && ((foreground && this.DrawItemRef.ContainsKey(text)) || (!foreground && this.DrawLayerRef.ContainsKey(text))))
+                        if (
+                            (!Global.state.UseBuffered
+                                || (
+                                    (!foreground
+                                        || this.ForePrevDrawn == null
+                                        || !(this.ForePrevDrawn[num].Substring(Global.state.MapEditMode ? (num2 * MapSize.bytesize) : (num2 * StageSize.bytesize), Global.state.MapEditMode ? MapSize.bytesize : StageSize.bytesize) == text)
+                                     ) && (foreground
+                                        || this.BackPrevDrawn == null
+                                        || !(this.BackPrevDrawn[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize) == text)
+                                     )
+                                    )
+                            ) && (!Global.config.draw.SkipFirstChip
+                                || (
+                                    (!foreground || !text.Equals(Global.cpd.Mapchip[0].character))
+                                    && (foreground || !text.Equals(Global.cpd.Layerchip[0].character))
+                                    )
+                            ) && (
+                                (foreground && this.DrawItemRef.ContainsKey(text))
+                                || (!foreground && this.DrawLayerRef.ContainsKey(text))
+                            )
+                        )
                         {
                             if (Global.state.MapEditMode) chipsData = DrawWorldRef[text];
                             else if (foreground)
