@@ -1055,18 +1055,21 @@
 			this.BMReload.ShortcutKeys = global::System.Windows.Forms.Keys.F5;
 			this.BMReload.Size = new global::System.Drawing.Size(236, 22);
 			this.BMReload.Text = "テストプレイの再実行(&R)";
-			this.BMBrowser.Image = global::MasaoPlus.Properties.Resources.web;
+            this.BMReload.Click += new global::System.EventHandler(this.IntegrateBrowser.Reload_Click);
+            this.BMBrowser.Image = global::MasaoPlus.Properties.Resources.web;
 			this.BMBrowser.Name = "BMBrowser";
 			this.BMBrowser.Size = new global::System.Drawing.Size(236, 22);
 			this.BMBrowser.Text = "既定のブラウザで実行";
-			this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            this.BMBrowser.Click += new global::System.EventHandler(this.IntegrateBrowser.OnWeb_Click);
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
 			this.toolStripMenuItem6.Size = new global::System.Drawing.Size(233, 6);
 			this.BMTestEnd.Image = global::MasaoPlus.Properties.Resources.map_edit;
 			this.BMTestEnd.Name = "BMTestEnd";
 			this.BMTestEnd.ShortcutKeyDisplayString = "Esc";
 			this.BMTestEnd.Size = new global::System.Drawing.Size(236, 22);
 			this.BMTestEnd.Text = "エディタに戻る";
-			this.MConfiguration.DropDownItems.AddRange(new global::System.Windows.Forms.ToolStripItem[]
+            this.BMTestEnd.Click += new global::System.EventHandler(this.BMTestEnd_Click);
+            this.MConfiguration.DropDownItems.AddRange(new global::System.Windows.Forms.ToolStripItem[]
 			{
 				this.MProjectConfig,
 				this.MSysConfig,

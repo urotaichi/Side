@@ -2579,6 +2579,11 @@ namespace MasaoPlus
             ShowOverView.Checked = false;
         }
 
+        private void BMTestEnd_Click(object sender, EventArgs e)
+        {
+            EditTab.SelectedIndex = 0;
+        }
+
         private void ovw_FormClosed(object sender, FormClosedEventArgs e)
         {
             ovw.Dispose();
