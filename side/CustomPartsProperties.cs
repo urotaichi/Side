@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MasaoPlus.Dialogs
+namespace MasaoPlus
 {
     public struct CustomPartsProperties
     {
@@ -20,7 +20,7 @@ namespace MasaoPlus.Dialogs
 
         public int period;
 
-        public Dictionary<int, int> attack_timing;
+        public string attack_timing;
 
         public int speed;
 
