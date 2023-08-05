@@ -67,8 +67,7 @@ namespace MasaoPlus.Controls
                                     TrueValue = "true",
                                     FalseValue = "false"
                                 };
-                                bool flag;
-                                if (bool.TryParse(configParam.Value, out flag))
+                                if (bool.TryParse(configParam.Value, out bool flag))
                                 {
                                     dataGridViewCheckBoxCell.Value = flag.ToString();
                                 }
@@ -86,8 +85,7 @@ namespace MasaoPlus.Controls
                                     TrueValue = "false",
                                     FalseValue = "true"
                                 };
-                                bool flag;
-                                if (bool.TryParse(configParam.Value, out flag))
+                                if (bool.TryParse(configParam.Value, out bool flag))
                                 {
                                     dataGridViewCheckBoxCell.Value = (!flag).ToString();
                                 }
@@ -142,8 +140,7 @@ namespace MasaoPlus.Controls
                                 DataGridViewComboBoxCell dataGridViewComboBoxCell = new DataGridViewComboBoxCell();
                                 dataGridViewComboBoxCell.Items.AddRange(configParam.ListItems);
                                 dataGridViewComboBoxCell.FlatStyle = FlatStyle.Popup;
-                                int num;
-                                if (int.TryParse(configParam.Value, out num) && num <= dataGridViewComboBoxCell.Items.Count && num > 0)
+                                if (int.TryParse(configParam.Value, out int num) && num <= dataGridViewComboBoxCell.Items.Count && num > 0)
                                 {
                                     dataGridViewComboBoxCell.Value = configParam.ListItems[num - 1];
                                 }
@@ -159,8 +156,8 @@ namespace MasaoPlus.Controls
                                 DataGridViewComboBoxCell dataGridViewComboBoxCell = new DataGridViewComboBoxCell();
                                 dataGridViewComboBoxCell.Items.AddRange(configParam.ListItems);
                                 dataGridViewComboBoxCell.FlatStyle = FlatStyle.Popup;
-                                int num, MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
-                                if (int.TryParse(configParam.Value, out num) && (num > 0 && num <= MaxAthleticNumber || num >= 1001 && num <= 1249))
+                                int MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
+                                if (int.TryParse(configParam.Value, out int num) && (num > 0 && num <= MaxAthleticNumber || num >= 1001 && num <= 1249))
                                 {
                                     if (num <= MaxAthleticNumber)
                                     {
@@ -305,7 +302,7 @@ namespace MasaoPlus.Controls
                                 }
                             }
                         }
-                        ConfView[e.ColumnIndex, e.RowIndex].Value = Path.GetFileName(text) + "...";
+                        ConfView[e.ColumnIndex, e.RowIndex].Value = $"{Path.GetFileName(text)}...";
                         Global.cpd.project.Config.Configurations[num].Value = Path.GetFileName(text);
                         string relation;
                         if (Global.cpd.project.Config.Configurations[num].Relation != null && Global.cpd.project.Config.Configurations[num].Relation != "" && (relation = Global.cpd.project.Config.Configurations[num].Relation) != null)
@@ -484,12 +481,11 @@ namespace MasaoPlus.Controls
                     break;
                 case ConfigParam.Types.i:
                     {
-                        int num2;
                         if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
                         {
                             ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
                         }
-                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
+                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out int num2))
                         {
                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                             if (configParam.Value.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())

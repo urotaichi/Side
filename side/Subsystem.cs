@@ -1027,7 +1027,7 @@ namespace MasaoPlus
                                 }) + "\r\n", string.Empty);
                     for (int j = StageSplit - 1; j > 0; j--)
                     {
-                        if (!array[j + 1].ToString().Contains((j + 1).ToString() + "-" + num.ToString()))
+                        if (!array[j + 1].ToString().Contains($"{j + 1}-{num}"))
                         {
                             array[j].Replace(string.Format(Parameter, new object[]
                             {

@@ -44,5 +44,8 @@ namespace MasaoPlus
 
         [XmlElement("chip")]
         public ChipData[] Chips;
+
+        [XmlElement("properties")]
+        public CustomPartsProperties Properties;
     }
 }

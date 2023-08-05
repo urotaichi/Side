@@ -131,6 +131,8 @@ namespace MasaoPlus
 
         public bool Use3rdMapData = false;
 
+        public ChipsData[] CustomPartsDefinition;
+
         public string[] StageData = new string[0];
 
         public string[] StageData2 = new string[0];
