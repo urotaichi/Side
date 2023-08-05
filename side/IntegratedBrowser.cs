@@ -94,7 +94,7 @@ namespace MasaoPlus
             Browser.GoForward();
         }
 
-        private void Reload_Click(object sender, EventArgs e)
+        public void Reload_Click(object sender, EventArgs e)
         {
             Browser.Reload();
         }
@@ -108,7 +108,7 @@ namespace MasaoPlus
             }
         }
 
-        private void OnWeb_Click(object sender, EventArgs e)
+        public void OnWeb_Click(object sender, EventArgs e)
         {
             try
             {

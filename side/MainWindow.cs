@@ -2487,13 +2487,32 @@ namespace MasaoPlus
             {
                 list = new List<string>();
                 string text = Global.cpd.EditingMap[i];
-                for (int j = 0; j < stageSizeData.x; j++)
+
+                if (Global.cpd.project.Use3rdMapData)
                 {
-                    list.Add(text.Substring(j * stageSizeData.bytesize, stageSizeData.bytesize));
+                    var stagearray = text.Split(',');
+                    for (int j = 0; j < stageSizeData.x; j++)
+                    {
+                        list.Add(stagearray[j]);
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < stageSizeData.x; j++)
+                    {
+                        list.Add(text.Substring(j * stageSizeData.bytesize, stageSizeData.bytesize));
+                    }
                 }
                 string[] array = list.ToArray();
                 Array.Reverse(array);
-                Global.cpd.EditingMap[i] = string.Join("", array);
+                if (Global.cpd.project.Use3rdMapData)
+                {
+                    Global.cpd.EditingMap[i] = string.Join(",", array);
+                }
+                else
+                {
+                    Global.cpd.EditingMap[i] = string.Join("", array);
+                }
             }
             if (Global.cpd.UseLayer)
             {
@@ -2501,13 +2520,31 @@ namespace MasaoPlus
                 {
                     list = new List<string>();
                     string text2 = Global.cpd.EditingLayer[k];
-                    for (int l = 0; l < Global.cpd.runtime.Definitions.LayerSize.x; l++)
+                    if (Global.cpd.project.Use3rdMapData)
                     {
-                        list.Add(text2.Substring(l * Global.cpd.runtime.Definitions.LayerSize.bytesize, Global.cpd.runtime.Definitions.LayerSize.bytesize));
+                        var stagearray = text2.Split(',');
+                        for (int l = 0; l < Global.cpd.runtime.Definitions.LayerSize.x; l++)
+                        {
+                            list.Add(stagearray[l]);
+                        }
+                    }
+                    else
+                    {
+                        for (int l = 0; l < Global.cpd.runtime.Definitions.LayerSize.x; l++)
+                        {
+                            list.Add(text2.Substring(l * Global.cpd.runtime.Definitions.LayerSize.bytesize, Global.cpd.runtime.Definitions.LayerSize.bytesize));
+                        }
                     }
                     string[] array2 = list.ToArray();
                     Array.Reverse(array2);
-                    Global.cpd.EditingLayer[k] = string.Join("", array2);
+                    if (Global.cpd.project.Use3rdMapData)
+                    {
+                        Global.cpd.EditingLayer[k] = string.Join(",", array2);
+                    }
+                    else
+                    {
+                        Global.cpd.EditingLayer[k] = string.Join("", array2);
+                    }
                 }
             }
             MainDesigner.ClearBuffer();
@@ -2577,6 +2614,11 @@ namespace MasaoPlus
             ovw.Close();
             ovw = null;
             ShowOverView.Checked = false;
+        }
+
+        private void BMTestEnd_Click(object sender, EventArgs e)
+        {
+            EditTab.SelectedIndex = 0;
         }
 
         private void ovw_FormClosed(object sender, FormClosedEventArgs e)
