@@ -28,6 +28,8 @@ namespace MasaoPlus
 
         public ChipsData[] VarietyChip;
 
+        public ChipsData[] CustomPartsChip;
+
         public string where = "";
 
         public string filename = "";

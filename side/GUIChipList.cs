@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MasaoPlus
@@ -31,30 +32,17 @@ namespace MasaoPlus
                 }
                 else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
                 {
-                    int n = Global.cpd.Mapchip.Length;
+                    ChipsData[] array = Global.cpd.Mapchip;
+                    if (Global.cpd.project.Use3rdMapData)
+                    {
+                        array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
+                    }
 
-                    if (!Global.cpd.project.Use3rdMapData && value >= n
-                        || Global.cpd.project.Use3rdMapData && value >= n + Global.cpd.VarietyChip.Length
-                        || value < 0)
+                    if (value >= array.Length || value < 0)
                     {
                         return;
                     }
-
-                    if (Global.cpd.project.Use3rdMapData)
-                    {
-                        if (value < n)
-                        {
-                            Global.state.CurrentChip = Global.cpd.Mapchip[value];
-                        }
-                        else
-                        {
-                            Global.state.CurrentChip = Global.cpd.VarietyChip[value - n];
-                        }
-                    }
-                    else
-                    {
-                        Global.state.CurrentChip = Global.cpd.Mapchip[value];
-                    }
+                    Global.state.CurrentChip = array[value];
                 }
                 else
                 {
@@ -144,7 +132,7 @@ namespace MasaoPlus
                 int num2 = Global.cpd.Mapchip.Length;
                 if (Global.cpd.project.Use3rdMapData)
                 {
-                    num2 += Global.cpd.VarietyChip.Length;
+                    num2 += Global.cpd.VarietyChip.Length + Global.cpd.CustomPartsChip.Length;
                 }
                 return (int)Math.Ceiling(num2 / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height;
             }
@@ -360,8 +348,8 @@ namespace MasaoPlus
                         AddChipData(Global.cpd.Mapchip, num, e);
                         if (Global.cpd.project.Use3rdMapData)
                         {
-                            num2 = Global.cpd.VarietyChip.Length;
-                            AddChipData(Global.cpd.VarietyChip, num + num2, e, num);
+                            num2 = Global.cpd.VarietyChip.Length + Global.cpd.CustomPartsChip.Length;
+                            AddChipData(Global.cpd.VarietyChip.Concat(Global.cpd.project.CustomPartsDefinition).ToArray(), num + num2, e, num);
                         }
                     }
                     else
@@ -406,7 +394,7 @@ namespace MasaoPlus
                 num2 = Global.cpd.Mapchip.Length;
                 if (Global.cpd.project.Use3rdMapData)
                 {
-                    num2 += Global.cpd.VarietyChip.Length;
+                    num2 += Global.cpd.VarietyChip.Length + Global.cpd.CustomPartsChip.Length;
                 }
             }
             else

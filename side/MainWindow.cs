@@ -695,8 +695,11 @@ namespace MasaoPlus
                 }
                 else
                 {
-                    if (Global.cpd.project.Use3rdMapData) array = Global.cpd.Mapchip.Concat(Global.cpd.VarietyChip).ToArray();
-                    else array = Global.cpd.Mapchip;
+                    array = Global.cpd.Mapchip;
+                    if (Global.cpd.project.Use3rdMapData) 
+                    {
+                        array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
+                    }
                 }
             }
             else
@@ -858,13 +861,12 @@ namespace MasaoPlus
                 }
                 if (!Global.cpd.UseLayer || Global.state.EditingForeground)
                 {
+                    ChipsData[] array = Global.cpd.Mapchip;
                     if (Global.cpd.project.Use3rdMapData)
                     {
-                        int n = Global.cpd.Mapchip.Length;
-                        if (i < n) Global.state.CurrentChip = Global.cpd.Mapchip[i];
-                        else Global.state.CurrentChip = Global.cpd.VarietyChip[i - n];
+                        array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
                     }
-                    else Global.state.CurrentChip = Global.cpd.Mapchip[i];
+                    Global.state.CurrentChip = array[i];
                     return;
                 }
                 Global.state.CurrentChip = Global.cpd.Layerchip[i];
@@ -1579,13 +1581,12 @@ namespace MasaoPlus
                             }
                             else
                             {
+                                ChipsData[] array = Global.cpd.Mapchip;
                                 if (Global.cpd.project.Use3rdMapData)
                                 {
-                                    int n = Global.cpd.Mapchip.Length;
-                                    if (i < n) cschip = Global.cpd.Mapchip[i].GetCSChip();
-                                    else cschip = Global.cpd.VarietyChip[i - n].GetCSChip();
+                                    array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
                                 }
-                                else cschip = Global.cpd.Mapchip[i].GetCSChip();
+                                cschip = array[i].GetCSChip();
                             }
 
                             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
@@ -1666,13 +1667,12 @@ namespace MasaoPlus
                             }
                             else
                             {
+                                ChipsData[] array = Global.cpd.Mapchip;
                                 if (Global.cpd.project.Use3rdMapData)
                                 {
-                                    int n = Global.cpd.Mapchip.Length;
-                                    if (i < n) cschip = Global.cpd.Mapchip[i].GetCSChip();
-                                    else cschip = Global.cpd.VarietyChip[i - n].GetCSChip();
+                                    array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
                                 }
-                                else cschip = Global.cpd.Mapchip[i].GetCSChip();
+                                cschip = array[i].GetCSChip();
                             }
 
                             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
@@ -1818,13 +1818,12 @@ namespace MasaoPlus
                     if (!Global.cpd.UseLayer || Global.state.EditingForeground)
                     {
                         ChipData cschip;
+                        ChipsData[] array = Global.cpd.Mapchip;
                         if (Global.cpd.project.Use3rdMapData)
                         {
-                            int n = Global.cpd.Mapchip.Length;
-                            if (i < n) cschip = Global.cpd.Mapchip[i].GetCSChip();
-                            else cschip = Global.cpd.VarietyChip[i - n].GetCSChip();
+                            array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
                         }
-                        else cschip = Global.cpd.Mapchip[i].GetCSChip();
+                        cschip = array[i].GetCSChip();
                         if (cschip.size.Height == 0)
                         {
                             height = chip_hight;

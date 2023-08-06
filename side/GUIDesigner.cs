@@ -977,6 +977,10 @@ namespace MasaoPlus
             {
                 DrawItemCodeRef.Add(value.code, value);
             }
+            foreach (ChipsData value in Global.cpd.CustomPartsChip)
+            {
+                DrawItemCodeRef.Add(value.code, value);
+            }
             if (Global.cpd.UseLayer)
             {
                 DrawLayerCodeRef.Clear();
