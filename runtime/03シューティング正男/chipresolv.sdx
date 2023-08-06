@@ -12796,9 +12796,9 @@
       <chip><pattern><X>0</X><Y>448</Y></pattern><xdraw><X>512</X><Y>0</Y></xdraw>
         <name>亀</name><description>主人公を追尾</description></chip>
     </chips>
-    <chips code="5200" color="magenta">
-      <chip><pattern><X>96</X><Y>448</Y></pattern>
-        <name>ピカチー</name><description>電撃　水中で消える</description></chip>
+    <chips code="5200" rel="PikachiA" color="magenta">
+      <chip value="1"><pattern><X>96</X><Y>448</Y></pattern><name>ピカチー</name><description>電撃　水中で消える</description></chip>
+      <chip value="2"><pattern><X>96</X><Y>448</Y></pattern><name>ピカチー</name><description>電撃　水中でも使える</description></chip>
     </chips>
     <chips code="5201" color="magenta">
       <chip><pattern><X>96</X><Y>448</Y></pattern>
