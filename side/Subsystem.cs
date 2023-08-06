@@ -870,6 +870,111 @@ namespace MasaoPlus
 
                 }
                 stringBuilder.AppendLine("\t\t],");
+                if (Global.cpd.CustomPartsChip != null)
+                {
+                    stringBuilder.AppendLine("\t\t\"customParts\": {");
+                    foreach (var parts in Global.cpd.CustomPartsChip)
+                    {
+                        stringBuilder.AppendLine($"\t\t\t\"{parts.code}\": {{");
+                        stringBuilder.AppendLine($"\t\t\t\t\"extends\": {parts.basecode},");
+                        stringBuilder.AppendLine($"\t\t\t\t\"properties\": {{");
+                        if(int.TryParse(parts.basecode, out int code))
+                        {
+                            switch ((code - 5000) / 10)
+                            {
+                                case 10: // 亀（向きを変える）
+                                case 40: // ヒノララシ（向きを変える）
+                                case 80: // ミズタロウ
+                                case 120: // 追跡亀
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"walk_speed\": {parts.Properties.walk_speed},");
+                                    break;
+                                case 11: // 亀（落ちる）
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"walk_speed\": {parts.Properties.walk_speed},");
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"fall_speed\": {parts.Properties.fall_speed},");
+                                    break;
+                                case 20: // ピカチー
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"jump_vy\": {parts.Properties.jump_vy},");
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"search_range\": {parts.Properties.search_range},");
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"interval\": {parts.Properties.interval},");
+                                    break;
+                                case 30: // チコリン（はっぱカッター）
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"period\": {parts.Properties.period},");
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"attack_timing\": {{");
+                                    foreach (var part in parts.Properties.attack_timing)
+                                    {
+                                        stringBuilder.AppendLine($"\t\t\t\t\t\t{part.AttackFrame}: {(part.IsPlaySoundFrame ? 2 : 1)},");
+                                    }
+                                    stringBuilder.AppendLine("\t\t\t\t\t},");
+                                    break;
+                                case 31: // チコリン（敵を投げる）
+                                case 33: // チコリン（ソーラービーム）
+                                case 52: // ポッピー（火の粉）
+                                case 54: // ポッピー（バブル光線３発）
+                                case 55: // ポッピー（ハリケンブラスト）
+                                case 70: // ヤチャモ（一定タイミングで攻撃）
+                                case 71: // ヤチャモ（火の粉 速射 / 3連射）
+                                case 72: // ヤチャモ（破壊光線）
+                                case 92: // エアームズ（その場で投下）
+                                case 110: // クラゲッソ（バブル光線 水中専用）
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"interval\": {parts.Properties.interval},");
+                                    break;
+                                case 32: // チコリン（はっぱカッター 乱れ射ち）
+                                case 53: // ポッピー（火の粉 ３連射）
+                                    break;
+                                case 50: // ポッピー（上下移動）
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"speed\": {parts.Properties.speed},");
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"accel\": {parts.Properties.accel},");
+                                    break;
+                                case 51: // ポッピー（直進）
+                                case 93: // エアームズ（左右に動いて爆弾投下）
+                                case 100: // タイキング（左右移動 水中専用）
+                                case 140: // 重力無視の追跡ピカチー等
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"speed\": {parts.Properties.speed},");
+                                    break;
+                                case 60: // マリリ（ジャンプ）
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"jump_vy\": {parts.Properties.jump_vy},");
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"speed\": {parts.Properties.speed},");
+                                    break;
+                                case 66: // マリリ（左右移動）
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"speed\": {parts.Properties.speed},");
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"distance\": {parts.Properties.distance},");
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"interval\": {parts.Properties.interval},");
+                                    break;
+                                case 67: // マリリ（体当たり）
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"attack_speed\": {parts.Properties.attack_speed},");
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"return_speed\": {parts.Properties.return_speed},");
+                                    break;
+                                case 90: // エアームズ（壁に当たると止まる）
+                                case 95: // エアームズ（壁に当たると向きを変える）
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"speed\": {parts.Properties.speed},");
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"interval\": {parts.Properties.interval},");
+                                    break;
+                                case 105: // タイキング（はねる）
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"jump_vy\": {parts.Properties.jump_vy},");
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"interval\": {parts.Properties.interval},");
+                                    break;
+                                case 106: // タイキング（縄張りをまもる）
+                                case 116: // クラゲッソ（近づくと落ちる）
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"speed_x\": {parts.Properties.speed_x},");
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"speed_y\": {parts.Properties.speed_y},");
+                                    break;
+                                case 107: // タイキング（左回り）
+                                case 108: // タイキング（右回り）
+                                case 117: // クラゲッソ（左回り）
+                                case 118: // クラゲッソ（右回り）
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"speed\": {parts.Properties.speed},");
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"radius\": {parts.Properties.radius},");
+                                    break;
+                                case 115: // クラゲッソ（近づくと落ちる）
+                                    stringBuilder.AppendLine($"\t\t\t\t\t\"init_vy\": {parts.Properties.init_vy},");
+                                    break;
+                            }
+                        }
+                        stringBuilder.AppendLine("\t\t\t\t},");
+                        stringBuilder.AppendLine("\t\t\t},");
+                    }
+                    stringBuilder.AppendLine("\t\t},");
+                }
                 stringBuilder.AppendLine("\t},");
             }
             parameter = "\t{0}: {1},";
@@ -949,7 +1054,12 @@ namespace MasaoPlus
             stringBuilder.AppendLine("\t\t\t\t\t\t\"map\": [");
             foreach(string value in MainStageText)
             {
-                stringBuilder.AppendLine($"\t\t\t\t\t\t\t[{value}],");
+                var t = value.Split(',');
+                for(int i = 0; i < t.Length; i++)
+                {
+                    if (!int.TryParse(t[i], out int _)) t[i] = $"\"{t[i]}\"";
+                }
+                stringBuilder.AppendLine($"\t\t\t\t\t\t\t[{string.Join(",", t)}],");
             }
             stringBuilder.AppendLine("\t\t\t\t\t\t]");
             stringBuilder.AppendLine("\t\t\t\t\t},");

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Documents;
+using System.Xml.Serialization;
 
 namespace MasaoPlus
 {
@@ -20,7 +22,7 @@ namespace MasaoPlus
 
         public int period;
 
-        public string attack_timing;
+        public List<attack_timing> attack_timing;
 
         public int speed;
 
@@ -39,5 +41,11 @@ namespace MasaoPlus
         public int radius;
 
         public int init_vy;
+    }
+    public struct attack_timing 
+    {
+        public int AttackFrame;
+
+        public bool IsPlaySoundFrame;
     }
 }

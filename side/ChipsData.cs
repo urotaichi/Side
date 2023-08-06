@@ -36,6 +36,9 @@ namespace MasaoPlus
         [XmlAttribute("code")]
         public string code;
 
+        [XmlAttribute("basecode")]
+        public string basecode;
+
         [XmlAttribute("color")]
         public string color;
 
