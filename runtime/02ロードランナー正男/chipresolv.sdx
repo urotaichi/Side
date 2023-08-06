@@ -12944,9 +12944,9 @@
       <chip><pattern><X>0</X><Y>512</Y></pattern>
         <name>ミズタロウ</name><description>はっぱカッター３発</description></chip>
     </chips>
-    <chips code="5802" color="magenta">
-      <chip><pattern><X>0</X><Y>512</Y></pattern>
-        <name>ミズタロウ</name><description>電撃</description></chip>
+    <chips code="5802" rel="PikachiA" color="magenta">
+      <chip value="1"><pattern><X>0</X><Y>512</Y></pattern><name>ミズタロウ</name><description>電撃　水中で消える</description></chip>
+      <chip value="2"><pattern><X>0</X><Y>512</Y></pattern><name>ミズタロウ</name><description>電撃　水中でも使える</description></chip>
     </chips>
     <chips code="5803" color="magenta">
       <chip><pattern><X>0</X><Y>512</Y></pattern>
