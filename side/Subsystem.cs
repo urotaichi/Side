@@ -883,7 +883,7 @@ namespace MasaoPlus
                             switch ((code - 5000) / 10)
                             {
                                 case 10: // 亀（向きを変える）
-                                case 40: // ヒノララシ（向きを変える）
+                                case 40: // ヒノララシ
                                 case 80: // ミズタロウ
                                 case 120: // 追跡亀
                                     stringBuilder.AppendLine($"\t\t\t\t\t\"walk_speed\": {parts.Properties.walk_speed},");

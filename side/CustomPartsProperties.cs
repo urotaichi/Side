@@ -22,6 +22,7 @@ namespace MasaoPlus
 
         public int period;
 
+        [XmlElement("attack_timing")]
         public List<attack_timing> attack_timing;
 
         public int speed;
@@ -42,10 +43,12 @@ namespace MasaoPlus
 
         public int init_vy;
     }
-    public struct attack_timing 
+    public struct attack_timing
     {
+        [XmlAttribute("AttackFrame")]
         public int AttackFrame;
 
+        [XmlAttribute("IsPlaySoundFrame")]
         public bool IsPlaySoundFrame;
     }
 }
