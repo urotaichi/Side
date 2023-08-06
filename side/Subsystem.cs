@@ -1045,8 +1045,8 @@ namespace MasaoPlus
 
             stringBuilder.AppendLine("\t\t\t{");
             stringBuilder.AppendLine("\t\t\t\t\"size\": {");
-            stringBuilder.AppendLine($"\t\t\t\t\"x\": {StageSizeData.x},");
-            stringBuilder.AppendLine($"\t\t\t\t\"y\": {StageSizeData.y}");
+            stringBuilder.AppendLine($"\t\t\t\t\t\"x\": {StageSizeData.x},");
+            stringBuilder.AppendLine($"\t\t\t\t\t\"y\": {StageSizeData.y}");
             stringBuilder.AppendLine("\t\t\t\t},");
             stringBuilder.AppendLine("\t\t\t\t\"layers\": [");
             stringBuilder.AppendLine("\t\t\t\t\t{");
