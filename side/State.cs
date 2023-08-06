@@ -134,6 +134,21 @@ namespace MasaoPlus
 
         public event UpdateCurrentChip UpdateCurrentChipInvoke;
 
+        public ChipsData CurrentCustomPartsChip
+        {
+            get
+            {
+                return CurrentCustomPartsChipData;
+            }
+            set
+            {
+                CurrentCustomPartsChipData = value;
+                UpdateCurrentCustomPartsChipInvoke?.Invoke();
+            }
+        }
+
+        public event UpdateCurrentCustomPartsChip UpdateCurrentCustomPartsChipInvoke;
+
         public bool EditingForeground
         {
             get
@@ -179,6 +194,8 @@ namespace MasaoPlus
 
         private ChipsData CurrentChipData = default;
 
+        private ChipsData CurrentCustomPartsChipData = default;
+
         public Process Testrun;
 
         private bool efg = true;
@@ -202,5 +219,7 @@ namespace MasaoPlus
         public bool TestrunAll;
 
         public delegate void UpdateCurrentChip();
+
+        public delegate void UpdateCurrentCustomPartsChip();
     }
 }

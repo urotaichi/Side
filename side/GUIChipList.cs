@@ -9,7 +9,7 @@ namespace MasaoPlus
 {
     public class GUIChipList : UserControl
     {
-        public int SelectedIndex
+        public virtual int SelectedIndex
         {
             get
             {
@@ -69,7 +69,7 @@ namespace MasaoPlus
             }
         }
 
-        private int vPosition
+        protected int vPosition
         {
             get
             {
@@ -83,7 +83,7 @@ namespace MasaoPlus
             }
         }
 
-        private int hMaxChip
+        protected int hMaxChip
         {
             get
             {
@@ -96,12 +96,12 @@ namespace MasaoPlus
             }
         }
 
-        private void vScr_Scroll(object sender, ScrollEventArgs e)
+        protected void vScr_Scroll(object sender, ScrollEventArgs e)
         {
             MainPanel.Refresh();
         }
 
-        private void SetMaxValue()
+        protected void SetMaxValue()
         {
             vScr.LargeChange = MainPanel.Height;
             vScr.SmallChange = Global.cpd.runtime.Definitions.ChipSize.Height;
@@ -128,7 +128,7 @@ namespace MasaoPlus
             return GetVirtSize(MainPanel.Width);
         }
 
-        public int GetVirtSize(int wid)
+        public virtual int GetVirtSize(int wid)
         {
             if (Global.cpd.runtime == null)
             {
@@ -156,7 +156,7 @@ namespace MasaoPlus
             GUIChipList_Resize(this, new EventArgs());
         }
 
-        private void GUIChipList_Resize(object sender, EventArgs e)
+        protected void GUIChipList_Resize(object sender, EventArgs e)
         {
             if (GetVirtSize(Width) < Height)
             {
@@ -171,7 +171,7 @@ namespace MasaoPlus
             MainPanel.Refresh();
         }
 
-        private void AddChipData(ChipsData[] chipsData, int num, PaintEventArgs e, int inital = 0)
+        protected virtual void AddChipData(ChipsData[] chipsData, int num, PaintEventArgs e, int inital = 0)
         {
             for (int i = inital; i < num; i++)
             {
@@ -334,7 +334,7 @@ namespace MasaoPlus
         }
 
         // クラシックチップリスト
-        private void MainPanel_Paint(object sender, PaintEventArgs e)
+        protected virtual void MainPanel_Paint(object sender, PaintEventArgs e)
         {
             try
             {
@@ -382,7 +382,7 @@ namespace MasaoPlus
             }
         }
 
-        private void MainPanel_MouseDown(object sender, MouseEventArgs e)
+        protected virtual void MainPanel_MouseDown(object sender, MouseEventArgs e)
         {
             Focus();
             if (!Enabled)
@@ -420,7 +420,7 @@ namespace MasaoPlus
             SelectedIndex = num;
         }
 
-        private void MainPanel_MouseMove(object sender, MouseEventArgs e)
+        protected void MainPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -428,7 +428,7 @@ namespace MasaoPlus
             }
         }
 
-        private void GUIChipList_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        protected void GUIChipList_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -443,7 +443,7 @@ namespace MasaoPlus
             }
         }
 
-        private void GUIChipList_KeyDown(object sender, KeyEventArgs e)
+        protected void GUIChipList_KeyDown(object sender, KeyEventArgs e)
         {
             e.Handled = true;
             switch (e.KeyCode)
@@ -475,7 +475,7 @@ namespace MasaoPlus
             base.Dispose(disposing);
         }
 
-        private void InitializeComponent()
+        protected virtual void InitializeComponent()
         {
             vScr = new VScrollBar();
             MainPanel = new PictureBox();
@@ -509,12 +509,12 @@ namespace MasaoPlus
             ResumeLayout(false);
         }
 
-        private int selectedIndex;
+        protected int selectedIndex;
 
-        private readonly IContainer components;
+        protected readonly IContainer components;
 
-        private VScrollBar vScr;
+        protected VScrollBar vScr;
 
-        private PictureBox MainPanel;
+        protected PictureBox MainPanel;
     }
 }
