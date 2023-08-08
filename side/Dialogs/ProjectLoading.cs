@@ -121,6 +121,7 @@ namespace MasaoPlus.Dialogs
                     SetState("チップリストを作成しています...");
                     Global.MainWnd.ChipItemReady();
                     SetState("編集を開始します...");
+                    Global.MainWnd.MasaoConfigList.Prepare();
                 }
                 catch (InvalidOperationException)
                 {

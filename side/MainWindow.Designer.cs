@@ -1554,7 +1554,7 @@
 
 		private global::System.Windows.Forms.TabPage PropertyTab;
 
-		private global::MasaoPlus.Controls.ConfigList MasaoConfigList;
+		public global::MasaoPlus.Controls.ConfigList MasaoConfigList;
 
 		private global::System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
 

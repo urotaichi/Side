@@ -2253,7 +2253,7 @@ namespace MasaoPlus
         {
             if (SideTab.SelectedIndex == 1)
             {
-                MasaoConfigList.Prepare();
+                //MasaoConfigList.Prepare();
             }
         }
 
