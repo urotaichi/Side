@@ -1671,7 +1671,7 @@
 
         private global::System.Windows.Forms.TabPage CustomPartsTab;
 
-        private global::MasaoPlus.Controls.ConfigList MasaoConfigList;
+        public global::MasaoPlus.Controls.ConfigList MasaoConfigList;
 
         private global::System.Windows.Forms.SplitContainer ItemSpliter2;
 
