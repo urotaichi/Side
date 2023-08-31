@@ -456,43 +456,42 @@ namespace MasaoPlus.Controls
             }
             int num = OrigIdx[e.RowIndex];
             ConfigParam configParam = Global.cpd.project.Config.Configurations[num];
-            var value = ConfView[e.ColumnIndex, e.RowIndex].Value;
             switch (configParam.Type)
             {
                 case ConfigParam.Types.b:
                 case ConfigParam.Types.b2:
                 case ConfigParam.Types.b0:
-                    if (configParam.Value == value.ToString())
+                    if (configParam.Value == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                     {
                         return;
                     }
-                    Global.cpd.project.Config.Configurations[num].Value = value.ToString();
+                    Global.cpd.project.Config.Configurations[num].Value = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
                     break;
                 case ConfigParam.Types.s:
-                    if (value == null)
+                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
                     {
-                        value = "";
+                        ConfView[e.ColumnIndex, e.RowIndex].Value = "";
                     }
-                    if (configParam.Value == value.ToString())
+                    if (configParam.Value == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                     {
                         return;
                     }
-                    Global.cpd.project.Config.Configurations[num].Value = value.ToString();
+                    Global.cpd.project.Config.Configurations[num].Value = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
                     break;
                 case ConfigParam.Types.i:
                     {
-                        if (value == null)
+                        if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
                         {
-                            value = 0.ToString();
+                            ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
                         }
-                        if (!int.TryParse(value.ToString(), out int num2))
+                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out int num2))
                         {
                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                            if (configParam.Value.ToString() == value.ToString())
+                            if (configParam.Value.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                             {
                                 return;
                             }
-                            value = configParam.Value.ToString();
+                            ConfView[e.ColumnIndex, e.RowIndex].Value = configParam.Value.ToString();
                             return;
                         }
                         else
@@ -503,11 +502,11 @@ namespace MasaoPlus.Controls
                     }
                 case ConfigParam.Types.t:
                     {
-                        if (value == null)
+                        if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
                         {
-                            value = "";
+                            ConfView[e.ColumnIndex, e.RowIndex].Value = "";
                         }
-                        string text = value.ToString();
+                        string text = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
                         string[] array = text.Split(new string[]
                         {
                     Environment.NewLine
@@ -535,7 +534,7 @@ namespace MasaoPlus.Controls
                             return;
                         }
                         Global.cpd.project.Config.Configurations[num].Value = text;
-                        value = text;
+                        ConfView[e.ColumnIndex, e.RowIndex].Value = text;
                         break;
                     }
                 case ConfigParam.Types.f:
@@ -543,11 +542,11 @@ namespace MasaoPlus.Controls
                 case ConfigParam.Types.f_a:
                     return;
                 case ConfigParam.Types.l:
-                    if (configParam.Value == (((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(value) + 1).ToString())
+                    if (configParam.Value == (((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1).ToString())
                     {
                         return;
                     }
-                    Global.cpd.project.Config.Configurations[num].Value = (((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(value) + 1).ToString();
+                    Global.cpd.project.Config.Configurations[num].Value = (((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1).ToString();
                     if (Global.cpd.project.Config.Configurations[num].Name == "mcs_screen_size")
                     {
                         if (Global.cpd.project.Config.Configurations[num].Value == "1")
@@ -581,7 +580,7 @@ namespace MasaoPlus.Controls
                     break;
                 case ConfigParam.Types.l_a:
                     {
-                        int configParam_num = ((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(value) + 1;
+                        int configParam_num = ((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1;
                         int MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
                         if (configParam_num <= MaxAthleticNumber && configParam.Value == configParam_num.ToString() || configParam_num > MaxAthleticNumber && configParam.Value == (configParam_num - 1 - MaxAthleticNumber + 1001).ToString())
                         {
