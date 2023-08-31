@@ -456,27 +456,28 @@ namespace MasaoPlus.Controls
             }
             int num = OrigIdx[e.RowIndex];
             ConfigParam configParam = Global.cpd.project.Config.Configurations[num];
+            string row_text = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
             switch (configParam.Type)
             {
                 case ConfigParam.Types.b:
                 case ConfigParam.Types.b2:
                 case ConfigParam.Types.b0:
-                    if (configParam.Value == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
+                    if (configParam.Value == row_text)
                     {
                         return;
                     }
-                    Global.cpd.project.Config.Configurations[num].Value = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
+                    Global.cpd.project.Config.Configurations[num].Value = row_text;
                     break;
                 case ConfigParam.Types.s:
                     if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
                     {
                         ConfView[e.ColumnIndex, e.RowIndex].Value = "";
                     }
-                    if (configParam.Value == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
+                    if (configParam.Value == row_text)
                     {
                         return;
                     }
-                    Global.cpd.project.Config.Configurations[num].Value = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
+                    Global.cpd.project.Config.Configurations[num].Value = row_text;
                     break;
                 case ConfigParam.Types.i:
                     {
@@ -484,10 +485,10 @@ namespace MasaoPlus.Controls
                         {
                             ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
                         }
-                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out int num2))
+                        if (!int.TryParse(row_text, out int num2))
                         {
                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                            if (configParam.Value.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
+                            if (configParam.Value.ToString() == row_text)
                             {
                                 return;
                             }
@@ -506,7 +507,7 @@ namespace MasaoPlus.Controls
                         {
                             ConfView[e.ColumnIndex, e.RowIndex].Value = "";
                         }
-                        string text = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        string text = row_text;
                         string[] array = text.Split(new string[]
                         {
                     Environment.NewLine
