@@ -128,6 +128,7 @@ namespace MasaoPlus
             set
             {
                 CurrentChipData = value;
+                // 現在選択しているチップが変わったら発火
                 UpdateCurrentChipInvoke?.Invoke();
             }
         }
@@ -143,6 +144,7 @@ namespace MasaoPlus
             set
             {
                 CurrentCustomPartsChipData = value;
+                // 現在選択しているカスタムパーツが変わったら発火
                 UpdateCurrentCustomPartsChipInvoke?.Invoke();
             }
         }

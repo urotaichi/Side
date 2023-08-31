@@ -17,7 +17,7 @@ namespace MasaoPlus.Controls
             InitializeComponent();
         }
 
-        public void Prepare()
+        public virtual void Prepare()
         {
             ConfigSelector.Items.Clear();
             ConfigSelector.Items.Add("全部");
@@ -35,7 +35,7 @@ namespace MasaoPlus.Controls
 
 
         // 表示を変える
-        private void ConfigSelector_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ConfigSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ConfigSelector.Items.Count < 1)
             {
@@ -211,12 +211,12 @@ namespace MasaoPlus.Controls
             if (Global.config.localSystem.WrapPropText) ConfView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
-        private void ConfigSelector_Resize(object sender, EventArgs e)
+        protected virtual void ConfigSelector_Resize(object sender, EventArgs e)
         {
             ConfigSelector.Refresh();
         }
 
-        private void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        protected virtual void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 1)
             {
@@ -417,11 +417,10 @@ namespace MasaoPlus.Controls
             MessageBox.Show("ファイルの読み込みに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
         }
 
-        private void ConfView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        protected void ConfView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (e.Control is DataGridViewTextBoxEditingControl)
+            if (e.Control is DataGridViewTextBoxEditingControl dataGridViewTextBoxEditingControl)
             {
-                DataGridViewTextBoxEditingControl dataGridViewTextBoxEditingControl = (DataGridViewTextBoxEditingControl)e.Control;
                 dataGridViewTextBoxEditingControl.PreviewKeyDown += ct_PreviewKeyDown;
                 dataGridViewTextBoxEditingControl.ScrollBars = ScrollBars.Both;
             }
@@ -437,7 +436,7 @@ namespace MasaoPlus.Controls
             e.IsInputKey = true;
         }
 
-        private void ConfView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        protected virtual void ConfView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (ConfView.CurrentCellAddress.X == 1 && ConfView.IsCurrentCellDirty)
             {
@@ -445,7 +444,7 @@ namespace MasaoPlus.Controls
             }
         }
 
-        private void ConfView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        protected virtual void ConfView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 1)
             {
@@ -457,42 +456,43 @@ namespace MasaoPlus.Controls
             }
             int num = OrigIdx[e.RowIndex];
             ConfigParam configParam = Global.cpd.project.Config.Configurations[num];
+            var value = ConfView[e.ColumnIndex, e.RowIndex].Value;
             switch (configParam.Type)
             {
                 case ConfigParam.Types.b:
                 case ConfigParam.Types.b2:
                 case ConfigParam.Types.b0:
-                    if (configParam.Value == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
+                    if (configParam.Value == value.ToString())
                     {
                         return;
                     }
-                    Global.cpd.project.Config.Configurations[num].Value = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
+                    Global.cpd.project.Config.Configurations[num].Value = value.ToString();
                     break;
                 case ConfigParam.Types.s:
-                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                    if (value == null)
                     {
-                        ConfView[e.ColumnIndex, e.RowIndex].Value = "";
+                        value = "";
                     }
-                    if (configParam.Value == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
+                    if (configParam.Value == value.ToString())
                     {
                         return;
                     }
-                    Global.cpd.project.Config.Configurations[num].Value = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
+                    Global.cpd.project.Config.Configurations[num].Value = value.ToString();
                     break;
                 case ConfigParam.Types.i:
                     {
-                        if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                        if (value == null)
                         {
-                            ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                            value = 0.ToString();
                         }
-                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out int num2))
+                        if (!int.TryParse(value.ToString(), out int num2))
                         {
                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                            if (configParam.Value.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
+                            if (configParam.Value.ToString() == value.ToString())
                             {
                                 return;
                             }
-                            ConfView[e.ColumnIndex, e.RowIndex].Value = configParam.Value.ToString();
+                            value = configParam.Value.ToString();
                             return;
                         }
                         else
@@ -503,11 +503,11 @@ namespace MasaoPlus.Controls
                     }
                 case ConfigParam.Types.t:
                     {
-                        if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                        if (value == null)
                         {
-                            ConfView[e.ColumnIndex, e.RowIndex].Value = "";
+                            value = "";
                         }
-                        string text = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
+                        string text = value.ToString();
                         string[] array = text.Split(new string[]
                         {
                     Environment.NewLine
@@ -535,7 +535,7 @@ namespace MasaoPlus.Controls
                             return;
                         }
                         Global.cpd.project.Config.Configurations[num].Value = text;
-                        ConfView[e.ColumnIndex, e.RowIndex].Value = text;
+                        value = text;
                         break;
                     }
                 case ConfigParam.Types.f:
@@ -543,11 +543,11 @@ namespace MasaoPlus.Controls
                 case ConfigParam.Types.f_a:
                     return;
                 case ConfigParam.Types.l:
-                    if (configParam.Value == (((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1).ToString())
+                    if (configParam.Value == (((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(value) + 1).ToString())
                     {
                         return;
                     }
-                    Global.cpd.project.Config.Configurations[num].Value = (((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1).ToString();
+                    Global.cpd.project.Config.Configurations[num].Value = (((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(value) + 1).ToString();
                     if (Global.cpd.project.Config.Configurations[num].Name == "mcs_screen_size")
                     {
                         if (Global.cpd.project.Config.Configurations[num].Value == "1")
@@ -581,7 +581,7 @@ namespace MasaoPlus.Controls
                     break;
                 case ConfigParam.Types.l_a:
                     {
-                        int configParam_num = ((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1;
+                        int configParam_num = ((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(value) + 1;
                         int MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
                         if (configParam_num <= MaxAthleticNumber && configParam.Value == configParam_num.ToString() || configParam_num > MaxAthleticNumber && configParam.Value == (configParam_num - 1 - MaxAthleticNumber + 1001).ToString())
                         {
@@ -601,7 +601,7 @@ namespace MasaoPlus.Controls
             Global.state.EditFlag = true;
         }
 
-        private void ConfView_CellClick(object sender, DataGridViewCellEventArgs e)
+        protected void ConfView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 1)
             {
@@ -618,7 +618,7 @@ namespace MasaoPlus.Controls
             base.Dispose(disposing);
         }
 
-        private void InitializeComponent()
+        protected virtual void InitializeComponent()
         {
             ConfigSelector = new ComboBox();
             ConfView = new DataGridView();
@@ -689,17 +689,17 @@ namespace MasaoPlus.Controls
             mediaPlayer.MediaError += PreviewAudio_error;
         }
 
-        private readonly List<int> OrigIdx = new List<int>();
+        protected readonly List<int> OrigIdx = new List<int>();
 
         private readonly IContainer components;
 
-        private ComboBox ConfigSelector;
+        protected ComboBox ConfigSelector;
 
-        private DataGridView ConfView;
+        protected DataGridView ConfView;
 
-        private DataGridViewTextBoxColumn CNames;
+        protected DataGridViewTextBoxColumn CNames;
 
-        private DataGridViewTextBoxColumn CValues;
+        protected DataGridViewTextBoxColumn CValues;
 
         private int width_index, height_index;
 
