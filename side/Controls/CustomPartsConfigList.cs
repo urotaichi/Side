@@ -12,6 +12,7 @@ namespace MasaoPlus.Controls
 
         public override void Prepare()
         {
+            BasePartsTypes = new DataGridViewComboBoxCell();
             BasePartsTypes.Items.Clear();
             CustomizeParts.Clear();
 
@@ -1335,7 +1336,7 @@ namespace MasaoPlus.Controls
 
         private readonly List<ChipsData> CustomizeParts = new List<ChipsData>();
 
-        private readonly DataGridViewComboBoxCell BasePartsTypes = new DataGridViewComboBoxCell();
+        private DataGridViewComboBoxCell BasePartsTypes;
 
         private DataGridViewTextBoxColumn SE;
     }
