@@ -508,7 +508,7 @@ namespace MasaoPlus
 
         protected int selectedIndex;
 
-        protected readonly IContainer components;
+        protected IContainer components;
 
         protected VScrollBar vScr;
 

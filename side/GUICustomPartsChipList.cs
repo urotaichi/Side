@@ -5,6 +5,7 @@ using System.Drawing.Imaging;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Linq;
+using MasaoPlus.Properties;
 
 namespace MasaoPlus
 {
@@ -200,7 +201,7 @@ namespace MasaoPlus
             int num2 = Global.cpd.CustomPartsChip.Length;
             if (num >= num2)
             {
-                if(num == num2)
+                if (num == num2)
                 {
                     int i;
                     for (i = 0; i < Global.cpd.VarietyChip.Length; i++)
@@ -210,37 +211,111 @@ namespace MasaoPlus
                             break;
                         }
                     }
-                    var r = new Random();
-                    const string PWS_CHARS = "abcdefghijklmnopqrstuvwxyz";
-                    Array.Resize(ref Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length + 1);
-                    Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1] = Global.cpd.VarietyChip[i];
-                    Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips = (ChipData[])Global.cpd.VarietyChip[i].Chips.Clone(); // 配列は個別に複製
-                    for (int j = 0; j < Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips.Length; j++)
-                    {
-                        Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips[j].name = $"カスタムパーツ{Global.cpd.CustomPartsChip.Length}";
-                        Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips[j].description = $"{Global.cpd.VarietyChip[i].Chips[j].name} {Global.cpd.VarietyChip[i].Chips[j].description}";
-                    }
-                    Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].basecode = Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].code;
-                    Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].code = string.Join("", Enumerable.Range(0, 10).Select(_ => PWS_CHARS[r.Next(PWS_CHARS.Length)]));
-                    Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].idColor = $"#{Guid.NewGuid().ToString("N").Substring(0, 6)}";
-                    Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1];
-                    Global.MainWnd.MainDesigner.DrawItemCodeRef[Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].code] = Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1];
-                    Array.Resize(ref Global.cpd.project.CustomPartsDefinition, Global.cpd.project.CustomPartsDefinition.Length + 1);
-                    Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
-                    Global.MainWnd.RefreshAll();
-                    Global.state.EditFlag = true;
+                    Create(Global.cpd.VarietyChip[i]);
                 }
                 return;
             }
             SelectedIndex = num;
+            if (e.Button == MouseButtons.Right)
+            { // 右クリック時
+                MouseStartPoint = default;
+                MouseStartPoint.X = (e.X + Global.state.MapPoint.X) / Global.cpd.runtime.Definitions.ChipSize.Width;
+                MouseStartPoint.Y = (e.Y + Global.state.MapPoint.Y) / Global.cpd.runtime.Definitions.ChipSize.Height;
+                CursorContextMenu.Show(this, new Point(e.X, e.Y));
+                return;
+            }
+        }
+
+        private void Copy_Click(object sender, EventArgs e)
+        {
+            Create(Global.state.CurrentCustomPartsChip);
+        }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            Global.MainWnd.MainDesigner.DrawItemCodeRef.Remove(Global.cpd.CustomPartsChip[selectedIndex].code);
+            Global.cpd.CustomPartsChip = Global.cpd.CustomPartsChip.Where((_, index) => index != selectedIndex).ToArray();
+            if(Global.cpd.CustomPartsChip.Length > 0)
+            {
+                Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];
+            }
+            else
+            {
+                Global.state.CurrentCustomPartsChip = default;
+            }
+            Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
+            Global.MainWnd.RefreshAll();
+            Global.state.EditFlag = true;
+        }
+
+        private void Create(ChipsData basedata)
+        {
+            ChipsData data;
+            int i;
+            if(basedata.basecode != null)
+            {
+                for (i = 0; i < Global.cpd.VarietyChip.Length; i++)
+                {
+                    if (Global.cpd.VarietyChip[i].code == basedata.basecode)
+                    {
+                        break;
+                    }
+                }
+                data = Global.cpd.VarietyChip[i];
+            }
+            else
+            {
+                data = basedata;
+            }
+            var r = new Random();
+            const string PWS_CHARS = "abcdefghijklmnopqrstuvwxyz";
+            Array.Resize(ref Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length + 1);
+            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1] = basedata;
+            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips = (ChipData[])basedata.Chips.Clone(); // 配列は個別に複製
+            for (int j = 0; j < Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips.Length; j++)
+            {
+                Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips[j].name = $"カスタムパーツ{Global.cpd.CustomPartsChip.Length}";
+                Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips[j].description = $"{data.Chips[j].name} {data.Chips[j].description}";
+            }
+            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].basecode = data.code;
+            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].code = string.Join("", Enumerable.Range(0, 10).Select(_ => PWS_CHARS[r.Next(PWS_CHARS.Length)]));
+            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].idColor = $"#{Guid.NewGuid().ToString("N").Substring(0, 6)}";
+            Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1];
+            Global.MainWnd.MainDesigner.DrawItemCodeRef[Global.state.CurrentCustomPartsChip.code] = Global.state.CurrentCustomPartsChip;
+            Array.Resize(ref Global.cpd.project.CustomPartsDefinition, Global.cpd.project.CustomPartsDefinition.Length + 1);
+            Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
+            Global.MainWnd.RefreshAll();
+            Global.state.EditFlag = true;
         }
 
         protected override void InitializeComponent()
         {
             vScr = new VScrollBar();
             MainPanel = new PictureBox();
+            components = new Container();
+            CursorContextMenu = new ContextMenuStrip(components);
+            Copy = new ToolStripMenuItem();
+            Delete = new ToolStripMenuItem();
             ((ISupportInitialize)MainPanel).BeginInit();
+            CursorContextMenu.SuspendLayout();
             SuspendLayout();
+            CursorContextMenu.Items.AddRange(new ToolStripItem[]
+            {
+                Copy,
+                Delete
+            });
+            CursorContextMenu.Name = "CursorContextMenu";
+            CursorContextMenu.Size = new Size(275, 170);
+            Copy.Image = Resources.copy;
+            Copy.Name = "Copy";
+            Copy.Size = new Size(274, 22);
+            Copy.Text = "コピー(&C)";
+            Copy.Click += Copy_Click;
+            Delete.Name = "Copy";
+            Delete.Size = new Size(274, 22);
+            Delete.Text = "削除";
+            Delete.Click += Delete_Click;
+
             vScr.Dock = DockStyle.Right;
             vScr.Location = new Point(265, 0);
             vScr.Name = "vScr";
@@ -266,7 +341,16 @@ namespace MasaoPlus
             Resize += GUIChipList_Resize;
             KeyDown += GUIChipList_KeyDown;
             ((ISupportInitialize)MainPanel).EndInit();
+            CursorContextMenu.ResumeLayout(false);
             ResumeLayout(false);
         }
+
+        private Point MouseStartPoint = default;
+
+        private ContextMenuStrip CursorContextMenu;
+
+        private ToolStripMenuItem Copy;
+
+        private ToolStripMenuItem Delete;
     }
 }
