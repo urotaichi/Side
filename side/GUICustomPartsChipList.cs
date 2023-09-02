@@ -252,6 +252,17 @@ namespace MasaoPlus
 
         private void Delete_Click(object sender, EventArgs e)
         {
+            void func(string[] stagedata)
+            {
+                for (int i = 0; i < stagedata.Length; i++)
+                {
+                    stagedata[i] = stagedata[i].Replace(Global.cpd.CustomPartsChip[selectedIndex].code, "0");
+                }
+            }
+            func(Global.cpd.project.StageData);
+            func(Global.cpd.project.StageData2);
+            func(Global.cpd.project.StageData3);
+            func(Global.cpd.project.StageData4);
             Global.MainWnd.MainDesigner.DrawItemCodeRef.Remove(Global.cpd.CustomPartsChip[selectedIndex].code);
             Global.cpd.CustomPartsChip = Global.cpd.CustomPartsChip.Where((_, index) => index != selectedIndex).ToArray();
             if(Global.cpd.CustomPartsChip.Length > 0)
