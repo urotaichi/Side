@@ -441,19 +441,6 @@ namespace MasaoPlus.Controls
             }
         }
 
-        protected override void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //if (e.ColumnIndex == 0)
-            //{
-            //    return;
-            //}
-            //if (e.RowIndex < 0)
-            //{
-            //    return;
-            //}
-            //Global.state.EditFlag = true;
-        }
-
         protected void ConfView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 0)
@@ -481,9 +468,9 @@ namespace MasaoPlus.Controls
                     ConfView.Rows.RemoveAt(num);
                     Global.cpd.CustomPartsChip[cs_i].Properties.attack_timing.RemoveAt(num - 3);
                     Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[cs_i];
+                    Global.state.EditFlag = true;
                 }
             }
-            Global.state.EditFlag = true;
         }
 
         protected override void ConfView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -1199,6 +1186,59 @@ namespace MasaoPlus.Controls
             Global.state.EditFlag = true;
         }
 
+        protected override void ConfView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != 1)
+            {
+                return;
+            }
+            ConfView.BeginEdit(true);
+            int num = e.RowIndex;
+            if (num != ConfView.Rows.Count - 1)
+            {
+                return;
+            }
+            int i, cs_i = Global.MainWnd.GuiCustomPartsChipList.SelectedIndex;
+            for (i = 0; i < CustomizeParts.Count; i++)
+            {
+                if (i == BasePartsTypes.Items.IndexOf(BasePartsTypes.Value))
+                {
+                    break;
+                }
+            }
+            ChipsData c = CustomizeParts[i];
+            if (int.TryParse(c.code, out int code))
+            {
+                if ((code - 5000) / 10 == 30) // チコリン（はっぱカッター）
+                {
+                    int next = 0;
+                    if (int.TryParse(ConfView[e.ColumnIndex, num - 1].Value.ToString(), out int num2))
+                    {
+                        next = num2 + 1;
+                    }
+                    ConfView.Rows.Insert(ConfView.Rows.Count - 1, new string[]
+                    {
+                        "葉っぱを投げるタイミング",
+                        next.ToString()
+                    });
+                    ConfView[1, ConfView.Rows.Count - 2] = new DataGridViewNumericUpdownCell
+                    {
+                        Value = next.ToString()
+                    };
+                    DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new DataGridViewCheckBoxCell
+                    {
+                        TrueValue = "true",
+                        FalseValue = "false"
+                    };
+                    dataGridViewCheckBoxCell.Value = false;
+                    ConfView[2, ConfView.Rows.Count - 2] = dataGridViewCheckBoxCell;
+                    Global.cpd.CustomPartsChip[cs_i].Properties.attack_timing.Add(new attack_timing { AttackFrame = next, IsPlaySoundFrame = false });
+                    Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[cs_i];
+                    Global.state.EditFlag = true;
+                }
+            }
+        }
+
         protected override void InitializeComponent()
         {
             ConfView = new DataGridView();
@@ -1234,7 +1274,6 @@ namespace MasaoPlus.Controls
             ConfView.CellClick += ConfView_CellClick;
             ConfView.EditingControlShowing += ConfView_EditingControlShowing;
             ConfView.CurrentCellDirtyStateChanged += ConfView_CurrentCellDirtyStateChanged;
-            ConfView.CellContentClick += ConfView_CellContentClick;
             ConfView.CellDoubleClick += ConfView_CellDoubleClick;
 
             CNames.FillWeight = 30f;

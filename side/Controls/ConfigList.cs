@@ -216,7 +216,7 @@ namespace MasaoPlus.Controls
             ConfigSelector.Refresh();
         }
 
-        protected virtual void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        protected void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 1)
             {
@@ -600,7 +600,7 @@ namespace MasaoPlus.Controls
             Global.state.EditFlag = true;
         }
 
-        protected void ConfView_CellClick(object sender, DataGridViewCellEventArgs e)
+        protected virtual void ConfView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 1)
             {
