@@ -184,6 +184,7 @@
 			this.GuiChipList = new global::MasaoPlus.GUIChipList();
 			this.MasaoConfigList = new global::MasaoPlus.Controls.ConfigList();
             this.GuiCustomPartsChipList = new global::MasaoPlus.GUICustomPartsChipList();
+            this.CustomPartsConfigList = new global::MasaoPlus.Controls.CustomPartsConfigList();
 
             this.MainDesigner = new global::MasaoPlus.GUIDesigner();
 			this.MainEditor = new global::MasaoPlus.TextEditor();
@@ -346,24 +347,23 @@
 			this.CustomPartsTab.Location = new global::System.Drawing.Point(4, 22);
             this.CustomPartsTab.Name = "CustomPartsTab";
             this.CustomPartsTab.Padding = new global::System.Windows.Forms.Padding(3);
-            this.CustomPartsTab.Size = new global::System.Drawing.Size(177, 283);
             this.CustomPartsTab.TabIndex = 2;
             this.CustomPartsTab.Text = "カスタムパーツ";
             this.CustomPartsTab.UseVisualStyleBackColor = true;
-            this.CustomPartsTab.Visible = false;
             this.ItemSpliter2.BackColor = global::System.Drawing.Color.White;
             this.ItemSpliter2.Dock = global::System.Windows.Forms.DockStyle.Fill;
             this.ItemSpliter2.Margin = new global::System.Windows.Forms.Padding(0);
             this.ItemSpliter2.Name = "ItemSpliter2";
             this.ItemSpliter2.Orientation = global::System.Windows.Forms.Orientation.Horizontal;
-            this.ItemSpliter2.Panel1.Controls.Add(this.CustomParts);
-            this.ItemSpliter2.Panel1MinSize = 180;
-            //this.ItemSpliter2.SplitterDistance = 180;
-            //this.ItemSpliter2.Panel2.Controls.Add(this.);
+			this.ItemSpliter2.Panel1.Controls.Add(this.CustomParts);
+			this.ItemSpliter2.Panel2.Controls.Add(this.CustomPartsConfigList);
+            this.ItemSpliter2.Size = new global::System.Drawing.Size(171, 1000);
+            this.ItemSpliter2.Panel1MinSize = 90;
+            this.ItemSpliter2.SplitterDistance = 180;
             this.ItemSpliter2.TabIndex = 1;
             this.ItemSpliter2.TabStop = false;
-            this.CustomParts.Dock = global::System.Windows.Forms.DockStyle.Fill;
-            this.CustomParts.FixedPanel = global::System.Windows.Forms.FixedPanel.Panel1;
+			this.CustomParts.Dock = global::System.Windows.Forms.DockStyle.Fill;
+			this.CustomParts.FixedPanel = global::System.Windows.Forms.FixedPanel.Panel1;
             this.CustomParts.IsSplitterFixed = true;
             this.CustomParts.Location = new global::System.Drawing.Point(3, 3);
             this.CustomParts.Margin = new global::System.Windows.Forms.Padding(0);
@@ -1336,6 +1336,12 @@
             this.GuiCustomPartsChipList.Size = new global::System.Drawing.Size(171, 213);
             this.GuiCustomPartsChipList.TabIndex = 2;
 
+            this.CustomPartsConfigList.Dock = global::System.Windows.Forms.DockStyle.Fill;
+            this.CustomPartsConfigList.Location = new global::System.Drawing.Point(3, 3);
+            this.CustomPartsConfigList.Name = "CustomPartsConfigList";
+            this.CustomPartsConfigList.Size = new global::System.Drawing.Size(171, 277);
+            this.CustomPartsConfigList.TabIndex = 0;
+
             this.MainDesigner.BorderStyle = global::System.Windows.Forms.BorderStyle.FixedSingle;
 			this.MainDesigner.CopyPaste = global::MasaoPlus.GUIDesigner.CopyPasteTool.None;
 			this.MainDesigner.CurrentTool = global::MasaoPlus.GUIDesigner.EditTool.Cursor;
@@ -1372,6 +1378,7 @@
 			base.FormClosed += new global::System.Windows.Forms.FormClosedEventHandler(this.MainWindow_FormClosed);
 			base.FormClosing += new global::System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
 			base.KeyDown += new global::System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
+
 			this.MainDock.ContentPanel.ResumeLayout(false);
 			this.MainDock.TopToolStripPanel.ResumeLayout(false);
 			this.MainDock.TopToolStripPanel.PerformLayout();
@@ -1386,6 +1393,9 @@
 			this.ItemSpliter.Panel1.PerformLayout();
 			this.ItemSpliter.Panel2.ResumeLayout(false);
 			this.ItemSpliter.ResumeLayout(false);
+            ((global::System.ComponentModel.ISupportInitialize)this.ChipImage).EndInit();
+			this.PropertyTab.ResumeLayout(false);
+            this.CustomPartsTab.ResumeLayout(false);
             this.ItemSpliter2.Panel1.ResumeLayout(false);
             this.ItemSpliter2.Panel1.PerformLayout();
             this.ItemSpliter2.Panel2.ResumeLayout(false);
@@ -1394,9 +1404,8 @@
             this.CustomParts.Panel1.PerformLayout();
             this.CustomParts.Panel2.ResumeLayout(false);
             this.CustomParts.ResumeLayout(false);
-            ((global::System.ComponentModel.ISupportInitialize)this.ChipImage).EndInit();
-			this.PropertyTab.ResumeLayout(false);
-            this.CustomPartsTab.ResumeLayout(false);
+            ((global::System.ComponentModel.ISupportInitialize)this.CustomPartsChipImage).EndInit();
+
             this.EditTab.ResumeLayout(false);
 			this.GuiEditor.ResumeLayout(false);
 			this.GuiEditor.PerformLayout();
@@ -1560,7 +1569,7 @@
 
         private global::System.Windows.Forms.PictureBox CustomPartsChipImage;
 
-        private global::MasaoPlus.GUICustomPartsChipList GuiCustomPartsChipList;
+        public global::MasaoPlus.GUICustomPartsChipList GuiCustomPartsChipList;
 
 
         private global::System.Windows.Forms.TabControl EditTab;
@@ -1676,6 +1685,8 @@
         private global::System.Windows.Forms.SplitContainer ItemSpliter2;
 
         private global::System.Windows.Forms.SplitContainer CustomParts;
+
+        public global::MasaoPlus.Controls.CustomPartsConfigList CustomPartsConfigList;
 
         private global::System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
 

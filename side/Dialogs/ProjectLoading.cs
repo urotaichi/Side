@@ -125,6 +125,7 @@ namespace MasaoPlus.Dialogs
                     Global.MainWnd.ChipItemReady();
                     SetState("編集を開始します...");
                     Global.MainWnd.MasaoConfigList.Prepare();
+                    Global.MainWnd.CustomPartsConfigList.Prepare();
                 }
                 catch (InvalidOperationException)
                 {

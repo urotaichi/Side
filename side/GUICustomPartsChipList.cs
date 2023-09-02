@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace MasaoPlus
 {
-    internal class GUICustomPartsChipList : GUIChipList
+    public class GUICustomPartsChipList : GUIChipList
     {
         public override int SelectedIndex
         {
@@ -21,19 +21,15 @@ namespace MasaoPlus
                 {
                     return;
                 }
-                if (value >= Global.cpd.project.CustomPartsDefinition.Length || value < 0)
+                if (value >= Global.cpd.CustomPartsChip.Length || value < 0)
                 {
                     return;
                 }
-                Global.state.CurrentCustomPartsChip = Global.cpd.project.CustomPartsDefinition[value];
+                Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[value];
                 selectedIndex = value;
+                Global.MainWnd.CustomPartsConfigList.PrepareCurrentCustomPartsParam();
                 Refresh();
             }
-        }
-
-        public GUICustomPartsChipList()
-        {
-            InitializeComponent();
         }
 
         public override int GetVirtSize(int wid)
@@ -47,7 +43,7 @@ namespace MasaoPlus
             {
                 num = 1;
             }
-            return (int)Math.Ceiling(Global.cpd.project.CustomPartsDefinition.Length / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height;
+            return (int)Math.Ceiling(Global.cpd.CustomPartsChip.Length / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height;
         }
 
         protected override void AddChipData(ChipsData[] chipsData, int num, PaintEventArgs e, int inital = 0)
@@ -158,7 +154,7 @@ namespace MasaoPlus
                     {
                         e.Graphics.FillRectangle(brush, e.ClipRectangle);
                     }
-                    AddChipData(Global.cpd.project.CustomPartsDefinition, Global.cpd.project.CustomPartsDefinition.Length, e);
+                    AddChipData(Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length, e);
 
                     if (!Enabled)
                     {
@@ -186,7 +182,7 @@ namespace MasaoPlus
             }
             int num = (int)Math.Floor(e.X / (double)Global.cpd.runtime.Definitions.ChipSize.Width);
             num += (int)Math.Floor((e.Y + vPosition) / (double)Global.cpd.runtime.Definitions.ChipSize.Height) * hMaxChip;
-            int num2 = Global.cpd.project.CustomPartsDefinition.Length;
+            int num2 = Global.cpd.CustomPartsChip.Length;
             if (num >= num2)
             {
                 return;

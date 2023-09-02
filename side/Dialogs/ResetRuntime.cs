@@ -297,6 +297,7 @@ namespace MasaoPlus.Dialogs
             }
             Global.MainWnd.ChipItemReady();
             Global.MainWnd.MasaoConfigList.Prepare();
+            Global.MainWnd.CustomPartsConfigList.Prepare();
             Global.MainWnd.EditPatternChip_Click(this, new EventArgs());
             Global.state.EditingForeground = true;
             Global.state.EditFlag = true;

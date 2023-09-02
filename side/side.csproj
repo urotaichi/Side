@@ -89,6 +89,9 @@
     <Compile Include="Controls\ConfigList.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\CustomPartsConfigList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\DataGridViewNumericUpdownCell.cs" />
     <Compile Include="Controls\DataGridViewNumericUpdownColumn.cs" />
     <Compile Include="Controls\DataGridViewNumericUpdownEditingControl.cs">

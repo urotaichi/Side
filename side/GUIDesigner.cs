@@ -742,11 +742,11 @@ namespace MasaoPlus
                             (!Global.state.UseBuffered
                                 || (
                                     (!foreground
-                                        || this.ForePrevDrawn == null
-                                        || !(this.ForePrevDrawn[num].Substring(Global.state.MapEditMode ? (num2 * MapSize.bytesize) : (num2 * StageSize.bytesize), Global.state.MapEditMode ? MapSize.bytesize : StageSize.bytesize) == text)
+                                        || ForePrevDrawn == null
+                                        || !(ForePrevDrawn[num].Substring(Global.state.MapEditMode ? (num2 * MapSize.bytesize) : (num2 * StageSize.bytesize), Global.state.MapEditMode ? MapSize.bytesize : StageSize.bytesize) == text)
                                      ) && (foreground
-                                        || this.BackPrevDrawn == null
-                                        || !(this.BackPrevDrawn[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize) == text)
+                                        || BackPrevDrawn == null
+                                        || !(BackPrevDrawn[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize) == text)
                                      )
                                     )
                             ) && (!Global.config.draw.SkipFirstChip
@@ -755,8 +755,8 @@ namespace MasaoPlus
                                     && (foreground || !text.Equals(Global.cpd.Layerchip[0].character))
                                     )
                             ) && (
-                                (foreground && this.DrawItemRef.ContainsKey(text))
-                                || (!foreground && this.DrawLayerRef.ContainsKey(text))
+                                (foreground && DrawItemRef.ContainsKey(text))
+                                || (!foreground && DrawLayerRef.ContainsKey(text))
                             )
                         )
                         {

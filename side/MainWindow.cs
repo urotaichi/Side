@@ -874,7 +874,7 @@ namespace MasaoPlus
             }
         }
 
-        // チップリストの左上の文字
+        // 選択中のチップが変わったらチップリストの左上の文字を変える
         private void state_UpdateCurrentChipInvoke()
         {
             ChipImage.Refresh();
@@ -1006,7 +1006,7 @@ namespace MasaoPlus
             }
         }
 
-        // チップリストの左上
+        // チップリストの左上の画像が変わった時
         private void ChipImage_Paint(object sender, PaintEventArgs e)
         {
             if (MainDesigner.DrawChipOrig != null)
@@ -1095,7 +1095,7 @@ namespace MasaoPlus
             }
             else
             {
-                ChipChar.Text = $"[{cc.code}]";
+                CustomPartsChipChar.Text = $"[{cc.code}]";
             }
             GuiCustomPartsChipList.Refresh();
             return;
@@ -2302,6 +2302,7 @@ namespace MasaoPlus
                 MainDesigner.InitTransparent();
                 MainDesigner.Refresh();
                 MasaoConfigList.Reload();
+                CustomPartsConfigList.Reload();
                 UpdateStatus("完了");
             }
         }
