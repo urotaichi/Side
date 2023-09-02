@@ -694,7 +694,7 @@ namespace MasaoPlus.Controls
 
         protected ComboBox ConfigSelector;
 
-        protected DataGridView ConfView;
+        public DataGridView ConfView;
 
         protected DataGridViewTextBoxColumn CNames;
 

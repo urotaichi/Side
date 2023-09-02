@@ -234,7 +234,7 @@ namespace MasaoPlus
                             break;
                         }
                     }
-                    Create(Global.cpd.VarietyChip[i]);
+                    Create(Global.cpd.VarietyChip[i], $"カスタムパーツ{Global.cpd.CustomPartsChip.Length + 1}");
                 }
                 return;
             }
@@ -251,7 +251,9 @@ namespace MasaoPlus
 
         private void Copy_Click(object sender, EventArgs e)
         {
-            Create(Global.state.CurrentCustomPartsChip);
+            string name = $"{Global.state.CurrentCustomPartsChip.Chips[0].name}（コピー）";
+            Create(Global.state.CurrentCustomPartsChip, name);
+            Global.MainWnd.CustomPartsConfigList.ConfView[1, 0].Value = name;
         }
 
         private void Delete_Click(object sender, EventArgs e)
@@ -283,7 +285,7 @@ namespace MasaoPlus
             Global.state.EditFlag = true;
         }
 
-        private void Create(ChipsData basedata)
+        private void Create(ChipsData basedata, string name)
         {
             ChipsData data;
             int i;
@@ -316,7 +318,7 @@ namespace MasaoPlus
             Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips = (ChipData[])basedata.Chips.Clone(); // 配列は個別に複製
             for (int j = 0; j < Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips.Length; j++)
             {
-                Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips[j].name = $"カスタムパーツ{Global.cpd.CustomPartsChip.Length}";
+                Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips[j].name = name;
                 Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips[j].description = $"{data.Chips[j].name} {data.Chips[j].description}";
             }
             Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].basecode = data.code;
