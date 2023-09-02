@@ -4,6 +4,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace MasaoPlus
 {
@@ -48,11 +49,12 @@ namespace MasaoPlus
 
         protected override void AddChipData(ChipsData[] chipsData, int num, PaintEventArgs e, int inital = 0)
         {
-            for (int i = inital; i < num; i++)
+            Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
+            int i;
+            for (i = inital; i < num; i++)
             {
                 ChipsData chipData = chipsData[i - inital];
                 Point point = GetPosition(i);
-                Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
                 Rectangle rectangle = new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize);
                 rectangle.Y -= vPosition;
                 if (rectangle.Top > MainPanel.Height) break;
@@ -146,6 +148,10 @@ namespace MasaoPlus
                     }
                 }
             }
+            Point point2 = GetPosition(i);
+            Rectangle rectangle2 = new Rectangle(new Point(point2.X * chipsize.Width, point2.Y * chipsize.Height), chipsize);
+            rectangle2.Y -= vPosition;
+            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle2, new Rectangle(new Point(448,448), chipsize), GraphicsUnit.Pixel);
         }
 
         // クラシックチップリスト
@@ -194,6 +200,36 @@ namespace MasaoPlus
             int num2 = Global.cpd.CustomPartsChip.Length;
             if (num >= num2)
             {
+                if(num == num2)
+                {
+                    int i;
+                    for (i = 0; i < Global.cpd.VarietyChip.Length; i++)
+                    {
+                        if (int.Parse(Global.cpd.VarietyChip[i].code) > 5000)
+                        {
+                            break;
+                        }
+                    }
+                    var r = new Random();
+                    const string PWS_CHARS = "abcdefghijklmnopqrstuvwxyz";
+                    Array.Resize(ref Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length + 1);
+                    Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1] = Global.cpd.VarietyChip[i];
+                    Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips = (ChipData[])Global.cpd.VarietyChip[i].Chips.Clone(); // 配列は個別に複製
+                    for (int j = 0; j < Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips.Length; j++)
+                    {
+                        Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips[j].name = $"カスタムパーツ{Global.cpd.CustomPartsChip.Length}";
+                        Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips[j].description = $"{Global.cpd.VarietyChip[i].Chips[j].name} {Global.cpd.VarietyChip[i].Chips[j].description}";
+                    }
+                    Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].basecode = Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].code;
+                    Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].code = string.Join("", Enumerable.Range(0, 10).Select(_ => PWS_CHARS[r.Next(PWS_CHARS.Length)]));
+                    Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].idColor = $"#{Guid.NewGuid().ToString("N").Substring(0, 6)}";
+                    Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1];
+                    Global.MainWnd.MainDesigner.DrawItemCodeRef[Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].code] = Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1];
+                    Array.Resize(ref Global.cpd.project.CustomPartsDefinition, Global.cpd.project.CustomPartsDefinition.Length + 1);
+                    Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
+                    Global.MainWnd.RefreshAll();
+                    Global.state.EditFlag = true;
+                }
                 return;
             }
             SelectedIndex = num;
