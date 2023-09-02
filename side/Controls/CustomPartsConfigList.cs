@@ -58,11 +58,23 @@ namespace MasaoPlus.Controls
                 PrepareCustomPartsParam(c, c.basecode);
             }
         }
-        protected void ConfigSelector_SelectedIndexChanged()
+        public void ConfigSelector_SelectedIndexChanged()
         {
             if (BasePartsTypes.Items.Count < 1)
             {
                 return;
+            }
+            if (Global.cpd.CustomPartsChip.Length < 1)
+            {
+                ConfView[1, 0].Value = "";
+                ConfView[1, 1].Value = "";
+                ConfView[1, 0].ReadOnly = true;
+                ConfView[1, 1].ReadOnly = true;
+            }
+            else
+            {
+                ConfView[1, 0].ReadOnly = false;
+                ConfView[1, 1].ReadOnly = false;
             }
             for (int i = ConfView.RowCount - 1; i > 1; i--)
             {
@@ -492,6 +504,10 @@ namespace MasaoPlus.Controls
                 return;
             }
             if (e.RowIndex < 0)
+            {
+                return;
+            }
+            if (Global.cpd.CustomPartsChip.Length < 1)
             {
                 return;
             }
@@ -1188,6 +1204,10 @@ namespace MasaoPlus.Controls
         protected override void ConfView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 1)
+            {
+                return;
+            }
+            if (Global.cpd.CustomPartsChip.Length < 1)
             {
                 return;
             }

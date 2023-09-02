@@ -242,6 +242,7 @@ namespace MasaoPlus
             else
             {
                 Global.state.CurrentCustomPartsChip = default;
+                Global.MainWnd.CustomPartsConfigList.ConfigSelector_SelectedIndexChanged();
             }
             Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
             Global.MainWnd.RefreshAll();
@@ -286,6 +287,7 @@ namespace MasaoPlus
             Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
             Global.MainWnd.RefreshAll();
             Global.state.EditFlag = true;
+            Global.MainWnd.CustomPartsConfigList.ConfigSelector_SelectedIndexChanged();
         }
 
         protected override void InitializeComponent()
