@@ -287,6 +287,15 @@ namespace MasaoPlus
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
                     }
                     e.Graphics.PixelOffsetMode = default;
+                    if (chipData.idColor != null)
+                    {
+                        GraphicsState transState = e.Graphics.Save();
+                        e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
+                        Color col = ColorTranslator.FromHtml(chipData.idColor);
+                        using Brush brush = new SolidBrush(Color.FromArgb(240, col));
+                        e.Graphics.FillRectangle(brush, 0, 0, 10, 5);
+                        e.Graphics.Restore(transState);
+                    }
                     if (Global.state.MapEditMode && Global.state.CurrentChip.character == chipData.character
                         || !Global.state.MapEditMode
                             && (Global.cpd.project.Use3rdMapData && Global.state.CurrentChip.code == chipData.code

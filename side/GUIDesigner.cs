@@ -708,6 +708,15 @@ namespace MasaoPlus
                             else
                             { // 標準サイズの画像はリストに追加後、↓で描画
                                 list.Add(new KeepDrawData(c, new Point(num2, num), chipsData.character));
+                                if (chipsData.idColor != null)
+                                {
+                                    GraphicsState transState = g.Save();
+                                    g.TranslateTransform(num2 * chipsize.Width, num * chipsize.Height);
+                                    Color col = ColorTranslator.FromHtml(chipsData.idColor);
+                                    using Brush brush = new SolidBrush(Color.FromArgb(240, col));
+                                    g.FillRectangle(brush, 0, 0, 10, 5);
+                                    g.Restore(transState);
+                                }
                             }
                         }
                         num2++;
@@ -2992,7 +3001,19 @@ namespace MasaoPlus
                                 }
                             }
                             ChipData cschip = chipsData.GetCSChip();
-                            if (cschip.size == default) DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X);
+                            if (cschip.size == default) 
+                            { 
+                                DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X);
+                                if (chipsData.idColor != null)
+                                {
+                                    GraphicsState transState = graphics.Save();
+                                    graphics.TranslateTransform(point.X * chipsize.Width, point.Y * chipsize.Height);
+                                    Color col = ColorTranslator.FromHtml(chipsData.idColor);
+                                    using Brush brush = new SolidBrush(Color.FromArgb(240, col));
+                                    graphics.FillRectangle(brush, 0, 0, 10, 5);
+                                    graphics.Restore(transState);
+                                }
+                            }
                         }
                     IL_9DD:;
                     }
