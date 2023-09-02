@@ -3432,7 +3432,7 @@ namespace MasaoPlus
 
         public struct KeepDrawData
         {
-            public KeepDrawData(ChipData c, Point p, string chara, string idColor = "")
+            public KeepDrawData(ChipData c, Point p, string chara, string idColor = null)
             {
                 cd = c;
                 pos = p;
