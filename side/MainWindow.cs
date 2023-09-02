@@ -58,6 +58,7 @@ namespace MasaoPlus
             GuiChipList.Refresh();
             ChipList.Refresh();
             if(Global.cpd.project.Use3rdMapData) GuiCustomPartsChipList.Refresh();
+            ChipItemReadyInvoke();
             MainDesigner.UpdateBackgroundBuffer();
             MainDesigner.UpdateForegroundBuffer();
             MainDesigner.InitTransparent();
