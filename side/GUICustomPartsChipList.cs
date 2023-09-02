@@ -197,6 +197,10 @@ namespace MasaoPlus
 
         protected override void MainPanel_MouseDown(object sender, MouseEventArgs e)
         {
+            if (Global.cpd.runtime.Definitions.Package.Contains("28") || !Global.cpd.project.Use3rdMapData)
+            {
+                return;
+            }
             Focus();
             if (!Enabled)
             {
