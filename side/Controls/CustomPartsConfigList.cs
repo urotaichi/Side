@@ -542,6 +542,7 @@ namespace MasaoPlus.Controls
                         }
                         string name_temp = Global.state.CurrentCustomPartsChip.GetCSChip().name;
                         string code_temp = Global.state.CurrentCustomPartsChip.code;
+                        string color_temp = Global.state.CurrentCustomPartsChip.idColor;
                         Global.cpd.CustomPartsChip[cs_i] = CustomizeParts[i];
                         Global.cpd.CustomPartsChip[cs_i].Chips = (ChipData[])CustomizeParts[i].Chips.Clone(); // 配列は個別に複製
                         for (int j = 0; j < CustomizeParts[i].Chips.Length; j++)
@@ -551,12 +552,10 @@ namespace MasaoPlus.Controls
                         }
                         Global.cpd.CustomPartsChip[cs_i].basecode = CustomizeParts[i].code;
                         Global.cpd.CustomPartsChip[cs_i].code = code_temp;
+                        Global.cpd.CustomPartsChip[cs_i].idColor = color_temp;
                         Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[cs_i];
                         Global.MainWnd.MainDesigner.DrawItemCodeRef[Global.cpd.CustomPartsChip[cs_i].code] = Global.cpd.CustomPartsChip[cs_i];
                         Global.MainWnd.RefreshAll();
-                        //var r = new Random();
-                        //const string PWS_CHARS = "abcdefghijklmnopqrstuvwxyz";
-                        //Global.cpd.CustomPartsChip[cs_i].code = string.Join("", Enumerable.Range(0, 10).Select(_ => PWS_CHARS[r.Next(PWS_CHARS.Length)]));
                     }
                 }
                 else
