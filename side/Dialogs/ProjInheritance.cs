@@ -55,7 +55,8 @@ namespace MasaoPlus.Dialogs
             {
                 Name = NewProjName.Text,
                 Runtime = PrevProject.Runtime,
-                Config = PrevProject.Config
+                Config = PrevProject.Config,
+                CustomPartsDefinition = PrevProject.CustomPartsDefinition
             };
             if (PrevProject.Runtime.Definitions.LayerSize.bytesize != 0)
             {

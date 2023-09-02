@@ -213,10 +213,10 @@ namespace MasaoPlus
                         else if (cschip.description.Contains("右")) rad = 56;
                         else rad = 0;
                         g.DrawLine(pen,
-                            (float)(Math.Floor(Math.Cos(((rad + 180) * math_pi) / 180) * 160) + Math.Floor(Math.Cos(((rad + 270) * math_pi) / 180) * 12)),
-                            (float)(Math.Floor(Math.Sin(((rad + 180) * math_pi) / 180) * 160) + Math.Floor(Math.Sin(((rad + 270) * math_pi) / 180) * 12)),
-                            (float)(Math.Floor(Math.Cos((rad * math_pi) / 180) * 160) + Math.Floor(Math.Cos(((rad - 90) * math_pi) / 180) * 12)),
-                            (float)(Math.Floor(Math.Sin((rad * math_pi) / 180) * 160) + Math.Floor(Math.Sin(((rad - 90) * math_pi) / 180) * 12))
+                            (float)(Math.Floor(Math.Cos((rad + 180) * math_pi / 180) * 160) + Math.Floor(Math.Cos((rad + 270) * math_pi / 180) * 12)),
+                            (float)(Math.Floor(Math.Sin((rad + 180) * math_pi / 180) * 160) + Math.Floor(Math.Sin((rad + 270) * math_pi / 180) * 12)),
+                            (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 160) + Math.Floor(Math.Cos((rad - 90) * math_pi / 180) * 12)),
+                            (float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 160) + Math.Floor(Math.Sin((rad - 90) * math_pi / 180) * 12))
                         );
                         pen.Dispose();
                     },
@@ -353,10 +353,10 @@ namespace MasaoPlus
                         pen2 = new Pen(Color.White, 2);
                         rad = 90 + Math.Floor((double)(30 + 5) / 10);
                         g.DrawLine(pen2,
-                            (float)Math.Floor(Math.Cos(((rad + 20) * math_pi) / 180) * 192),
-                            (float)Math.Floor(Math.Sin(((rad + 20) * math_pi) / 180) * 192),
-                            (float)Math.Floor(Math.Cos(((rad - 20) * math_pi) / 180) * 192),
-                            (float)Math.Floor(Math.Sin(((rad - 20) * math_pi) / 180) * 192)
+                            (float)Math.Floor(Math.Cos((rad + 20) * math_pi / 180) * 192),
+                            (float)Math.Floor(Math.Sin((rad + 20) * math_pi / 180) * 192),
+                            (float)Math.Floor(Math.Cos((rad - 20) * math_pi / 180) * 192),
+                            (float)Math.Floor(Math.Sin((rad - 20) * math_pi / 180) * 192)
                         );
                         if (cschip.description == "２個連続")
                         {
@@ -381,10 +381,10 @@ namespace MasaoPlus
                             g.FillPolygon(brush, vo_pa);
                             rad = 90 + Math.Floor((double)(-30 - 5) / 10);
                             g.DrawLine(pen2,
-                                (float)Math.Floor(Math.Cos(((rad + 20) * math_pi) / 180) * 192),
-                                (float)Math.Floor(Math.Sin(((rad + 20) * math_pi) / 180) * 192),
-                                (float)Math.Floor(Math.Cos(((rad - 20) * math_pi) / 180) * 192),
-                                (float)Math.Floor(Math.Sin(((rad - 20) * math_pi) / 180) * 192)
+                                (float)Math.Floor(Math.Cos((rad + 20) * math_pi / 180) * 192),
+                                (float)Math.Floor(Math.Sin((rad + 20) * math_pi / 180) * 192),
+                                (float)Math.Floor(Math.Cos((rad - 20) * math_pi / 180) * 192),
+                                (float)Math.Floor(Math.Sin((rad - 20) * math_pi / 180) * 192)
                             );
                         }
                         pen2.Dispose();
@@ -484,7 +484,7 @@ namespace MasaoPlus
                             g.TranslateTransform(-32, 0);
                             rad = 360 + Math.Floor((double)(26 + 5) / 10);
                         }
-                        rad = (rad * Math.PI) / 180;
+                        rad = rad * Math.PI / 180;
                         vo_pa = new PointF[4];
                         vo_pa[0].X = (float)(Math.Cos(rad) * 40 + Math.Cos(rad + Math.PI / 2) * 3);
                         vo_pa[0].Y = (float)(Math.Sin(rad) * 40 + Math.Sin(rad + Math.PI / 2) * 3);
@@ -506,7 +506,7 @@ namespace MasaoPlus
                         g.TranslateTransform(16, 16);
                         if (cschip.description.Contains("左")) rad = 180 + Math.Floor((double)(-26 - 5) / 10);
                         else if (cschip.description.Contains("右")) rad = 360 + Math.Floor((double)(26 + 5) / 10);
-                        rad = (rad * Math.PI) / 180;
+                        rad = rad * Math.PI / 180;
                         vo_pa = new PointF[4];
                         vo_pa[0].X = (float)(Math.Cos(rad) * 192 + Math.Cos(rad + Math.PI / 2) * 12);
                         vo_pa[0].Y = (float)(Math.Sin(rad) * 192 + Math.Sin(rad + Math.PI / 2) * 12);
@@ -553,7 +553,7 @@ namespace MasaoPlus
                             g.TranslateTransform(-32, 0);
                             rad = 360 + Math.Floor((double)(26 + 5) / 10);
                         }
-                        rad = (rad * Math.PI) / 180;
+                        rad = rad * Math.PI / 180;
                         vo_pa = new PointF[4];
                         vo_pa[0].X = (float)(Math.Cos(rad) * 40 + Math.Cos(rad + Math.PI / 2) * 3);
                         vo_pa[0].Y = (float)(Math.Sin(rad) * 40 + Math.Sin(rad + Math.PI / 2) * 3);
@@ -582,7 +582,7 @@ namespace MasaoPlus
                             g.TranslateTransform(-10, 0);
                             rad = 360 + Math.Floor((double)(26 + 5) / 10);
                         }
-                        rad = (rad * Math.PI) / 180;
+                        rad = rad * Math.PI / 180;
                         vo_pa = new PointF[4];
                         vo_pa[0].X = (float)(Math.Cos(rad) * 20 + Math.Cos(rad + Math.PI / 2) * 1);
                         vo_pa[0].Y = (float)(Math.Sin(rad) * 20 + Math.Sin(rad + Math.PI / 2) * 1);
@@ -611,7 +611,7 @@ namespace MasaoPlus
                             g.TranslateTransform(-32, 0);
                             rad = 360 + Math.Floor((double)(26 + 5) / 10);
                         }
-                        rad = (rad * Math.PI) / 180;
+                        rad = rad * Math.PI / 180;
                         vo_pa = new PointF[4];
                         vo_pa[0].X = (float)(Math.Cos(rad) * 40 + Math.Cos(rad + Math.PI / 2) * 3);
                         vo_pa[0].Y = (float)(Math.Sin(rad) * 40 + Math.Sin(rad + Math.PI / 2) * 3);
@@ -631,23 +631,23 @@ namespace MasaoPlus
                         g.TranslateTransform(16, 37);
                         rad = 270;
                         vo_pa = new PointF[3];
-                        vo_pa[0].X = (float)Math.Cos(((rad + 6) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[0].Y = (float)Math.Sin(((rad + 6) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[1].X = (float)Math.Cos(((rad - 6) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[1].Y = (float)Math.Sin(((rad - 6) * Math.PI) / 180) * chipsize.Width;
+                        vo_pa[0].X = (float)Math.Cos((rad + 6) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[0].Y = (float)Math.Sin((rad + 6) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[1].X = (float)Math.Cos((rad - 6) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[1].Y = (float)Math.Sin((rad - 6) * Math.PI / 180) * chipsize.Width;
                         vo_pa[2].X = 0;
                         vo_pa[2].Y = 0;
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
                         g.FillPolygon(brush, vo_pa);
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = (float)Math.Cos(((rad + 20) * Math.PI) / 180) * chipsize.Width * (float)1.3;
-                        vo_pa[0].Y = (float)Math.Sin(((rad + 20) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[1].X = (float)Math.Cos(((rad - 20) * Math.PI) / 180) * chipsize.Width * (float)1.3;
-                        vo_pa[1].Y = (float)Math.Sin(((rad - 20) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[2].X = vo_pa[1].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
-                        vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
-                        vo_pa[3].X = vo_pa[0].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
-                        vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
+                        vo_pa[0].X = (float)Math.Cos((rad + 20) * Math.PI / 180) * chipsize.Width * (float)1.3;
+                        vo_pa[0].Y = (float)Math.Sin((rad + 20) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[1].X = (float)Math.Cos((rad - 20) * Math.PI / 180) * chipsize.Width * (float)1.3;
+                        vo_pa[1].Y = (float)Math.Sin((rad - 20) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad * Math.PI / 180) * 5;
+                        vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad * Math.PI / 180) * 5;
+                        vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad * Math.PI / 180) * 5;
+                        vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 5;
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
@@ -674,61 +674,61 @@ namespace MasaoPlus
                             else if (cschip.description.Contains("ＯＮで上")) rad = 270;
                         }
                         vo_pa = new PointF[3];
-                        vo_pa[0].X = (float)Math.Cos(((rad + a) * Math.PI) / 180) * b;
-                        vo_pa[0].Y = (float)Math.Sin(((rad + a) * Math.PI) / 180) * b;
-                        vo_pa[1].X = (float)Math.Cos(((rad - a) * Math.PI) / 180) * b;
-                        vo_pa[1].Y = (float)Math.Sin(((rad - a) * Math.PI) / 180) * b;
+                        vo_pa[0].X = (float)Math.Cos((rad + a) * Math.PI / 180) * b;
+                        vo_pa[0].Y = (float)Math.Sin((rad + a) * Math.PI / 180) * b;
+                        vo_pa[1].X = (float)Math.Cos((rad - a) * Math.PI / 180) * b;
+                        vo_pa[1].Y = (float)Math.Sin((rad - a) * Math.PI / 180) * b;
                         vo_pa[2].X = 0;
                         vo_pa[2].Y = 0;
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
                         g.FillPolygon(brush, vo_pa);
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = (float)Math.Cos(((rad + c) * Math.PI) / 180) * d;
-                        vo_pa[0].Y = (float)Math.Sin(((rad + c) * Math.PI) / 180) * d;
-                        vo_pa[1].X = (float)Math.Cos(((rad - c) * Math.PI) / 180) * d;
-                        vo_pa[1].Y = (float)Math.Sin(((rad - c) * Math.PI) / 180) * d;
-                        vo_pa[2].X = vo_pa[1].X + (float)Math.Cos((rad * Math.PI) / 180) * 12;
-                        vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin((rad * Math.PI) / 180) * 12;
-                        vo_pa[3].X = vo_pa[0].X + (float)Math.Cos((rad * Math.PI) / 180) * 12;
-                        vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 12;
+                        vo_pa[0].X = (float)Math.Cos((rad + c) * Math.PI / 180) * d;
+                        vo_pa[0].Y = (float)Math.Sin((rad + c) * Math.PI / 180) * d;
+                        vo_pa[1].X = (float)Math.Cos((rad - c) * Math.PI / 180) * d;
+                        vo_pa[1].Y = (float)Math.Sin((rad - c) * Math.PI / 180) * d;
+                        vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad * Math.PI / 180) * 12;
+                        vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad * Math.PI / 180) * 12;
+                        vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad * Math.PI / 180) * 12;
+                        vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 12;
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         pen = new Pen(Color.White, 2);
                         g.DrawLine(pen,
-                            (float)(Math.Floor(Math.Cos(((rad + c) * math_pi) / 180) * d) + Math.Floor(Math.Cos((rad * math_pi) / 180) * 12)),
-                            (float)(Math.Floor(Math.Sin(((rad + c) * math_pi) / 180) * d) + Math.Floor(Math.Sin((rad * math_pi) / 180) * 12)),
-                            (float)(Math.Floor(Math.Cos(((rad - c) * math_pi) / 180) * d) + Math.Floor(Math.Cos((rad * math_pi) / 180) * 12)),
-                            (float)(Math.Floor(Math.Sin(((rad - c) * math_pi) / 180) * d) + Math.Floor(Math.Sin((rad * math_pi) / 180) * 12))
+                            (float)(Math.Floor(Math.Cos((rad + c) * math_pi / 180) * d) + Math.Floor(Math.Cos(rad * math_pi / 180) * 12)),
+                            (float)(Math.Floor(Math.Sin((rad + c) * math_pi / 180) * d) + Math.Floor(Math.Sin(rad * math_pi / 180) * 12)),
+                            (float)(Math.Floor(Math.Cos((rad - c) * math_pi / 180) * d) + Math.Floor(Math.Cos(rad * math_pi / 180) * 12)),
+                            (float)(Math.Floor(Math.Sin((rad - c) * math_pi / 180) * d) + Math.Floor(Math.Sin(rad * math_pi / 180) * 12))
                         );
                         if (cschip.description == "２個連続")
                         {
                             g.TranslateTransform(416, 0);
                             rad = 270 + Math.Floor((double)(30 + 5) / 10);
                             vo_pa = new PointF[3];
-                            vo_pa[0].X = (float)Math.Cos(((rad + a) * Math.PI) / 180) * b;
-                            vo_pa[0].Y = (float)Math.Sin(((rad + a) * Math.PI) / 180) * b;
-                            vo_pa[1].X = (float)Math.Cos(((rad - a) * Math.PI) / 180) * b;
-                            vo_pa[1].Y = (float)Math.Sin(((rad - a) * Math.PI) / 180) * b;
+                            vo_pa[0].X = (float)Math.Cos((rad + a) * Math.PI / 180) * b;
+                            vo_pa[0].Y = (float)Math.Sin((rad + a) * Math.PI / 180) * b;
+                            vo_pa[1].X = (float)Math.Cos((rad - a) * Math.PI / 180) * b;
+                            vo_pa[1].Y = (float)Math.Sin((rad - a) * Math.PI / 180) * b;
                             vo_pa[2].X = 0;
                             vo_pa[2].Y = 0;
                             brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
                             g.FillPolygon(brush, vo_pa);
                             vo_pa = new PointF[4];
-                            vo_pa[0].X = (float)Math.Cos(((rad + c) * Math.PI) / 180) * d;
-                            vo_pa[0].Y = (float)Math.Sin(((rad + c) * Math.PI) / 180) * d;
-                            vo_pa[1].X = (float)Math.Cos(((rad - c) * Math.PI) / 180) * d;
-                            vo_pa[1].Y = (float)Math.Sin(((rad - c) * Math.PI) / 180) * d;
-                            vo_pa[2].X = vo_pa[1].X + (float)Math.Cos((rad * Math.PI) / 180) * 12;
-                            vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin((rad * Math.PI) / 180) * 12;
-                            vo_pa[3].X = vo_pa[0].X + (float)Math.Cos((rad * Math.PI) / 180) * 12;
-                            vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 12;
+                            vo_pa[0].X = (float)Math.Cos((rad + c) * Math.PI / 180) * d;
+                            vo_pa[0].Y = (float)Math.Sin((rad + c) * Math.PI / 180) * d;
+                            vo_pa[1].X = (float)Math.Cos((rad - c) * Math.PI / 180) * d;
+                            vo_pa[1].Y = (float)Math.Sin((rad - c) * Math.PI / 180) * d;
+                            vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad * Math.PI / 180) * 12;
+                            vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad * Math.PI / 180) * 12;
+                            vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad * Math.PI / 180) * 12;
+                            vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 12;
                             brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                             g.FillPolygon(brush, vo_pa);
                             g.DrawLine(pen,
-                                (float)(Math.Floor(Math.Cos(((rad + c) * math_pi) / 180) * d) + Math.Floor(Math.Cos((rad * math_pi) / 180) * 12)),
-                                (float)(Math.Floor(Math.Sin(((rad + c) * math_pi) / 180) * d) + Math.Floor(Math.Sin((rad * math_pi) / 180) * 12)),
-                                (float)(Math.Floor(Math.Cos(((rad - c) * math_pi) / 180) * d) + Math.Floor(Math.Cos((rad * math_pi) / 180) * 12)),
-                                (float)(Math.Floor(Math.Sin(((rad - c) * math_pi) / 180) * d) + Math.Floor(Math.Sin((rad * math_pi) / 180) * 12))
+                                (float)(Math.Floor(Math.Cos((rad + c) * math_pi / 180) * d) + Math.Floor(Math.Cos(rad * math_pi / 180) * 12)),
+                                (float)(Math.Floor(Math.Sin((rad + c) * math_pi / 180) * d) + Math.Floor(Math.Sin(rad * math_pi / 180) * 12)),
+                                (float)(Math.Floor(Math.Cos((rad - c) * math_pi / 180) * d) + Math.Floor(Math.Cos(rad * math_pi / 180) * 12)),
+                                (float)(Math.Floor(Math.Sin((rad - c) * math_pi / 180) * d) + Math.Floor(Math.Sin(rad * math_pi / 180) * 12))
                             );
                         }
                         pen.Dispose();
@@ -738,23 +738,23 @@ namespace MasaoPlus
                         g.TranslateTransform(16, 37);
                         rad = 270;
                         vo_pa = new PointF[3];
-                        vo_pa[0].X = (float)Math.Cos(((rad + 6) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[0].Y = (float)Math.Sin(((rad + 6) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[1].X = (float)Math.Cos(((rad - 6) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[1].Y = (float)Math.Sin(((rad - 6) * Math.PI) / 180) * chipsize.Width;
+                        vo_pa[0].X = (float)Math.Cos((rad + 6) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[0].Y = (float)Math.Sin((rad + 6) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[1].X = (float)Math.Cos((rad - 6) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[1].Y = (float)Math.Sin((rad - 6) * Math.PI / 180) * chipsize.Width;
                         vo_pa[2].X = 0;
                         vo_pa[2].Y = 0;
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
                         g.FillPolygon(brush, vo_pa);
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = (float)Math.Cos(((rad + 20) * Math.PI) / 180) * chipsize.Width * (float)1.3;
-                        vo_pa[0].Y = (float)Math.Sin(((rad + 20) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[1].X = (float)Math.Cos(((rad - 20) * Math.PI) / 180) * chipsize.Width * (float)1.3;
-                        vo_pa[1].Y = (float)Math.Sin(((rad - 20) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[2].X = vo_pa[1].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
-                        vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
-                        vo_pa[3].X = vo_pa[0].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
-                        vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
+                        vo_pa[0].X = (float)Math.Cos((rad + 20) * Math.PI / 180) * chipsize.Width * (float)1.3;
+                        vo_pa[0].Y = (float)Math.Sin((rad + 20) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[1].X = (float)Math.Cos((rad - 20) * Math.PI / 180) * chipsize.Width * (float)1.3;
+                        vo_pa[1].Y = (float)Math.Sin((rad - 20) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad * Math.PI / 180) * 5;
+                        vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad * Math.PI / 180) * 5;
+                        vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad * Math.PI / 180) * 5;
+                        vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 5;
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
@@ -763,23 +763,23 @@ namespace MasaoPlus
                         g.TranslateTransform(height / 2, height + 2);
                         rad = 270;
                         vo_pa = new PointF[3];
-                        vo_pa[0].X = (float)Math.Cos(((rad + 6) * Math.PI) / 180) * height;
-                        vo_pa[0].Y = (float)Math.Sin(((rad + 6) * Math.PI) / 180) * height;
-                        vo_pa[1].X = (float)Math.Cos(((rad - 6) * Math.PI) / 180) * height;
-                        vo_pa[1].Y = (float)Math.Sin(((rad - 6) * Math.PI) / 180) * height;
+                        vo_pa[0].X = (float)Math.Cos((rad + 6) * Math.PI / 180) * height;
+                        vo_pa[0].Y = (float)Math.Sin((rad + 6) * Math.PI / 180) * height;
+                        vo_pa[1].X = (float)Math.Cos((rad - 6) * Math.PI / 180) * height;
+                        vo_pa[1].Y = (float)Math.Sin((rad - 6) * Math.PI / 180) * height;
                         vo_pa[2].X = 0;
                         vo_pa[2].Y = 0;
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
                         g.FillPolygon(brush, vo_pa);
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = (float)Math.Cos(((rad + 20) * Math.PI) / 180) * height * (float)1.3;
-                        vo_pa[0].Y = (float)Math.Sin(((rad + 20) * Math.PI) / 180) * height;
-                        vo_pa[1].X = (float)Math.Cos(((rad - 20) * Math.PI) / 180) * height * (float)1.3;
-                        vo_pa[1].Y = (float)Math.Sin(((rad - 20) * Math.PI) / 180) * height;
-                        vo_pa[2].X = vo_pa[1].X + (float)Math.Cos((rad * Math.PI) / 180) * 2;
-                        vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin((rad * Math.PI) / 180) * 2;
-                        vo_pa[3].X = vo_pa[0].X + (float)Math.Cos((rad * Math.PI) / 180) * 2;
-                        vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 2;
+                        vo_pa[0].X = (float)Math.Cos((rad + 20) * Math.PI / 180) * height * (float)1.3;
+                        vo_pa[0].Y = (float)Math.Sin((rad + 20) * Math.PI / 180) * height;
+                        vo_pa[1].X = (float)Math.Cos((rad - 20) * Math.PI / 180) * height * (float)1.3;
+                        vo_pa[1].Y = (float)Math.Sin((rad - 20) * Math.PI / 180) * height;
+                        vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad * Math.PI / 180) * 2;
+                        vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad * Math.PI / 180) * 2;
+                        vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad * Math.PI / 180) * 2;
+                        vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 2;
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
@@ -788,23 +788,23 @@ namespace MasaoPlus
                         g.TranslateTransform(16, 37);
                         rad = 270;
                         vo_pa = new PointF[3];
-                        vo_pa[0].X = (float)Math.Cos(((rad + 6) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[0].Y = (float)Math.Sin(((rad + 6) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[1].X = (float)Math.Cos(((rad - 6) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[1].Y = (float)Math.Sin(((rad - 6) * Math.PI) / 180) * chipsize.Width;
+                        vo_pa[0].X = (float)Math.Cos((rad + 6) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[0].Y = (float)Math.Sin((rad + 6) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[1].X = (float)Math.Cos((rad - 6) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[1].Y = (float)Math.Sin((rad - 6) * Math.PI / 180) * chipsize.Width;
                         vo_pa[2].X = 0;
                         vo_pa[2].Y = 0;
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
                         g.FillPolygon(brush, vo_pa);
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = (float)Math.Cos(((rad + 20) * Math.PI) / 180) * chipsize.Width * (float)1.3;
-                        vo_pa[0].Y = (float)Math.Sin(((rad + 20) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[1].X = (float)Math.Cos(((rad - 20) * Math.PI) / 180) * chipsize.Width * (float)1.3;
-                        vo_pa[1].Y = (float)Math.Sin(((rad - 20) * Math.PI) / 180) * chipsize.Width;
-                        vo_pa[2].X = vo_pa[1].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
-                        vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
-                        vo_pa[3].X = vo_pa[0].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
-                        vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
+                        vo_pa[0].X = (float)Math.Cos((rad + 20) * Math.PI / 180) * chipsize.Width * (float)1.3;
+                        vo_pa[0].Y = (float)Math.Sin((rad + 20) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[1].X = (float)Math.Cos((rad - 20) * Math.PI / 180) * chipsize.Width * (float)1.3;
+                        vo_pa[1].Y = (float)Math.Sin((rad - 20) * Math.PI / 180) * chipsize.Width;
+                        vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad * Math.PI / 180) * 5;
+                        vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad * Math.PI / 180) * 5;
+                        vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad * Math.PI / 180) * 5;
+                        vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 5;
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
@@ -829,14 +829,14 @@ namespace MasaoPlus
                             rad = 90;
                         }
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
-                        vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
-                        vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
-                        vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
+                        vo_pa[0].X = (float)(Math.Cos(rad * Math.PI / 180) * 12 + Math.Cos((rad + 90) * Math.PI / 180) * length);
+                        vo_pa[0].Y = (float)(Math.Sin(rad * Math.PI / 180) * 12 + Math.Sin((rad + 90) * Math.PI / 180) * length);
+                        vo_pa[1].X = (float)(Math.Cos(rad * Math.PI / 180) * 12 + Math.Cos((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[1].Y = (float)(Math.Sin(rad * Math.PI / 180) * 12 + Math.Sin((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[2].X = (float)(Math.Cos(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Cos((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[2].Y = (float)(Math.Sin(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Sin((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[3].X = (float)(Math.Cos(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Cos((rad + 90) * Math.PI / 180) * length);
+                        vo_pa[3].Y = (float)(Math.Sin(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Sin((rad + 90) * Math.PI / 180) * length);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
@@ -864,14 +864,14 @@ namespace MasaoPlus
                         }
                         else rad = 90 + Math.Floor((double)(30 + 5) / 10);
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * 5);
-                        vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * 5);
-                        vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * 5);
-                        vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * 5);
-                        vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * length + Math.Cos(((rad - 90) * Math.PI) / 180) * 5);
-                        vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * length + Math.Sin(((rad - 90) * Math.PI) / 180) * 5);
-                        vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * length + Math.Cos(((rad + 90) * Math.PI) / 180) * 5);
-                        vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * length + Math.Sin(((rad + 90) * Math.PI) / 180) * 5);
+                        vo_pa[0].X = (float)(Math.Cos(rad * Math.PI / 180) * 12 + Math.Cos((rad + 90) * Math.PI / 180) * 5);
+                        vo_pa[0].Y = (float)(Math.Sin(rad * Math.PI / 180) * 12 + Math.Sin((rad + 90) * Math.PI / 180) * 5);
+                        vo_pa[1].X = (float)(Math.Cos(rad * Math.PI / 180) * 12 + Math.Cos((rad - 90) * Math.PI / 180) * 5);
+                        vo_pa[1].Y = (float)(Math.Sin(rad * Math.PI / 180) * 12 + Math.Sin((rad - 90) * Math.PI / 180) * 5);
+                        vo_pa[2].X = (float)(Math.Cos(rad * Math.PI / 180) * length + Math.Cos((rad - 90) * Math.PI / 180) * 5);
+                        vo_pa[2].Y = (float)(Math.Sin(rad * Math.PI / 180) * length + Math.Sin((rad - 90) * Math.PI / 180) * 5);
+                        vo_pa[3].X = (float)(Math.Cos(rad * Math.PI / 180) * length + Math.Cos((rad + 90) * Math.PI / 180) * 5);
+                        vo_pa[3].Y = (float)(Math.Sin(rad * Math.PI / 180) * length + Math.Sin((rad + 90) * Math.PI / 180) * 5);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         if (cschip.description.Contains("２本連続"))
@@ -881,14 +881,14 @@ namespace MasaoPlus
                                 new Rectangle(-16, -16, chipsize.Width, chipsize.Height),
                                 new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                             rad = 90 + Math.Floor((double)(-30 - 5) / 10);
-                            vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * 5);
-                            vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * 5);
-                            vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * 5);
-                            vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * 5);
-                            vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * length + Math.Cos(((rad - 90) * Math.PI) / 180) * 5);
-                            vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * length + Math.Sin(((rad - 90) * Math.PI) / 180) * 5);
-                            vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * length + Math.Cos(((rad + 90) * Math.PI) / 180) * 5);
-                            vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * length + Math.Sin(((rad + 90) * Math.PI) / 180) * 5);
+                            vo_pa[0].X = (float)(Math.Cos(rad * Math.PI / 180) * 12 + Math.Cos((rad + 90) * Math.PI / 180) * 5);
+                            vo_pa[0].Y = (float)(Math.Sin(rad * Math.PI / 180) * 12 + Math.Sin((rad + 90) * Math.PI / 180) * 5);
+                            vo_pa[1].X = (float)(Math.Cos(rad * Math.PI / 180) * 12 + Math.Cos((rad - 90) * Math.PI / 180) * 5);
+                            vo_pa[1].Y = (float)(Math.Sin(rad * Math.PI / 180) * 12 + Math.Sin((rad - 90) * Math.PI / 180) * 5);
+                            vo_pa[2].X = (float)(Math.Cos(rad * Math.PI / 180) * length + Math.Cos((rad - 90) * Math.PI / 180) * 5);
+                            vo_pa[2].Y = (float)(Math.Sin(rad * Math.PI / 180) * length + Math.Sin((rad - 90) * Math.PI / 180) * 5);
+                            vo_pa[3].X = (float)(Math.Cos(rad * Math.PI / 180) * length + Math.Cos((rad + 90) * Math.PI / 180) * 5);
+                            vo_pa[3].Y = (float)(Math.Sin(rad * Math.PI / 180) * length + Math.Sin((rad + 90) * Math.PI / 180) * 5);
                             g.FillPolygon(brush, vo_pa);
                         }
                         brush.Dispose();
@@ -911,14 +911,14 @@ namespace MasaoPlus
                             rad = 90;
                         }
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
-                        vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
-                        vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
-                        vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
+                        vo_pa[0].X = (float)(Math.Cos(rad * Math.PI / 180) * 12 + Math.Cos((rad + 90) * Math.PI / 180) * length);
+                        vo_pa[0].Y = (float)(Math.Sin(rad * Math.PI / 180) * 12 + Math.Sin((rad + 90) * Math.PI / 180) * length);
+                        vo_pa[1].X = (float)(Math.Cos(rad * Math.PI / 180) * 12 + Math.Cos((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[1].Y = (float)(Math.Sin(rad * Math.PI / 180) * 12 + Math.Sin((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[2].X = (float)(Math.Cos(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Cos((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[2].Y = (float)(Math.Sin(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Sin((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[3].X = (float)(Math.Cos(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Cos((rad + 90) * Math.PI / 180) * length);
+                        vo_pa[3].Y = (float)(Math.Sin(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Sin((rad + 90) * Math.PI / 180) * length);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
@@ -941,14 +941,14 @@ namespace MasaoPlus
                             rad = 90;
                         }
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
-                        vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
-                        vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * height * 1.8 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * height * 1.8 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * height * 1.8 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
-                        vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * height * 1.8 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
+                        vo_pa[0].X = (float)(Math.Cos(rad * Math.PI / 180) * 12 + Math.Cos((rad + 90) * Math.PI / 180) * length);
+                        vo_pa[0].Y = (float)(Math.Sin(rad * Math.PI / 180) * 12 + Math.Sin((rad + 90) * Math.PI / 180) * length);
+                        vo_pa[1].X = (float)(Math.Cos(rad * Math.PI / 180) * 12 + Math.Cos((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[1].Y = (float)(Math.Sin(rad * Math.PI / 180) * 12 + Math.Sin((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[2].X = (float)(Math.Cos(rad * Math.PI / 180) * height * 1.8 + Math.Cos((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[2].Y = (float)(Math.Sin(rad * Math.PI / 180) * height * 1.8 + Math.Sin((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[3].X = (float)(Math.Cos(rad * Math.PI / 180) * height * 1.8 + Math.Cos((rad + 90) * Math.PI / 180) * length);
+                        vo_pa[3].Y = (float)(Math.Sin(rad * Math.PI / 180) * height * 1.8 + Math.Sin((rad + 90) * Math.PI / 180) * length);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
@@ -971,14 +971,14 @@ namespace MasaoPlus
                             rad = 90;
                         }
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
-                        vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
-                        vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
-                        vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
-                        vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
+                        vo_pa[0].X = (float)(Math.Cos(rad * Math.PI / 180) * 12 + Math.Cos((rad + 90) * Math.PI / 180) * length);
+                        vo_pa[0].Y = (float)(Math.Sin(rad * Math.PI / 180) * 12 + Math.Sin((rad + 90) * Math.PI / 180) * length);
+                        vo_pa[1].X = (float)(Math.Cos(rad * Math.PI / 180) * 12 + Math.Cos((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[1].Y = (float)(Math.Sin(rad * Math.PI / 180) * 12 + Math.Sin((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[2].X = (float)(Math.Cos(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Cos((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[2].Y = (float)(Math.Sin(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Sin((rad - 90) * Math.PI / 180) * length);
+                        vo_pa[3].X = (float)(Math.Cos(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Cos((rad + 90) * Math.PI / 180) * length);
+                        vo_pa[3].Y = (float)(Math.Sin(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Sin((rad + 90) * Math.PI / 180) * length);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
@@ -994,14 +994,14 @@ namespace MasaoPlus
                         brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou);
                         g.FillEllipse(brush, 16 - 7, 16 - 7, 14, 14);
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = 16 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
-                        vo_pa[0].Y = 16 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
-                        vo_pa[1].X = 16 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
-                        vo_pa[1].Y = 16 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
-                        vo_pa[2].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
-                        vo_pa[2].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
-                        vo_pa[3].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
-                        vo_pa[3].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
+                        vo_pa[0].X = 16 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 7;
+                        vo_pa[0].Y = 16 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 7;
+                        vo_pa[1].X = 16 + (float)Math.Cos((rad - 90) * Math.PI / 180) * 7;
+                        vo_pa[1].Y = 16 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 7;
+                        vo_pa[2].X = 16 + (float)Math.Cos(rad * Math.PI / 180) * 20 + (float)Math.Cos((rad - 90) * Math.PI / 180) * 7;
+                        vo_pa[2].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 20 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 7;
+                        vo_pa[3].X = 16 + (float)Math.Cos(rad * Math.PI / 180) * 20 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 7;
+                        vo_pa[3].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 20 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 7;
                         g.FillPolygon(brush, vo_pa);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         if (cschip.description == "天井")
@@ -1062,14 +1062,14 @@ namespace MasaoPlus
                         else if (cschip.description == "右の壁") rad = 270;
                         else if (cschip.description == "左の壁") rad = 300;
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = 16 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 20;
-                        vo_pa[0].Y = 16 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 20;
-                        vo_pa[1].X = 16 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 20;
-                        vo_pa[1].Y = 16 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 20;
-                        vo_pa[2].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 68 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 20;
-                        vo_pa[2].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 68 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 20;
-                        vo_pa[3].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 68 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 20;
-                        vo_pa[3].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 68 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 20;
+                        vo_pa[0].X = 16 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 20;
+                        vo_pa[0].Y = 16 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 20;
+                        vo_pa[1].X = 16 + (float)Math.Cos((rad - 90) * Math.PI / 180) * 20;
+                        vo_pa[1].Y = 16 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 20;
+                        vo_pa[2].X = 16 + (float)Math.Cos(rad * Math.PI / 180) * 68 + (float)Math.Cos((rad - 90) * Math.PI / 180) * 20;
+                        vo_pa[2].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 68 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 20;
+                        vo_pa[3].X = 16 + (float)Math.Cos(rad * Math.PI / 180) * 68 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 20;
+                        vo_pa[3].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 68 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 20;
                         g.FillPolygon(brush, vo_pa);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         if (cschip.description == "天井")
@@ -1128,14 +1128,14 @@ namespace MasaoPlus
                         brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou);
                         g.FillEllipse(brush, 16 - 7, 16 - 7, 14, 14);
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = 16 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
-                        vo_pa[0].Y = 16 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
-                        vo_pa[1].X = 16 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
-                        vo_pa[1].Y = 16 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
-                        vo_pa[2].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
-                        vo_pa[2].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
-                        vo_pa[3].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
-                        vo_pa[3].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
+                        vo_pa[0].X = 16 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 7;
+                        vo_pa[0].Y = 16 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 7;
+                        vo_pa[1].X = 16 + (float)Math.Cos((rad - 90) * Math.PI / 180) * 7;
+                        vo_pa[1].Y = 16 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 7;
+                        vo_pa[2].X = 16 + (float)Math.Cos(rad * Math.PI / 180) * 20 + (float)Math.Cos((rad - 90) * Math.PI / 180) * 7;
+                        vo_pa[2].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 20 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 7;
+                        vo_pa[3].X = 16 + (float)Math.Cos(rad * Math.PI / 180) * 20 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 7;
+                        vo_pa[3].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 20 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 7;
                         g.FillPolygon(brush, vo_pa);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         if (cschip.description == "天井")
@@ -1194,14 +1194,14 @@ namespace MasaoPlus
                         brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou);
                         g.FillEllipse(brush, height / 2 - 3, height / 2 - 3, 6, 6);
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = height / 2 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 3;
-                        vo_pa[0].Y = height / 2 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 3;
-                        vo_pa[1].X = height / 2 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 3;
-                        vo_pa[1].Y = height / 2 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 3;
-                        vo_pa[2].X = height / 2 + (float)Math.Cos((rad * Math.PI) / 180) * 6 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 3;
-                        vo_pa[2].Y = height / 2 + (float)Math.Sin((rad * Math.PI) / 180) * 6 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 3;
-                        vo_pa[3].X = height / 2 + (float)Math.Cos((rad * Math.PI) / 180) * 6 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 3;
-                        vo_pa[3].Y = height / 2 + (float)Math.Sin((rad * Math.PI) / 180) * 6 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 3;
+                        vo_pa[0].X = height / 2 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 3;
+                        vo_pa[0].Y = height / 2 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 3;
+                        vo_pa[1].X = height / 2 + (float)Math.Cos((rad - 90) * Math.PI / 180) * 3;
+                        vo_pa[1].Y = height / 2 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 3;
+                        vo_pa[2].X = height / 2 + (float)Math.Cos(rad * Math.PI / 180) * 6 + (float)Math.Cos((rad - 90) * Math.PI / 180) * 3;
+                        vo_pa[2].Y = height / 2 + (float)Math.Sin(rad * Math.PI / 180) * 6 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 3;
+                        vo_pa[3].X = height / 2 + (float)Math.Cos(rad * Math.PI / 180) * 6 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 3;
+                        vo_pa[3].Y = height / 2 + (float)Math.Sin(rad * Math.PI / 180) * 6 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 3;
                         g.FillPolygon(brush, vo_pa);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         if (cschip.description == "天井")
@@ -1260,14 +1260,14 @@ namespace MasaoPlus
                         brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou);
                         g.FillEllipse(brush, 16 - 7, 16 - 7, 14, 14);
                         vo_pa = new PointF[4];
-                        vo_pa[0].X = 16 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
-                        vo_pa[0].Y = 16 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
-                        vo_pa[1].X = 16 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
-                        vo_pa[1].Y = 16 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
-                        vo_pa[2].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
-                        vo_pa[2].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
-                        vo_pa[3].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
-                        vo_pa[3].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
+                        vo_pa[0].X = 16 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 7;
+                        vo_pa[0].Y = 16 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 7;
+                        vo_pa[1].X = 16 + (float)Math.Cos((rad - 90) * Math.PI / 180) * 7;
+                        vo_pa[1].Y = 16 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 7;
+                        vo_pa[2].X = 16 + (float)Math.Cos(rad * Math.PI / 180) * 20 + (float)Math.Cos((rad - 90) * Math.PI / 180) * 7;
+                        vo_pa[2].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 20 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 7;
+                        vo_pa[3].X = 16 + (float)Math.Cos(rad * Math.PI / 180) * 20 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 7;
+                        vo_pa[3].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 20 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 7;
                         g.FillPolygon(brush, vo_pa);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         if (cschip.description == "天井")
@@ -1328,10 +1328,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos((i1 * math_pi) / 180) * chipsize.Height * 5 / 8) - 1;
+                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8) - 1;
                                 if (i1 == 50)
                                 {
                                     j20 = vo_pa[k21].X;
@@ -1345,10 +1345,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos((i1 * math_pi) / 180) * chipsize.Height * 5 / 8) + 1;
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8) + 1;
                                 if (i1 == 50)
                                 {
                                     l20 = vo_pa[k21].X;
@@ -1372,10 +1372,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos((i1 * math_pi) / 180) * chipsize.Height * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8);
                                 if (i1 == 50)
                                 {
                                     j20 = vo_pa[k21].X;
@@ -1396,10 +1396,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos((i1 * math_pi) / 180) * chipsize.Height * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8);
                                 if (i1 == 50)
                                 {
                                     l20 = vo_pa[k21].X;
@@ -1438,10 +1438,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * 160);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * 160);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * math_pi) / 180) * 160);
-                                vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * math_pi) / 180) * 160) - 1;
+                                    vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin(i1 * math_pi / 180) * 160);
+                                vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos(i1 * math_pi / 180) * 160) - 1;
                                 if (i1 == 50)
                                 {
                                     j20 = vo_pa[k21].X;
@@ -1455,10 +1455,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * math_pi) / 180) * 160);
+                                    vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin(i1 * math_pi / 180) * 160);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * 160);
-                                vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * math_pi) / 180) * 160) + 1;
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * 160);
+                                vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos(i1 * math_pi / 180) * 160) + 1;
                                 if (i1 == 50)
                                 {
                                     l20 = vo_pa[k21].X;
@@ -1482,10 +1482,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * 160);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * 160);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * math_pi) / 180) * 160);
-                                vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos((i1 * math_pi) / 180) * 160);
+                                    vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin(i1 * math_pi / 180) * 160);
+                                vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos(i1 * math_pi / 180) * 160);
                                 if (i1 == 50)
                                 {
                                     j20 = vo_pa[k21].X;
@@ -1502,10 +1502,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin((i1 * math_pi) / 180) * 160);
+                                    vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin(i1 * math_pi / 180) * 160);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * 160);
-                                vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos((i1 * math_pi) / 180) * 160);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * 160);
+                                vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos(i1 * math_pi / 180) * 160);
                                 if (i1 == 50)
                                 {
                                     l20 = vo_pa[k21].X;
@@ -1545,10 +1545,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos((i1 * math_pi) / 180) * chipsize.Width * 5 / 8) - 1;
+                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * chipsize.Width * 5 / 8) - 1;
                                 if (i1 == 50)
                                 {
                                     j20 = vo_pa[k21].X;
@@ -1562,10 +1562,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(chipsize.Width * 5 / 8 - Math.Cos((i1 * math_pi) / 180) * chipsize.Width * 5 / 8) + 1;
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(chipsize.Width * 5 / 8 - Math.Cos(i1 * math_pi / 180) * chipsize.Width * 5 / 8) + 1;
                                 if (i1 == 50)
                                 {
                                     l20 = vo_pa[k21].X;
@@ -1589,10 +1589,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 if (i1 == 50)
                                 {
                                     j20 = vo_pa[k21].X;
@@ -1613,10 +1613,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(chipsize.Width * 5 / 8 - Math.Cos((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(chipsize.Width * 5 / 8 - Math.Cos(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 if (i1 == 50)
                                 {
                                     l20 = vo_pa[k21].X;
@@ -1654,10 +1654,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * height * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(height - Math.Sin((i1 * math_pi) / 180) * height * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos((i1 * math_pi) / 180) * height * 5 / 8) - 1;
+                                    vo_pa[k21].X = (float)Math.Floor(height - Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * height * 5 / 8) - 1;
                                 if (i1 == 50)
                                 {
                                     j20 = vo_pa[k21].X;
@@ -1671,10 +1671,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(height - Math.Sin((i1 * math_pi) / 180) * height * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(height - Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * height * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(height * 5 / 8 - Math.Cos((i1 * math_pi) / 180) * height * 5 / 8) + 1;
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(height * 5 / 8 - Math.Cos(i1 * math_pi / 180) * height * 5 / 8) + 1;
                                 if (i1 == 50)
                                 {
                                     l20 = vo_pa[k21].X;
@@ -1698,10 +1698,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * height * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(height - Math.Sin((i1 * math_pi) / 180) * height * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos((i1 * math_pi) / 180) * height * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(height - Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * height * 5 / 8);
                                 if (i1 == 50)
                                 {
                                     j20 = vo_pa[k21].X;
@@ -1722,10 +1722,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(height - Math.Sin((i1 * math_pi) / 180) * height * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(height - Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * height * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(height * 5 / 8 - Math.Cos((i1 * math_pi) / 180) * height * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(height * 5 / 8 - Math.Cos(i1 * math_pi / 180) * height * 5 / 8);
                                 if (i1 == 50)
                                 {
                                     l20 = vo_pa[k21].X;
@@ -1763,10 +1763,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos((i1 * math_pi) / 180) * chipsize.Height * 5 / 8) - 1;
+                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8) - 1;
                                 if (i1 == 50)
                                 {
                                     j20 = vo_pa[k21].X;
@@ -1780,10 +1780,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos((i1 * math_pi) / 180) * chipsize.Height * 5 / 8) + 1;
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8) + 1;
                                 if (i1 == 50)
                                 {
                                     l20 = vo_pa[k21].X;
@@ -1807,10 +1807,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos((i1 * math_pi) / 180) * chipsize.Height * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8);
                                 if (i1 == 50)
                                 {
                                     j20 = vo_pa[k21].X;
@@ -1831,10 +1831,10 @@ namespace MasaoPlus
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
-                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 else if (cschip.name.Contains("下"))
-                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-                                vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos((i1 * math_pi) / 180) * chipsize.Height * 5 / 8);
+                                    vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
+                                vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8);
                                 if (i1 == 50)
                                 {
                                     l20 = vo_pa[k21].X;
@@ -2062,16 +2062,16 @@ namespace MasaoPlus
                                 j21++;
                                 for (var j = 140; j >= 90; j -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 8;
-                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((j * math_pi) / 180) * 144) / 8;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144) / 8;
+                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin(j * math_pi / 180) * 144) / 8;
                                     j21++;
                                 }
                                 g.DrawLines(pen, vo_pa);
                                 j21 = 0;
                                 for (var k2 = 90; k2 >= 40; k2 -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 8;
-                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((k2 * math_pi) / 180) * 144) / 8;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k2 * math_pi / 180) * 144) / 8;
+                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin(k2 * math_pi / 180) * 144) / 8;
                                     j21++;
                                 }
                                 vo_pa[j21].X = 240 / 8;
@@ -2089,8 +2089,8 @@ namespace MasaoPlus
                                 j21++;
                                 for (var j = 140; j >= 90; j -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 8;
-                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144) / 8;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144) / 8;
+                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(j * math_pi / 180) * 144) / 8;
                                     j21++;
                                 }
 
@@ -2100,8 +2100,8 @@ namespace MasaoPlus
                                 j21 = 0;
                                 for (var k2 = 90; k2 >= 40; k2 -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 8;
-                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * math_pi) / 180) * 144) / 8;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k2 * math_pi / 180) * 144) / 8;
+                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(k2 * math_pi / 180) * 144) / 8;
                                     j21++;
                                 }
 
@@ -2127,8 +2127,8 @@ namespace MasaoPlus
                             j21++;
                             for (var j = 140; j >= 90; j -= 5)
                             {
-                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 8;
-                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144) / 8;
+                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144) / 8;
+                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(j * math_pi / 180) * 144) / 8;
                                 j21++;
                             }
 
@@ -2138,8 +2138,8 @@ namespace MasaoPlus
                             j21 = 0;
                             for (var k2 = 90; k2 >= 40; k2 -= 5)
                             {
-                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 8;
-                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * math_pi) / 180) * 144) / 8;
+                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k2 * math_pi / 180) * 144) / 8;
+                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(k2 * math_pi / 180) * 144) / 8;
                                 j21++;
                             }
 
@@ -2166,16 +2166,16 @@ namespace MasaoPlus
                                 j21++;
                                 for (var j = 140; j >= 90; j -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144);
-                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((j * math_pi) / 180) * 144);
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144);
+                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin(j * math_pi / 180) * 144);
                                     j21++;
                                 }
                                 g.DrawLines(pen, vo_pa);
                                 j21 = 0;
                                 for (var k = 90; k >= 40; k -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k * math_pi) / 180) * 144);
-                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((k * math_pi) / 180) * 144);
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k * math_pi / 180) * 144);
+                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin(k * math_pi / 180) * 144);
                                     j21++;
                                 }
                                 vo_pa[j21].X = 240;
@@ -2193,8 +2193,8 @@ namespace MasaoPlus
                                 j21++;
                                 for (var j = 140; j >= 90; j -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144);
-                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144);
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144);
+                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(j * math_pi / 180) * 144);
                                     j21++;
                                 }
 
@@ -2204,8 +2204,8 @@ namespace MasaoPlus
                                 j21 = 0;
                                 for (var k = 90; k >= 40; k -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k * math_pi) / 180) * 144);
-                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k * math_pi) / 180) * 144);
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k * math_pi / 180) * 144);
+                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(k * math_pi / 180) * 144);
                                     j21++;
                                 }
 
@@ -2231,8 +2231,8 @@ namespace MasaoPlus
                             j21++;
                             for (var j = 140; j >= 90; j -= 5)
                             {
-                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144);
-                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144);
+                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144);
+                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(j * math_pi / 180) * 144);
                                 j21++;
                             }
 
@@ -2242,8 +2242,8 @@ namespace MasaoPlus
                             j21 = 0;
                             for (var k = 90; k >= 40; k -= 5)
                             {
-                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k * math_pi) / 180) * 144);
-                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k * math_pi) / 180) * 144);
+                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k * math_pi / 180) * 144);
+                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(k * math_pi / 180) * 144);
                                 j21++;
                             }
 
@@ -2270,16 +2270,16 @@ namespace MasaoPlus
                                 j21++;
                                 for (var j = 140; j >= 90; j -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 8;
-                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((j * math_pi) / 180) * 144) / 8;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144) / 8;
+                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin(j * math_pi / 180) * 144) / 8;
                                     j21++;
                                 }
                                 g.DrawLines(pen, vo_pa);
                                 j21 = 0;
                                 for (var k2 = 90; k2 >= 40; k2 -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 8;
-                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((k2 * math_pi) / 180) * 144) / 8;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k2 * math_pi / 180) * 144) / 8;
+                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin(k2 * math_pi / 180) * 144) / 8;
                                     j21++;
                                 }
                                 vo_pa[j21].X = 240 / 8;
@@ -2297,8 +2297,8 @@ namespace MasaoPlus
                                 j21++;
                                 for (var j = 140; j >= 90; j -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 8;
-                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144) / 8;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144) / 8;
+                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(j * math_pi / 180) * 144) / 8;
                                     j21++;
                                 }
 
@@ -2308,8 +2308,8 @@ namespace MasaoPlus
                                 j21 = 0;
                                 for (var k2 = 90; k2 >= 40; k2 -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 8;
-                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * math_pi) / 180) * 144) / 8;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k2 * math_pi / 180) * 144) / 8;
+                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(k2 * math_pi / 180) * 144) / 8;
                                     j21++;
                                 }
 
@@ -2334,8 +2334,8 @@ namespace MasaoPlus
                             j21++;
                             for (var j = 140; j >= 90; j -= 5)
                             {
-                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 8;
-                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144) / 8;
+                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144) / 8;
+                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(j * math_pi / 180) * 144) / 8;
                                 j21++;
                             }
 
@@ -2345,8 +2345,8 @@ namespace MasaoPlus
                             j21 = 0;
                             for (var k2 = 90; k2 >= 40; k2 -= 5)
                             {
-                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 8;
-                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * math_pi) / 180) * 144) / 8;
+                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k2 * math_pi / 180) * 144) / 8;
+                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(k2 * math_pi / 180) * 144) / 8;
                                 j21++;
                             }
 
@@ -2373,16 +2373,16 @@ namespace MasaoPlus
                                 j21++;
                                 for (var j = 140; j >= 90; j -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 20;
-                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((j * math_pi) / 180) * 144) / 20;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144) / 20;
+                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin(j * math_pi / 180) * 144) / 20;
                                     j21++;
                                 }
                                 g.DrawLines(pen, vo_pa);
                                 j21 = 0;
                                 for (var k2 = 90; k2 >= 40; k2 -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 20;
-                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((k2 * math_pi) / 180) * 144) / 20;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k2 * math_pi / 180) * 144) / 20;
+                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin(k2 * math_pi / 180) * 144) / 20;
                                     j21++;
                                 }
                                 vo_pa[j21].X = 240 / 20;
@@ -2400,8 +2400,8 @@ namespace MasaoPlus
                                 j21++;
                                 for (var j = 140; j >= 90; j -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 20;
-                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144) / 20;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144) / 20;
+                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(j * math_pi / 180) * 144) / 20;
                                     j21++;
                                 }
 
@@ -2411,8 +2411,8 @@ namespace MasaoPlus
                                 j21 = 0;
                                 for (var k2 = 90; k2 >= 40; k2 -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 20;
-                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * math_pi) / 180) * 144) / 20;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k2 * math_pi / 180) * 144) / 20;
+                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(k2 * math_pi / 180) * 144) / 20;
                                     j21++;
                                 }
 
@@ -2437,8 +2437,8 @@ namespace MasaoPlus
                             j21++;
                             for (var j = 140; j >= 90; j -= 5)
                             {
-                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 20;
-                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144) / 20;
+                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144) / 20;
+                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(j * math_pi / 180) * 144) / 20;
                                 j21++;
                             }
 
@@ -2448,8 +2448,8 @@ namespace MasaoPlus
                             j21 = 0;
                             for (var k2 = 90; k2 >= 40; k2 -= 5)
                             {
-                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 20;
-                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * math_pi) / 180) * 144) / 20;
+                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k2 * math_pi / 180) * 144) / 20;
+                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(k2 * math_pi / 180) * 144) / 20;
                                 j21++;
                             }
 
@@ -2476,16 +2476,16 @@ namespace MasaoPlus
                                 j21++;
                                 for (var j = 140; j >= 90; j -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 8;
-                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((j * math_pi) / 180) * 144) / 8;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144) / 8;
+                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin(j * math_pi / 180) * 144) / 8;
                                     j21++;
                                 }
                                 g.DrawLines(pen, vo_pa);
                                 j21 = 0;
                                 for (var k2 = 90; k2 >= 40; k2 -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 8;
-                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((k2 * math_pi) / 180) * 144) / 8;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k2 * math_pi / 180) * 144) / 8;
+                                    vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin(k2 * math_pi / 180) * 144) / 8;
                                     j21++;
                                 }
                                 vo_pa[j21].X = 240 / 8;
@@ -2503,8 +2503,8 @@ namespace MasaoPlus
                                 j21++;
                                 for (var j = 140; j >= 90; j -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 8;
-                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144) / 8;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144) / 8;
+                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(j * math_pi / 180) * 144) / 8;
                                     j21++;
                                 }
 
@@ -2514,8 +2514,8 @@ namespace MasaoPlus
                                 j21 = 0;
                                 for (var k2 = 90; k2 >= 40; k2 -= 5)
                                 {
-                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 8;
-                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * math_pi) / 180) * 144) / 8;
+                                    vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k2 * math_pi / 180) * 144) / 8;
+                                    vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(k2 * math_pi / 180) * 144) / 8;
                                     j21++;
                                 }
 
@@ -2540,8 +2540,8 @@ namespace MasaoPlus
                             j21++;
                             for (var j = 140; j >= 90; j -= 5)
                             {
-                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 8;
-                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144) / 8;
+                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(j * math_pi / 180) * 144) / 8;
+                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(j * math_pi / 180) * 144) / 8;
                                 j21++;
                             }
 
@@ -2551,8 +2551,8 @@ namespace MasaoPlus
                             j21 = 0;
                             for (var k2 = 90; k2 >= 40; k2 -= 5)
                             {
-                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 8;
-                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * math_pi) / 180) * 144) / 8;
+                                vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos(k2 * math_pi / 180) * 144) / 8;
+                                vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin(k2 * math_pi / 180) * 144) / 8;
                                 j21++;
                             }
 
@@ -2574,7 +2574,7 @@ namespace MasaoPlus
                             new Rectangle(cschip.pattern, new Size(chipsize.Width / 2, chipsize.Height / 2)), GraphicsUnit.Pixel);
                         int v = 225;
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
-                        rad = ((v + 90) * Math.PI) / 180;
+                        rad = (v + 90) * Math.PI / 180;
                         const double d = 0.017453292519943295;
                         vo_pa = new PointF[4];
                         vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 25) + Math.Cos(rad) * 4);
@@ -2625,7 +2625,7 @@ namespace MasaoPlus
                         }
                         else if (cschip.description == "左回り") v = 360 - 3;
                         else if (cschip.description == "右回り") v = 3;
-                        rad = ((v + 90) * Math.PI) / 180;
+                        rad = (v + 90) * Math.PI / 180;
 
                         const double d = 0.017453292519943295;
                         vo_pa = new PointF[4];
@@ -2661,7 +2661,7 @@ namespace MasaoPlus
                             if (cschip.name == "ファイヤーバー2本") v = 2;
                             else if (cschip.name == "ファイヤーバー3本　左回り") v = 360 - 2 + 120;
                             else if (cschip.name == "ファイヤーバー3本　右回り") v = 2 + 120;
-                            rad = ((v + 90) * Math.PI) / 180;
+                            rad = (v + 90) * Math.PI / 180;
 
                             brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
                             width = 172;
@@ -2692,7 +2692,7 @@ namespace MasaoPlus
                             {
                                 if (cschip.name == "ファイヤーバー3本　左回り") v = 360 - 2 + 240;
                                 else if (cschip.name == "ファイヤーバー3本　右回り") v = 2 + 240;
-                                rad = ((v + 90) * Math.PI) / 180;
+                                rad = (v + 90) * Math.PI / 180;
 
                                 brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
                                 width = 172;
@@ -2729,7 +2729,7 @@ namespace MasaoPlus
                             new Rectangle(cschip.pattern, new Size(chipsize.Width / 2, chipsize.Width / 2)), GraphicsUnit.Pixel);
                         int v = 225;
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
-                        rad = ((v + 90) * Math.PI) / 180;
+                        rad = (v + 90) * Math.PI / 180;
                         const double d = 0.017453292519943295;
                         vo_pa = new PointF[4];
                         vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 25) + Math.Cos(rad) * 4);
@@ -2762,7 +2762,7 @@ namespace MasaoPlus
                             new Rectangle(cschip.pattern, new Size(chipsize.Width / 2, chipsize.Height / 2)), GraphicsUnit.Pixel);
                         int v = 225;
                         g.TranslateTransform(height / 2, height / 2);
-                        rad = ((v + 90) * Math.PI) / 180;
+                        rad = (v + 90) * Math.PI / 180;
                         const double d = 0.017453292519943295;
                         vo_pa = new PointF[4];
                         vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 9) + Math.Cos(rad) * 2);
@@ -2795,7 +2795,7 @@ namespace MasaoPlus
                             new Rectangle(cschip.pattern, new Size(chipsize.Width / 2, chipsize.Height / 2)), GraphicsUnit.Pixel);
                         int v = 225;
                         g.TranslateTransform(chipsize.Width / 2 + 1, chipsize.Width / 2 + 1);
-                        rad = ((v + 90) * Math.PI) / 180;
+                        rad = (v + 90) * Math.PI / 180;
                         const double d = 0.017453292519943295;
                         vo_pa = new PointF[4];
                         vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 25) + Math.Cos(rad) * 4);
@@ -2837,7 +2837,7 @@ namespace MasaoPlus
                         for (var ii = 0; ii < n; ii++)
                         {
                             v += 360 / n;
-                            rad = ((v + 90) * Math.PI) / 180;
+                            rad = (v + 90) * Math.PI / 180;
                             brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
                             vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 4) + Math.Cos(rad) * 3);
                             vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 4) + Math.Sin(rad) * 3);
@@ -2882,7 +2882,7 @@ namespace MasaoPlus
                         for (var i = 0; i < n; i++)
                         {
                             v += 360 / n;
-                            rad = ((v + 90) * Math.PI) / 180;
+                            rad = (v + 90) * Math.PI / 180;
                             brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
                             vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 25) + Math.Cos(rad) * 16);
                             vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) + Math.Sin(rad) * 16);
@@ -2927,7 +2927,7 @@ namespace MasaoPlus
                         for (var ii = 0; ii < n; ii++)
                         {
                             v += 360 / n;
-                            rad = ((v + 90) * Math.PI) / 180;
+                            rad = (v + 90) * Math.PI / 180;
                             brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
                             vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 4) + Math.Cos(rad) * 3);
                             vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 4) + Math.Sin(rad) * 3);
@@ -2972,7 +2972,7 @@ namespace MasaoPlus
                         for (var ii = 0; ii < n; ii++)
                         {
                             v += 360 / n;
-                            rad = ((v + 90) * Math.PI) / 180;
+                            rad = (v + 90) * Math.PI / 180;
                             brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
                             vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 1) + Math.Cos(rad) * 1);
                             vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 1) + Math.Sin(rad) * 1);
@@ -3017,7 +3017,7 @@ namespace MasaoPlus
                         for (var ii = 0; ii < n; ii++)
                         {
                             v += 360 / n;
-                            rad = ((v + 90) * Math.PI) / 180;
+                            rad = (v + 90) * Math.PI / 180;
                             brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
                             vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 4) + Math.Cos(rad) * 3);
                             vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 4) + Math.Sin(rad) * 3);
@@ -3077,15 +3077,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[26];
                                 for (var i4 = 0; i4 >= -120; i4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + i4) * Math.PI / 180) * chipsize.Width / 2);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + i4) * Math.PI / 180) * chipsize.Width / 2);
                                     k6++;
                                 }
 
                                 for (var j4 = -120; j4 <= 0; j4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + j4) * Math.PI / 180) * chipsize.Width / 2 * 0.3);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + j4) * Math.PI / 180) * chipsize.Width / 2 * 0.3);
                                     k6++;
                                 }
                             }
@@ -3094,15 +3094,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[12];
                                 for (var i4 = 0; i4 >= -50; i4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + i4) * Math.PI / 180) * chipsize.Width / 2);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + i4) * Math.PI / 180) * chipsize.Width / 2);
                                     k6++;
                                 }
 
                                 for (var j4 = -50; j4 <= 0; j4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + j4) * Math.PI / 180) * chipsize.Width / 2 * 0.3);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + j4) * Math.PI / 180) * chipsize.Width / 2 * 0.3);
                                     k6++;
                                 }
                             }
@@ -3117,15 +3117,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[24];
                                 for (var k4 = -5; k4 >= -115; k4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + k4) * Math.PI / 180) * chipsize.Width / 2 * 0.925);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + k4) * Math.PI / 180) * chipsize.Width / 2 * 0.925);
                                     k6++;
                                 }
 
                                 for (var l4 = -115; l4 <= -5; l4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + l4) * Math.PI / 180) * chipsize.Width / 2 * 0.5);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + l4) * Math.PI / 180) * chipsize.Width / 2 * 0.5);
                                     k6++;
                                 }
                             }
@@ -3133,15 +3133,15 @@ namespace MasaoPlus
                             {
                                 for (var k4 = -5; k4 >= -45; k4 -= 8)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + k4) * Math.PI / 180) * chipsize.Width / 2 * 0.925);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + k4) * Math.PI / 180) * chipsize.Width / 2 * 0.925);
                                     k6++;
                                 }
 
                                 for (var l4 = -45; l4 <= -5; l4 += 8)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + l4) * Math.PI / 180) * chipsize.Width / 2 * 0.5);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + l4) * Math.PI / 180) * chipsize.Width / 2 * 0.5);
                                     k6++;
                                 }
                             }
@@ -3181,15 +3181,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[26];
                                 for (var i4 = 0; i4 >= -120; i4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * 160);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * 160);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + i4) * Math.PI / 180) * 160);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + i4) * Math.PI / 180) * 160);
                                     k6++;
                                 }
 
                                 for (var j4 = -120; j4 <= 0; j4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * 112);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * 112);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + j4) * Math.PI / 180) * 112);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + j4) * Math.PI / 180) * 112);
                                     k6++;
                                 }
                             }
@@ -3198,15 +3198,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[12];
                                 for (var i4 = 0; i4 >= -50; i4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * 160);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * 160);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + i4) * Math.PI / 180) * 160);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + i4) * Math.PI / 180) * 160);
                                     k6++;
                                 }
 
                                 for (var j4 = -50; j4 <= 0; j4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * 112);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * 112);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + j4) * Math.PI / 180) * 112);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + j4) * Math.PI / 180) * 112);
                                     k6++;
                                 }
                             }
@@ -3221,15 +3221,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[24];
                                 for (var k4 = -5; k4 >= -115; k4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * 148);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * 148);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + k4) * Math.PI / 180) * 148);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + k4) * Math.PI / 180) * 148);
                                     k6++;
                                 }
 
                                 for (var l4 = -115; l4 <= -5; l4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * 124);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * 124);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + l4) * Math.PI / 180) * 124);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + l4) * Math.PI / 180) * 124);
                                     k6++;
                                 }
                             }
@@ -3237,15 +3237,15 @@ namespace MasaoPlus
                             {
                                 for (var k4 = -5; k4 >= -45; k4 -= 8)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * 148);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * 148);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + k4) * Math.PI / 180) * 148);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + k4) * Math.PI / 180) * 148);
                                     k6++;
                                 }
 
                                 for (var l4 = -45; l4 <= -5; l4 += 8)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * 124);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * 124);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + l4) * Math.PI / 180) * 124);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + l4) * Math.PI / 180) * 124);
                                     k6++;
                                 }
                             }
@@ -3285,15 +3285,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[26];
                                 for (var i4 = 0; i4 >= -120; i4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + i4) * Math.PI / 180) * chipsize.Width / 2);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + i4) * Math.PI / 180) * chipsize.Width / 2);
                                     k6++;
                                 }
 
                                 for (var j4 = -120; j4 <= 0; j4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + j4) * Math.PI / 180) * chipsize.Width / 2 * 0.3);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + j4) * Math.PI / 180) * chipsize.Width / 2 * 0.3);
                                     k6++;
                                 }
                             }
@@ -3302,15 +3302,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[12];
                                 for (var i4 = 0; i4 >= -50; i4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + i4) * Math.PI / 180) * chipsize.Width / 2);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + i4) * Math.PI / 180) * chipsize.Width / 2);
                                     k6++;
                                 }
 
                                 for (var j4 = -50; j4 <= 0; j4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + j4) * Math.PI / 180) * chipsize.Width / 2 * 0.3);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + j4) * Math.PI / 180) * chipsize.Width / 2 * 0.3);
                                     k6++;
                                 }
                             }
@@ -3325,15 +3325,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[24];
                                 for (var k4 = -5; k4 >= -115; k4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + k4) * Math.PI / 180) * chipsize.Width / 2 * 0.925);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + k4) * Math.PI / 180) * chipsize.Width / 2 * 0.925);
                                     k6++;
                                 }
 
                                 for (var l4 = -115; l4 <= -5; l4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + l4) * Math.PI / 180) * chipsize.Width / 2 * 0.5);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + l4) * Math.PI / 180) * chipsize.Width / 2 * 0.5);
                                     k6++;
                                 }
                             }
@@ -3341,15 +3341,15 @@ namespace MasaoPlus
                             {
                                 for (var k4 = -5; k4 >= -45; k4 -= 8)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + k4) * Math.PI / 180) * chipsize.Width / 2 * 0.925);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + k4) * Math.PI / 180) * chipsize.Width / 2 * 0.925);
                                     k6++;
                                 }
 
                                 for (var l4 = -45; l4 <= -5; l4 += 8)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + l4) * Math.PI / 180) * chipsize.Width / 2 * 0.5);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + l4) * Math.PI / 180) * chipsize.Width / 2 * 0.5);
                                     k6++;
                                 }
                             }
@@ -3389,15 +3389,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[26];
                                 for (var i4 = 0; i4 >= -120; i4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * height / 2);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * height / 2);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + i4) * Math.PI / 180) * height / 2);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + i4) * Math.PI / 180) * height / 2);
                                     k6++;
                                 }
 
                                 for (var j4 = -120; j4 <= 0; j4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * height / 2 * 0.3);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * height / 2 * 0.3);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + j4) * Math.PI / 180) * height / 2 * 0.3);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + j4) * Math.PI / 180) * height / 2 * 0.3);
                                     k6++;
                                 }
                             }
@@ -3406,15 +3406,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[12];
                                 for (var i4 = 0; i4 >= -50; i4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * height / 2);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * height / 2);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + i4) * Math.PI / 180) * height / 2);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + i4) * Math.PI / 180) * height / 2);
                                     k6++;
                                 }
 
                                 for (var j4 = -50; j4 <= 0; j4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * height / 2 * 0.3);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * height / 2 * 0.3);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + j4) * Math.PI / 180) * height / 2 * 0.3);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + j4) * Math.PI / 180) * height / 2 * 0.3);
                                     k6++;
                                 }
                             }
@@ -3429,15 +3429,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[24];
                                 for (var k4 = -5; k4 >= -115; k4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * height / 2 * 0.925);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * height / 2 * 0.925);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + k4) * Math.PI / 180) * height / 2 * 0.925);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + k4) * Math.PI / 180) * height / 2 * 0.925);
                                     k6++;
                                 }
 
                                 for (var l4 = -115; l4 <= -5; l4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * height / 2 * 0.5);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * height / 2 * 0.5);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + l4) * Math.PI / 180) * height / 2 * 0.5);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + l4) * Math.PI / 180) * height / 2 * 0.5);
                                     k6++;
                                 }
                             }
@@ -3445,15 +3445,15 @@ namespace MasaoPlus
                             {
                                 for (var k4 = -5; k4 >= -45; k4 -= 8)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * height / 2 * 0.925);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * height / 2 * 0.925);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + k4) * Math.PI / 180) * height / 2 * 0.925);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + k4) * Math.PI / 180) * height / 2 * 0.925);
                                     k6++;
                                 }
 
                                 for (var l4 = -45; l4 <= -5; l4 += 8)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * height / 2 * 0.5);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * height / 2 * 0.5);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + l4) * Math.PI / 180) * height / 2 * 0.5);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + l4) * Math.PI / 180) * height / 2 * 0.5);
                                     k6++;
                                 }
                             }
@@ -3493,15 +3493,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[26];
                                 for (var i4 = 0; i4 >= -120; i4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + i4) * Math.PI / 180) * chipsize.Width / 2);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + i4) * Math.PI / 180) * chipsize.Width / 2);
                                     k6++;
                                 }
 
                                 for (var j4 = -120; j4 <= 0; j4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + j4) * Math.PI / 180) * chipsize.Width / 2 * 0.3);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + j4) * Math.PI / 180) * chipsize.Width / 2 * 0.3);
                                     k6++;
                                 }
                             }
@@ -3510,15 +3510,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[12];
                                 for (var i4 = 0; i4 >= -50; i4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + i4) * Math.PI / 180) * chipsize.Width / 2);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + i4) * Math.PI / 180) * chipsize.Width / 2);
                                     k6++;
                                 }
 
                                 for (var j4 = -50; j4 <= 0; j4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + j4) * Math.PI / 180) * chipsize.Width / 2 * 0.3);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + j4) * Math.PI / 180) * chipsize.Width / 2 * 0.3);
                                     k6++;
                                 }
                             }
@@ -3533,15 +3533,15 @@ namespace MasaoPlus
                                 vo_pa = new PointF[24];
                                 for (var k4 = -5; k4 >= -115; k4 -= 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + k4) * Math.PI / 180) * chipsize.Width / 2 * 0.925);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + k4) * Math.PI / 180) * chipsize.Width / 2 * 0.925);
                                     k6++;
                                 }
 
                                 for (var l4 = -115; l4 <= -5; l4 += 10)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + l4) * Math.PI / 180) * chipsize.Width / 2 * 0.5);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + l4) * Math.PI / 180) * chipsize.Width / 2 * 0.5);
                                     k6++;
                                 }
                             }
@@ -3549,15 +3549,15 @@ namespace MasaoPlus
                             {
                                 for (var k4 = -5; k4 >= -45; k4 -= 8)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + k4) * Math.PI / 180) * chipsize.Width / 2 * 0.925);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + k4) * Math.PI / 180) * chipsize.Width / 2 * 0.925);
                                     k6++;
                                 }
 
                                 for (var l4 = -45; l4 <= -5; l4 += 8)
                                 {
-                                    vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
-                                    vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
+                                    vo_pa[k6].X = (float)(Math.Cos((v + l4) * Math.PI / 180) * chipsize.Width / 2 * 0.5);
+                                    vo_pa[k6].Y = (float)(Math.Sin((v + l4) * Math.PI / 180) * chipsize.Width / 2 * 0.5);
                                     k6++;
                                 }
                             }

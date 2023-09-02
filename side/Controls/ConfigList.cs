@@ -17,7 +17,7 @@ namespace MasaoPlus.Controls
             InitializeComponent();
         }
 
-        public void Prepare()
+        public virtual void Prepare()
         {
             ConfigSelector.Items.Clear();
             ConfigSelector.Items.Add("全部");
@@ -35,7 +35,7 @@ namespace MasaoPlus.Controls
 
 
         // 表示を変える
-        private void ConfigSelector_SelectedIndexChanged(object sender, EventArgs e)
+        protected void ConfigSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ConfigSelector.Items.Count < 1)
             {
@@ -67,8 +67,7 @@ namespace MasaoPlus.Controls
                                     TrueValue = "true",
                                     FalseValue = "false"
                                 };
-                                bool flag;
-                                if (bool.TryParse(configParam.Value, out flag))
+                                if (bool.TryParse(configParam.Value, out bool flag))
                                 {
                                     dataGridViewCheckBoxCell.Value = flag.ToString();
                                 }
@@ -86,8 +85,7 @@ namespace MasaoPlus.Controls
                                     TrueValue = "false",
                                     FalseValue = "true"
                                 };
-                                bool flag;
-                                if (bool.TryParse(configParam.Value, out flag))
+                                if (bool.TryParse(configParam.Value, out bool flag))
                                 {
                                     dataGridViewCheckBoxCell.Value = (!flag).ToString();
                                 }
@@ -142,8 +140,7 @@ namespace MasaoPlus.Controls
                                 DataGridViewComboBoxCell dataGridViewComboBoxCell = new DataGridViewComboBoxCell();
                                 dataGridViewComboBoxCell.Items.AddRange(configParam.ListItems);
                                 dataGridViewComboBoxCell.FlatStyle = FlatStyle.Popup;
-                                int num;
-                                if (int.TryParse(configParam.Value, out num) && num <= dataGridViewComboBoxCell.Items.Count && num > 0)
+                                if (int.TryParse(configParam.Value, out int num) && num <= dataGridViewComboBoxCell.Items.Count && num > 0)
                                 {
                                     dataGridViewComboBoxCell.Value = configParam.ListItems[num - 1];
                                 }
@@ -159,8 +156,8 @@ namespace MasaoPlus.Controls
                                 DataGridViewComboBoxCell dataGridViewComboBoxCell = new DataGridViewComboBoxCell();
                                 dataGridViewComboBoxCell.Items.AddRange(configParam.ListItems);
                                 dataGridViewComboBoxCell.FlatStyle = FlatStyle.Popup;
-                                int num, MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
-                                if (int.TryParse(configParam.Value, out num) && (num > 0 && num <= MaxAthleticNumber || num >= 1001 && num <= 1249))
+                                int MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
+                                if (int.TryParse(configParam.Value, out int num) && (num > 0 && num <= MaxAthleticNumber || num >= 1001 && num <= 1249))
                                 {
                                     if (num <= MaxAthleticNumber)
                                     {
@@ -214,12 +211,12 @@ namespace MasaoPlus.Controls
             if (Global.config.localSystem.WrapPropText) ConfView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
-        private void ConfigSelector_Resize(object sender, EventArgs e)
+        protected virtual void ConfigSelector_Resize(object sender, EventArgs e)
         {
             ConfigSelector.Refresh();
         }
 
-        private void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        protected void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 1)
             {
@@ -305,7 +302,7 @@ namespace MasaoPlus.Controls
                                 }
                             }
                         }
-                        ConfView[e.ColumnIndex, e.RowIndex].Value = Path.GetFileName(text) + "...";
+                        ConfView[e.ColumnIndex, e.RowIndex].Value = $"{Path.GetFileName(text)}...";
                         Global.cpd.project.Config.Configurations[num].Value = Path.GetFileName(text);
                         string relation;
                         if (Global.cpd.project.Config.Configurations[num].Relation != null && Global.cpd.project.Config.Configurations[num].Relation != "" && (relation = Global.cpd.project.Config.Configurations[num].Relation) != null)
@@ -420,11 +417,10 @@ namespace MasaoPlus.Controls
             MessageBox.Show("ファイルの読み込みに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
         }
 
-        private void ConfView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        protected void ConfView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (e.Control is DataGridViewTextBoxEditingControl)
+            if (e.Control is DataGridViewTextBoxEditingControl dataGridViewTextBoxEditingControl)
             {
-                DataGridViewTextBoxEditingControl dataGridViewTextBoxEditingControl = (DataGridViewTextBoxEditingControl)e.Control;
                 dataGridViewTextBoxEditingControl.PreviewKeyDown += ct_PreviewKeyDown;
                 dataGridViewTextBoxEditingControl.ScrollBars = ScrollBars.Both;
             }
@@ -440,7 +436,7 @@ namespace MasaoPlus.Controls
             e.IsInputKey = true;
         }
 
-        private void ConfView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        protected virtual void ConfView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             if (ConfView.CurrentCellAddress.X == 1 && ConfView.IsCurrentCellDirty)
             {
@@ -448,7 +444,7 @@ namespace MasaoPlus.Controls
             }
         }
 
-        private void ConfView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        protected virtual void ConfView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 1)
             {
@@ -484,12 +480,11 @@ namespace MasaoPlus.Controls
                     break;
                 case ConfigParam.Types.i:
                     {
-                        int num2;
                         if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
                         {
                             ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
                         }
-                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
+                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out int num2))
                         {
                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                             if (configParam.Value.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
@@ -605,7 +600,7 @@ namespace MasaoPlus.Controls
             Global.state.EditFlag = true;
         }
 
-        private void ConfView_CellClick(object sender, DataGridViewCellEventArgs e)
+        protected virtual void ConfView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 1)
             {
@@ -622,7 +617,7 @@ namespace MasaoPlus.Controls
             base.Dispose(disposing);
         }
 
-        private void InitializeComponent()
+        protected virtual void InitializeComponent()
         {
             ConfigSelector = new ComboBox();
             ConfView = new DataGridView();
@@ -693,17 +688,17 @@ namespace MasaoPlus.Controls
             mediaPlayer.MediaError += PreviewAudio_error;
         }
 
-        private readonly List<int> OrigIdx = new List<int>();
+        protected readonly List<int> OrigIdx = new List<int>();
 
         private readonly IContainer components;
 
-        private ComboBox ConfigSelector;
+        protected ComboBox ConfigSelector;
 
-        private DataGridView ConfView;
+        public DataGridView ConfView;
 
-        private DataGridViewTextBoxColumn CNames;
+        protected DataGridViewTextBoxColumn CNames;
 
-        private DataGridViewTextBoxColumn CValues;
+        protected DataGridViewTextBoxColumn CValues;
 
         private int width_index, height_index;
 

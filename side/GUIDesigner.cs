@@ -707,7 +707,7 @@ namespace MasaoPlus
                             }
                             else
                             { // 標準サイズの画像はリストに追加後、↓で描画
-                                list.Add(new KeepDrawData(c, new Point(num2, num), chipsData.character));
+                                list.Add(new KeepDrawData(c, new Point(num2, num), chipsData.character, chipsData.idColor));
                             }
                         }
                         num2++;
@@ -742,11 +742,11 @@ namespace MasaoPlus
                             (!Global.state.UseBuffered
                                 || (
                                     (!foreground
-                                        || this.ForePrevDrawn == null
-                                        || !(this.ForePrevDrawn[num].Substring(Global.state.MapEditMode ? (num2 * MapSize.bytesize) : (num2 * StageSize.bytesize), Global.state.MapEditMode ? MapSize.bytesize : StageSize.bytesize) == text)
+                                        || ForePrevDrawn == null
+                                        || !(ForePrevDrawn[num].Substring(Global.state.MapEditMode ? (num2 * MapSize.bytesize) : (num2 * StageSize.bytesize), Global.state.MapEditMode ? MapSize.bytesize : StageSize.bytesize) == text)
                                      ) && (foreground
-                                        || this.BackPrevDrawn == null
-                                        || !(this.BackPrevDrawn[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize) == text)
+                                        || BackPrevDrawn == null
+                                        || !(BackPrevDrawn[num].Substring(num2 * LayerSize.bytesize, LayerSize.bytesize) == text)
                                      )
                                     )
                             ) && (!Global.config.draw.SkipFirstChip
@@ -755,8 +755,8 @@ namespace MasaoPlus
                                     && (foreground || !text.Equals(Global.cpd.Layerchip[0].character))
                                     )
                             ) && (
-                                (foreground && this.DrawItemRef.ContainsKey(text))
-                                || (!foreground && this.DrawLayerRef.ContainsKey(text))
+                                (foreground && DrawItemRef.ContainsKey(text))
+                                || (!foreground && DrawLayerRef.ContainsKey(text))
                             )
                         )
                         {
@@ -801,6 +801,15 @@ namespace MasaoPlus
                     g.CompositingMode = CompositingMode.SourceOver;
                 }
                 DrawNormalSizeMap(cschip, g, keepDrawData.pos, foreground, keepDrawData.chara, keepDrawData.pos.X);
+                if (keepDrawData.idColor != null)
+                {
+                    GraphicsState transState = g.Save();
+                    g.TranslateTransform(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height);
+                    Color col = ColorTranslator.FromHtml(keepDrawData.idColor);
+                    using Brush brush = new SolidBrush(Color.FromArgb(240, col));
+                    g.FillRectangle(brush, 0, 0, 10, 5);
+                    g.Restore(transState);
+                }
             }
             if (!Global.state.MapEditMode)
             {
@@ -884,7 +893,7 @@ namespace MasaoPlus
             try
             {
                 BitmapData bitmapData = b.LockBits(area, ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
-                byte* ptr = (byte*)((void*)bitmapData.Scan0);
+                byte* ptr = (byte*)(void*)bitmapData.Scan0;
                 for (int i = 0; i < area.Height; i++)
                 {
                     for (int j = 0; j < area.Width; j++)
@@ -905,7 +914,7 @@ namespace MasaoPlus
             byte b2 = 125;
             byte b3 = 0;
             BitmapData bitmapData = b.LockBits(new Rectangle(0, 0, b.Width, b.Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
-            byte* ptr = (byte*)((void*)bitmapData.Scan0);
+            byte* ptr = (byte*)(void*)bitmapData.Scan0;
             for (int i = 0; i < b.Height; i++)
             {
                 int num = i * bitmapData.Stride;
@@ -976,6 +985,13 @@ namespace MasaoPlus
             foreach (ChipsData value in Global.cpd.VarietyChip)
             {
                 DrawItemCodeRef.Add(value.code, value);
+            }
+            if(Global.cpd.CustomPartsChip != null)
+            {
+                foreach (ChipsData value in Global.cpd.CustomPartsChip)
+                {
+                    DrawItemCodeRef.Add(value.code, value);
+                }
             }
             if (Global.cpd.UseLayer)
             {
@@ -1255,7 +1271,7 @@ namespace MasaoPlus
                     bitmapinfoheader.biPlanes = 1;
                     bitmapinfoheader.biBitCount = 24;
                     int ysrc = (Global.state.MapMoveMax.Height > 0) ? (Global.state.MapMoveMax.Height - Global.state.MapPoint.Y) : 0;
-                    Native.GDI32.StretchDIBits(hdc, 0, 0, num, num2, Global.state.MapPoint.X, ysrc, num, num2, bitmapData.Scan0, (IntPtr)((void*)(&bitmapinfoheader)), 0U, 13369376U);
+                    Native.GDI32.StretchDIBits(hdc, 0, 0, num, num2, Global.state.MapPoint.X, ysrc, num, num2, bitmapData.Scan0, (IntPtr)(void*)&bitmapinfoheader, 0U, 13369376U);
                     ForegroundBuffer.UnlockBits(bitmapData);
                     e.Graphics.ReleaseHdc(hdc);
                 }
@@ -2742,8 +2758,8 @@ namespace MasaoPlus
         {
             return new Point
             {
-                X = ((fst.X > snd.X) ? fst.X : snd.X),
-                Y = ((fst.Y > snd.Y) ? fst.Y : snd.Y)
+                X = (fst.X > snd.X) ? fst.X : snd.X,
+                Y = (fst.Y > snd.Y) ? fst.Y : snd.Y
             };
         }
 
@@ -2751,8 +2767,8 @@ namespace MasaoPlus
         {
             return new Size
             {
-                Width = ((fst.Width > snd.Width) ? fst.Width : snd.Width),
-                Height = ((fst.Height > snd.Height) ? fst.Height : snd.Height)
+                Width = (fst.Width > snd.Width) ? fst.Width : snd.Width,
+                Height = (fst.Height > snd.Height) ? fst.Height : snd.Height
             };
         }
 
@@ -2988,7 +3004,19 @@ namespace MasaoPlus
                                 }
                             }
                             ChipData cschip = chipsData.GetCSChip();
-                            if (cschip.size == default) DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X);
+                            if (cschip.size == default) 
+                            { 
+                                DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X);
+                                if (chipsData.idColor != null)
+                                {
+                                    GraphicsState transState = graphics.Save();
+                                    graphics.TranslateTransform(point.X * chipsize.Width, point.Y * chipsize.Height);
+                                    Color col = ColorTranslator.FromHtml(chipsData.idColor);
+                                    using Brush brush = new SolidBrush(Color.FromArgb(240, col));
+                                    graphics.FillRectangle(brush, 0, 0, 10, 5);
+                                    graphics.Restore(transState);
+                                }
+                            }
                         }
                     IL_9DD:;
                     }
@@ -3404,11 +3432,12 @@ namespace MasaoPlus
 
         public struct KeepDrawData
         {
-            public KeepDrawData(ChipData c, Point p, string chara)
+            public KeepDrawData(ChipData c, Point p, string chara, string idColor = null)
             {
                 cd = c;
                 pos = p;
                 this.chara = chara;
+                this.idColor = idColor;
             }
 
             public ChipData cd;
@@ -3416,6 +3445,8 @@ namespace MasaoPlus
             public Point pos;
 
             public string chara;
+
+            public string idColor;
         }
     }
 }

@@ -3,13 +3,14 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MasaoPlus
 {
     public class GUIChipList : UserControl
     {
-        public int SelectedIndex
+        public virtual int SelectedIndex
         {
             get
             {
@@ -31,30 +32,17 @@ namespace MasaoPlus
                 }
                 else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
                 {
-                    int n = Global.cpd.Mapchip.Length;
+                    ChipsData[] array = Global.cpd.Mapchip;
+                    if (Global.cpd.project.Use3rdMapData)
+                    {
+                        array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
+                    }
 
-                    if (!Global.cpd.project.Use3rdMapData && value >= n
-                        || Global.cpd.project.Use3rdMapData && value >= n + Global.cpd.VarietyChip.Length
-                        || value < 0)
+                    if (value >= array.Length || value < 0)
                     {
                         return;
                     }
-
-                    if (Global.cpd.project.Use3rdMapData)
-                    {
-                        if (value < n)
-                        {
-                            Global.state.CurrentChip = Global.cpd.Mapchip[value];
-                        }
-                        else
-                        {
-                            Global.state.CurrentChip = Global.cpd.VarietyChip[value - n];
-                        }
-                    }
-                    else
-                    {
-                        Global.state.CurrentChip = Global.cpd.Mapchip[value];
-                    }
+                    Global.state.CurrentChip = array[value];
                 }
                 else
                 {
@@ -69,7 +57,7 @@ namespace MasaoPlus
             }
         }
 
-        private int vPosition
+        protected int vPosition
         {
             get
             {
@@ -83,7 +71,7 @@ namespace MasaoPlus
             }
         }
 
-        private int hMaxChip
+        protected int hMaxChip
         {
             get
             {
@@ -96,12 +84,12 @@ namespace MasaoPlus
             }
         }
 
-        private void vScr_Scroll(object sender, ScrollEventArgs e)
+        protected void vScr_Scroll(object sender, ScrollEventArgs e)
         {
             MainPanel.Refresh();
         }
 
-        private void SetMaxValue()
+        protected void SetMaxValue()
         {
             vScr.LargeChange = MainPanel.Height;
             vScr.SmallChange = Global.cpd.runtime.Definitions.ChipSize.Height;
@@ -128,7 +116,7 @@ namespace MasaoPlus
             return GetVirtSize(MainPanel.Width);
         }
 
-        public int GetVirtSize(int wid)
+        public virtual int GetVirtSize(int wid)
         {
             if (Global.cpd.runtime == null)
             {
@@ -145,6 +133,10 @@ namespace MasaoPlus
                 if (Global.cpd.project.Use3rdMapData)
                 {
                     num2 += Global.cpd.VarietyChip.Length;
+                    if(Global.cpd.CustomPartsChip != null)
+                    {
+                        num2 += Global.cpd.CustomPartsChip.Length;
+                    }
                 }
                 return (int)Math.Ceiling(num2 / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height;
             }
@@ -156,7 +148,7 @@ namespace MasaoPlus
             GUIChipList_Resize(this, new EventArgs());
         }
 
-        private void GUIChipList_Resize(object sender, EventArgs e)
+        protected void GUIChipList_Resize(object sender, EventArgs e)
         {
             if (GetVirtSize(Width) < Height)
             {
@@ -171,7 +163,7 @@ namespace MasaoPlus
             MainPanel.Refresh();
         }
 
-        private void AddChipData(ChipsData[] chipsData, int num, PaintEventArgs e, int inital = 0)
+        protected virtual void AddChipData(ChipsData[] chipsData, int num, PaintEventArgs e, int inital = 0)
         {
             for (int i = inital; i < num; i++)
             {
@@ -299,6 +291,15 @@ namespace MasaoPlus
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
                     }
                     e.Graphics.PixelOffsetMode = default;
+                    if (chipData.idColor != null)
+                    {
+                        GraphicsState transState = e.Graphics.Save();
+                        e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
+                        Color col = ColorTranslator.FromHtml(chipData.idColor);
+                        using Brush brush = new SolidBrush(Color.FromArgb(240, col));
+                        e.Graphics.FillRectangle(brush, 0, 0, 10, 5);
+                        e.Graphics.Restore(transState);
+                    }
                     if (Global.state.MapEditMode && Global.state.CurrentChip.character == chipData.character
                         || !Global.state.MapEditMode
                             && (Global.cpd.project.Use3rdMapData && Global.state.CurrentChip.code == chipData.code
@@ -334,7 +335,7 @@ namespace MasaoPlus
         }
 
         // クラシックチップリスト
-        private void MainPanel_Paint(object sender, PaintEventArgs e)
+        protected virtual void MainPanel_Paint(object sender, PaintEventArgs e)
         {
             try
             {
@@ -361,6 +362,11 @@ namespace MasaoPlus
                         if (Global.cpd.project.Use3rdMapData)
                         {
                             num2 = Global.cpd.VarietyChip.Length;
+                            if (Global.cpd.CustomPartsChip != null)
+                            {
+                                num2 += Global.cpd.CustomPartsChip.Length;
+                                AddChipData(Global.cpd.VarietyChip.Concat(Global.cpd.CustomPartsChip).ToArray(), num + num2, e, num);
+                            }
                             AddChipData(Global.cpd.VarietyChip, num + num2, e, num);
                         }
                     }
@@ -382,7 +388,7 @@ namespace MasaoPlus
             }
         }
 
-        private void MainPanel_MouseDown(object sender, MouseEventArgs e)
+        protected virtual void MainPanel_MouseDown(object sender, MouseEventArgs e)
         {
             Focus();
             if (!Enabled)
@@ -406,7 +412,7 @@ namespace MasaoPlus
                 num2 = Global.cpd.Mapchip.Length;
                 if (Global.cpd.project.Use3rdMapData)
                 {
-                    num2 += Global.cpd.VarietyChip.Length;
+                    num2 += Global.cpd.VarietyChip.Length + Global.cpd.CustomPartsChip.Length;
                 }
             }
             else
@@ -420,7 +426,7 @@ namespace MasaoPlus
             SelectedIndex = num;
         }
 
-        private void MainPanel_MouseMove(object sender, MouseEventArgs e)
+        protected void MainPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -428,7 +434,7 @@ namespace MasaoPlus
             }
         }
 
-        private void GUIChipList_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        protected void GUIChipList_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -443,7 +449,7 @@ namespace MasaoPlus
             }
         }
 
-        private void GUIChipList_KeyDown(object sender, KeyEventArgs e)
+        protected void GUIChipList_KeyDown(object sender, KeyEventArgs e)
         {
             e.Handled = true;
             switch (e.KeyCode)
@@ -475,7 +481,7 @@ namespace MasaoPlus
             base.Dispose(disposing);
         }
 
-        private void InitializeComponent()
+        protected virtual void InitializeComponent()
         {
             vScr = new VScrollBar();
             MainPanel = new PictureBox();
@@ -509,12 +515,12 @@ namespace MasaoPlus
             ResumeLayout(false);
         }
 
-        private int selectedIndex;
+        protected int selectedIndex;
 
-        private readonly IContainer components;
+        protected IContainer components;
 
-        private VScrollBar vScr;
+        protected VScrollBar vScr;
 
-        private PictureBox MainPanel;
+        protected PictureBox MainPanel;
     }
 }

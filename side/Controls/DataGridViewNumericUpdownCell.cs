@@ -22,7 +22,7 @@ namespace MasaoPlus.Controls
                     dataGridViewNumericUpdownEditingControl.Maximum = dataGridViewNumericUpdownColumn.Max;
                     dataGridViewNumericUpdownEditingControl.Minimum = dataGridViewNumericUpdownColumn.Min;
                 }
-                dataGridViewNumericUpdownEditingControl.Value = ((Value != dataGridViewNumericUpdownEditingControl) ? int.Parse(Value.ToString()) : 0);
+                dataGridViewNumericUpdownEditingControl.Value = (Value != dataGridViewNumericUpdownEditingControl) ? int.Parse(Value.ToString()) : 0;
             }
         }
 

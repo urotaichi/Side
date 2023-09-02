@@ -54,6 +54,7 @@ namespace MasaoPlus.Dialogs
                         if (MessageBox.Show($"古いバージョンのプロジェクトファイルが指定されました。{Environment.NewLine}プロジェクトファイルのアップグレードを試みます。{Environment.NewLine}よろしいですか？", "レガシー プロジェクト ファイルの読み込み", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
                         {
                             SetState("プロジェクトをコンバートしています...");
+                            // コンバート動作が未定義
                             double projVer = Global.cpd.project.ProjVer;
                             MessageBox.Show($"このプロジェクトファイルはサポートされていません。{Environment.NewLine}通常の読み込みを試みます。", "コンバート エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                         }
@@ -100,6 +101,8 @@ namespace MasaoPlus.Dialogs
                     Global.cpd.Mapchip = chipDataClass.Mapchip;
                     Global.cpd.Worldchip = chipDataClass.WorldChip;
                     Global.cpd.VarietyChip = chipDataClass?.VarietyChip;
+                    Global.cpd.CustomPartsChip = Global.cpd.project?.CustomPartsDefinition;
+                    if (Global.cpd.CustomPartsChip != null && Global.cpd.CustomPartsChip.Length > 0) Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];
                     Global.cpd.EditingMap = Global.cpd.project.StageData;
                     if (Global.cpd.UseLayer)
                     {
@@ -122,6 +125,7 @@ namespace MasaoPlus.Dialogs
                     Global.MainWnd.ChipItemReady();
                     SetState("編集を開始します...");
                     Global.MainWnd.MasaoConfigList.Prepare();
+                    Global.MainWnd.CustomPartsConfigList.Prepare();
                 }
                 catch (InvalidOperationException)
                 {

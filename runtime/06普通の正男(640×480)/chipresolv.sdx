@@ -12787,234 +12787,435 @@
     <chips code="5100" color="magenta">
       <chip><pattern><X>0</X><Y>448</Y></pattern><xdraw><X>96</X><Y>0</Y></xdraw>
         <name>亀</name><description>足元に空白があると向きを変える</description></chip>
+      <properties>
+        <walk_speed>3</walk_speed>
+      </properties>
     </chips>
     <chips code="5110" color="magenta">
       <chip><pattern><X>0</X><Y>448</Y></pattern>
         <name>亀</name><description>足元に空白があると落ちる</description></chip>
+      <properties>
+        <walk_speed>3</walk_speed>
+        <fall_speed>5</fall_speed>
+      </properties>
     </chips>
     <chips code="6200" color="magenta">
       <chip><pattern><X>0</X><Y>448</Y></pattern><xdraw><X>512</X><Y>0</Y></xdraw>
         <name>亀</name><description>主人公を追尾</description></chip>
+      <properties>
+        <walk_speed>4</walk_speed>
+      </properties>
     </chips>
     <chips code="5200" rel="PikachiA" color="magenta">
       <chip value="1"><pattern><X>96</X><Y>448</Y></pattern><name>ピカチー</name><description>電撃　水中で消える</description></chip>
       <chip value="2"><pattern><X>96</X><Y>448</Y></pattern><name>ピカチー</name><description>電撃　水中でも使える</description></chip>
+      <properties>
+        <jump_vy>-14</jump_vy>
+        <search_range>240</search_range>
+        <interval>30</interval>
+      </properties>
     </chips>
     <chips code="5201" color="magenta">
       <chip><pattern><X>96</X><Y>448</Y></pattern>
         <name>ピカチー</name><description>みずでっぽう  水平発射</description></chip>
+      <properties>
+        <jump_vy>-14</jump_vy>
+        <search_range>240</search_range>
+        <interval>30</interval>
+      </properties>
     </chips>
     <chips code="5202" color="magenta">
       <chip><pattern><X>96</X><Y>448</Y></pattern>
         <name>ピカチー</name><description>電撃３発　水中でも使える</description></chip>
+      <properties>
+        <jump_vy>-14</jump_vy>
+        <search_range>240</search_range>
+        <interval>30</interval>
+      </properties>
     </chips>
     <chips code="5203" color="magenta">
       <chip><pattern><X>96</X><Y>448</Y></pattern>
         <name>ピカチー</name><description>プラズマ砲</description></chip>
+      <properties>
+        <jump_vy>-14</jump_vy>
+        <search_range>240</search_range>
+        <interval>30</interval>
+      </properties>
     </chips>
     <chips code="6400" color="magenta">
       <chip><pattern><X>96</X><Y>448</Y></pattern><xdraw><X>512</X><Y>0</Y></xdraw>
         <name>ピカチー</name><description>主人公を追尾</description></chip>
+      <properties>
+        <speed>4</speed>
+      </properties>
     </chips>
     <chips code="5300" color="magenta">
       <chip><pattern><X>0</X><Y>480</Y></pattern>
         <name>チコリン</name><description>はっぱカッター</description></chip>
+      <properties>
+        <period>86</period>
+        <attack_timing AttackFrame="2" IsPlaySoundFrame="true" />
+        <attack_timing AttackFrame="10" IsPlaySoundFrame="false" />
+        <attack_timing AttackFrame="18" IsPlaySoundFrame="false" />
+        <attack_timing AttackFrame="26" IsPlaySoundFrame="false" />
+      </properties>
     </chips>
     <chips code="5301" color="magenta">
       <chip><pattern><X>0</X><Y>480</Y></pattern>
         <name>チコリン</name><description>はっぱカッター 地形で消える</description></chip>
+      <properties>
+        <period>86</period>
+        <attack_timing AttackFrame="2" IsPlaySoundFrame="true" />
+        <attack_timing AttackFrame="10" IsPlaySoundFrame="false" />
+        <attack_timing AttackFrame="18" IsPlaySoundFrame="false" />
+        <attack_timing AttackFrame="26" IsPlaySoundFrame="false" />
+      </properties>
     </chips>
     <chips code="5310" color="magenta">
       <chip><pattern><X>0</X><Y>480</Y></pattern>
         <name>チコリン</name><description>ヒノララシを８匹投げる</description></chip>
+      <properties>
+        <interval>40</interval>
+      </properties>
     </chips>
     <chips code="5311" color="magenta">
       <chip><pattern><X>0</X><Y>480</Y></pattern>
         <name>チコリン</name><description>ヒノララシを無限に投げる</description></chip>
+      <properties>
+        <interval>40</interval>
+      </properties>
     </chips>
     <chips code="5312" color="magenta">
       <chip><pattern><X>0</X><Y>480</Y></pattern>
         <name>チコリン</name><description>マリリを８匹投げる</description></chip>
+      <properties>
+        <interval>40</interval>
+      </properties>
     </chips>
     <chips code="5313" color="magenta">
       <chip><pattern><X>0</X><Y>480</Y></pattern>
         <name>チコリン</name><description>マリリを無限に投げる</description></chip>
+      <properties>
+        <interval>40</interval>
+      </properties>
     </chips>
     <chips code="5320" color="magenta">
       <chip><pattern><X>0</X><Y>480</Y></pattern>
         <name>チコリン</name><description>はっぱカッター 乱れ射ち</description></chip>
+      <properties />
     </chips>
     <chips code="5330" color="magenta">
       <chip><pattern><X>0</X><Y>480</Y></pattern>
         <name>チコリン</name><description>ソーラービーム 左へ発射</description></chip>
+      <properties>
+        <interval>120</interval>
+      </properties>
     </chips>
     <chips code="5335" color="magenta">
       <chip><pattern><X>0</X><Y>480</Y></pattern>
         <name>チコリン</name><description>ソーラービーム 右へ発射</description></chip>
+      <properties>
+        <interval>120</interval>
+      </properties>
     </chips>
     <chips code="5400" color="magenta">
       <chip><pattern><X>64</X><Y>480</Y></pattern>
         <name>ヒノララシ</name><description>踏めません</description></chip>
+      <properties>
+        <walk_speed>4</walk_speed>
+      </properties>
     </chips>
     <chips code="5500" color="magenta">
       <chip><pattern><X>224</X><Y>448</Y></pattern><xdraw><X>64</X><Y>0</Y></xdraw>
         <name>ポッピー</name><description>上下移動</description></chip>
+      <properties>
+        <speed>4</speed>
+        <accel>1</accel>
+      </properties>
     </chips>
     <chips code="5510" color="magenta">
       <chip><pattern><X>224</X><Y>448</Y></pattern>
         <name>ポッピー</name><description>直進</description></chip>
+      <properties>
+        <speed>3</speed>
+      </properties>
     </chips>
     <chips code="5520" color="magenta">
       <chip><pattern><X>224</X><Y>448</Y></pattern>
         <name>ポッピー</name><description>火の粉</description></chip>
+      <properties>
+        <interval>40</interval>
+      </properties>
     </chips>
     <chips code="5530" color="magenta">
       <chip><pattern><X>224</X><Y>448</Y></pattern>
         <name>ポッピー</name><description>火の粉 ３連射</description></chip>
+      <properties />
     </chips>
     <chips code="5540" color="magenta">
       <chip><pattern><X>224</X><Y>448</Y></pattern>
         <name>ポッピー</name><description>バブル光線３発</description></chip>
+      <properties>
+        <interval>40</interval>
+      </properties>
     </chips>
     <chips code="5550" color="magenta">
       <chip><pattern><X>224</X><Y>448</Y></pattern>
         <name>ポッピー</name><description>ハリケンブラスト</description></chip>
+      <properties>
+        <interval>80</interval>
+      </properties>
     </chips>
     <chips code="5600" color="magenta">
       <chip><pattern><X>128</X><Y>480</Y></pattern>
         <name>マリリ</name><description>ジャンプで進む</description></chip>
+      <properties>
+        <jump_vy>-17</jump_vy>
+        <speed>5</speed>
+      </properties>
     </chips>
     <chips code="5601" color="magenta">
       <chip><pattern><X>128</X><Y>480</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
         <name>マリリ</name><description>その場でジャンプ</description></chip>
+      <properties>
+        <jump_vy>-22</jump_vy>
+        <speed>5</speed>
+      </properties>
     </chips>
     <chips code="5602" color="magenta">
       <chip><pattern><X>128</X><Y>480</Y></pattern>
         <name>マリリ</name><description>左右にジャンプ</description></chip>
+      <properties>
+        <jump_vy>-17</jump_vy>
+        <speed>5</speed>
+      </properties>
     </chips>
     <chips code="5660" color="magenta">
       <chip><pattern><X>128</X><Y>480</Y></pattern><xdraw><X>288</X><Y>32</Y></xdraw>
         <name>マリリ</name><description>左右移動</description></chip>
+      <properties>
+        <speed>8</speed>
+        <distance>128</distance>
+        <interval>20</interval>
+      </properties>
     </chips>
     <chips code="5670" color="magenta">
       <chip><pattern><X>128</X><Y>480</Y></pattern>
         <name>マリリ</name><description>体当たり</description></chip>
+      <properties>
+        <attack_speed>10</attack_speed>
+        <return_speed>4</return_speed>
+      </properties>
     </chips>
     <chips code="5700" color="magenta">
       <chip><pattern><X>256</X><Y>480</Y></pattern>
         <name>ヤチャモ</name><description>火の粉</description></chip>
+      <properties>
+        <interval>40</interval>
+      </properties>
     </chips>
     <chips code="5701" color="magenta">
       <chip><pattern><X>256</X><Y>480</Y></pattern>
         <name>ヤチャモ</name><description>何もしない</description></chip>
+      <properties />
     </chips>
     <chips code="5702" color="magenta">
       <chip><pattern><X>256</X><Y>480</Y></pattern>
         <name>ヤチャモ</name><description>グレネード</description></chip>
+      <properties>
+        <interval>52</interval>
+      </properties>
     </chips>
     <chips code="5703" color="magenta">
       <chip><pattern><X>256</X><Y>480</Y></pattern>
         <name>ヤチャモ</name><description>はっぱカッター３発</description></chip>
+      <properties>
+        <interval>52</interval>
+      </properties>
     </chips>
     <chips code="5704" color="magenta">
       <chip><pattern><X>256</X><Y>480</Y></pattern>
         <name>ヤチャモ</name><description>プラズマ砲</description></chip>
+      <properties>
+        <interval>40</interval>
+      </properties>
     </chips>
     <chips code="5710" color="magenta">
       <chip><pattern><X>256</X><Y>480</Y></pattern>
         <name>ヤチャモ</name><description>火の粉 速射</description></chip>
+      <properties>
+        <interval>35</interval>
+      </properties>
     </chips>
     <chips code="5711" color="magenta">
       <chip><pattern><X>256</X><Y>480</Y></pattern>
         <name>ヤチャモ</name><description>火の粉 ３連射</description></chip>
+      <properties>
+        <interval>35</interval>
+      </properties>
     </chips>
     <chips code="5720" color="magenta">
       <chip><pattern><X>256</X><Y>480</Y></pattern>
         <name>ヤチャモ</name><description>破壊光線 左へ発射</description></chip>
+      <properties>
+        <interval>80</interval>
+      </properties>
     </chips>
     <chips code="5725" color="magenta">
       <chip><pattern><X>256</X><Y>480</Y></pattern>
         <name>ヤチャモ</name><description>破壊光線 右へ発射</description></chip>
+      <properties>
+        <interval>80</interval>
+      </properties>
     </chips>
     <chips code="5800" color="magenta">
       <chip><pattern><X>0</X><Y>512</Y></pattern>
         <name>ミズタロウ</name><description>みずでっぽう</description></chip>
+      <properties>
+        <walk_speed>3</walk_speed>
+      </properties>
     </chips>
     <chips code="5801" color="magenta">
       <chip><pattern><X>0</X><Y>512</Y></pattern>
         <name>ミズタロウ</name><description>はっぱカッター３発</description></chip>
+      <properties>
+        <walk_speed>3</walk_speed>
+      </properties>
     </chips>
     <chips code="5802" rel="PikachiA" color="magenta">
       <chip value="1"><pattern><X>0</X><Y>512</Y></pattern><name>ミズタロウ</name><description>電撃　水中で消える</description></chip>
       <chip value="2"><pattern><X>0</X><Y>512</Y></pattern><name>ミズタロウ</name><description>電撃　水中でも使える</description></chip>
+      <properties>
+        <walk_speed>3</walk_speed>
+      </properties>
     </chips>
     <chips code="5803" color="magenta">
       <chip><pattern><X>0</X><Y>512</Y></pattern>
         <name>ミズタロウ</name><description>みずでっぽう 水平発射</description></chip>
+      <properties>
+        <walk_speed>3</walk_speed>
+      </properties>
     </chips>
     <chips code="5804" color="magenta">
       <chip><pattern><X>0</X><Y>512</Y></pattern>
         <name>ミズタロウ</name><description>ハリケンブラスト</description></chip>
+      <properties>
+        <walk_speed>3</walk_speed>
+      </properties>
     </chips>
     <chips code="5900" color="magenta">
       <chip><pattern><X>128</X><Y>512</Y></pattern>
         <name>エアームズ</name><description>爆弾投下 壁に当たると止まる</description></chip>
+      <properties>
+        <speed>4</speed>
+        <interval>26</interval>
+      </properties>
     </chips>
     <chips code="5920" color="magenta">
       <chip><pattern><X>128</X><Y>512</Y></pattern>
         <name>エアームズ</name><description>その場で爆弾投下</description></chip>
+      <properties>
+        <interval>30</interval>
+      </properties>
     </chips>
     <chips code="5921" color="magenta">
       <chip><pattern><X>128</X><Y>512</Y></pattern>
         <name>エアームズ</name><description>その場でグレネード投下</description></chip>
+      <properties>
+        <interval>30</interval>
+      </properties>
     </chips>
     <chips code="5930" color="magenta">
       <chip><pattern><X>128</X><Y>512</Y></pattern>
         <name>エアームズ</name><description>左右に動いて爆弾投下</description></chip>
+      <properties>
+        <speed>4</speed>
+      </properties>
     </chips>
     <chips code="5950" color="magenta">
       <chip><pattern><X>128</X><Y>512</Y></pattern>
         <name>エアームズ</name><description>爆弾投下 壁に当たると向きを変える</description></chip>
+      <properties>
+        <speed>4</speed>
+        <interval>26</interval>
+      </properties>
     </chips>
     <chips code="6000" color="magenta">
       <chip><pattern><X>192</X><Y>512</Y></pattern><xdraw><X>224</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>タイキング</name><description>左右移動　水中専用</description></chip>
+      <properties>
+        <speed>3</speed>
+      </properties>
     </chips>
     <chips code="6050" color="magenta">
       <chip><pattern><X>192</X><Y>512</Y></pattern><xdraw><X>0</X><Y>32</Y></xdraw>
         <name>タイキング</name><description>はねる</description></chip>
+      <properties>
+        <jump_vy>-26</jump_vy>
+        <interval>10</interval>
+      </properties>
     </chips>
     <chips code="6060" color="magenta">
       <chip><pattern><X>192</X><Y>512</Y></pattern><xdraw><X>512</X><Y>0</Y></xdraw>
         <name>タイキング</name><description>縄張りをまもる</description></chip>
+      <properties>
+        <speed_x>3</speed_x>
+        <speed_y>2</speed_y>
+      </properties>
     </chips>
     <chips code="6070" color="magenta">
       <chip><pattern><X>192</X><Y>512</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
         <name>タイキング</name><description>左回り</description></chip>
+      <properties>
+        <speed>5</speed>
+        <radius>64</radius>
+      </properties>
     </chips>
     <chips code="6080" color="magenta">
       <chip><pattern><X>192</X><Y>512</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
         <name>タイキング</name><description>右回り</description></chip>
+      <properties>
+        <speed>5</speed>
+        <radius>64</radius>
+      </properties>
     </chips>
     <chips code="6100" color="magenta">
       <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>224</X><Y>0</Y></xdraw><xdbackgrnd>true</xdbackgrnd>
         <name>クラゲッソ</name><description>バブル光線　水中専用</description></chip>
+      <properties>
+        <interval>77</interval>
+      </properties>
     </chips>
     <chips code="6150" color="magenta">
       <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>96</X><Y>32</Y></xdraw>
         <name>クラゲッソ</name><description>近づくと落ちる</description></chip>
+      <properties>
+        <init_vy>2</init_vy>
+      </properties>
     </chips>
     <chips code="6160" color="magenta">
       <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>512</X><Y>0</Y></xdraw>
         <name>クラゲッソ</name><description>縄張りをまもる</description></chip>
+      <properties>
+        <speed_x>3</speed_x>
+        <speed_y>2</speed_y>
+      </properties>
     </chips>
     <chips code="6170" color="magenta">
       <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>256</X><Y>0</Y></xdraw>
         <name>クラゲッソ</name><description>左回り</description></chip>
+      <properties>
+        <speed>5</speed>
+        <radius>64</radius>
+      </properties>
     </chips>
     <chips code="6180" color="magenta">
       <chip><pattern><X>224</X><Y>512</Y></pattern><xdraw><X>288</X><Y>0</Y></xdraw>
         <name>クラゲッソ</name><description>右回り</description></chip>
+      <properties>
+        <speed>5</speed>
+        <radius>64</radius>
+      </properties>
     </chips>
   </VarietyChip>
 </ChipDefinition>

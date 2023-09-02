@@ -89,6 +89,9 @@
     <Compile Include="Controls\ConfigList.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\CustomPartsConfigList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Controls\DataGridViewNumericUpdownCell.cs" />
     <Compile Include="Controls\DataGridViewNumericUpdownColumn.cs" />
     <Compile Include="Controls\DataGridViewNumericUpdownEditingControl.cs">
@@ -98,6 +101,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CurrentProjectData.cs" />
+    <Compile Include="CustomPartsProperties.cs" />
     <Compile Include="Definition.cs" />
     <Compile Include="Dialogs\HTMLInheritance.cs">
       <SubType>Form</SubType>
@@ -176,6 +180,9 @@
     <Compile Include="GUIChipList.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="GUICustomPartsChipList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="GUIDesigner.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -236,7 +243,6 @@
     <EmbeddedResource Include="Dialogs\VersionInfo.resources" />
     <EmbeddedResource Include="Dialogs\WebUpdate.resources" />
     <EmbeddedResource Include="GUIChipList.resources" />
-    <EmbeddedResource Include="GUIDesigner.resources" />
     <EmbeddedResource Include="IntegratedBrowser.resources" />
     <EmbeddedResource Include="MainWindow.resources" />
     <EmbeddedResource Include="OverViewWindow.resources" />

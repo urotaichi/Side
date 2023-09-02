@@ -184,6 +184,7 @@ namespace MasaoPlus.Dialogs
             project.Runtime.Definitions.LayerSize = Global.cpd.project.Runtime.Definitions.LayerSize;
             project.Runtime.Definitions.MapSize = Global.cpd.project.Runtime.Definitions.MapSize;
             project.Use3rdMapData = Global.cpd.project.Use3rdMapData;
+            project.CustomPartsDefinition = Global.cpd.project?.CustomPartsDefinition;
             if (Global.cpd.UseLayer)
             {
                 for (int i = 0; i < chipDataClass.Layerchip.Length; i++)
@@ -212,10 +213,10 @@ namespace MasaoPlus.Dialogs
             else
             {
                 ChipsData NullChip = chipDataClass.Mapchip[0];
-                project.StageData = StageDataCopy(project, Global.cpd.project.StageData, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip);
-                project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip);
-                project.StageData3 = StageDataCopy(project, Global.cpd.project.StageData3, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip);
-                project.StageData4 = StageDataCopy(project, Global.cpd.project.StageData4, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip);
+                project.StageData = StageDataCopy(project, Global.cpd.project.StageData, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip);
+                project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip);
+                project.StageData3 = StageDataCopy(project, Global.cpd.project.StageData3, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip);
+                project.StageData4 = StageDataCopy(project, Global.cpd.project.StageData4, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip);
 
                 if (project.Runtime.Definitions.LayerSize.bytesize != 0) // レイヤーあり
                 {
@@ -278,6 +279,8 @@ namespace MasaoPlus.Dialogs
             Global.cpd.Mapchip = chipDataClass.Mapchip;
             Global.cpd.Worldchip = chipDataClass.WorldChip;
             Global.cpd.VarietyChip = chipDataClass?.VarietyChip;
+            Global.cpd.CustomPartsChip = Global.cpd.project.CustomPartsDefinition;
+            if (Global.cpd.CustomPartsChip != null && Global.cpd.CustomPartsChip.Length > 0) Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];
             Global.cpd.EditingMap = Global.cpd.project.StageData;
             if (Global.cpd.UseLayer)
             {
@@ -294,6 +297,7 @@ namespace MasaoPlus.Dialogs
             }
             Global.MainWnd.ChipItemReady();
             Global.MainWnd.MasaoConfigList.Prepare();
+            Global.MainWnd.CustomPartsConfigList.Prepare();
             Global.MainWnd.EditPatternChip_Click(this, new EventArgs());
             Global.state.EditingForeground = true;
             Global.state.EditFlag = true;

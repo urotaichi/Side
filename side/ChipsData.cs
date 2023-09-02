@@ -36,6 +36,9 @@ namespace MasaoPlus
         [XmlAttribute("code")]
         public string code;
 
+        [XmlAttribute("basecode")]
+        public string basecode;
+
         [XmlAttribute("color")]
         public string color;
 
@@ -44,5 +47,11 @@ namespace MasaoPlus
 
         [XmlElement("chip")]
         public ChipData[] Chips;
+
+        [XmlElement("properties")]
+        public CustomPartsProperties Properties;
+
+        [XmlAttribute("id-color")]
+        public string idColor;
     }
 }

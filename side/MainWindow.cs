@@ -23,6 +23,7 @@ namespace MasaoPlus
         {
             Global.MainWnd = this;
             Global.state.UpdateCurrentChipInvoke += state_UpdateCurrentChipInvoke;
+            Global.state.UpdateCurrentCustomPartsChipInvoke += state_UpdateCurrentCustomPartsChipInvoke;
             InitializeComponent();
             MainDesigner.MouseMove += MainDesigner_MouseMove;
             MainDesigner.ChangeBufferInvoke += MainDesigner_ChangeBufferInvoke;
@@ -56,6 +57,7 @@ namespace MasaoPlus
             Global.state.ForceNoBuffering = true;
             GuiChipList.Refresh();
             ChipList.Refresh();
+            if(Global.cpd.project.Use3rdMapData) GuiCustomPartsChipList.Refresh();
             ChipItemReadyInvoke();
             MainDesigner.UpdateBackgroundBuffer();
             MainDesigner.UpdateForegroundBuffer();
@@ -73,9 +75,9 @@ namespace MasaoPlus
 
         private void MainDesigner_ChangeBufferInvoke()
         {
-            ItemUndo.Enabled = (MainDesigner.BufferCurrent != 0);
+            ItemUndo.Enabled = MainDesigner.BufferCurrent != 0;
             GMUndo.Enabled = ItemUndo.Enabled;
-            ItemRedo.Enabled = (MainDesigner.BufferCurrent != MainDesigner.StageBuffer.Count - 1);
+            ItemRedo.Enabled = MainDesigner.BufferCurrent != MainDesigner.StageBuffer.Count - 1;
             GMRedo.Enabled = ItemRedo.Enabled;
         }
 
@@ -535,14 +537,7 @@ namespace MasaoPlus
 
         private void EditTab_Deselecting(object sender, TabControlCancelEventArgs e)
         {
-            if (e.TabPageIndex == 1 && !MainEditor.CanConvertTextSource() && MessageBox.Show(string.Concat(new string[]
-            {
-                "ステージのテキストが規定の形式を満たしていないため、デザイナでの編集やテスト実行はできません。",
-                Environment.NewLine,
-                "編集を続行すると、テキストでの編集結果は失われます。",
-                Environment.NewLine,
-                "続行してもよろしいですか？"
-            }), "コンバート失敗", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+            if (e.TabPageIndex == 1 && !MainEditor.CanConvertTextSource() && MessageBox.Show($"ステージのテキストが規定の形式を満たしていないため、デザイナでの編集やテスト実行はできません。{Environment.NewLine}編集を続行すると、テキストでの編集結果は失われます。{Environment.NewLine}続行してもよろしいですか？", "コンバート失敗", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
             {
                 e.Cancel = true;
             }
@@ -602,6 +597,7 @@ namespace MasaoPlus
                 MainEditor.AddBuffer();
                 ChipList.Enabled = false;
                 GuiChipList.Enabled = false;
+                if (Global.cpd.project.Use3rdMapData) GuiCustomPartsChipList.Enabled = false;
                 MainEditor.InitEditor();
                 MSave.Enabled = false;
                 MSaveAs.Enabled = false;
@@ -671,6 +667,7 @@ namespace MasaoPlus
                 }
                 ChipList.Enabled = true;
                 GuiChipList.Enabled = true;
+                if (Global.cpd.project.Use3rdMapData) GuiCustomPartsChipList.Enabled = true;
                 MSave.Enabled = true;
                 MSaveAs.Enabled = true;
                 MTSave.Enabled = true;
@@ -699,8 +696,15 @@ namespace MasaoPlus
                 }
                 else
                 {
-                    if (Global.cpd.project.Use3rdMapData) array = Global.cpd.Mapchip.Concat(Global.cpd.VarietyChip).ToArray();
-                    else array = Global.cpd.Mapchip;
+                    array = Global.cpd.Mapchip;
+                    if (Global.cpd.project.Use3rdMapData)
+                    {
+                        array = array.Concat(Global.cpd.VarietyChip).ToArray();
+                        if (Global.cpd.CustomPartsChip != null)
+                        {
+                            array = array.Concat(Global.cpd.CustomPartsChip).ToArray();
+                        }
+                    }
                 }
             }
             else
@@ -862,20 +866,23 @@ namespace MasaoPlus
                 }
                 if (!Global.cpd.UseLayer || Global.state.EditingForeground)
                 {
+                    ChipsData[] array = Global.cpd.Mapchip;
                     if (Global.cpd.project.Use3rdMapData)
                     {
-                        int n = Global.cpd.Mapchip.Length;
-                        if (i < n) Global.state.CurrentChip = Global.cpd.Mapchip[i];
-                        else Global.state.CurrentChip = Global.cpd.VarietyChip[i - n];
+                        array = array.Concat(Global.cpd.VarietyChip).ToArray();
+                        if (Global.cpd.CustomPartsChip != null)
+                        {
+                            array = array.Concat(Global.cpd.CustomPartsChip).ToArray();
+                        }
                     }
-                    else Global.state.CurrentChip = Global.cpd.Mapchip[i];
+                    Global.state.CurrentChip = array[i];
                     return;
                 }
                 Global.state.CurrentChip = Global.cpd.Layerchip[i];
             }
         }
 
-        // チップリストの左上の文字
+        // 選択中のチップが変わったらチップリストの左上の文字を変える
         private void state_UpdateCurrentChipInvoke()
         {
             ChipImage.Refresh();
@@ -1007,7 +1014,7 @@ namespace MasaoPlus
             }
         }
 
-        // チップリストの左上
+        // チップリストの左上の画像が変わった時
         private void ChipImage_Paint(object sender, PaintEventArgs e)
         {
             if (MainDesigner.DrawChipOrig != null)
@@ -1083,6 +1090,70 @@ namespace MasaoPlus
             }
         }
 
+        // カスタムパーツリストの左上の文字
+        private void state_UpdateCurrentCustomPartsChipInvoke()
+        {
+            CustomPartsChipImage.Refresh();
+            ChipsData cc = Global.state.CurrentCustomPartsChip;
+
+            CustomPartsChipDescription.Text = cc.GetCSChip().name;
+            if (cc.GetCSChip().description != "")
+            {
+                CustomPartsChipChar.Text = $"[{cc.code}]{cc.GetCSChip().description}";
+            }
+            else
+            {
+                CustomPartsChipChar.Text = $"[{cc.code}]";
+            }
+            GuiCustomPartsChipList.Refresh();
+            return;
+        }
+
+        // カスタムパーツリストの左上
+        private void CustomPartsChipImage_Paint(object sender, PaintEventArgs e)
+        {
+            if (MainDesigner.DrawChipOrig != null)
+            {
+                e.Graphics.InterpolationMode = InterpolationMode.High;
+                ChipData cschip = Global.state.CurrentCustomPartsChip.GetCSChip();
+                e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
+                switch (cschip.name)
+                {
+                    case "一方通行":
+                    case "左右へ押せるドッスンスンのゴール":
+                    case "シーソー":
+                    case "ブランコ":
+                    case "スウィングバー":
+                    case "動くＴ字型":
+                    case "ロープ":
+                    case "長いロープ":
+                    case "ゆれる棒":
+                    case "人間大砲":
+                    case "曲線による上り坂":
+                    case "曲線による下り坂":
+                    case "乗れる円":
+                    case "跳ねる円":
+                    case "円":
+                    case "半円":
+                    case "ファイヤーバー":
+                    case "スウィングファイヤーバー":
+                    case "人口太陽":
+                    case "ファイヤーリング":
+                    case "ファイヤーウォール":
+                    case "スイッチ式ファイヤーバー":
+                    case "スイッチ式動くＴ字型":
+                    case "スイッチ式速く動くＴ字型":
+                        AthleticView.list[cschip.name].Main(cschip, e.Graphics, new Size(ChipImage.Width, ChipImage.Height));
+                        break;
+                    default:
+                        e.Graphics.TranslateTransform(ChipImage.Width / 2, ChipImage.Height / 2);
+                        if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
+
+                        e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-ChipImage.Width / 2, -ChipImage.Height / 2), ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
+                        break;
+                }
+            }
+        }
         private void ItemReload_Click(object sender, EventArgs e)
         {
             UpdateStatus("描画中...");
@@ -1519,13 +1590,12 @@ namespace MasaoPlus
                             }
                             else
                             {
+                                ChipsData[] array = Global.cpd.Mapchip;
                                 if (Global.cpd.project.Use3rdMapData)
                                 {
-                                    int n = Global.cpd.Mapchip.Length;
-                                    if (i < n) cschip = Global.cpd.Mapchip[i].GetCSChip();
-                                    else cschip = Global.cpd.VarietyChip[i - n].GetCSChip();
+                                    array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
                                 }
-                                else cschip = Global.cpd.Mapchip[i].GetCSChip();
+                                cschip = array[i].GetCSChip();
                             }
 
                             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
@@ -1606,13 +1676,12 @@ namespace MasaoPlus
                             }
                             else
                             {
+                                ChipsData[] array = Global.cpd.Mapchip;
                                 if (Global.cpd.project.Use3rdMapData)
                                 {
-                                    int n = Global.cpd.Mapchip.Length;
-                                    if (i < n) cschip = Global.cpd.Mapchip[i].GetCSChip();
-                                    else cschip = Global.cpd.VarietyChip[i - n].GetCSChip();
+                                    array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
                                 }
-                                else cschip = Global.cpd.Mapchip[i].GetCSChip();
+                                cschip = array[i].GetCSChip();
                             }
 
                             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
@@ -1758,13 +1827,12 @@ namespace MasaoPlus
                     if (!Global.cpd.UseLayer || Global.state.EditingForeground)
                     {
                         ChipData cschip;
+                        ChipsData[] array = Global.cpd.Mapchip;
                         if (Global.cpd.project.Use3rdMapData)
                         {
-                            int n = Global.cpd.Mapchip.Length;
-                            if (i < n) cschip = Global.cpd.Mapchip[i].GetCSChip();
-                            else cschip = Global.cpd.VarietyChip[i - n].GetCSChip();
+                            array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
                         }
-                        else cschip = Global.cpd.Mapchip[i].GetCSChip();
+                        cschip = array[i].GetCSChip();
                         if (cschip.size.Height == 0)
                         {
                             height = chip_hight;
@@ -1875,6 +1943,7 @@ namespace MasaoPlus
             SideTab.SelectedIndex = 0;
             ChipList.Enabled = true;
             GuiChipList.Enabled = true;
+            if (Global.cpd.project.Use3rdMapData) GuiCustomPartsChipList.Enabled = true;
             MSave.Enabled = true;
             MSaveAs.Enabled = true;
             MTSave.Enabled = true;
@@ -2011,7 +2080,7 @@ namespace MasaoPlus
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing && Global.state.EditFlag && MessageBox.Show("編集データが保存されていません。" + Environment.NewLine + "終了してもよろしいですか？", $"{Global.definition.AppName}の終了", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
+            if (e.CloseReason == CloseReason.UserClosing && Global.state.EditFlag && MessageBox.Show($"編集データが保存されていません。{Environment.NewLine}終了してもよろしいですか？", $"{Global.definition.AppName}の終了", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
             {
                 e.Cancel = true;
             }
@@ -2235,6 +2304,7 @@ namespace MasaoPlus
             {
                 UpdateStatus("描画を更新しています...");
                 GuiChipList.Refresh();
+                if (Global.cpd.project.Use3rdMapData) GuiCustomPartsChipList.Refresh();
                 MainDesigner.UpdateBackgroundBuffer();
                 MainDesigner.UpdateForegroundBuffer();
                 MainDesigner.InitTransparent();
@@ -2326,6 +2396,22 @@ namespace MasaoPlus
                             {
                                 GuiChipList.Focus();
                             }
+                        }
+                        else
+                        {
+                            MainDesigner.Focus();
+                        }
+                        e.Handled = true;
+                    }
+                    else if (EditTab.SelectedIndex == 2 && Global.cpd.project.Use3rdMapData)
+                    {
+                        if (SideTab.SelectedIndex != 0)
+                        {
+                            return;
+                        }
+                        if (MainDesigner.Focused)
+                        {
+                            GuiCustomPartsChipList.Focus();
                         }
                         else
                         {

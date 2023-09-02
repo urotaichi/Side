@@ -335,7 +335,7 @@ namespace MasaoPlus
             {
                 if (Global.definition.RulerPutDot)
                 {
-                    flag = (i % (rulerStep * 2) != 0);
+                    flag = i % (rulerStep * 2) != 0;
                 }
                 positionFromCharIndex = StageTextEditor.GetPositionFromCharIndex(firstCharIndexFromLine + i);
                 if (positionFromCharIndex.X >= (flag ? 1 : ((int)e.Graphics.MeasureString(i.ToString(), StageTextEditor.Font).Width * -1)))
@@ -550,7 +550,7 @@ namespace MasaoPlus
             TextStatus.Spring = true;
             TextStatus.Text = "Ready.";
             TextStatus.TextAlign = ContentAlignment.MiddleLeft;
-            LineInfo.BorderSides = (ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Right);
+            LineInfo.BorderSides = ToolStripStatusLabelBorderSides.Left | ToolStripStatusLabelBorderSides.Right;
             LineInfo.Name = "LineInfo";
             LineInfo.Size = new Size(66, 22);
             LineInfo.Text = "0行 0文字";
