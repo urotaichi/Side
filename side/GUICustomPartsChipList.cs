@@ -274,6 +274,7 @@ namespace MasaoPlus
             if(Global.cpd.CustomPartsChip.Length > 0)
             {
                 Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];
+                SelectedIndex = 0;
             }
             else
             {
