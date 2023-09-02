@@ -64,7 +64,7 @@ namespace MasaoPlus.Controls
             {
                 return;
             }
-            if (Global.cpd.CustomPartsChip.Length < 1)
+            if (Global.cpd.CustomPartsChip == null || Global.cpd.CustomPartsChip.Length < 1)
             {
                 ConfView[1, 0].Value = "";
                 ConfView[1, 1].Value = "";
@@ -507,7 +507,7 @@ namespace MasaoPlus.Controls
             {
                 return;
             }
-            if (Global.cpd.CustomPartsChip.Length < 1)
+            if (Global.cpd.CustomPartsChip == null || Global.cpd.CustomPartsChip.Length < 1)
             {
                 return;
             }
@@ -1207,7 +1207,7 @@ namespace MasaoPlus.Controls
             {
                 return;
             }
-            if (Global.cpd.CustomPartsChip.Length < 1)
+            if (Global.cpd.CustomPartsChip == null || Global.cpd.CustomPartsChip.Length < 1)
             {
                 return;
             }
@@ -1319,6 +1319,10 @@ namespace MasaoPlus.Controls
                 "ベース",
                 "ベースパーツ名"
             });
+            ConfView[1, 0].Value = "";
+            ConfView[1, 1].Value = "";
+            ConfView[1, 0].ReadOnly = true;
+            ConfView[1, 1].ReadOnly = true;
 
             AutoScaleDimensions = new SizeF(6f, 12f);
             AutoScaleMode = AutoScaleMode.Font;

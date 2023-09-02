@@ -102,7 +102,7 @@ namespace MasaoPlus.Dialogs
                     Global.cpd.Worldchip = chipDataClass.WorldChip;
                     Global.cpd.VarietyChip = chipDataClass?.VarietyChip;
                     Global.cpd.CustomPartsChip = Global.cpd.project?.CustomPartsDefinition;
-                    if(Global.cpd.CustomPartsChip != null) Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];
+                    if (Global.cpd.CustomPartsChip != null && Global.cpd.CustomPartsChip.Length > 0) Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];
                     Global.cpd.EditingMap = Global.cpd.project.StageData;
                     if (Global.cpd.UseLayer)
                     {

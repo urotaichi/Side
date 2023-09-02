@@ -40,6 +40,10 @@ namespace MasaoPlus
             {
                 return 0;
             }
+            if(Global.cpd.CustomPartsChip == null)
+            {
+                return Global.cpd.runtime.Definitions.ChipSize.Height;
+            }
             int num = wid / Global.cpd.runtime.Definitions.ChipSize.Width;
             if (num <= 0)
             {
@@ -170,7 +174,14 @@ namespace MasaoPlus
                     {
                         e.Graphics.FillRectangle(brush, e.ClipRectangle);
                     }
-                    AddChipData(Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length, e);
+                    if(Global.cpd.CustomPartsChip == null)
+                    {
+                        AddChipData(default, 0, e);
+                    }
+                    else
+                    {
+                        AddChipData(Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length, e);
+                    }
 
                     if (!Enabled)
                     {
@@ -198,7 +209,15 @@ namespace MasaoPlus
             }
             int num = (int)Math.Floor(e.X / (double)Global.cpd.runtime.Definitions.ChipSize.Width);
             num += (int)Math.Floor((e.Y + vPosition) / (double)Global.cpd.runtime.Definitions.ChipSize.Height) * hMaxChip;
-            int num2 = Global.cpd.CustomPartsChip.Length;
+            int num2;
+            if (Global.cpd.CustomPartsChip == null)
+            {
+                num2 = 0;
+            }
+            else
+            {
+                num2 = Global.cpd.CustomPartsChip.Length;
+            }
             if (num >= num2)
             {
                 if (num == num2)
@@ -270,7 +289,14 @@ namespace MasaoPlus
             }
             var r = new Random();
             const string PWS_CHARS = "abcdefghijklmnopqrstuvwxyz";
-            Array.Resize(ref Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length + 1);
+            if(Global.cpd.CustomPartsChip == null)
+            {
+                Array.Resize(ref Global.cpd.CustomPartsChip, 1);
+            }
+            else
+            {
+                Array.Resize(ref Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length + 1);
+            }
             Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1] = basedata;
             Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips = (ChipData[])basedata.Chips.Clone(); // 配列は個別に複製
             for (int j = 0; j < Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips.Length; j++)
@@ -283,7 +309,14 @@ namespace MasaoPlus
             Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].idColor = $"#{Guid.NewGuid().ToString("N").Substring(0, 6)}";
             Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1];
             Global.MainWnd.MainDesigner.DrawItemCodeRef[Global.state.CurrentCustomPartsChip.code] = Global.state.CurrentCustomPartsChip;
-            Array.Resize(ref Global.cpd.project.CustomPartsDefinition, Global.cpd.project.CustomPartsDefinition.Length + 1);
+            if (Global.cpd.project.CustomPartsDefinition == null)
+            {
+                Array.Resize(ref Global.cpd.project.CustomPartsDefinition, 1);
+            }
+            else
+            {
+                Array.Resize(ref Global.cpd.project.CustomPartsDefinition, Global.cpd.project.CustomPartsDefinition.Length + 1);
+            }
             Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
             Global.MainWnd.RefreshAll();
             Global.state.EditFlag = true;
