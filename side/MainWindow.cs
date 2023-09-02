@@ -56,6 +56,7 @@ namespace MasaoPlus
             Global.state.ForceNoBuffering = true;
             GuiChipList.Refresh();
             ChipList.Refresh();
+            ChipItemReadyInvoke();
             MainDesigner.UpdateBackgroundBuffer();
             MainDesigner.UpdateForegroundBuffer();
             MainDesigner.InitTransparent();
