@@ -234,7 +234,7 @@ namespace MasaoPlus
                             break;
                         }
                     }
-                    Create(Global.cpd.VarietyChip[i], $"カスタムパーツ{Global.cpd.CustomPartsChip.Length + 1}");
+                    Create(Global.cpd.VarietyChip[i], $"カスタムパーツ{num2 + 1}");
                 }
                 return;
             }
