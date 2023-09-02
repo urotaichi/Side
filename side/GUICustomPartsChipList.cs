@@ -67,47 +67,56 @@ namespace MasaoPlus
                     e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                     GraphicsState transState = e.Graphics.Save();
                     e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
-                        switch (cschip.name)
-                        {
-                            case "一方通行":
-                            case "左右へ押せるドッスンスンのゴール":
-                            case "シーソー":
-                            case "ブランコ":
-                            case "スウィングバー":
-                            case "動くＴ字型":
-                            case "ロープ":
-                            case "長いロープ":
-                            case "ゆれる棒":
-                            case "人間大砲":
-                            case "曲線による上り坂":
-                            case "曲線による下り坂":
-                            case "乗れる円":
-                            case "跳ねる円":
-                            case "円":
-                            case "半円":
-                            case "ファイヤーバー":
-                            case "スウィングファイヤーバー":
-                            case "人口太陽":
-                            case "ファイヤーリング":
-                            case "ファイヤーウォール":
-                            case "スイッチ式ファイヤーバー":
-                            case "スイッチ式動くＴ字型":
-                            case "スイッチ式速く動くＴ字型":
-                                AthleticView.list[cschip.name].Main(cschip, e.Graphics, chipsize);
-                                break;
-                            default:
-                                e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
-                                if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
+                    switch (cschip.name)
+                    {
+                        case "一方通行":
+                        case "左右へ押せるドッスンスンのゴール":
+                        case "シーソー":
+                        case "ブランコ":
+                        case "スウィングバー":
+                        case "動くＴ字型":
+                        case "ロープ":
+                        case "長いロープ":
+                        case "ゆれる棒":
+                        case "人間大砲":
+                        case "曲線による上り坂":
+                        case "曲線による下り坂":
+                        case "乗れる円":
+                        case "跳ねる円":
+                        case "円":
+                        case "半円":
+                        case "ファイヤーバー":
+                        case "スウィングファイヤーバー":
+                        case "人口太陽":
+                        case "ファイヤーリング":
+                        case "ファイヤーウォール":
+                        case "スイッチ式ファイヤーバー":
+                        case "スイッチ式動くＴ字型":
+                        case "スイッチ式速く動くＴ字型":
+                            AthleticView.list[cschip.name].Main(cschip, e.Graphics, chipsize);
+                            break;
+                        default:
+                            e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
+                            if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
-                                e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
-                                break;
-                        }
+                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+                            break;
+                    }
                     e.Graphics.Restore(transState);
                     if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
                     {
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
                     }
                     e.Graphics.PixelOffsetMode = default;
+                    if (chipData.idColor != null)
+                    {
+                        transState = e.Graphics.Save();
+                        e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
+                        Color col = ColorTranslator.FromHtml(chipData.idColor);
+                        using Brush brush = new SolidBrush(Color.FromArgb(240, col));
+                        e.Graphics.FillRectangle(brush, 0, 0, 10, 5);
+                        e.Graphics.Restore(transState);
+                    }
                     if (Global.state.CurrentCustomPartsChip.code == chipData.code)
                     {
                         if (i != selectedIndex) selectedIndex = i;

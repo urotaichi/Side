@@ -50,5 +50,8 @@ namespace MasaoPlus
 
         [XmlElement("properties")]
         public CustomPartsProperties Properties;
+
+        [XmlAttribute("id-color")]
+        public string idColor;
     }
 }
