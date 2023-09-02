@@ -357,8 +357,13 @@ namespace MasaoPlus
                         AddChipData(Global.cpd.Mapchip, num, e);
                         if (Global.cpd.project.Use3rdMapData)
                         {
-                            num2 = Global.cpd.VarietyChip.Length + Global.cpd.CustomPartsChip.Length;
-                            AddChipData(Global.cpd.VarietyChip.Concat(Global.cpd.project.CustomPartsDefinition).ToArray(), num + num2, e, num);
+                            num2 = Global.cpd.VarietyChip.Length;
+                            if (Global.cpd.CustomPartsChip != null)
+                            {
+                                num2 += Global.cpd.CustomPartsChip.Length;
+                                AddChipData(Global.cpd.VarietyChip.Concat(Global.cpd.project.CustomPartsDefinition).ToArray(), num + num2, e, num);
+                            }
+                            AddChipData(Global.cpd.VarietyChip, num + num2, e, num);
                         }
                     }
                     else

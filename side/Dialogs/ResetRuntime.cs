@@ -184,7 +184,7 @@ namespace MasaoPlus.Dialogs
             project.Runtime.Definitions.LayerSize = Global.cpd.project.Runtime.Definitions.LayerSize;
             project.Runtime.Definitions.MapSize = Global.cpd.project.Runtime.Definitions.MapSize;
             project.Use3rdMapData = Global.cpd.project.Use3rdMapData;
-            project.CustomPartsDefinition = Global.cpd.project.CustomPartsDefinition;
+            project.CustomPartsDefinition = Global.cpd.project?.CustomPartsDefinition;
             if (Global.cpd.UseLayer)
             {
                 for (int i = 0; i < chipDataClass.Layerchip.Length; i++)

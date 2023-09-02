@@ -697,9 +697,13 @@ namespace MasaoPlus
                 else
                 {
                     array = Global.cpd.Mapchip;
-                    if (Global.cpd.project.Use3rdMapData) 
+                    if (Global.cpd.project.Use3rdMapData)
                     {
-                        array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
+                        array = array.Concat(Global.cpd.VarietyChip).ToArray();
+                        if (Global.cpd.CustomPartsChip != null)
+                        {
+                            array = array.Concat(Global.cpd.CustomPartsChip).ToArray();
+                        }
                     }
                 }
             }
@@ -865,7 +869,11 @@ namespace MasaoPlus
                     ChipsData[] array = Global.cpd.Mapchip;
                     if (Global.cpd.project.Use3rdMapData)
                     {
-                        array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
+                        array = array.Concat(Global.cpd.VarietyChip).ToArray();
+                        if (Global.cpd.CustomPartsChip != null)
+                        {
+                            array = array.Concat(Global.cpd.CustomPartsChip).ToArray();
+                        }
                     }
                     Global.state.CurrentChip = array[i];
                     return;
