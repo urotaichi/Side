@@ -91,7 +91,7 @@ namespace MasaoPlus.Controls
                 {
                     for (int j = 0; j < Global.cpd.runtime.Definitions.StageSize.y; j++)
                     {
-                        ptr = (byte*)((void*)bitmapData.Scan0);
+                        ptr = (byte*)(void*)bitmapData.Scan0;
                         int num2 = i * 3 + bitmapData.Stride * j;
                         string key = Global.cpd.project.StageData[j].Substring(i * Global.cpd.runtime.Definitions.StageSize.bytesize, Global.cpd.runtime.Definitions.StageSize.bytesize);
                         if (dictionary.ContainsKey(key))

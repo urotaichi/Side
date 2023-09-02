@@ -44,7 +44,7 @@ namespace MasaoPlus
 
         public int ZipExtractBufferLength = 10240;
 
-        public string Version = FileVersionInfo.GetVersionInfo((new Uri(Assembly.GetExecutingAssembly().CodeBase)).LocalPath).FileVersion;
+        public string Version = FileVersionInfo.GetVersionInfo(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath).FileVersion;
 
         public double CheckVersion = 3.02;
 

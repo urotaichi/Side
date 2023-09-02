@@ -75,9 +75,9 @@ namespace MasaoPlus
 
         private void MainDesigner_ChangeBufferInvoke()
         {
-            ItemUndo.Enabled = (MainDesigner.BufferCurrent != 0);
+            ItemUndo.Enabled = MainDesigner.BufferCurrent != 0;
             GMUndo.Enabled = ItemUndo.Enabled;
-            ItemRedo.Enabled = (MainDesigner.BufferCurrent != MainDesigner.StageBuffer.Count - 1);
+            ItemRedo.Enabled = MainDesigner.BufferCurrent != MainDesigner.StageBuffer.Count - 1;
             GMRedo.Enabled = ItemRedo.Enabled;
         }
 

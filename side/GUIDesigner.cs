@@ -884,7 +884,7 @@ namespace MasaoPlus
             try
             {
                 BitmapData bitmapData = b.LockBits(area, ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
-                byte* ptr = (byte*)((void*)bitmapData.Scan0);
+                byte* ptr = (byte*)(void*)bitmapData.Scan0;
                 for (int i = 0; i < area.Height; i++)
                 {
                     for (int j = 0; j < area.Width; j++)
@@ -905,7 +905,7 @@ namespace MasaoPlus
             byte b2 = 125;
             byte b3 = 0;
             BitmapData bitmapData = b.LockBits(new Rectangle(0, 0, b.Width, b.Height), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
-            byte* ptr = (byte*)((void*)bitmapData.Scan0);
+            byte* ptr = (byte*)(void*)bitmapData.Scan0;
             for (int i = 0; i < b.Height; i++)
             {
                 int num = i * bitmapData.Stride;
@@ -1259,7 +1259,7 @@ namespace MasaoPlus
                     bitmapinfoheader.biPlanes = 1;
                     bitmapinfoheader.biBitCount = 24;
                     int ysrc = (Global.state.MapMoveMax.Height > 0) ? (Global.state.MapMoveMax.Height - Global.state.MapPoint.Y) : 0;
-                    Native.GDI32.StretchDIBits(hdc, 0, 0, num, num2, Global.state.MapPoint.X, ysrc, num, num2, bitmapData.Scan0, (IntPtr)((void*)(&bitmapinfoheader)), 0U, 13369376U);
+                    Native.GDI32.StretchDIBits(hdc, 0, 0, num, num2, Global.state.MapPoint.X, ysrc, num, num2, bitmapData.Scan0, (IntPtr)(void*)&bitmapinfoheader, 0U, 13369376U);
                     ForegroundBuffer.UnlockBits(bitmapData);
                     e.Graphics.ReleaseHdc(hdc);
                 }
@@ -2746,8 +2746,8 @@ namespace MasaoPlus
         {
             return new Point
             {
-                X = ((fst.X > snd.X) ? fst.X : snd.X),
-                Y = ((fst.Y > snd.Y) ? fst.Y : snd.Y)
+                X = (fst.X > snd.X) ? fst.X : snd.X,
+                Y = (fst.Y > snd.Y) ? fst.Y : snd.Y
             };
         }
 
@@ -2755,8 +2755,8 @@ namespace MasaoPlus
         {
             return new Size
             {
-                Width = ((fst.Width > snd.Width) ? fst.Width : snd.Width),
-                Height = ((fst.Height > snd.Height) ? fst.Height : snd.Height)
+                Width = (fst.Width > snd.Width) ? fst.Width : snd.Width,
+                Height = (fst.Height > snd.Height) ? fst.Height : snd.Height
             };
         }
 

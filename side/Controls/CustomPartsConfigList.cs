@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace MasaoPlus.Controls
@@ -163,8 +162,8 @@ namespace MasaoPlus.Controls
                         case 30: // チコリン（はっぱカッター）
                             ConfView.Rows.Add(new string[]
                             {
-                                        "行動周期",
-                                        c.Properties.period.ToString()
+                                "行動周期",
+                                c.Properties.period.ToString()
                             });
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
@@ -174,8 +173,8 @@ namespace MasaoPlus.Controls
                             {
                                 ConfView.Rows.Add(new string[]
                                 {
-                                            "葉っぱを投げるタイミング",
-                                            c.Properties.attack_timing[j].AttackFrame.ToString()
+                                    "葉っぱを投げるタイミング",
+                                    c.Properties.attack_timing[j].AttackFrame.ToString()
                                 });
                                 ConfView[1, j + 3] = new DataGridViewNumericUpdownCell
                                 {
@@ -197,6 +196,13 @@ namespace MasaoPlus.Controls
                                 ConfView[2, j + 3] = dataGridViewCheckBoxCell;
                                 ConfView[2, j + 3].ReadOnly = false;
                             }
+                            ConfView.Rows.Add(new string[]
+                            {
+                                "葉っぱを投げるタイミング",
+                                "＋"
+                            });
+                            ConfView[1, ConfView.Rows.Count - 1].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                            ConfView[1, ConfView.Rows.Count - 1].ReadOnly = true;
                             break;
                         case 31: // チコリン（敵を投げる）
                         case 33: // チコリン（ソーラービーム）
@@ -437,13 +443,45 @@ namespace MasaoPlus.Controls
 
         protected override void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            //if (e.ColumnIndex == 0)
+            //{
+            //    return;
+            //}
+            //if (e.RowIndex < 0)
+            //{
+            //    return;
+            //}
+            //Global.state.EditFlag = true;
+        }
+
+        protected void ConfView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != 0)
             {
                 return;
             }
-            if (e.RowIndex < 0)
+            int num = e.RowIndex;
+            if (num < 3 || num > ConfView.Rows.Count - 2)
             {
                 return;
+            }
+            int i, cs_i = Global.MainWnd.GuiCustomPartsChipList.SelectedIndex;
+            for (i = 0; i < CustomizeParts.Count; i++)
+            {
+                if (i == BasePartsTypes.Items.IndexOf(BasePartsTypes.Value))
+                {
+                    break;
+                }
+            }
+            ChipsData c = CustomizeParts[i];
+            if (int.TryParse(c.code, out int code))
+            {
+                if ((code - 5000) / 10 == 30) // チコリン（はっぱカッター）
+                {
+                    ConfView.Rows.RemoveAt(num);
+                    Global.cpd.CustomPartsChip[cs_i].Properties.attack_timing.RemoveAt(num - 3);
+                    Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[cs_i];
+                }
             }
             Global.state.EditFlag = true;
         }
@@ -502,7 +540,7 @@ namespace MasaoPlus.Controls
             {
                 for (i = 0; i < CustomizeParts.Count; i++)
                 {
-                    if (i == (BasePartsTypes).Items.IndexOf(BasePartsTypes.Value))
+                    if (i == BasePartsTypes.Items.IndexOf(BasePartsTypes.Value))
                     {
                         break;
                     }
@@ -541,21 +579,20 @@ namespace MasaoPlus.Controls
                     {
                         if (code != 5701) // ヤチャモ（何もしない）を除く
                         {
-                            if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
-                            {
-                                ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
-                            }
-                            string row_text = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
                             switch ((code - 5000) / 10)
                             {
                                 case 10: // 亀（向きを変える）
                                 case 40: // ヒノララシ
                                 case 80: // ミズタロウ
                                 case 120: // 追跡亀
-                                    if (!int.TryParse(row_text, out num2))
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
+                                    if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                     {
                                         MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                        if (c.Properties.walk_speed.ToString() == row_text)
+                                        if (c.Properties.walk_speed.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                         {
                                             return;
                                         }
@@ -568,12 +605,16 @@ namespace MasaoPlus.Controls
                                     }
                                     break;
                                 case 11: // 亀（落ちる）
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
                                     if (num == 2)
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.walk_speed.ToString() == row_text)
+                                            if (c.Properties.walk_speed.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -587,10 +628,10 @@ namespace MasaoPlus.Controls
                                     }
                                     else
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.fall_speed.ToString() == row_text)
+                                            if (c.Properties.fall_speed.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -604,12 +645,16 @@ namespace MasaoPlus.Controls
                                     }
                                     break;
                                 case 20: // ピカチー
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
                                     if (num == 2)
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.jump_vy.ToString() == row_text)
+                                            if (c.Properties.jump_vy.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -623,10 +668,10 @@ namespace MasaoPlus.Controls
                                     }
                                     else if (num == 3)
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.search_range.ToString() == row_text)
+                                            if (c.Properties.search_range.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -640,10 +685,10 @@ namespace MasaoPlus.Controls
                                     }
                                     else
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.interval.ToString() == row_text)
+                                            if (c.Properties.interval.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -659,10 +704,14 @@ namespace MasaoPlus.Controls
                                 case 30: // チコリン（はっぱカッター）
                                     if (num == 2)
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                        {
+                                            ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                        }
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.period.ToString() == row_text)
+                                            if (c.Properties.period.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -678,10 +727,14 @@ namespace MasaoPlus.Controls
                                     {
                                         if (e.ColumnIndex == 1)
                                         {
-                                            if (!int.TryParse(row_text, out num2))
+                                            if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                            {
+                                                ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                            }
+                                            if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                             {
                                                 MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                                if (c.Properties.attack_timing[e.RowIndex - 3].AttackFrame.ToString() == row_text)
+                                                if (c.Properties.attack_timing[e.RowIndex - 3].AttackFrame.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                                 {
                                                     return;
                                                 }
@@ -697,11 +750,14 @@ namespace MasaoPlus.Controls
                                         }
                                         else
                                         {
-                                            if (row_text == "0") row_text = "false";
-                                            if (!bool.TryParse(row_text, out bool flag))
+                                            if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                            {
+                                                ConfView[e.ColumnIndex, e.RowIndex].Value = false.ToString();
+                                            }
+                                            if (!bool.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out bool flag))
                                             {
                                                 MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                                if (c.Properties.attack_timing[e.RowIndex - 3].IsPlaySoundFrame.ToString() == row_text)
+                                                if (c.Properties.attack_timing[e.RowIndex - 3].IsPlaySoundFrame.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                                 {
                                                     return;
                                                 }
@@ -727,10 +783,14 @@ namespace MasaoPlus.Controls
                                 case 72: // ヤチャモ（破壊光線）
                                 case 92: // エアームズ（その場で投下）
                                 case 110: // クラゲッソ（バブル光線 水中専用）
-                                    if (!int.TryParse(row_text, out num2))
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
+                                    if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                     {
                                         MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                        if (c.Properties.interval.ToString() == row_text)
+                                        if (c.Properties.interval.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                         {
                                             return;
                                         }
@@ -746,12 +806,16 @@ namespace MasaoPlus.Controls
                                 case 53: // ポッピー（火の粉 ３連射）
                                     break;
                                 case 50: // ポッピー（上下移動）
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
                                     if (num == 2)
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.speed.ToString() == row_text)
+                                            if (c.Properties.speed.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -765,10 +829,10 @@ namespace MasaoPlus.Controls
                                     }
                                     else
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.accel.ToString() == row_text)
+                                            if (c.Properties.accel.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -785,10 +849,14 @@ namespace MasaoPlus.Controls
                                 case 93: // エアームズ（左右に動いて爆弾投下）
                                 case 100: // タイキング（左右移動 水中専用）
                                 case 140: // 重力無視の追跡ピカチー等
-                                    if (!int.TryParse(row_text, out num2))
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
+                                    if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                     {
                                         MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                        if (c.Properties.speed.ToString() == row_text)
+                                        if (c.Properties.speed.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                         {
                                             return;
                                         }
@@ -801,12 +869,16 @@ namespace MasaoPlus.Controls
                                     }
                                     break;
                                 case 60: // マリリ（ジャンプ）
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
                                     if (num == 2)
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.jump_vy.ToString() == row_text)
+                                            if (c.Properties.jump_vy.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -820,10 +892,10 @@ namespace MasaoPlus.Controls
                                     }
                                     else
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.speed.ToString() == row_text)
+                                            if (c.Properties.speed.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -837,12 +909,16 @@ namespace MasaoPlus.Controls
                                     }
                                     break;
                                 case 66: // マリリ（左右移動）
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
                                     if (num == 2)
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.speed.ToString() == row_text)
+                                            if (c.Properties.speed.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -856,10 +932,10 @@ namespace MasaoPlus.Controls
                                     }
                                     else if (num == 3)
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.distance.ToString() == row_text)
+                                            if (c.Properties.distance.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -873,10 +949,10 @@ namespace MasaoPlus.Controls
                                     }
                                     else
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.interval.ToString() == row_text)
+                                            if (c.Properties.interval.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -890,12 +966,16 @@ namespace MasaoPlus.Controls
                                     }
                                     break;
                                 case 67: // マリリ（体当たり）
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
                                     if (num == 2)
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.attack_speed.ToString() == row_text)
+                                            if (c.Properties.attack_speed.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -909,10 +989,10 @@ namespace MasaoPlus.Controls
                                     }
                                     else
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.return_speed.ToString() == row_text)
+                                            if (c.Properties.return_speed.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -927,12 +1007,16 @@ namespace MasaoPlus.Controls
                                     break;
                                 case 90: // エアームズ（壁に当たると止まる）
                                 case 95: // エアームズ（壁に当たると向きを変える）
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
                                     if (num == 2)
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.speed.ToString() == row_text)
+                                            if (c.Properties.speed.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -946,10 +1030,10 @@ namespace MasaoPlus.Controls
                                     }
                                     else
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.interval.ToString() == row_text)
+                                            if (c.Properties.interval.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -963,12 +1047,16 @@ namespace MasaoPlus.Controls
                                     }
                                     break;
                                 case 105: // タイキング（はねる）
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
                                     if (num == 2)
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.jump_vy.ToString() == row_text)
+                                            if (c.Properties.jump_vy.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -982,10 +1070,10 @@ namespace MasaoPlus.Controls
                                     }
                                     else
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.interval.ToString() == row_text)
+                                            if (c.Properties.interval.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -1000,12 +1088,16 @@ namespace MasaoPlus.Controls
                                     break;
                                 case 106: // タイキング（縄張りをまもる）
                                 case 116: // クラゲッソ（近づくと落ちる）
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
                                     if (num == 2)
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.speed_x.ToString() == row_text)
+                                            if (c.Properties.speed_x.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -1019,10 +1111,10 @@ namespace MasaoPlus.Controls
                                     }
                                     else
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.speed_y.ToString() == row_text)
+                                            if (c.Properties.speed_y.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -1039,12 +1131,16 @@ namespace MasaoPlus.Controls
                                 case 108: // タイキング（右回り）
                                 case 117: // クラゲッソ（左回り）
                                 case 118: // クラゲッソ（右回り）
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
                                     if (num == 2)
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.speed.ToString() == row_text)
+                                            if (c.Properties.speed.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -1058,10 +1154,10 @@ namespace MasaoPlus.Controls
                                     }
                                     else
                                     {
-                                        if (!int.TryParse(row_text, out num2))
+                                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                         {
                                             MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                            if (c.Properties.radius.ToString() == row_text)
+                                            if (c.Properties.radius.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                             {
                                                 return;
                                             }
@@ -1075,10 +1171,14 @@ namespace MasaoPlus.Controls
                                     }
                                     break;
                                 case 115: // クラゲッソ（近づくと落ちる）
-                                    if (!int.TryParse(row_text, out num2))
+                                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+                                    {
+                                        ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
+                                    }
+                                    if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out num2))
                                     {
                                         MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                        if (c.Properties.init_vy.ToString() == row_text)
+                                        if (c.Properties.init_vy.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
                                         {
                                             return;
                                         }
@@ -1091,6 +1191,7 @@ namespace MasaoPlus.Controls
                                     }
                                     break;
                             }
+                            Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[cs_i];
                         }
                     }
                 }
@@ -1134,6 +1235,7 @@ namespace MasaoPlus.Controls
             ConfView.EditingControlShowing += ConfView_EditingControlShowing;
             ConfView.CurrentCellDirtyStateChanged += ConfView_CurrentCellDirtyStateChanged;
             ConfView.CellContentClick += ConfView_CellContentClick;
+            ConfView.CellDoubleClick += ConfView_CellDoubleClick;
 
             CNames.FillWeight = 30f;
             CNames.HeaderText = "項目名";
