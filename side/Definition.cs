@@ -46,9 +46,9 @@ namespace MasaoPlus
 
         public string Version = FileVersionInfo.GetVersionInfo(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath).FileVersion;
 
-        public double CheckVersion = 3.02;
+        public double CheckVersion = 3.1;
 
-        public string EditorIdStr = "/* [MI]Created By:Side - the Supermasao Integrated Development Environment v3.0.2[/MI] */";
+        public string EditorIdStr = "/* [MI]Created By:Side - the Supermasao Integrated Development Environment v3.1.0[/MI] */";
 
         public bool IsAutoUpdateEnabled = true;
 
