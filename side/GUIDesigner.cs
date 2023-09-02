@@ -707,16 +707,7 @@ namespace MasaoPlus
                             }
                             else
                             { // 標準サイズの画像はリストに追加後、↓で描画
-                                list.Add(new KeepDrawData(c, new Point(num2, num), chipsData.character));
-                                if (chipsData.idColor != null)
-                                {
-                                    GraphicsState transState = g.Save();
-                                    g.TranslateTransform(num2 * chipsize.Width, num * chipsize.Height);
-                                    Color col = ColorTranslator.FromHtml(chipsData.idColor);
-                                    using Brush brush = new SolidBrush(Color.FromArgb(240, col));
-                                    g.FillRectangle(brush, 0, 0, 10, 5);
-                                    g.Restore(transState);
-                                }
+                                list.Add(new KeepDrawData(c, new Point(num2, num), chipsData.character, chipsData.idColor));
                             }
                         }
                         num2++;
@@ -810,6 +801,15 @@ namespace MasaoPlus
                     g.CompositingMode = CompositingMode.SourceOver;
                 }
                 DrawNormalSizeMap(cschip, g, keepDrawData.pos, foreground, keepDrawData.chara, keepDrawData.pos.X);
+                if (keepDrawData.idColor != null)
+                {
+                    GraphicsState transState = g.Save();
+                    g.TranslateTransform(keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height);
+                    Color col = ColorTranslator.FromHtml(keepDrawData.idColor);
+                    using Brush brush = new SolidBrush(Color.FromArgb(240, col));
+                    g.FillRectangle(brush, 0, 0, 10, 5);
+                    g.Restore(transState);
+                }
             }
             if (!Global.state.MapEditMode)
             {
@@ -3429,11 +3429,12 @@ namespace MasaoPlus
 
         public struct KeepDrawData
         {
-            public KeepDrawData(ChipData c, Point p, string chara)
+            public KeepDrawData(ChipData c, Point p, string chara, string idColor = "")
             {
                 cd = c;
                 pos = p;
                 this.chara = chara;
+                this.idColor = idColor;
             }
 
             public ChipData cd;
@@ -3441,6 +3442,8 @@ namespace MasaoPlus
             public Point pos;
 
             public string chara;
+
+            public string idColor;
         }
     }
 }
