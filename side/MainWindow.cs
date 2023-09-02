@@ -2302,7 +2302,6 @@ namespace MasaoPlus
                 MainDesigner.InitTransparent();
                 MainDesigner.Refresh();
                 MasaoConfigList.Reload();
-                CustomPartsConfigList.Reload();
                 UpdateStatus("完了");
             }
         }
