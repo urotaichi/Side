@@ -21,6 +21,7 @@
             this.UseWorldmap = new global::System.Windows.Forms.CheckBox();
 			if (!Global.cpd.runtime.Definitions.Package.Contains("28")) {
 				this.Use3rdMapData = new global::System.Windows.Forms.CheckBox();
+
                 this.label18 = new global::System.Windows.Forms.Label();
                 this.label19 = new global::System.Windows.Forms.Label();
                 this.label20 = new global::System.Windows.Forms.Label();
@@ -37,6 +38,7 @@
                 this.cross2 = new global::System.Windows.Forms.Label();
                 this.cross3 = new global::System.Windows.Forms.Label();
                 this.cross4 = new global::System.Windows.Forms.Label();
+                Use3rdMapData_CheckedChanged();
             }
             this.label17 = new global::System.Windows.Forms.Label();
 			this.label15 = new global::System.Windows.Forms.Label();
@@ -189,8 +191,9 @@
                 this.Use3rdMapData.TabIndex = 10;
                 this.Use3rdMapData.Text = "第3版マップデータを有効にする(FX版のみ。有効時にステージフォーマットの設定が無効化されます。)(&L)";
                 this.Use3rdMapData.UseVisualStyleBackColor = true;
+                this.Use3rdMapData.CheckedChanged += new global::System.EventHandler(this.Use3rdMapData_CheckedChanged);
 
-				this.label18.AutoSize = true;
+                this.label18.AutoSize = true;
 				this.label18.Location = new global::System.Drawing.Point(20, 151);
 				this.label18.Name = "label18";
 				this.label18.Size = new global::System.Drawing.Size(55, 16);

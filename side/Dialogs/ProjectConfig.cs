@@ -64,6 +64,25 @@ namespace MasaoPlus.Dialogs
                 }
             }
         }
+        private void Use3rdMapData_CheckedChanged(object sender = default, EventArgs e = default)
+        {
+            label18.Enabled = Use3rdMapData.Checked;
+            label19.Enabled = Use3rdMapData.Checked;
+            label20.Enabled = Use3rdMapData.Checked;
+            label21.Enabled = Use3rdMapData.Checked;
+            MapSizeWidth.Enabled = Use3rdMapData.Checked;
+            MapSizeHeight.Enabled = Use3rdMapData.Checked;
+            MapSize2Width.Enabled = Use3rdMapData.Checked;
+            MapSize2Height.Enabled = Use3rdMapData.Checked;
+            MapSize3Width.Enabled = Use3rdMapData.Checked;
+            MapSize3Height.Enabled = Use3rdMapData.Checked;
+            MapSize4Width.Enabled = Use3rdMapData.Checked;
+            MapSize4Height.Enabled = Use3rdMapData.Checked;
+            cross.Enabled = Use3rdMapData.Checked;
+            cross2.Enabled = Use3rdMapData.Checked;
+            cross3.Enabled = Use3rdMapData.Checked;
+            cross4.Enabled = Use3rdMapData.Checked;
+        }
 
         private void Accept_Click(object sender, EventArgs e)
         {
