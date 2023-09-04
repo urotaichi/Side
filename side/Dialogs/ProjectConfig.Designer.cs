@@ -214,7 +214,7 @@
 				this.MapSizeWidth.TabIndex = 11;
 				global::System.Windows.Forms.NumericUpDown MapSizeWidth3 = this.MapSizeWidth;
 				int[] array13 = new int[4];
-				array13[0] = 180;
+				array13[0] = Global.cpd.runtime.Definitions.StageSize.x;
                 MapSizeWidth3.Value = new decimal(array13);
                 this.cross.AutoSize = true;
                 this.cross.Location = new global::System.Drawing.Point(220, 151);
@@ -237,7 +237,7 @@
                 this.MapSizeHeight.TabIndex = 11;
                 global::System.Windows.Forms.NumericUpDown MapSizeHeight3 = this.MapSizeHeight;
                 int[] array23 = new int[4];
-                array23[0] = 30;
+                array23[0] = Global.cpd.runtime.Definitions.StageSize.y;
                 MapSizeHeight3.Value = new decimal(array23);
 
                 this.label19.AutoSize = true;
@@ -261,7 +261,7 @@
                 this.MapSize2Width.TabIndex = 11;
                 global::System.Windows.Forms.NumericUpDown MapSize2Width3 = this.MapSize2Width;
                 int[] array33 = new int[4];
-                array33[0] = 180;
+                array33[0] = Global.cpd.runtime.Definitions.StageSize2.x;
                 MapSize2Width3.Value = new decimal(array33);
                 this.cross2.AutoSize = true;
                 this.cross2.Location = new global::System.Drawing.Point(220, 173);
@@ -284,7 +284,7 @@
                 this.MapSize2Height.TabIndex = 11;
                 global::System.Windows.Forms.NumericUpDown MapSize2Height3 = this.MapSize2Height;
                 int[] array43 = new int[4];
-                array43[0] = 30;
+                array43[0] = Global.cpd.runtime.Definitions.StageSize2.y;
                 MapSize2Height3.Value = new decimal(array43);
 
                 this.label20.AutoSize = true;
@@ -308,7 +308,7 @@
                 this.MapSize3Width.TabIndex = 11;
                 global::System.Windows.Forms.NumericUpDown MapSize3Width3 = this.MapSize3Width;
                 int[] array53 = new int[4];
-                array53[0] = 180;
+                array53[0] = Global.cpd.runtime.Definitions.StageSize3.x;
                 MapSize3Width3.Value = new decimal(array53);
                 this.cross3.AutoSize = true;
                 this.cross3.Location = new global::System.Drawing.Point(220, 198);
@@ -331,7 +331,7 @@
                 this.MapSize3Height.TabIndex = 11;
                 global::System.Windows.Forms.NumericUpDown MapSize3Height3 = this.MapSize3Height;
                 int[] array63 = new int[4];
-                array63[0] = 30;
+                array63[0] = Global.cpd.runtime.Definitions.StageSize3.y;
                 MapSize3Height3.Value = new decimal(array63);
 
                 this.label21.AutoSize = true;
@@ -355,7 +355,7 @@
                 this.MapSize4Width.TabIndex = 11;
                 global::System.Windows.Forms.NumericUpDown MapSize4Width3 = this.MapSize4Width;
                 int[] array73 = new int[4];
-                array73[0] = 180;
+                array73[0] = Global.cpd.runtime.Definitions.StageSize4.x;
                 MapSize4Width3.Value = new decimal(array73);
                 this.cross4.AutoSize = true;
                 this.cross4.Location = new global::System.Drawing.Point(220, 223);
@@ -378,7 +378,7 @@
                 this.MapSize4Height.TabIndex = 11;
                 global::System.Windows.Forms.NumericUpDown MapSize4Height3 = this.MapSize4Height;
                 int[] array83 = new int[4];
-                array83[0] = 30;
+                array83[0] = Global.cpd.runtime.Definitions.StageSize4.y;
                 MapSize4Height3.Value = new decimal(array83);
             }
             this.label17.AutoSize = true;
