@@ -241,13 +241,13 @@
                 MapSizeHeight3.Value = new decimal(array23);
 
                 this.label19.AutoSize = true;
-                this.label19.Location = new global::System.Drawing.Point(20, 173);
+                this.label19.Location = new global::System.Drawing.Point(20, 176);
                 this.label19.Name = "label19";
                 this.label19.Size = new global::System.Drawing.Size(55, 16);
                 this.label19.TabIndex = 7;
                 this.label19.Text = "ステージ2のマップサイズ";
                 this.MapSize2Width.Font = new global::System.Drawing.Font("MS UI Gothic", 9.75f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 128);
-                this.MapSize2Width.Location = new global::System.Drawing.Point(140, 170);
+                this.MapSize2Width.Location = new global::System.Drawing.Point(140, 173);
                 global::System.Windows.Forms.NumericUpDown MapSize2Width = this.MapSize2Width;
                 int[] array31 = new int[4];
                 array31[0] = 999999999;
@@ -264,13 +264,13 @@
                 array33[0] = Global.cpd.runtime.Definitions.StageSize2.x;
                 MapSize2Width3.Value = new decimal(array33);
                 this.cross2.AutoSize = true;
-                this.cross2.Location = new global::System.Drawing.Point(220, 173);
+                this.cross2.Location = new global::System.Drawing.Point(220, 176);
                 this.cross2.Name = "cross2";
                 this.cross2.Size = new global::System.Drawing.Size(16, 16);
                 this.cross2.TabIndex = 7;
                 this.cross2.Text = "×";
                 this.MapSize2Height.Font = new global::System.Drawing.Font("MS UI Gothic", 9.75f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 128);
-                this.MapSize2Height.Location = new global::System.Drawing.Point(245, 170);
+                this.MapSize2Height.Location = new global::System.Drawing.Point(245, 173);
                 global::System.Windows.Forms.NumericUpDown MapSize2Height = this.MapSize2Height;
                 int[] array41 = new int[4];
                 array41[0] = 999999999;
@@ -288,13 +288,13 @@
                 MapSize2Height3.Value = new decimal(array43);
 
                 this.label20.AutoSize = true;
-                this.label20.Location = new global::System.Drawing.Point(20, 198);
+                this.label20.Location = new global::System.Drawing.Point(20, 201);
                 this.label20.Name = "label20";
                 this.label20.Size = new global::System.Drawing.Size(55, 16);
                 this.label20.TabIndex = 7;
                 this.label20.Text = "ステージ3のマップサイズ";
                 this.MapSize3Width.Font = new global::System.Drawing.Font("MS UI Gothic", 9.75f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 128);
-                this.MapSize3Width.Location = new global::System.Drawing.Point(140, 195);
+                this.MapSize3Width.Location = new global::System.Drawing.Point(140, 198);
                 global::System.Windows.Forms.NumericUpDown MapSize3Width = this.MapSize3Width;
                 int[] array51 = new int[4];
                 array51[0] = 999999999;
@@ -311,13 +311,13 @@
                 array53[0] = Global.cpd.runtime.Definitions.StageSize3.x;
                 MapSize3Width3.Value = new decimal(array53);
                 this.cross3.AutoSize = true;
-                this.cross3.Location = new global::System.Drawing.Point(220, 198);
+                this.cross3.Location = new global::System.Drawing.Point(220, 201);
                 this.cross3.Name = "cross3";
                 this.cross3.Size = new global::System.Drawing.Size(16, 16);
                 this.cross3.TabIndex = 7;
                 this.cross3.Text = "×";
                 this.MapSize3Height.Font = new global::System.Drawing.Font("MS UI Gothic", 9.75f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 128);
-                this.MapSize3Height.Location = new global::System.Drawing.Point(245, 195);
+                this.MapSize3Height.Location = new global::System.Drawing.Point(245, 198);
                 global::System.Windows.Forms.NumericUpDown MapSize3Height = this.MapSize3Height;
                 int[] array61 = new int[4];
                 array61[0] = 999999999;
@@ -335,13 +335,13 @@
                 MapSize3Height3.Value = new decimal(array63);
 
                 this.label21.AutoSize = true;
-                this.label21.Location = new global::System.Drawing.Point(20, 223);
+                this.label21.Location = new global::System.Drawing.Point(20, 226);
                 this.label21.Name = "label21";
                 this.label21.Size = new global::System.Drawing.Size(55, 16);
                 this.label21.TabIndex = 7;
                 this.label21.Text = "ステージ4のマップサイズ";
                 this.MapSize4Width.Font = new global::System.Drawing.Font("MS UI Gothic", 9.75f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 128);
-                this.MapSize4Width.Location = new global::System.Drawing.Point(140, 220);
+                this.MapSize4Width.Location = new global::System.Drawing.Point(140, 223);
                 global::System.Windows.Forms.NumericUpDown MapSize4Width = this.MapSize4Width;
                 int[] array71 = new int[4];
                 array71[0] = 999999999;
@@ -358,13 +358,13 @@
                 array73[0] = Global.cpd.runtime.Definitions.StageSize4.x;
                 MapSize4Width3.Value = new decimal(array73);
                 this.cross4.AutoSize = true;
-                this.cross4.Location = new global::System.Drawing.Point(220, 223);
+                this.cross4.Location = new global::System.Drawing.Point(220, 226);
                 this.cross4.Name = "cross4";
                 this.cross4.Size = new global::System.Drawing.Size(16, 16);
                 this.cross4.TabIndex = 7;
                 this.cross4.Text = "×";
                 this.MapSize4Height.Font = new global::System.Drawing.Font("MS UI Gothic", 9.75f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 128);
-                this.MapSize4Height.Location = new global::System.Drawing.Point(245, 220);
+                this.MapSize4Height.Location = new global::System.Drawing.Point(245, 223);
                 global::System.Windows.Forms.NumericUpDown MapSize4Height = this.MapSize4Height;
                 int[] array81 = new int[4];
                 array81[0] = 999999999;
