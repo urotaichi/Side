@@ -469,7 +469,7 @@ namespace MasaoPlus
             }
             else
             {
-                Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : Global.cpd.runtime.Definitions.StageSize;
+                Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : MainDesigner.CurrentStageSize;
                 GHorzScroll.Enabled = true;
                 GHorzScroll.LargeChange = (int)(displaySize.Width / (stageSizeData.x / 4.0) * Global.config.draw.ZoomIndex);
                 GHorzScroll.Maximum = mapMoveMax.Width + GHorzScroll.LargeChange - 1;
@@ -480,7 +480,7 @@ namespace MasaoPlus
             }
             else
             {
-                Runtime.DefinedData.StageSizeData stageSizeData2 = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : Global.cpd.runtime.Definitions.StageSize;
+                Runtime.DefinedData.StageSizeData stageSizeData2 = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : MainDesigner.CurrentStageSize;
                 GVirtScroll.Enabled = true;
                 GVirtScroll.LargeChange = (int)(displaySize.Height / (stageSizeData2.y / 4.0) * Global.config.draw.ZoomIndex);
                 GVirtScroll.Maximum = mapMoveMax.Height + GVirtScroll.LargeChange - 1;
@@ -2183,7 +2183,7 @@ namespace MasaoPlus
             return EditTab.SelectedIndex != 1 || MainEditor.CanConvertTextSource() || MessageBox.Show($"ステージのテキストが規定の形式を満たしていないため、テキストを反映できません。{Environment.NewLine}レイヤーを切り替えると、編集結果は失われます。{Environment.NewLine}続行してもよろしいですか？", "コンバート失敗", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) != DialogResult.Cancel;
         }
 
-        private void StageSelectionChange(int newValue)
+        public void StageSelectionChange(int newValue)
         {
             if (Global.state.EdittingStage == newValue)
             {
@@ -2249,7 +2249,7 @@ namespace MasaoPlus
             MEditMap.Enabled = Global.cpd.project.Config.UseWorldmap;
         }
 
-        private void UpdateLayer()
+        public void UpdateLayer()
         {
             if (EditTab.SelectedIndex == 0)
             {
@@ -2446,7 +2446,7 @@ namespace MasaoPlus
                 }
                 text = saveFileDialog.FileName;
             }
-            Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : Global.cpd.runtime.Definitions.StageSize;
+            Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : MainDesigner.CurrentStageSize;
             using (Bitmap bitmap = new Bitmap(stageSizeData.x * Global.cpd.runtime.Definitions.ChipSize.Width, stageSizeData.y * Global.cpd.runtime.Definitions.ChipSize.Height))
             {
                 using (Graphics graphics = Graphics.FromImage(bitmap))
@@ -2569,7 +2569,7 @@ namespace MasaoPlus
         {
             UpdateStatus("ステージ反転処理中...");
             List<string> list;
-            Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : Global.cpd.runtime.Definitions.StageSize;
+            Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : MainDesigner.CurrentStageSize;
             for (int i = 0; i < stageSizeData.y; i++)
             {
                 list = new List<string>();
@@ -2603,23 +2603,24 @@ namespace MasaoPlus
             }
             if (Global.cpd.UseLayer)
             {
-                for (int k = 0; k < Global.cpd.runtime.Definitions.LayerSize.y; k++)
+                stageSizeData = MainDesigner.CurrentLayerSize;
+                for (int k = 0; k < stageSizeData.y; k++)
                 {
                     list = new List<string>();
                     string text2 = Global.cpd.EditingLayer[k];
                     if (Global.cpd.project.Use3rdMapData)
                     {
                         var stagearray = text2.Split(',');
-                        for (int l = 0; l < Global.cpd.runtime.Definitions.LayerSize.x; l++)
+                        for (int l = 0; l < stageSizeData.x; l++)
                         {
                             list.Add(stagearray[l]);
                         }
                     }
                     else
                     {
-                        for (int l = 0; l < Global.cpd.runtime.Definitions.LayerSize.x; l++)
+                        for (int l = 0; l < stageSizeData.x; l++)
                         {
-                            list.Add(text2.Substring(l * Global.cpd.runtime.Definitions.LayerSize.bytesize, Global.cpd.runtime.Definitions.LayerSize.bytesize));
+                            list.Add(text2.Substring(l * stageSizeData.bytesize, stageSizeData.bytesize));
                         }
                     }
                     string[] array2 = list.ToArray();

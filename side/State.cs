@@ -33,9 +33,9 @@ namespace MasaoPlus
                 }
                 if (!Global.cpd.UseLayer || EditingForeground)
                 {
-                    return Global.cpd.runtime.Definitions.StageSize.StageByteWidth;
+                    return Global.MainWnd.MainDesigner.CurrentStageSize.StageByteWidth;
                 }
-                return Global.cpd.runtime.Definitions.LayerSize.StageByteWidth;
+                return Global.MainWnd.MainDesigner.CurrentLayerSize.StageByteWidth;
             }
         }
 
@@ -49,9 +49,9 @@ namespace MasaoPlus
                 }
                 if (!Global.cpd.UseLayer || EditingForeground)
                 {
-                    return Global.cpd.runtime.Definitions.StageSize;
+                    return Global.MainWnd.MainDesigner.CurrentStageSize;
                 }
-                return Global.cpd.runtime.Definitions.LayerSize;
+                return Global.MainWnd.MainDesigner.CurrentLayerSize;
             }
         }
 

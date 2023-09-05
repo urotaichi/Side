@@ -1531,8 +1531,8 @@ namespace MasaoPlus
                             vo_pa[3].X = j20;
                             vo_pa[3].Y = 128;
                             g.FillPolygon(brush, vo_pa);
-                            if (128 + base_y * chipsize.Height < Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height)
-                                g.FillRectangle(brush, 0, 128, 256, Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height - (128 + base_y * chipsize.Height));
+                            if (128 + base_y * chipsize.Height < Global.MainWnd.MainDesigner.CurrentStageSize.y * chipsize.Height)
+                                g.FillRectangle(brush, 0, 128, 256, Global.MainWnd.MainDesigner.CurrentStageSize.y * chipsize.Height - (128 + base_y * chipsize.Height));
                             brush.Dispose();
                         }
                     },
@@ -2221,8 +2221,8 @@ namespace MasaoPlus
                         else
                         {
                             brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
-                            if (64 + base_y * chipsize.Height < Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height)
-                                g.FillRectangle(brush, 120 - 20, 64, 40, Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height - (64 + base_y * chipsize.Height));
+                            if (64 + base_y * chipsize.Height < Global.MainWnd.MainDesigner.CurrentStageSize.y * chipsize.Height)
+                                g.FillRectangle(brush, 120 - 20, 64, 40, Global.MainWnd.MainDesigner.CurrentStageSize.y * chipsize.Height - (64 + base_y * chipsize.Height));
                             brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                             vo_pa = new PointF[13];
                             var j21 = 0;

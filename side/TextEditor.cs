@@ -256,7 +256,7 @@ namespace MasaoPlus
                     e.Graphics.FillRectangle(Brushes.RoyalBlue, new Rectangle(new Point(0, num3), new Size(TextLineNo.Width, height)));
                     textColor = Color.White;
                 }
-                else if (length == Global.state.GetCByteWidth && num2 < Global.cpd.runtime.Definitions.StageSize.y)
+                else if (length == Global.state.GetCByteWidth && num2 < Global.MainWnd.MainDesigner.CurrentStageSize.y)
                 {
                     textColor = Color.Black;
                 }

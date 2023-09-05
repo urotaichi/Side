@@ -84,6 +84,23 @@ namespace MasaoPlus.Dialogs
                         DialogResult = DialogResult.Abort;
                         Close();
                     }
+                    void setStageSize(ref Runtime.DefinedData.StageSizeData size)
+                    {
+                        if (size == default) size = Global.cpd.project.Runtime.Definitions.StageSize.Clone();
+                    }
+                    setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize2);
+                    setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize3);
+                    setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize4);
+                    if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
+                    {
+                        void setLayerSize(ref Runtime.DefinedData.StageSizeData size)
+                        {
+                            if (size == default) size = Global.cpd.project.Runtime.Definitions.LayerSize.Clone();
+                        }
+                        setLayerSize(ref Global.cpd.project.Runtime.Definitions.LayerSize2);
+                        setLayerSize(ref Global.cpd.project.Runtime.Definitions.LayerSize3);
+                        setLayerSize(ref Global.cpd.project.Runtime.Definitions.LayerSize4);
+                    }
                     SetState("チップデータを読み込んでいます...");
                     ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(Path.GetDirectoryName(load), Global.cpd.runtime.Definitions.ChipDefinition));
                     if (Global.cpd.UseLayer)

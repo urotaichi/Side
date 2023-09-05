@@ -74,15 +74,15 @@ namespace MasaoPlus
                 stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize, true));
                 if (Global.cpd.project.Config.StageNum >= 2)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize));
+                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize2));
                 }
                 if (Global.cpd.project.Config.StageNum >= 3)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize));
+                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize3));
                 }
                 if (Global.cpd.project.Config.StageNum >= 4)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize));
+                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize4));
                 }
 
                 if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
@@ -90,15 +90,15 @@ namespace MasaoPlus
                     stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize));
                     if (Global.cpd.project.Config.StageNum >= 2)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize));
+                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize2));
                     }
                     if (Global.cpd.project.Config.StageNum >= 3)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize));
+                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize3));
                     }
                     if (Global.cpd.project.Config.StageNum >= 4)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize));
+                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize4));
                     }
                 }
             }
@@ -841,15 +841,15 @@ namespace MasaoPlus
                     stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.project.LayerData));
                     if (Global.cpd.project.Config.StageNum >= 2)
                     {
-                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.project.LayerData2));
+                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize2, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.project.LayerData2));
                     }
                     if (Global.cpd.project.Config.StageNum >= 3)
                     {
-                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.project.LayerData3));
+                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize3, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.project.LayerData3));
                     }
                     if (Global.cpd.project.Config.StageNum >= 4)
                     {
-                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.project.LayerData4));
+                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize4, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.project.LayerData4));
                     }
                 }
                 else
@@ -857,15 +857,15 @@ namespace MasaoPlus
                     stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData));
                     if (Global.cpd.project.Config.StageNum >= 2)
                     {
-                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2));
+                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize2, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2));
                     }
                     if (Global.cpd.project.Config.StageNum >= 3)
                     {
-                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3));
+                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize3, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3));
                     }
                     if (Global.cpd.project.Config.StageNum >= 4)
                     {
-                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4));
+                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize4, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4));
                     }
 
                 }

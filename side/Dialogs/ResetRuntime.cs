@@ -181,7 +181,13 @@ namespace MasaoPlus.Dialogs
                 num++;
             }
             project.Runtime.Definitions.StageSize = Global.cpd.project.Runtime.Definitions.StageSize;
+            project.Runtime.Definitions.StageSize2 = Global.cpd.project.Runtime.Definitions.StageSize2;
+            project.Runtime.Definitions.StageSize3 = Global.cpd.project.Runtime.Definitions.StageSize3;
+            project.Runtime.Definitions.StageSize4 = Global.cpd.project.Runtime.Definitions.StageSize4;
             project.Runtime.Definitions.LayerSize = Global.cpd.project.Runtime.Definitions.LayerSize;
+            project.Runtime.Definitions.LayerSize2 = Global.cpd.project.Runtime.Definitions.LayerSize2;
+            project.Runtime.Definitions.LayerSize3 = Global.cpd.project.Runtime.Definitions.LayerSize3;
+            project.Runtime.Definitions.LayerSize4 = Global.cpd.project.Runtime.Definitions.LayerSize4;
             project.Runtime.Definitions.MapSize = Global.cpd.project.Runtime.Definitions.MapSize;
             project.Use3rdMapData = Global.cpd.project.Use3rdMapData;
             project.CustomPartsDefinition = Global.cpd.project?.CustomPartsDefinition;
@@ -215,26 +221,26 @@ namespace MasaoPlus.Dialogs
                 ChipsData NullChip = chipDataClass.Mapchip[0];
                 if(project.CustomPartsDefinition == null)
                 {
-                    project.StageData = StageDataCopy(project, Global.cpd.project.StageData, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip);
-                    project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip);
-                    project.StageData3 = StageDataCopy(project, Global.cpd.project.StageData3, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip);
-                    project.StageData4 = StageDataCopy(project, Global.cpd.project.StageData4, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip);
+                    project.StageData = StageDataCopy(project, Global.cpd.project.StageData, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip, project.Runtime.Definitions.StageSize);
+                    project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip, project.Runtime.Definitions.StageSize2);
+                    project.StageData3 = StageDataCopy(project, Global.cpd.project.StageData3, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip, project.Runtime.Definitions.StageSize3);
+                    project.StageData4 = StageDataCopy(project, Global.cpd.project.StageData4, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip, project.Runtime.Definitions.StageSize4);
                 }
                 else
                 {
-                    project.StageData = StageDataCopy(project, Global.cpd.project.StageData, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip);
-                    project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip);
-                    project.StageData3 = StageDataCopy(project, Global.cpd.project.StageData3, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip);
-                    project.StageData4 = StageDataCopy(project, Global.cpd.project.StageData4, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip);
+                    project.StageData = StageDataCopy(project, Global.cpd.project.StageData, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip, project.Runtime.Definitions.StageSize);
+                    project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip, project.Runtime.Definitions.StageSize2);
+                    project.StageData3 = StageDataCopy(project, Global.cpd.project.StageData3, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip, project.Runtime.Definitions.StageSize3);
+                    project.StageData4 = StageDataCopy(project, Global.cpd.project.StageData4, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip, project.Runtime.Definitions.StageSize4);
                 }
 
                 if (project.Runtime.Definitions.LayerSize.bytesize != 0) // レイヤーあり
                 {
                     NullChip = chipDataClass.Layerchip[0];
-                    project.LayerData = LayerDataCopy(project, Global.cpd.project.LayerData, chipDataClass.Layerchip, NullChip);
-                    project.LayerData2 = LayerDataCopy(project, Global.cpd.project.LayerData2, chipDataClass.Layerchip, NullChip);
-                    project.LayerData3 = LayerDataCopy(project, Global.cpd.project.LayerData3, chipDataClass.Layerchip, NullChip);
-                    project.LayerData4 = LayerDataCopy(project, Global.cpd.project.LayerData4, chipDataClass.Layerchip, NullChip);
+                    project.LayerData = LayerDataCopy(project, Global.cpd.project.LayerData, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize);
+                    project.LayerData2 = LayerDataCopy(project, Global.cpd.project.LayerData2, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.StageSize2);
+                    project.LayerData3 = LayerDataCopy(project, Global.cpd.project.LayerData3, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize3);
+                    project.LayerData4 = LayerDataCopy(project, Global.cpd.project.LayerData4, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize4);
                 }
 
                 NullChip = chipDataClass.WorldChip[0];
@@ -315,26 +321,26 @@ namespace MasaoPlus.Dialogs
             Close();
         }
 
-        private string[] StageDataCopy(Project project, string[] StageData, ChipsData[] Mapchip, ChipsData nullchip)
+        private string[] StageDataCopy(Project project, string[] StageData, ChipsData[] Mapchip, ChipsData nullchip, Runtime.DefinedData.StageSizeData size)
         {
             string nullcharacter;
             if (project.Use3rdMapData) nullcharacter = nullchip.code;
             else nullcharacter = nullchip.character;
 
-            string[] result = new string[project.Runtime.Definitions.StageSize.y];
+            string[] result = new string[size.y];
 
-            for (int k = 0; k < project.Runtime.Definitions.StageSize.y; k++)
+            for (int k = 0; k < size.y; k++)
             {
-                StateLabel.Text = $"ステージを移行しています...({k}/{project.Runtime.Definitions.StageSize.y})";
+                StateLabel.Text = $"ステージを移行しています...({k}/{size.y})";
                 StateLabel.Refresh();
                 StringBuilder stringBuilder = new StringBuilder();
-                string[] stagearray = new string[project.Runtime.Definitions.StageSize.x];
+                string[] stagearray = new string[size.x];
                 if (k < StageData.Length)
                 {
                     int l;
                     for (l = 0; l < Global.cpd.runtime.Definitions.StageSize.x; l++)
                     {
-                        if (l >= project.Runtime.Definitions.StageSize.x)
+                        if (l >= size.x)
                         {
                             break;
                         }
@@ -442,7 +448,7 @@ namespace MasaoPlus.Dialogs
                             }
                         }
                     }
-                    while (l < project.Runtime.Definitions.StageSize.x)
+                    while (l < size.x)
                     {
                         if (project.Use3rdMapData) stagearray[l] = nullcharacter;
                         else stringBuilder.Append(nullcharacter);
@@ -451,7 +457,7 @@ namespace MasaoPlus.Dialogs
                 }
                 else
                 {
-                    for (int num5 = 0; num5 < project.Runtime.Definitions.StageSize.x; num5++)
+                    for (int num5 = 0; num5 < size.x; num5++)
                     {
                         if (project.Use3rdMapData) stagearray[num5] = nullcharacter;
                         else stringBuilder.Append(nullcharacter);
@@ -462,28 +468,28 @@ namespace MasaoPlus.Dialogs
             }
             return result;
         }
-        private string[] LayerDataCopy(Project project, string[] LayerData, ChipsData[] Layerchip, ChipsData nullchip)
+        private string[] LayerDataCopy(Project project, string[] LayerData, ChipsData[] Layerchip, ChipsData nullchip, Runtime.DefinedData.StageSizeData size)
         {
             string nullcharacter;
             if (project.Use3rdMapData) nullcharacter = nullchip.code;
             else nullcharacter = nullchip.character;
 
-            string[] result = new string[project.Runtime.Definitions.LayerSize.y];
+            string[] result = new string[size.y];
 
-            for (int num6 = 0; num6 < project.Runtime.Definitions.LayerSize.y; num6++)
+            for (int num6 = 0; num6 < size.y; num6++)
             {
-                StateLabel.Text = $"レイヤーを移行しています...({num6}/{project.Runtime.Definitions.LayerSize.y})";
+                StateLabel.Text = $"レイヤーを移行しています...({num6}/{size.y})";
                 StateLabel.Refresh();
                 StringBuilder stringBuilder = new StringBuilder();
-                string[] stagearray = new string[project.Runtime.Definitions.LayerSize.x];
+                string[] stagearray = new string[size.x];
                 if (Global.cpd.UseLayer)
                 {
                     if (num6 < LayerData.Length)
                     {
                         int num7;
-                        for (num7 = 0; num7 < Global.cpd.runtime.Definitions.LayerSize.x; num7++)
+                        for (num7 = 0; num7 < size.x; num7++)
                         {
-                            if (num7 >= project.Runtime.Definitions.LayerSize.x)
+                            if (num7 >= size.x)
                             {
                                 break;
                             }
@@ -541,7 +547,7 @@ namespace MasaoPlus.Dialogs
                             }
                             else
                             {
-                                text = LayerData[num6].Substring(num7 * Global.cpd.runtime.Definitions.LayerSize.bytesize, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                                text = LayerData[num6].Substring(num7 * size.bytesize, size.bytesize);
                                 switch (ChipMethod.SelectedIndex)
                                 {
                                     case 0: // 文字で合わせる
@@ -591,7 +597,7 @@ namespace MasaoPlus.Dialogs
                                 }
                             }
                         }
-                        while (num7 < project.Runtime.Definitions.LayerSize.x)
+                        while (num7 < size.x)
                         {
                             if (project.Use3rdMapData) stagearray[num7] = nullcharacter;
                             else stringBuilder.Append(nullcharacter);
@@ -600,7 +606,7 @@ namespace MasaoPlus.Dialogs
                     }
                     else
                     {
-                        for (int num12 = 0; num12 < project.Runtime.Definitions.LayerSize.x; num12++)
+                        for (int num12 = 0; num12 < size.x; num12++)
                         {
                             if (project.Use3rdMapData) stagearray[num12] = nullcharacter;
                             else stringBuilder.Append(nullcharacter);
@@ -611,7 +617,7 @@ namespace MasaoPlus.Dialogs
                 {
                     for (int num13 = 0; num13 < project.LayerData.Length; num13++)
                     {
-                        for (int num14 = 0; num14 < project.Runtime.Definitions.LayerSize.x; num14++)
+                        for (int num14 = 0; num14 < size.x; num14++)
                         {
                             if (project.Use3rdMapData) stagearray[num14] = nullcharacter;
                             else stringBuilder.Append(nullcharacter);
