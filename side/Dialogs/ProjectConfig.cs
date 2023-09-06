@@ -105,33 +105,46 @@ namespace MasaoPlus.Dialogs
             Global.cpd.runtime.DefaultConfigurations.FooterHTML = Subsystem.EncodeBase64(OutFooter.Text);
 
             Global.cpd.project.Config.UseWorldmap = UseWorldmap.Checked;
-            if (!Global.cpd.runtime.Definitions.Package.Contains("28") && (Global.cpd.project.Use3rdMapData || Global.cpd.project.Use3rdMapData != Use3rdMapData.Checked))
+            if (!Global.cpd.runtime.Definitions.Package.Contains("28"))
             {
                 if (Global.cpd.project.Use3rdMapData)
                 {
-                    Global.cpd.runtime.Definitions.StageSize.x = (int)MapSizeWidth.Value;
-                    Global.cpd.runtime.Definitions.StageSize.y = (int)MapSizeHeight.Value;
-                    Global.cpd.runtime.Definitions.StageSize2.x = (int)MapSize2Width.Value;
-                    Global.cpd.runtime.Definitions.StageSize2.y = (int)MapSize2Height.Value;
-                    Global.cpd.runtime.Definitions.StageSize3.x = (int)MapSize3Width.Value;
-                    Global.cpd.runtime.Definitions.StageSize3.y = (int)MapSize3Height.Value;
-                    Global.cpd.runtime.Definitions.StageSize4.x = (int)MapSize4Width.Value;
-                    Global.cpd.runtime.Definitions.StageSize4.y = (int)MapSize4Height.Value;
+                    bool flag = false;
+                    void setSize(ref int n, decimal val)
+                    {
+                        int m = (int)val;
+                        if(n != m)
+                        {
+                            n = m;
+                            flag = true;
+                        }
+                    }
+                    setSize(ref Global.cpd.runtime.Definitions.StageSize.x, MapSizeWidth.Value);
+                    setSize(ref Global.cpd.runtime.Definitions.StageSize.y, MapSizeHeight.Value);
+                    setSize(ref Global.cpd.runtime.Definitions.StageSize2.x, MapSize2Width.Value);
+                    setSize(ref Global.cpd.runtime.Definitions.StageSize2.y, MapSize2Height.Value);
+                    setSize(ref Global.cpd.runtime.Definitions.StageSize3.x, MapSize3Width.Value);
+                    setSize(ref Global.cpd.runtime.Definitions.StageSize3.y, MapSize3Height.Value);
+                    setSize(ref Global.cpd.runtime.Definitions.StageSize4.x, MapSize4Width.Value);
+                    setSize(ref Global.cpd.runtime.Definitions.StageSize4.y, MapSize4Height.Value);
                     if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
                     {
-                        Global.cpd.runtime.Definitions.LayerSize.x = (int)MapSizeWidth.Value;
-                        Global.cpd.runtime.Definitions.LayerSize.y = (int)MapSizeHeight.Value;
-                        Global.cpd.runtime.Definitions.LayerSize2.x = (int)MapSize2Width.Value;
-                        Global.cpd.runtime.Definitions.LayerSize2.y = (int)MapSize2Height.Value;
-                        Global.cpd.runtime.Definitions.LayerSize3.x = (int)MapSize3Width.Value;
-                        Global.cpd.runtime.Definitions.LayerSize3.y = (int)MapSize3Height.Value;
-                        Global.cpd.runtime.Definitions.LayerSize4.x = (int)MapSize4Width.Value;
-                        Global.cpd.runtime.Definitions.LayerSize4.y = (int)MapSize4Height.Value;
+                        setSize(ref Global.cpd.runtime.Definitions.LayerSize.x, MapSizeWidth.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.LayerSize.y, MapSizeHeight.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.LayerSize2.x, MapSize2Width.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.LayerSize2.y, MapSize2Height.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.LayerSize3.x, MapSize3Width.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.LayerSize3.y, MapSize3Height.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.LayerSize4.x, MapSize4Width.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.LayerSize4.y, MapSize4Height.Value);
                     }
-                    Global.state.StageSizeChanged = true;
-                    Global.MainWnd.MainDesigner.ForceBufferResize();
-                    Global.MainWnd.UpdateLayer();
-                    Global.MainWnd.UpdateScrollbar();
+                    if (flag)
+                    {
+                        Global.state.StageSizeChanged = true;
+                        Global.MainWnd.MainDesigner.ForceBufferResize();
+                        Global.MainWnd.UpdateLayer();
+                        Global.MainWnd.UpdateScrollbar();
+                    }
                 }
                 if(Global.cpd.project.Use3rdMapData != Use3rdMapData.Checked)
                 {
@@ -185,10 +198,10 @@ namespace MasaoPlus.Dialogs
                         }
                     }
                     Global.cpd.project.Use3rdMapData = Use3rdMapData.Checked;
+                    Global.MainWnd.RefreshAll();
+                    Global.MainWnd.MainDesigner.ClearBuffer();
+                    Global.MainWnd.MainDesigner.AddBuffer();
                 }
-                Global.MainWnd.RefreshAll();
-                Global.MainWnd.MainDesigner.ClearBuffer();
-                Global.MainWnd.MainDesigner.AddBuffer();
             }
             Global.state.EditFlag = true;
             List<HTMLReplaceData> list = new List<HTMLReplaceData>();
