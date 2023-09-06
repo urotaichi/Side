@@ -128,10 +128,10 @@ namespace MasaoPlus.Dialogs
                         Global.cpd.runtime.Definitions.LayerSize4.x = (int)MapSize4Width.Value;
                         Global.cpd.runtime.Definitions.LayerSize4.y = (int)MapSize4Height.Value;
                     }
+                    Global.state.StageSizeChanged = true;
                     Global.MainWnd.MainDesigner.ForceBufferResize();
                     Global.MainWnd.UpdateLayer();
                     Global.MainWnd.UpdateScrollbar();
-                    Global.state.StageSizeChanged = true;
                 }
                 if(Global.cpd.project.Use3rdMapData != Use3rdMapData.Checked)
                 {
