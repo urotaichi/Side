@@ -1252,6 +1252,12 @@ namespace MasaoPlus
                     ForegroundBuffer.Dispose();
                     ForegroundBuffer = new Bitmap((int)(ForeLayerBmp.Width * zi), (int)(ForeLayerBmp.Height * zi), PixelFormat.Format24bppRgb);
                 }
+                else if (Global.state.StageSizeChanged)
+                {
+                    ForegroundBuffer.Dispose();
+                    ForegroundBuffer = new Bitmap((int)(ForeLayerBmp.Width * zi), (int)(ForeLayerBmp.Height * zi), PixelFormat.Format24bppRgb);
+                    Global.state.StageSizeChanged = false;
+                }
                 EditMap = Global.state.EdittingStage;
                 using Graphics graphics = Graphics.FromImage(ForegroundBuffer);
                 using (Brush brush = new SolidBrush(Global.state.Background))
