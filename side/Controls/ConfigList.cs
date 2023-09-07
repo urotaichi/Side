@@ -576,6 +576,10 @@ namespace MasaoPlus.Controls
                             Global.cpd.runtime.Definitions.MapSize.x = 15;
                             Global.cpd.runtime.Definitions.MapSize.y = 9;
                         }
+                        Global.state.StageSizeChanged = true;
+                        Global.MainWnd.MainDesigner.ForceBufferResize();
+                        Global.MainWnd.UpdateLayer();
+                        Global.MainWnd.UpdateScrollbar();
                     }
                     break;
                 case ConfigParam.Types.l_a:
