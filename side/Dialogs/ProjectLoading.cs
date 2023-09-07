@@ -88,6 +88,7 @@ namespace MasaoPlus.Dialogs
                     {
                         if (size.x < 16) size.x = Global.cpd.project.Runtime.Definitions.StageSize.x;
                         if (size.y < 10) size.y = Global.cpd.project.Runtime.Definitions.StageSize.y;
+                        size.bytesize = Global.cpd.project.Runtime.Definitions.StageSize.bytesize;
                     }
                     setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize2);
                     setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize3);
@@ -98,6 +99,7 @@ namespace MasaoPlus.Dialogs
                         {
                             if (size.x < 16) size.x = Global.cpd.project.Runtime.Definitions.LayerSize.x;
                             if (size.y < 10) size.y = Global.cpd.project.Runtime.Definitions.LayerSize.y;
+                            size.bytesize = Global.cpd.project.Runtime.Definitions.LayerSize.bytesize;
                         }
                         setLayerSize(ref Global.cpd.project.Runtime.Definitions.LayerSize2);
                         setLayerSize(ref Global.cpd.project.Runtime.Definitions.LayerSize3);
