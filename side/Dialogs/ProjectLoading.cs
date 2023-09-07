@@ -86,7 +86,8 @@ namespace MasaoPlus.Dialogs
                     }
                     void setStageSize(ref Runtime.DefinedData.StageSizeData size)
                     {
-                        if (size == default) size = Global.cpd.project.Runtime.Definitions.StageSize.Clone();
+                        if (size.x < 16) size.x = Global.cpd.project.Runtime.Definitions.StageSize.x;
+                        if (size.y < 10) size.y = Global.cpd.project.Runtime.Definitions.StageSize.y;
                     }
                     setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize2);
                     setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize3);
@@ -95,7 +96,8 @@ namespace MasaoPlus.Dialogs
                     {
                         void setLayerSize(ref Runtime.DefinedData.StageSizeData size)
                         {
-                            if (size == default) size = Global.cpd.project.Runtime.Definitions.LayerSize.Clone();
+                            if (size.x < 16) size.x = Global.cpd.project.Runtime.Definitions.LayerSize.x;
+                            if (size.y < 10) size.y = Global.cpd.project.Runtime.Definitions.LayerSize.y;
                         }
                         setLayerSize(ref Global.cpd.project.Runtime.Definitions.LayerSize2);
                         setLayerSize(ref Global.cpd.project.Runtime.Definitions.LayerSize3);

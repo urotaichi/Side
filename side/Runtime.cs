@@ -153,11 +153,6 @@ namespace MasaoPlus
 
                 [XmlAttribute]
                 public int bytesize;
-
-                public StageSizeData Clone()
-                {
-                    return (StageSizeData)MemberwiseClone();
-                }
             }
         }
 
