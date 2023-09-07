@@ -142,6 +142,74 @@ namespace MasaoPlus.Dialogs
                     }
                     else
                     {
+                        void ResizeY(Runtime.DefinedData.StageSizeData beforesize, decimal after, string[] data, string nullcode)
+                        {
+                            int height = (int)after;
+                            if (beforesize.y != height)
+                            {
+                                Array.Resize(ref data, height);
+                                if (beforesize.y < height)
+                                {
+                                    var array = new string[beforesize.x];
+                                    for (int j = 0; j < array.Length; j++)
+                                    {
+                                        array[j] = nullcode;
+                                    }
+                                    var s = string.Join(",", array);
+                                    for (int i = beforesize.y; i < data.Length; i++)
+                                    {
+                                        data[i] = s;
+                                    }
+                                }
+                            }
+                        }
+                        void ResizeX(int before, decimal after, string[] data, string nullcode)
+                        {
+                            int width = (int)after;
+                            if (before < width)
+                            {
+                                for (int i = 0; i < data.Length; i++)
+                                {
+                                    var array = data[i].Split(',');
+                                    Array.Resize(ref array, width);
+                                    for (int j = before; j < array.Length; j++)
+                                    {
+                                        array[j] = nullcode;
+                                    }
+                                    data[i] = string.Join(",", array);
+                                }
+                            }
+                            else
+                            {
+                                for (int i = 0; i < data.Length; i++)
+                                {
+                                    var array = data[i].Split(',');
+                                    Array.Resize(ref array, width);
+                                    data[i] = string.Join(",", array);
+                                }
+                            }
+                        }
+                        var nullcode = Global.cpd.Mapchip[0].code;
+                        ResizeX(Global.cpd.runtime.Definitions.StageSize.x, MapSizeWidth.Value, Global.cpd.project.StageData, nullcode);
+                        ResizeY(Global.cpd.runtime.Definitions.StageSize, MapSizeHeight.Value, Global.cpd.project.StageData, nullcode);
+                        ResizeX(Global.cpd.runtime.Definitions.StageSize2.x, MapSize2Width.Value, Global.cpd.project.StageData2, nullcode);
+                        ResizeY(Global.cpd.runtime.Definitions.StageSize2, MapSize2Height.Value, Global.cpd.project.StageData2, nullcode);
+                        ResizeX(Global.cpd.runtime.Definitions.StageSize3.x, MapSize3Width.Value, Global.cpd.project.StageData3, nullcode);
+                        ResizeY(Global.cpd.runtime.Definitions.StageSize3, MapSize3Height.Value, Global.cpd.project.StageData3, nullcode);
+                        ResizeX(Global.cpd.runtime.Definitions.StageSize4.x, MapSize4Width.Value, Global.cpd.project.StageData4, nullcode);
+                        ResizeY(Global.cpd.runtime.Definitions.StageSize4, MapSize4Height.Value, Global.cpd.project.StageData4, nullcode);
+                        if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
+                        {
+                            nullcode = Global.cpd.Layerchip[0].code;
+                            ResizeX(Global.cpd.runtime.Definitions.LayerSize.x, MapSizeWidth.Value, Global.cpd.project.LayerData, nullcode);
+                            ResizeY(Global.cpd.runtime.Definitions.LayerSize, MapSizeHeight.Value, Global.cpd.project.LayerData, nullcode);
+                            ResizeX(Global.cpd.runtime.Definitions.LayerSize2.x, MapSize2Width.Value, Global.cpd.project.LayerData2, nullcode);
+                            ResizeY(Global.cpd.runtime.Definitions.LayerSize2, MapSize2Height.Value, Global.cpd.project.LayerData2, nullcode);
+                            ResizeX(Global.cpd.runtime.Definitions.LayerSize3.x, MapSize3Width.Value, Global.cpd.project.LayerData3, nullcode);
+                            ResizeY(Global.cpd.runtime.Definitions.LayerSize3, MapSize3Height.Value, Global.cpd.project.LayerData3, nullcode);
+                            ResizeX(Global.cpd.runtime.Definitions.LayerSize4.x, MapSize4Width.Value, Global.cpd.project.LayerData4, nullcode);
+                            ResizeY(Global.cpd.runtime.Definitions.LayerSize4, MapSize4Height.Value, Global.cpd.project.LayerData4, nullcode);
+                        }
                         void setSize(ref int n, decimal val)
                         {
                             int m = (int)val;
