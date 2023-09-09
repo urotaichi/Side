@@ -225,5 +225,7 @@ namespace MasaoPlus
         public delegate void UpdateCurrentCustomPartsChip();
 
         public bool StageSizeChanged = false;
+
+        public Size MinimumStageSize = new Size(16, 10);
     }
 }

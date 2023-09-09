@@ -34,7 +34,7 @@ namespace MasaoPlus
         public void ConfigReady()
         {
             Categories = new List<string>();
-            RelIndex = new int[28];
+            RelIndex = new int[29];
             bool[] array = new bool[12];
             array[0] = false;
             array[1] = false;
@@ -166,6 +166,9 @@ namespace MasaoPlus
                         break;
                     case "filename_chizu":
                         RelIndex[27] = i;
+                        break;
+                    case "mcs_screen_size":
+                        RelIndex[28] = i;
                         break;
                 }
             }
@@ -584,6 +587,19 @@ namespace MasaoPlus
             set
             {
                 Configurations[RelIndex[27]].Value = value;
+            }
+        }
+
+        [XmlIgnore]
+        public string ScreenSize
+        {
+            get
+            {
+                return Configurations[RelIndex[28]].Value;
+            }
+            set
+            {
+                Configurations[RelIndex[28]].Value = value;
             }
         }
 

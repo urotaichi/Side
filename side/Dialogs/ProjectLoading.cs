@@ -75,6 +75,10 @@ namespace MasaoPlus.Dialogs
                     Global.cpd.where = Path.GetDirectoryName(load);
                     Global.cpd.filename = load;
                     Global.state.Background = Global.cpd.project.Config.Background;
+                    if(Global.cpd.project.Config.ScreenSize == "1")
+                    {
+                        Global.state.MinimumStageSize = new Size(20, 15);
+                    }
                     Global.cpd.runtime = Global.cpd.project.Runtime;
                     string[] array = Runtime.CheckFiles(Global.cpd.where, Global.cpd.runtime, false);
                     if (array.Length != 0)
@@ -86,8 +90,8 @@ namespace MasaoPlus.Dialogs
                     }
                     void setStageSize(ref Runtime.DefinedData.StageSizeData size)
                     {
-                        if (size.x < 16) size.x = Global.cpd.project.Runtime.Definitions.StageSize.x;
-                        if (size.y < 10) size.y = Global.cpd.project.Runtime.Definitions.StageSize.y;
+                        if (size.x < Global.state.MinimumStageSize.Width) size.x = Global.cpd.project.Runtime.Definitions.StageSize.x;
+                        if (size.y < Global.state.MinimumStageSize.Height) size.y = Global.cpd.project.Runtime.Definitions.StageSize.y;
                         size.bytesize = Global.cpd.project.Runtime.Definitions.StageSize.bytesize;
                     }
                     setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize2);
@@ -97,8 +101,8 @@ namespace MasaoPlus.Dialogs
                     {
                         void setLayerSize(ref Runtime.DefinedData.StageSizeData size)
                         {
-                            if (size.x < 16) size.x = Global.cpd.project.Runtime.Definitions.LayerSize.x;
-                            if (size.y < 10) size.y = Global.cpd.project.Runtime.Definitions.LayerSize.y;
+                            if (size.x < Global.state.MinimumStageSize.Width) size.x = Global.cpd.project.Runtime.Definitions.LayerSize.x;
+                            if (size.y < Global.state.MinimumStageSize.Height) size.y = Global.cpd.project.Runtime.Definitions.LayerSize.y;
                             size.bytesize = Global.cpd.project.Runtime.Definitions.LayerSize.bytesize;
                         }
                         setLayerSize(ref Global.cpd.project.Runtime.Definitions.LayerSize2);

@@ -337,6 +337,10 @@ namespace MasaoPlus.Dialogs
                     list.Add(project.Config.GameoverImage);
                     project.Config.GameoverImage = Path.GetFileName(GameoverImage.Text);
                 }
+                if (project.Config.ScreenSize == "1")
+                {
+                    Global.state.MinimumStageSize = new Size(20, 15);
+                }
                 if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                 {
                     if (LayerPattern.Text != "")
@@ -345,8 +349,8 @@ namespace MasaoPlus.Dialogs
                     }
                     void setLayerSize(ref Runtime.DefinedData.StageSizeData size)
                     {
-                        if (size.x < 16) size.x = project.Runtime.Definitions.LayerSize.x;
-                        if (size.y < 10) size.y = project.Runtime.Definitions.LayerSize.y;
+                        if (size.x < Global.state.MinimumStageSize.Width) size.x = project.Runtime.Definitions.LayerSize.x;
+                        if (size.y < Global.state.MinimumStageSize.Height) size.y = project.Runtime.Definitions.LayerSize.y;
                         size.bytesize = project.Runtime.Definitions.LayerSize.bytesize;
                     }
                     setLayerSize(ref project.Runtime.Definitions.LayerSize2);
@@ -359,8 +363,8 @@ namespace MasaoPlus.Dialogs
                 }
                 void setStageSize(ref Runtime.DefinedData.StageSizeData size)
                 {
-                    if (size.x < 16) size.x = project.Runtime.Definitions.StageSize.x;
-                    if (size.y < 10) size.y = project.Runtime.Definitions.StageSize.y;
+                    if (size.x < Global.state.MinimumStageSize.Width) size.x = project.Runtime.Definitions.StageSize.x;
+                    if (size.y < Global.state.MinimumStageSize.Height) size.y = project.Runtime.Definitions.StageSize.y;
                     size.bytesize = project.Runtime.Definitions.StageSize.bytesize;
                 }
                 setStageSize(ref project.Runtime.Definitions.StageSize2);

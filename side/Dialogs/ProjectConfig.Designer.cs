@@ -207,7 +207,7 @@
                 MapSizeWidth.Maximum = new decimal(array11);
                 global::System.Windows.Forms.NumericUpDown MapSizeWidth2 = this.MapSizeWidth;
 				int[] array12 = new int[4];
-				array12[0] = 16;
+				array12[0] = Global.state.MinimumStageSize.Width;
                 MapSizeWidth2.Minimum = new decimal(array12);
 				this.MapSizeWidth.Name = "MapSizeWidth";
 				this.MapSizeWidth.Size = new global::System.Drawing.Size(70, 20);
@@ -230,7 +230,7 @@
                 MapSizeHeight.Maximum = new decimal(array21);
                 global::System.Windows.Forms.NumericUpDown MapSizeHeight2 = this.MapSizeHeight;
                 int[] array22 = new int[4];
-                array22[0] = 10;
+                array22[0] = Global.state.MinimumStageSize.Height;
                 MapSizeHeight2.Minimum = new decimal(array22);
                 this.MapSizeHeight.Name = "MapSizeHeight";
                 this.MapSizeHeight.Size = new global::System.Drawing.Size(70, 20);
@@ -254,7 +254,7 @@
                 MapSize2Width.Maximum = new decimal(array31);
                 global::System.Windows.Forms.NumericUpDown MapSize2Width2 = this.MapSize2Width;
                 int[] array32 = new int[4];
-                array32[0] = 16;
+                array32[0] = Global.state.MinimumStageSize.Width;
                 MapSize2Width2.Minimum = new decimal(array32);
                 this.MapSize2Width.Name = "MapSize2Width";
                 this.MapSize2Width.Size = new global::System.Drawing.Size(70, 20);
@@ -277,7 +277,7 @@
                 MapSize2Height.Maximum = new decimal(array41);
                 global::System.Windows.Forms.NumericUpDown MapSize2Height2 = this.MapSize2Height;
                 int[] array42 = new int[4];
-                array42[0] = 10;
+                array42[0] = Global.state.MinimumStageSize.Height;
                 MapSize2Height2.Minimum = new decimal(array42);
                 this.MapSize2Height.Name = "MapSize2Height";
                 this.MapSize2Height.Size = new global::System.Drawing.Size(70, 20);
@@ -301,7 +301,7 @@
                 MapSize3Width.Maximum = new decimal(array51);
                 global::System.Windows.Forms.NumericUpDown MapSize3Width2 = this.MapSize3Width;
                 int[] array52 = new int[4];
-                array52[0] = 16;
+                array52[0] = Global.state.MinimumStageSize.Width;
                 MapSize3Width2.Minimum = new decimal(array52);
                 this.MapSize3Width.Name = "MapSize3Width";
                 this.MapSize3Width.Size = new global::System.Drawing.Size(70, 20);
@@ -324,7 +324,7 @@
                 MapSize3Height.Maximum = new decimal(array61);
                 global::System.Windows.Forms.NumericUpDown MapSize3Height2 = this.MapSize3Height;
                 int[] array62 = new int[4];
-                array62[0] = 10;
+                array62[0] = Global.state.MinimumStageSize.Height;
                 MapSize3Height2.Minimum = new decimal(array62);
                 this.MapSize3Height.Name = "MapSize3Height";
                 this.MapSize3Height.Size = new global::System.Drawing.Size(70, 20);
@@ -348,7 +348,7 @@
                 MapSize4Width.Maximum = new decimal(array71);
                 global::System.Windows.Forms.NumericUpDown MapSize4Width2 = this.MapSize4Width;
                 int[] array72 = new int[4];
-                array72[0] = 16;
+                array72[0] = Global.state.MinimumStageSize.Width;
                 MapSize4Width2.Minimum = new decimal(array72);
                 this.MapSize4Width.Name = "MapSize4Width";
                 this.MapSize4Width.Size = new global::System.Drawing.Size(70, 20);
@@ -371,7 +371,7 @@
                 MapSize4Height.Maximum = new decimal(array81);
                 global::System.Windows.Forms.NumericUpDown MapSize4Height2 = this.MapSize4Height;
                 int[] array82 = new int[4];
-                array82[0] = 10;
+                array82[0] = Global.state.MinimumStageSize.Height;
                 MapSize4Height2.Minimum = new decimal(array82);
                 this.MapSize4Height.Name = "MapSize4Height";
                 this.MapSize4Height.Size = new global::System.Drawing.Size(70, 20);
