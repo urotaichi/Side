@@ -2186,7 +2186,7 @@ namespace MasaoPlus
             return EditTab.SelectedIndex != 1 || MainEditor.CanConvertTextSource() || MessageBox.Show($"ステージのテキストが規定の形式を満たしていないため、テキストを反映できません。{Environment.NewLine}レイヤーを切り替えると、編集結果は失われます。{Environment.NewLine}続行してもよろしいですか？", "コンバート失敗", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) != DialogResult.Cancel;
         }
 
-        public void StageSelectionChange(int newValue)
+        private void StageSelectionChange(int newValue)
         {
             if (Global.state.EdittingStage == newValue)
             {
