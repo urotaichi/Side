@@ -158,10 +158,11 @@ namespace MasaoPlus.Dialogs
                 {
                     void setLayerSize(ref Runtime.DefinedData.StageSizeData size)
                     {
-                        if (size.x < 16) size.x = project.Runtime.Definitions.LayerSize.x;
-                        if (size.y < 10) size.y = project.Runtime.Definitions.LayerSize.y;
+                        size.x = 180;
+                        size.y = 30;
                         size.bytesize = project.Runtime.Definitions.LayerSize.bytesize;
                     }
+                    setLayerSize(ref project.Runtime.Definitions.LayerSize);
                     setLayerSize(ref project.Runtime.Definitions.LayerSize2);
                     setLayerSize(ref project.Runtime.Definitions.LayerSize3);
                     setLayerSize(ref project.Runtime.Definitions.LayerSize4);
@@ -172,10 +173,11 @@ namespace MasaoPlus.Dialogs
                 }
                 void setStageSize(ref Runtime.DefinedData.StageSizeData size)
                 {
-                    if (size.x < 16) size.x = project.Runtime.Definitions.StageSize.x;
-                    if (size.y < 10) size.y = project.Runtime.Definitions.StageSize.y;
+                    size.x = 180;
+                    size.y = 30;
                     size.bytesize = project.Runtime.Definitions.StageSize.bytesize;
                 }
+                setStageSize(ref project.Runtime.Definitions.StageSize);
                 setStageSize(ref project.Runtime.Definitions.StageSize2);
                 setStageSize(ref project.Runtime.Definitions.StageSize3);
                 setStageSize(ref project.Runtime.Definitions.StageSize4);
