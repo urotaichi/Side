@@ -343,61 +343,67 @@ namespace MasaoPlus.Dialogs
                     {
                         project.Config.LayerImage = Path.GetFileName(LayerPattern.Text);
                     }
-                    project.LayerData = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
-                    project.LayerData2 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
-                    project.LayerData3 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
-                    project.LayerData4 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.LayerSize.y];
+                    void setLayerSize(ref Runtime.DefinedData.StageSizeData size)
+                    {
+                        if (size.x < 16) size.x = project.Runtime.Definitions.LayerSize.x;
+                        if (size.y < 10) size.y = project.Runtime.Definitions.LayerSize.y;
+                        size.bytesize = project.Runtime.Definitions.LayerSize.bytesize;
+                    }
+                    setLayerSize(ref project.Runtime.Definitions.LayerSize2);
+                    setLayerSize(ref project.Runtime.Definitions.LayerSize3);
+                    setLayerSize(ref project.Runtime.Definitions.LayerSize4);
+                    project.LayerData = new string[project.Runtime.Definitions.LayerSize.y];
+                    project.LayerData2 = new string[project.Runtime.Definitions.LayerSize2.y];
+                    project.LayerData3 = new string[project.Runtime.Definitions.LayerSize3.y];
+                    project.LayerData4 = new string[project.Runtime.Definitions.LayerSize4.y];
                 }
-                project.StageData = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.StageSize.y];
-                project.StageData2 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.StageSize.y];
-                project.StageData3 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.StageSize.y];
-                project.StageData4 = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.StageSize.y];
-                project.MapData = new string[runtimedatas[RuntimeSet.SelectedIndex].Definitions.MapSize.y];
+                void setStageSize(ref Runtime.DefinedData.StageSizeData size)
+                {
+                    if (size.x < 16) size.x = project.Runtime.Definitions.StageSize.x;
+                    if (size.y < 10) size.y = project.Runtime.Definitions.StageSize.y;
+                    size.bytesize = project.Runtime.Definitions.StageSize.bytesize;
+                }
+                setStageSize(ref project.Runtime.Definitions.StageSize2);
+                setStageSize(ref project.Runtime.Definitions.StageSize3);
+                setStageSize(ref project.Runtime.Definitions.StageSize4);
+                project.StageData = new string[project.Runtime.Definitions.StageSize.y];
+                project.StageData2 = new string[project.Runtime.Definitions.StageSize2.y];
+                project.StageData3 = new string[project.Runtime.Definitions.StageSize3.y];
+                project.StageData4 = new string[project.Runtime.Definitions.StageSize4.y];
+                project.MapData = new string[project.Runtime.Definitions.MapSize.y];
                 project.Config.StageNum = (int)StageNum.Value;
                 ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(text3, project.Runtime.Definitions.ChipDefinition));
+                void setStageData(string[] data, int x, string character)
+                {
+                    for (int i = 0; i < data.Length; i++)
+                    {
+                        StringBuilder stringBuilder = new StringBuilder();
+                        for (int j = 0; j < x; j++)
+                        {
+                            stringBuilder.Append(character);
+                        }
+                        data[i] = stringBuilder.ToString();
+                    }
+                }
                 string character = chipDataClass.Mapchip[0].character;
-                for (int i = 0; i < project.StageData.Length; i++)
-                {
-                    StringBuilder stringBuilder = new StringBuilder();
-                    for (int j = 0; j < project.Runtime.Definitions.StageSize.x; j++)
-                    {
-                        stringBuilder.Append(character);
-                    }
-                    project.StageData[i] = stringBuilder.ToString();
-                }
-                project.StageData2 = (string[])project.StageData.Clone();
-                project.StageData3 = (string[])project.StageData.Clone();
-                project.StageData4 = (string[])project.StageData.Clone();
+                setStageData(project.StageData, project.Runtime.Definitions.StageSize.x, character);
+                setStageData(project.StageData2, project.Runtime.Definitions.StageSize2.x, character);
+                setStageData(project.StageData3, project.Runtime.Definitions.StageSize3.x, character);
+                setStageData(project.StageData4, project.Runtime.Definitions.StageSize4.x, character);
                 character = chipDataClass.WorldChip[0].character;
-                for (int k = 0; k < project.MapData.Length; k++)
-                {
-                    StringBuilder stringBuilder2 = new StringBuilder();
-                    for (int l = 0; l < project.Runtime.Definitions.MapSize.x; l++)
-                    {
-                        stringBuilder2.Append(character);
-                    }
-                    project.MapData[k] = stringBuilder2.ToString();
-                }
+                setStageData(project.MapData, project.Runtime.Definitions.MapSize.x, character);
                 if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                 {
                     character = chipDataClass.Layerchip[0].character;
-                    for (int m = 0; m < project.LayerData.Length; m++)
-                    {
-                        StringBuilder stringBuilder3 = new StringBuilder();
-                        for (int n = 0; n < project.Runtime.Definitions.LayerSize.x; n++)
-                        {
-                            stringBuilder3.Append(character);
-                        }
-                        project.LayerData[m] = stringBuilder3.ToString();
-                    }
-                    project.LayerData2 = (string[])project.LayerData.Clone();
-                    project.LayerData3 = (string[])project.LayerData.Clone();
-                    project.LayerData4 = (string[])project.LayerData.Clone();
+                    setStageData(project.LayerData, project.Runtime.Definitions.LayerSize.x, character);
+                    setStageData(project.LayerData2, project.Runtime.Definitions.LayerSize2.x, character);
+                    setStageData(project.LayerData3, project.Runtime.Definitions.LayerSize3.x, character);
+                    setStageData(project.LayerData4, project.Runtime.Definitions.LayerSize4.x, character);
                 }
                 Directory.CreateDirectory(text);
                 foreach (string text4 in Directory.GetFiles(text3, "*", SearchOption.TopDirectoryOnly))
                 {
-                    if (!(Path.GetFileName(text4) == runtimedatas[RuntimeSet.SelectedIndex].Definitions.Configurations) && !list.Contains(Path.GetFileName(text4)))
+                    if (!(Path.GetFileName(text4) == project.Runtime.Definitions.Configurations) && !list.Contains(Path.GetFileName(text4)))
                     {
                         string text5 = Path.Combine(text, Path.GetFileName(text4));
                         if (!File.Exists(text5) || MessageBox.Show($"{text5}{Environment.NewLine}はすでに存在しています。{Environment.NewLine}上書きしてもよろしいですか？", "上書きの警告", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) != DialogResult.No)

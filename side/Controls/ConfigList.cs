@@ -557,8 +557,6 @@ namespace MasaoPlus.Controls
                             Global.cpd.runtime.Definitions.MapSize.x = 19;
                             Global.cpd.runtime.Definitions.MapSize.y = 14;
 
-                            // 予め地図画面の配列数を多めに取っておけば↓は不要
-
                             Array.Resize(ref Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize.y);
                             for (int i = 0; i < Global.cpd.runtime.Definitions.MapSize.y; i++)
                             {
@@ -575,7 +573,21 @@ namespace MasaoPlus.Controls
                             Global.cpd.project.Config.Configurations[height_index].Value = "320";
                             Global.cpd.runtime.Definitions.MapSize.x = 15;
                             Global.cpd.runtime.Definitions.MapSize.y = 9;
+
+                            Array.Resize(ref Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize.y);
+                            for (int i = 0; i < Global.cpd.runtime.Definitions.MapSize.y; i++)
+                            {
+                                Global.cpd.project.MapData[i] = Global.cpd.project.MapData[i].Substring(0, Global.cpd.runtime.Definitions.MapSize.x);
+                            }
                         }
+                        if (Global.state.EdittingStage == 4)
+                        {
+                            Global.cpd.EditingMap = Global.cpd.project.MapData;
+                        }
+                        Global.state.StageSizeChanged = true;
+                        Global.MainWnd.MainDesigner.ForceBufferResize();
+                        Global.MainWnd.UpdateLayer();
+                        Global.MainWnd.UpdateScrollbar();
                     }
                     break;
                 case ConfigParam.Types.l_a:

@@ -57,7 +57,7 @@ namespace MasaoPlus.Controls
             {
                 return;
             }
-            Source = new Bitmap(Global.cpd.runtime.Definitions.StageSize.x, Global.cpd.runtime.Definitions.StageSize.y);
+            Source = new Bitmap(Global.MainWnd.MainDesigner.CurrentStageSize.x, Global.MainWnd.MainDesigner.CurrentStageSize.y);
             UpdateDrawSource();
         }
 
@@ -87,9 +87,9 @@ namespace MasaoPlus.Controls
                 {
                     dictionary = Global.MainWnd.MainDesigner.DrawWorldRef;
                 }
-                for (int i = 0; i < Global.cpd.runtime.Definitions.StageSize.x; i++)
+                for (int i = 0; i < Global.MainWnd.MainDesigner.CurrentStageSize.x; i++)
                 {
-                    for (int j = 0; j < Global.cpd.runtime.Definitions.StageSize.y; j++)
+                    for (int j = 0; j < Global.MainWnd.MainDesigner.CurrentStageSize.y; j++)
                     {
                         ptr = (byte*)(void*)bitmapData.Scan0;
                         int num2 = i * 3 + bitmapData.Stride * j;

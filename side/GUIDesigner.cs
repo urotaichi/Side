@@ -294,6 +294,28 @@ namespace MasaoPlus
             }
         }
 
+        public Runtime.DefinedData.StageSizeData CurrentStageSize
+        {
+            get
+            {
+                if (Global.state.EdittingStage == 0) return Global.cpd.project.Runtime.Definitions.StageSize;
+                else if (Global.state.EdittingStage == 1) return Global.cpd.project.Runtime.Definitions.StageSize2;
+                else if (Global.state.EdittingStage == 2) return Global.cpd.project.Runtime.Definitions.StageSize3;
+                else return Global.cpd.project.Runtime.Definitions.StageSize4;
+            }
+        }
+
+        public Runtime.DefinedData.StageSizeData CurrentLayerSize
+        {
+            get
+            {
+                if (Global.state.EdittingStage == 0) return Global.cpd.project.Runtime.Definitions.LayerSize;
+                else if (Global.state.EdittingStage == 1) return Global.cpd.project.Runtime.Definitions.LayerSize2;
+                else if (Global.state.EdittingStage == 2) return Global.cpd.project.Runtime.Definitions.LayerSize3;
+                else return Global.cpd.project.Runtime.Definitions.LayerSize4;
+            }
+        }
+
         public GUIDesigner()
         {
             InitializeComponent();
@@ -552,7 +574,7 @@ namespace MasaoPlus
                 }
                 else
                 {
-                    ForeLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.StageSize.x * Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.StageSize.y * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb);
+                    ForeLayerBmp = new Bitmap(CurrentStageSize.x * Global.cpd.runtime.Definitions.ChipSize.Width, CurrentStageSize.y * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb);
                 }
             }
             else if (!Global.state.UseBuffered)
@@ -581,7 +603,7 @@ namespace MasaoPlus
             }
             if (BackLayerBmp == null)
             {
-                BackLayerBmp = new Bitmap(Global.cpd.runtime.Definitions.LayerSize.x * Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.LayerSize.y * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb);
+                BackLayerBmp = new Bitmap(CurrentLayerSize.x * Global.cpd.runtime.Definitions.ChipSize.Width, CurrentLayerSize.y * Global.cpd.runtime.Definitions.ChipSize.Height, PixelFormat.Format32bppArgb);
             }
             else if (!Global.state.UseBuffered)
             {
@@ -645,8 +667,8 @@ namespace MasaoPlus
             g.PixelOffsetMode = PixelOffsetMode.Half;
             Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
             Runtime.DefinedData.StageSizeData MapSize = Global.cpd.project.Runtime.Definitions.MapSize;
-            Runtime.DefinedData.StageSizeData StageSize = Global.cpd.project.Runtime.Definitions.StageSize;
-            Runtime.DefinedData.StageSizeData LayerSize = Global.cpd.project.Runtime.Definitions.LayerSize;
+            Runtime.DefinedData.StageSizeData StageSize = CurrentStageSize;
+            Runtime.DefinedData.StageSizeData LayerSize = CurrentLayerSize;
 
             if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
             {
@@ -1230,6 +1252,12 @@ namespace MasaoPlus
                     ForegroundBuffer.Dispose();
                     ForegroundBuffer = new Bitmap((int)(ForeLayerBmp.Width * zi), (int)(ForeLayerBmp.Height * zi), PixelFormat.Format24bppRgb);
                 }
+                else if (Global.state.StageSizeChanged)
+                {
+                    ForegroundBuffer.Dispose();
+                    ForegroundBuffer = new Bitmap((int)(ForeLayerBmp.Width * zi), (int)(ForeLayerBmp.Height * zi), PixelFormat.Format24bppRgb);
+                    Global.state.StageSizeChanged = false;
+                }
                 EditMap = Global.state.EdittingStage;
                 using Graphics graphics = Graphics.FromImage(ForegroundBuffer);
                 using (Brush brush = new SolidBrush(Global.state.Background))
@@ -1710,7 +1738,7 @@ namespace MasaoPlus
             if (Global.state.EditingForeground)
             {
                 int num = 0;
-                while (Global.state.MapEditMode ? (num < Global.cpd.project.Runtime.Definitions.MapSize.y) : (num < Global.cpd.runtime.Definitions.StageSize.y))
+                while (Global.state.MapEditMode ? (num < Global.cpd.project.Runtime.Definitions.MapSize.y) : (num < CurrentStageSize.y))
                 {
                     if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
                     {
@@ -1733,7 +1761,7 @@ namespace MasaoPlus
             }
             else
             {
-                for (int i = 0; i < Global.cpd.runtime.Definitions.LayerSize.y; i++)
+                for (int i = 0; i < CurrentLayerSize.y; i++)
                 {
                     if (Global.cpd.project.Use3rdMapData)
                     {
@@ -2828,11 +2856,11 @@ namespace MasaoPlus
                         size = (cd.GetCSChip().view_size != default) ? cd.GetCSChip().view_size : cd.GetCSChip().size; // 置きたいチップデータのサイズ
 
                         if (cd.GetCSChip().name.Contains("曲線による") && cd.GetCSChip().name.Contains("坂") &&
-                            128 + MapPos.Y * chipsize.Height < Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height)
-                            size.Height += Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height - (128 + MapPos.Y * chipsize.Height);
+                            128 + MapPos.Y * chipsize.Height < CurrentStageSize.y * chipsize.Height)
+                            size.Height += CurrentStageSize.y * chipsize.Height - (128 + MapPos.Y * chipsize.Height);
                         else if (cd.GetCSChip().name == "半円" && !cd.GetCSChip().description.Contains("乗れる") &&
-                            64 + MapPos.Y * chipsize.Height < Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height)
-                            size.Height += Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height - (64 + MapPos.Y * chipsize.Height);
+                            64 + MapPos.Y * chipsize.Height < CurrentStageSize.y * chipsize.Height)
+                            size.Height += CurrentStageSize.y * chipsize.Height - (64 + MapPos.Y * chipsize.Height);
                     }
                 }
                 ChipsData chipsData = default; // 置く前から元々あったチップデータのサイズ
@@ -2848,7 +2876,7 @@ namespace MasaoPlus
                     if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
                         size = GetLargerSize(size, DrawOribossOrig.Size);
                     else if (chipData.name.Contains("曲線による") && chipData.name.Contains("坂") || chipData.name == "半円" && !chipData.description.Contains("乗れる"))
-                        size = GetLargerSize(size, new Size(chipData.view_size.Width, Global.cpd.runtime.Definitions.StageSize.y * chipsize.Height));
+                        size = GetLargerSize(size, new Size(chipData.view_size.Width, CurrentStageSize.y * chipsize.Height));
                     else size = GetLargerSize(size, (chipData.view_size != default) ? chipData.view_size : chipData.size);  //サイズを比較して、大きい方に合わせる
                 }
                 if (size == default) RedrawMap(g, new Rectangle(MapPos, new Size(1, 1)));

@@ -113,8 +113,14 @@ namespace MasaoPlus
             public string MapName = "";
 
             public StageSizeData StageSize = new StageSizeData();
+            public StageSizeData StageSize2 = new StageSizeData();
+            public StageSizeData StageSize3 = new StageSizeData();
+            public StageSizeData StageSize4 = new StageSizeData();
 
             public StageSizeData LayerSize = new StageSizeData();
+            public StageSizeData LayerSize2 = new StageSizeData();
+            public StageSizeData LayerSize3 = new StageSizeData();
+            public StageSizeData LayerSize4 = new StageSizeData();
 
             public StageSizeData MapSize = new StageSizeData();
 
