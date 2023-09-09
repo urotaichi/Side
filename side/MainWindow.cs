@@ -2651,7 +2651,7 @@ namespace MasaoPlus
             UpdateStatus("完了");
         }
 
-        private void MEditStage1_Click(object sender, EventArgs e)
+        public void MEditStage1_Click(object sender, EventArgs e)
         {
             StageSelectionChange(0);
         }
