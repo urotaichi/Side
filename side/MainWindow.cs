@@ -1960,6 +1960,9 @@ namespace MasaoPlus
             MainDesigner.ClearBuffer();
             MainDesigner.AddBuffer();
             EditorSystemPanel_Resize(this, new EventArgs());
+            Global.state.StageSizeChanged = true;
+            MainDesigner.ForceBufferResize();
+            UpdateLayer();
             UpdateScrollbar();
             if (Global.cpd.UseLayer)
             {
