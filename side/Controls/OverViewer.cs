@@ -93,7 +93,7 @@ namespace MasaoPlus.Controls
                     {
                         ptr = (byte*)(void*)bitmapData.Scan0;
                         int num2 = i * 3 + bitmapData.Stride * j;
-                        string key = Global.cpd.project.StageData[j].Substring(i * Global.cpd.runtime.Definitions.StageSize.bytesize, Global.cpd.runtime.Definitions.StageSize.bytesize);
+                        string key = Global.cpd.EditingMap[j].Substring(i * Global.cpd.runtime.Definitions.StageSize.bytesize, Global.cpd.runtime.Definitions.StageSize.bytesize);
                         if (dictionary.ContainsKey(key))
                         {
                             ChipsData chipsData = dictionary[key];
