@@ -57,12 +57,19 @@ namespace MasaoPlus.Controls
             {
                 return;
             }
-            Source = new Bitmap(Global.MainWnd.MainDesigner.CurrentStageSize.x, Global.MainWnd.MainDesigner.CurrentStageSize.y);
             UpdateDrawSource();
         }
 
         public unsafe void UpdateDrawSource()
         {
+            if (Global.state.MapEditMode)
+            {
+                Source = new Bitmap(Global.cpd.runtime.Definitions.MapSize.x, Global.cpd.runtime.Definitions.MapSize.y);
+            }
+            else
+            {
+                Source = new Bitmap(Global.MainWnd.MainDesigner.CurrentStageSize.x, Global.MainWnd.MainDesigner.CurrentStageSize.y);
+            }
             BitmapData bitmapData = Source.LockBits(new Rectangle(new Point(0, 0), Source.Size), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
             try
             {
@@ -79,47 +86,125 @@ namespace MasaoPlus.Controls
                     array = Global.cpd.Worldchip;
                 }
                 Dictionary<string, ChipsData> dictionary = Global.MainWnd.MainDesigner.DrawItemRef;
+                if (Global.cpd.project.Use3rdMapData)
+                {
+                    dictionary = Global.MainWnd.MainDesigner.DrawItemCodeRef;
+                }
                 if (!Global.state.EditingForeground)
                 {
                     dictionary = Global.MainWnd.MainDesigner.DrawLayerRef;
+                    if (Global.cpd.project.Use3rdMapData)
+                    {
+                        dictionary = Global.MainWnd.MainDesigner.DrawLayerCodeRef;
+                    }
                 }
                 else if (Global.state.MapEditMode)
                 {
                     dictionary = Global.MainWnd.MainDesigner.DrawWorldRef;
                 }
-                for (int i = 0; i < Global.MainWnd.MainDesigner.CurrentStageSize.x; i++)
+                if (Global.state.MapEditMode)
                 {
-                    for (int j = 0; j < Global.MainWnd.MainDesigner.CurrentStageSize.y; j++)
+                    for (int i = 0; i < Global.cpd.runtime.Definitions.MapSize.x; i++)
                     {
-                        ptr = (byte*)(void*)bitmapData.Scan0;
-                        int num2 = i * 3 + bitmapData.Stride * j;
-                        string key = Global.cpd.EditingMap[j].Substring(i * Global.cpd.runtime.Definitions.StageSize.bytesize, Global.cpd.runtime.Definitions.StageSize.bytesize);
-                        if (dictionary.ContainsKey(key))
+                        for (int j = 0; j < Global.cpd.runtime.Definitions.MapSize.y; j++)
                         {
-                            ChipsData chipsData = dictionary[key];
-                            if (chipsData.color == "" || chipsData.color == null)
+                            ptr = (byte*)(void*)bitmapData.Scan0;
+                            int num2 = i * 3 + bitmapData.Stride * j;
+                            string key = Global.cpd.EditingMap[j].Substring(i * Global.cpd.runtime.Definitions.MapSize.bytesize, Global.cpd.runtime.Definitions.MapSize.bytesize);
+                            if (dictionary.ContainsKey(key))
                             {
-                                if (chipsData.character.Equals(array[0].character))
+                                ChipsData chipsData = dictionary[key];
+                                if (chipsData.color == "" || chipsData.color == null)
                                 {
-                                    color = Color.Black;
+                                    if (chipsData.character.Equals(array[0].character))
+                                    {
+                                        color = Color.Black;
+                                    }
+                                    else
+                                    {
+                                        color = Color.White;
+                                    }
                                 }
                                 else
                                 {
-                                    color = Color.White;
+                                    color = Color.FromName(chipsData.color);
                                 }
                             }
                             else
                             {
-                                color = Color.FromName(chipsData.color);
+                                color = Color.Black;
                             }
+                            ptr[num2] = color.B;
+                            ptr[num2 + 1] = color.G;
+                            ptr[num2 + 2] = color.R;
                         }
-                        else
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < Global.MainWnd.MainDesigner.CurrentStageSize.x; i++)
+                    {
+                        for (int j = 0; j < Global.MainWnd.MainDesigner.CurrentStageSize.y; j++)
                         {
-                            color = Color.Black;
+                            ptr = (byte*)(void*)bitmapData.Scan0;
+                            int num2 = i * 3 + bitmapData.Stride * j;
+                            string key;
+                            if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                            {
+                                if (Global.cpd.project.Use3rdMapData)
+                                {
+                                    key = Global.cpd.EditingMap[j].Split(',')[i];
+                                }
+                                else
+                                {
+                                    key = Global.cpd.EditingMap[j].Substring(i * Global.cpd.runtime.Definitions.StageSize.bytesize, Global.cpd.runtime.Definitions.StageSize.bytesize);
+                                }
+                            }
+                            else
+                            {
+                                if (Global.cpd.project.Use3rdMapData)
+                                {
+                                    key = Global.cpd.EditingLayer[j].Split(',')[i];
+                                }
+                                else
+                                {
+                                    key = Global.cpd.EditingLayer[j].Substring(i * Global.cpd.runtime.Definitions.LayerSize.bytesize, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                                }
+                            }
+                            if (dictionary.ContainsKey(key))
+                            {
+                                ChipsData chipsData = dictionary[key];
+                                if (chipsData.color == "" || chipsData.color == null)
+                                {
+                                    if (Global.cpd.project.Use3rdMapData)
+                                    {
+                                        if (chipsData.code == array[0].code)
+                                        {
+                                            color = Color.Black;
+                                        }
+                                    }
+                                    else if (chipsData.character == array[0].character)
+                                    {
+                                        color = Color.Black;
+                                    }
+                                    else
+                                    {
+                                        color = Color.White;
+                                    }
+                                }
+                                else
+                                {
+                                    color = Color.FromName(chipsData.color);
+                                }
+                            }
+                            else
+                            {
+                                color = Color.Black;
+                            }
+                            ptr[num2] = color.B;
+                            ptr[num2 + 1] = color.G;
+                            ptr[num2 + 2] = color.R;
                         }
-                        ptr[num2] = color.B;
-                        ptr[num2 + 1] = color.G;
-                        ptr[num2 + 2] = color.R;
                     }
                 }
             }
