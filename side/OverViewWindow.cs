@@ -29,6 +29,7 @@ namespace MasaoPlus
         public void UpdateView()
         {
             OverViewViewer.UpdateDrawSource();
+            ClientSize = OverViewViewer.Size;
             mWndSize = new Size((int)(Global.MainWnd.MainDesigner.Size.Width / Global.cpd.runtime.Definitions.ChipSize.Width * OverViewViewer.ppb / Global.config.draw.ZoomIndex), (int)(Global.MainWnd.MainDesigner.Size.Height / Global.cpd.runtime.Definitions.ChipSize.Height * OverViewViewer.ppb / Global.config.draw.ZoomIndex));
             cPoint = new Point(mWndSize.Width / 2, mWndSize.Height / 2);
         }
