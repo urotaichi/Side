@@ -164,6 +164,33 @@ namespace MasaoPlus.Dialogs
                         flag = true;
                     }
                 }
+                void resetEditingMapSize()
+                {
+                    switch (Global.state.EdittingStage)
+                    {
+                        case 0:
+                            Global.cpd.EditingMap = Global.cpd.project.StageData;
+                            Global.cpd.EditingLayer = Global.cpd.project.LayerData;
+                            break;
+                        case 1:
+                            Global.cpd.EditingMap = Global.cpd.project.StageData2;
+                            Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
+                            break;
+                        case 2:
+                            Global.cpd.EditingMap = Global.cpd.project.StageData3;
+                            Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
+                            break;
+                        case 3:
+                            Global.cpd.EditingMap = Global.cpd.project.StageData4;
+                            Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
+                            break;
+                    }
+                    Global.state.StageSizeChanged = true;
+                    Global.MainWnd.MainDesigner.ForceBufferResize();
+                    Global.MainWnd.UpdateLayer();
+                    Global.MainWnd.UpdateScrollbar();
+                }
+
                 if (Global.cpd.project.Use3rdMapData != Use3rdMapData.Checked)
                 {
                     if (Use3rdMapData.Checked)
@@ -187,82 +214,68 @@ namespace MasaoPlus.Dialogs
                         {
                             return;
                         }
-                        //var nullcode = Global.cpd.Mapchip[0].code;
-                        //ResizeX(Global.cpd.runtime.Definitions.StageSize.x, 180, ref Global.cpd.project.StageData, nullcode);
-                        //ResizeY(Global.cpd.runtime.Definitions.StageSize, 30, ref Global.cpd.project.StageData, nullcode);
-                        //ResizeX(Global.cpd.runtime.Definitions.StageSize2.x, 180, ref Global.cpd.project.StageData2, nullcode);
-                        //ResizeY(Global.cpd.runtime.Definitions.StageSize2, 30, ref Global.cpd.project.StageData2, nullcode);
-                        //ResizeX(Global.cpd.runtime.Definitions.StageSize3.x, 180, ref Global.cpd.project.StageData3, nullcode);
-                        //ResizeY(Global.cpd.runtime.Definitions.StageSize3, 30, ref Global.cpd.project.StageData3, nullcode);
-                        //ResizeX(Global.cpd.runtime.Definitions.StageSize4.x, 180, ref Global.cpd.project.StageData4, nullcode);
-                        //ResizeY(Global.cpd.runtime.Definitions.StageSize4, 30, ref Global.cpd.project.StageData4, nullcode);
+                        MapSizeWidth.Value = 180;
+                        MapSizeHeight.Value = 30;
+                        MapSize2Width.Value = 180;
+                        MapSize2Height.Value = 30;
+                        MapSize3Width.Value = 180;
+                        MapSize3Height.Value = 30;
+                        MapSize4Width.Value = 180;
+                        MapSize4Height.Value = 30;
+                        var nullcode = Global.cpd.Mapchip[0].code;
+                        ResizeX(Global.cpd.runtime.Definitions.StageSize.x, MapSizeWidth.Value, ref Global.cpd.project.StageData, nullcode);
+                        ResizeY(Global.cpd.runtime.Definitions.StageSize, MapSizeHeight.Value, ref Global.cpd.project.StageData, nullcode);
+                        ResizeX(Global.cpd.runtime.Definitions.StageSize2.x, MapSize2Width.Value, ref Global.cpd.project.StageData2, nullcode);
+                        ResizeY(Global.cpd.runtime.Definitions.StageSize2, MapSize2Height.Value, ref Global.cpd.project.StageData2, nullcode);
+                        ResizeX(Global.cpd.runtime.Definitions.StageSize3.x, MapSize3Width.Value, ref Global.cpd.project.StageData3, nullcode);
+                        ResizeY(Global.cpd.runtime.Definitions.StageSize3, MapSize3Height.Value, ref Global.cpd.project.StageData3, nullcode);
+                        ResizeX(Global.cpd.runtime.Definitions.StageSize4.x, MapSize4Width.Value, ref Global.cpd.project.StageData4, nullcode);
+                        ResizeY(Global.cpd.runtime.Definitions.StageSize4, MapSize4Height.Value, ref Global.cpd.project.StageData4, nullcode);
                         Project.Convert2ndMapData(Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize.bytesize);
                         Project.Convert2ndMapData(Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize.bytesize);
                         Project.Convert2ndMapData(Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize.bytesize);
                         Project.Convert2ndMapData(Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize.bytesize);
-                        //setSize(ref Global.cpd.runtime.Definitions.StageSize.x, 180);
-                        //setSize(ref Global.cpd.runtime.Definitions.StageSize.y, 30);
-                        //setSize(ref Global.cpd.runtime.Definitions.StageSize2.x, 180);
-                        //setSize(ref Global.cpd.runtime.Definitions.StageSize2.y, 30);
-                        //setSize(ref Global.cpd.runtime.Definitions.StageSize3.x, 180);
-                        //setSize(ref Global.cpd.runtime.Definitions.StageSize3.y, 30);
-                        //setSize(ref Global.cpd.runtime.Definitions.StageSize4.x, 180);
-                        //setSize(ref Global.cpd.runtime.Definitions.StageSize4.y, 30);
+                        setSize(ref Global.cpd.runtime.Definitions.StageSize.x, MapSizeWidth.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.StageSize.y, MapSizeHeight.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.StageSize2.x, MapSize2Width.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.StageSize2.y, MapSize2Height.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.StageSize3.x, MapSize3Width.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.StageSize3.y, MapSize3Height.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.StageSize4.x, MapSize4Width.Value);
+                        setSize(ref Global.cpd.runtime.Definitions.StageSize4.y, MapSize4Height.Value);
                         if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
                         {
-                            //nullcode = Global.cpd.Layerchip[0].code;
-                            //ResizeX(Global.cpd.runtime.Definitions.LayerSize.x, 180, ref Global.cpd.project.LayerData, nullcode);
-                            //ResizeY(Global.cpd.runtime.Definitions.LayerSize, 30, ref Global.cpd.project.LayerData, nullcode);
-                            //ResizeX(Global.cpd.runtime.Definitions.LayerSize2.x, 180, ref Global.cpd.project.LayerData2, nullcode);
-                            //ResizeY(Global.cpd.runtime.Definitions.LayerSize2, 30, ref Global.cpd.project.LayerData2, nullcode);
-                            //ResizeX(Global.cpd.runtime.Definitions.LayerSize3.x, 180, ref Global.cpd.project.LayerData3, nullcode);
-                            //ResizeY(Global.cpd.runtime.Definitions.LayerSize3, 30, ref Global.cpd.project.LayerData3, nullcode);
-                            //ResizeX(Global.cpd.runtime.Definitions.LayerSize4.x, 180, ref Global.cpd.project.LayerData4, nullcode);
-                            //ResizeY(Global.cpd.runtime.Definitions.LayerSize4, 30, ref Global.cpd.project.LayerData4, nullcode);
+                            nullcode = Global.cpd.Layerchip[0].code;
+                            ResizeX(Global.cpd.runtime.Definitions.LayerSize.x, MapSizeWidth.Value, ref Global.cpd.project.LayerData, nullcode);
+                            ResizeY(Global.cpd.runtime.Definitions.LayerSize, MapSizeHeight.Value, ref Global.cpd.project.LayerData, nullcode);
+                            ResizeX(Global.cpd.runtime.Definitions.LayerSize2.x, MapSize2Width.Value, ref Global.cpd.project.LayerData2, nullcode);
+                            ResizeY(Global.cpd.runtime.Definitions.LayerSize2, MapSize2Height.Value, ref Global.cpd.project.LayerData2, nullcode);
+                            ResizeX(Global.cpd.runtime.Definitions.LayerSize3.x, MapSize3Width.Value, ref Global.cpd.project.LayerData3, nullcode);
+                            ResizeY(Global.cpd.runtime.Definitions.LayerSize3, MapSize3Height.Value, ref Global.cpd.project.LayerData3, nullcode);
+                            ResizeX(Global.cpd.runtime.Definitions.LayerSize4.x, MapSize4Width.Value, ref Global.cpd.project.LayerData4, nullcode);
+                            ResizeY(Global.cpd.runtime.Definitions.LayerSize4, MapSize4Height.Value, ref Global.cpd.project.LayerData4, nullcode);
                             Project.Convert2ndMapData(Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize.bytesize);
                             Project.Convert2ndMapData(Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize.bytesize);
                             Project.Convert2ndMapData(Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize.bytesize);
                             Project.Convert2ndMapData(Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize.bytesize);
-                            //setSize(ref Global.cpd.runtime.Definitions.LayerSize.x, 180);
-                            //setSize(ref Global.cpd.runtime.Definitions.LayerSize.y, 30);
-                            //setSize(ref Global.cpd.runtime.Definitions.LayerSize2.x, 180);
-                            //setSize(ref Global.cpd.runtime.Definitions.LayerSize2.y, 30);
-                            //setSize(ref Global.cpd.runtime.Definitions.LayerSize3.x, 180);
-                            //setSize(ref Global.cpd.runtime.Definitions.LayerSize3.y, 30);
-                            //setSize(ref Global.cpd.runtime.Definitions.LayerSize4.x, 180);
-                            //setSize(ref Global.cpd.runtime.Definitions.LayerSize4.y, 30);
+                            setSize(ref Global.cpd.runtime.Definitions.LayerSize.x, MapSizeWidth.Value);
+                            setSize(ref Global.cpd.runtime.Definitions.LayerSize.y, MapSizeHeight.Value);
+                            setSize(ref Global.cpd.runtime.Definitions.LayerSize2.x, MapSize2Width.Value);
+                            setSize(ref Global.cpd.runtime.Definitions.LayerSize2.y, MapSize2Height.Value);
+                            setSize(ref Global.cpd.runtime.Definitions.LayerSize3.x, MapSize3Width.Value);
+                            setSize(ref Global.cpd.runtime.Definitions.LayerSize3.y, MapSize3Height.Value);
+                            setSize(ref Global.cpd.runtime.Definitions.LayerSize4.x, MapSize4Width.Value);
+                            setSize(ref Global.cpd.runtime.Definitions.LayerSize4.y, MapSize4Height.Value);
                         }
                     }
                     Global.cpd.project.Use3rdMapData = Use3rdMapData.Checked;
+                    if (flag)
+                    {
+                        resetEditingMapSize();
+                    }
                     Global.MainWnd.RefreshAll();
                     Global.MainWnd.MainDesigner.ClearBuffer();
                     Global.MainWnd.MainDesigner.AddBuffer();
-                    //if (flag)
-                    //{
-                    //    switch (Global.state.EdittingStage)
-                    //    {
-                    //        case 0:
-                    //            Global.cpd.EditingMap = Global.cpd.project.StageData;
-                    //            Global.cpd.EditingLayer = Global.cpd.project.LayerData;
-                    //            break;
-                    //        case 1:
-                    //            Global.cpd.EditingMap = Global.cpd.project.StageData2;
-                    //            Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
-                    //            break;
-                    //        case 2:
-                    //            Global.cpd.EditingMap = Global.cpd.project.StageData3;
-                    //            Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
-                    //            break;
-                    //        case 3:
-                    //            Global.cpd.EditingMap = Global.cpd.project.StageData4;
-                    //            Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
-                    //            break;
-                    //    }
-                    //    Global.state.StageSizeChanged = true;
-                    //    Global.MainWnd.MainDesigner.ForceBufferResize();
-                    //    Global.MainWnd.UpdateLayer();
-                    //    Global.MainWnd.UpdateScrollbar();
-                    //}
                 }
                 if (Use3rdMapData.Checked)
                 {
@@ -338,29 +351,7 @@ namespace MasaoPlus.Dialogs
                         }
                         if (flag)
                         {
-                            switch (Global.state.EdittingStage)
-                            {
-                                case 0:
-                                    Global.cpd.EditingMap = Global.cpd.project.StageData;
-                                    Global.cpd.EditingLayer = Global.cpd.project.LayerData;
-                                    break;
-                                case 1:
-                                    Global.cpd.EditingMap = Global.cpd.project.StageData2;
-                                    Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
-                                    break;
-                                case 2:
-                                    Global.cpd.EditingMap = Global.cpd.project.StageData3;
-                                    Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
-                                    break;
-                                case 3:
-                                    Global.cpd.EditingMap = Global.cpd.project.StageData4;
-                                    Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
-                                    break;
-                            }
-                            Global.state.StageSizeChanged = true;
-                            Global.MainWnd.MainDesigner.ForceBufferResize();
-                            Global.MainWnd.UpdateLayer();
-                            Global.MainWnd.UpdateScrollbar();
+                            resetEditingMapSize();
                         }
                     }
                 }
