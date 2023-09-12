@@ -293,7 +293,7 @@
       <chip value="81"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>160</Y></xdraw><name>スポット処理</name>
         <description>大。この付近に近づくとスポット処理開始。</description></chip>
       <chip value="82"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
-        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+        <description>終了。この付近に近づくとスポット処理終了。</description></chip>
       <chip value="83"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
         <description>範囲拡大アイテム。このアイテムを取るとスポット処理の範囲が拡大。</description></chip>
       <chip value="84"><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
@@ -1207,7 +1207,7 @@
       <chip value="81"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>160</Y></xdraw><name>スポット処理</name>
         <description>大。この付近に近づくとスポット処理開始。</description></chip>
       <chip value="82"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
-        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+        <description>終了。この付近に近づくとスポット処理終了。</description></chip>
       <chip value="83"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
         <description>範囲拡大アイテム。このアイテムを取るとスポット処理の範囲が拡大。</description></chip>
       <chip value="84"><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
@@ -2121,7 +2121,7 @@
       <chip value="81"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>160</Y></xdraw><name>スポット処理</name>
         <description>大。この付近に近づくとスポット処理開始。</description></chip>
       <chip value="82"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
-        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+        <description>終了。この付近に近づくとスポット処理終了。</description></chip>
       <chip value="83"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
         <description>範囲拡大アイテム。このアイテムを取るとスポット処理の範囲が拡大。</description></chip>
       <chip value="84"><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
@@ -3035,7 +3035,7 @@
       <chip value="81"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>160</Y></xdraw><name>スポット処理</name>
         <description>大。この付近に近づくとスポット処理開始。</description></chip>
       <chip value="82"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
-        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+        <description>終了。この付近に近づくとスポット処理終了。</description></chip>
       <chip value="83"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
         <description>範囲拡大アイテム。このアイテムを取るとスポット処理の範囲が拡大。</description></chip>
       <chip value="84"><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
@@ -3949,7 +3949,7 @@
       <chip value="81"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>160</Y></xdraw><name>スポット処理</name>
         <description>大。この付近に近づくとスポット処理開始。</description></chip>
       <chip value="82"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
-        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+        <description>終了。この付近に近づくとスポット処理終了。</description></chip>
       <chip value="83"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
         <description>範囲拡大アイテム。このアイテムを取るとスポット処理の範囲が拡大。</description></chip>
       <chip value="84"><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
@@ -4863,7 +4863,7 @@
       <chip value="81"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>160</Y></xdraw><name>スポット処理</name>
         <description>大。この付近に近づくとスポット処理開始。</description></chip>
       <chip value="82"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
-        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+        <description>終了。この付近に近づくとスポット処理終了。</description></chip>
       <chip value="83"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
         <description>範囲拡大アイテム。このアイテムを取るとスポット処理の範囲が拡大。</description></chip>
       <chip value="84"><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
@@ -5919,7 +5919,7 @@
       <chip value="81"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>160</Y></xdraw><name>スポット処理</name>
         <description>大。この付近に近づくとスポット処理開始。</description></chip>
       <chip value="82"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
-        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+        <description>終了。この付近に近づくとスポット処理終了。</description></chip>
       <chip value="83"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
         <description>範囲拡大アイテム。このアイテムを取るとスポット処理の範囲が拡大。</description></chip>
       <chip value="84"><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
@@ -6833,7 +6833,7 @@
       <chip value="81"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>160</Y></xdraw><name>スポット処理</name>
         <description>大。この付近に近づくとスポット処理開始。</description></chip>
       <chip value="82"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
-        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+        <description>終了。この付近に近づくとスポット処理終了。</description></chip>
       <chip value="83"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
         <description>範囲拡大アイテム。このアイテムを取るとスポット処理の範囲が拡大。</description></chip>
       <chip value="84"><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
@@ -7802,7 +7802,7 @@
       <chip value="81"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>160</Y></xdraw><name>スポット処理</name>
         <description>大。この付近に近づくとスポット処理開始。</description></chip>
       <chip value="82"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
-        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+        <description>終了。この付近に近づくとスポット処理終了。</description></chip>
       <chip value="83"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
         <description>範囲拡大アイテム。このアイテムを取るとスポット処理の範囲が拡大。</description></chip>
       <chip value="84"><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
@@ -8715,7 +8715,7 @@
       <chip value="81"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>160</Y></xdraw><name>スポット処理</name>
         <description>大。この付近に近づくとスポット処理開始。</description></chip>
       <chip value="82"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
-        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+        <description>終了。この付近に近づくとスポット処理終了。</description></chip>
       <chip value="83"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
         <description>範囲拡大アイテム。このアイテムを取るとスポット処理の範囲が拡大。</description></chip>
       <chip value="84"><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
@@ -9628,7 +9628,7 @@
       <chip value="81"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>160</Y></xdraw><name>スポット処理</name>
         <description>大。この付近に近づくとスポット処理開始。</description></chip>
       <chip value="82"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
-        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+        <description>終了。この付近に近づくとスポット処理終了。</description></chip>
       <chip value="83"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
         <description>範囲拡大アイテム。このアイテムを取るとスポット処理の範囲が拡大。</description></chip>
       <chip value="84"><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
@@ -10541,7 +10541,7 @@
       <chip value="81"><pattern><X>0</X><Y>0</Y></pattern><xdraw><X>96</X><Y>160</Y></xdraw><name>スポット処理</name>
         <description>大。この付近に近づくとスポット処理開始。</description></chip>
       <chip value="82"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
-        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+        <description>終了。この付近に近づくとスポット処理終了。</description></chip>
       <chip value="83"><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
         <description>範囲拡大アイテム。このアイテムを取るとスポット処理の範囲が拡大。</description></chip>
       <chip value="84"><pattern><X>192</X><Y>225</Y></pattern><size><Width>64</Width><Height>64</Height></size>
@@ -11977,7 +11977,7 @@
     </chips>
     <chips code="1082" color="yellow">
       <chip><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>128</X><Y>160</Y></xdraw><name>スポット処理</name>
-        <description>終了。このアイテムを取るとスポット処理終了。</description></chip>
+        <description>終了。この付近に近づくとスポット処理終了。</description></chip>
     </chips>
     <chips code="1083" color="yellow">
       <chip><pattern><X>224</X><Y>288</Y></pattern><xdraw><X>256</X><Y>576</Y></xdraw><name>スポット処理</name>
