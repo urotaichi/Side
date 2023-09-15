@@ -2631,7 +2631,7 @@ namespace MasaoPlus
                         vo_pa = new PointF[4];
 
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
-                        if (cschip.name == "ファイヤーバー" || cschip.name == "スイッチ式ファイヤーバー" && cschip.description.Contains("回り")) width = 140;
+                        if (cschip.name == "ファイヤーバー" || cschip.name == "スイッチ式ファイヤーバー") width = 140;
                         else width = 172;
                         vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 25) + Math.Cos(rad) * 16);
                         vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) + Math.Sin(rad) * 16);
@@ -2645,7 +2645,7 @@ namespace MasaoPlus
 
 						// 内側の色を描画
 						brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-                        if (cschip.name == "ファイヤーバー" || cschip.name == "スイッチ式ファイヤーバー" && cschip.description.Contains("回り")) width = 134;
+                        if (cschip.name == "ファイヤーバー" || cschip.name == "スイッチ式ファイヤーバー") width = 134;
                         else width = 166;
                         vo_pa[0].X = (float)(Math.Cos(v * d) * 31 + Math.Cos(rad) * 10);
                         vo_pa[0].Y = (float)(Math.Sin(v * d) * 31 + Math.Sin(rad) * 10);
