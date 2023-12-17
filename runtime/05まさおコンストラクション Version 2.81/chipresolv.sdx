@@ -199,10 +199,6 @@
           <Width>64</Width>
           <Height>64</Height>
         </size>
-        <center>
-          <X>0</X>
-          <Y>32</Y>
-        </center>
         <name>乗れるカイオール</name>
         <description>乗ると右へ進みます</description>
       </chip>
