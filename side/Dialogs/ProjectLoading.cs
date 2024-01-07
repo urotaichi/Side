@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MasaoPlus.Dialogs
@@ -15,23 +16,11 @@ namespace MasaoPlus.Dialogs
             InitializeComponent();
         }
 
-        private void ProjectLoading_Shown(object sender, EventArgs e)
+        private async void ProjectLoading_Shown(object sender, EventArgs e)
         {
             Application.DoEvents();
-            LoadProjectDlg loadProjectDlg = new LoadProjectDlg(LoadProject);
-            loadProjectDlg.BeginInvoke(new AsyncCallback(EndInv), null);
-        }
-
-        public void EndInv(IAsyncResult iar)
-        {
-            LoadProjectDlg method = new LoadProjectDlg(EndInvInv);
-            try
-            {
-                Invoke(method);
-            }
-            catch
-            {
-            }
+            await Task.Run(() => LoadProject());
+            EndInvInv();
         }
 
         public void EndInvInv()
