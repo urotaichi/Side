@@ -1,20 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{77D07324-B54B-4E8E-A6C4-CEFB83BC7A4B}</ProjectGuid>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MasaoPlus</RootNamespace>
-    <AssemblyName>side</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
     <ApplicationIcon>side.ico</ApplicationIcon>
     <StartupObject>MasaoPlus.Program</StartupObject>
-    <TargetFrameworkProfile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -30,201 +20,77 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
     <OutputPath>..\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Prefer32Bit>false</Prefer32Bit>
     <LangVersion>8.0</LangVersion>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Prefer32Bit>false</Prefer32Bit>
     <LangVersion>8.0</LangVersion>
+    <DebugType>embedded</DebugType>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AssemblyVersion></AssemblyVersion>
+    <FileVersion></FileVersion>
+	<AssemblyTitle>Side</AssemblyTitle>
+    <Copyright>© 2024 urotaichi</Copyright>
+    <Title>Side</Title>
+    <Version>4.0.0</Version>
+    <Authors>urotaichi</Authors>
+    <Product>Supermasao Integrated Development Environment</Product>
+    <Description>正男エディタ</Description>
+    <PackageProjectUrl>https://side.urotaichi.com/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/urotaichi/Side</RepositoryUrl>
+    <PackageTags>canvas-masao;masao;supermasao</PackageTags>
+    <NeutralLanguage>ja-JP</NeutralLanguage>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Design" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
+  <PropertyGroup>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+	<Company>urotaichi corporation</Company>
+  </PropertyGroup>
   <ItemGroup>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AthleticView.cs" />
-    <Compile Include="ChipData.cs" />
-    <Compile Include="ChipDataClass.cs" />
-    <Compile Include="ChipsData.cs" />
-    <Compile Include="Colors.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="ConfigParam.cs" />
-    <Compile Include="ConfigurationOwner.cs" />
-    <Compile Include="Controls\CommandLinkButton.cs">
+    <Compile Update="Controls\CommandLinkButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\ConfigList.cs">
+    <Compile Update="Controls\ConfigList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\CustomPartsConfigList.cs">
+    <Compile Update="Controls\CustomPartsConfigList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\DataGridViewNumericUpdownCell.cs" />
-    <Compile Include="Controls\DataGridViewNumericUpdownColumn.cs" />
-    <Compile Include="Controls\DataGridViewNumericUpdownEditingControl.cs">
+    <Compile Update="Controls\DataGridViewNumericUpdownEditingControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\OverViewer.cs">
+    <Compile Update="Controls\OverViewer.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CurrentProjectData.cs" />
-    <Compile Include="CustomPartsProperties.cs" />
-    <Compile Include="Definition.cs" />
-    <Compile Include="Dialogs\HTMLInheritance.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\HTMLInheritance.Designer.cs">
-      <DependentUpon>HTMLInheritance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\NewProject.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\NewProject.Designer.cs">
-      <DependentUpon>NewProject.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\OutputControl.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\OutputControl.Designer.cs">
-      <DependentUpon>OutputControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\ProjectConfig.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\ProjectConfig.Designer.cs">
-      <DependentUpon>ProjectConfig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\ProjectLoading.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\ProjectLoading.Designer.cs">
-      <DependentUpon>ProjectLoading.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\ProjInheritance.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\ProjInheritance.Designer.cs">
-      <DependentUpon>ProjInheritance.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\PropertyTextInputDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\PropertyTextInputDialog.Designer.cs">
-      <DependentUpon>PropertyTextInputDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\ResetRuntime.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\ResetRuntime.Designer.cs">
-      <DependentUpon>ResetRuntime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\RuntimeManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\RuntimeManager.Designer.cs">
-      <DependentUpon>RuntimeManager.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\StartUp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\StartUp.Designer.cs">
-      <DependentUpon>StartUp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\VersionInfo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\VersionInfo.Designer.cs">
-      <DependentUpon>VersionInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dialogs\WebUpdate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dialogs\WebUpdate.Designer.cs">
-      <DependentUpon>WebUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DrawEx.cs" />
-    <Compile Include="Global.cs" />
-    <Compile Include="GUIChipList.cs">
+    <Compile Update="GUIChipList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUICustomPartsChipList.cs">
+    <Compile Update="GUICustomPartsChipList.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUIDesigner.cs">
+    <Compile Update="GUIDesigner.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HTMLReplaceData.cs" />
-    <Compile Include="IntegratedBrowser.cs">
+    <Compile Update="IntegratedBrowser.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainWindow.Designer.cs">
-      <DependentUpon>MainWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Native.cs" />
-    <Compile Include="OverViewWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OverViewWindow.Designer.cs">
-      <DependentUpon>OverViewWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Project.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.cs" />
-    <Compile Include="Properties\Settings.Designer.cs">
-      <DependentUpon>Settings.settings</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="Runtime.cs" />
-    <Compile Include="SideConfig.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SideConfig.Designer.cs">
-      <DependentUpon>SideConfig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="State.cs" />
-    <Compile Include="Subsystem.cs" />
-    <Compile Include="TextEditor.cs">
+    <Compile Update="TextEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UpdateData.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\CommandLinkButton.resources" />
@@ -249,14 +115,6 @@
     <EmbeddedResource Include="Properties\Resources.resources" />
     <EmbeddedResource Include="SideConfig.resources" />
     <EmbeddedResource Include="TextEditor.resources" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="app.manifest" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Web.WebView2">
@@ -292,5 +150,4 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
