@@ -6,6 +6,14 @@ namespace MasaoPlus
 {
     public class Definition
     {
+        public Definition()
+        {
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
+
+            Version = $"{version.Major}.{version.Minor}.{version.Build}";
+
+            EditorIdStr = $"/* [MI]Created By:Side - the Supermasao Integrated Development Environment v{Version}[/MI] */";
+    }
         public string AppName = "Side";
 
         public string AppNameFull = "Supermasao Integrated Development Environment";
@@ -44,11 +52,11 @@ namespace MasaoPlus
 
         public int ZipExtractBufferLength = 10240;
 
-        public string Version = FileVersionInfo.GetVersionInfo(new Uri(Assembly.GetExecutingAssembly().CodeBase).LocalPath).FileVersion;
+        public string Version;
 
         public double CheckVersion = 3.301;
 
-        public string EditorIdStr = "/* [MI]Created By:Side - the Supermasao Integrated Development Environment v3.3.1[/MI] */";
+        public string EditorIdStr;
 
         public bool IsAutoUpdateEnabled = true;
 

@@ -18,7 +18,7 @@ namespace MasaoPlus.Dialogs
 
         private void StartUp_Load(object sender, EventArgs e)
         {
-            WelcomeLabel.Text = Global.definition.AppNameFull + " v" + Global.definition.Version;
+            WelcomeLabel.Text = $"{Global.definition.AppNameFull} v{Global.definition.Version}";
         }
 
         private void StartUp_Shown(object sender, EventArgs e)
