@@ -30,18 +30,18 @@ namespace MasaoPlus
             return result;
         }
 
-        public static Project ParseBinary(string file)
-        {
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            Project result;
-            using (FileStream fileStream = new FileStream(file, FileMode.Create))
-            {
-                Project project = (Project)binaryFormatter.Deserialize(fileStream);
-                project.Config.ConfigReady();
-                result = project;
-            }
-            return result;
-        }
+        //public static Project ParseBinary(string file)
+        //{
+        //    BinaryFormatter binaryFormatter = new BinaryFormatter();
+        //    Project result;
+        //    using (FileStream fileStream = new FileStream(file, FileMode.Create))
+        //    {
+        //        Project project = (Project)binaryFormatter.Deserialize(fileStream);
+        //        project.Config.ConfigReady();
+        //        result = project;
+        //    }
+        //    return result;
+        //}
 
         public void SaveXML(string file)
         {
@@ -58,13 +58,13 @@ namespace MasaoPlus
             }
         }
 
-        public void SaveBinary(string file)
-        {
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            using FileStream fileStream = new FileStream(file, FileMode.Create);
-            using DeflateStream deflateStream = new DeflateStream(fileStream, CompressionMode.Compress);
-            binaryFormatter.Serialize(deflateStream, this);
-        }
+        //public void SaveBinary(string file)
+        //{
+        //    BinaryFormatter binaryFormatter = new BinaryFormatter();
+        //    using FileStream fileStream = new FileStream(file, FileMode.Create);
+        //    using DeflateStream deflateStream = new DeflateStream(fileStream, CompressionMode.Compress);
+        //    binaryFormatter.Serialize(deflateStream, this);
+        //}
 
         public static void Convert3rdMapData(string[] StageData, int bytesize = 1)
         {
