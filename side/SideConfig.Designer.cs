@@ -105,9 +105,9 @@
 			this.tabPage1.Text = "システム";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			this.WrapPropText.AutoSize = true;
-			this.WrapPropText.Location = new global::System.Drawing.Point(6, 142);
+			this.WrapPropText.Location = new global::System.Drawing.Point(6 * DeviceDpi / 96, 142 * DeviceDpi / 96);
 			this.WrapPropText.Name = "WrapPropText";
-			this.WrapPropText.Size = new global::System.Drawing.Size(212, 16);
+			this.WrapPropText.Size = new global::System.Drawing.Size(212 * DeviceDpi / 96, 16 * DeviceDpi / 96);
 			this.WrapPropText.TabIndex = 7;
 			this.WrapPropText.Text = "長いプロパティ名を改行する(&B)";
 			this.WrapPropText.UseVisualStyleBackColor = true;
