@@ -84,8 +84,8 @@ namespace MasaoPlus
         private void MainWindow_Load(object sender, EventArgs e)
         {
             MUpdateApp.Enabled = Global.definition.IsAutoUpdateEnabled;
-            SetDesktopLocation(Global.config.lastData.WndPoint.X, Global.config.lastData.WndPoint.Y);
-            Size = Global.config.lastData.WndSize;
+            SetDesktopLocation(Global.config.lastData.WndPoint.X * DeviceDpi / 96, Global.config.lastData.WndPoint.Y * DeviceDpi / 96);
+            Size = new Size(Global.config.lastData.WndSize.Width * DeviceDpi / 96, Global.config.lastData.WndSize.Height * DeviceDpi / 96);
             WindowState = Global.config.lastData.WndState;
             MainSplit.SplitterDistance = (int)(Width * Global.config.lastData.SpliterDist);
             if (Global.config.localSystem.ReverseTabView)
@@ -524,8 +524,8 @@ namespace MasaoPlus
 
         private void EditorSystemPanel_Resize(object sender, EventArgs e)
         {
-            MainDesigner.Width = EditorSystemPanel.Width - 20;
-            MainDesigner.Height = EditorSystemPanel.Height - 20;
+            MainDesigner.Width = EditorSystemPanel.Width - 20 * DeviceDpi / 96;
+            MainDesigner.Height = EditorSystemPanel.Height - 20 * DeviceDpi / 96;
             GVirtScroll.Left = MainDesigner.Width;
             GVirtScroll.Height = MainDesigner.Height;
             GVirtScroll.Refresh();
@@ -1015,15 +1015,20 @@ namespace MasaoPlus
         }
 
         // チップリストの左上の画像が変わった時
+        // 左上のチップのサンプル画像　拡張描画画像がなぜか描画されていないので後で追加？
         private void ChipImage_Paint(object sender, PaintEventArgs e)
         {
             if (MainDesigner.DrawChipOrig != null)
             {
-                e.Graphics.InterpolationMode = InterpolationMode.High;
+                e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                 ChipData cschip = Global.state.CurrentChip.GetCSChip();
-                if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                if (DeviceDpi / 96 >= 2 && (cschip.size == default || cschip.size.Width / cschip.size.Height == 1))
                 {
-                    e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
+                    e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                }
+                else e.Graphics.InterpolationMode = InterpolationMode.High;
+                if (!Global.cpd.UseLayer || Global.state.EditingForeground) // パターン画像
+                {
                     if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.state.CurrentChip.character == "Z")
                     {
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, ChipImage.Size.Width, ChipImage.Size.Height);
@@ -1083,7 +1088,7 @@ namespace MasaoPlus
                         }
                     }
                 }
-                else
+                else // レイヤー画像
                 {
                     e.Graphics.DrawImage(MainDesigner.DrawLayerOrig, new Rectangle(new Point(0, 0), ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
                 }
@@ -2337,8 +2342,8 @@ namespace MasaoPlus
             {
                 Global.config.lastData.SpliterDist = MainSplit.SplitterDistance / (double)Width;
                 Rectangle normalWindowLocation = Native.GetNormalWindowLocation(this);
-                Global.config.lastData.WndSize = normalWindowLocation.Size;
-                Global.config.lastData.WndPoint = normalWindowLocation.Location;
+                Global.config.lastData.WndSize = new Size(normalWindowLocation.Size.Width * 96 / DeviceDpi, normalWindowLocation.Size.Height * 96 / DeviceDpi);
+                Global.config.lastData.WndPoint = new Point(normalWindowLocation.Location.X * 96 / DeviceDpi, normalWindowLocation.Location.Y * 96 / DeviceDpi);
                 Global.config.lastData.WndState = WindowState;
                 Global.config.SaveXML(Path.Combine(Application.StartupPath, Global.definition.ConfigFile));
                 if (Global.state.RunFile != null)

@@ -727,6 +727,8 @@ namespace MasaoPlus.Controls
 
         protected virtual void InitializeComponent()
         {
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             ConfigSelector = new ComboBox();
             ConfView = new DataGridView();
             CNames = new DataGridViewTextBoxColumn();
@@ -740,7 +742,7 @@ namespace MasaoPlus.Controls
             ConfigSelector.FormattingEnabled = true;
             ConfigSelector.Location = new Point(0, 0);
             ConfigSelector.Name = "ConfigSelector";
-            ConfigSelector.Size = new Size(298, 20);
+            ConfigSelector.Size = new Size(298 * DeviceDpi / 96, 20 * DeviceDpi / 96);
             ConfigSelector.TabIndex = 3;
             ConfigSelector.Resize += ConfigSelector_Resize;
             ConfigSelector.SelectedIndexChanged += ConfigSelector_SelectedIndexChanged;
@@ -759,13 +761,13 @@ namespace MasaoPlus.Controls
             });
             ConfView.Dock = DockStyle.Fill;
             ConfView.EditMode = DataGridViewEditMode.EditOnEnter;
-            ConfView.Location = new Point(0, 20);
+            ConfView.Location = new Point(0, 20 * DeviceDpi / 96);
             ConfView.MultiSelect = false;
             ConfView.Name = "ConfView";
             ConfView.RowHeadersVisible = false;
             ConfView.RowTemplate.Height = 21;
             ConfView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ConfView.Size = new Size(298, 338);
+            ConfView.Size = new Size(298 * DeviceDpi / 96, 338 * DeviceDpi / 96);
             ConfView.TabIndex = 4;
             ConfView.CellValueChanged += ConfView_CellValueChanged;
             ConfView.CellClick += ConfView_CellClick;
@@ -782,12 +784,12 @@ namespace MasaoPlus.Controls
             CValues.HeaderText = "値";
             CValues.Name = "CValues";
             CValues.SortMode = DataGridViewColumnSortMode.NotSortable;
-            AutoScaleDimensions = new SizeF(6f, 12f);
-            AutoScaleMode = AutoScaleMode.Font;
+            // AutoScaleDimensions = new SizeF(6f, 12f);
+            // AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(ConfView);
             Controls.Add(ConfigSelector);
             Name = "ConfigList";
-            Size = new Size(298, 358);
+            Size = new Size(298 * DeviceDpi / 96, 358 * DeviceDpi / 96);
             ((ISupportInitialize)ConfView).EndInit();
             ResumeLayout(false);
 
