@@ -37,7 +37,7 @@
 			this.WelcomeLabel.Text = "Quick Description";
 			this.Exit.DialogResult = global::System.Windows.Forms.DialogResult.Cancel;
 			this.Exit.FlatStyle = global::System.Windows.Forms.FlatStyle.Popup;
-			this.Exit.Location = new global::System.Drawing.Point(147 * DeviceDpi / 96, 161 * DeviceDpi / 96);
+			this.Exit.Location = new global::System.Drawing.Point(147 * DeviceDpi / 96, 164 * DeviceDpi / 96);
 			this.Exit.Name = "Exit";
 			this.Exit.Size = new global::System.Drawing.Size(237 * DeviceDpi / 96, 24 * DeviceDpi / 96);
 			this.Exit.TabIndex = 5;
@@ -73,7 +73,7 @@
 			this.ExMenu.FlatStyle = global::System.Windows.Forms.FlatStyle.Popup;
 			this.ExMenu.Image = global::MasaoPlus.Properties.Resources.bullet_arrow_down;
 			this.ExMenu.ImageAlign = global::System.Drawing.ContentAlignment.MiddleRight;
-			this.ExMenu.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 161 * DeviceDpi / 96);
+			this.ExMenu.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 164 * DeviceDpi / 96);
 			this.ExMenu.Name = "ExMenu";
 			this.ExMenu.Size = new global::System.Drawing.Size(129 * DeviceDpi / 96, 24 * DeviceDpi / 96);
 			this.ExMenu.TabIndex = 4;
@@ -83,7 +83,7 @@
 			this.ExMenu.Click += new global::System.EventHandler(this.ExMenu_Click);
 			this.CmdInheritNew.Description = "既存のプロジェクトの設定を使って、新しいプロジェクトを作成します。";
 			this.CmdInheritNew.DialogResult = global::System.Windows.Forms.DialogResult.None;
-			this.CmdInheritNew.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 120 * DeviceDpi / 96);
+			this.CmdInheritNew.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 123 * DeviceDpi / 96);
 			this.CmdInheritNew.Name = "CmdInheritNew";
 			this.CmdInheritNew.Size = new global::System.Drawing.Size(372 * DeviceDpi / 96, 34 * DeviceDpi / 96);
 			this.CmdInheritNew.TabIndex = 3;
@@ -92,7 +92,7 @@
 			cmdInheritNew.Click = (global::System.EventHandler)global::System.Delegate.Combine(cmdInheritNew.Click, new global::System.EventHandler(this.InheritNew_Click));
 			this.CmdOpenFile.Description = "既存のプロジェクトを開いたり、\r\n正男HTMLから新しいプロジェクトを作成したりします。";
 			this.CmdOpenFile.DialogResult = global::System.Windows.Forms.DialogResult.None;
-			this.CmdOpenFile.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 64 * DeviceDpi / 96);
+			this.CmdOpenFile.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 67 * DeviceDpi / 96);
 			this.CmdOpenFile.Name = "CmdOpenFile";
 			this.CmdOpenFile.Size = new global::System.Drawing.Size(372 * DeviceDpi / 96, 50 * DeviceDpi / 96);
 			this.CmdOpenFile.TabIndex = 2;
@@ -101,7 +101,7 @@
 			cmdOpenFile.Click = (global::System.EventHandler)global::System.Delegate.Combine(cmdOpenFile.Click, new global::System.EventHandler(this.OpenFile_Click));
 			this.CmdNewProj.Description = "空のプロジェクトを作成し、ステージ編集を開始します。";
 			this.CmdNewProj.DialogResult = global::System.Windows.Forms.DialogResult.None;
-			this.CmdNewProj.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 24 * DeviceDpi / 96);
+			this.CmdNewProj.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 27 * DeviceDpi / 96);
 			this.CmdNewProj.Name = "CmdNewProj";
 			this.CmdNewProj.Size = new global::System.Drawing.Size(372 * DeviceDpi / 96, 34 * DeviceDpi / 96);
 			this.CmdNewProj.TabIndex = 1;
@@ -111,7 +111,7 @@
 			//base.AutoScaleDimensions = new global::System.Drawing.SizeF(6f, 12f);
 			//base.AutoScaleMode = global::System.Windows.Forms.AutoScaleMode.Font;
 			base.CancelButton = this.Exit;
-			base.ClientSize = new global::System.Drawing.Size(396 * DeviceDpi / 96, 195 * DeviceDpi / 96);
+			base.ClientSize = new global::System.Drawing.Size(396 * DeviceDpi / 96, 198 * DeviceDpi / 96);
 			base.ControlBox = false;
 			base.Controls.Add(this.CmdInheritNew);
 			base.Controls.Add(this.WelcomeLabel);
