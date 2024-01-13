@@ -199,7 +199,7 @@ namespace MasaoPlus
                         e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
                         if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipData.character == "Z")
                         {
-                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, chipsize.Width, chipsize.Height);
+                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
                         }
                         else
                         {
@@ -232,7 +232,8 @@ namespace MasaoPlus
                                     AthleticView.list[cschip.name].Main(cschip, e.Graphics, chipsize);
                                     break;
                                 default:
-                                    e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
+                                    e.Graphics.TranslateTransform(chipsize.Width * DeviceDpi / 96 / 2, chipsize.Height * DeviceDpi / 96 / 2);
+                                    var rect = new Rectangle(-chipsize.Width * DeviceDpi / 96 / 2, -chipsize.Height * DeviceDpi / 96 / 2, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
                                     if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
                                     // 水の半透明処理
@@ -249,9 +250,9 @@ namespace MasaoPlus
                                         };
                                         using var imageAttributes = new ImageAttributes();
                                         imageAttributes.SetColorMatrix(colorMatrix);
-                                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
+                                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
                                     }
-                                    else e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+                                    else e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
                                     break;
                             }
                         }
@@ -420,8 +421,8 @@ namespace MasaoPlus
             {
                 return;
             }
-            int num = (int)Math.Floor(e.X / (double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96);
-            num += (int)Math.Floor((e.Y + vPosition) / (double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96) * hMaxChip;
+            int num = (int)Math.Floor(e.X / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96));
+            num += (int)Math.Floor((e.Y + vPosition) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96)) * hMaxChip;
             int num2;
             if (Global.state.MapEditMode)
             {
