@@ -229,7 +229,7 @@ namespace MasaoPlus
                                 case "スイッチ式ファイヤーバー":
                                 case "スイッチ式動くＴ字型":
                                 case "スイッチ式速く動くＴ字型":
-                                    AthleticView.list[cschip.name].Main(cschip, e.Graphics, chipsize);
+                                    AthleticView.list[cschip.name].Main(DeviceDpi, cschip, e.Graphics, chipsize);
                                     break;
                                 default:
                                     e.Graphics.TranslateTransform(chipsize.Width * DeviceDpi / 96 / 2, chipsize.Height * DeviceDpi / 96 / 2);
@@ -318,7 +318,7 @@ namespace MasaoPlus
                         e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
                         Color col = ColorTranslator.FromHtml(chipData.idColor);
                         using Brush brush = new SolidBrush(Color.FromArgb(240, col));
-                        e.Graphics.FillRectangle(brush, 0, 0, 10, 5);
+                        e.Graphics.FillRectangle(brush, 0, 0, 10 * DeviceDpi / 96, 5 * DeviceDpi / 96);
                         e.Graphics.Restore(transState);
                     }
                     if (Global.state.MapEditMode && Global.state.CurrentChip.character == chipData.character

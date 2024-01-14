@@ -15,9 +15,9 @@ namespace MasaoPlus
             this.Small = Small;
             this.Large = Large;
         }
-        public delegate void MainFunc(ChipData cschip, Graphics g, Size chipsize);
-        public delegate void MaxFunc(ChipData cschip, Graphics g, Size chipsize, GUIDesigner gd, int base_y);
-        public delegate void SmallFunc(ChipData cschip, Graphics g, Size chipsize, int height);
+        public delegate void MainFunc(int dpi, ChipData cschip, Graphics g, Size chipsize);
+        public delegate void MaxFunc(int dpi, ChipData cschip, Graphics g, Size chipsize, GUIDesigner gd, int base_y);
+        public delegate void SmallFunc(int dpi, ChipData cschip, Graphics g, Size chipsize, int height);
         public MainFunc Main { get; } // チップ - クラシック、チップリストの左上 
         public MaxFunc Max { get; } // グラフィカルデザイナ
         public MainFunc Min { get; } // ステータスバーっぽいところに表示される小さいアイコン
@@ -36,126 +36,126 @@ namespace MasaoPlus
 
             list = new Dictionary<string, Athletic>(){
                 {"一方通行", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         if (!cschip.description.Contains("表示なし")){
                             pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
                             if (cschip.description.Contains("右"))
-                                g.DrawLine(pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
+                                DrawLine(dpi, g, pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
                             else if (cschip.description.Contains("左"))
-                                g.DrawLine(pen, 1, 0, 1, chipsize.Height);
+                                DrawLine(dpi, g, pen, 1, 0, 1, chipsize.Height);
                             else if (cschip.description.Contains("上"))
-                                g.DrawLine(pen, 0, 1, chipsize.Width, 1);
+                                DrawLine(dpi, g, pen, 0, 1, chipsize.Width, 1);
                             else if (cschip.description.Contains("下"))
-                                g.DrawLine(pen, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
+                                DrawLine(dpi, g, pen, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
                             pen.Dispose();
                         }
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         if (!cschip.description.Contains("表示なし")){
                             pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
                             if (cschip.description.Contains("右"))
-                                g.DrawLine(pen, cschip.view_size.Width - 1, 0, cschip.view_size.Width - 1, cschip.view_size.Height);
+                                DrawLine(dpi, g, pen, cschip.view_size.Width - 1, 0, cschip.view_size.Width - 1, cschip.view_size.Height);
                             else if (cschip.description.Contains("左"))
-                                g.DrawLine(pen, 1, 0, 1, cschip.view_size.Height);
+                                DrawLine(dpi, g, pen, 1, 0, 1, cschip.view_size.Height);
                             else if (cschip.description.Contains("上"))
-                                g.DrawLine(pen, 0, 1, cschip.view_size.Width, 1);
+                                DrawLine(dpi, g, pen, 0, 1, cschip.view_size.Width, 1);
                             else if (cschip.description.Contains("下"))
-                                g.DrawLine(pen, 0, cschip.view_size.Height - 1, cschip.view_size.Width, cschip.view_size.Height - 1);
+                                DrawLine(dpi, g, pen, 0, cschip.view_size.Height - 1, cschip.view_size.Width, cschip.view_size.Height - 1);
                             pen.Dispose();
                         }
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         if (!cschip.description.Contains("表示なし")){
                             pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
                             if (cschip.description.Contains("右"))
-                                g.DrawLine(pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Width);
+                                DrawLine(dpi, g, pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Width);
                             else if (cschip.description.Contains("左"))
-                                g.DrawLine(pen, 0, 0, 0, chipsize.Width);
+                                DrawLine(dpi, g, pen, 0, 0, 0, chipsize.Width);
                             else if (cschip.description.Contains("上"))
-                                g.DrawLine(pen, 0, 0, chipsize.Width, 0);
+                                DrawLine(dpi, g, pen, 0, 0, chipsize.Width, 0);
                             else if (cschip.description.Contains("下"))
-                                g.DrawLine(pen, 0, chipsize.Width - 1, chipsize.Width, chipsize.Width - 1);
+                                DrawLine(dpi, g, pen, 0, chipsize.Width - 1, chipsize.Width, chipsize.Width - 1);
                             pen.Dispose();
                         }
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         if (!cschip.description.Contains("表示なし")){
                             pen = new Pen(Global.cpd.project.Config.Firebar2, 2 / height);
                             if (cschip.description.Contains("右"))
-                                g.DrawLine(pen, height - 1, 0, height - 1, height);
+                                DrawLine(dpi, g, pen, height - 1, 0, height - 1, height);
                             else if (cschip.description.Contains("左"))
-                                g.DrawLine(pen, 1, 0, 1, height);
+                                DrawLine(dpi, g, pen, 1, 0, 1, height);
                             else if (cschip.description.Contains("上"))
-                                g.DrawLine(pen, 0, 1, height, 1);
+                                DrawLine(dpi, g, pen, 0, 1, height, 1);
                             else if (cschip.description.Contains("下"))
-                                g.DrawLine(pen, 0, height - 1, height, height - 1);
+                                DrawLine(dpi, g, pen, 0, height - 1, height, height - 1);
                             pen.Dispose();
                         }
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         if (!cschip.description.Contains("表示なし")){
                             pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
                             if (cschip.description.Contains("右"))
-                                g.DrawLine(pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
+                                DrawLine(dpi, g, pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
                             else if (cschip.description.Contains("左"))
-                                g.DrawLine(pen, 1, 0, 1, chipsize.Height);
+                                DrawLine(dpi, g, pen, 1, 0, 1, chipsize.Height);
                             else if (cschip.description.Contains("上"))
-                                g.DrawLine(pen, 0, 1, chipsize.Width, 1);
+                                DrawLine(dpi, g, pen, 0, 1, chipsize.Width, 1);
                             else if (cschip.description.Contains("下"))
-                                g.DrawLine(pen, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
+                                DrawLine(dpi, g, pen, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
                             pen.Dispose();
                         }
                     })
                 },
                 {"左右へ押せるドッスンスンのゴール", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         pen = new Pen(Global.cpd.project.Config.Firebar1, 1);
                         g.TranslateTransform(1, 1);
-                        g.DrawRectangle(pen, 0, 11, chipsize.Width - 1, chipsize.Height - 1 - 11);
+                        DrawRectangle(dpi, g, pen, 0, 11, chipsize.Width - 1, chipsize.Height - 1 - 11);
                         g.TranslateTransform(-1, -1);
-                        g.DrawLine(pen, 0, 11, chipsize.Width, chipsize.Height);
-                        g.DrawLine(pen, 0, chipsize.Height, chipsize.Width, 11);
+                        DrawLine(dpi, g, pen, 0, 11, chipsize.Width, chipsize.Height);
+                        DrawLine(dpi, g, pen, 0, chipsize.Height, chipsize.Width, 11);
                         pen.Dispose();
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         g.TranslateTransform(-cschip.center.X + 1, -cschip.center.Y + 1);
                         pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
-                        g.DrawRectangle(pen, 0, 0, 94, 62);
-                        g.DrawLine(pen, 0, 0, 94, 62);
-                        g.DrawLine(pen, 0, 62, 94, 0);
+                        DrawRectangle(dpi, g, pen, 0, 0, 94, 62);
+                        DrawLine(dpi, g, pen, 0, 0, 94, 62);
+                        DrawLine(dpi, g, pen, 0, 62, 94, 0);
                         pen.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
                         g.TranslateTransform(1, 1);
-                        g.DrawRectangle(pen, 0, 11, chipsize.Width - 2, chipsize.Width - 2 - 11);
+                        DrawRectangle(dpi, g, pen, 0, 11, chipsize.Width - 2, chipsize.Width - 2 - 11);
                         g.TranslateTransform(-1, 0);
-                        g.DrawLine(pen, 0, 11, chipsize.Width, chipsize.Width);
-                        g.DrawLine(pen, 0, chipsize.Width, chipsize.Width, 11);
+                        DrawLine(dpi, g, pen, 0, 11, chipsize.Width, chipsize.Width);
+                        DrawLine(dpi, g, pen, 0, chipsize.Width, chipsize.Width, 11);
                         pen.Dispose();
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         pen = new Pen(Global.cpd.project.Config.Firebar1, 1);
                         g.TranslateTransform(1, 1);
-                        g.DrawRectangle(pen, 0, 5, height - 1, height - 1 - 5);
+                        DrawRectangle(dpi, g, pen, 0, 5, height - 1, height - 1 - 5);
                         g.TranslateTransform(-1, -1);
-                        g.DrawLine(pen, 0, 5, height, height);
-                        g.DrawLine(pen, 0, height, height, 5);
+                        DrawLine(dpi, g, pen, 0, 5, height, height);
+                        DrawLine(dpi, g, pen, 0, height, height, 5);
                         pen.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         pen = new Pen(Global.cpd.project.Config.Firebar1, 1);
                         g.TranslateTransform(1, 1);
-                        g.DrawRectangle(pen, 0, 11, chipsize.Width - 1, chipsize.Height - 1 - 11);
+                        DrawRectangle(dpi, g, pen, 0, 11, chipsize.Width - 1, chipsize.Height - 1 - 11);
                         g.TranslateTransform(-1, -1);
-                        g.DrawLine(pen, 0, 11, chipsize.Width, chipsize.Height);
-                        g.DrawLine(pen, 0, chipsize.Height, chipsize.Width, 11);
+                        DrawLine(dpi, g, pen, 0, 11, chipsize.Width, chipsize.Height);
+                        DrawLine(dpi, g, pen, 0, chipsize.Height, chipsize.Width, 11);
                         pen.Dispose();
                     })
                 },
                 {"シーソー", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(16, 17);
                         vo_pa = new PointF[4];
                         if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
@@ -181,7 +181,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         g.TranslateTransform(16, 0);
                         vo_pa = new PointF[4];
@@ -212,7 +212,7 @@ namespace MasaoPlus
                         if (cschip.description.Contains("左")) rad = -56;
                         else if (cschip.description.Contains("右")) rad = 56;
                         else rad = 0;
-                        g.DrawLine(pen,
+                        DrawLine(dpi, g, pen,
                             (float)(Math.Floor(Math.Cos((rad + 180) * math_pi / 180) * 160) + Math.Floor(Math.Cos((rad + 270) * math_pi / 180) * 12)),
                             (float)(Math.Floor(Math.Sin((rad + 180) * math_pi / 180) * 160) + Math.Floor(Math.Sin((rad + 270) * math_pi / 180) * 12)),
                             (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 160) + Math.Floor(Math.Cos((rad - 90) * math_pi / 180) * 12)),
@@ -220,7 +220,7 @@ namespace MasaoPlus
                         );
                         pen.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(16, 17);
                         vo_pa = new PointF[4];
                         if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
@@ -246,7 +246,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         g.TranslateTransform(height / 2, height / 2 + 1);
                         vo_pa = new PointF[4];
                         if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
@@ -272,7 +272,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(16, 17);
                         vo_pa = new PointF[4];
                         if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
@@ -300,7 +300,7 @@ namespace MasaoPlus
                     })
                 },
                 {"ブランコ", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -318,15 +318,15 @@ namespace MasaoPlus
                         double dx = Math.Cos(rad) * 21;
                         double dy = Math.Sin(rad) * 21;
                         pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
-                        g.DrawLine(pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
-                        g.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
-                        g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
+                        DrawLine(dpi, g, pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
+                        DrawLine(dpi, g, pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
+                        DrawLine(dpi, g, pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         pen.Dispose();
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         g.DrawImage(gd.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -345,14 +345,14 @@ namespace MasaoPlus
                         double dx = Math.Cos(rad) * 80;
                         double dy = Math.Sin(rad) * 80;
                         pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
-                        g.DrawLine(pen, (float)Math.Cos(rad) * 12, (float)Math.Sin(rad) * 12, (float)dx, (float)dy);
-                        g.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
-                        g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
+                        DrawLine(dpi, g, pen, (float)Math.Cos(rad) * 12, (float)Math.Sin(rad) * 12, (float)dx, (float)dy);
+                        DrawLine(dpi, g, pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
+                        DrawLine(dpi, g, pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         pen2 = new Pen(Color.White, 2);
                         rad = 90 + Math.Floor((double)(30 + 5) / 10);
-                        g.DrawLine(pen2,
+                        DrawLine(dpi, g, pen2,
                             (float)Math.Floor(Math.Cos((rad + 20) * math_pi / 180) * 192),
                             (float)Math.Floor(Math.Sin((rad + 20) * math_pi / 180) * 192),
                             (float)Math.Floor(Math.Cos((rad - 20) * math_pi / 180) * 192),
@@ -375,12 +375,12 @@ namespace MasaoPlus
                             vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 12;
                             dx = Math.Cos(rad) * 80;
                             dy = Math.Sin(rad) * 80;
-                            g.DrawLine(pen, (float)Math.Cos(rad) * 12, (float)Math.Sin(rad) * 12, (float)dx, (float)dy);
-                            g.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
-                            g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
+                            DrawLine(dpi, g, pen, (float)Math.Cos(rad) * 12, (float)Math.Sin(rad) * 12, (float)dx, (float)dy);
+                            DrawLine(dpi, g, pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
+                            DrawLine(dpi, g, pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
                             g.FillPolygon(brush, vo_pa);
                             rad = 90 + Math.Floor((double)(-30 - 5) / 10);
-                            g.DrawLine(pen2,
+                            DrawLine(dpi, g, pen2,
                                 (float)Math.Floor(Math.Cos((rad + 20) * math_pi / 180) * 192),
                                 (float)Math.Floor(Math.Sin((rad + 20) * math_pi / 180) * 192),
                                 (float)Math.Floor(Math.Cos((rad - 20) * math_pi / 180) * 192),
@@ -391,7 +391,7 @@ namespace MasaoPlus
                         pen.Dispose();
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -409,15 +409,15 @@ namespace MasaoPlus
                         double dx = Math.Cos(rad) * 21;
                         double dy = Math.Sin(rad) * 21;
                         pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
-                        g.DrawLine(pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
-                        g.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
-                        g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
+                        DrawLine(dpi, g, pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
+                        DrawLine(dpi, g, pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
+                        DrawLine(dpi, g, pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         pen.Dispose();
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, height, height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -433,15 +433,15 @@ namespace MasaoPlus
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad) * 2;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 2;
                         pen = new Pen(Global.cpd.project.Config.Firebar1, 1);
-                        g.DrawLine(pen, 0, 5, 0, 8);
-                        g.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, 0, 8);
-                        g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, 0, 8);
+                        DrawLine(dpi, g, pen, 0, 5, 0, 8);
+                        DrawLine(dpi, g, pen, vo_pa[0].X, vo_pa[0].Y, 0, 8);
+                        DrawLine(dpi, g, pen, vo_pa[1].X, vo_pa[1].Y, 0, 8);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         pen.Dispose();
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -459,9 +459,9 @@ namespace MasaoPlus
                         double dx = Math.Cos(rad) * 21;
                         double dy = Math.Sin(rad) * 21;
                         pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
-                        g.DrawLine(pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
-                        g.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
-                        g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
+                        DrawLine(dpi, g, pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
+                        DrawLine(dpi, g, pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
+                        DrawLine(dpi, g, pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         pen.Dispose();
@@ -469,7 +469,7 @@ namespace MasaoPlus
                     })
                 },
                 {"スウィングバー", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -498,7 +498,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         g.DrawImage(gd.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -523,7 +523,7 @@ namespace MasaoPlus
                         if (cschip.description.Contains("左"))
                         {
                             rad = 180 + Math.Floor((double)(-26 - 5) / 10);
-                            g.DrawLine(pen, (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 192) + Math.Floor(Math.Cos((rad + 90) * math_pi / 180) * 12)),
+                            DrawLine(dpi, g, pen, (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 192) + Math.Floor(Math.Cos((rad + 90) * math_pi / 180) * 12)),
                                 (float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 192) + Math.Floor(Math.Sin((rad + 90) * math_pi / 180) * 12)),
                                 (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 60) + Math.Floor(Math.Cos((rad + 90) * math_pi / 180) * 12)),
                                 (float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 60) + Math.Floor(Math.Sin((rad + 90) * math_pi / 180) * 12)));
@@ -531,14 +531,14 @@ namespace MasaoPlus
                         else if (cschip.description.Contains("右"))
                         {
                             rad = 360 + Math.Floor((double)(26 + 5) / 10);
-                            g.DrawLine(pen, (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 60) + Math.Floor(Math.Cos((rad - 90) * math_pi / 180) * 12)),
+                            DrawLine(dpi, g, pen, (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 60) + Math.Floor(Math.Cos((rad - 90) * math_pi / 180) * 12)),
                                 (float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 60) + Math.Floor(Math.Sin((rad - 90) * math_pi / 180) * 12)),
                                 (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 192) + Math.Floor(Math.Cos((rad - 90) * math_pi / 180) * 12)),
                                 (float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 192) + Math.Floor(Math.Sin((rad - 90) * math_pi / 180) * 12)));
                         }
                         pen.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -567,7 +567,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, height, height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -596,7 +596,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -627,7 +627,7 @@ namespace MasaoPlus
                     })
                 },
                 {"動くＴ字型", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(16, 37);
                         rad = 270;
                         vo_pa = new PointF[3];
@@ -652,7 +652,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         g.TranslateTransform(16, 48);
                         int a = default, b = default, c = default, d = default;
@@ -694,7 +694,7 @@ namespace MasaoPlus
                         brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                         pen = new Pen(Color.White, 2);
-                        g.DrawLine(pen,
+                        DrawLine(dpi, g, pen,
                             (float)(Math.Floor(Math.Cos((rad + c) * math_pi / 180) * d) + Math.Floor(Math.Cos(rad * math_pi / 180) * 12)),
                             (float)(Math.Floor(Math.Sin((rad + c) * math_pi / 180) * d) + Math.Floor(Math.Sin(rad * math_pi / 180) * 12)),
                             (float)(Math.Floor(Math.Cos((rad - c) * math_pi / 180) * d) + Math.Floor(Math.Cos(rad * math_pi / 180) * 12)),
@@ -724,7 +724,7 @@ namespace MasaoPlus
                             vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 12;
                             brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
                             g.FillPolygon(brush, vo_pa);
-                            g.DrawLine(pen,
+                            DrawLine(dpi, g, pen,
                                 (float)(Math.Floor(Math.Cos((rad + c) * math_pi / 180) * d) + Math.Floor(Math.Cos(rad * math_pi / 180) * 12)),
                                 (float)(Math.Floor(Math.Sin((rad + c) * math_pi / 180) * d) + Math.Floor(Math.Sin(rad * math_pi / 180) * 12)),
                                 (float)(Math.Floor(Math.Cos((rad - c) * math_pi / 180) * d) + Math.Floor(Math.Cos(rad * math_pi / 180) * 12)),
@@ -734,7 +734,7 @@ namespace MasaoPlus
                         pen.Dispose();
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(16, 37);
                         rad = 270;
                         vo_pa = new PointF[3];
@@ -759,7 +759,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         g.TranslateTransform(height / 2, height + 2);
                         rad = 270;
                         vo_pa = new PointF[3];
@@ -784,7 +784,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(16, 37);
                         rad = 270;
                         vo_pa = new PointF[3];
@@ -811,7 +811,7 @@ namespace MasaoPlus
                     })
                 },
                 {"ロープ", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -841,7 +841,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         g.DrawImage(gd.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -893,7 +893,7 @@ namespace MasaoPlus
                         }
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -923,7 +923,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, height, height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -953,7 +953,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
@@ -985,7 +985,7 @@ namespace MasaoPlus
                     })
                 },
                 {"人間大砲", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         if (cschip.description == "右向き") { rad = 330; g.TranslateTransform(-9, 3); }
                         else if (cschip.description == "左向き") { rad = 225; g.TranslateTransform(9, 3); }
                         else if (cschip.description == "天井") { rad = 30; g.TranslateTransform(-9, 0); }
@@ -1051,7 +1051,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         if (cschip.description.Contains("向き")) g.TranslateTransform(0, -12);
                         brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou);
@@ -1119,7 +1119,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         if (cschip.description == "右向き") { rad = 330; g.TranslateTransform(-9, 3); }
                         else if (cschip.description == "左向き") { rad = 225; g.TranslateTransform(9, 3); }
                         else if (cschip.description == "天井") { rad = 30; g.TranslateTransform(-9, 0); }
@@ -1185,7 +1185,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         if (cschip.description == "右向き") { rad = 330; g.TranslateTransform(0, 3); }
                         else if (cschip.description == "左向き") { rad = 225; g.TranslateTransform(0, 3); }
                         else if (cschip.description == "天井") { rad = 30; g.TranslateTransform(0, 0); }
@@ -1251,7 +1251,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         if (cschip.description == "右向き") { rad = 330; g.TranslateTransform(-9, 3); }
                         else if (cschip.description == "左向き") { rad = 225; g.TranslateTransform(9, 3); }
                         else if (cschip.description == "天井") { rad = 30; g.TranslateTransform(-9, 0); }
@@ -1319,7 +1319,7 @@ namespace MasaoPlus
                     })
                 },
                 {"曲線による上り坂", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         var k21 = 0; float j20 = default, k20 = default, l20 = default, i21 = default;
                         if (cschip.description.Contains("線のみ"))
                         {
@@ -1428,7 +1428,7 @@ namespace MasaoPlus
                             brush.Dispose();
                         }
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         var k21 = 0; float j20 = default, k20 = default, l20 = default, i21 = default;
                         if (cschip.description.Contains("線のみ"))
@@ -1536,7 +1536,7 @@ namespace MasaoPlus
                             brush.Dispose();
                         }
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         var k21 = 0; float j20 = default, k20 = default, l20 = default, i21 = default;
                         if (cschip.description.Contains("線のみ"))
                         {
@@ -1645,7 +1645,7 @@ namespace MasaoPlus
                             brush.Dispose();
                         }
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         var k21 = 0; float j20 = default, k20 = default, l20 = default, i21 = default;
                         if (cschip.description.Contains("線のみ"))
                         {
@@ -1754,7 +1754,7 @@ namespace MasaoPlus
                             brush.Dispose();
                         }
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         var k21 = 0; float j20 = default, k20 = default, l20 = default, i21 = default;
                         if (cschip.description.Contains("線のみ"))
                         {
@@ -1865,7 +1865,7 @@ namespace MasaoPlus
                     })
                 },
                 {"乗れる円", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         int radius = default;
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
                         if (cschip.name == "円")
@@ -1903,7 +1903,7 @@ namespace MasaoPlus
                         g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         int radius = default;
                         g.TranslateTransform(0, 16);
@@ -1935,7 +1935,7 @@ namespace MasaoPlus
                         g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         int radius = default;
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
                         if (cschip.name == "円")
@@ -1972,7 +1972,7 @@ namespace MasaoPlus
                         g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         int radius = default;
                         g.TranslateTransform(height / 2, height / 2);
                         if (cschip.name == "円")
@@ -2009,7 +2009,7 @@ namespace MasaoPlus
                         g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         int radius = default;
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
                         if (cschip.name == "円")
@@ -2048,7 +2048,7 @@ namespace MasaoPlus
                     })
                 },
                 {"半円", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(1, 2);
                         if (cschip.description.Contains("乗れる"))
                         {
@@ -2152,7 +2152,7 @@ namespace MasaoPlus
                             brush.Dispose();
                         }
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         if (cschip.description.Contains("乗れる"))
                         {
@@ -2256,7 +2256,7 @@ namespace MasaoPlus
                             brush.Dispose();
                         }
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(1, 2);
                         if (cschip.description.Contains("乗れる"))
                         {
@@ -2359,7 +2359,7 @@ namespace MasaoPlus
                             brush.Dispose();
                         }
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         g.TranslateTransform(1, 2);
                         if (cschip.description.Contains("乗れる"))
                         {
@@ -2462,7 +2462,7 @@ namespace MasaoPlus
                             brush.Dispose();
                         }
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(1, 2);
                         if (cschip.description.Contains("乗れる"))
                         {
@@ -2567,7 +2567,7 @@ namespace MasaoPlus
                     })
                 },
                 {"ファイヤーバー", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width / 2, chipsize.Height / 2),
@@ -2600,7 +2600,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         int width = default;
                         g.DrawImage(gd.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
@@ -2722,7 +2722,7 @@ namespace MasaoPlus
                         }
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width / 2, chipsize.Width / 2),
@@ -2755,7 +2755,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         g.TranslateTransform(height / 2, height / 2);
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, height / 2, height / 2),
@@ -2788,7 +2788,7 @@ namespace MasaoPlus
                         g.FillPolygon(brush, vo_pa);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
                         g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width / 2, chipsize.Height / 2),
@@ -2823,7 +2823,7 @@ namespace MasaoPlus
                     })
                 },
                 {"人口太陽", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
 
                         int v = default, n = default;
@@ -2868,7 +2868,7 @@ namespace MasaoPlus
 
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         g.SmoothingMode = SmoothingMode.AntiAlias;
 
                         int v = default, n = default;
@@ -2913,7 +2913,7 @@ namespace MasaoPlus
 
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
 
                         int v = default, n = default;
@@ -2958,7 +2958,7 @@ namespace MasaoPlus
 
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         g.TranslateTransform(height / 2, height / 2);
 
                         int v = default, n = default;
@@ -3003,7 +3003,7 @@ namespace MasaoPlus
 
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
 
                         int v = default, n = default;
@@ -3050,7 +3050,7 @@ namespace MasaoPlus
                     })
                 },
                 {"ファイヤーリング", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
 
                         int v = default, n = default;
@@ -3154,7 +3154,7 @@ namespace MasaoPlus
 
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         g.TranslateTransform(32*5,32*5);
 
@@ -3258,7 +3258,7 @@ namespace MasaoPlus
 
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
 
                         int v = default, n = default;
@@ -3362,7 +3362,7 @@ namespace MasaoPlus
 
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         g.TranslateTransform(height / 2, height / 2);
 
                         int v = default, n = default;
@@ -3466,7 +3466,7 @@ namespace MasaoPlus
 
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
 
                         int v = default, n = default;
@@ -3572,7 +3572,7 @@ namespace MasaoPlus
                     })
                 },
                 {"ファイヤーウォール", new Athletic(
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         Rectangle r = default, r2 = default;
                         if (cschip.description.Contains("上下"))
                         {
@@ -3618,7 +3618,7 @@ namespace MasaoPlus
                         g.FillRectangle(brush, r2);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, gd, base_y) => {
+                    (dpi, cschip, g, chipsize, gd, base_y) => {
                         Rectangle r = default, r2 = default;
                         if (cschip.description.Contains("上下"))
                         {
@@ -3662,7 +3662,7 @@ namespace MasaoPlus
                         g.FillRectangle(brush, r2);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         Rectangle r = default, r2 = default;
                         if (cschip.description.Contains("上下"))
                         {
@@ -3708,7 +3708,7 @@ namespace MasaoPlus
                         g.FillRectangle(brush, r2);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize, height) => {
+                    (dpi, cschip, g, chipsize, height) => {
                         Rectangle r = default, r2 = default;
                         if (cschip.description.Contains("上下"))
                         {
@@ -3754,7 +3754,7 @@ namespace MasaoPlus
                         g.FillRectangle(brush, r2);
                         brush.Dispose();
                     },
-                    (cschip, g, chipsize) => {
+                    (dpi, cschip, g, chipsize) => {
                         Rectangle r = default, r2 = default;
                         if (cschip.description.Contains("上下"))
                         {
@@ -3816,5 +3816,20 @@ namespace MasaoPlus
             list.Add("スイッチ式速く動くＴ字型", list["動くＴ字型"]);
         }
         public static Dictionary<string, Athletic> list;
+
+        private static void DrawLine(int dpi, Graphics g, Pen pen, int x1, int y1, int x2, int y2)
+        {
+            g.DrawLine(pen, x1 * dpi / 96, y1 * dpi / 96, x2 * dpi / 96, y2 * dpi / 96);
+        }
+
+        private static void DrawLine(int dpi, Graphics g, Pen pen, float x1, float y1, float x2, float y2)
+        {
+            g.DrawLine(pen, x1 * dpi / 96, y1 * dpi / 96, x2 * dpi / 96, y2 * dpi / 96);
+        }
+
+        private static void DrawRectangle(int dpi, Graphics g, Pen pen, int x, int y, int width, int height)
+        {
+            g.DrawRectangle(pen, x * dpi / 96, y * dpi / 96, width * dpi / 96, height * dpi / 96);
+        }
     }
 }
