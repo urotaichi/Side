@@ -384,9 +384,9 @@ namespace MasaoPlus
                 {
                     transState = g.Save();
                     if (cschip.view_size != default)
-                        g.TranslateTransform((p.X * chipsize.Width - cschip.center.X + cschip.view_size.Width / 2) * DeviceDpi / 96, (p.Y * chipsize.Height - cschip.center.Y + cschip.view_size.Height / 2) * DeviceDpi / 96);
+                        TranslateTransform(g, p.X * chipsize.Width - cschip.center.X + cschip.view_size.Width / 2, p.Y * chipsize.Height - cschip.center.Y + cschip.view_size.Height / 2);
                     else
-                        g.TranslateTransform((p.X * chipsize.Width - cschip.center.X + cschip.size.Width / 2) * DeviceDpi / 96, (p.Y * chipsize.Height - cschip.center.Y + cschip.size.Height / 2) * DeviceDpi / 96);
+                        TranslateTransform(g, p.X * chipsize.Width - cschip.center.X + cschip.size.Width / 2, p.Y * chipsize.Height - cschip.center.Y + cschip.size.Height / 2);
                     g.RotateTransform(cschip.rotate);
                     if (cschip.scale != default) g.ScaleTransform(cschip.scale, cschip.scale);
                     g.DrawImage(DrawChipOrig,
@@ -452,7 +452,7 @@ namespace MasaoPlus
             if (foreground)
             { // 標準パターン画像
                 transState = g.Save();
-                g.TranslateTransform(p.X * chipsize.Width * DeviceDpi / 96, p.Y * chipsize.Height * DeviceDpi / 96);
+                TranslateTransform(g, p.X * chipsize.Width, p.Y * chipsize.Height);
                 var rect = new Rectangle(-chipsize.Width / 2 * DeviceDpi / 96, -chipsize.Height / 2 * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
                 switch (cschip.name)
                 {
@@ -486,7 +486,7 @@ namespace MasaoPlus
                         AthleticView.list[cschip.name].Max(DeviceDpi, cschip, g, chipsize, this, p.Y);
                         break;
                     default:
-                        g.TranslateTransform(chipsize.Width / 2 * DeviceDpi / 96, chipsize.Height / 2 * DeviceDpi / 96);
+                        TranslateTransform(g, chipsize.Width / 2, chipsize.Height / 2);
                         if (chara == Global.cpd.Mapchip[1].character)
                         {
                             g.ScaleTransform(-1, 1); // 基本主人公は逆向き
@@ -823,7 +823,7 @@ namespace MasaoPlus
                 if (keepDrawData.idColor != null)
                 {
                     GraphicsState transState = g.Save();
-                    g.TranslateTransform(keepDrawData.pos.X * chipsize.Width * DeviceDpi / 96, keepDrawData.pos.Y * chipsize.Height * DeviceDpi / 96);
+                    TranslateTransform(g, keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height);
                     Color col = ColorTranslator.FromHtml(keepDrawData.idColor);
                     using Brush brush = new SolidBrush(Color.FromArgb(240, col));
                     g.FillRectangle(brush, 0, 0, 10 * DeviceDpi / 96, 5 * DeviceDpi / 96);
@@ -2967,7 +2967,7 @@ namespace MasaoPlus
                     IL_514:;
                     }
                 }
-                point = new Point(-1, -1);
+                point = new Point(-1, -1); // こっちは何のためにあるのか不明
                 for (int k = rect.Y; k < rect.Bottom; k++)
                 {
                     point.Y++;
@@ -3025,10 +3025,10 @@ namespace MasaoPlus
                                 if (chipsData.idColor != null)
                                 {
                                     GraphicsState transState = graphics.Save();
-                                    graphics.TranslateTransform(point.X * chipsize.Width, point.Y * chipsize.Height);
+                                    TranslateTransform(graphics, point.X * chipsize.Width, point.Y * chipsize.Height);
                                     Color col = ColorTranslator.FromHtml(chipsData.idColor);
                                     using Brush brush = new SolidBrush(Color.FromArgb(240, col));
-                                    graphics.FillRectangle(brush, 0, 0, 10, 5);
+                                    graphics.FillRectangle(brush, 0, 0, 10 * DeviceDpi / 96, 5 * DeviceDpi / 96);
                                     graphics.Restore(transState);
                                 }
                             }
@@ -3464,6 +3464,11 @@ namespace MasaoPlus
             public string chara;
 
             public string idColor;
+        }
+
+        private void TranslateTransform(Graphics g, float dx, float dy)
+        {
+            g.TranslateTransform(dx * DeviceDpi / 96, dy * DeviceDpi / 96);
         }
     }
 }
