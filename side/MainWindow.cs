@@ -352,7 +352,7 @@ namespace MasaoPlus
                             case "スイッチ式ファイヤーバー":
                             case "スイッチ式動くＴ字型":
                             case "スイッチ式速く動くＴ字型":
-                                AthleticView.list[cschip.name].Min(DeviceDpi, cschip, graphics, size);
+                                AthleticView.list[cschip.name].Min(cschip, graphics, size);
                                 break;
                             default:
                                 int rotate_o = default;
