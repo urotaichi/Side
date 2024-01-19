@@ -1031,7 +1031,7 @@ namespace MasaoPlus
                 {
                     if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.state.CurrentChip.character == "Z")
                     {
-                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, ChipImage.Width, ChipImage.Height);
+                        e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, ChipImage.Width, ChipImage.Height);
                     }
                     else
                     {
@@ -1579,36 +1579,35 @@ namespace MasaoPlus
             try
             {
                 ChipData cschip;
+                ChipsData[] array = Global.cpd.Mapchip;
                 using Brush brush = new SolidBrush(e.ForeColor);
                 int width = 0;
                 GraphicsState transState;
                 Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
+                if (Global.state.MapEditMode)
+                {
+                    cschip = Global.cpd.Worldchip[i].GetCSChip();
+                }
+                else
+                {
+                    if (Global.cpd.project.Use3rdMapData)
+                    {
+                        array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
+                    }
+                    cschip = array[i].GetCSChip();
+                }
 
                 switch (DrawType.SelectedIndex)
                 {
                     case 0: // サムネイル
                         if (!Global.cpd.UseLayer || Global.state.EditingForeground)
                         {
-                            if (Global.state.MapEditMode)
-                            {
-                                cschip = Global.cpd.Worldchip[i].GetCSChip();
-                            }
-                            else
-                            {
-                                ChipsData[] array = Global.cpd.Mapchip;
-                                if (Global.cpd.project.Use3rdMapData)
-                                {
-                                    array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
-                                }
-                                cschip = array[i].GetCSChip();
-                            }
-
                             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                             transState = e.Graphics.Save();
                             e.Graphics.TranslateTransform(e.Bounds.X, e.Bounds.Y);
-                            if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[i].character == "Z")
+                            if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && array[i].character == "Z")
                             {
-                                e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, e.Bounds.Height, e.Bounds.Height);
+                                e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, e.Bounds.Height, e.Bounds.Height);
                             }
                             else
                             {
@@ -1644,7 +1643,7 @@ namespace MasaoPlus
                                         e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
                                         if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
                                         // 水の半透明処理
-                                        if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.cpd.Mapchip[i].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                                        if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && array[i].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
                                         {
                                             float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
                                             var colorMatrix = new ColorMatrix
@@ -1675,20 +1674,6 @@ namespace MasaoPlus
                     case 2: // チップ
                         if (!Global.cpd.UseLayer || Global.state.EditingForeground)
                         {
-                            if (Global.state.MapEditMode)
-                            {
-                                cschip = Global.cpd.Worldchip[i].GetCSChip();
-                            }
-                            else
-                            {
-                                ChipsData[] array = Global.cpd.Mapchip;
-                                if (Global.cpd.project.Use3rdMapData)
-                                {
-                                    array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
-                                }
-                                cschip = array[i].GetCSChip();
-                            }
-
                             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                             transState = e.Graphics.Save();
 
@@ -1727,7 +1712,7 @@ namespace MasaoPlus
                                         e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
                                         e.Graphics.RotateTransform(cschip.rotate);
                                         // 水の半透明処理
-                                        if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.cpd.Mapchip[i].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                                        if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && array[i].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
                                         {
                                             float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
                                             var colorMatrix = new ColorMatrix
@@ -1749,10 +1734,10 @@ namespace MasaoPlus
                             }
                             else
                             {
-                                if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[i].character == "Z")
+                                if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && array[i].character == "Z")
                                 {
-                                    e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0);
-                                    width = Global.MainWnd.MainDesigner.DrawOribossOrig.Width;
+                                    e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0);
+                                    width = MainDesigner.DrawOribossOrig.Width;
                                 }
                                 else
                                 {
@@ -1850,9 +1835,9 @@ namespace MasaoPlus
                             }
                             else
                             {
-                                if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[i].character == "Z")
+                                if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && array[i].character == "Z")
                                 {
-                                    height = Global.MainWnd.MainDesigner.DrawOribossOrig.Height;
+                                    height = MainDesigner.DrawOribossOrig.Height;
                                 }
                                 else height = cschip.size.Height;
                             }
