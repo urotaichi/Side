@@ -60,7 +60,7 @@ namespace MasaoPlus
             {
                 ChipsData chipData = chipsData[i - inital];
                 Point point = GetPosition(i);
-                Rectangle rectangle = new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize);
+                Rectangle rectangle = new(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize);
                 rectangle.Y -= vPosition;
                 if (rectangle.Top > MainPanel.Height) break;
 
@@ -154,7 +154,7 @@ namespace MasaoPlus
                 }
             }
             Point point2 = GetPosition(i);
-            Rectangle rectangle2 = new Rectangle(new Point(point2.X * chipsize.Width, point2.Y * chipsize.Height), chipsize);
+            Rectangle rectangle2 = new(new Point(point2.X * chipsize.Width, point2.Y * chipsize.Height), chipsize);
             rectangle2.Y -= vPosition;
             e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle2, new Rectangle(new Point(448,448), chipsize), GraphicsUnit.Pixel);
         }

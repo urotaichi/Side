@@ -206,7 +206,7 @@ namespace MasaoPlus
 
         public string[] QuickTestrunSource;
 
-        public Dictionary<string, string> ChipRegister = new Dictionary<string, string>();
+        public Dictionary<string, string> ChipRegister = new();
 
         public bool ParseCommandline;
 
@@ -226,6 +226,6 @@ namespace MasaoPlus
 
         public bool StageSizeChanged = false;
 
-        public Size MinimumStageSize = new Size(16, 10);
+        public Size MinimumStageSize = new(16, 10);
     }
 }

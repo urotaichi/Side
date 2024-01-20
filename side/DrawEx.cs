@@ -9,7 +9,7 @@ namespace MasaoPlus
     {
         public static Bitmap MakeMask(Image img)
         {
-            Bitmap bitmap = new Bitmap(img.Width, img.Height);
+            Bitmap bitmap = new(img.Width, img.Height);
             using (Graphics graphics = Graphics.FromImage(bitmap))
             {
                 graphics.DrawImage(img, 0, 0);
@@ -50,7 +50,7 @@ namespace MasaoPlus
                     int num3 = area.Y % pixelsBetweenDots.Height;
                     int num4 = (num / pixelsBetweenDots.Width + 1) * pixelsBetweenDots.Width;
                     int num5 = (num / pixelsBetweenDots.Height + 1) * pixelsBetweenDots.Height;
-                    Bitmap bitmap = new Bitmap(num4, num5);
+                    Bitmap bitmap = new(num4, num5);
                     for (int i = 0; i < num4; i += pixelsBetweenDots.Width)
                     {
                         for (int j = 0; j < num5; j += pixelsBetweenDots.Height)

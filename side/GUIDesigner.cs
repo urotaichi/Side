@@ -369,7 +369,7 @@ namespace MasaoPlus
         {
             GraphicsState transState;
             Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
-            Rectangle rectangle = new Rectangle((p.X * chipsize.Width - cschip.center.X) * DeviceDpi / 96, (p.Y * chipsize.Height - cschip.center.Y) * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
+            Rectangle rectangle = new((p.X * chipsize.Width - cschip.center.X) * DeviceDpi / 96, (p.Y * chipsize.Height - cschip.center.Y) * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
             if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd)
             { // 拡張画像　背面
                 g.DrawImage(DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
@@ -444,7 +444,7 @@ namespace MasaoPlus
         {
             GraphicsState transState;
             Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
-            Rectangle rectangle = new Rectangle(p.X * chipsize.Width * DeviceDpi / 96, p.Y * chipsize.Height * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
+            Rectangle rectangle = new(p.X * chipsize.Width * DeviceDpi / 96, p.Y * chipsize.Height * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
             if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd)
             { // 拡張画像　背面
                 g.DrawImage(DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
@@ -659,7 +659,7 @@ namespace MasaoPlus
             ChipsData chipsData;
             ChipData c;
             new List<KeepDrawData>();
-            List<KeepDrawData> list = new List<KeepDrawData>();
+            List<KeepDrawData> list = new();
             int num = 0;
             g.PixelOffsetMode = PixelOffsetMode.Half;
             Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
@@ -938,10 +938,10 @@ namespace MasaoPlus
 
         public void HalfTransparentBitmap2(ref Bitmap b)
         {
-            Bitmap bitmap = new Bitmap(b.Width, b.Height, PixelFormat.Format32bppArgb);
+            Bitmap bitmap = new(b.Width, b.Height, PixelFormat.Format32bppArgb);
             using (Graphics graphics = Graphics.FromImage(bitmap))
             {
-                ColorMatrix colorMatrix = new ColorMatrix
+                ColorMatrix colorMatrix = new()
                 {
                     Matrix00 = 1f,
                     Matrix11 = 1f,
@@ -949,7 +949,7 @@ namespace MasaoPlus
                     Matrix33 = 0.5f,
                     Matrix44 = 1f
                 };
-                using ImageAttributes imageAttributes = new ImageAttributes();
+                using ImageAttributes imageAttributes = new();
                 imageAttributes.SetColorMatrix(colorMatrix);
                 graphics.DrawImage(b, new Rectangle(0, 0, b.Width, b.Height), 0, 0, b.Width, b.Height, GraphicsUnit.Pixel, imageAttributes);
             }
@@ -1104,9 +1104,9 @@ namespace MasaoPlus
             DrawMask = new Bitmap(DrawChipOrig.Width, DrawChipOrig.Height);
             ColorMap[] remapTable = new ColorMap[]
             {
-                new ColorMap()
+                new()
             };
-            using (ImageAttributes imageAttributes = new ImageAttributes())
+            using (ImageAttributes imageAttributes = new())
             {
                 imageAttributes.SetRemapTable(remapTable);
                 using Graphics graphics = Graphics.FromImage(DrawMask);
@@ -1119,7 +1119,7 @@ namespace MasaoPlus
                 filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.LayerImage);
                 DrawLayerOrig = Image.FromStream(File.OpenRead(filename), false, false);
                 DrawLayerMask = new Bitmap(DrawLayerOrig.Width, DrawLayerOrig.Height);
-                using ImageAttributes imageAttributes2 = new ImageAttributes();
+                using ImageAttributes imageAttributes2 = new();
                 imageAttributes2.SetRemapTable(remapTable);
                 using Graphics graphics2 = Graphics.FromImage(DrawLayerMask);
                 graphics2.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawLayerMask.Width, DrawLayerMask.Height));
@@ -1133,7 +1133,7 @@ namespace MasaoPlus
 
                 DrawOribossOrig = Image.FromStream(fs, false, false);
                 DrawOribossMask = new Bitmap(DrawOribossOrig.Width, DrawOribossOrig.Height);
-                using ImageAttributes imageAttributes4 = new ImageAttributes();
+                using ImageAttributes imageAttributes4 = new();
                 imageAttributes4.SetRemapTable(remapTable);
                 using Graphics graphics4 = Graphics.FromImage(DrawOribossMask);
                 graphics4.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawOribossMask.Width, DrawOribossMask.Height));
@@ -1143,7 +1143,7 @@ namespace MasaoPlus
             filename = Path.Combine(Global.cpd.where, Global.cpd.runtime.Definitions.ChipExtender);
             DrawExOrig = Image.FromStream(File.OpenRead(filename), false, false);
             DrawExMask = new Bitmap(DrawExOrig.Width, DrawExOrig.Height);
-            using (ImageAttributes imageAttributes3 = new ImageAttributes())
+            using (ImageAttributes imageAttributes3 = new())
             {
                 imageAttributes3.SetRemapTable(remapTable);
                 using Graphics graphics3 = Graphics.FromImage(DrawExMask);
@@ -1275,7 +1275,7 @@ namespace MasaoPlus
                 if (Global.config.draw.UseBufferingMemoryDraw)
                 {
                     IntPtr hdc = e.Graphics.GetHdc();
-                    BitmapData bitmapData = new BitmapData();
+                    BitmapData bitmapData = new();
                     ForegroundBuffer.LockBits(new Rectangle(0, 0, ForegroundBuffer.Width, ForegroundBuffer.Height), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb, bitmapData);
                     Native.GDI32.BITMAPINFOHEADER bitmapinfoheader = default;
                     bitmapinfoheader.biSize = (uint)sizeof(Native.GDI32.BITMAPINFOHEADER);
@@ -1333,7 +1333,7 @@ namespace MasaoPlus
                 }
                 else
                 {
-                    using Pen pen = new Pen(brush3, (int)(Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex) / 4);
+                    using Pen pen = new(brush3, (int)(Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex) / 4);
                     drawRectangle.X += (int)(Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex) / 2;
                     drawRectangle.Y += (int)(Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96 * Global.config.draw.ZoomIndex) / 2;
                     drawRectangle.Width -= (int)(Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex);
@@ -1567,12 +1567,12 @@ namespace MasaoPlus
                 }
                 else if (e.Button == MouseButtons.Middle && Global.config.testRun.QuickTestrun)
                 { // 中央クリック時
-                    Point p = new Point((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
+                    Point p = new((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
                     if (StageText.IsOverflow(p))
                     {
                         return;
                     }
-                    List<string> list = new List<string>();
+                    List<string> list = new();
                     foreach (string text in Global.cpd.EditingMap)
                     {
                         if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
@@ -1618,13 +1618,13 @@ namespace MasaoPlus
                     {
                         EnsureScroll(e.X, e.Y);
                         Global.MainWnd.UpdateStatus("描画しています...");
-                        Rectangle rectangle = new Rectangle(MouseLastPoint, GetBufferSize());
+                        Rectangle rectangle = new(MouseLastPoint, GetBufferSize());
                         string[] array = ClipedString.Split(new string[]
                         {
                     Environment.NewLine
                         }, StringSplitOptions.None);
                         ChipsData cd = default;
-                        Point point = new Point(0, 0);
+                        Point point = new(0, 0);
                         for (int j = rectangle.Top; j < rectangle.Bottom; j++)
                         {
                             point.X = 0;
@@ -2067,7 +2067,7 @@ namespace MasaoPlus
                         case CopyPasteTool.Cut:
                             {
                                 EnsureScroll(e.X, e.Y);
-                                Point point = new Point((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
+                                Point point = new((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
                                 if (point == MouseLastPoint)
                                 {
                                     return;
@@ -2106,7 +2106,7 @@ namespace MasaoPlus
                             {
                                 case EditTool.Cursor:
                                     {
-                                        Size size = new Size(MouseStartPoint.X - e.X, MouseStartPoint.Y - e.Y);
+                                        Size size = new(MouseStartPoint.X - e.X, MouseStartPoint.Y - e.Y);
                                         MouseStartPoint = new Point(e.X, e.Y);
                                         State state = Global.state;
                                         state.MapPoint.X += size.Width;
@@ -2119,7 +2119,7 @@ namespace MasaoPlus
                                     }
                                 case EditTool.Pen:
                                     {
-                                        Point point2 = new Point((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
+                                        Point point2 = new((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
                                         if (point2 == MouseLastPoint)
                                         {
                                             return;
@@ -2135,7 +2135,7 @@ namespace MasaoPlus
                                 case EditTool.Line:
                                     {
                                         EnsureScroll(e.X, e.Y);
-                                        Point point3 = new Point((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
+                                        Point point3 = new((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
                                         if (point3 == MouseLastPoint)
                                         {
                                             return;
@@ -2182,7 +2182,7 @@ namespace MasaoPlus
                                 case EditTool.Rect:
                                     {
                                         EnsureScroll(e.X, e.Y);
-                                        Point point4 = new Point((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
+                                        Point point4 = new((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
                                         if (point4 == MouseLastPoint)
                                         {
                                             return;
@@ -2225,7 +2225,7 @@ namespace MasaoPlus
                 return;
             }
             EnsureScroll(e.X, e.Y);
-            Point point5 = new Point((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
+            Point point5 = new((int)((e.X + Global.state.MapPoint.X) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)), (int)((e.Y + Global.state.MapPoint.Y) / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96 * Global.config.draw.ZoomIndex)));
             if (point5 == MouseLastPoint)
             {
                 return;
@@ -2235,7 +2235,7 @@ namespace MasaoPlus
             double zoomIndex = Global.config.draw.ZoomIndex;
             double num = 1.0 / Global.config.draw.ZoomIndex;
             MouseLastPoint = point5;
-            Rectangle drawRectangle4 = new Rectangle(MouseLastPoint, GetBufferSize());
+            Rectangle drawRectangle4 = new(MouseLastPoint, GetBufferSize());
             DrawRectangle = drawRectangle4;
             DrawMode = DirectDrawMode.Rectangle;
             Refresh();
@@ -2389,7 +2389,7 @@ namespace MasaoPlus
                                     rectangle.Y = MouseStartPoint.Y;
                                     rectangle.Height = MouseLastPoint.Y - MouseStartPoint.Y;
                                 }
-                                StringBuilder stringBuilder = new StringBuilder();
+                                StringBuilder stringBuilder = new();
                                 try
                                 {
                                     for (int i = rectangle.Top; i <= rectangle.Bottom; i++)
@@ -2623,8 +2623,8 @@ namespace MasaoPlus
 
         public void DrawLine(Graphics g, Rectangle dr, bool L2R)
         {
-            Point point = new Point(0, 0);
-            PointF pointF = new PointF(0f, 0f);
+            Point point = new(0, 0);
+            PointF pointF = new(0f, 0f);
             if (dr.Height > dr.Width)
             {
                 point.Y = 1;
@@ -2651,7 +2651,7 @@ namespace MasaoPlus
             }
             double num = 0.0;
             double num2 = 0.0;
-            Point point2 = new Point(L2R ? dr.Left : dr.Right, dr.Top);
+            Point point2 = new(L2R ? dr.Left : dr.Right, dr.Top);
             Point mapPos = point2;
             while (Math.Abs((int)Math.Round(num)) <= dr.Width && (int)Math.Round(num2) <= dr.Height)
             {
@@ -2873,7 +2873,7 @@ namespace MasaoPlus
                         if (cd.character == "Z") largerPoint = GetLargerPoint(new Point(0, 0), chipData.center);
                         else if (chipsData.character == "Z") largerPoint = GetLargerPoint(cd.GetCSChip().center, new Point(0, 0));
                     }
-                    Rectangle rectangle = new Rectangle(MapPos.X * chipsize.Width - largerPoint.X, MapPos.Y * chipsize.Height - largerPoint.Y, size.Width, size.Height);
+                    Rectangle rectangle = new(MapPos.X * chipsize.Width - largerPoint.X, MapPos.Y * chipsize.Height - largerPoint.Y, size.Width, size.Height);
                     RedrawMap(g,
                         new Rectangle((int)Math.Ceiling((decimal)rectangle.X / chipsize.Width), (int)Math.Ceiling((decimal)rectangle.Y / chipsize.Height),
                             (int)Math.Ceiling((decimal)rectangle.Width / chipsize.Width), (int)Math.Ceiling((decimal)rectangle.Height / chipsize.Height)));
@@ -2892,7 +2892,7 @@ namespace MasaoPlus
                 else
                 {
                     Point largerPoint2 = GetLargerPoint(cschip.center, cschip2.center);
-                    Rectangle rectangle2 = new Rectangle(MapPos.X * chipsize.Width - largerPoint2.X, MapPos.Y * chipsize.Height - largerPoint2.Y, size2.Width, size2.Height);
+                    Rectangle rectangle2 = new(MapPos.X * chipsize.Width - largerPoint2.X, MapPos.Y * chipsize.Height - largerPoint2.Y, size2.Width, size2.Height);
                     RedrawMap(g,
                         new Rectangle(rectangle2.X / chipsize.Width, rectangle2.Y / chipsize.Height,
                             rectangle2.Width / chipsize.Width, rectangle2.Height / chipsize.Height));
@@ -2903,14 +2903,14 @@ namespace MasaoPlus
         public void RedrawMap(Graphics g, Rectangle rect)
         {
             Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
-            using Bitmap bitmap = new Bitmap(rect.Width * chipsize.Width * DeviceDpi / 96, rect.Height * chipsize.Height * DeviceDpi / 96, PixelFormat.Format32bppArgb);
+            using Bitmap bitmap = new(rect.Width * chipsize.Width * DeviceDpi / 96, rect.Height * chipsize.Height * DeviceDpi / 96, PixelFormat.Format32bppArgb);
             using (Graphics graphics = Graphics.FromImage(bitmap))
             {
                 graphics.PixelOffsetMode = PixelOffsetMode.Half;
                 graphics.FillRectangle(Brushes.Transparent, new Rectangle(new Point(0, 0), bitmap.Size));
                 graphics.PixelOffsetMode = PixelOffsetMode.Half;
                 graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-                Point point = new Point(-1, -1);
+                Point point = new(-1, -1);
                 for (int i = rect.Y; i < rect.Bottom; i++)
                 {
                     point.Y++;
@@ -3075,7 +3075,7 @@ namespace MasaoPlus
             {
                 return;
             }
-            List<string> list = new List<string>();
+            List<string> list = new();
             foreach (string text in Global.cpd.EditingMap)
             {
                 if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
@@ -3301,15 +3301,15 @@ namespace MasaoPlus
             DrawSecondHaikei2Orig, DrawSecondHaikei3Orig, DrawSecondHaikei4Orig,
             DrawChizuOrig;
 
-        public Dictionary<string, ChipsData> DrawItemRef = new Dictionary<string, ChipsData>();
+        public Dictionary<string, ChipsData> DrawItemRef = new();
 
-        public Dictionary<string, ChipsData> DrawLayerRef = new Dictionary<string, ChipsData>();
+        public Dictionary<string, ChipsData> DrawLayerRef = new();
 
-        public Dictionary<string, ChipsData> DrawWorldRef = new Dictionary<string, ChipsData>();
+        public Dictionary<string, ChipsData> DrawWorldRef = new();
 
-        public Dictionary<string, ChipsData> DrawItemCodeRef = new Dictionary<string, ChipsData>();
+        public Dictionary<string, ChipsData> DrawItemCodeRef = new();
 
-        public Dictionary<string, ChipsData> DrawLayerCodeRef = new Dictionary<string, ChipsData>();
+        public Dictionary<string, ChipsData> DrawLayerCodeRef = new();
 
         private Bitmap ForeLayerBmp;
 
@@ -3319,7 +3319,7 @@ namespace MasaoPlus
 
         private CopyPasteTool cpaste;
 
-        public List<string[]> StageBuffer = new List<string[]>();
+        public List<string[]> StageBuffer = new();
 
         public int BufferCurrent = -1;
 
@@ -3335,7 +3335,7 @@ namespace MasaoPlus
 
         private string[] BackPrevDrawn;
 
-        private Bitmap ForegroundBuffer = new Bitmap(1, 1);
+        private Bitmap ForegroundBuffer = new(1, 1);
 
         private int bufpos = -1;
 
@@ -3355,9 +3355,9 @@ namespace MasaoPlus
 
         private bool MousePressed;
 
-        private readonly List<char[]> repls = new List<char[]>();
+        private readonly List<char[]> repls = new();
 
-        private readonly List<string[]> replsCode = new List<string[]>();
+        private readonly List<string[]> replsCode = new();
 
         private struct BufStr
         {

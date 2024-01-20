@@ -95,7 +95,7 @@ namespace MasaoPlus
             {
                 try
                 {
-                    using StreamWriter streamWriter = new StreamWriter(Global.definition.Dump, true);
+                    using StreamWriter streamWriter = new(Global.definition.Dump, true);
                     streamWriter.WriteLine("------------------------------------------------------------");
                     streamWriter.WriteLine($"| Reported:{DateTime.Now:yyyy/MM/dd HH:mm:ss}");
                     streamWriter.WriteLine("------------------------------------------------------------");

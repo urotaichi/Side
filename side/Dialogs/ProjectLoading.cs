@@ -155,7 +155,7 @@ namespace MasaoPlus.Dialogs
 
         private void SetState(string text)
         {
-            SetStateDelg method = new SetStateDelg(SetStateInv);
+            SetStateDelg method = new(SetStateInv);
             Invoke(method, new object[]
             {
                 text

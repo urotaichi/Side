@@ -16,8 +16,8 @@ namespace MasaoPlus
             Project result;
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Project));
-                using FileStream fileStream = new FileStream(file, FileMode.Open);
+                XmlSerializer xmlSerializer = new(typeof(Project));
+                using FileStream fileStream = new(file, FileMode.Open);
                 Project project = (Project)xmlSerializer.Deserialize(fileStream);
                 project.Config.ConfigReady();
                 result = project;
@@ -46,10 +46,10 @@ namespace MasaoPlus
         public void SaveXML(string file)
         {
             ProjVer = Global.definition.CProjVer;
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Project));
+            XmlSerializer xmlSerializer = new(typeof(Project));
             try
             {
-                using FileStream fileStream = new FileStream(file, FileMode.Create);
+                using FileStream fileStream = new(file, FileMode.Create);
                 xmlSerializer.Serialize(fileStream, this);
             }
             catch (Exception ex)
@@ -127,7 +127,7 @@ namespace MasaoPlus
 
         public double ProjVer;
 
-        public Runtime Runtime = new Runtime();
+        public Runtime Runtime = new();
 
         public bool Use3rdMapData = false;
 
@@ -151,6 +151,6 @@ namespace MasaoPlus
 
         public string[] MapData = new string[0];
 
-        public ConfigurationOwner Config = new ConfigurationOwner();
+        public ConfigurationOwner Config = new();
     }
 }

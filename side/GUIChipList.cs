@@ -174,7 +174,7 @@ namespace MasaoPlus
                 ChipsData chipData = chipsData[i - inital];
                 Point point = GetPosition(i);
                 Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
-                Rectangle rectangle = new Rectangle(point.X * chipsize.Width * DeviceDpi / 96, point.Y * chipsize.Height * DeviceDpi / 96,chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
+                Rectangle rectangle = new(point.X * chipsize.Width * DeviceDpi / 96, point.Y * chipsize.Height * DeviceDpi / 96,chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
                 rectangle.Y -= vPosition;
                 if (rectangle.Top > MainPanel.Height) break;
 

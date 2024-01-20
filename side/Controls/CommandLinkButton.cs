@@ -127,7 +127,7 @@ namespace MasaoPlus.Controls
             {
                 fontStyle |= FontStyle.Underline;
             }
-            using (Font font = new Font(Font, fontStyle))
+            using (Font font = new(Font, fontStyle))
             {
                 TextRenderer.DrawText(pe.Graphics, text, font, new Point(3, 3), Color.Blue);
                 Size size = TextRenderer.MeasureText(text, font);

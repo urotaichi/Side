@@ -45,7 +45,7 @@ namespace MasaoPlus.Dialogs
 
         private void NewProj_Click(object sender, EventArgs e)
         {
-            using NewProject newProject = new NewProject();
+            using NewProject newProject = new();
             if (newProject.ShowDialog() == DialogResult.OK)
             {
                 ProjectPath = newProject.CreatedProject;
@@ -56,7 +56,7 @@ namespace MasaoPlus.Dialogs
 
         private void OpenFile_Click(object sender, EventArgs e)
         {
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.Filter = $"{Global.definition.AppName}プロジェクト及びHTML/XML(*.html,*.xml,*{Global.definition.ProjExt})|*.html;*.xml;*{Global.definition.ProjExt}|{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}|HTML/XML ドキュメント(*.htm*;*.xml)|*.htm*;*.xml|全てのファイル|*.*";
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -69,7 +69,7 @@ namespace MasaoPlus.Dialogs
                 }
                 else
                 {
-                    using HTMLInheritance htmlinheritance = new HTMLInheritance(openFileDialog.FileName);
+                    using HTMLInheritance htmlinheritance = new(openFileDialog.FileName);
                     if (htmlinheritance.ShowDialog() == DialogResult.OK)
                     {
                         ProjectPath = htmlinheritance.ProjectFile;
@@ -87,7 +87,7 @@ namespace MasaoPlus.Dialogs
 
         private void CallConfig_Click(object sender, EventArgs e)
         {
-            using SideConfig sideConfig = new SideConfig();
+            using SideConfig sideConfig = new();
             sideConfig.ShowDialog();
         }
 
@@ -96,14 +96,14 @@ namespace MasaoPlus.Dialogs
             DialogResult dialogResult = DialogResult.Retry;
             while (dialogResult == DialogResult.Retry)
             {
-                using RuntimeManager runtimeManager = new RuntimeManager();
+                using RuntimeManager runtimeManager = new();
                 dialogResult = runtimeManager.ShowDialog();
             }
         }
 
         private void CallSideUpdate_Click(object sender, EventArgs e)
         {
-            using WebUpdate webUpdate = new WebUpdate();
+            using WebUpdate webUpdate = new();
             if (webUpdate.ShowDialog() == DialogResult.Retry)
             {
                 Global.state.RunFile = (string)webUpdate.runfile.Clone();
@@ -113,12 +113,12 @@ namespace MasaoPlus.Dialogs
 
         private void InheritNew_Click(object sender, EventArgs e)
         {
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}";
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                using ProjInheritance projInheritance = new ProjInheritance(openFileDialog.FileName);
+                using ProjInheritance projInheritance = new(openFileDialog.FileName);
                 if (projInheritance.DialogResult != DialogResult.Abort && projInheritance.ShowDialog() == DialogResult.OK)
                 {
                     ProjectPath = projInheritance.NewProjectName;

@@ -16,8 +16,8 @@ namespace MasaoPlus
             ConfigurationOwner result;
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(ConfigurationOwner));
-                using FileStream fileStream = new FileStream(file, FileMode.Open);
+                XmlSerializer xmlSerializer = new(typeof(ConfigurationOwner));
+                using FileStream fileStream = new(file, FileMode.Open);
                 ConfigurationOwner configurationOwner = (ConfigurationOwner)xmlSerializer.Deserialize(fileStream);
                 configurationOwner.ConfigReady();
                 result = configurationOwner;
@@ -187,7 +187,7 @@ namespace MasaoPlus
         {
             get
             {
-                Colors colors = new Colors(Configurations[RelIndex[0]].Value);
+                Colors colors = new(Configurations[RelIndex[0]].Value);
                 return colors.c;
             }
             set
@@ -203,7 +203,7 @@ namespace MasaoPlus
         {
             get
             {
-                Colors colors = new Colors(Configurations[RelIndex[1]].Value);
+                Colors colors = new(Configurations[RelIndex[1]].Value);
                 return colors.c;
             }
             set
@@ -219,7 +219,7 @@ namespace MasaoPlus
         {
             get
             {
-                Colors colors = new Colors(Configurations[RelIndex[2]].Value);
+                Colors colors = new(Configurations[RelIndex[2]].Value);
                 return colors.c;
             }
             set
@@ -235,7 +235,7 @@ namespace MasaoPlus
         {
             get
             {
-                Colors colors = new Colors(Configurations[RelIndex[3]].Value);
+                Colors colors = new(Configurations[RelIndex[3]].Value);
                 return colors.c;
             }
             set
@@ -251,7 +251,7 @@ namespace MasaoPlus
         {
             get
             {
-                Colors colors = new Colors(Configurations[RelIndex[4]].Value);
+                Colors colors = new(Configurations[RelIndex[4]].Value);
                 return colors.c;
             }
             set
@@ -376,7 +376,7 @@ namespace MasaoPlus
         {
             get
             {
-                Colors colors = new Colors(Configurations[RelIndex[13]].Value);
+                Colors colors = new(Configurations[RelIndex[13]].Value);
                 return colors.c;
             }
             set
@@ -392,7 +392,7 @@ namespace MasaoPlus
         {
             get
             {
-                Colors colors = new Colors(Configurations[RelIndex[14]].Value);
+                Colors colors = new(Configurations[RelIndex[14]].Value);
                 return colors.c;
             }
             set
@@ -408,7 +408,7 @@ namespace MasaoPlus
         {
             get
             {
-                Colors colors = new Colors(Configurations[RelIndex[15]].Value);
+                Colors colors = new(Configurations[RelIndex[15]].Value);
                 return colors.c;
             }
             set
@@ -424,7 +424,7 @@ namespace MasaoPlus
         {
             get
             {
-                Colors colors = new Colors(Configurations[RelIndex[16]].Value);
+                Colors colors = new(Configurations[RelIndex[16]].Value);
                 return colors.c;
             }
             set
@@ -440,7 +440,7 @@ namespace MasaoPlus
         {
             get
             {
-                Colors colors = new Colors(Configurations[RelIndex[17]].Value);
+                Colors colors = new(Configurations[RelIndex[17]].Value);
                 return colors.c;
             }
             set
@@ -607,7 +607,7 @@ namespace MasaoPlus
         public ConfigParam[] Configurations = new ConfigParam[0];
 
         [XmlIgnore]
-        public List<string> Categories = new List<string>();
+        public List<string> Categories = new();
 
         [XmlIgnore]
         private int[] RelIndex;

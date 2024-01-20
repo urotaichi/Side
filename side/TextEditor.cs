@@ -308,7 +308,7 @@ namespace MasaoPlus
 
         private int GetLastVisibleRowIndex()
         {
-            Point pt = new Point(0, StageTextEditor.Height);
+            Point pt = new(0, StageTextEditor.Height);
             int charIndexFromPosition = StageTextEditor.GetCharIndexFromPosition(pt);
             return StageTextEditor.GetLineFromCharIndex(charIndexFromPosition);
         }
@@ -675,9 +675,9 @@ namespace MasaoPlus
             PerformLayout();
         }
 
-        private readonly List<string> TextBuffer = new List<string>();
+        private readonly List<string> TextBuffer = new();
 
-        private readonly List<int> CursorBuffer = new List<int>();
+        private readonly List<int> CursorBuffer = new();
 
         private int ci = -1;
 

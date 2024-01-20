@@ -357,7 +357,7 @@ namespace MasaoPlus.Dialogs
                 }
             }
             Global.state.EditFlag = true;
-            List<HTMLReplaceData> list = new List<HTMLReplaceData>();
+            List<HTMLReplaceData> list = new();
             foreach (object obj in OutputReplaceView.Rows)
             {
                 DataGridViewRow dataGridViewRow = (DataGridViewRow)obj;

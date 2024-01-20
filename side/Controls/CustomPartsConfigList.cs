@@ -193,7 +193,7 @@ namespace MasaoPlus.Controls
                                 {
                                     Value = c.Properties.attack_timing[j].AttackFrame.ToString()
                                 };
-                                DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new DataGridViewCheckBoxCell
+                                DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new()
                                 {
                                     TrueValue = "true",
                                     FalseValue = "false"
@@ -1245,7 +1245,7 @@ namespace MasaoPlus.Controls
                     {
                         Value = next.ToString()
                     };
-                    DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new DataGridViewCheckBoxCell
+                    DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new()
                     {
                         TrueValue = "true",
                         FalseValue = "false"
@@ -1334,7 +1334,7 @@ namespace MasaoPlus.Controls
             ResumeLayout(false);
         }
 
-        private readonly List<ChipsData> CustomizeParts = new List<ChipsData>();
+        private readonly List<ChipsData> CustomizeParts = new();
 
         private DataGridViewComboBoxCell BasePartsTypes;
 

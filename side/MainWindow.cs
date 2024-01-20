@@ -174,7 +174,7 @@ namespace MasaoPlus
             }
             if (text == "")
             {
-                using StartUp startUp = new StartUp();
+                using StartUp startUp = new();
                 if (startUp.ShowDialog() != DialogResult.OK)
                 {
                     Close();
@@ -183,7 +183,7 @@ namespace MasaoPlus
                 }
                 text = startUp.ProjectPath;
             }
-            using (ProjectLoading projectLoading = new ProjectLoading(text))
+            using (ProjectLoading projectLoading = new(text))
             {
                 if (projectLoading.ShowDialog() == DialogResult.Abort)
                 {
@@ -459,9 +459,9 @@ namespace MasaoPlus
         public void UpdateScrollbar(double oldZoomIndex)
         {
             double num = Global.config.draw.ZoomIndex / oldZoomIndex;
-            Point point = new Point((int)(GHorzScroll.Value * num), (int)(GVirtScroll.Value * num));
+            Point point = new((int)(GHorzScroll.Value * num), (int)(GVirtScroll.Value * num));
             Size displaySize = MainDesigner.DisplaySize;
-            Size mapMoveMax = new Size(displaySize.Width - MainDesigner.Width, displaySize.Height - MainDesigner.Height);
+            Size mapMoveMax = new(displaySize.Width - MainDesigner.Width, displaySize.Height - MainDesigner.Height);
             Global.state.MapMoveMax = mapMoveMax;
             if (displaySize.Width <= MainDesigner.Width)
             {
@@ -678,7 +678,7 @@ namespace MasaoPlus
 
         public void ChipItemReady()
         {
-            CRID method = new CRID(ChipItemReadyInvoke);
+            CRID method = new(ChipItemReadyInvoke);
             Invoke(method);
         }
 
@@ -1289,7 +1289,7 @@ namespace MasaoPlus
                     switch (keyCode)
                     {
                         case Keys.Space:
-                            using (OverViewWindow overViewWindow = new OverViewWindow())
+                            using (OverViewWindow overViewWindow = new())
                             {
                                 overViewWindow.ShowDialog();
                                 return;
@@ -1938,7 +1938,7 @@ namespace MasaoPlus
             MSaveAs.Enabled = true;
             MTSave.Enabled = true;
             Global.state.EditFlag = false;
-            using (ProjectLoading projectLoading = new ProjectLoading(su))
+            using (ProjectLoading projectLoading = new(su))
             {
                 if (projectLoading.ShowDialog() == DialogResult.Abort)
                 {
@@ -1980,7 +1980,7 @@ namespace MasaoPlus
             {
                 return;
             }
-            using NewProject newProject = new NewProject();
+            using NewProject newProject = new();
             if (newProject.ShowDialog() == DialogResult.OK)
             {
                 RestartUp(newProject.CreatedProject);
@@ -1993,7 +1993,7 @@ namespace MasaoPlus
             {
                 return;
             }
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}|全てのファイル|*.*";
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -2011,7 +2011,7 @@ namespace MasaoPlus
 
         private void MSaveAs_Click(object sender, EventArgs e)
         {
-            using SaveFileDialog saveFileDialog = new SaveFileDialog();
+            using SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}|全てのファイル|*.*";
             saveFileDialog.InitialDirectory = Global.cpd.where;
             saveFileDialog.FileName = Path.GetFileName(Global.cpd.filename);
@@ -2042,7 +2042,7 @@ namespace MasaoPlus
 
         private void MWriteHTML_Click(object sender, EventArgs e)
         {
-            using SaveFileDialog saveFileDialog = new SaveFileDialog();
+            using SaveFileDialog saveFileDialog = new();
             saveFileDialog.DefaultExt = Global.cpd.runtime.DefaultConfigurations.FileExt;
             saveFileDialog.AddExtension = true;
             saveFileDialog.Filter = $"出力ファイル(*.{Global.cpd.runtime.DefaultConfigurations.FileExt})|*{Global.cpd.runtime.DefaultConfigurations.FileExt}";
@@ -2050,13 +2050,13 @@ namespace MasaoPlus
             {
                 if (Path.GetDirectoryName(saveFileDialog.FileName) != Global.cpd.where)
                 {
-                    using OutputControl outputControl = new OutputControl(Path.GetDirectoryName(saveFileDialog.FileName));
+                    using OutputControl outputControl = new(Path.GetDirectoryName(saveFileDialog.FileName));
                     if (outputControl.ShowDialog() == DialogResult.Cancel)
                     {
                         return;
                     }
                 }
-                using (StreamWriter streamWriter = new StreamWriter(saveFileDialog.FileName, false, Global.config.localSystem.FileEncoding))
+                using (StreamWriter streamWriter = new(saveFileDialog.FileName, false, Global.config.localSystem.FileEncoding))
                 {
                     string value = Subsystem.MakeHTMLCode(0);
                     streamWriter.Write(value);
@@ -2292,7 +2292,7 @@ namespace MasaoPlus
 
         public void MSysConfig_Click(object sender, EventArgs e)
         {
-            using SideConfig sideConfig = new SideConfig();
+            using SideConfig sideConfig = new();
             if (sideConfig.ShowDialog() == DialogResult.OK && EditTab.SelectedIndex == 0)
             {
                 UpdateStatus("描画を更新しています...");
@@ -2309,7 +2309,7 @@ namespace MasaoPlus
 
         private void MVersion_Click(object sender, EventArgs e)
         {
-            using VersionInfo versionInfo = new VersionInfo();
+            using VersionInfo versionInfo = new();
             versionInfo.ShowDialog();
         }
 
@@ -2418,7 +2418,7 @@ namespace MasaoPlus
 
         public void ProjectConfig_Click(object sender, EventArgs e)
         {
-            using (ProjectConfig projectConfig = new ProjectConfig())
+            using (ProjectConfig projectConfig = new())
             {
                 projectConfig.ShowDialog();
             }
@@ -2428,7 +2428,7 @@ namespace MasaoPlus
         private void MWriteStagePicture_Click(object sender, EventArgs e)
         {
             string text = "";
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            using (SaveFileDialog saveFileDialog = new())
             {
                 saveFileDialog.Filter = "PNG画像(*.png)|*.png|GIF画像(*.gif)|*.gif|JPEG画像(*.jpg)|*.jpg|ビットマップ(*.bmp)|*.bmp";
                 saveFileDialog.DefaultExt = ".png";
@@ -2440,7 +2440,7 @@ namespace MasaoPlus
                 text = saveFileDialog.FileName;
             }
             Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : MainDesigner.CurrentStageSize;
-            using (Bitmap bitmap = new Bitmap(stageSizeData.x * Global.cpd.runtime.Definitions.ChipSize.Width, stageSizeData.y * Global.cpd.runtime.Definitions.ChipSize.Height))
+            using (Bitmap bitmap = new(stageSizeData.x * Global.cpd.runtime.Definitions.ChipSize.Width, stageSizeData.y * Global.cpd.runtime.Definitions.ChipSize.Height))
             {
                 using (Graphics graphics = Graphics.FromImage(bitmap))
                 {
@@ -2482,7 +2482,7 @@ namespace MasaoPlus
 
         private void MResetProjRuntime_Click(object sender, EventArgs e)
         {
-            using (ResetRuntime resetRuntime = new ResetRuntime())
+            using (ResetRuntime resetRuntime = new())
             {
                 if (resetRuntime.ShowDialog() != DialogResult.OK)
                 {
@@ -2505,7 +2505,7 @@ namespace MasaoPlus
             DialogResult dialogResult = DialogResult.Retry;
             while (dialogResult == DialogResult.Retry)
             {
-                using RuntimeManager runtimeManager = new RuntimeManager();
+                using RuntimeManager runtimeManager = new();
                 dialogResult = runtimeManager.ShowDialog();
             }
         }
@@ -2516,12 +2516,12 @@ namespace MasaoPlus
             {
                 return;
             }
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}";
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                using ProjInheritance projInheritance = new ProjInheritance(openFileDialog.FileName);
+                using ProjInheritance projInheritance = new(openFileDialog.FileName);
                 if (projInheritance.ShowDialog() == DialogResult.OK)
                 {
                     RestartUp(projInheritance.NewProjectName);
@@ -2535,12 +2535,12 @@ namespace MasaoPlus
             {
                 return;
             }
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.Filter = "HTML/XML ドキュメント(*.htm*;*.xml)|*.htm*;*.xml|全てのファイル|*.*";
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                using HTMLInheritance htmlinheritance = new HTMLInheritance(openFileDialog.FileName);
+                using HTMLInheritance htmlinheritance = new(openFileDialog.FileName);
                 if (htmlinheritance.ShowDialog() == DialogResult.OK)
                 {
                     RestartUp(htmlinheritance.ProjectFile);
@@ -2550,7 +2550,7 @@ namespace MasaoPlus
 
         private void MUpdateApp_Click(object sender, EventArgs e)
         {
-            using WebUpdate webUpdate = new WebUpdate();
+            using WebUpdate webUpdate = new();
             if (webUpdate.ShowDialog() == DialogResult.Retry)
             {
                 Global.state.RunFile = (string)webUpdate.runfile.Clone();

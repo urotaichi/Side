@@ -14,8 +14,8 @@ namespace MasaoPlus
             UpdateData result;
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(UpdateData));
-                using FileStream fileStream = new FileStream(file, FileMode.Open);
+                XmlSerializer xmlSerializer = new(typeof(UpdateData));
+                using FileStream fileStream = new(file, FileMode.Open);
                 UpdateData updateData = (UpdateData)xmlSerializer.Deserialize(fileStream);
                 result = updateData;
             }
@@ -29,10 +29,10 @@ namespace MasaoPlus
 
         public void SaveXML(string file)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(UpdateData));
+            XmlSerializer xmlSerializer = new(typeof(UpdateData));
             try
             {
-                using FileStream fileStream = new FileStream(file, FileMode.Create);
+                using FileStream fileStream = new(file, FileMode.Create);
                 xmlSerializer.Serialize(fileStream, this);
             }
             catch (Exception ex)

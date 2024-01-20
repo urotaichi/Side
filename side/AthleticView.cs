@@ -38,7 +38,7 @@ namespace MasaoPlus
                 {"一方通行", new Athletic(
                     (dpi, cschip, g, chipsize) => {
                         if (!cschip.description.Contains("表示なし")){
-                            using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
+                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
                             if (cschip.description.Contains("右"))
                                 DrawLine(dpi, g, pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
                             else if (cschip.description.Contains("左"))
@@ -51,7 +51,7 @@ namespace MasaoPlus
                     },
                     (dpi, cschip, g, chipsize, gd, base_y) => {
                         if (!cschip.description.Contains("表示なし")){
-                            using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
+                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
                             if (cschip.description.Contains("右"))
                                 DrawLine(dpi, g, pen, cschip.view_size.Width - 1, 0, cschip.view_size.Width - 1, cschip.view_size.Height);
                             else if (cschip.description.Contains("左"))
@@ -64,7 +64,7 @@ namespace MasaoPlus
                     },
                     (cschip, g, chipsize) => {
                         if (!cschip.description.Contains("表示なし")){
-                            using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
+                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 2);
                             if (cschip.description.Contains("右"))
                                 g.DrawLine(pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Width);
                             else if (cschip.description.Contains("左"))
@@ -77,7 +77,7 @@ namespace MasaoPlus
                     },
                     (dpi, cschip, g, chipsize, height) => {
                         if (!cschip.description.Contains("表示なし")){
-                            using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 2 / height * dpi / 96);
+                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 2 / height * dpi / 96);
                             if (cschip.description.Contains("右"))
                                 g.DrawLine(pen, height - 1 * dpi / 96, 0, height - 1 * dpi / 96, height);
                             else if (cschip.description.Contains("左"))
@@ -90,7 +90,7 @@ namespace MasaoPlus
                     },
                     (dpi, cschip, g, chipsize) => {
                         if (!cschip.description.Contains("表示なし")){
-                            using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
+                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
                             if (cschip.description.Contains("右"))
                                 DrawLine(dpi, g, pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
                             else if (cschip.description.Contains("左"))
@@ -104,7 +104,7 @@ namespace MasaoPlus
                 },
                 {"左右へ押せるドッスンスンのゴール", new Athletic(
                     (dpi, cschip, g, chipsize) => {
-                        using Pen pen = new Pen(Global.cpd.project.Config.Firebar1, 1 * dpi / 96);
+                        using Pen pen = new(Global.cpd.project.Config.Firebar1, 1 * dpi / 96);
                         TranslateTransform(dpi, g, 1, 1);
                         DrawRectangle(dpi, g, pen, 0, 11, chipsize.Width - 1, chipsize.Height - 1 - 11);
                         TranslateTransform(dpi, g, -1, -1);
@@ -114,13 +114,13 @@ namespace MasaoPlus
                     (dpi, cschip, g, chipsize, gd, base_y) => {
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         TranslateTransform(dpi, g, -cschip.center.X + 1, -cschip.center.Y + 1);
-                        using Pen pen = new Pen(Global.cpd.project.Config.Firebar1, 2 * dpi / 96);
+                        using Pen pen = new(Global.cpd.project.Config.Firebar1, 2 * dpi / 96);
                         DrawRectangle(dpi, g, pen, 0, 0, 94, 62);
                         DrawLine(dpi, g, pen, 0, 0, 94, 62);
                         DrawLine(dpi, g, pen, 0, 62, 94, 0);
                     },
                     (cschip, g, chipsize) => {
-                        using Pen pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
+                        using Pen pen = new(Global.cpd.project.Config.Firebar1, 2);
                         g.TranslateTransform(1, 1);
                         g.DrawRectangle(pen, 0, 11, chipsize.Width - 2, chipsize.Width - 2 - 11);
                         g.TranslateTransform(-1, 0);
@@ -128,7 +128,7 @@ namespace MasaoPlus
                         g.DrawLine(pen, 0, chipsize.Width, chipsize.Width, 11);
                     },
                     (dpi, cschip, g, chipsize, height) => {
-                        using Pen pen = new Pen(Global.cpd.project.Config.Firebar1, 1 * dpi / 96);
+                        using Pen pen = new(Global.cpd.project.Config.Firebar1, 1 * dpi / 96);
                         TranslateTransform(dpi, g, 1, 1);
                         g.DrawRectangle(pen, 0, 5 * dpi / 96, height - 1 * dpi / 96, height - 1 * dpi / 96 - 5 * dpi / 96);
                         TranslateTransform(dpi, g, -1, -1);
@@ -136,7 +136,7 @@ namespace MasaoPlus
                         g.DrawLine(pen, 0, height, height, 5 * dpi / 96);
                     },
                     (dpi, cschip, g, chipsize) => {
-                        using Pen pen = new Pen(Global.cpd.project.Config.Firebar1, 1 * dpi / 96);
+                        using Pen pen = new(Global.cpd.project.Config.Firebar1, 1 * dpi / 96);
                         TranslateTransform(dpi, g, 1, 1);
                         DrawRectangle(dpi, g, pen, 0, 11, chipsize.Width - 1, chipsize.Height - 1 - 11);
                         TranslateTransform(dpi, g, -1, -1);
@@ -158,7 +158,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad - Math.PI / 2) * 5;
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad - Math.PI / 2) * 5;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad - Math.PI / 2) * 5;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                         vo_pa = new PointF[3];
@@ -168,7 +168,7 @@ namespace MasaoPlus
                         vo_pa[1].Y = 15;
                         vo_pa[2].X = 4;
                         vo_pa[2].Y = 15;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                     },
@@ -187,7 +187,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad - Math.PI / 2) * 12;
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad - Math.PI / 2) * 12;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad - Math.PI / 2) * 12;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                         vo_pa = new PointF[3];
@@ -197,10 +197,10 @@ namespace MasaoPlus
                         vo_pa[1].Y = 128;
                         vo_pa[2].X = 16;
                         vo_pa[2].Y = 128;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
-                        using Pen pen = new Pen(Color.White, 2 * dpi / 96);
+                        using Pen pen = new(Color.White, 2 * dpi / 96);
                         if (cschip.description.Contains("左")) rad = -56;
                         else if (cschip.description.Contains("右")) rad = 56;
                         else rad = 0;
@@ -224,7 +224,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad - Math.PI / 2) * 5;
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad - Math.PI / 2) * 5;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad - Math.PI / 2) * 5;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             g.FillPolygon(brush, vo_pa);
                         }
                         vo_pa = new PointF[3];
@@ -234,7 +234,7 @@ namespace MasaoPlus
                         vo_pa[1].Y = 15;
                         vo_pa[2].X = 4;
                         vo_pa[2].Y = 15;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             g.FillPolygon(brush, vo_pa);
                         }
                     },
@@ -251,7 +251,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad - Math.PI / 2) * height / 6;
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad - Math.PI / 2) * height / 6;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad - Math.PI / 2) * height / 6;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             g.FillPolygon(brush, vo_pa);
                         }
                         vo_pa = new PointF[3];
@@ -261,7 +261,7 @@ namespace MasaoPlus
                         vo_pa[1].Y = height / 2;
                         vo_pa[2].X = 2 * dpi / 96;
                         vo_pa[2].Y = height / 2;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             g.FillPolygon(brush, vo_pa);
                         }
                     },
@@ -278,7 +278,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad - Math.PI / 2) * 5;
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad - Math.PI / 2) * 5;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad - Math.PI / 2) * 5;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                         vo_pa = new PointF[3];
@@ -288,7 +288,7 @@ namespace MasaoPlus
                         vo_pa[1].Y = 15;
                         vo_pa[2].X = 4;
                         vo_pa[2].Y = 15;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                     })
@@ -311,12 +311,12 @@ namespace MasaoPlus
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 5;
                         double dx = Math.Cos(rad) * 21;
                         double dy = Math.Sin(rad) * 21;
-                        using (Pen pen = new Pen(Global.cpd.project.Config.Firebar1, 2 * dpi / 96)){
+                        using (Pen pen = new(Global.cpd.project.Config.Firebar1, 2 * dpi / 96)){
                             DrawLine(dpi, g, pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
                             DrawLine(dpi, g, pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
                             DrawLine(dpi, g, pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
                         }
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         FillPolygon(dpi, g, brush, vo_pa);
                     },
                     (dpi, cschip, g, chipsize, gd, base_y) => {
@@ -337,13 +337,13 @@ namespace MasaoPlus
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 12;
                         double dx = Math.Cos(rad) * 80;
                         double dy = Math.Sin(rad) * 80;
-                        using Pen pen = new Pen(Global.cpd.project.Config.Firebar1, 2 * dpi / 96);
+                        using Pen pen = new(Global.cpd.project.Config.Firebar1, 2 * dpi / 96);
                         DrawLine(dpi, g, pen, (float)Math.Cos(rad) * 12, (float)Math.Sin(rad) * 12, (float)dx, (float)dy);
                         DrawLine(dpi, g, pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
                         DrawLine(dpi, g, pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         FillPolygon(dpi, g, brush, vo_pa);
-                        using Pen pen2 = new Pen(Color.White, 2 * dpi / 96);
+                        using Pen pen2 = new(Color.White, 2 * dpi / 96);
                         rad = 90 + Math.Floor((double)(30 + 5) / 10);
                         DrawLine(dpi, g, pen2,
                             (float)Math.Floor(Math.Cos((rad + 20) * math_pi / 180) * 192),
@@ -398,12 +398,12 @@ namespace MasaoPlus
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 5;
                         double dx = Math.Cos(rad) * 21;
                         double dy = Math.Sin(rad) * 21;
-                        using (Pen pen = new Pen(Global.cpd.project.Config.Firebar1, 2)){
+                        using (Pen pen = new(Global.cpd.project.Config.Firebar1, 2)){
                             g.DrawLine(pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
                             g.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
                             g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
                         }
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                     },
                     (dpi, cschip, g, chipsize, height) => {
@@ -421,12 +421,12 @@ namespace MasaoPlus
                         vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad) * 2 * dpi / 96;
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad) * 2 * dpi / 96;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 2 * dpi / 96;
-                        using (Pen pen = new Pen(Global.cpd.project.Config.Firebar1, 1 * dpi / 96)){
+                        using (Pen pen = new(Global.cpd.project.Config.Firebar1, 1 * dpi / 96)){
                             DrawLine(dpi, g, pen, 0, 5, 0, 8);
                             g.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, 0, 8 * dpi / 96);
                             g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, 0, 8 * dpi / 96);
                         }
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                     },
                     (dpi, cschip, g, chipsize) => {
@@ -446,12 +446,12 @@ namespace MasaoPlus
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 5;
                         double dx = Math.Cos(rad) * 21;
                         double dy = Math.Sin(rad) * 21;
-                        using (Pen pen = new Pen(Global.cpd.project.Config.Firebar1, 2 * dpi / 96)){
+                        using (Pen pen = new(Global.cpd.project.Config.Firebar1, 2 * dpi / 96)){
                             DrawLine(dpi, g, pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
                             DrawLine(dpi, g, pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
                             DrawLine(dpi, g, pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
                         }
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         FillPolygon(dpi, g, brush, vo_pa);
                     })
                 },
@@ -481,7 +481,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(rad) * 20 + Math.Sin(rad - Math.PI / 2) * 3);
                         vo_pa[3].X = (float)(Math.Cos(rad) * 40 + Math.Cos(rad - Math.PI / 2) * 3);
                         vo_pa[3].Y = (float)(Math.Sin(rad) * 40 + Math.Sin(rad - Math.PI / 2) * 3);
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         FillPolygon(dpi, g, brush, vo_pa);
                     },
                     (dpi, cschip, g, chipsize, gd, base_y) => {
@@ -502,10 +502,10 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(rad) * 60 + Math.Sin(rad - Math.PI / 2) * 12);
                         vo_pa[3].X = (float)(Math.Cos(rad) * 192 + Math.Cos(rad - Math.PI / 2) * 12);
                         vo_pa[3].Y = (float)(Math.Sin(rad) * 192 + Math.Sin(rad - Math.PI / 2) * 12);
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
-                        using Pen pen = new Pen(Color.White, 2 * dpi / 96);
+                        using Pen pen = new(Color.White, 2 * dpi / 96);
                         if (cschip.description.Contains("左"))
                         {
                             rad = 180 + Math.Floor((double)(-26 - 5) / 10);
@@ -548,7 +548,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(rad) * 20 + Math.Sin(rad - Math.PI / 2) * 3);
                         vo_pa[3].X = (float)(Math.Cos(rad) * 40 + Math.Cos(rad - Math.PI / 2) * 3);
                         vo_pa[3].Y = (float)(Math.Sin(rad) * 40 + Math.Sin(rad - Math.PI / 2) * 3);
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                     },
                     (dpi, cschip, g, chipsize, height) => {
@@ -576,7 +576,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(rad) * 10 + Math.Sin(rad - Math.PI / 2) * 1);
                         vo_pa[3].X = (float)(Math.Cos(rad) * 20 + Math.Cos(rad - Math.PI / 2) * 1);
                         vo_pa[3].Y = (float)(Math.Sin(rad) * 20 + Math.Sin(rad - Math.PI / 2) * 1);
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         FillPolygon(dpi, g, brush, vo_pa);
                     },
                     (dpi, cschip, g, chipsize) => {
@@ -604,7 +604,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(rad) * 20 + Math.Sin(rad - Math.PI / 2) * 3);
                         vo_pa[3].X = (float)(Math.Cos(rad) * 40 + Math.Cos(rad - Math.PI / 2) * 3);
                         vo_pa[3].Y = (float)(Math.Sin(rad) * 40 + Math.Sin(rad - Math.PI / 2) * 3);
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         FillPolygon(dpi, g, brush, vo_pa);
                     })
                 },
@@ -619,7 +619,7 @@ namespace MasaoPlus
                         vo_pa[1].Y = (float)Math.Sin((rad - 6) * Math.PI / 180) * chipsize.Width;
                         vo_pa[2].X = 0;
                         vo_pa[2].Y = 0;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                         vo_pa = new PointF[4];
@@ -631,7 +631,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad * Math.PI / 180) * 5;
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad * Math.PI / 180) * 5;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 5;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                     },
@@ -663,7 +663,7 @@ namespace MasaoPlus
                         vo_pa[1].Y = (float)Math.Sin((rad - a) * Math.PI / 180) * b;
                         vo_pa[2].X = 0;
                         vo_pa[2].Y = 0;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                         vo_pa = new PointF[4];
@@ -675,10 +675,10 @@ namespace MasaoPlus
                         vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad * Math.PI / 180) * 12;
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad * Math.PI / 180) * 12;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 12;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
-                        using Pen pen = new Pen(Color.White, 2 * dpi / 96);
+                        using Pen pen = new(Color.White, 2 * dpi / 96);
                         DrawLine(dpi, g, pen,
                             (float)(Math.Floor(Math.Cos((rad + c) * math_pi / 180) * d) + Math.Floor(Math.Cos(rad * math_pi / 180) * 12)),
                             (float)(Math.Floor(Math.Sin((rad + c) * math_pi / 180) * d) + Math.Floor(Math.Sin(rad * math_pi / 180) * 12)),
@@ -696,7 +696,7 @@ namespace MasaoPlus
                             vo_pa[1].Y = (float)Math.Sin((rad - a) * Math.PI / 180) * b;
                             vo_pa[2].X = 0;
                             vo_pa[2].Y = 0;
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
                             vo_pa = new PointF[4];
@@ -708,7 +708,7 @@ namespace MasaoPlus
                             vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad * Math.PI / 180) * 12;
                             vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad * Math.PI / 180) * 12;
                             vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 12;
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
                             DrawLine(dpi, g, pen,
@@ -729,7 +729,7 @@ namespace MasaoPlus
                         vo_pa[1].Y = (float)Math.Sin((rad - 6) * Math.PI / 180) * chipsize.Width;
                         vo_pa[2].X = 0;
                         vo_pa[2].Y = 0;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             g.FillPolygon(brush, vo_pa);
                         }
                         vo_pa = new PointF[4];
@@ -741,7 +741,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad * Math.PI / 180) * 5;
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad * Math.PI / 180) * 5;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 5;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             g.FillPolygon(brush, vo_pa);
                         }
                     },
@@ -755,7 +755,7 @@ namespace MasaoPlus
                         vo_pa[1].Y = (float)Math.Sin((rad - 6) * Math.PI / 180) * height;
                         vo_pa[2].X = 0;
                         vo_pa[2].Y = 0;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             g.FillPolygon(brush, vo_pa);
                         }
                         vo_pa = new PointF[4];
@@ -767,7 +767,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad * Math.PI / 180) * 2 * dpi / 96;
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad * Math.PI / 180) * 2 * dpi / 96;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 2 * dpi / 96;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             g.FillPolygon(brush, vo_pa);
                         }
                     },
@@ -781,7 +781,7 @@ namespace MasaoPlus
                         vo_pa[1].Y = (float)Math.Sin((rad - 6) * Math.PI / 180) * chipsize.Width;
                         vo_pa[2].X = 0;
                         vo_pa[2].Y = 0;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                         vo_pa = new PointF[4];
@@ -793,7 +793,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad * Math.PI / 180) * 5;
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad * Math.PI / 180) * 5;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 5;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                     })
@@ -825,7 +825,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Sin((rad - 90) * Math.PI / 180) * length);
                         vo_pa[3].X = (float)(Math.Cos(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Cos((rad + 90) * Math.PI / 180) * length);
                         vo_pa[3].Y = (float)(Math.Sin(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Sin((rad + 90) * Math.PI / 180) * length);
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         FillPolygon(dpi, g, brush, vo_pa);
                     },
                     (dpi, cschip, g, chipsize, gd, base_y) => {
@@ -859,7 +859,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(rad * Math.PI / 180) * length + Math.Sin((rad - 90) * Math.PI / 180) * 5);
                         vo_pa[3].X = (float)(Math.Cos(rad * Math.PI / 180) * length + Math.Cos((rad + 90) * Math.PI / 180) * 5);
                         vo_pa[3].Y = (float)(Math.Sin(rad * Math.PI / 180) * length + Math.Sin((rad + 90) * Math.PI / 180) * 5);
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         FillPolygon(dpi, g, brush, vo_pa);
                         if (cschip.description.Contains("２本連続"))
                         {
@@ -905,7 +905,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Sin((rad - 90) * Math.PI / 180) * length);
                         vo_pa[3].X = (float)(Math.Cos(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Cos((rad + 90) * Math.PI / 180) * length);
                         vo_pa[3].Y = (float)(Math.Sin(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Sin((rad + 90) * Math.PI / 180) * length);
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                     },
                     (dpi, cschip, g, chipsize, height) => {
@@ -934,7 +934,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(rad * Math.PI / 180) * height * 1.8 + Math.Sin((rad - 90) * Math.PI / 180) * length);
                         vo_pa[3].X = (float)(Math.Cos(rad * Math.PI / 180) * height * 1.8 + Math.Cos((rad + 90) * Math.PI / 180) * length);
                         vo_pa[3].Y = (float)(Math.Sin(rad * Math.PI / 180) * height * 1.8 + Math.Sin((rad + 90) * Math.PI / 180) * length);
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                     },
                     (dpi, cschip, g, chipsize) => {
@@ -963,7 +963,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Sin((rad - 90) * Math.PI / 180) * length);
                         vo_pa[3].X = (float)(Math.Cos(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Cos((rad + 90) * Math.PI / 180) * length);
                         vo_pa[3].Y = (float)(Math.Sin(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Sin((rad + 90) * Math.PI / 180) * length);
-                        using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                        using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         FillPolygon(dpi, g, brush, vo_pa);
                     })
                 },
@@ -983,7 +983,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 20 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 7;
                         vo_pa[3].X = 16 + (float)Math.Cos(rad * Math.PI / 180) * 20 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 7;
                         vo_pa[3].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 20 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 7;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Mizunohadou)){
                             FillEllipse(dpi, g, brush, 16 - 7, 16 - 7, 14, 14);
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
@@ -1031,7 +1031,7 @@ namespace MasaoPlus
                             vo_pa[3].X = 16 - 5;
                             vo_pa[3].Y = chipsize.Width - 3;
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                     },
@@ -1052,7 +1052,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 68 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 20;
                         vo_pa[3].X = 16 + (float)Math.Cos(rad * Math.PI / 180) * 68 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 20;
                         vo_pa[3].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 68 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 20;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Mizunohadou)){
                             FillEllipse(dpi, g, brush, 16 - 19, 16 - 19, 38, 38);
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
@@ -1100,7 +1100,7 @@ namespace MasaoPlus
                             vo_pa[3].X = 16 - 12;
                             vo_pa[3].Y = 32 + 12;
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                     },
@@ -1119,7 +1119,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 20 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 7;
                         vo_pa[3].X = 16 + (float)Math.Cos(rad * Math.PI / 180) * 20 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 7;
                         vo_pa[3].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 20 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 7;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Mizunohadou)){
                             g.FillEllipse(brush, 16 - 7, 16 - 7, 14, 14);
                             g.FillPolygon(brush, vo_pa);
                         }
@@ -1167,7 +1167,7 @@ namespace MasaoPlus
                             vo_pa[3].X = 16 - 5;
                             vo_pa[3].Y = chipsize.Width - 3;
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             g.FillPolygon(brush, vo_pa);
                         }
                     },
@@ -1186,7 +1186,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = height / 2 + (float)Math.Sin(rad * Math.PI / 180) * 6 * dpi / 96 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 3 * dpi / 96;
                         vo_pa[3].X = height / 2 + (float)Math.Cos(rad * Math.PI / 180) * 6 * dpi / 96 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 3 * dpi / 96;
                         vo_pa[3].Y = height / 2 + (float)Math.Sin(rad * Math.PI / 180) * 6 * dpi / 96 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 3 * dpi / 96;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Mizunohadou)){
                             g.FillEllipse(brush, height / 2 - 3 * dpi / 96, height / 2 - 3 * dpi / 96, 6 * dpi / 96, 6 * dpi / 96);
                             g.FillPolygon(brush, vo_pa);
                         }
@@ -1234,7 +1234,7 @@ namespace MasaoPlus
                             vo_pa[3].X = height / 2 - 2 * dpi / 96;
                             vo_pa[3].Y = height - 3 * dpi / 96;
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             g.FillPolygon(brush, vo_pa);
                         }
                     },
@@ -1253,7 +1253,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 20 + (float)Math.Sin((rad - 90) * Math.PI / 180) * 7;
                         vo_pa[3].X = 16 + (float)Math.Cos(rad * Math.PI / 180) * 20 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 7;
                         vo_pa[3].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 20 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 7;
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Mizunohadou)){
                             FillEllipse(dpi, g, brush, 16 - 7, 16 - 7, 14, 14);
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
@@ -1301,7 +1301,7 @@ namespace MasaoPlus
                             vo_pa[3].X = 16 - 5;
                             vo_pa[3].Y = chipsize.Width - 3;
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                     })
@@ -1312,7 +1312,7 @@ namespace MasaoPlus
                         if (cschip.description.Contains("線のみ"))
                         {
                             vo_pa = new PointF[11];
-                            using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
+                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
@@ -1355,7 +1355,7 @@ namespace MasaoPlus
                         else
                         {
                             vo_pa = new PointF[13];
-                            using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                            using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
@@ -1420,7 +1420,7 @@ namespace MasaoPlus
                         if (cschip.description.Contains("線のみ"))
                         {
                             vo_pa = new PointF[11];
-                            using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
+                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
@@ -1463,7 +1463,7 @@ namespace MasaoPlus
                         else
                         {
                             vo_pa = new PointF[12];
-                            using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                            using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
@@ -1525,7 +1525,7 @@ namespace MasaoPlus
                         if (cschip.description.Contains("線のみ"))
                         {
                             vo_pa = new PointF[11];
-                            using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
+                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 2);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
@@ -1568,7 +1568,7 @@ namespace MasaoPlus
                         else
                         {
                             vo_pa = new PointF[13];
-                            using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                            using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
@@ -1632,7 +1632,7 @@ namespace MasaoPlus
                         if (cschip.description.Contains("線のみ"))
                         {
                             vo_pa = new PointF[11];
-                            using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
+                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
@@ -1675,7 +1675,7 @@ namespace MasaoPlus
                         else
                         {
                             vo_pa = new PointF[13];
-                            using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                            using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
@@ -1739,7 +1739,7 @@ namespace MasaoPlus
                         if (cschip.description.Contains("線のみ"))
                         {
                             vo_pa = new PointF[11];
-                            using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
+                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
@@ -1782,7 +1782,7 @@ namespace MasaoPlus
                         else
                         {
                             vo_pa = new PointF[13];
-                            using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                            using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
@@ -1857,7 +1857,7 @@ namespace MasaoPlus
                             {
                                 radius = 112 / 10;
                             }
-                            using (SolidBrush brush = new SolidBrush(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
+                            using (SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
                                 FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                             }
                         }
@@ -1878,7 +1878,7 @@ namespace MasaoPlus
                             {
                                 radius = 96 / 10;
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                             }
                         }
@@ -1895,7 +1895,7 @@ namespace MasaoPlus
                                 radius = 112; TranslateTransform(dpi, g, 0, 24);
                                 if(cschip.description.Contains("下から")) TranslateTransform(dpi, g, 0, 106);
                             }
-                            using (SolidBrush brush = new SolidBrush(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
+                            using (SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
                                 FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                             }
                         }
@@ -1912,7 +1912,7 @@ namespace MasaoPlus
                             {
                                 radius = 96; TranslateTransform(dpi, g, 16, 0);
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                             }
                         }
@@ -1930,7 +1930,7 @@ namespace MasaoPlus
                             {
                                 radius = 112 / 10;
                             }
-                            using (SolidBrush brush = new SolidBrush(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
+                            using (SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
                                 g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
                             }
                         }
@@ -1951,7 +1951,7 @@ namespace MasaoPlus
                             {
                                 radius = 96 / 10;
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
                             }
                         }
@@ -1969,7 +1969,7 @@ namespace MasaoPlus
                             {
                                 radius = 112 / 25;
                             }
-                            using (SolidBrush brush = new SolidBrush(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
+                            using (SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
                                 FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                             }
                         }
@@ -1990,7 +1990,7 @@ namespace MasaoPlus
                             {
                                 radius = 96 / 25;
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                             }
                         }
@@ -2008,7 +2008,7 @@ namespace MasaoPlus
                             {
                                 radius = 112 / 10;
                             }
-                            using (SolidBrush brush = new SolidBrush(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
+                            using (SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
                                 FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                             }
                         }
@@ -2029,7 +2029,7 @@ namespace MasaoPlus
                             {
                                 radius = 96 / 10;
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                             }
                         }
@@ -2042,7 +2042,7 @@ namespace MasaoPlus
                         {
                             if (cschip.description.Contains("線のみ"))
                             {
-                                using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
+                                using Pen pen = new(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
                                 vo_pa = new PointF[12];
                                 var j21 = 0;
                                 vo_pa[j21].X = 1 / 8;
@@ -2068,7 +2068,7 @@ namespace MasaoPlus
                             }
                             else
                             {
-                                using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                                using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                                 vo_pa = new PointF[13];
                                 var j21 = 0;
                                 vo_pa[j21].X = 0;
@@ -2103,10 +2103,10 @@ namespace MasaoPlus
                         else
                         {
                             TranslateTransform(dpi, g, 0, 10);
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 FillRectangle(dpi, g, brush, (120 - 20) / 8, 64 / 8, 40 / 8, 12);
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 vo_pa = new PointF[13];
                                 var j21 = 0;
                                 vo_pa[j21].X = 0;
@@ -2145,7 +2145,7 @@ namespace MasaoPlus
                         {
                             if (cschip.description.Contains("線のみ"))
                             {
-                                using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
+                                using Pen pen = new(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
                                 vo_pa = new PointF[12];
                                 var j21 = 0;
                                 vo_pa[j21].X = 1;
@@ -2171,7 +2171,7 @@ namespace MasaoPlus
                             }
                             else
                             {
-                                using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                                using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                                 vo_pa = new PointF[13];
                                 var j21 = 0;
                                 vo_pa[j21].X = 0;
@@ -2205,11 +2205,11 @@ namespace MasaoPlus
                         }
                         else
                         {
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 if (64 + base_y * chipsize.Height < Global.MainWnd.MainDesigner.CurrentStageSize.y * chipsize.Height)
                                     FillRectangle(dpi, g, brush, 120 - 20, 64, 40, Global.MainWnd.MainDesigner.CurrentStageSize.y * chipsize.Height - (64 + base_y * chipsize.Height));
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 vo_pa = new PointF[13];
                                 var j21 = 0;
                                 vo_pa[j21].X = 0;
@@ -2248,7 +2248,7 @@ namespace MasaoPlus
                         {
                             if (cschip.description.Contains("線のみ"))
                             {
-                                using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
+                                using Pen pen = new(Global.cpd.project.Config.Firebar2, 2);
                                 vo_pa = new PointF[12];
                                 var j21 = 0;
                                 vo_pa[j21].X = 1 / 8;
@@ -2274,7 +2274,7 @@ namespace MasaoPlus
                             }
                             else
                             {
-                                using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                                using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                                 vo_pa = new PointF[13];
                                 var j21 = 0;
                                 vo_pa[j21].X = 0;
@@ -2308,10 +2308,10 @@ namespace MasaoPlus
                         }
                         else
                         {
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 g.FillRectangle(brush, (120 - 20) / 8, 64 / 8 - 1, 40 / 8, 22);
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 vo_pa = new PointF[13];
                                 var j21 = 0;
                                 vo_pa[j21].X = 0;
@@ -2350,7 +2350,7 @@ namespace MasaoPlus
                         {
                             if (cschip.description.Contains("線のみ"))
                             {
-                                using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
+                                using Pen pen = new(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
                                 vo_pa = new PointF[12];
                                 var j21 = 0;
                                 vo_pa[j21].X = 1 / 20;
@@ -2376,7 +2376,7 @@ namespace MasaoPlus
                             }
                             else
                             {
-                                using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                                using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                                 vo_pa = new PointF[13];
                                 var j21 = 0;
                                 vo_pa[j21].X = 0;
@@ -2410,10 +2410,10 @@ namespace MasaoPlus
                         }
                         else
                         {
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 FillRectangle(dpi, g, brush, (120 - 20) / 20, 64 / 20 - 1, 40 / 20, 7);
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 vo_pa = new PointF[13];
                                 var j21 = 0;
                                 vo_pa[j21].X = 0;
@@ -2452,7 +2452,7 @@ namespace MasaoPlus
                         {
                             if (cschip.description.Contains("線のみ"))
                             {
-                                using Pen pen = new Pen(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
+                                using Pen pen = new(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
                                 vo_pa = new PointF[12];
                                 var j21 = 0;
                                 vo_pa[j21].X = 1 / 8;
@@ -2478,7 +2478,7 @@ namespace MasaoPlus
                             }
                             else
                             {
-                                using SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
+                                using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                                 vo_pa = new PointF[13];
                                 var j21 = 0;
                                 vo_pa[j21].X = 0;
@@ -2512,10 +2512,10 @@ namespace MasaoPlus
                         }
                         else
                         {
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 FillRectangle(dpi, g, brush, (120 - 20) / 8, 64 / 8 - 1, 40 / 8, 22);
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 vo_pa = new PointF[13];
                                 var j21 = 0;
                                 vo_pa[j21].X = 0;
@@ -2568,7 +2568,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) - Math.Sin(rad) * 4);
                         vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 42) + Math.Cos(rad) * 4);
                         vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) + Math.Sin(rad) * 4);
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                         // 内側の色を描画
@@ -2580,7 +2580,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(v * d) * 40 - Math.Sin(rad) * 2);
                         vo_pa[3].X = (float)(Math.Cos(v * d) * 40 + Math.Cos(rad) * 2);
                         vo_pa[3].Y = (float)(Math.Sin(v * d) * 40 + Math.Sin(rad) * 2);
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                     },
@@ -2624,7 +2624,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * width) - Math.Sin(rad) * 16);
                         vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * width) + Math.Cos(rad) * 16);
                         vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * width) + Math.Sin(rad) * 16);
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
 
@@ -2639,7 +2639,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(v * d) * width - Math.Sin(rad) * 10);
                         vo_pa[3].X = (float)(Math.Cos(v * d) * width + Math.Cos(rad) * 10);
                         vo_pa[3].Y = (float)(Math.Sin(v * d) * width + Math.Sin(rad) * 10);
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                         if (cschip.name != "ファイヤーバー" && cschip.name != "スウィングファイヤーバー" && cschip.name != "スイッチ式ファイヤーバー")
@@ -2658,7 +2658,7 @@ namespace MasaoPlus
                             vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * width) - Math.Sin(rad) * 16);
                             vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * width) + Math.Cos(rad) * 16);
                             vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * width) + Math.Sin(rad) * 16);
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
 
@@ -2672,7 +2672,7 @@ namespace MasaoPlus
                             vo_pa[2].Y = (float)(Math.Sin(v * d) * width - Math.Sin(rad) * 10);
                             vo_pa[3].X = (float)(Math.Cos(v * d) * width + Math.Cos(rad) * 10);
                             vo_pa[3].Y = (float)(Math.Sin(v * d) * width + Math.Sin(rad) * 10);
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
 
@@ -2691,7 +2691,7 @@ namespace MasaoPlus
                                 vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * width) - Math.Sin(rad) * 16);
                                 vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * width) + Math.Cos(rad) * 16);
                                 vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * width) + Math.Sin(rad) * 16);
-                                using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                                using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                     FillPolygon(dpi, g, brush, vo_pa);
                                 }
 
@@ -2705,7 +2705,7 @@ namespace MasaoPlus
                                 vo_pa[2].Y = (float)(Math.Sin(v * d) * width - Math.Sin(rad) * 10);
                                 vo_pa[3].X = (float)(Math.Cos(v * d) * width + Math.Cos(rad) * 10);
                                 vo_pa[3].Y = (float)(Math.Sin(v * d) * width + Math.Sin(rad) * 10);
-                                using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                                using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                     FillPolygon(dpi, g, brush, vo_pa);
                                 }
                             }
@@ -2729,7 +2729,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) - Math.Sin(rad) * 4);
                         vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 42) + Math.Cos(rad) * 4);
                         vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) + Math.Sin(rad) * 4);
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             g.FillPolygon(brush, vo_pa);
                         }
 						// 内側の色を描画
@@ -2741,7 +2741,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(v * d) * 40 - Math.Sin(rad) * 2);
                         vo_pa[3].X = (float)(Math.Cos(v * d) * 40 + Math.Cos(rad) * 2);
                         vo_pa[3].Y = (float)(Math.Sin(v * d) * 40 + Math.Sin(rad) * 2);
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             g.FillPolygon(brush, vo_pa);
                         }
                     },
@@ -2763,7 +2763,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) - Math.Sin(rad) * 2);
                         vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 15) + Math.Cos(rad) * 2);
                         vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) + Math.Sin(rad) * 2);
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
 						// 内側の色を描画
@@ -2775,7 +2775,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(v * d) * 14 - Math.Sin(rad) * 1);
                         vo_pa[3].X = (float)(Math.Cos(v * d) * 14 + Math.Cos(rad) * 1);
                         vo_pa[3].Y = (float)(Math.Sin(v * d) * 14 + Math.Sin(rad) * 1);
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                     },
@@ -2797,7 +2797,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) - Math.Sin(rad) * 4);
                         vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 42) + Math.Cos(rad) * 4);
                         vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) + Math.Sin(rad) * 4);
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
 						// 内側の色を描画
@@ -2809,7 +2809,7 @@ namespace MasaoPlus
                         vo_pa[2].Y = (float)(Math.Sin(v * d) * 40 - Math.Sin(rad) * 2);
                         vo_pa[3].X = (float)(Math.Cos(v * d) * 40 + Math.Cos(rad) * 2);
                         vo_pa[3].Y = (float)(Math.Sin(v * d) * 40 + Math.Sin(rad) * 2);
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                     })
@@ -2838,7 +2838,7 @@ namespace MasaoPlus
                             vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) - Math.Sin(rad) * 3);
                             vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 15) + Math.Cos(rad) * 3);
                             vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) + Math.Sin(rad) * 3);
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
 
@@ -2851,14 +2851,14 @@ namespace MasaoPlus
                             vo_pa[2].Y = (float)(Math.Sin(v * d) * 13 - Math.Sin(rad) * 1);
                             vo_pa[3].X = (float)(Math.Cos(v * d) * 13 + Math.Cos(rad) * 1);
                             vo_pa[3].Y = (float)(Math.Sin(v * d) * 13 + Math.Sin(rad) * 1);
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillEllipse(dpi, g, brush, -6, -6, 12, 12);
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillEllipse(dpi, g, brush, -2, -2, 4, 4);
                         }
                     },
@@ -2885,7 +2885,7 @@ namespace MasaoPlus
                             vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 172) - Math.Sin(rad) * 16);
                             vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 172) + Math.Cos(rad) * 16);
                             vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 172) + Math.Sin(rad) * 16);
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
 
@@ -2898,14 +2898,14 @@ namespace MasaoPlus
                             vo_pa[2].Y = (float)(Math.Sin(v * d) * 166 - Math.Sin(rad) * 10);
                             vo_pa[3].X = (float)(Math.Cos(v * d) * 166 + Math.Cos(rad) * 10);
                             vo_pa[3].Y = (float)(Math.Sin(v * d) * 166 + Math.Sin(rad) * 10);
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillEllipse(dpi, g, brush, -64, -64 + 8, 128, 128);
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillEllipse(dpi, g, brush, -20, -20 + 8, 40, 40);
                         }
                     },
@@ -2932,7 +2932,7 @@ namespace MasaoPlus
                             vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) - Math.Sin(rad) * 3);
                             vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 15) + Math.Cos(rad) * 3);
                             vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) + Math.Sin(rad) * 3);
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 g.FillPolygon(brush, vo_pa);
                             }
 
@@ -2945,14 +2945,14 @@ namespace MasaoPlus
                             vo_pa[2].Y = (float)(Math.Sin(v * d) * 13 - Math.Sin(rad) * 1);
                             vo_pa[3].X = (float)(Math.Cos(v * d) * 13 + Math.Cos(rad) * 1);
                             vo_pa[3].Y = (float)(Math.Sin(v * d) * 13 + Math.Sin(rad) * 1);
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 g.FillPolygon(brush, vo_pa);
                             }
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             g.FillEllipse(brush, -6, -6, 12, 12);
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             g.FillEllipse(brush, -2, -2, 4, 4);
                         }
                     },
@@ -2979,7 +2979,7 @@ namespace MasaoPlus
                             vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 6) - Math.Sin(rad) * 1);
                             vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 6) + Math.Cos(rad) * 1);
                             vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 6) + Math.Sin(rad) * 1);
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
 
@@ -2992,14 +2992,14 @@ namespace MasaoPlus
                             vo_pa[2].Y = (float)(Math.Sin(v * d) * 5 - Math.Sin(rad) * 0.5);
                             vo_pa[3].X = (float)(Math.Cos(v * d) * 5 + Math.Cos(rad) * 0.5);
                             vo_pa[3].Y = (float)(Math.Sin(v * d) * 5 + Math.Sin(rad) * 0.5);
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillEllipse(dpi, g, brush, -2, -2, 4, 4);
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillEllipse(dpi, g, brush, -1, -1, 2, 2);
                         }
                     },
@@ -3026,7 +3026,7 @@ namespace MasaoPlus
                             vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) - Math.Sin(rad) * 3);
                             vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 15) + Math.Cos(rad) * 3);
                             vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) + Math.Sin(rad) * 3);
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
 
@@ -3039,14 +3039,14 @@ namespace MasaoPlus
                             vo_pa[2].Y = (float)(Math.Sin(v * d) * 13 - Math.Sin(rad) * 1);
                             vo_pa[3].X = (float)(Math.Cos(v * d) * 13 + Math.Cos(rad) * 1);
                             vo_pa[3].Y = (float)(Math.Sin(v * d) * 13 + Math.Sin(rad) * 1);
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillEllipse(dpi, g, brush, -6, -6, 12, 12);
                         }
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillEllipse(dpi, g, brush, -2, -2, 4, 4);
                         }
                     })
@@ -3106,7 +3106,7 @@ namespace MasaoPlus
                                     k6++;
                                 }
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
 
@@ -3145,7 +3145,7 @@ namespace MasaoPlus
                                     k6++;
                                 }
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
 
@@ -3206,7 +3206,7 @@ namespace MasaoPlus
                                     k6++;
                                 }
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
 
@@ -3245,7 +3245,7 @@ namespace MasaoPlus
                                     k6++;
                                 }
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
 
@@ -3306,7 +3306,7 @@ namespace MasaoPlus
                                     k6++;
                                 }
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 g.FillPolygon(brush, vo_pa);
                             }
 
@@ -3345,7 +3345,7 @@ namespace MasaoPlus
                                     k6++;
                                 }
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 g.FillPolygon(brush, vo_pa);
                             }
 
@@ -3406,7 +3406,7 @@ namespace MasaoPlus
                                     k6++;
                                 }
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 g.FillPolygon(brush, vo_pa);
                             }
 
@@ -3445,7 +3445,7 @@ namespace MasaoPlus
                                     k6++;
                                 }
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 g.FillPolygon(brush, vo_pa);
                             }
 
@@ -3506,7 +3506,7 @@ namespace MasaoPlus
                                     k6++;
                                 }
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
 
@@ -3545,7 +3545,7 @@ namespace MasaoPlus
                                     k6++;
                                 }
                             }
-                            using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 FillPolygon(dpi, g, brush, vo_pa);
                             }
 
@@ -3593,11 +3593,11 @@ namespace MasaoPlus
                             r2 = new Rectangle(0, 3, 28, 9);
                         }
 
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillRectangle(dpi, g, brush, r);
                         }
 						// 内側の色を描画
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillRectangle(dpi, g, brush, r2);
                         }
                     },
@@ -3638,11 +3638,11 @@ namespace MasaoPlus
                             r2.Offset(-4, 0);
                         }
 
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillRectangle(dpi, g, brush, r);
                         }
 						// 内側の色を描画
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillRectangle(dpi, g, brush, r2);
                         }
                     },
@@ -3685,11 +3685,11 @@ namespace MasaoPlus
                             r2 = new Rectangle(0, 3, 28, 9);
                         }
 
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             g.FillRectangle(brush, r);
                         }
 						// 内側の色を描画
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             g.FillRectangle(brush, r2);
                         }
                     },
@@ -3732,11 +3732,11 @@ namespace MasaoPlus
                             r2 = new Rectangle(0, 1 * dpi / 96, height - 1 * dpi / 96, height / 4 + 1 * dpi / 96);
                         }
 
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             g.FillRectangle(brush, r);
                         }
 						// 内側の色を描画
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             g.FillRectangle(brush, r2);
                         }
                     },
@@ -3779,11 +3779,11 @@ namespace MasaoPlus
                             r2 = new Rectangle(0, 3, 28, 9);
                         }
 
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar1)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
                             FillRectangle(dpi, g, brush, r);
                         }
 						// 内側の色を描画
-                        using (SolidBrush brush = new SolidBrush(Global.cpd.project.Config.Firebar2)){
+                        using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                             FillRectangle(dpi, g, brush, r2);
                         }
                     })

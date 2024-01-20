@@ -101,7 +101,7 @@ namespace MasaoPlus.Dialogs
                     if (!Global.cpd.UseLayer && runtime.Definitions.LayerSize.bytesize != 0)
                     {
                         MessageBox.Show($"レイヤー未使用プロジェクトからレイヤー使用プロジェクトへ移行します。{Environment.NewLine}レイヤー画像を指定してください。", "レイヤープロジェクトへの移行", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                        using OpenFileDialog openFileDialog = new OpenFileDialog();
+                        using OpenFileDialog openFileDialog = new();
                         openFileDialog.DefaultExt = "*.gif";
                         openFileDialog.Filter = "gif画像 (*.gif)|*.gif|png画像 (*.png)|*.png|全てのファイル (*.*)|*.*";
                         openFileDialog.InitialDirectory = Global.cpd.where;
@@ -143,7 +143,7 @@ namespace MasaoPlus.Dialogs
 
         private void MoveProject(string nRPath, Runtime nR)
         {
-            Project project = new Project();
+            Project project = new();
             ChipDataClass chipDataClass;
             try
             {
@@ -334,7 +334,7 @@ namespace MasaoPlus.Dialogs
             {
                 StateLabel.Text = $"ステージを移行しています...({k}/{size.y})";
                 StateLabel.Refresh();
-                StringBuilder stringBuilder = new StringBuilder();
+                StringBuilder stringBuilder = new();
                 string[] stagearray = new string[size.x];
                 if (k < StageData.Length)
                 {
@@ -481,7 +481,7 @@ namespace MasaoPlus.Dialogs
             {
                 StateLabel.Text = $"レイヤーを移行しています...({num6}/{size.y})";
                 StateLabel.Refresh();
-                StringBuilder stringBuilder = new StringBuilder();
+                StringBuilder stringBuilder = new();
                 string[] stagearray = new string[size.x];
                 if (Global.cpd.UseLayer)
                 {
@@ -640,7 +640,7 @@ namespace MasaoPlus.Dialogs
             {
                 StateLabel.Text = $"地図画面を移行しています...({k}/{project.Runtime.Definitions.MapSize.y})";
                 StateLabel.Refresh();
-                StringBuilder stringBuilder = new StringBuilder();
+                StringBuilder stringBuilder = new();
                 if (k < MapData.Length)
                 {
                     int l;
@@ -718,8 +718,8 @@ namespace MasaoPlus.Dialogs
         }
 
 
-        public List<string> runtimes = new List<string>();
+        public List<string> runtimes = new();
 
-        public List<Runtime> runtimedatas = new List<Runtime>();
+        public List<Runtime> runtimedatas = new();
     }
 }

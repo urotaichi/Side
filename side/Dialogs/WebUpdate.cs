@@ -27,7 +27,7 @@ namespace MasaoPlus.Dialogs
             dlClient.DownloadProgressChanged += dlClient_DownloadProgressChanged;
             dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted;
             tempfile = Path.GetTempFileName();
-            Uri address = new Uri(Global.config.localSystem.UpdateServer);
+            Uri address = new(Global.config.localSystem.UpdateServer);
             try
             {
                 dlClient.DownloadFileAsync(address, tempfile);
@@ -86,7 +86,7 @@ namespace MasaoPlus.Dialogs
             }
             Directory.CreateDirectory(TemporaryFolder);
             tempfile = Path.Combine(TemporaryFolder, Path.GetFileName(ud.Update.Replace('/', '\\')));
-            Uri address = new Uri(ud.Update);
+            Uri address = new(ud.Update);
             try
             {
                 dlClient.DownloadFileAsync(address, tempfile);
@@ -121,7 +121,7 @@ namespace MasaoPlus.Dialogs
             dlClient.DownloadProgressChanged += dlClient_DownloadTaskbarManagerProgressChanged;
             dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted3;
             runfile = Path.Combine(TemporaryFolder, Path.GetFileName(ud.Installer.Replace('/', '\\')));
-            Uri address = new Uri(ud.Installer);
+            Uri address = new(ud.Installer);
             try
             {
                 dlClient.DownloadFileAsync(address, runfile);

@@ -86,7 +86,7 @@ namespace MasaoPlus
         public static bool CheckRegistryAddmittion()
         {
             WindowsIdentity current = WindowsIdentity.GetCurrent();
-            WindowsPrincipal windowsPrincipal = new WindowsPrincipal(current);
+            WindowsPrincipal windowsPrincipal = new(current);
             return windowsPrincipal.IsInRole(WindowsBuiltInRole.Administrator) || windowsPrincipal.IsInRole(WindowsBuiltInRole.PowerUser);
         }
 

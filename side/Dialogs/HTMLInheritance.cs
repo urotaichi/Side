@@ -97,7 +97,7 @@ namespace MasaoPlus.Dialogs
 
         private void RootDirBrowse_Click(object sender, EventArgs e)
         {
-            using FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            using FolderBrowserDialog folderBrowserDialog = new();
             folderBrowserDialog.Description = "プロジェクトのルートディレクトリを選択してください。";
             folderBrowserDialog.SelectedPath = RootDir.Text;
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
@@ -148,7 +148,7 @@ namespace MasaoPlus.Dialogs
                 }
                 ProjectFile = Path.Combine(text, ProjectName.Text + Global.definition.ProjExt);
                 string text2 = Path.Combine(Path.GetDirectoryName(runtimes[RuntimeSet.SelectedIndex]), Path.GetFileNameWithoutExtension(runtimes[RuntimeSet.SelectedIndex]));
-                Project project = new Project
+                Project project = new()
                 {
                     Name = ProjectName.Text,
                     Runtime = runtimedatas[RuntimeSet.SelectedIndex],
@@ -191,7 +191,7 @@ namespace MasaoPlus.Dialogs
                 {
                     for (int i = 0; i < data.Length; i++)
                     {
-                        StringBuilder stringBuilder = new StringBuilder();
+                        StringBuilder stringBuilder = new();
                         for (int j = 0; j < x; j++)
                         {
                             stringBuilder.Append(character);
@@ -227,10 +227,10 @@ namespace MasaoPlus.Dialogs
                     DialogResult = DialogResult.Cancel;
                     Close();
                 }
-                List<string> list = new List<string>();
+                List<string> list = new();
                 if (SeekHeaderFooter.Checked)
                 {
-                    Regex regex = new Regex("^.*?<[ ]*?APPLET .*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                    Regex regex = new("^.*?<[ ]*?APPLET .*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
                     Match match = regex.Match(input);
                     if (match.Success)
                     {
@@ -246,14 +246,14 @@ namespace MasaoPlus.Dialogs
                 StatusText.Text = "HTMLデータ取得中...";
                 StatusText.Refresh();
 
-                Regex regex2 = new Regex(@"<[ ]*PARAM[ ]+NAME=""(?<name>.*?)""[ ]+VALUE=""(?<value>.*?)"".*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                Regex regex_script = new Regex(@"<[ ]*?script.*?>.*?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                Regex regex2 = new(@"<[ ]*PARAM[ ]+NAME=""(?<name>.*?)""[ ]+VALUE=""(?<value>.*?)"".*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                Regex regex_script = new(@"<[ ]*?script.*?>.*?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 if (regex_script.IsMatch(input))
                 {
                     regex2 = new Regex(@"(""|')(?<name>.*?)(""|')\s*?:\s*?(""|')(?<value>.*?)(?<!\\)(""|')(,|\s*?)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 }
 
-                Dictionary<string, string> dictionary = new Dictionary<string, string>();
+                Dictionary<string, string> dictionary = new();
                 Match match2 = regex2.Match(input);
                 while (match2.Success)
                 {
@@ -298,7 +298,7 @@ namespace MasaoPlus.Dialogs
                 StatusText.Refresh();
 
                 var s = string.Join(string.Empty, project.MapData);
-                string Mapdata = new string(s.Except(s.Where(ch => s.Count(c => c == ch) > 1)).ToArray()); // 地図画面データを圧縮
+                string Mapdata = new(s.Except(s.Where(ch => s.Count(c => c == ch) > 1)).ToArray()); // 地図画面データを圧縮
 
                 int num = 0;
                 while (num < project.Config.Configurations.Length)
@@ -360,11 +360,11 @@ namespace MasaoPlus.Dialogs
                                     _ => ""
                                 };
 
-                                List<string> list2 = new List<string>();
+                                List<string> list2 = new();
 
                                 int num2 = 1;
 
-                                Regex text_name_regex = new Regex(@"-(\d+)$");
+                                Regex text_name_regex = new(@"-(\d+)$");
                                 Match text_name_match = text_name_regex.Match(name);
                                 if (text_name_match.Success)
                                 {
@@ -687,11 +687,11 @@ namespace MasaoPlus.Dialogs
 
         public string ProjectFile = "";
 
-        public List<string> runtimes = new List<string>();
+        public List<string> runtimes = new();
 
-        public List<Runtime> runtimedatas = new List<Runtime>();
+        public List<Runtime> runtimedatas = new();
 
-        public List<bool> runtimeuselayer = new List<bool>();
+        public List<bool> runtimeuselayer = new();
 
         private readonly string ParseFile = "";
     }
