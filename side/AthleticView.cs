@@ -8,7 +8,7 @@ namespace MasaoPlus
 {
     readonly struct Athletic
     {
-        public Athletic(MainFunc Main, MaxFunc Max, MinFunc Min, SmallFunc Small, MainFunc Large)
+        public Athletic(MainFunc Main, MaxFunc Max, MinFunc Min, SmallFunc Small, MinFunc Large)
         {
             this.Main = Main;
             this.Max = Max;
@@ -24,7 +24,7 @@ namespace MasaoPlus
         public MaxFunc Max { get; } // グラフィカルデザイナ
         public MinFunc Min { get; } // ステータスバーっぽいところに表示される小さいアイコン
         public SmallFunc Small { get; } // チップ - サムネイル
-        public MainFunc Large { get; } // チップ - チップ
+        public MinFunc Large { get; } // チップ - チップ
     }
     internal static class AthleticView
     {
@@ -88,17 +88,17 @@ namespace MasaoPlus
                                 g.DrawLine(pen, 0, height - 1 * dpi / 96, height, height - 1 * dpi / 96);
                         }
                     },
-                    (dpi, cschip, g, chipsize) => {
+                    (cschip, g, chipsize) => {
                         if (!cschip.description.Contains("表示なし")){
-                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
+                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 2);
                             if (cschip.description.Contains("右"))
-                                DrawLine(dpi, g, pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
+                                g.DrawLine(pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
                             else if (cschip.description.Contains("左"))
-                                DrawLine(dpi, g, pen, 1, 0, 1, chipsize.Height);
+                                g.DrawLine(pen, 1, 0, 1, chipsize.Height);
                             else if (cschip.description.Contains("上"))
-                                DrawLine(dpi, g, pen, 0, 1, chipsize.Width, 1);
+                                g.DrawLine(pen, 0, 1, chipsize.Width, 1);
                             else if (cschip.description.Contains("下"))
-                                DrawLine(dpi, g, pen, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
+                                g.DrawLine(pen, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
                         }
                     })
                 },
@@ -135,13 +135,13 @@ namespace MasaoPlus
                         g.DrawLine(pen, 0, 5 * dpi / 96, height, height);
                         g.DrawLine(pen, 0, height, height, 5 * dpi / 96);
                     },
-                    (dpi, cschip, g, chipsize) => {
-                        using Pen pen = new(Global.cpd.project.Config.Firebar1, 1 * dpi / 96);
-                        TranslateTransform(dpi, g, 1, 1);
-                        DrawRectangle(dpi, g, pen, 0, 11, chipsize.Width - 1, chipsize.Height - 1 - 11);
-                        TranslateTransform(dpi, g, -1, -1);
-                        DrawLine(dpi, g, pen, 0, 11, chipsize.Width, chipsize.Height);
-                        DrawLine(dpi, g, pen, 0, chipsize.Height, chipsize.Width, 11);
+                    (cschip, g, chipsize) => {
+                        using Pen pen = new(Global.cpd.project.Config.Firebar1, 1);
+                        g.TranslateTransform(1, 1);
+                        g.DrawRectangle(pen, 0, 11, chipsize.Width - 1, chipsize.Height - 1 - 11);
+                        g.TranslateTransform(-1, -1);
+                        g.DrawLine(pen, 0, 11, chipsize.Width, chipsize.Height);
+                        g.DrawLine(pen, 0, chipsize.Height, chipsize.Width, 11);
                     })
                 },
                 {"シーソー", new Athletic(
@@ -265,8 +265,8 @@ namespace MasaoPlus
                             g.FillPolygon(brush, vo_pa);
                         }
                     },
-                    (dpi, cschip, g, chipsize) => {
-                        TranslateTransform(dpi, g, 16, 17);
+                    (cschip, g, chipsize) => {
+                        g.TranslateTransform(16, 17);
                         vo_pa = new PointF[4];
                         if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
                         else if (cschip.description.Contains("右")) rad = 56 * Math.PI / 180;
@@ -279,7 +279,7 @@ namespace MasaoPlus
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad - Math.PI / 2) * 5;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad - Math.PI / 2) * 5;
                         using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                            FillPolygon(dpi, g, brush, vo_pa);
+                            g.FillPolygon(brush, vo_pa);
                         }
                         vo_pa = new PointF[3];
                         vo_pa[0].X = 0;
@@ -289,7 +289,7 @@ namespace MasaoPlus
                         vo_pa[2].X = 4;
                         vo_pa[2].Y = 15;
                         using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
-                            FillPolygon(dpi, g, brush, vo_pa);
+                            g.FillPolygon(brush, vo_pa);
                         }
                     })
                 },
@@ -429,11 +429,11 @@ namespace MasaoPlus
                         using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                     },
-                    (dpi, cschip, g, chipsize) => {
-                        DrawImage(dpi, g, Global.MainWnd.MainDesigner.DrawChipOrig,
+                    (cschip, g, chipsize) => {
+                        g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
-                            new Rectangle(cschip.pattern, chipsize));
-                        TranslateTransform(dpi, g, 16, -9);
+                            new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+                        g.TranslateTransform(16, -9);
                         rad = 90 * Math.PI / 180;
                         vo_pa = new PointF[4];
                         vo_pa[0].X = (float)Math.Cos(rad + Math.PI / 9) * chipsize.Width * (float)1.15;
@@ -446,13 +446,13 @@ namespace MasaoPlus
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 5;
                         double dx = Math.Cos(rad) * 21;
                         double dy = Math.Sin(rad) * 21;
-                        using (Pen pen = new(Global.cpd.project.Config.Firebar1, 2 * dpi / 96)){
-                            DrawLine(dpi, g, pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
-                            DrawLine(dpi, g, pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
-                            DrawLine(dpi, g, pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
+                        using (Pen pen = new(Global.cpd.project.Config.Firebar1, 2)){
+                            g.DrawLine(pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
+                            g.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
+                            g.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
                         }
                         using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
-                        FillPolygon(dpi, g, brush, vo_pa);
+                        g.FillPolygon(brush, vo_pa);
                     })
                 },
                 {"スウィングバー", new Athletic(
@@ -579,19 +579,19 @@ namespace MasaoPlus
                         using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         FillPolygon(dpi, g, brush, vo_pa);
                     },
-                    (dpi, cschip, g, chipsize) => {
-                        DrawImage(dpi, g, Global.MainWnd.MainDesigner.DrawChipOrig,
+                    (cschip, g, chipsize) => {
+                        g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
-                            new Rectangle(cschip.pattern, chipsize));
-                        TranslateTransform(dpi, g, 16, 14);
+                            new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+                        g.TranslateTransform(16, 14);
                         if (cschip.description.Contains("左"))
                         {
-                            TranslateTransform(dpi, g, 32, 0);
+                            g.TranslateTransform(32, 0);
                             rad = 180 + Math.Floor((double)(-26 - 5) / 10);
                         }
                         else if (cschip.description.Contains("右"))
                         {
-                            TranslateTransform(dpi, g, -32, 0);
+                            g.TranslateTransform(-32, 0);
                             rad = 360 + Math.Floor((double)(26 + 5) / 10);
                         }
                         rad = rad * Math.PI / 180;
@@ -605,7 +605,7 @@ namespace MasaoPlus
                         vo_pa[3].X = (float)(Math.Cos(rad) * 40 + Math.Cos(rad - Math.PI / 2) * 3);
                         vo_pa[3].Y = (float)(Math.Sin(rad) * 40 + Math.Sin(rad - Math.PI / 2) * 3);
                         using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
-                        FillPolygon(dpi, g, brush, vo_pa);
+                        g.FillPolygon(brush, vo_pa);
                     })
                 },
                 {"動くＴ字型", new Athletic(
@@ -771,8 +771,8 @@ namespace MasaoPlus
                             g.FillPolygon(brush, vo_pa);
                         }
                     },
-                    (dpi, cschip, g, chipsize) => {
-                        TranslateTransform(dpi, g, 16, 37);
+                    (cschip, g, chipsize) => {
+                        g.TranslateTransform(16, 37);
                         rad = 270;
                         vo_pa = new PointF[3];
                         vo_pa[0].X = (float)Math.Cos((rad + 6) * Math.PI / 180) * chipsize.Width;
@@ -782,7 +782,7 @@ namespace MasaoPlus
                         vo_pa[2].X = 0;
                         vo_pa[2].Y = 0;
                         using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
-                            FillPolygon(dpi, g, brush, vo_pa);
+                            g.FillPolygon(brush, vo_pa);
                         }
                         vo_pa = new PointF[4];
                         vo_pa[0].X = (float)Math.Cos((rad + 20) * Math.PI / 180) * chipsize.Width * (float)1.3;
@@ -794,7 +794,7 @@ namespace MasaoPlus
                         vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad * Math.PI / 180) * 5;
                         vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad * Math.PI / 180) * 5;
                         using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                            FillPolygon(dpi, g, brush, vo_pa);
+                            g.FillPolygon(brush, vo_pa);
                         }
                     })
                 },
@@ -937,21 +937,21 @@ namespace MasaoPlus
                         using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                         g.FillPolygon(brush, vo_pa);
                     },
-                    (dpi, cschip, g, chipsize) => {
-                        DrawImage(dpi, g, Global.MainWnd.MainDesigner.DrawChipOrig,
+                    (cschip, g, chipsize) => {
+                        g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
-                            new Rectangle(cschip.pattern, chipsize));
+                            new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                         int length;
                         if (cschip.name == "ロープ") length = 2;
                         else length = 1;
                         if (cschip.description == "つかまると左から動く")
                         {
-                            TranslateTransform(dpi, g, 39, 5);
+                            g.TranslateTransform(39, 5);
                             rad = 168;
                         }
                         else
                         {
-                            TranslateTransform(dpi, g, 16, -9);
+                            g.TranslateTransform(16, -9);
                             rad = 90;
                         }
                         vo_pa = new PointF[4];
@@ -964,7 +964,7 @@ namespace MasaoPlus
                         vo_pa[3].X = (float)(Math.Cos(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Cos((rad + 90) * Math.PI / 180) * length);
                         vo_pa[3].Y = (float)(Math.Sin(rad * Math.PI / 180) * chipsize.Width * 1.2 + Math.Sin((rad + 90) * Math.PI / 180) * length);
                         using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
-                        FillPolygon(dpi, g, brush, vo_pa);
+                        g.FillPolygon(brush, vo_pa);
                     })
                 },
                 {"人間大砲", new Athletic(
@@ -1238,12 +1238,12 @@ namespace MasaoPlus
                             g.FillPolygon(brush, vo_pa);
                         }
                     },
-                    (dpi, cschip, g, chipsize) => {
-                        if (cschip.description == "右向き") { rad = 330; TranslateTransform(dpi, g, -9, 3); }
-                        else if (cschip.description == "左向き") { rad = 225; TranslateTransform(dpi, g, 9, 3); }
-                        else if (cschip.description == "天井") { rad = 30; TranslateTransform(dpi, g, -9, 0); }
-                        else if (cschip.description == "右の壁") { rad = 270; TranslateTransform(dpi, g, 0, 9); }
-                        else if (cschip.description == "左の壁") { rad = 300; TranslateTransform(dpi, g, 0, 9); }
+                    (cschip, g, chipsize) => {
+                        if (cschip.description == "右向き") { rad = 330; g.TranslateTransform(-9, 3); }
+                        else if (cschip.description == "左向き") { rad = 225; g.TranslateTransform(9, 3); }
+                        else if (cschip.description == "天井") { rad = 30; g.TranslateTransform(-9, 0); }
+                        else if (cschip.description == "右の壁") { rad = 270; g.TranslateTransform(0, 9); }
+                        else if (cschip.description == "左の壁") { rad = 300; g.TranslateTransform(0, 9); }
                         vo_pa = new PointF[4];
                         vo_pa[0].X = 16 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 7;
                         vo_pa[0].Y = 16 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 7;
@@ -1254,8 +1254,8 @@ namespace MasaoPlus
                         vo_pa[3].X = 16 + (float)Math.Cos(rad * Math.PI / 180) * 20 + (float)Math.Cos((rad + 90) * Math.PI / 180) * 7;
                         vo_pa[3].Y = 16 + (float)Math.Sin(rad * Math.PI / 180) * 20 + (float)Math.Sin((rad + 90) * Math.PI / 180) * 7;
                         using (SolidBrush brush = new(Global.cpd.project.Config.Mizunohadou)){
-                            FillEllipse(dpi, g, brush, 16 - 7, 16 - 7, 14, 14);
-                            FillPolygon(dpi, g, brush, vo_pa);
+                            g.FillEllipse(brush, 16 - 7, 16 - 7, 14, 14);
+                            g.FillPolygon(brush, vo_pa);
                         }
                         if (cschip.description == "天井")
                         {
@@ -1302,7 +1302,7 @@ namespace MasaoPlus
                             vo_pa[3].Y = chipsize.Width - 3;
                         }
                         using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                            FillPolygon(dpi, g, brush, vo_pa);
+                            g.FillPolygon(brush, vo_pa);
                         }
                     })
                 },
@@ -1734,12 +1734,12 @@ namespace MasaoPlus
                             g.FillPolygon(brush, vo_pa);
                         }
                     },
-                    (dpi, cschip, g, chipsize) => {
+                    (cschip, g, chipsize) => {
                         var k21 = 0; float j20 = default, k20 = default, l20 = default, i21 = default;
                         if (cschip.description.Contains("線のみ"))
                         {
                             vo_pa = new PointF[11];
-                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
+                            using Pen pen = new(Global.cpd.project.Config.Firebar2, 1);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
                                 if (cschip.name.Contains("上"))
@@ -1755,7 +1755,7 @@ namespace MasaoPlus
                                 k21++;
                             }
 
-                            DrawLines(dpi, g, pen, vo_pa);
+                            g.DrawLines(pen, vo_pa);
                             k21 = 0;
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
@@ -1771,13 +1771,13 @@ namespace MasaoPlus
                                 }
                                 k21++;
                             }
-                            DrawLines(dpi, g, pen, vo_pa);
+                            g.DrawLines(pen, vo_pa);
                             vo_pa = new PointF[2];
                             vo_pa[0].X = j20;
                             vo_pa[0].Y = k20;
                             vo_pa[1].X = l20;
                             vo_pa[1].Y = i21;
-                            DrawLines(dpi, g, pen, vo_pa);
+                            g.DrawLines(pen, vo_pa);
                         }
                         else
                         {
@@ -1804,7 +1804,7 @@ namespace MasaoPlus
                             if (cschip.name.Contains("上")) vo_pa[k21].X = 0;
                             else if (cschip.name.Contains("下")) vo_pa[k21].X = chipsize.Width;
                             vo_pa[k21].Y = chipsize.Height;
-                            FillPolygon(dpi, g, brush, vo_pa);
+                            g.FillPolygon(brush, vo_pa);
                             vo_pa = new PointF[13];
                             k21 = 0;
                             for (var i1 = 0; i1 <= 50; i1 += 5)
@@ -1828,7 +1828,7 @@ namespace MasaoPlus
                             if (cschip.name.Contains("上")) vo_pa[k21].X = chipsize.Width;
                             else if (cschip.name.Contains("下")) vo_pa[k21].X = 0;
                             vo_pa[k21].Y = chipsize.Height;
-                            FillPolygon(dpi, g, brush, vo_pa);
+                            g.FillPolygon(brush, vo_pa);
                             vo_pa = new PointF[4];
                             vo_pa[0].X = j20;
                             vo_pa[0].Y = k20;
@@ -1838,7 +1838,7 @@ namespace MasaoPlus
                             vo_pa[2].Y = chipsize.Height;
                             vo_pa[3].X = j20;
                             vo_pa[3].Y = chipsize.Height;
-                            FillPolygon(dpi, g, brush, vo_pa);
+                            g.FillPolygon(brush, vo_pa);
                         }
                     })
                 },
@@ -1995,9 +1995,9 @@ namespace MasaoPlus
                             }
                         }
                     },
-                    (dpi, cschip, g, chipsize) => {
+                    (cschip, g, chipsize) => {
                         int radius = default;
-                        TranslateTransform(dpi, g, chipsize.Width / 2, chipsize.Width / 2);
+                        g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
                         if (cschip.name == "円")
                         {
                             if (cschip.description.Contains("乗ると下がる"))
@@ -2009,7 +2009,7 @@ namespace MasaoPlus
                                 radius = 112 / 10;
                             }
                             using (SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
-                                FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
+                                g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
                             }
                         }
                         else
@@ -2030,7 +2030,7 @@ namespace MasaoPlus
                                 radius = 96 / 10;
                             }
                             using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                                FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
+                                g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
                             }
                         }
                     })
@@ -2446,13 +2446,13 @@ namespace MasaoPlus
                             }
                         }
                     },
-                    (dpi, cschip, g, chipsize) => {
-                        TranslateTransform(dpi, g, 1, 2);
+                    (cschip, g, chipsize) => {
+                        g.TranslateTransform(1, 2);
                         if (cschip.description.Contains("乗れる"))
                         {
                             if (cschip.description.Contains("線のみ"))
                             {
-                                using Pen pen = new(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
+                                using Pen pen = new(Global.cpd.project.Config.Firebar2, 1);
                                 vo_pa = new PointF[12];
                                 var j21 = 0;
                                 vo_pa[j21].X = 1 / 8;
@@ -2464,7 +2464,7 @@ namespace MasaoPlus
                                     vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin(j * math_pi / 180) * 144) / 8;
                                     j21++;
                                 }
-                                DrawLines(dpi, g, pen, vo_pa);
+                                g.DrawLines(pen, vo_pa);
                                 j21 = 0;
                                 for (var k2 = 90; k2 >= 40; k2 -= 5)
                                 {
@@ -2474,7 +2474,7 @@ namespace MasaoPlus
                                 }
                                 vo_pa[j21].X = 240 / 8;
                                 vo_pa[j21].Y = 63 / 8;
-                                DrawLines(dpi, g, pen, vo_pa);
+                                g.DrawLines(pen, vo_pa);
                             }
                             else
                             {
@@ -2493,7 +2493,7 @@ namespace MasaoPlus
 
                                 vo_pa[j21].X = 120 / 8;
                                 vo_pa[j21].Y = 64 / 8;
-                                FillPolygon(dpi, g, brush, vo_pa);
+                                g.FillPolygon(brush, vo_pa);
                                 j21 = 0;
                                 for (var k2 = 90; k2 >= 40; k2 -= 5)
                                 {
@@ -2507,13 +2507,13 @@ namespace MasaoPlus
                                 j21++;
                                 vo_pa[j21].X = 120 / 8;
                                 vo_pa[j21].Y = 64 / 8;
-                                FillPolygon(dpi, g, brush, vo_pa);
+                                g.FillPolygon(brush, vo_pa);
                             }
                         }
                         else
                         {
                             using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
-                                FillRectangle(dpi, g, brush, (120 - 20) / 8, 64 / 8 - 1, 40 / 8, 22);
+                                g.FillRectangle(brush, (120 - 20) / 8, 64 / 8 - 1, 40 / 8, 22);
                             }
                             using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 vo_pa = new PointF[13];
@@ -2530,7 +2530,7 @@ namespace MasaoPlus
 
                                 vo_pa[j21].X = 120 / 8;
                                 vo_pa[j21].Y = 64 / 8;
-                                FillPolygon(dpi, g, brush, vo_pa);
+                                g.FillPolygon(brush, vo_pa);
                                 j21 = 0;
                                 for (var k2 = 90; k2 >= 40; k2 -= 5)
                                 {
@@ -2544,7 +2544,7 @@ namespace MasaoPlus
                                 j21++;
                                 vo_pa[j21].X = 120 / 8;
                                 vo_pa[j21].Y = 64 / 8;
-                                FillPolygon(dpi, g, brush, vo_pa);
+                                g.FillPolygon(brush, vo_pa);
                             }
                         }
                     })
@@ -2779,13 +2779,13 @@ namespace MasaoPlus
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                     },
-                    (dpi, cschip, g, chipsize) => {
-                        TranslateTransform(dpi, g, chipsize.Width / 2, chipsize.Width / 2);
-                        DrawImage(dpi, g, Global.MainWnd.MainDesigner.DrawChipOrig,
+                    (cschip, g, chipsize) => {
+                        g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
+                        g.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
                             new Rectangle(0, 0, chipsize.Width / 2, chipsize.Height / 2),
-                            new Rectangle(cschip.pattern, new Size(chipsize.Width / 2, chipsize.Height / 2)));
+                            new Rectangle(cschip.pattern, new Size(chipsize.Width / 2, chipsize.Height / 2)), GraphicsUnit.Pixel);
                         int v = 225;
-                        TranslateTransform(dpi, g, chipsize.Width / 2 + 1, chipsize.Width / 2 + 1);
+                        g.TranslateTransform(chipsize.Width / 2 + 1, chipsize.Width / 2 + 1);
                         rad = (v + 90) * Math.PI / 180;
                         const double d = 0.017453292519943295;
                         vo_pa = new PointF[4];
@@ -2798,7 +2798,7 @@ namespace MasaoPlus
                         vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 42) + Math.Cos(rad) * 4);
                         vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) + Math.Sin(rad) * 4);
                         using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
-                            FillPolygon(dpi, g, brush, vo_pa);
+                            g.FillPolygon(brush, vo_pa);
                         }
 						// 内側の色を描画
                         vo_pa[0].X = (float)(Math.Cos(v * d) * 28 + Math.Cos(rad) * 2);
@@ -2810,7 +2810,7 @@ namespace MasaoPlus
                         vo_pa[3].X = (float)(Math.Cos(v * d) * 40 + Math.Cos(rad) * 2);
                         vo_pa[3].Y = (float)(Math.Sin(v * d) * 40 + Math.Sin(rad) * 2);
                         using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                            FillPolygon(dpi, g, brush, vo_pa);
+                            g.FillPolygon(brush, vo_pa);
                         }
                     })
                 },
@@ -3003,8 +3003,8 @@ namespace MasaoPlus
                             FillEllipse(dpi, g, brush, -1, -1, 2, 2);
                         }
                     },
-                    (dpi, cschip, g, chipsize) => {
-                        TranslateTransform(dpi, g, chipsize.Width / 2, chipsize.Width / 2);
+                    (cschip, g, chipsize) => {
+                        g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
 
                         int v = default, n = default;
                         const double d = 0.017453292519943295;
@@ -3027,7 +3027,7 @@ namespace MasaoPlus
                             vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 15) + Math.Cos(rad) * 3);
                             vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) + Math.Sin(rad) * 3);
                             using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
-                                FillPolygon(dpi, g, brush, vo_pa);
+                                g.FillPolygon(brush, vo_pa);
                             }
 
 							// 内側の色を描画
@@ -3040,14 +3040,14 @@ namespace MasaoPlus
                             vo_pa[3].X = (float)(Math.Cos(v * d) * 13 + Math.Cos(rad) * 1);
                             vo_pa[3].Y = (float)(Math.Sin(v * d) * 13 + Math.Sin(rad) * 1);
                             using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                                FillPolygon(dpi, g, brush, vo_pa);
+                                g.FillPolygon(brush, vo_pa);
                             }
                         }
                         using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
-                            FillEllipse(dpi, g, brush, -6, -6, 12, 12);
+                            g.FillEllipse(brush, -6, -6, 12, 12);
                         }
                         using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                            FillEllipse(dpi, g, brush, -2, -2, 4, 4);
+                            g.FillEllipse(brush, -2, -2, 4, 4);
                         }
                     })
                 },
@@ -3452,8 +3452,8 @@ namespace MasaoPlus
                             v += 360 / n;
                         }
                     },
-                    (dpi, cschip, g, chipsize) => {
-                        TranslateTransform(dpi, g, chipsize.Width / 2, chipsize.Width / 2);
+                    (cschip, g, chipsize) => {
+                        g.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
 
                         int v = default, n = default;
                         if (cschip.description.Contains("2本")) n = 2;
@@ -3507,7 +3507,7 @@ namespace MasaoPlus
                                 }
                             }
                             using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
-                                FillPolygon(dpi, g, brush, vo_pa);
+                                g.FillPolygon(brush, vo_pa);
                             }
 
 							// 内側の色を描画
@@ -3546,7 +3546,7 @@ namespace MasaoPlus
                                 }
                             }
                             using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                                FillPolygon(dpi, g, brush, vo_pa);
+                                g.FillPolygon(brush, vo_pa);
                             }
 
                             v += 360 / n;
@@ -3740,51 +3740,51 @@ namespace MasaoPlus
                             g.FillRectangle(brush, r2);
                         }
                     },
-                    (dpi, cschip, g, chipsize) => {
+                    (cschip, g, chipsize) => {
                         Rectangle r = default, r2 = default;
                         if (cschip.description.Contains("上下"))
                         {
-                            TranslateTransform(dpi, g, 8, 0);
+                            g.TranslateTransform(8, 0);
                             r = new Rectangle(0, 0, 15, 32);
                             r2 = Rectangle.Inflate(r, -3, -3);
                         }
                         else if (cschip.description.Contains("左右"))
                         {
-                            TranslateTransform(dpi, g, 0, 9);
+                            g.TranslateTransform(0, 9);
                             r = new Rectangle(0, 0, 32, 15);
                             r2 = Rectangle.Inflate(r, -3, -3);
                         }
                         else if (cschip.description.Contains("上へ"))
                         {
-                            TranslateTransform(dpi, g, 8, 1);
+                            g.TranslateTransform(8, 1);
                             r = new Rectangle(0, 0, 15, 31);
                             r2 = new Rectangle(3, 3, 9, 28);
                         }
                         else if (cschip.description.Contains("下へ"))
                         {
-                            TranslateTransform(dpi, g, 8, 0);
+                            g.TranslateTransform(8, 0);
                             r = new Rectangle(0, 0, 15, 31);
                             r2 = new Rectangle(3, 0, 9, 28);
                         }
                         else if (cschip.description.Contains("左へ"))
                         {
-                            TranslateTransform(dpi, g, 1, 9);
+                            g.TranslateTransform(1, 9);
                             r = new Rectangle(0, 0, 31, 15);
                             r2 = new Rectangle(3, 3, 28, 9);
                         }
                         else if (cschip.description.Contains("右へ"))
                         {
-                            TranslateTransform(dpi, g, 0, 9);
+                            g.TranslateTransform(0, 9);
                             r = new Rectangle(0, 0, 31, 15);
                             r2 = new Rectangle(0, 3, 28, 9);
                         }
 
                         using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
-                            FillRectangle(dpi, g, brush, r);
+                            g.FillRectangle(brush, r);
                         }
 						// 内側の色を描画
                         using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                            FillRectangle(dpi, g, brush, r2);
+                            g.FillRectangle(brush, r2);
                         }
                     })
                 },
