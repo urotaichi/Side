@@ -308,8 +308,11 @@
 			this.ChipList.DrawMode = global::System.Windows.Forms.DrawMode.OwnerDrawVariable;
 			this.ChipList.FormattingEnabled = true;
 			this.ChipList.IntegralHeight = false;
-			this.ChipList.ItemHeight = 17 * DeviceDpi / 96;
-			this.ChipList.Location = new global::System.Drawing.Point(0, 20 * DeviceDpi / 96);
+			this.ChipList.ItemHeight = 12 * DeviceDpi / 96;
+			System.Drawing.Font beforeFont = this.ChipList.Font;
+			beforeFont = new System.Drawing.Font(beforeFont.FontFamily, beforeFont.SizeInPoints - 2);
+            this.ChipList.Font = beforeFont;
+            this.ChipList.Location = new global::System.Drawing.Point(0, 20 * DeviceDpi / 96);
 			this.ChipList.Margin = new global::System.Windows.Forms.Padding(0);
 			this.ChipList.Name = "ChipList";
 			this.ChipList.Size = new global::System.Drawing.Size(171 * DeviceDpi / 96, 213 * DeviceDpi / 96);
