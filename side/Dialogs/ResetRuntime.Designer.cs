@@ -48,7 +48,7 @@
 			this.RuntimeView.FullRowSelect = true;
 			this.RuntimeView.GridLines = true;
 			this.RuntimeView.HideSelection = false;
-			this.RuntimeView.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 107 * DeviceDpi / 96);
+			this.RuntimeView.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 122 * DeviceDpi / 96);
 			this.RuntimeView.MultiSelect = false;
 			this.RuntimeView.Name = "RuntimeView";
 			this.RuntimeView.Size = new global::System.Drawing.Size(458 * DeviceDpi / 96, 92 * DeviceDpi / 96);
@@ -62,13 +62,13 @@
 			this.ELayer.Text = "レイヤー";
 			this.ELayer.Width = 60 * DeviceDpi / 96;
 			this.Cancel.DialogResult = global::System.Windows.Forms.DialogResult.Cancel;
-			this.Cancel.Location = new global::System.Drawing.Point(358 * DeviceDpi / 96, 275 * DeviceDpi / 96);
+			this.Cancel.Location = new global::System.Drawing.Point(358 * DeviceDpi / 96, 290 * DeviceDpi / 96);
 			this.Cancel.Name = "Cancel";
 			this.Cancel.Size = new global::System.Drawing.Size(112 * DeviceDpi / 96, 28 * DeviceDpi / 96);
 			this.Cancel.TabIndex = 2;
 			this.Cancel.Text = "キャンセル";
 			this.Cancel.UseVisualStyleBackColor = true;
-			this.Accept.Location = new global::System.Drawing.Point(240 * DeviceDpi / 96, 275 * DeviceDpi / 96);
+			this.Accept.Location = new global::System.Drawing.Point(240 * DeviceDpi / 96, 290 * DeviceDpi / 96);
 			this.Accept.Name = "Accept";
 			this.Accept.Size = new global::System.Drawing.Size(112 * DeviceDpi / 96, 28 * DeviceDpi / 96);
 			this.Accept.TabIndex = 3;
@@ -76,7 +76,7 @@
 			this.Accept.UseVisualStyleBackColor = true;
 			this.Accept.Click += new global::System.EventHandler(this.Accept_Click);
 			this.StateLabel.AutoSize = true;
-			this.StateLabel.Location = new global::System.Drawing.Point(18 * DeviceDpi / 96, 283 * DeviceDpi / 96);
+			this.StateLabel.Location = new global::System.Drawing.Point(18 * DeviceDpi / 96, 298 * DeviceDpi / 96);
 			this.StateLabel.Name = "StateLabel";
 			this.StateLabel.Size = new global::System.Drawing.Size(0 * DeviceDpi / 96, 12 * DeviceDpi / 96);
 			this.StateLabel.TabIndex = 4;
@@ -84,7 +84,7 @@
 			this.groupBox1.ForeColor = global::System.Drawing.Color.Red;
 			this.groupBox1.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 30 * DeviceDpi / 96);
 			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new global::System.Drawing.Size(457 * DeviceDpi / 96, 71 * DeviceDpi / 96);
+			this.groupBox1.Size = new global::System.Drawing.Size(457 * DeviceDpi / 96, 86 * DeviceDpi / 96);
 			this.groupBox1.TabIndex = 5;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "警告";
@@ -99,7 +99,7 @@
 			this.groupBox2.Controls.Add(this.ChipMethod);
 			this.groupBox2.Controls.Add(this.PutNullChip);
 			this.groupBox2.Controls.Add(this.ChipDefinitionValidation);
-			this.groupBox2.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 205 * DeviceDpi / 96);
+			this.groupBox2.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 220 * DeviceDpi / 96);
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = new global::System.Drawing.Size(456 * DeviceDpi / 96, 64 * DeviceDpi / 96);
 			this.groupBox2.TabIndex = 6;
@@ -149,7 +149,7 @@
 			//base.AutoScaleDimensions = new global::System.Drawing.SizeF(6f, 12f);
 			//base.AutoScaleMode = global::System.Windows.Forms.AutoScaleMode.Font;
 			base.CancelButton = this.Cancel;
-			base.ClientSize = new global::System.Drawing.Size(482 * DeviceDpi / 96, 315 * DeviceDpi / 96);
+			base.ClientSize = new global::System.Drawing.Size(482 * DeviceDpi / 96, 330 * DeviceDpi / 96);
 			base.ControlBox = false;
 			base.Controls.Add(this.groupBox2);
 			base.Controls.Add(this.label2);
