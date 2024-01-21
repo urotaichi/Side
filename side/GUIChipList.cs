@@ -169,6 +169,7 @@ namespace MasaoPlus
 
         protected virtual void AddChipData(ChipsData[] chipsData, int num, PaintEventArgs e, int inital = 0)
         {
+            bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
             for (int i = inital; i < num; i++)
             {
                 ChipsData chipData = chipsData[i - inital];
@@ -197,7 +198,7 @@ namespace MasaoPlus
                         e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                         GraphicsState transState = e.Graphics.Save();
                         e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
-                        if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipData.character == "Z")
+                        if (oriboss_view && chipData.character == "Z")
                         {
                             e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
                         }
@@ -237,9 +238,9 @@ namespace MasaoPlus
                                     if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
                                     // 水の半透明処理
-                                    if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && chipData.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                                    if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && chipData.character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string water_clear_level_value))
                                     {
-                                        float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                        float water_clear_level = float.Parse(water_clear_level_value);
                                         var colorMatrix = new ColorMatrix
                                         {
                                             Matrix00 = 1f,
@@ -267,10 +268,10 @@ namespace MasaoPlus
                         else if (Global.config.draw.ClassicChipListInterpolation) e.Graphics.InterpolationMode = InterpolationMode.High;
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawLayerOrig, rectangle, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
                     }
-                    if (chipData.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 &&
-                        Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
+                    if (chipData.character == "Z" && oriboss_view &&
+                        Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki) && Global.config.draw.ExtendDraw)
                     {
-                        Point p = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
+                        Point p = int.Parse(oriboss_ugoki) switch
                         {
                             1 => new Point(352, 256),
                             2 => new Point(96, 0),

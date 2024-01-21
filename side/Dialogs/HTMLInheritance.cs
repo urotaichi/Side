@@ -308,9 +308,9 @@ namespace MasaoPlus.Dialogs
                         case ConfigParam.Types.b:
                         case ConfigParam.Types.b2:
                         case ConfigParam.Types.b0:
-                            if (dictionary.ContainsKey(project.Config.Configurations[num].Name))
+                            if (dictionary.TryGetValue(project.Config.Configurations[num].Name, out string value1))
                             {
-                                if (dictionary[project.Config.Configurations[num].Name] == "2" || dictionary[project.Config.Configurations[num].Name] == "0")
+                                if (value1 == "2" || value1 == "0")
                                 {
                                     project.Config.Configurations[num].Value = "false";
                                 }
@@ -400,10 +400,10 @@ namespace MasaoPlus.Dialogs
                         case ConfigParam.Types.f:
                         case ConfigParam.Types.f_i:
                         case ConfigParam.Types.f_a:
-                            if (dictionary.ContainsKey(project.Config.Configurations[num].Name))
+                            if (dictionary.TryGetValue(project.Config.Configurations[num].Name, out string value2))
                             {
-                                list.Add(dictionary[project.Config.Configurations[num].Name]);
-                                project.Config.Configurations[num].Value = Path.GetFileName(dictionary[project.Config.Configurations[num].Name]);
+                                list.Add(value2);
+                                project.Config.Configurations[num].Value = Path.GetFileName(value2);
                             }
                             break;
                         case ConfigParam.Types.c:
@@ -421,7 +421,7 @@ namespace MasaoPlus.Dialogs
                                     param_name = name.Replace("@", array[num3]);
 
                                     // パラメータが存在しない または 数値に変換できない
-                                    if (!dictionary.ContainsKey(param_name) || !int.TryParse(dictionary[param_name], out array2[num3]))
+                                    if (!dictionary.TryGetValue(param_name, out string value3) || !int.TryParse(value3, out array2[num3]))
                                     {
                                         // デフォルト値を代入
                                         switch (param_name)
@@ -508,9 +508,9 @@ namespace MasaoPlus.Dialogs
                     num++;
                     continue;
                 IL_D9E:
-                    if (dictionary.ContainsKey(project.Config.Configurations[num].Name))
+                    if (dictionary.TryGetValue(project.Config.Configurations[num].Name, out string value))
                     {
-                        project.Config.Configurations[num].Value = dictionary[project.Config.Configurations[num].Name];
+                        project.Config.Configurations[num].Value = value;
                         if (project.Config.Configurations[num].Type == ConfigParam.Types.s) // 文字列に\"が含まれていた場合エスケープを戻す
                         {
                             project.Config.Configurations[num].Value = project.Config.Configurations[num].Value.Replace(@"\""", @"""");

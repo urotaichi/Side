@@ -251,6 +251,7 @@ namespace MasaoPlus
         // ステータスバーっぽいところに表示される小さいアイコンや文字
         private void MainDesigner_MouseMove(object sender, MouseEventArgs e)
         {
+            bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
             Point p = default;
             p.X = (e.X + Global.state.MapPoint.X) / MainDesigner.CurrentChipSize.Width;
             p.Y = (e.Y + Global.state.MapPoint.Y) / MainDesigner.CurrentChipSize.Height;
@@ -272,12 +273,12 @@ namespace MasaoPlus
                 ChipsData chipsData;
                 if (Global.state.MapEditMode)
                 {
-                    if (text == Global.cpd.Worldchip[0].character || !MainDesigner.DrawWorldRef.ContainsKey(text))
+                    if (text == Global.cpd.Worldchip[0].character || !MainDesigner.DrawWorldRef.TryGetValue(text, out ChipsData value))
                     {
                         ChipNavigator.Visible = false;
                         return;
                     }
-                    chipsData = MainDesigner.DrawWorldRef[text];
+                    chipsData = value;
                 }
                 else if (Global.state.EditingForeground)
                 {
@@ -303,7 +304,7 @@ namespace MasaoPlus
                 }
                 ChipData cschip = chipsData.GetCSChip();
                 Size size = (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size;
-                if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
+                if (oriboss_view && chipsData.character == "Z")
                     size = MainDesigner.DrawOribossOrig.Size;
                 ChipNavigator.Image?.Dispose();
                 Bitmap bitmap;
@@ -320,7 +321,7 @@ namespace MasaoPlus
                 if (Global.state.EditingForeground)
                 {
                     graphics.PixelOffsetMode = PixelOffsetMode.Half;
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
+                    if (oriboss_view && chipsData.character == "Z")
                     {
                         graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, MainDesigner.DrawOribossOrig.Size.Width, MainDesigner.DrawOribossOrig.Size.Height);
                     }
@@ -364,9 +365,9 @@ namespace MasaoPlus
                                 graphics.RotateTransform(cschip.rotate);
 
                                 // 水の半透明処理
-                                if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && chipsData.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                                if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && chipsData.character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
                                 {
-                                    float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                    float water_clear_level = float.Parse(value);
                                     var colorMatrix = new ColorMatrix
                                     {
                                         Matrix00 = 1f,
@@ -392,12 +393,12 @@ namespace MasaoPlus
                 bitmap.Dispose();
                 string name, description;
 
-                if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
+                if (Global.state.EditingForeground && oriboss_view && chipsData.character == "Z")
                 {
                     name = "オリジナルボス";
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki))
                     {
-                        description = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
+                        description = int.Parse(oriboss_ugoki) switch
                         {
                             1 => "停止",
                             2 => "左右移動",
@@ -719,12 +720,12 @@ namespace MasaoPlus
                 {
                     ChipList.Items.Add(chipData.name);
                 }
-                else if (Global.state.EditingForeground && chipsData.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+                else if (Global.state.EditingForeground && chipsData.character == "Z" && Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3)
                 {
                     string description;
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki))
                     {
-                        description = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
+                        description = int.Parse(oriboss_ugoki) switch
                         {
                             1 => "停止",
                             2 => "左右移動",
@@ -885,23 +886,24 @@ namespace MasaoPlus
         // 選択中のチップが変わったらチップリストの左上の文字を変える
         private void state_UpdateCurrentChipInvoke()
         {
+            bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
             ChipImage.Refresh();
             string chara;
             ChipsData cc = Global.state.CurrentChip;
             if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) chara = cc.code;
             else chara = cc.character;
 
-            if (cc.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+            if (cc.character == "Z" && oriboss_view)
                 ChipDescription.Text = "オリジナルボス";
             else ChipDescription.Text = cc.GetCSChip().name;
             if (cc.GetCSChip().description != "")
             {
-                if (Global.state.EditingForeground && cc.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+                if (Global.state.EditingForeground && cc.character == "Z" && oriboss_view)
                 {
                     string description;
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki))
                     {
-                        description = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
+                        description = int.Parse(oriboss_ugoki) switch
                         {
                             1 => "停止",
                             2 => "左右移動",
@@ -1018,6 +1020,7 @@ namespace MasaoPlus
         // 左上のチップのサンプル画像　拡張描画画像がなぜか描画されていないので後で追加？
         private void ChipImage_Paint(object sender, PaintEventArgs e)
         {
+            bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
             if (MainDesigner.DrawChipOrig != null)
             {
                 e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
@@ -1029,7 +1032,7 @@ namespace MasaoPlus
                 else e.Graphics.InterpolationMode = InterpolationMode.High;
                 if (!Global.cpd.UseLayer || Global.state.EditingForeground) // パターン画像
                 {
-                    if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.state.CurrentChip.character == "Z")
+                    if (Global.state.EditingForeground && oriboss_view && Global.state.CurrentChip.character == "Z")
                     {
                         e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, ChipImage.Width, ChipImage.Height);
                     }
@@ -1068,9 +1071,9 @@ namespace MasaoPlus
                                 if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
                                 // 水の半透明処理
-                                if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.state.CurrentChip.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                                if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && Global.state.CurrentChip.character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
                                 {
-                                    float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                    float water_clear_level = float.Parse(value);
                                     var colorMatrix = new ColorMatrix
                                     {
                                         Matrix00 = 1f,
@@ -1582,6 +1585,7 @@ namespace MasaoPlus
             e.DrawBackground();
             try
             {
+                bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
                 ChipData cschip;
                 ChipsData[] array = Global.cpd.Mapchip;
                 using Brush brush = new SolidBrush(e.ForeColor);
@@ -1609,7 +1613,7 @@ namespace MasaoPlus
                             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                             transState = e.Graphics.Save();
                             e.Graphics.TranslateTransform(e.Bounds.X, e.Bounds.Y);
-                            if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && array[i].character == "Z")
+                            if (Global.state.EditingForeground && oriboss_view && array[i].character == "Z")
                             {
                                 e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, e.Bounds.Height, e.Bounds.Height);
                             }
@@ -1647,9 +1651,9 @@ namespace MasaoPlus
                                         e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
                                         if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
                                         // 水の半透明処理
-                                        if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && array[i].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                                        if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && array[i].character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
                                         {
-                                            float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                            float water_clear_level = float.Parse(value);
                                             var colorMatrix = new ColorMatrix
                                             {
                                                 Matrix00 = 1f,
@@ -1716,9 +1720,9 @@ namespace MasaoPlus
                                         e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
                                         e.Graphics.RotateTransform(cschip.rotate);
                                         // 水の半透明処理
-                                        if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && array[i].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                                        if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && array[i].character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
                                         {
-                                            float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                            float water_clear_level = float.Parse(value);
                                             var colorMatrix = new ColorMatrix
                                             {
                                                 Matrix00 = 1f,
@@ -1738,7 +1742,7 @@ namespace MasaoPlus
                             }
                             else
                             {
-                                if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && array[i].character == "Z")
+                                if (Global.state.EditingForeground && oriboss_view && array[i].character == "Z")
                                 {
                                     e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0);
                                     width = MainDesigner.DrawOribossOrig.Width;
@@ -1839,7 +1843,7 @@ namespace MasaoPlus
                             }
                             else
                             {
-                                if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && array[i].character == "Z")
+                                if (Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3 && array[i].character == "Z")
                                 {
                                     height = MainDesigner.DrawOribossOrig.Height;
                                 }

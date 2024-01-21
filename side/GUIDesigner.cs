@@ -367,6 +367,7 @@ namespace MasaoPlus
 
         private void DrawExtendSizeMap(ChipData cschip, Graphics g, Point p, bool foreground, string chara)
         {
+            bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
             GraphicsState transState;
             Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
             Rectangle rectangle = new((p.X * chipsize.Width - cschip.center.X) * DeviceDpi / 96, (p.Y * chipsize.Height - cschip.center.Y) * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
@@ -376,7 +377,7 @@ namespace MasaoPlus
             }
             if (foreground)
             { // 標準パターン画像
-                if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chara == "Z")
+                if (oriboss_view && chara == "Z")
                 {
                     g.DrawImage(DrawOribossOrig, p.X * chipsize.Width * DeviceDpi / 96, p.Y * chipsize.Height * DeviceDpi / 96, DrawOribossOrig.Width * DeviceDpi / 96, DrawOribossOrig.Height * DeviceDpi / 96);
                 }
@@ -399,10 +400,10 @@ namespace MasaoPlus
             { // 背景レイヤー画像
                 g.DrawImage(DrawLayerOrig, rectangle, new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
             }
-            if (chara == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 &&
-                Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
+            if (chara == "Z" && oriboss_view &&
+                Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string value) && Global.config.draw.ExtendDraw)
             {
-                Point point = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
+                Point point = int.Parse(value) switch
                 {
                     1 => new Point(352, 256),
                     2 => new Point(96, 0),
@@ -524,9 +525,9 @@ namespace MasaoPlus
                                     new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                             }
                         }
-                        else if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && chara == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                        else if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && chara == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
                         {// 水の半透明処理
-                            float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                            float water_clear_level = float.Parse(value);
                             var colorMatrix = new ColorMatrix
                             {
                                 Matrix00 = 1f,
@@ -638,11 +639,11 @@ namespace MasaoPlus
                 // セカンド背景画像固定表示
                 viewSecondHaikei(1);
                 // 背景画像固定表示
-                if (Global.state.ChipRegister.ContainsKey("gazou_scroll") && int.Parse(Global.state.ChipRegister["gazou_scroll"]) == 11)
+                if (Global.state.ChipRegister.TryGetValue("gazou_scroll", out string gazou_scroll) && int.Parse(gazou_scroll) == 11)
                 {
                     int gazou_scroll_x = default, gazou_scroll_y = default;
-                    if (Global.state.ChipRegister.ContainsKey("gazou_scroll_x")) gazou_scroll_x = int.Parse(Global.state.ChipRegister["gazou_scroll_x"]);
-                    if (Global.state.ChipRegister.ContainsKey("gazou_scroll_y")) gazou_scroll_y = int.Parse(Global.state.ChipRegister["gazou_scroll_y"]);
+                    if (Global.state.ChipRegister.TryGetValue("gazou_scroll_x", out string gazou_scroll_x_value)) gazou_scroll_x = int.Parse(gazou_scroll_x_value);
+                    if (Global.state.ChipRegister.TryGetValue("gazou_scroll_y", out string gazou_scroll_y_value)) gazou_scroll_y = int.Parse(gazou_scroll_y_value);
 
                     Image HaikeiOrig = DrawHaikeiOrig;
                     if (Global.state.EdittingStage == 1) HaikeiOrig = DrawHaikei2Orig;
@@ -833,15 +834,15 @@ namespace MasaoPlus
             if (!Global.state.MapEditMode)
             {
                 // オリジナルボスを座標で設置する場合に描画
-                if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 2 && foreground)
+                if (Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 2 && foreground)
                 {
                     int oriboss_x = default, oriboss_y = default;
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_x")) oriboss_x = int.Parse(Global.state.ChipRegister["oriboss_x"]);
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_y")) oriboss_y = int.Parse(Global.state.ChipRegister["oriboss_y"]);
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_x", out string oriboss_x_value)) oriboss_x = int.Parse(oriboss_x_value);
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_y", out string oriboss_y_value)) oriboss_y = int.Parse(oriboss_y_value);
                     g.DrawImage(DrawOribossOrig, oriboss_x * chipsize.Width * DeviceDpi / 96, oriboss_y * chipsize.Height * DeviceDpi / 96, DrawOribossOrig.Width * DeviceDpi / 96, DrawOribossOrig.Height * DeviceDpi / 96);
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki) && Global.config.draw.ExtendDraw)
                     {
-                        Point p = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
+                        Point p = int.Parse(oriboss_ugoki) switch
                         {
                             1 => new Point(352, 256),
                             2 => new Point(96, 0),
@@ -1535,15 +1536,15 @@ namespace MasaoPlus
                         {
                             if (Global.cpd.project.Use3rdMapData)
                             {
-                                if (DrawItemCodeRef.ContainsKey(stageChar))
+                                if (DrawItemCodeRef.TryGetValue(stageChar, out ChipsData value))
                                 {
-                                    Global.state.CurrentChip = DrawItemCodeRef[stageChar];
+                                    Global.state.CurrentChip = value;
                                     return;
                                 }
                             }
-                            else if (DrawItemRef.ContainsKey(stageChar))
+                            else if (DrawItemRef.TryGetValue(stageChar, out ChipsData value))
                             {
-                                Global.state.CurrentChip = DrawItemRef[stageChar];
+                                Global.state.CurrentChip = value;
                                 return;
                             }
                         }
@@ -1551,15 +1552,15 @@ namespace MasaoPlus
                         {
                             if (Global.cpd.project.Use3rdMapData)
                             {
-                                if (DrawLayerCodeRef.ContainsKey(stageChar))
+                                if (DrawLayerCodeRef.TryGetValue(stageChar, out ChipsData value))
                                 {
-                                    Global.state.CurrentChip = DrawLayerCodeRef[stageChar];
+                                    Global.state.CurrentChip = value;
                                     return;
                                 }
                             }
-                            else if (DrawLayerRef.ContainsKey(stageChar))
+                            else if (DrawLayerRef.TryGetValue(stageChar, out ChipsData value))
                             {
-                                Global.state.CurrentChip = DrawLayerRef[stageChar];
+                                Global.state.CurrentChip = value;
                                 return;
                             }
                         }
@@ -1776,31 +1777,31 @@ namespace MasaoPlus
             }
             if (Global.state.MapEditMode)
             {
-                if (DrawWorldRef.ContainsKey(stageChar) && CheckChar(pt, DrawWorldRef[stageChar]))
+                if (DrawWorldRef.TryGetValue(stageChar, out ChipsData value) && CheckChar(pt, value))
                 {
-                    FillThis(DrawWorldRef[stageChar], repl, pt);
+                    FillThis(value, repl, pt);
                 }
             }
             else if (Global.state.EditingForeground)
             {
-                if (Global.cpd.project.Use3rdMapData && DrawItemCodeRef.ContainsKey(stageChar) && CheckChar(pt, DrawItemCodeRef[stageChar]))
+                if (Global.cpd.project.Use3rdMapData && DrawItemCodeRef.TryGetValue(stageChar, out ChipsData value1) && CheckChar(pt, value1))
                 {
-                    FillThisCode(DrawItemCodeRef[stageChar], repl, pt);
+                    FillThisCode(value1, repl, pt);
                 }
-                else if (!Global.cpd.project.Use3rdMapData && DrawItemRef.ContainsKey(stageChar) && CheckChar(pt, DrawItemRef[stageChar]))
+                else if (!Global.cpd.project.Use3rdMapData && DrawItemRef.TryGetValue(stageChar, out ChipsData value2) && CheckChar(pt, value2))
                 {
-                    FillThis(DrawItemRef[stageChar], repl, pt);
+                    FillThis(value2, repl, pt);
                 }
             }
             else
             {
-                if (Global.cpd.project.Use3rdMapData && DrawLayerCodeRef.ContainsKey(stageChar) && CheckChar(pt, DrawLayerCodeRef[stageChar]))
+                if (Global.cpd.project.Use3rdMapData && DrawLayerCodeRef.TryGetValue(stageChar, out ChipsData value1) && CheckChar(pt, value1))
                 {
-                    FillThisCode(DrawLayerCodeRef[stageChar], repl, pt);
+                    FillThisCode(value1, repl, pt);
                 }
-                else if (!Global.cpd.project.Use3rdMapData && DrawLayerRef.ContainsKey(stageChar) && CheckChar(pt, DrawLayerRef[stageChar]))
+                else if (!Global.cpd.project.Use3rdMapData && DrawLayerRef.TryGetValue(stageChar, out ChipsData value2) && CheckChar(pt, value2))
                 {
-                    FillThis(DrawLayerRef[stageChar], repl, pt);
+                    FillThis(value2, repl, pt);
                 }
             }
 
@@ -2832,7 +2833,7 @@ namespace MasaoPlus
                 Size size = default;
                 if (cd.character != null || cd.code != null)
                 {
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && cd.character == "Z")
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3 && cd.character == "Z")
                     {
                         size = DrawOribossOrig.Size;
                     }
@@ -2858,7 +2859,7 @@ namespace MasaoPlus
                         else chipsData = DrawItemRef[stageChar];
                     }
                     chipData = chipsData.GetCSChip();
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3 && chipsData.character == "Z")
                         size = GetLargerSize(size, DrawOribossOrig.Size);
                     else if (chipData.name.Contains("曲線による") && chipData.name.Contains("坂") || chipData.name == "半円" && !chipData.description.Contains("乗れる"))
                         size = GetLargerSize(size, new Size(chipData.view_size.Width, CurrentStageSize.y * chipsize.Height));
@@ -2868,7 +2869,7 @@ namespace MasaoPlus
                 else
                 {
                     Point largerPoint = GetLargerPoint(cd.GetCSChip().center, chipData.center);
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3)
                     {
                         if (cd.character == "Z") largerPoint = GetLargerPoint(new Point(0, 0), chipData.center);
                         else if (chipsData.character == "Z") largerPoint = GetLargerPoint(cd.GetCSChip().center, new Point(0, 0));
@@ -3114,9 +3115,9 @@ namespace MasaoPlus
             string stageChar = StageText.GetStageChar(mouseStartPoint);
             if (Global.state.MapEditMode)
             {
-                if (DrawWorldRef.ContainsKey(stageChar))
+                if (DrawWorldRef.TryGetValue(stageChar, out ChipsData value))
                 {
-                    Global.state.CurrentChip = DrawWorldRef[stageChar];
+                    Global.state.CurrentChip = value;
                     return;
                 }
             }
@@ -3124,15 +3125,15 @@ namespace MasaoPlus
             {
                 if (Global.cpd.project.Use3rdMapData)
                 {
-                    if (DrawItemCodeRef.ContainsKey(stageChar))
+                    if (DrawItemCodeRef.TryGetValue(stageChar, out ChipsData value))
                     {
-                        Global.state.CurrentChip = DrawItemCodeRef[stageChar];
+                        Global.state.CurrentChip = value;
                         return;
                     }
                 }
-                else if (DrawItemRef.ContainsKey(stageChar))
+                else if (DrawItemRef.TryGetValue(stageChar, out ChipsData value))
                 {
-                    Global.state.CurrentChip = DrawItemRef[stageChar];
+                    Global.state.CurrentChip = value;
                     return;
                 }
             }
@@ -3140,15 +3141,15 @@ namespace MasaoPlus
             {
                 if (Global.cpd.project.Use3rdMapData)
                 {
-                    if (DrawLayerCodeRef.ContainsKey(stageChar))
+                    if (DrawLayerCodeRef.TryGetValue(stageChar, out ChipsData value))
                     {
-                        Global.state.CurrentChip = DrawLayerCodeRef[stageChar];
+                        Global.state.CurrentChip = value;
                         return;
                     }
                 }
-                else if (DrawLayerRef.ContainsKey(stageChar))
+                else if (DrawLayerRef.TryGetValue(stageChar, out ChipsData value))
                 {
-                    Global.state.CurrentChip = DrawLayerRef[stageChar];
+                    Global.state.CurrentChip = value;
                     return;
                 }
             }

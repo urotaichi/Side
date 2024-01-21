@@ -111,9 +111,9 @@ namespace MasaoPlus.Controls
                             ptr = (byte*)(void*)bitmapData.Scan0;
                             int num2 = i * 3 + bitmapData.Stride * j;
                             string key = Global.cpd.EditingMap[j].Substring(i * Global.cpd.runtime.Definitions.MapSize.bytesize, Global.cpd.runtime.Definitions.MapSize.bytesize);
-                            if (dictionary.ContainsKey(key))
+                            if (dictionary.TryGetValue(key, out ChipsData value))
                             {
-                                ChipsData chipsData = dictionary[key];
+                                ChipsData chipsData = value;
                                 if (chipsData.color == "" || chipsData.color == null)
                                 {
                                     if (chipsData.character.Equals(array[0].character))
@@ -171,9 +171,9 @@ namespace MasaoPlus.Controls
                                     key = Global.cpd.EditingLayer[j].Substring(i * Global.cpd.runtime.Definitions.LayerSize.bytesize, Global.cpd.runtime.Definitions.LayerSize.bytesize);
                                 }
                             }
-                            if (dictionary.ContainsKey(key))
+                            if (dictionary.TryGetValue(key, out ChipsData value))
                             {
-                                ChipsData chipsData = dictionary[key];
+                                ChipsData chipsData = value;
                                 if (chipsData.color == "" || chipsData.color == null)
                                 {
                                     if (Global.cpd.project.Use3rdMapData)
