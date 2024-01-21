@@ -68,7 +68,7 @@
 			this.groupBox2.Controls.Add(this.MCLabel);
 			this.groupBox2.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 88 * DeviceDpi / 96);
 			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new global::System.Drawing.Size(515 * DeviceDpi / 96, 159 * DeviceDpi / 96);
+			this.groupBox2.Size = new global::System.Drawing.Size(515 * DeviceDpi / 96, 164 * DeviceDpi / 96);
 			this.groupBox2.TabIndex = 7;
 			this.groupBox2.TabStop = false;
 			this.groupBox2.Text = "画像設定(空白でデフォルトの画像を利用します)";
@@ -248,14 +248,14 @@
 			this.RDLabel.Text = "ルートディレクトリ";
 			this.Cancel.DialogResult = global::System.Windows.Forms.DialogResult.Cancel;
 			this.Cancel.FlatStyle = global::System.Windows.Forms.FlatStyle.Popup;
-			this.Cancel.Location = new global::System.Drawing.Point(418 * DeviceDpi / 96, 253 * DeviceDpi / 96);
+			this.Cancel.Location = new global::System.Drawing.Point(418 * DeviceDpi / 96, 258 * DeviceDpi / 96);
 			this.Cancel.Name = "Cancel";
 			this.Cancel.Size = new global::System.Drawing.Size(109 * DeviceDpi / 96, 23 * DeviceDpi / 96);
 			this.Cancel.TabIndex = 10;
 			this.Cancel.Text = "キャンセル";
 			this.Cancel.UseVisualStyleBackColor = true;
 			this.OK.FlatStyle = global::System.Windows.Forms.FlatStyle.Popup;
-			this.OK.Location = new global::System.Drawing.Point(303 * DeviceDpi / 96, 253 * DeviceDpi / 96);
+			this.OK.Location = new global::System.Drawing.Point(303 * DeviceDpi / 96, 258 * DeviceDpi / 96);
 			this.OK.Name = "OK";
 			this.OK.Size = new global::System.Drawing.Size(109 * DeviceDpi / 96, 23 * DeviceDpi / 96);
 			this.OK.TabIndex = 9;
@@ -301,7 +301,7 @@
 			//base.AutoScaleDimensions = new global::System.Drawing.SizeF(6f, 12f);
 			//base.AutoScaleMode = global::System.Windows.Forms.AutoScaleMode.Font;
 			base.CancelButton = this.Cancel;
-			base.ClientSize = new global::System.Drawing.Size(539 * DeviceDpi / 96, 288 * DeviceDpi / 96);
+			base.ClientSize = new global::System.Drawing.Size(539 * DeviceDpi / 96, 293 * DeviceDpi / 96);
 			base.ControlBox = false;
 			base.Controls.Add(this.StageNum);
 			base.Controls.Add(this.label2);
