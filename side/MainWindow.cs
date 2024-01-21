@@ -1119,9 +1119,13 @@ namespace MasaoPlus
         {
             if (MainDesigner.DrawChipOrig != null)
             {
-                e.Graphics.InterpolationMode = InterpolationMode.High;
                 ChipData cschip = Global.state.CurrentCustomPartsChip.GetCSChip();
                 e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
+                if (DeviceDpi / 96 >= 2 && (cschip.size == default || cschip.size.Width / cschip.size.Height == 1))
+                {
+                    e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                }
+                else e.Graphics.InterpolationMode = InterpolationMode.High;
                 switch (cschip.name)
                 {
                     case "一方通行":
