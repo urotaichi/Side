@@ -34,7 +34,7 @@ namespace MasaoPlus
                     }
                     else
                     {
-                        Global.state.Testrun = Process.Start(str);
+                        Global.state.Testrun = Process.Start(new ProcessStartInfo { FileName = str, UseShellExecute = true });
                     }
                     Process testrun = Global.state.Testrun;
                     Enabled = false;
@@ -118,7 +118,7 @@ namespace MasaoPlus
                 }
                 else
                 {
-                    Global.state.Testrun = Process.Start(Browser.Source.ToString());
+                    Global.state.Testrun = Process.Start(new ProcessStartInfo { FileName = Browser.Source.ToString(), UseShellExecute = true });
                 }
             }
             catch (Exception ex)
