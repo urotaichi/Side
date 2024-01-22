@@ -88,13 +88,13 @@ namespace MasaoPlus.Dialogs
         {
             if (ProjectName.Text != "" && RootDir.Text != "" && Directory.Exists(RootDir.Text) && (!LayerPattern.Enabled || LayerPattern.Text == "" || File.Exists(LayerPattern.Text)))
             {
-                string[] array = new string[]
-                {
+                string[] array =
+                [
                     MapChip.Text,
                     TitleImage.Text,
                     EndingImage.Text,
                     GameoverImage.Text
-                };
+                ];
                 foreach (string text in array)
                 {
                     if (text != "" && !File.Exists(text))

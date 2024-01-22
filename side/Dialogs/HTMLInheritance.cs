@@ -408,12 +408,12 @@ namespace MasaoPlus.Dialogs
                             break;
                         case ConfigParam.Types.c:
                             {
-                                string[] array = new string[]
-                                {
+                                string[] array =
+                                [
                                     "red",
                                     "green",
                                     "blue"
-                                };
+                                ];
                                 int[] array2 = new int[3];
                                 string name = project.Config.Configurations[num].Name, param_name;
                                 for (int num3 = 0; num3 < 3; num3++)

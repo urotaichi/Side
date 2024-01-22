@@ -1103,10 +1103,10 @@ namespace MasaoPlus
             FileStream fs;
             DrawChipOrig = Image.FromStream(File.OpenRead(filename), false, false);
             DrawMask = new Bitmap(DrawChipOrig.Width, DrawChipOrig.Height);
-            ColorMap[] remapTable = new ColorMap[]
-            {
+            ColorMap[] remapTable =
+            [
                 new()
-            };
+            ];
             using (ImageAttributes imageAttributes = new())
             {
                 imageAttributes.SetRemapTable(remapTable);

@@ -36,19 +36,19 @@ namespace MasaoPlus
 
         public static string[] CheckFiles(string cdir, Runtime chkr, bool CheckConfig)
         {
-            string[] array = new string[]
-            {
+            string[] array =
+            [
                 chkr.Definitions.Package,
                 chkr.Definitions.Configurations,
                 chkr.Definitions.ChipExtender
-            };
+            ];
             if (!CheckConfig)
             {
-                array = new string[]
-                {
+                array =
+                [
                     chkr.Definitions.Package,
                     chkr.Definitions.ChipExtender
-                };
+                ];
             }
             List<string> list = new();
             foreach (string text in array)

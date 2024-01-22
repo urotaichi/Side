@@ -1274,12 +1274,12 @@ namespace MasaoPlus.Controls
             ConfView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ConfView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             ConfView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ConfView.Columns.AddRange(new DataGridViewColumn[]
-            {
+            ConfView.Columns.AddRange(
+            [
                 CNames,
                 CValues,
                 SE
-            });
+            ]);
             ConfView.Dock = DockStyle.Fill;
             ConfView.EditMode = DataGridViewEditMode.EditOnEnter;
             ConfView.Location = new Point(0, 20);

@@ -1177,7 +1177,7 @@ namespace MasaoPlus
             {
                 throw new FileNotFoundException("ファイルをロードできませんでした。");
             }
-            byte[] array = new byte[0];
+            byte[] array = [];
             using (FileStream fileStream = new(path, FileMode.Open))
             {
                 array = new byte[fileStream.Length];
