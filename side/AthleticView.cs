@@ -31,65 +31,65 @@ namespace MasaoPlus
                     (dpi, cschip, g, chipsize) => {
                         if (!cschip.description.Contains("表示なし")){
                             using Pen pen = new(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
-                            if (cschip.description.Contains("右"))
+                            if (cschip.description.Contains('右'))
                                 DrawLine(dpi, g, pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
-                            else if (cschip.description.Contains("左"))
+                            else if (cschip.description.Contains('左'))
                                 DrawLine(dpi, g, pen, 1, 0, 1, chipsize.Height);
-                            else if (cschip.description.Contains("上"))
+                            else if (cschip.description.Contains('上'))
                                 DrawLine(dpi, g, pen, 0, 1, chipsize.Width, 1);
-                            else if (cschip.description.Contains("下"))
+                            else if (cschip.description.Contains('下'))
                                 DrawLine(dpi, g, pen, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
                         }
                     },
                     (dpi, cschip, g, chipsize, gd, base_y) => {
                         if (!cschip.description.Contains("表示なし")){
                             using Pen pen = new(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
-                            if (cschip.description.Contains("右"))
+                            if (cschip.description.Contains('右'))
                                 DrawLine(dpi, g, pen, cschip.view_size.Width - 1, 0, cschip.view_size.Width - 1, cschip.view_size.Height);
-                            else if (cschip.description.Contains("左"))
+                            else if (cschip.description.Contains('左'))
                                 DrawLine(dpi, g, pen, 1, 0, 1, cschip.view_size.Height);
-                            else if (cschip.description.Contains("上"))
+                            else if (cschip.description.Contains('上'))
                                 DrawLine(dpi, g, pen, 0, 1, cschip.view_size.Width, 1);
-                            else if (cschip.description.Contains("下"))
+                            else if (cschip.description.Contains('下'))
                                 DrawLine(dpi, g, pen, 0, cschip.view_size.Height - 1, cschip.view_size.Width, cschip.view_size.Height - 1);
                         }
                     },
                     (cschip, g, chipsize) => {
                         if (!cschip.description.Contains("表示なし")){
                             using Pen pen = new(Global.cpd.project.Config.Firebar2, 2);
-                            if (cschip.description.Contains("右"))
+                            if (cschip.description.Contains('右'))
                                 g.DrawLine(pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Width);
-                            else if (cschip.description.Contains("左"))
+                            else if (cschip.description.Contains('左'))
                                 g.DrawLine(pen, 0, 0, 0, chipsize.Width);
-                            else if (cschip.description.Contains("上"))
+                            else if (cschip.description.Contains('上'))
                                 g.DrawLine(pen, 0, 0, chipsize.Width, 0);
-                            else if (cschip.description.Contains("下"))
+                            else if (cschip.description.Contains('下'))
                                 g.DrawLine(pen, 0, chipsize.Width - 1, chipsize.Width, chipsize.Width - 1);
                         }
                     },
                     (dpi, cschip, g, chipsize, height) => {
                         if (!cschip.description.Contains("表示なし")){
                             using Pen pen = new(Global.cpd.project.Config.Firebar2, 2 / height * dpi / 96);
-                            if (cschip.description.Contains("右"))
+                            if (cschip.description.Contains('右'))
                                 g.DrawLine(pen, height - 1 * dpi / 96, 0, height - 1 * dpi / 96, height);
-                            else if (cschip.description.Contains("左"))
+                            else if (cschip.description.Contains('左'))
                                 g.DrawLine(pen, 1 * dpi / 96, 0, 1 * dpi / 96, height);
-                            else if (cschip.description.Contains("上"))
+                            else if (cschip.description.Contains('上'))
                                 g.DrawLine(pen, 0, 1 * dpi / 96, height, 1 * dpi / 96);
-                            else if (cschip.description.Contains("下"))
+                            else if (cschip.description.Contains('下'))
                                 g.DrawLine(pen, 0, height - 1 * dpi / 96, height, height - 1 * dpi / 96);
                         }
                     },
                     (cschip, g, chipsize) => {
                         if (!cschip.description.Contains("表示なし")){
                             using Pen pen = new(Global.cpd.project.Config.Firebar2, 2);
-                            if (cschip.description.Contains("右"))
+                            if (cschip.description.Contains('右'))
                                 g.DrawLine(pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
-                            else if (cschip.description.Contains("左"))
+                            else if (cschip.description.Contains('左'))
                                 g.DrawLine(pen, 1, 0, 1, chipsize.Height);
-                            else if (cschip.description.Contains("上"))
+                            else if (cschip.description.Contains('上'))
                                 g.DrawLine(pen, 0, 1, chipsize.Width, 1);
-                            else if (cschip.description.Contains("下"))
+                            else if (cschip.description.Contains('下'))
                                 g.DrawLine(pen, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
                         }
                     })
@@ -140,8 +140,8 @@ namespace MasaoPlus
                     (dpi, cschip, g, chipsize) => {
                         TranslateTransform(dpi, g, 16, 17);
                         vo_pa = new PointF[4];
-                        if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
-                        else if (cschip.description.Contains("右")) rad = 56 * Math.PI / 180;
+                        if (cschip.description.Contains('左')) rad = -56 * Math.PI / 180;
+                        else if (cschip.description.Contains('右')) rad = 56 * Math.PI / 180;
                         vo_pa[0].X = (float)Math.Cos(rad + Math.PI) * chipsize.Width / 2;
                         vo_pa[0].Y = (float)Math.Sin(rad + Math.PI) * chipsize.Width / 2;
                         vo_pa[1].X = (float)Math.Cos(rad) * chipsize.Width / 2;
@@ -168,8 +168,8 @@ namespace MasaoPlus
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         TranslateTransform(dpi, g, 16, 0);
                         vo_pa = new PointF[4];
-                        if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
-                        else if (cschip.description.Contains("右")) rad = 56 * Math.PI / 180;
+                        if (cschip.description.Contains('左')) rad = -56 * Math.PI / 180;
+                        else if (cschip.description.Contains('右')) rad = 56 * Math.PI / 180;
                         else rad = 0;
                         vo_pa[0].X = (float)Math.Cos(rad + Math.PI) * 160;
                         vo_pa[0].Y = (float)Math.Sin(rad + Math.PI) * 160;
@@ -193,8 +193,8 @@ namespace MasaoPlus
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                         using Pen pen = new(Color.White, 2 * dpi / 96);
-                        if (cschip.description.Contains("左")) rad = -56;
-                        else if (cschip.description.Contains("右")) rad = 56;
+                        if (cschip.description.Contains('左')) rad = -56;
+                        else if (cschip.description.Contains('右')) rad = 56;
                         else rad = 0;
                         DrawLine(dpi, g, pen,
                             (float)(Math.Floor(Math.Cos((rad + 180) * math_pi / 180) * 160) + Math.Floor(Math.Cos((rad + 270) * math_pi / 180) * 12)),
@@ -206,8 +206,8 @@ namespace MasaoPlus
                     (cschip, g, chipsize) => {
                         g.TranslateTransform(16, 17);
                         vo_pa = new PointF[4];
-                        if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
-                        else if (cschip.description.Contains("右")) rad = 56 * Math.PI / 180;
+                        if (cschip.description.Contains('左')) rad = -56 * Math.PI / 180;
+                        else if (cschip.description.Contains('右')) rad = 56 * Math.PI / 180;
                         vo_pa[0].X = (float)Math.Cos(rad + Math.PI) * chipsize.Width / 2;
                         vo_pa[0].Y = (float)Math.Sin(rad + Math.PI) * chipsize.Width / 2;
                         vo_pa[1].X = (float)Math.Cos(rad) * chipsize.Width / 2;
@@ -233,8 +233,8 @@ namespace MasaoPlus
                     (dpi, cschip, g, chipsize, height) => {
                         g.TranslateTransform(height / 2, height / 2 + 1 * dpi / 96);
                         vo_pa = new PointF[4];
-                        if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
-                        else if (cschip.description.Contains("右")) rad = 56 * Math.PI / 180;
+                        if (cschip.description.Contains('左')) rad = -56 * Math.PI / 180;
+                        else if (cschip.description.Contains('右')) rad = 56 * Math.PI / 180;
                         vo_pa[0].X = (float)Math.Cos(rad + Math.PI) * height / 2;
                         vo_pa[0].Y = (float)Math.Sin(rad + Math.PI) * height / 2;
                         vo_pa[1].X = (float)Math.Cos(rad) * height / 2;
@@ -260,8 +260,8 @@ namespace MasaoPlus
                     (cschip, g, chipsize) => {
                         g.TranslateTransform(16, 17);
                         vo_pa = new PointF[4];
-                        if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
-                        else if (cschip.description.Contains("右")) rad = 56 * Math.PI / 180;
+                        if (cschip.description.Contains('左')) rad = -56 * Math.PI / 180;
+                        else if (cschip.description.Contains('右')) rad = 56 * Math.PI / 180;
                         vo_pa[0].X = (float)Math.Cos(rad + Math.PI) * chipsize.Width / 2;
                         vo_pa[0].Y = (float)Math.Sin(rad + Math.PI) * chipsize.Width / 2;
                         vo_pa[1].X = (float)Math.Cos(rad) * chipsize.Width / 2;
@@ -453,12 +453,12 @@ namespace MasaoPlus
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize));
                         TranslateTransform(dpi, g, 16, 14);
-                        if (cschip.description.Contains("左"))
+                        if (cschip.description.Contains('左'))
                         {
                             TranslateTransform(dpi, g, 32, 0);
                             rad = 180 + Math.Floor((double)(-26 - 5) / 10);
                         }
-                        else if (cschip.description.Contains("右"))
+                        else if (cschip.description.Contains('右'))
                         {
                             TranslateTransform(dpi, g, -32, 0);
                             rad = 360 + Math.Floor((double)(26 + 5) / 10);
@@ -482,8 +482,8 @@ namespace MasaoPlus
                             new Rectangle(cschip.pattern, chipsize));
                         g.SmoothingMode = SmoothingMode.AntiAlias;
                         TranslateTransform(dpi, g, 16, 16);
-                        if (cschip.description.Contains("左")) rad = 180 + Math.Floor((double)(-26 - 5) / 10);
-                        else if (cschip.description.Contains("右")) rad = 360 + Math.Floor((double)(26 + 5) / 10);
+                        if (cschip.description.Contains('左')) rad = 180 + Math.Floor((double)(-26 - 5) / 10);
+                        else if (cschip.description.Contains('右')) rad = 360 + Math.Floor((double)(26 + 5) / 10);
                         rad = rad * Math.PI / 180;
                         vo_pa = new PointF[4];
                         vo_pa[0].X = (float)(Math.Cos(rad) * 192 + Math.Cos(rad + Math.PI / 2) * 12);
@@ -498,7 +498,7 @@ namespace MasaoPlus
                             FillPolygon(dpi, g, brush, vo_pa);
                         }
                         using Pen pen = new(Color.White, 2 * dpi / 96);
-                        if (cschip.description.Contains("左"))
+                        if (cschip.description.Contains('左'))
                         {
                             rad = 180 + Math.Floor((double)(-26 - 5) / 10);
                             DrawLine(dpi, g, pen, (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 192) + Math.Floor(Math.Cos((rad + 90) * math_pi / 180) * 12)),
@@ -506,7 +506,7 @@ namespace MasaoPlus
                                 (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 60) + Math.Floor(Math.Cos((rad + 90) * math_pi / 180) * 12)),
                                 (float)(Math.Floor(Math.Sin(rad * math_pi / 180) * 60) + Math.Floor(Math.Sin((rad + 90) * math_pi / 180) * 12)));
                         }
-                        else if (cschip.description.Contains("右"))
+                        else if (cschip.description.Contains('右'))
                         {
                             rad = 360 + Math.Floor((double)(26 + 5) / 10);
                             DrawLine(dpi, g, pen, (float)(Math.Floor(Math.Cos(rad * math_pi / 180) * 60) + Math.Floor(Math.Cos((rad - 90) * math_pi / 180) * 12)),
@@ -520,12 +520,12 @@ namespace MasaoPlus
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                         g.TranslateTransform(16, 14);
-                        if (cschip.description.Contains("左"))
+                        if (cschip.description.Contains('左'))
                         {
                             g.TranslateTransform(32, 0);
                             rad = 180 + Math.Floor((double)(-26 - 5) / 10);
                         }
-                        else if (cschip.description.Contains("右"))
+                        else if (cschip.description.Contains('右'))
                         {
                             g.TranslateTransform(-32, 0);
                             rad = 360 + Math.Floor((double)(26 + 5) / 10);
@@ -548,12 +548,12 @@ namespace MasaoPlus
                             new Rectangle(0, 0, height, height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                         TranslateTransform(dpi, g, 0, 5);
-                        if (cschip.description.Contains("左"))
+                        if (cschip.description.Contains('左'))
                         {
                             TranslateTransform(dpi, g, 20, 0);
                             rad = 180 + Math.Floor((double)(-26 - 5) / 10);
                         }
-                        else if (cschip.description.Contains("右"))
+                        else if (cschip.description.Contains('右'))
                         {
                             TranslateTransform(dpi, g, -10, 0);
                             rad = 360 + Math.Floor((double)(26 + 5) / 10);
@@ -576,12 +576,12 @@ namespace MasaoPlus
                             new Rectangle(0, 0, chipsize.Width, chipsize.Height),
                             new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                         g.TranslateTransform(16, 14);
-                        if (cschip.description.Contains("左"))
+                        if (cschip.description.Contains('左'))
                         {
                             g.TranslateTransform(32, 0);
                             rad = 180 + Math.Floor((double)(-26 - 5) / 10);
                         }
-                        else if (cschip.description.Contains("右"))
+                        else if (cschip.description.Contains('右'))
                         {
                             g.TranslateTransform(-32, 0);
                             rad = 360 + Math.Floor((double)(26 + 5) / 10);
@@ -1307,9 +1307,9 @@ namespace MasaoPlus
                             using Pen pen = new(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8) - 1;
                                 if (i1 == 50)
@@ -1324,9 +1324,9 @@ namespace MasaoPlus
                             k21 = 0;
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8) + 1;
                                 if (i1 == 50)
@@ -1350,9 +1350,9 @@ namespace MasaoPlus
                             using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8);
                                 if (i1 == 50)
@@ -1366,17 +1366,17 @@ namespace MasaoPlus
                             vo_pa[k21].X = j20;
                             vo_pa[k21].Y = chipsize.Height;
                             k21++;
-                            if (cschip.name.Contains("上")) vo_pa[k21].X = 0;
-                            else if (cschip.name.Contains("下")) vo_pa[k21].X = chipsize.Width;
+                            if (cschip.name.Contains('上')) vo_pa[k21].X = 0;
+                            else if (cschip.name.Contains('下')) vo_pa[k21].X = chipsize.Width;
                             vo_pa[k21].Y = chipsize.Height;
                             FillPolygon(dpi, g, brush, vo_pa);
                             vo_pa = new PointF[13];
                             k21 = 0;
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8);
                                 if (i1 == 50)
@@ -1390,8 +1390,8 @@ namespace MasaoPlus
                             vo_pa[k21].X = l20;
                             vo_pa[k21].Y = chipsize.Height;
                             k21++;
-                            if (cschip.name.Contains("上")) vo_pa[k21].X = chipsize.Width;
-                            else if (cschip.name.Contains("下")) vo_pa[k21].X = 0;
+                            if (cschip.name.Contains('上')) vo_pa[k21].X = chipsize.Width;
+                            else if (cschip.name.Contains('下')) vo_pa[k21].X = 0;
                             vo_pa[k21].Y = chipsize.Height;
                             FillPolygon(dpi, g, brush, vo_pa);
                             vo_pa = new PointF[4];
@@ -1415,9 +1415,9 @@ namespace MasaoPlus
                             using Pen pen = new(Global.cpd.project.Config.Firebar2, 2 * dpi / 96);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * 160);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin(i1 * math_pi / 180) * 160);
                                 vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos(i1 * math_pi / 180) * 160) - 1;
                                 if (i1 == 50)
@@ -1432,9 +1432,9 @@ namespace MasaoPlus
                             k21 = 0;
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin(i1 * math_pi / 180) * 160);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * 160);
                                 vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos(i1 * math_pi / 180) * 160) + 1;
                                 if (i1 == 50)
@@ -1458,9 +1458,9 @@ namespace MasaoPlus
                             using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * 160);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin(i1 * math_pi / 180) * 160);
                                 vo_pa[k21].Y = (float)Math.Floor(-32 + Math.Cos(i1 * math_pi / 180) * 160);
                                 if (i1 == 50)
@@ -1478,9 +1478,9 @@ namespace MasaoPlus
                             k21 = 0;
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(256 - Math.Sin(i1 * math_pi / 180) * 160);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * 160);
                                 vo_pa[k21].Y = (float)Math.Floor(160 - Math.Cos(i1 * math_pi / 180) * 160);
                                 if (i1 == 50)
@@ -1494,8 +1494,8 @@ namespace MasaoPlus
                             vo_pa[k21].X = l20;
                             vo_pa[k21].Y = 128;
                             k21++;
-                            if (cschip.name.Contains("上")) vo_pa[k21].X = 256;
-                            else if (cschip.name.Contains("下")) vo_pa[k21].X = 0;
+                            if (cschip.name.Contains('上')) vo_pa[k21].X = 256;
+                            else if (cschip.name.Contains('下')) vo_pa[k21].X = 0;
                             vo_pa[k21].Y = 128;
                             FillPolygon(dpi, g, brush, vo_pa);
                             vo_pa = new PointF[4];
@@ -1520,9 +1520,9 @@ namespace MasaoPlus
                             using Pen pen = new(Global.cpd.project.Config.Firebar2, 2);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * chipsize.Width * 5 / 8) - 1;
                                 if (i1 == 50)
@@ -1537,9 +1537,9 @@ namespace MasaoPlus
                             k21 = 0;
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(chipsize.Width * 5 / 8 - Math.Cos(i1 * math_pi / 180) * chipsize.Width * 5 / 8) + 1;
                                 if (i1 == 50)
@@ -1563,9 +1563,9 @@ namespace MasaoPlus
                             using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 if (i1 == 50)
@@ -1579,17 +1579,17 @@ namespace MasaoPlus
                             vo_pa[k21].X = j20;
                             vo_pa[k21].Y = chipsize.Width;
                             k21++;
-                            if (cschip.name.Contains("上")) vo_pa[k21].X = 0;
-                            else if (cschip.name.Contains("下")) vo_pa[k21].X = chipsize.Width;
+                            if (cschip.name.Contains('上')) vo_pa[k21].X = 0;
+                            else if (cschip.name.Contains('下')) vo_pa[k21].X = chipsize.Width;
                             vo_pa[k21].Y = chipsize.Width;
                             g.FillPolygon(brush, vo_pa);
                             vo_pa = new PointF[13];
                             k21 = 0;
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(chipsize.Width * 5 / 8 - Math.Cos(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 if (i1 == 50)
@@ -1603,8 +1603,8 @@ namespace MasaoPlus
                             vo_pa[k21].X = l20;
                             vo_pa[k21].Y = chipsize.Width;
                             k21++;
-                            if (cschip.name.Contains("上")) vo_pa[k21].X = chipsize.Width;
-                            else if (cschip.name.Contains("下")) vo_pa[k21].X = 0;
+                            if (cschip.name.Contains('上')) vo_pa[k21].X = chipsize.Width;
+                            else if (cschip.name.Contains('下')) vo_pa[k21].X = 0;
                             vo_pa[k21].Y = chipsize.Width;
                             g.FillPolygon(brush, vo_pa);
                             vo_pa = new PointF[4];
@@ -1627,9 +1627,9 @@ namespace MasaoPlus
                             using Pen pen = new(Global.cpd.project.Config.Firebar2, 1 * dpi / 96);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(height - Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * height * 5 / 8) - 1 * dpi / 96;
                                 if (i1 == 50)
@@ -1644,9 +1644,9 @@ namespace MasaoPlus
                             k21 = 0;
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(height - Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(height * 5 / 8 - Math.Cos(i1 * math_pi / 180) * height * 5 / 8) + 1 * dpi / 96;
                                 if (i1 == 50)
@@ -1670,9 +1670,9 @@ namespace MasaoPlus
                             using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(height - Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * height * 5 / 8);
                                 if (i1 == 50)
@@ -1686,17 +1686,17 @@ namespace MasaoPlus
                             vo_pa[k21].X = j20;
                             vo_pa[k21].Y = height;
                             k21++;
-                            if (cschip.name.Contains("上")) vo_pa[k21].X = 0;
-                            else if (cschip.name.Contains("下")) vo_pa[k21].X = height;
+                            if (cschip.name.Contains('上')) vo_pa[k21].X = 0;
+                            else if (cschip.name.Contains('下')) vo_pa[k21].X = height;
                             vo_pa[k21].Y = height;
                             g.FillPolygon(brush, vo_pa);
                             vo_pa = new PointF[13];
                             k21 = 0;
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(height - Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * height * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(height * 5 / 8 - Math.Cos(i1 * math_pi / 180) * height * 5 / 8);
                                 if (i1 == 50)
@@ -1710,8 +1710,8 @@ namespace MasaoPlus
                             vo_pa[k21].X = l20;
                             vo_pa[k21].Y = height;
                             k21++;
-                            if (cschip.name.Contains("上")) vo_pa[k21].X = height;
-                            else if (cschip.name.Contains("下")) vo_pa[k21].X = 0;
+                            if (cschip.name.Contains('上')) vo_pa[k21].X = height;
+                            else if (cschip.name.Contains('下')) vo_pa[k21].X = 0;
                             vo_pa[k21].Y = height;
                             g.FillPolygon(brush, vo_pa);
                             vo_pa = new PointF[4];
@@ -1734,9 +1734,9 @@ namespace MasaoPlus
                             using Pen pen = new(Global.cpd.project.Config.Firebar2, 1);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8) - 1;
                                 if (i1 == 50)
@@ -1751,9 +1751,9 @@ namespace MasaoPlus
                             k21 = 0;
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8) + 1;
                                 if (i1 == 50)
@@ -1777,9 +1777,9 @@ namespace MasaoPlus
                             using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8);
                                 if (i1 == 50)
@@ -1793,17 +1793,17 @@ namespace MasaoPlus
                             vo_pa[k21].X = j20;
                             vo_pa[k21].Y = chipsize.Height;
                             k21++;
-                            if (cschip.name.Contains("上")) vo_pa[k21].X = 0;
-                            else if (cschip.name.Contains("下")) vo_pa[k21].X = chipsize.Width;
+                            if (cschip.name.Contains('上')) vo_pa[k21].X = 0;
+                            else if (cschip.name.Contains('下')) vo_pa[k21].X = chipsize.Width;
                             vo_pa[k21].Y = chipsize.Height;
                             g.FillPolygon(brush, vo_pa);
                             vo_pa = new PointF[13];
                             k21 = 0;
                             for (var i1 = 0; i1 <= 50; i1 += 5)
                             {
-                                if (cschip.name.Contains("上"))
+                                if (cschip.name.Contains('上'))
                                     vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
-                                else if (cschip.name.Contains("下"))
+                                else if (cschip.name.Contains('下'))
                                     vo_pa[k21].X = (float)Math.Floor(Math.Sin(i1 * math_pi / 180) * chipsize.Width * 5 / 8);
                                 vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos(i1 * math_pi / 180) * chipsize.Height * 5 / 8);
                                 if (i1 == 50)
@@ -1817,8 +1817,8 @@ namespace MasaoPlus
                             vo_pa[k21].X = l20;
                             vo_pa[k21].Y = chipsize.Height;
                             k21++;
-                            if (cschip.name.Contains("上")) vo_pa[k21].X = chipsize.Width;
-                            else if (cschip.name.Contains("下")) vo_pa[k21].X = 0;
+                            if (cschip.name.Contains('上')) vo_pa[k21].X = chipsize.Width;
+                            else if (cschip.name.Contains('下')) vo_pa[k21].X = 0;
                             vo_pa[k21].Y = chipsize.Height;
                             g.FillPolygon(brush, vo_pa);
                             vo_pa = new PointF[4];
@@ -1855,7 +1855,7 @@ namespace MasaoPlus
                         }
                         else
                         {
-                            if (cschip.description.Contains("大"))
+                            if (cschip.description.Contains('大'))
                             {
                                 if (cschip.name == "乗れる円")
                                 {
@@ -1893,7 +1893,7 @@ namespace MasaoPlus
                         }
                         else
                         {
-                            if (cschip.description.Contains("大")) {
+                            if (cschip.description.Contains('大')) {
                                 if (cschip.name == "乗れる円") {
                                     radius = 144;
                                 } else if (cschip.name == "跳ねる円") {
@@ -1928,7 +1928,7 @@ namespace MasaoPlus
                         }
                         else
                         {
-                            if (cschip.description.Contains("大"))
+                            if (cschip.description.Contains('大'))
                             {
                                 if (cschip.name == "乗れる円")
                                 {
@@ -1967,7 +1967,7 @@ namespace MasaoPlus
                         }
                         else
                         {
-                            if (cschip.description.Contains("大"))
+                            if (cschip.description.Contains('大'))
                             {
                                 if (cschip.name == "乗れる円")
                                 {
@@ -2006,7 +2006,7 @@ namespace MasaoPlus
                         }
                         else
                         {
-                            if (cschip.description.Contains("大"))
+                            if (cschip.description.Contains('大'))
                             {
                                 if (cschip.name == "乗れる円")
                                 {
@@ -2589,7 +2589,7 @@ namespace MasaoPlus
                         else if (cschip.name == "ファイヤーバー3本　右回り") v = 2;
                         else if (cschip.name == "スウィングファイヤーバー")
                         {
-                            if (cschip.description.Contains("左")) v = 160 + 2;
+                            if (cschip.description.Contains('左')) v = 160 + 2;
                             else v = 380 - 2;
                         }
                         else if (cschip.name == "スイッチ式ファイヤーバー")
@@ -2815,7 +2815,7 @@ namespace MasaoPlus
                         vo_pa = new PointF[4];
                         if (cschip.description.Contains("棒５本")) n = 5;
                         else n = 3;
-                        if (cschip.description.Contains("左")) v = 360 - 2;
+                        if (cschip.description.Contains('左')) v = 360 - 2;
                         else v = 2;
 
                         for (var ii = 0; ii < n; ii++)
@@ -2862,7 +2862,7 @@ namespace MasaoPlus
                         vo_pa = new PointF[4];
                         if (cschip.description.Contains("棒５本")) n = 5;
                         else n = 3;
-                        if (cschip.description.Contains("左")) v = 360 - 2;
+                        if (cschip.description.Contains('左')) v = 360 - 2;
                         else v = 2;
 
                         for (var i = 0; i < n; i++)
@@ -2909,7 +2909,7 @@ namespace MasaoPlus
                         vo_pa = new PointF[4];
                         if (cschip.description.Contains("棒５本")) n = 5;
                         else n = 3;
-                        if (cschip.description.Contains("左")) v = 360 - 2;
+                        if (cschip.description.Contains('左')) v = 360 - 2;
                         else v = 2;
 
                         for (var ii = 0; ii < n; ii++)
@@ -2956,7 +2956,7 @@ namespace MasaoPlus
                         vo_pa = new PointF[4];
                         if (cschip.description.Contains("棒５本")) n = 5;
                         else n = 3;
-                        if (cschip.description.Contains("左")) v = 360 - 2;
+                        if (cschip.description.Contains('左')) v = 360 - 2;
                         else v = 2;
 
                         for (var ii = 0; ii < n; ii++)
@@ -3003,7 +3003,7 @@ namespace MasaoPlus
                         vo_pa = new PointF[4];
                         if (cschip.description.Contains("棒５本")) n = 5;
                         else n = 3;
-                        if (cschip.description.Contains("左")) v = 360 - 2;
+                        if (cschip.description.Contains('左')) v = 360 - 2;
                         else v = 2;
 
                         for (var ii = 0; ii < n; ii++)

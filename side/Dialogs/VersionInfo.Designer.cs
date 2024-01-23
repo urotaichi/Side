@@ -42,13 +42,13 @@
 			this.AppName.Size = new global::System.Drawing.Size(411 * DeviceDpi / 96, 23 * DeviceDpi / 96);
 			this.AppName.TabIndex = 0;
 			this.AppName.Text = "Supermasao Integrated Development Environment";
-			this.pictureBox1.Image = global::MasaoPlus.Properties.Resources.side;
+            this.pictureBox1.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.side, 32, 32).View();
 			this.pictureBox1.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 12 * DeviceDpi / 96);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new global::System.Drawing.Size(32 * DeviceDpi / 96, 32 * DeviceDpi / 96);
 			this.pictureBox1.TabIndex = 2;
 			this.pictureBox1.TabStop = false;
-			this.label2.AutoSize = true;
+            this.label2.AutoSize = true;
 			this.label2.Location = new global::System.Drawing.Point(12 * DeviceDpi / 96, 209 * DeviceDpi / 96);
 			this.label2.Name = "label2";
 			this.label2.Size = new global::System.Drawing.Size(114 * DeviceDpi / 96, 12 * DeviceDpi / 96);

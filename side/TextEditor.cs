@@ -585,7 +585,7 @@ namespace MasaoPlus
                 PatternChipLayer,
                 BackgroundLayer
             });
-            StageLayer.Image = Resources.layers;
+            StageLayer.Image = new IconImageView(DeviceDpi, Resources.layers).View();
             StageLayer.ImageTransparentColor = Color.Magenta;
             StageLayer.Name = "StageLayer";
             StageLayer.Size = new Size(29 * DeviceDpi / 96, 22 * DeviceDpi / 96);
@@ -603,14 +603,14 @@ namespace MasaoPlus
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(6 * DeviceDpi / 96, 25 * DeviceDpi / 96);
             TextUndo.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            TextUndo.Image = Resources.undo;
+            TextUndo.Image = new IconImageView(DeviceDpi, Resources.undo).View();
             TextUndo.ImageTransparentColor = Color.Magenta;
             TextUndo.Name = "TextUndo";
             TextUndo.Size = new Size(23 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             TextUndo.Text = "元に戻す";
             TextUndo.Click += TextUndo_Click;
             TextRedo.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            TextRedo.Image = Resources.redo;
+            TextRedo.Image = new IconImageView(DeviceDpi, Resources.redo).View();
             TextRedo.ImageTransparentColor = Color.Magenta;
             TextRedo.Name = "TextRedo";
             TextRedo.Size = new Size(23 * DeviceDpi / 96, 22 * DeviceDpi / 96);
@@ -619,21 +619,21 @@ namespace MasaoPlus
             toolStripSeparator5.Name = "toolStripSeparator5";
             toolStripSeparator5.Size = new Size(6, 25);
             TextCut.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            TextCut.Image = Resources.cut;
+            TextCut.Image = new IconImageView(DeviceDpi, Resources.cut).View();
             TextCut.ImageTransparentColor = Color.Magenta;
             TextCut.Name = "TextCut";
             TextCut.Size = new Size(23 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             TextCut.Text = "切り取り";
             TextCut.Click += TextCut_Click;
             TextCopy.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            TextCopy.Image = Resources.copy;
+            TextCopy.Image = new IconImageView(DeviceDpi, Resources.copy).View();
             TextCopy.ImageTransparentColor = Color.Magenta;
             TextCopy.Name = "TextCopy";
             TextCopy.Size = new Size(23 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             TextCopy.Text = "コピー";
             TextCopy.Click += TextCopy_Click;
             TextPaste.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            TextPaste.Image = Resources.paste;
+            TextPaste.Image = new IconImageView(DeviceDpi, Resources.paste).View();
             TextPaste.ImageTransparentColor = Color.Magenta;
             TextPaste.Name = "TextPaste";
             TextPaste.Size = new Size(23 * DeviceDpi / 96, 22 * DeviceDpi / 96);
@@ -642,14 +642,14 @@ namespace MasaoPlus
             toolStripSeparator9.Name = "toolStripSeparator9";
             toolStripSeparator9.Size = new Size(6 * DeviceDpi / 96, 25 * DeviceDpi / 96);
             TextProjConfig.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            TextProjConfig.Image = Resources.map_edit;
+            TextProjConfig.Image = new IconImageView(DeviceDpi, Resources.map_edit).View();
             TextProjConfig.ImageTransparentColor = Color.Magenta;
             TextProjConfig.Name = "TextProjConfig";
             TextProjConfig.Size = new Size(23 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             TextProjConfig.Text = "プロジェクトの設定";
             TextProjConfig.Click += TextProjConfig_Click;
             TextTestRun.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            TextTestRun.Image = Resources.testrunstage;
+            TextTestRun.Image = new IconImageView(DeviceDpi, Resources.testrunstage).View();
             TextTestRun.ImageTransparentColor = Color.Magenta;
             TextTestRun.Name = "TextTestRun";
             TextTestRun.Size = new Size(23 * DeviceDpi / 96, 22 * DeviceDpi / 96);

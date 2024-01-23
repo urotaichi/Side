@@ -70,7 +70,7 @@ namespace MasaoPlus
         {
             for (int i = 0; i < StageData.Length; i++)
             {
-                if (StageData[i].Contains(",")) continue;
+                if (StageData[i].Contains(',')) continue;
                 char[] array = StageData[i].ToCharArray();
                 int[] array2 = new int[array.Length / bytesize];
                 for (int j = 0; j < array.Length; j += bytesize)
@@ -98,7 +98,7 @@ namespace MasaoPlus
         {
             for (int i = 0; i < StageData.Length; i++)
             {
-                if (!StageData[i].Contains(",")) continue;
+                if (!StageData[i].Contains(',')) continue;
                 string[] array = StageData[i].Split(',');
                 for (int j = 0; j < array.Length; j ++)
                 {

@@ -2841,7 +2841,7 @@ namespace MasaoPlus
                     {
                         size = (cd.GetCSChip().view_size != default) ? cd.GetCSChip().view_size : cd.GetCSChip().size; // 置きたいチップデータのサイズ
 
-                        if (cd.GetCSChip().name.Contains("曲線による") && cd.GetCSChip().name.Contains("坂") &&
+                        if (cd.GetCSChip().name.Contains("曲線による") && cd.GetCSChip().name.Contains('坂') &&
                             128 + MapPos.Y * chipsize.Height < CurrentStageSize.y * chipsize.Height)
                             size.Height += CurrentStageSize.y * chipsize.Height - (128 + MapPos.Y * chipsize.Height);
                         else if (cd.GetCSChip().name == "半円" && !cd.GetCSChip().description.Contains("乗れる") &&
@@ -2861,7 +2861,7 @@ namespace MasaoPlus
                     chipData = chipsData.GetCSChip();
                     if (Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3 && chipsData.character == "Z")
                         size = GetLargerSize(size, DrawOribossOrig.Size);
-                    else if (chipData.name.Contains("曲線による") && chipData.name.Contains("坂") || chipData.name == "半円" && !chipData.description.Contains("乗れる"))
+                    else if (chipData.name.Contains("曲線による") && chipData.name.Contains('坂') || chipData.name == "半円" && !chipData.description.Contains("乗れる"))
                         size = GetLargerSize(size, new Size(chipData.view_size.Width, CurrentStageSize.y * chipsize.Height));
                     else size = GetLargerSize(size, (chipData.view_size != default) ? chipData.view_size : chipData.size);  //サイズを比較して、大きい方に合わせる
                 }
@@ -3226,7 +3226,7 @@ namespace MasaoPlus
             });
             CursorContextMenu.Name = "CursorContextMenu";
             CursorContextMenu.Size = new Size(275 * DeviceDpi / 96, 170 * DeviceDpi / 96);
-            QuickTestRun.Image = Resources.testrunplace;
+            QuickTestRun.Image = new IconImageView(DeviceDpi, Resources.testrunplace).View();
             QuickTestRun.Name = "QuickTestRun";
             QuickTestRun.ShortcutKeyDisplayString = "MiddleClick";
             QuickTestRun.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
@@ -3239,19 +3239,19 @@ namespace MasaoPlus
             PickChip.Click += PickChip_Click;
             toolStripMenuItem3.Name = "toolStripMenuItem3";
             toolStripMenuItem3.Size = new Size(271 * DeviceDpi / 96, 6 * DeviceDpi / 96);
-            MenuCut.Image = Resources.cut;
+            MenuCut.Image = new IconImageView(DeviceDpi, Resources.cut).View();
             MenuCut.Name = "MenuCut";
             MenuCut.ShortcutKeyDisplayString = "Ctrl+X";
             MenuCut.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             MenuCut.Text = "切り取り(&X)";
             MenuCut.Click += MenuCut_Click;
-            MenuCopy.Image = Resources.copy;
+            MenuCopy.Image = new IconImageView(DeviceDpi, Resources.copy).View();
             MenuCopy.Name = "MenuCopy";
             MenuCopy.ShortcutKeyDisplayString = "Ctrl+C";
             MenuCopy.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             MenuCopy.Text = "コピー(&C)";
             MenuCopy.Click += MenuCopy_Click;
-            MenuPaste.Image = Resources.paste;
+            MenuPaste.Image = new IconImageView(DeviceDpi, Resources.paste).View();
             MenuPaste.Name = "MenuPaste";
             MenuPaste.ShortcutKeyDisplayString = "Ctrl+V";
             MenuPaste.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
@@ -3259,13 +3259,13 @@ namespace MasaoPlus
             MenuPaste.Click += MenuPaste_Click;
             toolStripMenuItem2.Name = "toolStripMenuItem2";
             toolStripMenuItem2.Size = new Size(271 * DeviceDpi / 96, 6 * DeviceDpi / 96);
-            DoTestrun.Image = Resources.testrunstage;
+            DoTestrun.Image = new IconImageView(DeviceDpi, Resources.testrunstage).View();
             DoTestrun.Name = "DoTestrun";
             DoTestrun.ShortcutKeyDisplayString = "Ctrl+Space";
             DoTestrun.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             DoTestrun.Text = "テスト実行(&T)";
             DoTestrun.Click += DoTestrun_Click;
-            ProjectConfig.Image = Resources.map_edit;
+            ProjectConfig.Image = new IconImageView(DeviceDpi, Resources.map_edit).View();
             ProjectConfig.Name = "ProjectConfig";
             ProjectConfig.ShortcutKeyDisplayString = "F2";
             ProjectConfig.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);

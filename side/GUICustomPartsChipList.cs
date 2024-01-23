@@ -371,7 +371,7 @@ namespace MasaoPlus
             });
             CursorContextMenu.Name = "CursorContextMenu";
             CursorContextMenu.Size = new Size(275 * DeviceDpi / 96, 170 * DeviceDpi / 96);
-            Copy.Image = Resources.copy;
+            Copy.Image = new IconImageView(DeviceDpi, Resources.copy).View();
             Copy.Name = "Copy";
             Copy.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             Copy.Text = "コピー(&C)";
