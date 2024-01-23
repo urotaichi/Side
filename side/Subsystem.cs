@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
-using ICSharpCode.SharpZipLib.Zip;
+using System.IO.Compression;
 using MasaoPlus.Dialogs;
 using System.Text.RegularExpressions;
 
@@ -1322,28 +1322,8 @@ namespace MasaoPlus
             {
                 return null;
             }
-            using (FileStream fileStream = new(InputArchive, FileMode.Open))
-            {
-                using ZipInputStream zipInputStream = new(fileStream);
-                ZipEntry nextEntry;
-                while ((nextEntry = zipInputStream.GetNextEntry()) != null)
-                {
-                    if (!nextEntry.IsDirectory)
-                    {
-                        string fileName = Path.GetFileName(nextEntry.Name);
-                        string text2 = Path.Combine(text, Path.GetDirectoryName(nextEntry.Name));
-                        Directory.CreateDirectory(text2);
-                        string path = Path.Combine(text2, fileName);
-                        using FileStream fileStream2 = new(path, FileMode.Create, FileAccess.Write, FileShare.Write);
-                        byte[] array = new byte[Global.definition.ZipExtractBufferLength];
-                        int count;
-                        while ((count = zipInputStream.Read(array, 0, array.Length)) > 0)
-                        {
-                            fileStream2.Write(array, 0, count);
-                        }
-                    }
-                }
-            }
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            ZipFile.ExtractToDirectory(InputArchive, text, Encoding.GetEncoding("Shift_JIS"), true);
             return text;
         }
 
