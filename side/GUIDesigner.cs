@@ -3360,18 +3360,11 @@ namespace MasaoPlus
 
         private readonly List<string[]> replsCode = new();
 
-        private struct BufStr
+        private struct BufStr(int left, int right, int y)
         {
-            public int left;
-            public int right;
-            public int y;
-
-            public BufStr(int left, int right, int y)
-            {
-                this.left = left;
-                this.right = right;
-                this.y = y;
-            }
+            public int left = left;
+            public int right = right;
+            public int y = y;
         };
 
         private IContainer components;
@@ -3448,23 +3441,15 @@ namespace MasaoPlus
             Paste
         }
 
-        public struct KeepDrawData
+        public struct KeepDrawData(ChipData c, Point p, string chara, string idColor = null)
         {
-            public KeepDrawData(ChipData c, Point p, string chara, string idColor = null)
-            {
-                cd = c;
-                pos = p;
-                this.chara = chara;
-                this.idColor = idColor;
-            }
+            public ChipData cd = c;
 
-            public ChipData cd;
+            public Point pos = p;
 
-            public Point pos;
+            public string chara = chara;
 
-            public string chara;
-
-            public string idColor;
+            public string idColor = idColor;
         }
 
         private void TranslateTransform(Graphics g, float dx, float dy)

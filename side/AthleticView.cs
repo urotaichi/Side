@@ -6,25 +6,17 @@ using System.Linq;
 
 namespace MasaoPlus
 {
-    readonly struct Athletic
+    readonly struct Athletic(Athletic.MainFunc Main, Athletic.MaxFunc Max, Athletic.MinFunc Min, Athletic.SmallFunc Small, Athletic.MinFunc Large)
     {
-        public Athletic(MainFunc Main, MaxFunc Max, MinFunc Min, SmallFunc Small, MinFunc Large)
-        {
-            this.Main = Main;
-            this.Max = Max;
-            this.Min = Min;
-            this.Small = Small;
-            this.Large = Large;
-        }
         public delegate void MainFunc(int dpi, ChipData cschip, Graphics g, Size chipsize);
         public delegate void MaxFunc(int dpi, ChipData cschip, Graphics g, Size chipsize, GUIDesigner gd, int base_y);
         public delegate void MinFunc(ChipData cschip, Graphics g, Size chipsize);
         public delegate void SmallFunc(int dpi, ChipData cschip, Graphics g, Size chipsize, int height);
-        public MainFunc Main { get; } // チップ - クラシック、チップリストの左上 
-        public MaxFunc Max { get; } // グラフィカルデザイナ
-        public MinFunc Min { get; } // ステータスバーっぽいところに表示される小さいアイコン
-        public SmallFunc Small { get; } // チップ - サムネイル
-        public MinFunc Large { get; } // チップ - チップ
+        public MainFunc Main { get; } = Main; // チップ - クラシック、チップリストの左上 
+        public MaxFunc Max { get; } = Max; // グラフィカルデザイナ
+        public MinFunc Min { get; } = Min; // ステータスバーっぽいところに表示される小さいアイコン
+        public SmallFunc Small { get; } = Small; // チップ - サムネイル
+        public MinFunc Large { get; } = Large; // チップ - チップ
     }
     internal static class AthleticView
     {
