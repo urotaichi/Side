@@ -366,7 +366,7 @@ namespace MasaoPlus.Dialogs
                     list.Add(new HTMLReplaceData(dataGridViewRow.Cells[0].Value.ToString(), (dataGridViewRow.Cells[1].Value == null) ? "" : dataGridViewRow.Cells[1].Value.ToString()));
                 }
             }
-            Global.cpd.runtime.DefaultConfigurations.OutputReplace = list.ToArray();
+            Global.cpd.runtime.DefaultConfigurations.OutputReplace = [.. list];
             DialogResult = DialogResult.OK;
             Close();
         }

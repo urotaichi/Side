@@ -221,17 +221,17 @@ namespace MasaoPlus.Dialogs
                 ChipsData NullChip = chipDataClass.Mapchip[0];
                 if(project.CustomPartsDefinition == null)
                 {
-                    project.StageData = StageDataCopy(project, Global.cpd.project.StageData, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip, project.Runtime.Definitions.StageSize);
-                    project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip, project.Runtime.Definitions.StageSize2);
-                    project.StageData3 = StageDataCopy(project, Global.cpd.project.StageData3, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip, project.Runtime.Definitions.StageSize3);
-                    project.StageData4 = StageDataCopy(project, Global.cpd.project.StageData4, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray(), NullChip, project.Runtime.Definitions.StageSize4);
+                    project.StageData = StageDataCopy(project, Global.cpd.project.StageData, [.. chipDataClass.Mapchip, .. chipDataClass?.VarietyChip], NullChip, project.Runtime.Definitions.StageSize);
+                    project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, [.. chipDataClass.Mapchip, .. chipDataClass?.VarietyChip], NullChip, project.Runtime.Definitions.StageSize2);
+                    project.StageData3 = StageDataCopy(project, Global.cpd.project.StageData3, [.. chipDataClass.Mapchip, .. chipDataClass?.VarietyChip], NullChip, project.Runtime.Definitions.StageSize3);
+                    project.StageData4 = StageDataCopy(project, Global.cpd.project.StageData4, [.. chipDataClass.Mapchip, .. chipDataClass?.VarietyChip], NullChip, project.Runtime.Definitions.StageSize4);
                 }
                 else
                 {
-                    project.StageData = StageDataCopy(project, Global.cpd.project.StageData, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip, project.Runtime.Definitions.StageSize);
-                    project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip, project.Runtime.Definitions.StageSize2);
-                    project.StageData3 = StageDataCopy(project, Global.cpd.project.StageData3, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip, project.Runtime.Definitions.StageSize3);
-                    project.StageData4 = StageDataCopy(project, Global.cpd.project.StageData4, chipDataClass.Mapchip.Concat(chipDataClass?.VarietyChip).ToArray().Concat(project.CustomPartsDefinition).ToArray(), NullChip, project.Runtime.Definitions.StageSize4);
+                    project.StageData = StageDataCopy(project, Global.cpd.project.StageData, [.. chipDataClass.Mapchip, .. chipDataClass?.VarietyChip, .. project.CustomPartsDefinition], NullChip, project.Runtime.Definitions.StageSize);
+                    project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, [.. chipDataClass.Mapchip, .. chipDataClass?.VarietyChip, .. project.CustomPartsDefinition], NullChip, project.Runtime.Definitions.StageSize2);
+                    project.StageData3 = StageDataCopy(project, Global.cpd.project.StageData3, [.. chipDataClass.Mapchip, .. chipDataClass?.VarietyChip, .. project.CustomPartsDefinition], NullChip, project.Runtime.Definitions.StageSize3);
+                    project.StageData4 = StageDataCopy(project, Global.cpd.project.StageData4, [.. chipDataClass.Mapchip, .. chipDataClass?.VarietyChip, .. project.CustomPartsDefinition], NullChip, project.Runtime.Definitions.StageSize4);
                 }
 
                 if (project.Runtime.Definitions.LayerSize.bytesize != 0) // レイヤーあり

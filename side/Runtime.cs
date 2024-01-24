@@ -58,7 +58,7 @@ namespace MasaoPlus
                     list.Add(text);
                 }
             }
-            return list.ToArray();
+            return [.. list];
         }
 
         public DefinedData Definitions = new();

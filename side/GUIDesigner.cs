@@ -391,7 +391,7 @@ namespace MasaoPlus
                     g.RotateTransform(cschip.rotate);
                     if (cschip.scale != default) g.ScaleTransform(cschip.scale, cschip.scale);
                     g.DrawImage(DrawChipOrig,
-                        new Rectangle(-cschip.size.Width / 2 * DeviceDpi / 96, -cschip.size.Height / 2 * DeviceDpi / 96, cschip.size.Width * DeviceDpi / 96, cschip.size.Height * DeviceDpi / 96),
+                        new Rectangle(-cschip.size.Width / 2 * DeviceDpi / 96, -cschip.size.Height / 2 * DeviceDpi / 96, rectangle.Width, rectangle.Height),
                         new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
                     g.Restore(transState);
                 }
@@ -434,7 +434,7 @@ namespace MasaoPlus
                     27 => new Point(32, 128),
                     _ => throw new ArgumentException(),
                 };
-                g.DrawImage(DrawExOrig, new Rectangle(p.X * chipsize.Width * DeviceDpi / 96, p.Y * chipsize.Height * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96), new Rectangle(point, chipsize), GraphicsUnit.Pixel);
+                g.DrawImage(DrawExOrig, new Rectangle(p.X * chipsize.Width * DeviceDpi / 96, p.Y * chipsize.Height * DeviceDpi / 96, rectangle.Width, rectangle.Height), new Rectangle(point, chipsize), GraphicsUnit.Pixel);
             }
             else if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
             { // 拡張画像　前面
@@ -454,7 +454,7 @@ namespace MasaoPlus
             { // 標準パターン画像
                 transState = g.Save();
                 TranslateTransform(g, p.X * chipsize.Width, p.Y * chipsize.Height);
-                var rect = new Rectangle(-chipsize.Width / 2 * DeviceDpi / 96, -chipsize.Height / 2 * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
+                var rect = new Rectangle(-chipsize.Width / 2 * DeviceDpi / 96, -chipsize.Height / 2 * DeviceDpi / 96, rectangle.Width, rectangle.Height);
                 switch (cschip.name)
                 {
                     case "一方通行":
@@ -503,7 +503,7 @@ namespace MasaoPlus
                             for (int j = 0; j < cschip.repeat; j++)
                             {
                                 g.DrawImage(DrawChipOrig,
-                                    new Rectangle((-chipsize.Width / 2 + j * chipsize.Width * Math.Sign(cschip.rotate)) * DeviceDpi / 96, -chipsize.Height / 2 * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96),
+                                    new Rectangle((-chipsize.Width / 2 + j * chipsize.Width * Math.Sign(cschip.rotate)) * DeviceDpi / 96, -chipsize.Height / 2 * DeviceDpi / 96, rectangle.Width, rectangle.Height),
                                     new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                             }
                         }
@@ -512,7 +512,7 @@ namespace MasaoPlus
                             for (int j = 0; j < cschip.repeat_x; j++)
                             {
                                 g.DrawImage(DrawChipOrig,
-                                    new Rectangle((-chipsize.Width / 2 + j * chipsize.Width) * DeviceDpi / 96, -chipsize.Height / 2 * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96),
+                                    new Rectangle((-chipsize.Width / 2 + j * chipsize.Width) * DeviceDpi / 96, -chipsize.Height / 2 * DeviceDpi / 96, rectangle.Width, rectangle.Height),
                                     new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                             }
                         }
@@ -521,7 +521,7 @@ namespace MasaoPlus
                             for (int j = 0; j < cschip.repeat_y; j++)
                             {
                                 g.DrawImage(DrawChipOrig,
-                                    new Rectangle(-chipsize.Width / 2 * DeviceDpi / 96, (-chipsize.Height / 2 + j * chipsize.Height) * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96),
+                                    new Rectangle(-chipsize.Width / 2 * DeviceDpi / 96, (-chipsize.Height / 2 + j * chipsize.Height) * DeviceDpi / 96, rectangle.Width, rectangle.Height),
                                     new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                             }
                         }
@@ -1602,7 +1602,7 @@ namespace MasaoPlus
                         list[p.Y] = list[p.Y].Remove(p.X * num, num);
                         list[p.Y] = list[p.Y].Insert(p.X * num, Global.cpd.Mapchip[1].character);
                     }
-                    Global.state.QuickTestrunSource = list.ToArray();
+                    Global.state.QuickTestrunSource = [.. list];
                     Global.MainWnd.Testrun();
                 }
                 return;
@@ -3105,7 +3105,7 @@ namespace MasaoPlus
                 list[mouseStartPoint.Y] = list[mouseStartPoint.Y].Remove(mouseStartPoint.X * num, num);
                 list[mouseStartPoint.Y] = list[mouseStartPoint.Y].Insert(mouseStartPoint.X * num, Global.cpd.Mapchip[1].character);
             }
-            Global.state.QuickTestrunSource = list.ToArray();
+            Global.state.QuickTestrunSource = [.. list];
             Global.MainWnd.Testrun();
         }
 

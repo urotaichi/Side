@@ -526,7 +526,7 @@ namespace MasaoPlus.Controls
                                     list.Add("0");
                                 }
                             }
-                            array = list.ToArray();
+                            array = [.. list];
                         }
                         text = string.Join(Environment.NewLine, array);
                         if (configParam.Value == text)

@@ -35,10 +35,10 @@ namespace MasaoPlus
                     ChipsData[] array = Global.cpd.Mapchip;
                     if (Global.cpd.project.Use3rdMapData)
                     {
-                        array = array.Concat(Global.cpd.VarietyChip).ToArray();
+                        array = [.. array, .. Global.cpd.VarietyChip];
                         if(Global.cpd.CustomPartsChip != null)
                         {
-                            array = array.Concat(Global.cpd.CustomPartsChip).ToArray();
+                            array = [.. array, .. Global.cpd.CustomPartsChip];
                         }
                     }
 
@@ -175,7 +175,7 @@ namespace MasaoPlus
                 ChipsData chipData = chipsData[i - inital];
                 Point point = GetPosition(i);
                 Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
-                Rectangle rectangle = new(point.X * chipsize.Width * DeviceDpi / 96, point.Y * chipsize.Height * DeviceDpi / 96,chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
+                Rectangle rectangle = new(point.X * chipsize.Width * DeviceDpi / 96, point.Y * chipsize.Height * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
                 rectangle.Y -= vPosition;
                 if (rectangle.Top > MainPanel.Height) break;
 
@@ -200,7 +200,7 @@ namespace MasaoPlus
                         e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
                         if (oriboss_view && chipData.character == "Z")
                         {
-                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
+                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, rectangle.Width, rectangle.Height);
                         }
                         else
                         {
@@ -234,7 +234,7 @@ namespace MasaoPlus
                                     break;
                                 default:
                                     e.Graphics.TranslateTransform(chipsize.Width * DeviceDpi / 96 / 2, chipsize.Height * DeviceDpi / 96 / 2);
-                                    var rect = new Rectangle(-chipsize.Width * DeviceDpi / 96 / 2, -chipsize.Height * DeviceDpi / 96 / 2, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
+                                    var rect = new Rectangle(-chipsize.Width * DeviceDpi / 96 / 2, -chipsize.Height * DeviceDpi / 96 / 2, rectangle.Width, rectangle.Height);
                                     if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
                                     // 水の半透明処理
@@ -387,7 +387,7 @@ namespace MasaoPlus
                             if (Global.cpd.CustomPartsChip != null)
                             {
                                 num2 += Global.cpd.CustomPartsChip.Length;
-                                AddChipData(Global.cpd.VarietyChip.Concat(Global.cpd.CustomPartsChip).ToArray(), num + num2, e, num);
+                                AddChipData([.. Global.cpd.VarietyChip, .. Global.cpd.CustomPartsChip], num + num2, e, num);
                             }
                             AddChipData(Global.cpd.VarietyChip, num + num2, e, num);
                         }

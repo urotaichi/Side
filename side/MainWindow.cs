@@ -700,10 +700,10 @@ namespace MasaoPlus
                     array = Global.cpd.Mapchip;
                     if (Global.cpd.project.Use3rdMapData)
                     {
-                        array = array.Concat(Global.cpd.VarietyChip).ToArray();
+                        array = [.. array, .. Global.cpd.VarietyChip];
                         if (Global.cpd.CustomPartsChip != null)
                         {
-                            array = array.Concat(Global.cpd.CustomPartsChip).ToArray();
+                            array = [.. array, .. Global.cpd.CustomPartsChip];
                         }
                     }
                 }
@@ -870,10 +870,10 @@ namespace MasaoPlus
                     ChipsData[] array = Global.cpd.Mapchip;
                     if (Global.cpd.project.Use3rdMapData)
                     {
-                        array = array.Concat(Global.cpd.VarietyChip).ToArray();
+                        array = [.. array, .. Global.cpd.VarietyChip];
                         if (Global.cpd.CustomPartsChip != null)
                         {
-                            array = array.Concat(Global.cpd.CustomPartsChip).ToArray();
+                            array = [.. array, .. Global.cpd.CustomPartsChip];
                         }
                     }
                     Global.state.CurrentChip = array[i];
@@ -1600,7 +1600,7 @@ namespace MasaoPlus
                 {
                     if (Global.cpd.project.Use3rdMapData)
                     {
-                        array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
+                        array = [.. array, .. Global.cpd.VarietyChip, .. Global.cpd.CustomPartsChip];
                     }
                     cschip = array[i].GetCSChip();
                 }
@@ -1828,7 +1828,7 @@ namespace MasaoPlus
                         ChipsData[] array = Global.cpd.Mapchip;
                         if (Global.cpd.project.Use3rdMapData)
                         {
-                            array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
+                            array = [.. array, .. Global.cpd.VarietyChip, .. Global.cpd.CustomPartsChip];
                         }
                         cschip = array[i].GetCSChip();
                         if (cschip.size.Height == 0)
@@ -2591,7 +2591,7 @@ namespace MasaoPlus
                         list.Add(text.Substring(j * stageSizeData.bytesize, stageSizeData.bytesize));
                     }
                 }
-                string[] array = list.ToArray();
+                string[] array = [.. list];
                 Array.Reverse(array);
                 if (Global.cpd.project.Use3rdMapData)
                 {
@@ -2624,7 +2624,7 @@ namespace MasaoPlus
                             list.Add(text2.Substring(l * stageSizeData.bytesize, stageSizeData.bytesize));
                         }
                     }
-                    string[] array2 = list.ToArray();
+                    string[] array2 = [.. list];
                     Array.Reverse(array2);
                     if (Global.cpd.project.Use3rdMapData)
                     {

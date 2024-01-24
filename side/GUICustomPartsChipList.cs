@@ -111,7 +111,7 @@ namespace MasaoPlus
                             break;
                         default:
                             e.Graphics.TranslateTransform(chipsize.Width * DeviceDpi / 96 / 2, chipsize.Height * DeviceDpi / 96 / 2);
-                            var rect = new Rectangle(-chipsize.Width * DeviceDpi / 96 / 2, -chipsize.Height * DeviceDpi / 96 / 2, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
+                            var rect = new Rectangle(-chipsize.Width * DeviceDpi / 96 / 2, -chipsize.Height * DeviceDpi / 96 / 2, rectangle.Width, rectangle.Height);
                             if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
                             e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
