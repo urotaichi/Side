@@ -100,7 +100,7 @@ namespace MasaoPlus.Dialogs
                     }
                     SetState("チップデータを読み込んでいます...");
                     ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(Path.GetDirectoryName(load), Global.cpd.runtime.Definitions.ChipDefinition));
-                    if (Global.cpd.UseLayer)
+                    if (CurrentProjectData.UseLayer)
                     {
                         for (int i = 0; i < chipDataClass.Layerchip.Length; i++)
                         {
@@ -118,7 +118,7 @@ namespace MasaoPlus.Dialogs
                     Global.cpd.CustomPartsChip = Global.cpd.project?.CustomPartsDefinition;
                     if (Global.cpd.CustomPartsChip != null && Global.cpd.CustomPartsChip.Length > 0) Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];
                     Global.cpd.EditingMap = Global.cpd.project.StageData;
-                    if (Global.cpd.UseLayer)
+                    if (CurrentProjectData.UseLayer)
                     {
                         Global.cpd.EditingLayer = Global.cpd.project.LayerData;
                     }
@@ -127,7 +127,7 @@ namespace MasaoPlus.Dialogs
                     Global.MainWnd.MainDesigner.PrepareImages();
                     SetState("グラフィカルデザイナを初期化しています...");
                     Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
-                    if (Global.cpd.UseLayer)
+                    if (CurrentProjectData.UseLayer)
                     {
                         Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
                     }

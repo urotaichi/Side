@@ -256,7 +256,7 @@ namespace MasaoPlus
                     e.Graphics.FillRectangle(Brushes.RoyalBlue, new Rectangle(new Point(0, num3), new Size(TextLineNo.Width, height)));
                     textColor = Color.White;
                 }
-                else if (length == Global.state.GetCByteWidth && num2 < Global.MainWnd.MainDesigner.CurrentStageSize.y)
+                else if (length == Global.state.GetCByteWidth && num2 < GUIDesigner.CurrentStageSize.y)
                 {
                     textColor = Color.Black;
                 }
@@ -272,7 +272,7 @@ namespace MasaoPlus
             }
         }
 
-        private void DrawText(Graphics g, string s, Font f, Point p, Color c)
+        private static void DrawText(Graphics g, string s, Font f, Point p, Color c)
         {
             if (Global.config.localSystem.TextEditorGDIMode)
             {

@@ -74,7 +74,7 @@ namespace MasaoPlus
 			g.InterpolationMode = InterpolationMode.NearestNeighbor;
             bool extendDraw = Global.config.draw.ExtendDraw;
             Global.config.draw.ExtendDraw = EnableExDraw;
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
                 UpdateBackgroundBuffer();
                 g.DrawImage(BackLayerBmp, 0, 0, this.ForeLayerBmp.Width / DeviceDpi * 96, this.ForeLayerBmp.Height / DeviceDpi * 96);
@@ -296,7 +296,7 @@ namespace MasaoPlus
             }
         }
 
-        public Runtime.DefinedData.StageSizeData CurrentStageSize
+        public static Runtime.DefinedData.StageSizeData CurrentStageSize
         {
             get
             {
@@ -307,7 +307,7 @@ namespace MasaoPlus
             }
         }
 
-        public Runtime.DefinedData.StageSizeData CurrentLayerSize
+        public static Runtime.DefinedData.StageSizeData CurrentLayerSize
         {
             get
             {
@@ -339,7 +339,7 @@ namespace MasaoPlus
 
         public void InitTransparent()
         {
-            if (Global.cpd.UseLayer && Global.state.TransparentUnactiveLayer)
+            if (CurrentProjectData.UseLayer && Global.state.TransparentUnactiveLayer)
             {
                 if (Global.state.EditingForeground)
                 {
@@ -589,7 +589,7 @@ namespace MasaoPlus
         public void UpdateBackgroundBuffer()
         {
             bool flag = false;
-            if (!Global.cpd.UseLayer)
+            if (!CurrentProjectData.UseLayer)
             {
                 return;
             }
@@ -937,7 +937,7 @@ namespace MasaoPlus
             b.UnlockBits(bitmapData);
         }
 
-        public void HalfTransparentBitmap2(ref Bitmap b)
+        public static void HalfTransparentBitmap2(ref Bitmap b)
         {
             Bitmap bitmap = new(b.Width, b.Height, PixelFormat.Format32bppArgb);
             using (Graphics graphics = Graphics.FromImage(bitmap))
@@ -970,7 +970,7 @@ namespace MasaoPlus
             {
                 DrawWorldRef.Add(value2.character, value2);
             }
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
                 DrawLayerRef.Clear();
                 foreach (ChipsData value3 in Global.cpd.Layerchip)
@@ -1001,7 +1001,7 @@ namespace MasaoPlus
                     DrawItemCodeRef.Add(value.code, value);
                 }
             }
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
                 DrawLayerCodeRef.Clear();
                 foreach (ChipsData value3 in Global.cpd.Layerchip)
@@ -1258,11 +1258,11 @@ namespace MasaoPlus
                 {
                     graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                 }
-                if (Global.cpd.UseLayer && (!Global.state.EditingForeground || Global.state.DrawUnactiveLayer))
+                if (CurrentProjectData.UseLayer && (!Global.state.EditingForeground || Global.state.DrawUnactiveLayer))
                 {
                     graphics.DrawImage(BackLayerBmp, new Rectangle(new Point(0, 0), ForegroundBuffer.Size), new Rectangle(0, 0, BackLayerBmp.Width, BackLayerBmp.Height), GraphicsUnit.Pixel);
                 }
-                if (!Global.cpd.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
+                if (!CurrentProjectData.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
                 {
                     graphics.DrawImage(ForeLayerBmp, new Rectangle(new Point(0, 0), ForegroundBuffer.Size), new Rectangle(0, 0, ForeLayerBmp.Width, ForeLayerBmp.Height), GraphicsUnit.Pixel);
                 }
@@ -1309,11 +1309,11 @@ namespace MasaoPlus
                     e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                 }
                 double num3 = 1.0 / Global.config.draw.ZoomIndex;
-                if (Global.cpd.UseLayer && (!Global.state.EditingForeground || Global.state.DrawUnactiveLayer))
+                if (CurrentProjectData.UseLayer && (!Global.state.EditingForeground || Global.state.DrawUnactiveLayer))
                 {
                     e.Graphics.DrawImage(BackLayerBmp, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)(num * num3), (int)(num2 * num3))), GraphicsUnit.Pixel);
                 }
-                if (!Global.cpd.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
+                if (!CurrentProjectData.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
                 {
                     e.Graphics.DrawImage(ForeLayerBmp, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)(num * num3), (int)(num2 * num3))), GraphicsUnit.Pixel);
                 }
@@ -1886,7 +1886,7 @@ namespace MasaoPlus
             }
         }
 
-        private int scanLeft(Point pt, List<string[]> newmap, ChipsData old)
+        private static int scanLeft(Point pt, List<string[]> newmap, ChipsData old)
         {
             int result = pt.X;
 
@@ -1908,7 +1908,7 @@ namespace MasaoPlus
             return result;
         }
 
-        private int scanRight(Point pt, List<string[]> newmap, ChipsData old)
+        private static int scanRight(Point pt, List<string[]> newmap, ChipsData old)
         {
             int result = pt.X;
 
@@ -2044,7 +2044,7 @@ namespace MasaoPlus
         }
 
         // マップ文字列から特定の座標の文字(String型)を取り出す。通常は1文字。レイヤーは2文字。
-        private string getMapChipString(int x, int y, List<char[]> newmap)
+        private static string getMapChipString(int x, int y, List<char[]> newmap)
         {
             var c = new char[Global.state.GetCByte];
 
@@ -2700,7 +2700,7 @@ namespace MasaoPlus
             Refresh();
         }
 
-        public void PutItemText(ref string[] ca, Point MapPos, ChipsData cd)
+        public static void PutItemText(ref string[] ca, Point MapPos, ChipsData cd)
         {
             if (StageText.IsOverflow(MapPos))
             {
@@ -2709,7 +2709,7 @@ namespace MasaoPlus
             ca[MapPos.X] = cd.code;
         }
 
-        public void PutItemText(ref char[] ca, Point MapPos, ChipsData cd)
+        public static void PutItemText(ref char[] ca, Point MapPos, ChipsData cd)
         {
             if (StageText.IsOverflow(MapPos))
             {
@@ -2721,7 +2721,7 @@ namespace MasaoPlus
             }
         }
 
-        public string[] PutItemTextCodeStart(int Y)
+        public static string[] PutItemTextCodeStart(int Y)
         {
             if (Y < 0 || Y >= Global.state.GetCSSize.y || !Global.cpd.project.Use3rdMapData && Global.state.MapEditMode)
             {
@@ -2734,7 +2734,7 @@ namespace MasaoPlus
             return Global.cpd.EditingLayer[Y].Split(',');
         }
 
-        public char[] PutItemTextStart(int Y)
+        public static char[] PutItemTextStart(int Y)
         {
             if (Y < 0 || Y >= Global.state.GetCSSize.y)
             {
@@ -2747,7 +2747,7 @@ namespace MasaoPlus
             return Global.cpd.EditingLayer[Y].ToCharArray();
         }
 
-        public void PutItemTextEnd(string[] item, int Y)
+        public static void PutItemTextEnd(string[] item, int Y)
         {
             string result = string.Join(",", item);
             if (Global.state.EditingForeground)
@@ -2758,7 +2758,7 @@ namespace MasaoPlus
             Global.cpd.EditingLayer[Y] = result;
         }
 
-        public void PutItemTextEnd(char[] item, int Y)
+        public static void PutItemTextEnd(char[] item, int Y)
         {
             if (Global.state.EditingForeground)
             {
@@ -2768,7 +2768,7 @@ namespace MasaoPlus
             Global.cpd.EditingLayer[Y] = new string(item);
         }
 
-        public Point GetLargerPoint(Point fst, Point snd)
+        public static Point GetLargerPoint(Point fst, Point snd)
         {
             return new Point
             {
@@ -2777,7 +2777,7 @@ namespace MasaoPlus
             };
         }
 
-        public Size GetLargerSize(Size fst, Size snd)
+        public static Size GetLargerSize(Size fst, Size snd)
         {
             return new Size
             {

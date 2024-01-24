@@ -634,7 +634,7 @@ namespace MasaoPlus.Dialogs
             Close();
         }
 
-        private bool GetMapSource(ref string[] overwrite, string f, Runtime.DefinedData.StageSizeData StageSizeData, ref Dictionary<string, string> Params, ChipsData[] MapChip, int Split = 0)
+        private static bool GetMapSource(ref string[] overwrite, string f, Runtime.DefinedData.StageSizeData StageSizeData, ref Dictionary<string, string> Params, ChipsData[] MapChip, int Split = 0)
         {
             int dxsize = StageSizeData.x, dysize = StageSizeData.y;
             string[] list = new string[dysize];

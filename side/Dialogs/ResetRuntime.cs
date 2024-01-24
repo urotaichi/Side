@@ -98,7 +98,7 @@ namespace MasaoPlus.Dialogs
                 {
                     Runtime runtime = runtimedatas[RuntimeView.SelectedIndices[0]];
                     string nRPath = runtimes[RuntimeView.SelectedIndices[0]];
-                    if (!Global.cpd.UseLayer && runtime.Definitions.LayerSize.bytesize != 0)
+                    if (!CurrentProjectData.UseLayer && runtime.Definitions.LayerSize.bytesize != 0)
                     {
                         MessageBox.Show($"レイヤー未使用プロジェクトからレイヤー使用プロジェクトへ移行します。{Environment.NewLine}レイヤー画像を指定してください。", "レイヤープロジェクトへの移行", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         using OpenFileDialog openFileDialog = new();
@@ -191,7 +191,7 @@ namespace MasaoPlus.Dialogs
             project.Runtime.Definitions.MapSize = Global.cpd.project.Runtime.Definitions.MapSize;
             project.Use3rdMapData = Global.cpd.project.Use3rdMapData;
             project.CustomPartsDefinition = Global.cpd.project?.CustomPartsDefinition;
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
                 for (int i = 0; i < chipDataClass.Layerchip.Length; i++)
                 {
@@ -288,7 +288,7 @@ namespace MasaoPlus.Dialogs
             Global.cpd.project = project;
             Global.state.Background = Global.cpd.project.Config.Background;
             Global.cpd.runtime = Global.cpd.project.Runtime;
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
                 Global.cpd.Layerchip = chipDataClass.Layerchip;
             }
@@ -298,7 +298,7 @@ namespace MasaoPlus.Dialogs
             Global.cpd.CustomPartsChip = Global.cpd.project.CustomPartsDefinition;
             if (Global.cpd.CustomPartsChip != null && Global.cpd.CustomPartsChip.Length > 0) Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];
             Global.cpd.EditingMap = Global.cpd.project.StageData;
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
                 Global.cpd.EditingLayer = Global.cpd.project.LayerData;
             }
@@ -307,7 +307,7 @@ namespace MasaoPlus.Dialogs
             Global.MainWnd.MainDesigner.PrepareImages();
             Global.MainWnd.MainDesigner.CreateDrawItemReference();
             Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
                 Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
             }
@@ -483,7 +483,7 @@ namespace MasaoPlus.Dialogs
                 StateLabel.Refresh();
                 StringBuilder stringBuilder = new();
                 string[] stagearray = new string[size.x];
-                if (Global.cpd.UseLayer)
+                if (CurrentProjectData.UseLayer)
                 {
                     if (num6 < LayerData.Length)
                     {

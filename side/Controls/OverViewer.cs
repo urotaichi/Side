@@ -68,7 +68,7 @@ namespace MasaoPlus.Controls
             }
             else
             {
-                Source = new Bitmap(Global.MainWnd.MainDesigner.CurrentStageSize.x, Global.MainWnd.MainDesigner.CurrentStageSize.y);
+                Source = new Bitmap(GUIDesigner.CurrentStageSize.x, GUIDesigner.CurrentStageSize.y);
             }
             BitmapData bitmapData = Source.LockBits(new Rectangle(new Point(0, 0), Source.Size), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
             try
@@ -142,14 +142,14 @@ namespace MasaoPlus.Controls
                 }
                 else
                 {
-                    for (int i = 0; i < Global.MainWnd.MainDesigner.CurrentStageSize.x; i++)
+                    for (int i = 0; i < GUIDesigner.CurrentStageSize.x; i++)
                     {
-                        for (int j = 0; j < Global.MainWnd.MainDesigner.CurrentStageSize.y; j++)
+                        for (int j = 0; j < GUIDesigner.CurrentStageSize.y; j++)
                         {
                             ptr = (byte*)(void*)bitmapData.Scan0;
                             int num2 = i * 3 + bitmapData.Stride * j;
                             string key;
-                            if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                            if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                             {
                                 if (Global.cpd.project.Use3rdMapData)
                                 {

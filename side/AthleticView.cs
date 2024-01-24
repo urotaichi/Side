@@ -1508,8 +1508,8 @@ namespace MasaoPlus
                             vo_pa[3].X = j20;
                             vo_pa[3].Y = 128;
                             FillPolygon(dpi, g, brush, vo_pa);
-                            if (128 + base_y * chipsize.Height < Global.MainWnd.MainDesigner.CurrentStageSize.y * chipsize.Height)
-                                FillRectangle(dpi, g, brush, 0, 128, 256, Global.MainWnd.MainDesigner.CurrentStageSize.y * chipsize.Height - (128 + base_y * chipsize.Height));
+                            if (128 + base_y * chipsize.Height < GUIDesigner.CurrentStageSize.y * chipsize.Height)
+                                FillRectangle(dpi, g, brush, 0, 128, 256, GUIDesigner.CurrentStageSize.y * chipsize.Height - (128 + base_y * chipsize.Height));
                         }
                     },
                     (cschip, g, chipsize) => {
@@ -2198,8 +2198,8 @@ namespace MasaoPlus
                         else
                         {
                             using (SolidBrush brush = new(Global.cpd.project.Config.Firebar1)){
-                                if (64 + base_y * chipsize.Height < Global.MainWnd.MainDesigner.CurrentStageSize.y * chipsize.Height)
-                                    FillRectangle(dpi, g, brush, 120 - 20, 64, 40, Global.MainWnd.MainDesigner.CurrentStageSize.y * chipsize.Height - (64 + base_y * chipsize.Height));
+                                if (64 + base_y * chipsize.Height < GUIDesigner.CurrentStageSize.y * chipsize.Height)
+                                    FillRectangle(dpi, g, brush, 120 - 20, 64, 40, GUIDesigner.CurrentStageSize.y * chipsize.Height - (64 + base_y * chipsize.Height));
                             }
                             using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
                                 vo_pa = new PointF[13];

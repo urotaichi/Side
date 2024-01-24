@@ -30,7 +30,7 @@ namespace MasaoPlus
                     }
                     Global.state.CurrentChip = Global.cpd.Worldchip[value];
                 }
-                else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                else if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                 {
                     ChipsData[] array = Global.cpd.Mapchip;
                     if (Global.cpd.project.Use3rdMapData)
@@ -131,7 +131,7 @@ namespace MasaoPlus
             {
                 num = 1;
             }
-            if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+            if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
             {
                 int num2 = Global.cpd.Mapchip.Length;
                 if (Global.cpd.project.Use3rdMapData)
@@ -188,7 +188,7 @@ namespace MasaoPlus
                         e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
                     }
-                    if (!Global.cpd.UseLayer || Global.state.EditingForeground) // パターンマップチップ
+                    if (!CurrentProjectData.UseLayer || Global.state.EditingForeground) // パターンマップチップ
                     {
                         if (DeviceDpi / 96 >= 2 && (cschip.size == default || cschip.size.Width / cschip.size.Height == 1))
                         {
@@ -377,7 +377,7 @@ namespace MasaoPlus
                         num = Global.cpd.Worldchip.Length;
                         AddChipData(Global.cpd.Worldchip, num, e);
                     }
-                    else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                    else if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                     {
                         num = Global.cpd.Mapchip.Length;
                         AddChipData(Global.cpd.Mapchip, num, e);
@@ -429,7 +429,7 @@ namespace MasaoPlus
             {
                 num2 = Global.cpd.Worldchip.Length;
             }
-            else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+            else if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
             {
                 num2 = Global.cpd.Mapchip.Length;
                 if (Global.cpd.project.Use3rdMapData)

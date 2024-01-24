@@ -4,7 +4,7 @@ namespace MasaoPlus
 {
     public class CurrentProjectData
     {
-        public bool UseLayer
+        public static bool UseLayer
         {
             get
             {

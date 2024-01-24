@@ -195,7 +195,7 @@ namespace MasaoPlus
             MainDesigner.AddBuffer();
             EditorSystemPanel_Resize(this, new EventArgs());
             UpdateScrollbar();
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
                 LayerState(true);
             }
@@ -470,7 +470,7 @@ namespace MasaoPlus
             }
             else
             {
-                Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : MainDesigner.CurrentStageSize;
+                Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : GUIDesigner.CurrentStageSize;
                 GHorzScroll.Enabled = true;
                 GHorzScroll.LargeChange = (int)(displaySize.Width / (stageSizeData.x / 4.0) * Global.config.draw.ZoomIndex);
                 GHorzScroll.Maximum = mapMoveMax.Width + GHorzScroll.LargeChange - 1;
@@ -481,7 +481,7 @@ namespace MasaoPlus
             }
             else
             {
-                Runtime.DefinedData.StageSizeData stageSizeData2 = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : MainDesigner.CurrentStageSize;
+                Runtime.DefinedData.StageSizeData stageSizeData2 = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : GUIDesigner.CurrentStageSize;
                 GVirtScroll.Enabled = true;
                 GVirtScroll.LargeChange = (int)(displaySize.Height / (stageSizeData2.y / 4.0) * Global.config.draw.ZoomIndex);
                 GVirtScroll.Maximum = mapMoveMax.Height + GVirtScroll.LargeChange - 1;
@@ -689,7 +689,7 @@ namespace MasaoPlus
             ChipList.BeginUpdate();
             ChipList.Items.Clear();
             ChipsData[] array;
-            if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+            if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
             {
                 if (Global.state.MapEditMode)
                 {
@@ -865,7 +865,7 @@ namespace MasaoPlus
                     Global.state.CurrentChip = Global.cpd.Worldchip[i];
                     return;
                 }
-                if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                 {
                     ChipsData[] array = Global.cpd.Mapchip;
                     if (Global.cpd.project.Use3rdMapData)
@@ -965,7 +965,7 @@ namespace MasaoPlus
                 }
                 return;
             }
-            if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+            if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
             {
                 if (Global.cpd.project.Use3rdMapData)
                 {
@@ -1030,7 +1030,7 @@ namespace MasaoPlus
                     e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                 }
                 else e.Graphics.InterpolationMode = InterpolationMode.High;
-                if (!Global.cpd.UseLayer || Global.state.EditingForeground) // パターン画像
+                if (!CurrentProjectData.UseLayer || Global.state.EditingForeground) // パターン画像
                 {
                     if (Global.state.EditingForeground && oriboss_view && Global.state.CurrentChip.character == "Z")
                     {
@@ -1608,7 +1608,7 @@ namespace MasaoPlus
                 switch (DrawType.SelectedIndex)
                 {
                     case 0: // サムネイル
-                        if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                        if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                         {
                             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                             transState = e.Graphics.Save();
@@ -1680,7 +1680,7 @@ namespace MasaoPlus
                         width = e.Bounds.Height;
                         break;
                     case 2: // チップ
-                        if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                        if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                         {
                             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                             transState = e.Graphics.Save();
@@ -1822,7 +1822,7 @@ namespace MasaoPlus
                         e.ItemHeight = height;
                         return;
                     }
-                    if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                    if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                     {
                         ChipData cschip;
                         ChipsData[] array = Global.cpd.Mapchip;
@@ -1962,7 +1962,7 @@ namespace MasaoPlus
             MainDesigner.ForceBufferResize();
             UpdateLayer();
             UpdateScrollbar();
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
                 LayerState(true);
             }
@@ -2204,28 +2204,28 @@ namespace MasaoPlus
                     Global.cpd.EditingLayer = Global.cpd.project.LayerData;
                     MEditStage1.Checked = true;
                     Global.state.Background = Global.cpd.project.Config.Background;
-                    LayerState(Global.cpd.UseLayer);
+                    LayerState(CurrentProjectData.UseLayer);
                     break;
                 case 1:
                     Global.cpd.EditingMap = Global.cpd.project.StageData2;
                     Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
                     MEditStage2.Checked = true;
                     Global.state.Background = Global.cpd.project.Config.Background2;
-                    LayerState(Global.cpd.UseLayer);
+                    LayerState(CurrentProjectData.UseLayer);
                     break;
                 case 2:
                     Global.cpd.EditingMap = Global.cpd.project.StageData3;
                     Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
                     MEditStage3.Checked = true;
                     Global.state.Background = Global.cpd.project.Config.Background3;
-                    LayerState(Global.cpd.UseLayer);
+                    LayerState(CurrentProjectData.UseLayer);
                     break;
                 case 3:
                     Global.cpd.EditingMap = Global.cpd.project.StageData4;
                     Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
                     MEditStage4.Checked = true;
                     Global.state.Background = Global.cpd.project.Config.Background4;
-                    LayerState(Global.cpd.UseLayer);
+                    LayerState(CurrentProjectData.UseLayer);
                     break;
                 case 4:
                     Global.cpd.EditingMap = Global.cpd.project.MapData;
@@ -2447,7 +2447,7 @@ namespace MasaoPlus
                 }
                 text = saveFileDialog.FileName;
             }
-            Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : MainDesigner.CurrentStageSize;
+            Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : GUIDesigner.CurrentStageSize;
             using (Bitmap bitmap = new(stageSizeData.x * Global.cpd.runtime.Definitions.ChipSize.Width, stageSizeData.y * Global.cpd.runtime.Definitions.ChipSize.Height))
             {
                 using (Graphics graphics = Graphics.FromImage(bitmap))
@@ -2500,7 +2500,7 @@ namespace MasaoPlus
             MainDesigner.ClearBuffer();
             MainDesigner.AddBuffer();
             EditorSystemPanel_Resize(this, new EventArgs());
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
                 LayerState(true);
                 return;
@@ -2570,7 +2570,7 @@ namespace MasaoPlus
         {
             UpdateStatus("ステージ反転処理中...");
             List<string> list;
-            Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : MainDesigner.CurrentStageSize;
+            Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : GUIDesigner.CurrentStageSize;
             for (int i = 0; i < stageSizeData.y; i++)
             {
                 list = new List<string>();
@@ -2602,9 +2602,9 @@ namespace MasaoPlus
                     Global.cpd.EditingMap[i] = string.Join("", array);
                 }
             }
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
-                stageSizeData = MainDesigner.CurrentLayerSize;
+                stageSizeData = GUIDesigner.CurrentLayerSize;
                 for (int k = 0; k < stageSizeData.y; k++)
                 {
                     list = new List<string>();
