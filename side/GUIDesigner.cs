@@ -391,7 +391,7 @@ namespace MasaoPlus
                     g.RotateTransform(cschip.rotate);
                     if (cschip.scale != default) g.ScaleTransform(cschip.scale, cschip.scale);
                     g.DrawImage(DrawChipOrig,
-                        new Rectangle(-cschip.size.Width / 2 * DeviceDpi / 96, -cschip.size.Height / 2 * DeviceDpi / 96, rectangle.Width, rectangle.Height),
+                        new Rectangle(-cschip.size.Width / 2 * DeviceDpi / 96, -cschip.size.Height / 2 * DeviceDpi / 96, cschip.size.Width * DeviceDpi / 96, cschip.size.Height * DeviceDpi / 96),
                         new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
                     g.Restore(transState);
                 }
