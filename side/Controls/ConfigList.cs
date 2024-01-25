@@ -798,7 +798,7 @@ namespace MasaoPlus.Controls
             mediaPlayer.MediaError += PreviewAudio_error;
         }
 
-        protected readonly List<int> OrigIdx = new();
+        protected readonly List<int> OrigIdx = [];
 
         private readonly IContainer components;
 

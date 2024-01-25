@@ -33,7 +33,7 @@ namespace MasaoPlus
         // パラメータ設定読み込み
         public void ConfigReady()
         {
-            Categories = new List<string>();
+            Categories = [];
             RelIndex = new int[29];
             bool[] array = new bool[12];
             array[0] = false;
@@ -607,7 +607,7 @@ namespace MasaoPlus
         public ConfigParam[] Configurations = new ConfigParam[0];
 
         [XmlIgnore]
-        public List<string> Categories = new();
+        public List<string> Categories = [];
 
         [XmlIgnore]
         private int[] RelIndex;

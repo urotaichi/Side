@@ -718,8 +718,8 @@ namespace MasaoPlus.Dialogs
         }
 
 
-        public List<string> runtimes = new();
+        public List<string> runtimes = [];
 
-        public List<Runtime> runtimedatas = new();
+        public List<Runtime> runtimedatas = [];
     }
 }

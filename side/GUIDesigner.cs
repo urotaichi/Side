@@ -660,7 +660,7 @@ namespace MasaoPlus
             ChipsData chipsData;
             ChipData c;
             new List<KeepDrawData>();
-            List<KeepDrawData> list = new();
+            List<KeepDrawData> list = [];
             int num = 0;
             g.PixelOffsetMode = PixelOffsetMode.Half;
             Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
@@ -1573,7 +1573,7 @@ namespace MasaoPlus
                     {
                         return;
                     }
-                    List<string> list = new();
+                    List<string> list = [];
                     foreach (string text in Global.cpd.EditingMap)
                     {
                         if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
@@ -3076,7 +3076,7 @@ namespace MasaoPlus
             {
                 return;
             }
-            List<string> list = new();
+            List<string> list = [];
             foreach (string text in Global.cpd.EditingMap)
             {
                 if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
@@ -3302,15 +3302,15 @@ namespace MasaoPlus
             DrawSecondHaikei2Orig, DrawSecondHaikei3Orig, DrawSecondHaikei4Orig,
             DrawChizuOrig;
 
-        public Dictionary<string, ChipsData> DrawItemRef = new();
+        public Dictionary<string, ChipsData> DrawItemRef = [];
 
-        public Dictionary<string, ChipsData> DrawLayerRef = new();
+        public Dictionary<string, ChipsData> DrawLayerRef = [];
 
-        public Dictionary<string, ChipsData> DrawWorldRef = new();
+        public Dictionary<string, ChipsData> DrawWorldRef = [];
 
-        public Dictionary<string, ChipsData> DrawItemCodeRef = new();
+        public Dictionary<string, ChipsData> DrawItemCodeRef = [];
 
-        public Dictionary<string, ChipsData> DrawLayerCodeRef = new();
+        public Dictionary<string, ChipsData> DrawLayerCodeRef = [];
 
         private Bitmap ForeLayerBmp;
 
@@ -3320,7 +3320,7 @@ namespace MasaoPlus
 
         private CopyPasteTool cpaste;
 
-        public List<string[]> StageBuffer = new();
+        public List<string[]> StageBuffer = [];
 
         public int BufferCurrent = -1;
 
@@ -3356,9 +3356,9 @@ namespace MasaoPlus
 
         private bool MousePressed;
 
-        private readonly List<char[]> repls = new();
+        private readonly List<char[]> repls = [];
 
-        private readonly List<string[]> replsCode = new();
+        private readonly List<string[]> replsCode = [];
 
         private struct BufStr(int left, int right, int y)
         {

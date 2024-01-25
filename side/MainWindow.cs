@@ -2573,7 +2573,7 @@ namespace MasaoPlus
             Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : GUIDesigner.CurrentStageSize;
             for (int i = 0; i < stageSizeData.y; i++)
             {
-                list = new List<string>();
+                list = [];
                 string text = Global.cpd.EditingMap[i];
 
                 if (Global.cpd.project.Use3rdMapData)
@@ -2607,7 +2607,7 @@ namespace MasaoPlus
                 stageSizeData = GUIDesigner.CurrentLayerSize;
                 for (int k = 0; k < stageSizeData.y; k++)
                 {
-                    list = new List<string>();
+                    list = [];
                     string text2 = Global.cpd.EditingLayer[k];
                     if (Global.cpd.project.Use3rdMapData)
                     {

@@ -227,7 +227,7 @@ namespace MasaoPlus.Dialogs
                     DialogResult = DialogResult.Cancel;
                     Close();
                 }
-                List<string> list = new();
+                List<string> list = [];
                 if (SeekHeaderFooter.Checked)
                 {
                     Regex regex = new("^.*?<[ ]*?APPLET .*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
@@ -253,7 +253,7 @@ namespace MasaoPlus.Dialogs
                     regex2 = new Regex(@"(""|')(?<name>.*?)(""|')\s*?:\s*?(""|')(?<value>.*?)(?<!\\)(""|')(,|\s*?)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 }
 
-                Dictionary<string, string> dictionary = new();
+                Dictionary<string, string> dictionary = [];
                 Match match2 = regex2.Match(input);
                 while (match2.Success)
                 {
@@ -360,7 +360,7 @@ namespace MasaoPlus.Dialogs
                                     _ => ""
                                 };
 
-                                List<string> list2 = new();
+                                List<string> list2 = [];
 
                                 int num2 = 1;
 
@@ -687,11 +687,11 @@ namespace MasaoPlus.Dialogs
 
         public string ProjectFile = "";
 
-        public List<string> runtimes = new();
+        public List<string> runtimes = [];
 
-        public List<Runtime> runtimedatas = new();
+        public List<Runtime> runtimedatas = [];
 
-        public List<bool> runtimeuselayer = new();
+        public List<bool> runtimeuselayer = [];
 
         private readonly string ParseFile = "";
     }

@@ -206,7 +206,7 @@ namespace MasaoPlus
 
         public string[] QuickTestrunSource;
 
-        public Dictionary<string, string> ChipRegister = new();
+        public Dictionary<string, string> ChipRegister = [];
 
         public bool ParseCommandline;
 

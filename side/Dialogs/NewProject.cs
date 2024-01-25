@@ -297,7 +297,7 @@ namespace MasaoPlus.Dialogs
 
         private void OK_Click(object sender, EventArgs ev)
         {
-            List<string> list = new();
+            List<string> list = [];
             try
             {
                 Enabled = false;
@@ -489,10 +489,10 @@ namespace MasaoPlus.Dialogs
 
         public string CreatedProject = "";
 
-        public List<string> runtimes = new();
+        public List<string> runtimes = [];
 
-        public List<Runtime> runtimedatas = new();
+        public List<Runtime> runtimedatas = [];
 
-        public List<bool> runtimeuselayer = new();
+        public List<bool> runtimeuselayer = [];
     }
 }

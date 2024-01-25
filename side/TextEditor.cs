@@ -675,9 +675,9 @@ namespace MasaoPlus
             PerformLayout();
         }
 
-        private readonly List<string> TextBuffer = new();
+        private readonly List<string> TextBuffer = [];
 
-        private readonly List<int> CursorBuffer = new();
+        private readonly List<int> CursorBuffer = [];
 
         private int ci = -1;
 

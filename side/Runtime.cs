@@ -50,7 +50,7 @@ namespace MasaoPlus
                     chkr.Definitions.ChipExtender
                 ];
             }
-            List<string> list = new();
+            List<string> list = [];
             foreach (string text in array)
             {
                 if (!File.Exists(Path.Combine(cdir, text)))

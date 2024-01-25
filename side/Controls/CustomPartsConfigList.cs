@@ -1336,7 +1336,7 @@ namespace MasaoPlus.Controls
             ResumeLayout(false);
         }
 
-        private readonly List<ChipsData> CustomizeParts = new();
+        private readonly List<ChipsData> CustomizeParts = [];
 
         private DataGridViewComboBoxCell BasePartsTypes;
 

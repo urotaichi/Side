@@ -36,7 +36,7 @@ namespace MasaoPlus.Dialogs
             {
                 try
                 {
-                    Global.state.ChipRegister = new Dictionary<string, string>();
+                    Global.state.ChipRegister = [];
                     Global.cpd.project = Project.ParseXML(load);
                     if (Global.cpd.project.ProjVer != 0.0 && Global.cpd.project.ProjVer < Global.definition.CProjVer)
                     {
