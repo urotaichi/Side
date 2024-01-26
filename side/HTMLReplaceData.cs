@@ -5,18 +5,12 @@ namespace MasaoPlus
 {
     [XmlType("repl")]
     [Serializable]
-    public struct HTMLReplaceData
+    public struct HTMLReplaceData(string n, string v)
     {
-        public HTMLReplaceData(string n, string v)
-        {
-            Name = n;
-            Value = v;
-        }
-
         [XmlAttribute("name")]
-        public string Name;
+        public string Name = n;
 
         [XmlAttribute("value")]
-        public string Value;
+        public string Value = v;
     }
 }

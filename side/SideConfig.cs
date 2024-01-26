@@ -112,7 +112,7 @@ namespace MasaoPlus
                 RegistProjFile.Enabled = false;
                 if (UseUAC)
                 {
-                    ProcessStartInfo processStartInfo = new ProcessStartInfo
+                    ProcessStartInfo processStartInfo = new()
                     {
                         UseShellExecute = true,
                         WorkingDirectory = Application.StartupPath,
@@ -151,7 +151,7 @@ namespace MasaoPlus
                 RegistProjFile.Enabled = false;
                 if (UseUAC)
                 {
-                    ProcessStartInfo processStartInfo = new ProcessStartInfo
+                    ProcessStartInfo processStartInfo = new()
                     {
                         UseShellExecute = true,
                         WorkingDirectory = Application.StartupPath,
@@ -205,7 +205,7 @@ namespace MasaoPlus
 
         private void BPSelect_Click(object sender, EventArgs e)
         {
-            using System.Windows.Forms.OpenFileDialog openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            using System.Windows.Forms.OpenFileDialog openFileDialog = new();
             openFileDialog.CheckFileExists = true;
             openFileDialog.Filter = "アプリケーション(*.exe)|*.exe";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);

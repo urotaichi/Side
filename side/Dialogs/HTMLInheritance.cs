@@ -97,7 +97,7 @@ namespace MasaoPlus.Dialogs
 
         private void RootDirBrowse_Click(object sender, EventArgs e)
         {
-            using FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            using FolderBrowserDialog folderBrowserDialog = new();
             folderBrowserDialog.Description = "プロジェクトのルートディレクトリを選択してください。";
             folderBrowserDialog.SelectedPath = RootDir.Text;
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
@@ -148,7 +148,7 @@ namespace MasaoPlus.Dialogs
                 }
                 ProjectFile = Path.Combine(text, ProjectName.Text + Global.definition.ProjExt);
                 string text2 = Path.Combine(Path.GetDirectoryName(runtimes[RuntimeSet.SelectedIndex]), Path.GetFileNameWithoutExtension(runtimes[RuntimeSet.SelectedIndex]));
-                Project project = new Project
+                Project project = new()
                 {
                     Name = ProjectName.Text,
                     Runtime = runtimedatas[RuntimeSet.SelectedIndex],
@@ -191,7 +191,7 @@ namespace MasaoPlus.Dialogs
                 {
                     for (int i = 0; i < data.Length; i++)
                     {
-                        StringBuilder stringBuilder = new StringBuilder();
+                        StringBuilder stringBuilder = new();
                         for (int j = 0; j < x; j++)
                         {
                             stringBuilder.Append(character);
@@ -227,10 +227,10 @@ namespace MasaoPlus.Dialogs
                     DialogResult = DialogResult.Cancel;
                     Close();
                 }
-                List<string> list = new List<string>();
+                List<string> list = [];
                 if (SeekHeaderFooter.Checked)
                 {
-                    Regex regex = new Regex("^.*?<[ ]*?APPLET .*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                    Regex regex = new("^.*?<[ ]*?APPLET .*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
                     Match match = regex.Match(input);
                     if (match.Success)
                     {
@@ -246,14 +246,14 @@ namespace MasaoPlus.Dialogs
                 StatusText.Text = "HTMLデータ取得中...";
                 StatusText.Refresh();
 
-                Regex regex2 = new Regex(@"<[ ]*PARAM[ ]+NAME=""(?<name>.*?)""[ ]+VALUE=""(?<value>.*?)"".*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                Regex regex_script = new Regex(@"<[ ]*?script.*?>.*?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                Regex regex2 = new(@"<[ ]*PARAM[ ]+NAME=""(?<name>.*?)""[ ]+VALUE=""(?<value>.*?)"".*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                Regex regex_script = new(@"<[ ]*?script.*?>.*?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 if (regex_script.IsMatch(input))
                 {
                     regex2 = new Regex(@"(""|')(?<name>.*?)(""|')\s*?:\s*?(""|')(?<value>.*?)(?<!\\)(""|')(,|\s*?)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
                 }
 
-                Dictionary<string, string> dictionary = new Dictionary<string, string>();
+                Dictionary<string, string> dictionary = [];
                 Match match2 = regex2.Match(input);
                 while (match2.Success)
                 {
@@ -298,7 +298,7 @@ namespace MasaoPlus.Dialogs
                 StatusText.Refresh();
 
                 var s = string.Join(string.Empty, project.MapData);
-                string Mapdata = new string(s.Except(s.Where(ch => s.Count(c => c == ch) > 1)).ToArray()); // 地図画面データを圧縮
+                string Mapdata = new(s.Except(s.Where(ch => s.Count(c => c == ch) > 1)).ToArray()); // 地図画面データを圧縮
 
                 int num = 0;
                 while (num < project.Config.Configurations.Length)
@@ -308,9 +308,9 @@ namespace MasaoPlus.Dialogs
                         case ConfigParam.Types.b:
                         case ConfigParam.Types.b2:
                         case ConfigParam.Types.b0:
-                            if (dictionary.ContainsKey(project.Config.Configurations[num].Name))
+                            if (dictionary.TryGetValue(project.Config.Configurations[num].Name, out string value1))
                             {
-                                if (dictionary[project.Config.Configurations[num].Name] == "2" || dictionary[project.Config.Configurations[num].Name] == "0")
+                                if (value1 == "2" || value1 == "0")
                                 {
                                     project.Config.Configurations[num].Value = "false";
                                 }
@@ -360,11 +360,11 @@ namespace MasaoPlus.Dialogs
                                     _ => ""
                                 };
 
-                                List<string> list2 = new List<string>();
+                                List<string> list2 = [];
 
                                 int num2 = 1;
 
-                                Regex text_name_regex = new Regex(@"-(\d+)$");
+                                Regex text_name_regex = new(@"-(\d+)$");
                                 Match text_name_match = text_name_regex.Match(name);
                                 if (text_name_match.Success)
                                 {
@@ -390,7 +390,7 @@ namespace MasaoPlus.Dialogs
                                     {
                                         list2.RemoveRange(project.Config.Configurations[num].Rows, list2.Count - project.Config.Configurations[num].Rows);
                                     }
-                                    project.Config.Configurations[num].Value = string.Join(Environment.NewLine, list2.ToArray());
+                                    project.Config.Configurations[num].Value = string.Join(Environment.NewLine, [.. list2]);
                                     // 文字列に\"が含まれていた場合エスケープを戻す
                                     project.Config.Configurations[num].Value = project.Config.Configurations[num].Value.Replace(@"\""", @"""");
                                     project.Config.Configurations[num].Value = project.Config.Configurations[num].Value.Replace(@"\\", @"\");
@@ -400,20 +400,20 @@ namespace MasaoPlus.Dialogs
                         case ConfigParam.Types.f:
                         case ConfigParam.Types.f_i:
                         case ConfigParam.Types.f_a:
-                            if (dictionary.ContainsKey(project.Config.Configurations[num].Name))
+                            if (dictionary.TryGetValue(project.Config.Configurations[num].Name, out string value2))
                             {
-                                list.Add(dictionary[project.Config.Configurations[num].Name]);
-                                project.Config.Configurations[num].Value = Path.GetFileName(dictionary[project.Config.Configurations[num].Name]);
+                                list.Add(value2);
+                                project.Config.Configurations[num].Value = Path.GetFileName(value2);
                             }
                             break;
                         case ConfigParam.Types.c:
                             {
-                                string[] array = new string[]
-                                {
+                                string[] array =
+                                [
                                     "red",
                                     "green",
                                     "blue"
-                                };
+                                ];
                                 int[] array2 = new int[3];
                                 string name = project.Config.Configurations[num].Name, param_name;
                                 for (int num3 = 0; num3 < 3; num3++)
@@ -421,7 +421,7 @@ namespace MasaoPlus.Dialogs
                                     param_name = name.Replace("@", array[num3]);
 
                                     // パラメータが存在しない または 数値に変換できない
-                                    if (!dictionary.ContainsKey(param_name) || !int.TryParse(dictionary[param_name], out array2[num3]))
+                                    if (!dictionary.TryGetValue(param_name, out string value3) || !int.TryParse(value3, out array2[num3]))
                                     {
                                         // デフォルト値を代入
                                         switch (param_name)
@@ -508,9 +508,9 @@ namespace MasaoPlus.Dialogs
                     num++;
                     continue;
                 IL_D9E:
-                    if (dictionary.ContainsKey(project.Config.Configurations[num].Name))
+                    if (dictionary.TryGetValue(project.Config.Configurations[num].Name, out string value))
                     {
-                        project.Config.Configurations[num].Value = dictionary[project.Config.Configurations[num].Name];
+                        project.Config.Configurations[num].Value = value;
                         if (project.Config.Configurations[num].Type == ConfigParam.Types.s) // 文字列に\"が含まれていた場合エスケープを戻す
                         {
                             project.Config.Configurations[num].Value = project.Config.Configurations[num].Value.Replace(@"\""", @"""");
@@ -634,7 +634,7 @@ namespace MasaoPlus.Dialogs
             Close();
         }
 
-        private bool GetMapSource(ref string[] overwrite, string f, Runtime.DefinedData.StageSizeData StageSizeData, ref Dictionary<string, string> Params, ChipsData[] MapChip, int Split = 0)
+        private static bool GetMapSource(ref string[] overwrite, string f, Runtime.DefinedData.StageSizeData StageSizeData, ref Dictionary<string, string> Params, ChipsData[] MapChip, int Split = 0)
         {
             int dxsize = StageSizeData.x, dysize = StageSizeData.y;
             string[] list = new string[dysize];
@@ -687,11 +687,11 @@ namespace MasaoPlus.Dialogs
 
         public string ProjectFile = "";
 
-        public List<string> runtimes = new List<string>();
+        public List<string> runtimes = [];
 
-        public List<Runtime> runtimedatas = new List<Runtime>();
+        public List<Runtime> runtimedatas = [];
 
-        public List<bool> runtimeuselayer = new List<bool>();
+        public List<bool> runtimeuselayer = [];
 
         private readonly string ParseFile = "";
     }

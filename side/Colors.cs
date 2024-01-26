@@ -27,10 +27,10 @@ namespace MasaoPlus
 
         public Colors(string color)
         {
-            string[] array = color.Split(new char[]
-            {
+            string[] array = color.Split(
+            [
                 ','
-            });
+            ]);
             if (array.Length < 3)
             {
                 throw new Exception($"色の取得に失敗しました:{color}");

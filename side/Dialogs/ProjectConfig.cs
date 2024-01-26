@@ -357,7 +357,7 @@ namespace MasaoPlus.Dialogs
                 }
             }
             Global.state.EditFlag = true;
-            List<HTMLReplaceData> list = new List<HTMLReplaceData>();
+            List<HTMLReplaceData> list = [];
             foreach (object obj in OutputReplaceView.Rows)
             {
                 DataGridViewRow dataGridViewRow = (DataGridViewRow)obj;
@@ -366,7 +366,7 @@ namespace MasaoPlus.Dialogs
                     list.Add(new HTMLReplaceData(dataGridViewRow.Cells[0].Value.ToString(), (dataGridViewRow.Cells[1].Value == null) ? "" : dataGridViewRow.Cells[1].Value.ToString()));
                 }
             }
-            Global.cpd.runtime.DefaultConfigurations.OutputReplace = list.ToArray();
+            Global.cpd.runtime.DefaultConfigurations.OutputReplace = [.. list];
             DialogResult = DialogResult.OK;
             Close();
         }

@@ -86,7 +86,7 @@ namespace MasaoPlus
         {
             if (e.Button == MouseButtons.Left)
             {
-                Point mapPointTranslatedMap = new Point((e.X - cPoint.X) / OverViewViewer.ppb, (e.Y - cPoint.Y) / OverViewViewer.ppb);
+                Point mapPointTranslatedMap = new((e.X - cPoint.X) / OverViewViewer.ppb, (e.Y - cPoint.Y) / OverViewViewer.ppb);
                 Global.state.MapPointTranslatedMap = mapPointTranslatedMap;
                 Global.state.AdjustMapPoint();
                 Global.MainWnd.CommitScrollbar();

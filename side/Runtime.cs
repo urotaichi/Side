@@ -16,8 +16,8 @@ namespace MasaoPlus
             Runtime result;
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Runtime));
-                using FileStream fileStream = new FileStream(file, FileMode.Open);
+                XmlSerializer xmlSerializer = new(typeof(Runtime));
+                using FileStream fileStream = new(file, FileMode.Open);
                 Runtime runtime = (Runtime)xmlSerializer.Deserialize(fileStream);
                 result = runtime;
             }
@@ -36,21 +36,21 @@ namespace MasaoPlus
 
         public static string[] CheckFiles(string cdir, Runtime chkr, bool CheckConfig)
         {
-            string[] array = new string[]
-            {
+            string[] array =
+            [
                 chkr.Definitions.Package,
                 chkr.Definitions.Configurations,
                 chkr.Definitions.ChipExtender
-            };
+            ];
             if (!CheckConfig)
             {
-                array = new string[]
-                {
+                array =
+                [
                     chkr.Definitions.Package,
                     chkr.Definitions.ChipExtender
-                };
+                ];
             }
-            List<string> list = new List<string>();
+            List<string> list = [];
             foreach (string text in array)
             {
                 if (!File.Exists(Path.Combine(cdir, text)))
@@ -58,12 +58,12 @@ namespace MasaoPlus
                     list.Add(text);
                 }
             }
-            return list.ToArray();
+            return [.. list];
         }
 
-        public DefinedData Definitions = new DefinedData();
+        public DefinedData Definitions = new();
 
-        public ConfigurationData DefaultConfigurations = new ConfigurationData();
+        public ConfigurationData DefaultConfigurations = new();
 
         [Serializable]
         public class DefinedData
@@ -112,17 +112,17 @@ namespace MasaoPlus
 
             public string MapName = "";
 
-            public StageSizeData StageSize = new StageSizeData();
-            public StageSizeData StageSize2 = new StageSizeData();
-            public StageSizeData StageSize3 = new StageSizeData();
-            public StageSizeData StageSize4 = new StageSizeData();
+            public StageSizeData StageSize = new();
+            public StageSizeData StageSize2 = new();
+            public StageSizeData StageSize3 = new();
+            public StageSizeData StageSize4 = new();
 
-            public StageSizeData LayerSize = new StageSizeData();
-            public StageSizeData LayerSize2 = new StageSizeData();
-            public StageSizeData LayerSize3 = new StageSizeData();
-            public StageSizeData LayerSize4 = new StageSizeData();
+            public StageSizeData LayerSize = new();
+            public StageSizeData LayerSize2 = new();
+            public StageSizeData LayerSize3 = new();
+            public StageSizeData LayerSize4 = new();
 
-            public StageSizeData MapSize = new StageSizeData();
+            public StageSizeData MapSize = new();
 
             public int MaxAthleticNumber;
 

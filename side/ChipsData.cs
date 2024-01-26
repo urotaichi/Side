@@ -13,12 +13,12 @@ namespace MasaoPlus
             {
                 return default;
             }
-            if (relation == "" || relation == null || !Global.state.ChipRegister.ContainsKey(relation))
+            if (relation == "" || relation == null || !Global.state.ChipRegister.TryGetValue(relation, out string value))
             {
                 return Chips[0];
             }
             int num = 0;
-            string b = Global.state.ChipRegister[relation];
+            string b = value;
             foreach (ChipData chipData in Chips)
             {
                 if (chipData.value == b)

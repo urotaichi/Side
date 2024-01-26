@@ -88,13 +88,13 @@ namespace MasaoPlus.Dialogs
         {
             if (ProjectName.Text != "" && RootDir.Text != "" && Directory.Exists(RootDir.Text) && (!LayerPattern.Enabled || LayerPattern.Text == "" || File.Exists(LayerPattern.Text)))
             {
-                string[] array = new string[]
-                {
+                string[] array =
+                [
                     MapChip.Text,
                     TitleImage.Text,
                     EndingImage.Text,
                     GameoverImage.Text
-                };
+                ];
                 foreach (string text in array)
                 {
                     if (text != "" && !File.Exists(text))
@@ -191,7 +191,7 @@ namespace MasaoPlus.Dialogs
 
         private void RootDirBrowse_Click(object sender, EventArgs e)
         {
-            using FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            using FolderBrowserDialog folderBrowserDialog = new();
             folderBrowserDialog.Description = "プロジェクトのルートディレクトリを選択してください。";
             folderBrowserDialog.SelectedPath = RootDir.Text;
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
@@ -202,7 +202,7 @@ namespace MasaoPlus.Dialogs
 
         private void MapChipBrowse_Click(object sender, EventArgs e)
         {
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.DefaultExt = "*.gif";
             openFileDialog.Filter = "画像(*.gif;*.png;*.bmp)|*.gif;*.png;*.bmp|全てのファイル (*.*)|*.*";
             if (MapChip.Text != "")
@@ -221,7 +221,7 @@ namespace MasaoPlus.Dialogs
 
         private void LayerPatternBrowse_Click(object sender, EventArgs e)
         {
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.DefaultExt = "*.gif";
             openFileDialog.Filter = "画像(*.gif;*.png;*.bmp)|*.gif;*.png;*.bmp|全てのファイル (*.*)|*.*";
             if (MapChip.Text != "")
@@ -240,7 +240,7 @@ namespace MasaoPlus.Dialogs
 
         private void TitleImageBrowse_Click(object sender, EventArgs e)
         {
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.DefaultExt = "*.gif";
             openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
             if (TitleImage.Text != "")
@@ -259,7 +259,7 @@ namespace MasaoPlus.Dialogs
 
         private void EndingImageBrowse_Click(object sender, EventArgs e)
         {
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.DefaultExt = "*.gif";
             openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
             if (EndingImage.Text != "")
@@ -278,7 +278,7 @@ namespace MasaoPlus.Dialogs
 
         private void GameoverBrowse_Click(object sender, EventArgs e)
         {
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.DefaultExt = "*.gif";
             openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.webp;*.bmp)|*.gif;*.png;*.jpg;*.webp;*.bmp|全てのファイル (*.*)|*.*";
             if (GameoverImage.Text != "")
@@ -297,7 +297,7 @@ namespace MasaoPlus.Dialogs
 
         private void OK_Click(object sender, EventArgs ev)
         {
-            List<string> list = new List<string>();
+            List<string> list = [];
             try
             {
                 Enabled = false;
@@ -311,7 +311,7 @@ namespace MasaoPlus.Dialogs
                 }
                 string text2 = Path.Combine(text, ProjectName.Text + Global.definition.ProjExt);
                 string text3 = Path.Combine(Path.GetDirectoryName(runtimes[RuntimeSet.SelectedIndex]), Path.GetFileNameWithoutExtension(runtimes[RuntimeSet.SelectedIndex]));
-                Project project = new Project
+                Project project = new()
                 {
                     Name = ProjectName.Text,
                     Runtime = runtimedatas[RuntimeSet.SelectedIndex],
@@ -381,7 +381,7 @@ namespace MasaoPlus.Dialogs
                 {
                     for (int i = 0; i < data.Length; i++)
                     {
-                        StringBuilder stringBuilder = new StringBuilder();
+                        StringBuilder stringBuilder = new();
                         for (int j = 0; j < x; j++)
                         {
                             stringBuilder.Append(character);
@@ -489,10 +489,10 @@ namespace MasaoPlus.Dialogs
 
         public string CreatedProject = "";
 
-        public List<string> runtimes = new List<string>();
+        public List<string> runtimes = [];
 
-        public List<Runtime> runtimedatas = new List<Runtime>();
+        public List<Runtime> runtimedatas = [];
 
-        public List<bool> runtimeuselayer = new List<bool>();
+        public List<bool> runtimeuselayer = [];
     }
 }

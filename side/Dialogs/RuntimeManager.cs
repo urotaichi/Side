@@ -82,7 +82,7 @@ namespace MasaoPlus.Dialogs
 
         private void NewRuntimeInstall_Click(object sender, EventArgs e)
         {
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.Filter = $"{Global.definition.AppName}ランタイムパッケージ(*{Global.definition.RuntimeArchiveExt})|*{Global.definition.RuntimeArchiveExt}";
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -149,7 +149,7 @@ namespace MasaoPlus.Dialogs
             dlClient = new WebClient();
             dlClient.DownloadProgressChanged += dlClient_DownloadProgressChanged;
             dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted;
-            Uri address = new Uri(update);
+            Uri address = new(update);
             try
             {
                 dlClient.DownloadFileAsync(address, tempfile);
@@ -188,7 +188,7 @@ namespace MasaoPlus.Dialogs
                 dlClient.DownloadProgressChanged += dlClient_DownloadProgressChanged;
                 dlClient.DownloadProgressChanged += dlClient_DownloadTaskbarManagerProgressChanged;
                 dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted_Package;
-                Uri address = new Uri(updateData.Update);
+                Uri address = new(updateData.Update);
                 try
                 {
                     Text = "ランタイムをダウンロードしています...";
@@ -256,8 +256,8 @@ namespace MasaoPlus.Dialogs
 
         private Runtime ur;
 
-        public List<Runtime> runtimedatas = new List<Runtime>();
+        public List<Runtime> runtimedatas = [];
 
-        private readonly List<string> runtimefiles = new List<string>();
+        private readonly List<string> runtimefiles = [];
     }
 }

@@ -60,17 +60,24 @@ namespace MasaoPlus
             {
                 ChipsData chipData = chipsData[i - inital];
                 Point point = GetPosition(i);
-                Rectangle rectangle = new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize);
+                Rectangle rectangle = new(point.X * chipsize.Width * DeviceDpi / 96, point.Y * chipsize.Height * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
                 rectangle.Y -= vPosition;
                 if (rectangle.Top > MainPanel.Height) break;
 
                 if (rectangle.Bottom >= 0)
                 {
                     ChipData cschip = chipData.GetCSChip();
-                    if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd)
+                    if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd) // チップ裏に拡張画像を描画
                     {
+                        // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
+                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
                     }
+                    if (DeviceDpi / 96 >= 2 && (cschip.size == default || cschip.size.Width / cschip.size.Height == 1))
+                    {
+                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                    }
+                    else if (Global.config.draw.ClassicChipListInterpolation) e.Graphics.InterpolationMode = InterpolationMode.High;
                     e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                     GraphicsState transState = e.Graphics.Save();
                     e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
@@ -100,18 +107,21 @@ namespace MasaoPlus
                         case "スイッチ式ファイヤーバー":
                         case "スイッチ式動くＴ字型":
                         case "スイッチ式速く動くＴ字型":
-                            AthleticView.list[cschip.name].Main(cschip, e.Graphics, chipsize);
+                            AthleticView.list[cschip.name].Main(DeviceDpi, cschip, e.Graphics, chipsize);
                             break;
                         default:
-                            e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
+                            e.Graphics.TranslateTransform(chipsize.Width * DeviceDpi / 96 / 2, chipsize.Height * DeviceDpi / 96 / 2);
+                            var rect = new Rectangle(-chipsize.Width * DeviceDpi / 96 / 2, -chipsize.Height * DeviceDpi / 96 / 2, rectangle.Width, rectangle.Height);
                             if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
-                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
                             break;
                     }
                     e.Graphics.Restore(transState);
                     if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
                     {
+                        // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
+                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
                     }
                     e.Graphics.PixelOffsetMode = default;
@@ -121,7 +131,7 @@ namespace MasaoPlus
                         e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
                         Color col = ColorTranslator.FromHtml(chipData.idColor);
                         using Brush brush = new SolidBrush(Color.FromArgb(240, col));
-                        e.Graphics.FillRectangle(brush, 0, 0, 10, 5);
+                        e.Graphics.FillRectangle(brush, 0, 0, 10 * DeviceDpi / 96, 5 * DeviceDpi / 96);
                         e.Graphics.Restore(transState);
                     }
                     if (Global.state.CurrentCustomPartsChip.code == chipData.code)
@@ -154,7 +164,7 @@ namespace MasaoPlus
                 }
             }
             Point point2 = GetPosition(i);
-            Rectangle rectangle2 = new Rectangle(new Point(point2.X * chipsize.Width, point2.Y * chipsize.Height), chipsize);
+            Rectangle rectangle2 = new(point2.X * chipsize.Width * DeviceDpi / 96, point2.Y * chipsize.Height * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
             rectangle2.Y -= vPosition;
             e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle2, new Rectangle(new Point(448,448), chipsize), GraphicsUnit.Pixel);
         }
@@ -172,7 +182,7 @@ namespace MasaoPlus
                         e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                     using (Brush brush = new SolidBrush(Global.state.Background))
                     {
-                        e.Graphics.FillRectangle(brush, e.ClipRectangle);
+                        e.Graphics.FillRectangle(brush, e.ClipRectangle); // 背景色で塗りつぶす
                     }
                     if(Global.cpd.CustomPartsChip == null)
                     {
@@ -211,8 +221,8 @@ namespace MasaoPlus
             {
                 return;
             }
-            int num = (int)Math.Floor(e.X / (double)Global.cpd.runtime.Definitions.ChipSize.Width);
-            num += (int)Math.Floor((e.Y + vPosition) / (double)Global.cpd.runtime.Definitions.ChipSize.Height) * hMaxChip;
+            int num = (int)Math.Floor(e.X / (double)(Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96));
+            num += (int)Math.Floor((e.Y + vPosition) / (double)(Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96)) * hMaxChip;
             int num2;
             if (Global.cpd.CustomPartsChip == null)
             {
@@ -242,8 +252,8 @@ namespace MasaoPlus
             if (e.Button == MouseButtons.Right)
             { // 右クリック時
                 MouseStartPoint = default;
-                MouseStartPoint.X = (e.X + Global.state.MapPoint.X) / Global.cpd.runtime.Definitions.ChipSize.Width;
-                MouseStartPoint.Y = (e.Y + Global.state.MapPoint.Y) / Global.cpd.runtime.Definitions.ChipSize.Height;
+                MouseStartPoint.X = (e.X + Global.state.MapPoint.X) / Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96;
+                MouseStartPoint.Y = (e.Y + Global.state.MapPoint.Y) / Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96;
                 CursorContextMenu.Show(this, new Point(e.X, e.Y));
                 return;
             }
@@ -286,7 +296,7 @@ namespace MasaoPlus
             Global.state.EditFlag = true;
         }
 
-        private void Create(ChipsData basedata, string name)
+        private static void Create(ChipsData basedata, string name)
         {
             ChipsData data;
             int i;
@@ -343,6 +353,8 @@ namespace MasaoPlus
 
         protected override void InitializeComponent()
         {
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             vScr = new VScrollBar();
             MainPanel = new PictureBox();
             components = new Container();
@@ -358,38 +370,38 @@ namespace MasaoPlus
                 Delete
             });
             CursorContextMenu.Name = "CursorContextMenu";
-            CursorContextMenu.Size = new Size(275, 170);
-            Copy.Image = Resources.copy;
+            CursorContextMenu.Size = new Size(275 * DeviceDpi / 96, 170 * DeviceDpi / 96);
+            Copy.Image = new IconImageView(DeviceDpi, Resources.copy).View();
             Copy.Name = "Copy";
-            Copy.Size = new Size(274, 22);
+            Copy.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             Copy.Text = "コピー(&C)";
             Copy.Click += Copy_Click;
             Delete.Name = "Copy";
-            Delete.Size = new Size(274, 22);
+            Delete.Size = new Size(274 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             Delete.Text = "削除";
             Delete.Click += Delete_Click;
 
             vScr.Dock = DockStyle.Right;
-            vScr.Location = new Point(265, 0);
+            vScr.Location = new Point(265 * DeviceDpi / 96, 0);
             vScr.Name = "vScr";
-            vScr.Size = new Size(20, 264);
+            vScr.Size = new Size(20 * DeviceDpi / 96, 264 * DeviceDpi / 96);
             vScr.TabIndex = 0;
             vScr.Scroll += vScr_Scroll;
             MainPanel.Dock = DockStyle.Fill;
             MainPanel.Location = new Point(0, 0);
             MainPanel.Name = "MainPanel";
-            MainPanel.Size = new Size(265, 264);
+            MainPanel.Size = new Size(265 * DeviceDpi / 96, 264 * DeviceDpi / 96);
             MainPanel.TabIndex = 1;
             MainPanel.TabStop = false;
             MainPanel.MouseMove += MainPanel_MouseMove;
             MainPanel.MouseDown += MainPanel_MouseDown;
             MainPanel.Paint += MainPanel_Paint;
-            AutoScaleDimensions = new SizeF(6f, 12f);
-            AutoScaleMode = AutoScaleMode.Font;
+            //AutoScaleDimensions = new SizeF(6f, 12f);
+            //AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(MainPanel);
             Controls.Add(vScr);
             Name = "GUICustomPartsChipList";
-            Size = new Size(285, 264);
+            Size = new Size(285 * DeviceDpi / 96, 264 * DeviceDpi / 96);
             PreviewKeyDown += GUIChipList_PreviewKeyDown;
             Resize += GUIChipList_Resize;
             KeyDown += GUIChipList_KeyDown;

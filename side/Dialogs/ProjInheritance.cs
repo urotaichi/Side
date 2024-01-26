@@ -51,7 +51,7 @@ namespace MasaoPlus.Dialogs
             Enabled = false;
             OKBtn.Text = "生成中...";
             OKBtn.Refresh();
-            Project project = new Project
+            Project project = new()
             {
                 Name = NewProjName.Text,
                 Runtime = PrevProject.Runtime,
@@ -95,7 +95,7 @@ namespace MasaoPlus.Dialogs
             {
                 for (int i = 0; i < data.Length; i++)
                 {
-                    StringBuilder stringBuilder = new StringBuilder();
+                    StringBuilder stringBuilder = new();
                     for (int j = 0; j < x; j++)
                     {
                         stringBuilder.Append(character);

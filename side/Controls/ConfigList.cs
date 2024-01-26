@@ -62,7 +62,7 @@ namespace MasaoPlus.Controls
                         case ConfigParam.Types.b:
                         case ConfigParam.Types.b0:
                             {
-                                DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new DataGridViewCheckBoxCell
+                                DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new()
                                 {
                                     TrueValue = "true",
                                     FalseValue = "false"
@@ -80,7 +80,7 @@ namespace MasaoPlus.Controls
                             }
                         case ConfigParam.Types.b2:
                             {
-                                DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new DataGridViewCheckBoxCell
+                                DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new()
                                 {
                                     TrueValue = "false",
                                     FalseValue = "true"
@@ -98,7 +98,7 @@ namespace MasaoPlus.Controls
                             }
                         case ConfigParam.Types.i:
                             {
-                                DataGridViewNumericUpdownCell dataGridViewNumericUpdownCell = new DataGridViewNumericUpdownCell
+                                DataGridViewNumericUpdownCell dataGridViewNumericUpdownCell = new()
                                 {
                                     Value = configParam.Value
                                 };
@@ -108,7 +108,7 @@ namespace MasaoPlus.Controls
                         case ConfigParam.Types.t:
                             if (Global.config.localSystem.UsePropExTextEditor)
                             {
-                                DataGridViewButtonCell dataGridViewButtonCell = new DataGridViewButtonCell
+                                DataGridViewButtonCell dataGridViewButtonCell = new()
                                 {
                                     Value = configParam.Value,
                                     FlatStyle = FlatStyle.Popup
@@ -127,7 +127,7 @@ namespace MasaoPlus.Controls
                         case ConfigParam.Types.f_i:
                         case ConfigParam.Types.f_a:
                             {
-                                DataGridViewButtonCell dataGridViewButtonCell2 = new DataGridViewButtonCell
+                                DataGridViewButtonCell dataGridViewButtonCell2 = new()
                                 {
                                     Value = configParam.Value + "...",
                                     FlatStyle = FlatStyle.Popup
@@ -137,7 +137,7 @@ namespace MasaoPlus.Controls
                             }
                         case ConfigParam.Types.l:
                             {
-                                DataGridViewComboBoxCell dataGridViewComboBoxCell = new DataGridViewComboBoxCell();
+                                DataGridViewComboBoxCell dataGridViewComboBoxCell = new();
                                 dataGridViewComboBoxCell.Items.AddRange(configParam.ListItems);
                                 dataGridViewComboBoxCell.FlatStyle = FlatStyle.Popup;
                                 if (int.TryParse(configParam.Value, out int num) && num <= dataGridViewComboBoxCell.Items.Count && num > 0)
@@ -153,7 +153,7 @@ namespace MasaoPlus.Controls
                             }
                         case ConfigParam.Types.l_a:
                             {
-                                DataGridViewComboBoxCell dataGridViewComboBoxCell = new DataGridViewComboBoxCell();
+                                DataGridViewComboBoxCell dataGridViewComboBoxCell = new();
                                 dataGridViewComboBoxCell.Items.AddRange(configParam.ListItems);
                                 dataGridViewComboBoxCell.FlatStyle = FlatStyle.Popup;
                                 int MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
@@ -177,11 +177,11 @@ namespace MasaoPlus.Controls
                             }
                         case ConfigParam.Types.c:
                             {
-                                DataGridViewButtonCell dataGridViewButtonCell3 = new DataGridViewButtonCell
+                                DataGridViewButtonCell dataGridViewButtonCell3 = new()
                                 {
                                     Value = configParam.Value
                                 };
-                                Colors colors = new Colors(configParam.Value);
+                                Colors colors = new(configParam.Value);
                                 dataGridViewButtonCell3.Style.BackColor = colors.c;
                                 dataGridViewButtonCell3.Style.SelectionBackColor = colors.c;
                                 dataGridViewButtonCell3.FlatStyle = FlatStyle.Popup;
@@ -233,7 +233,7 @@ namespace MasaoPlus.Controls
                 case ConfigParam.Types.t:
                     if (Global.config.localSystem.UsePropExTextEditor)
                     {
-                        using PropertyTextInputDialog propertyTextInputDialog = new PropertyTextInputDialog();
+                        using PropertyTextInputDialog propertyTextInputDialog = new();
                         propertyTextInputDialog.InputStr = configParam.Value;
                         if (propertyTextInputDialog.ShowDialog() != DialogResult.Cancel)
                         {
@@ -246,7 +246,7 @@ namespace MasaoPlus.Controls
                 case ConfigParam.Types.f:
                 case ConfigParam.Types.f_i:
                 case ConfigParam.Types.f_a:
-                    using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                    using (OpenFileDialog openFileDialog = new())
                     {
                         openFileDialog.InitialDirectory = Global.cpd.where;
                         openFileDialog.FileName = configParam.Value;
@@ -276,7 +276,7 @@ namespace MasaoPlus.Controls
                                 bool flag = false;
                                 while (!flag)
                                 {
-                                    using SaveFileDialog saveFileDialog = new SaveFileDialog();
+                                    using SaveFileDialog saveFileDialog = new();
                                     saveFileDialog.InitialDirectory = Path.GetDirectoryName(text);
                                     saveFileDialog.FileName = Path.GetFileName(text);
                                     saveFileDialog.Filter = "保存ファイル|*" + Path.GetExtension(fileName);
@@ -342,9 +342,9 @@ namespace MasaoPlus.Controls
                 case ConfigParam.Types.l_a:
                     return;
                 case ConfigParam.Types.c:
-                    using (ColorDialog colorDialog = new ColorDialog())
+                    using (ColorDialog colorDialog = new())
                     {
-                        Colors colors = new Colors(configParam.Value);
+                        Colors colors = new(configParam.Value);
                         colorDialog.Color = colors.c;
                         if (colorDialog.ShowDialog() == DialogResult.OK)
                         {
@@ -513,7 +513,7 @@ namespace MasaoPlus.Controls
                         }, StringSplitOptions.None);
                         if (configParam.Rows > 0)
                         {
-                            List<string> list = new List<string>(array);
+                            List<string> list = new(array);
                             if (list.Count > configParam.Rows)
                             {
                                 MessageBox.Show($"行数が最大値を超えています。{Environment.NewLine}超えた行は削除されます。", "行の超過", MessageBoxButtons.OK, MessageBoxIcon.Hand);
@@ -526,7 +526,7 @@ namespace MasaoPlus.Controls
                                     list.Add("0");
                                 }
                             }
-                            array = list.ToArray();
+                            array = [.. list];
                         }
                         text = string.Join(Environment.NewLine, array);
                         if (configParam.Value == text)
@@ -727,6 +727,8 @@ namespace MasaoPlus.Controls
 
         protected virtual void InitializeComponent()
         {
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             ConfigSelector = new ComboBox();
             ConfView = new DataGridView();
             CNames = new DataGridViewTextBoxColumn();
@@ -740,7 +742,7 @@ namespace MasaoPlus.Controls
             ConfigSelector.FormattingEnabled = true;
             ConfigSelector.Location = new Point(0, 0);
             ConfigSelector.Name = "ConfigSelector";
-            ConfigSelector.Size = new Size(298, 20);
+            ConfigSelector.Size = new Size(298 * DeviceDpi / 96, 20 * DeviceDpi / 96);
             ConfigSelector.TabIndex = 3;
             ConfigSelector.Resize += ConfigSelector_Resize;
             ConfigSelector.SelectedIndexChanged += ConfigSelector_SelectedIndexChanged;
@@ -752,20 +754,20 @@ namespace MasaoPlus.Controls
             ConfView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             ConfView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             ConfView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            ConfView.Columns.AddRange(new DataGridViewColumn[]
-            {
+            ConfView.Columns.AddRange(
+            [
                 CNames,
                 CValues
-            });
+            ]);
             ConfView.Dock = DockStyle.Fill;
             ConfView.EditMode = DataGridViewEditMode.EditOnEnter;
-            ConfView.Location = new Point(0, 20);
+            ConfView.Location = new Point(0, 20 * DeviceDpi / 96);
             ConfView.MultiSelect = false;
             ConfView.Name = "ConfView";
             ConfView.RowHeadersVisible = false;
             ConfView.RowTemplate.Height = 21;
             ConfView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ConfView.Size = new Size(298, 338);
+            ConfView.Size = new Size(298 * DeviceDpi / 96, 338 * DeviceDpi / 96);
             ConfView.TabIndex = 4;
             ConfView.CellValueChanged += ConfView_CellValueChanged;
             ConfView.CellClick += ConfView_CellClick;
@@ -782,12 +784,12 @@ namespace MasaoPlus.Controls
             CValues.HeaderText = "値";
             CValues.Name = "CValues";
             CValues.SortMode = DataGridViewColumnSortMode.NotSortable;
-            AutoScaleDimensions = new SizeF(6f, 12f);
-            AutoScaleMode = AutoScaleMode.Font;
+            // AutoScaleDimensions = new SizeF(6f, 12f);
+            // AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(ConfView);
             Controls.Add(ConfigSelector);
             Name = "ConfigList";
-            Size = new Size(298, 358);
+            Size = new Size(298 * DeviceDpi / 96, 358 * DeviceDpi / 96);
             ((ISupportInitialize)ConfView).EndInit();
             ResumeLayout(false);
 
@@ -796,7 +798,7 @@ namespace MasaoPlus.Controls
             mediaPlayer.MediaError += PreviewAudio_error;
         }
 
-        protected readonly List<int> OrigIdx = new List<int>();
+        protected readonly List<int> OrigIdx = [];
 
         private readonly IContainer components;
 

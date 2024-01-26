@@ -11,9 +11,9 @@ namespace MasaoPlus
     {
         public static Config ParseXML(string file)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
+            XmlSerializer xmlSerializer = new(typeof(Config));
             Config result;
-            using (FileStream fileStream = new FileStream(file, FileMode.Open))
+            using (FileStream fileStream = new(file, FileMode.Open))
             {
                 Config config = (Config)xmlSerializer.Deserialize(fileStream);
                 config.localSystem.FileEncoding = Encoding.GetEncoding(config.localSystem.FileEncStr);
@@ -24,19 +24,19 @@ namespace MasaoPlus
 
         public void SaveXML(string file)
         {
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Config));
-            using FileStream fileStream = new FileStream(file, FileMode.Create);
+            XmlSerializer xmlSerializer = new(typeof(Config));
+            using FileStream fileStream = new(file, FileMode.Create);
             localSystem.FileEncStr = localSystem.FileEncoding.WebName;
             xmlSerializer.Serialize(fileStream, this);
         }
 
-        public Draw draw = new Draw();
+        public Draw draw = new();
 
-        public LocalSystem localSystem = new LocalSystem();
+        public LocalSystem localSystem = new();
 
-        public TestRun testRun = new TestRun();
+        public TestRun testRun = new();
 
-        public LastData lastData = new LastData();
+        public LastData lastData = new();
 
         public class Draw
         {
@@ -150,9 +150,9 @@ namespace MasaoPlus
 
             public FormWindowState WndState;
 
-            public Point WndPoint = new Point(120, 120);
+            public Point WndPoint = new(120, 120);
 
-            public Size WndSize = new Size(800, 500);
+            public Size WndSize = new(800, 500);
 
             public string ProjDir = "";
 

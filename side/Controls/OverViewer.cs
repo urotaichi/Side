@@ -32,9 +32,9 @@ namespace MasaoPlus.Controls
             {
                 if (Global.cpd.runtime == null)
                 {
-                    return new Size(180, 30);
+                    return new Size(180 * DeviceDpi / 96, 30 * DeviceDpi / 96);
                 }
-                return new Size(Source.Size.Width * ppb, Source.Size.Height * ppb);
+                return new Size(Source.Size.Width * DeviceDpi / 96 * ppb, Source.Size.Height * DeviceDpi / 96 * ppb);
             }
             set
             {
@@ -68,7 +68,7 @@ namespace MasaoPlus.Controls
             }
             else
             {
-                Source = new Bitmap(Global.MainWnd.MainDesigner.CurrentStageSize.x, Global.MainWnd.MainDesigner.CurrentStageSize.y);
+                Source = new Bitmap(GUIDesigner.CurrentStageSize.x, GUIDesigner.CurrentStageSize.y);
             }
             BitmapData bitmapData = Source.LockBits(new Rectangle(new Point(0, 0), Source.Size), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
             try
@@ -111,9 +111,9 @@ namespace MasaoPlus.Controls
                             ptr = (byte*)(void*)bitmapData.Scan0;
                             int num2 = i * 3 + bitmapData.Stride * j;
                             string key = Global.cpd.EditingMap[j].Substring(i * Global.cpd.runtime.Definitions.MapSize.bytesize, Global.cpd.runtime.Definitions.MapSize.bytesize);
-                            if (dictionary.ContainsKey(key))
+                            if (dictionary.TryGetValue(key, out ChipsData value))
                             {
-                                ChipsData chipsData = dictionary[key];
+                                ChipsData chipsData = value;
                                 if (chipsData.color == "" || chipsData.color == null)
                                 {
                                     if (chipsData.character.Equals(array[0].character))
@@ -142,14 +142,14 @@ namespace MasaoPlus.Controls
                 }
                 else
                 {
-                    for (int i = 0; i < Global.MainWnd.MainDesigner.CurrentStageSize.x; i++)
+                    for (int i = 0; i < GUIDesigner.CurrentStageSize.x; i++)
                     {
-                        for (int j = 0; j < Global.MainWnd.MainDesigner.CurrentStageSize.y; j++)
+                        for (int j = 0; j < GUIDesigner.CurrentStageSize.y; j++)
                         {
                             ptr = (byte*)(void*)bitmapData.Scan0;
                             int num2 = i * 3 + bitmapData.Stride * j;
                             string key;
-                            if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                            if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                             {
                                 if (Global.cpd.project.Use3rdMapData)
                                 {
@@ -171,9 +171,9 @@ namespace MasaoPlus.Controls
                                     key = Global.cpd.EditingLayer[j].Substring(i * Global.cpd.runtime.Definitions.LayerSize.bytesize, Global.cpd.runtime.Definitions.LayerSize.bytesize);
                                 }
                             }
-                            if (dictionary.ContainsKey(key))
+                            if (dictionary.TryGetValue(key, out ChipsData value))
                             {
-                                ChipsData chipsData = dictionary[key];
+                                ChipsData chipsData = value;
                                 if (chipsData.color == "" || chipsData.color == null)
                                 {
                                     if (Global.cpd.project.Use3rdMapData)
@@ -223,11 +223,13 @@ namespace MasaoPlus.Controls
                 return;
             }
             e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-            e.Graphics.DrawImage(Source, new Rectangle(0, 0, Source.Width * ppb, Source.Height * ppb));
+            e.Graphics.DrawImage(Source, new Rectangle(0, 0, Source.Width * DeviceDpi / 96 * ppb, Source.Height * DeviceDpi / 96 * ppb));
             Point mapPointTranslatedMap = Global.state.MapPointTranslatedMap;
             mapPointTranslatedMap.X *= ppb;
             mapPointTranslatedMap.Y *= ppb;
-            using Pen pen = new Pen(Brushes.White, ppb);
+
+            // 白枠
+            using Pen pen = new(Brushes.White, (float)ppb * DeviceDpi / 96);
             e.Graphics.DrawRectangle(pen, new Rectangle(mapPointTranslatedMap, new Size((int)(Global.MainWnd.MainDesigner.Size.Width / Global.cpd.runtime.Definitions.ChipSize.Width * ppb / Global.config.draw.ZoomIndex), (int)(Global.MainWnd.MainDesigner.Size.Height / Global.cpd.runtime.Definitions.ChipSize.Height * ppb / Global.config.draw.ZoomIndex))));
         }
 

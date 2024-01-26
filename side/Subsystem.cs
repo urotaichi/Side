@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
-using ICSharpCode.SharpZipLib.Zip;
+using System.IO.Compression;
 using MasaoPlus.Dialogs;
 using System.Text.RegularExpressions;
 
@@ -14,7 +14,7 @@ namespace MasaoPlus
     {
         public static void MakeTestrun(int startup)
         {
-            using StreamWriter streamWriter = new StreamWriter(GetTempFileWhere(), false, Global.config.localSystem.FileEncoding);
+            using StreamWriter streamWriter = new(GetTempFileWhere(), false, Global.config.localSystem.FileEncoding);
             string value = MakeHTMLCode(startup);
             streamWriter.Write(value);
             streamWriter.Close();
@@ -22,7 +22,7 @@ namespace MasaoPlus
 
         public static void MakeTestrun(int startup, int replace, string[] sts)
         {
-            using StreamWriter streamWriter = new StreamWriter(GetTempFileWhere(), false, Global.config.localSystem.FileEncoding);
+            using StreamWriter streamWriter = new(GetTempFileWhere(), false, Global.config.localSystem.FileEncoding);
             string value = MakeHTMLCode(startup, replace, sts);
             streamWriter.Write(value);
             streamWriter.Close();
@@ -41,7 +41,7 @@ namespace MasaoPlus
         public static string MakeHTMLCode(int StartStage, int ReplaceStage, string[] sts)
         {
             Global.cpd.project.Config.StageStart = StartStage + 1;
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new();
 
             // ヘッダーを出力
             string text = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
@@ -762,7 +762,7 @@ namespace MasaoPlus
                             }, StringSplitOptions.None);
                             int num2 = 1;
 
-                            Regex text_name_regx = new Regex(@"-(\d+)$");
+                            Regex text_name_regx = new(@"-(\d+)$");
                             Match text_name_match = text_name_regx.Match(configParam.Name);
                             if (text_name_match.Success)
                             {
@@ -779,7 +779,7 @@ namespace MasaoPlus
                         }
                     case "color":
                         {
-                            Colors colors = new Colors(configParam.Value);
+                            Colors colors = new(configParam.Value);
                             string param = configParam.Name;
 
                             if (Global.config.localSystem.OutPutInititalSourceCode || Global.cpd.runtime.Definitions.Package.Contains("28")
@@ -1044,7 +1044,7 @@ namespace MasaoPlus
 
         public static string MakeStage3rdMapData(Runtime.DefinedData.StageSizeData StageSizeData, string[] MainStageText, string[] LayerStageText = null)
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new();
 
             stringBuilder.AppendLine("\t\t\t{");
             stringBuilder.AppendLine("\t\t\t\t\"size\": {");
@@ -1086,10 +1086,10 @@ namespace MasaoPlus
 
         public static string MakeStageParameter(string Parameter, int StageSplit, string[] StageText, Runtime.DefinedData.StageSizeData StageSizeData, bool notdefaultparam = false)
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new();
 
             StringBuilder[] array = new StringBuilder[StageSplit + 1];
-            StringBuilder null_string = new StringBuilder(), null_string_all = new StringBuilder();
+            StringBuilder null_string = new(), null_string_all = new();
             for (int j = 0; j < StageSizeData.x / (StageSplit + 1); j++)
                 for (int i = 0; i < StageSizeData.bytesize; i++)
                     null_string.Append("."); // 空白文字をベタ書きしてるので後で直す？
@@ -1177,8 +1177,8 @@ namespace MasaoPlus
             {
                 throw new FileNotFoundException("ファイルをロードできませんでした。");
             }
-            byte[] array = new byte[0];
-            using (FileStream fileStream = new FileStream(path, FileMode.Open))
+            byte[] array = [];
+            using (FileStream fileStream = new(path, FileMode.Open))
             {
                 array = new byte[fileStream.Length];
                 fileStream.Read(array, 0, array.Length);
@@ -1322,28 +1322,8 @@ namespace MasaoPlus
             {
                 return null;
             }
-            using (FileStream fileStream = new FileStream(InputArchive, FileMode.Open))
-            {
-                using ZipInputStream zipInputStream = new ZipInputStream(fileStream);
-                ZipEntry nextEntry;
-                while ((nextEntry = zipInputStream.GetNextEntry()) != null)
-                {
-                    if (!nextEntry.IsDirectory)
-                    {
-                        string fileName = Path.GetFileName(nextEntry.Name);
-                        string text2 = Path.Combine(text, Path.GetDirectoryName(nextEntry.Name));
-                        Directory.CreateDirectory(text2);
-                        string path = Path.Combine(text2, fileName);
-                        using FileStream fileStream2 = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write);
-                        byte[] array = new byte[Global.definition.ZipExtractBufferLength];
-                        int count;
-                        while ((count = zipInputStream.Read(array, 0, array.Length)) > 0)
-                        {
-                            fileStream2.Write(array, 0, count);
-                        }
-                    }
-                }
-            }
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+            ZipFile.ExtractToDirectory(InputArchive, text, Encoding.GetEncoding("Shift_JIS"), true);
             return text;
         }
 
@@ -1374,7 +1354,7 @@ namespace MasaoPlus
             {
                 if (MessageBox.Show($"{fileName}はすでに存在します。{Environment.NewLine}上書きインストールして更新しますか?", "ランタイムパッケージの更新", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 {
-                    using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+                    using (SaveFileDialog saveFileDialog = new())
                     {
                         saveFileDialog.InitialDirectory = text2;
                         saveFileDialog.FileName = fileName;
@@ -1424,7 +1404,7 @@ namespace MasaoPlus
             dlClient.Headers.Add("User-Agent", $"{Global.definition.AppName} - {Global.definition.AppNameFull}/{Global.definition.Version}(Windows NT 10.0; Win64; x64)");
             dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted;
             tempfile = Path.GetTempFileName();
-            Uri address = new Uri(Global.config.localSystem.UpdateServer);
+            Uri address = new(Global.config.localSystem.UpdateServer);
             try
             {
                 dlClient.DownloadFileAsync(address, tempfile);
@@ -1453,7 +1433,7 @@ namespace MasaoPlus
                 Global.config.localSystem.CheckAutoUpdate = false;
                 return;
             }
-            using WebUpdate webUpdate = new WebUpdate();
+            using WebUpdate webUpdate = new();
             if (webUpdate.ShowDialog() == DialogResult.Retry)
             {
                 Global.state.RunFile = (string)webUpdate.runfile.Clone();

@@ -21,12 +21,12 @@ namespace MasaoPlus.Dialogs
 
         private void LinkLabelClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(((LinkLabel)sender).Text);
+            Process.Start(new ProcessStartInfo { FileName = ((LinkLabel)sender).Text, UseShellExecute = true });
         }
 
         private void ViewDat_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            Process.Start(e.LinkText);
+            Process.Start(new ProcessStartInfo { FileName = e.LinkText, UseShellExecute = true });
         }
 
         private void OKButton_Click(object sender, EventArgs e)

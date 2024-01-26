@@ -14,8 +14,8 @@ namespace MasaoPlus
             ChipDataClass result;
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(ChipDataClass));
-                using FileStream fileStream = new FileStream(file, FileMode.Open);
+                XmlSerializer xmlSerializer = new(typeof(ChipDataClass));
+                using FileStream fileStream = new(file, FileMode.Open);
                 ChipDataClass chipDataClass = (ChipDataClass)xmlSerializer.Deserialize(fileStream);
                 result = chipDataClass;
             }

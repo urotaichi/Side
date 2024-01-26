@@ -30,15 +30,15 @@ namespace MasaoPlus
                     }
                     Global.state.CurrentChip = Global.cpd.Worldchip[value];
                 }
-                else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                else if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                 {
                     ChipsData[] array = Global.cpd.Mapchip;
                     if (Global.cpd.project.Use3rdMapData)
                     {
-                        array = array.Concat(Global.cpd.VarietyChip).ToArray();
+                        array = [.. array, .. Global.cpd.VarietyChip];
                         if(Global.cpd.CustomPartsChip != null)
                         {
-                            array = array.Concat(Global.cpd.CustomPartsChip).ToArray();
+                            array = [.. array, .. Global.cpd.CustomPartsChip];
                         }
                     }
 
@@ -79,7 +79,7 @@ namespace MasaoPlus
         {
             get
             {
-                int num = (int)Math.Floor(MainPanel.Width / (double)Global.cpd.runtime.Definitions.ChipSize.Width);
+                int num = (int)Math.Floor(MainPanel.Width / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96));
                 if (num <= 0)
                 {
                     return 1;
@@ -96,7 +96,7 @@ namespace MasaoPlus
         protected void SetMaxValue()
         {
             vScr.LargeChange = MainPanel.Height;
-            vScr.SmallChange = Global.cpd.runtime.Definitions.ChipSize.Height;
+            vScr.SmallChange = Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96;
             vScr.Maximum = GetVirtSize() - MainPanel.Height + vScr.LargeChange - 1;
         }
 
@@ -107,7 +107,7 @@ namespace MasaoPlus
 
         public Point GetPosition(int idx)
         {
-            int num = MainPanel.Width / Global.cpd.runtime.Definitions.ChipSize.Width;
+            int num = MainPanel.Width / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96);
             if (num <= 0)
             {
                 num = 1;
@@ -126,12 +126,12 @@ namespace MasaoPlus
             {
                 return 0;
             }
-            int num = wid / Global.cpd.runtime.Definitions.ChipSize.Width;
+            int num = wid / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96);
             if (num <= 0)
             {
                 num = 1;
             }
-            if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+            if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
             {
                 int num2 = Global.cpd.Mapchip.Length;
                 if (Global.cpd.project.Use3rdMapData)
@@ -142,9 +142,9 @@ namespace MasaoPlus
                         num2 += Global.cpd.CustomPartsChip.Length;
                     }
                 }
-                return (int)Math.Ceiling(num2 / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height;
+                return (int)Math.Ceiling(num2 / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96;
             }
-            return (int)Math.Ceiling(Global.cpd.Layerchip.Length / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height;
+            return (int)Math.Ceiling(Global.cpd.Layerchip.Length / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96;
         }
 
         public void ResizeInvoke()
@@ -169,30 +169,38 @@ namespace MasaoPlus
 
         protected virtual void AddChipData(ChipsData[] chipsData, int num, PaintEventArgs e, int inital = 0)
         {
+            bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
             for (int i = inital; i < num; i++)
             {
                 ChipsData chipData = chipsData[i - inital];
                 Point point = GetPosition(i);
                 Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
-                Rectangle rectangle = new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize);
+                Rectangle rectangle = new(point.X * chipsize.Width * DeviceDpi / 96, point.Y * chipsize.Height * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
                 rectangle.Y -= vPosition;
                 if (rectangle.Top > MainPanel.Height) break;
 
                 if (rectangle.Bottom >= 0)
                 {
                     ChipData cschip = chipData.GetCSChip();
-                    if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd)
+                    if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd) // チップ裏に拡張画像を描画
                     {
+                        // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
+                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
                     }
-                    if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                    if (!CurrentProjectData.UseLayer || Global.state.EditingForeground) // パターンマップチップ
                     {
+                        if (DeviceDpi / 96 >= 2 && (cschip.size == default || cschip.size.Width / cschip.size.Height == 1))
+                        {
+                            e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                        }
+                        else if (Global.config.draw.ClassicChipListInterpolation) e.Graphics.InterpolationMode = InterpolationMode.High;
                         e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                         GraphicsState transState = e.Graphics.Save();
                         e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
-                        if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipData.character == "Z")
+                        if (oriboss_view && chipData.character == "Z")
                         {
-                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, chipsize.Width, chipsize.Height);
+                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, rectangle.Width, rectangle.Height);
                         }
                         else
                         {
@@ -222,16 +230,17 @@ namespace MasaoPlus
                                 case "スイッチ式ファイヤーバー":
                                 case "スイッチ式動くＴ字型":
                                 case "スイッチ式速く動くＴ字型":
-                                    AthleticView.list[cschip.name].Main(cschip, e.Graphics, chipsize);
+                                    AthleticView.list[cschip.name].Main(DeviceDpi, cschip, e.Graphics, chipsize);
                                     break;
                                 default:
-                                    e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
+                                    e.Graphics.TranslateTransform(chipsize.Width * DeviceDpi / 96 / 2, chipsize.Height * DeviceDpi / 96 / 2);
+                                    var rect = new Rectangle(-chipsize.Width * DeviceDpi / 96 / 2, -chipsize.Height * DeviceDpi / 96 / 2, rectangle.Width, rectangle.Height);
                                     if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
                                     // 水の半透明処理
-                                    if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && chipData.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                                    if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && chipData.character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string water_clear_level_value))
                                     {
-                                        float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                        float water_clear_level = float.Parse(water_clear_level_value);
                                         var colorMatrix = new ColorMatrix
                                         {
                                             Matrix00 = 1f,
@@ -242,22 +251,27 @@ namespace MasaoPlus
                                         };
                                         using var imageAttributes = new ImageAttributes();
                                         imageAttributes.SetColorMatrix(colorMatrix);
-                                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
+                                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
                                     }
-                                    else e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+                                    else e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
                                     break;
                             }
                         }
                         e.Graphics.Restore(transState);
                     }
-                    else
+                    else // レイヤーマップチップ
                     {
+                        if (DeviceDpi / 96 >= 2 && (cschip.size == default || cschip.size.Width / cschip.size.Height == 1))
+                        {
+                            e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                        }
+                        else if (Global.config.draw.ClassicChipListInterpolation) e.Graphics.InterpolationMode = InterpolationMode.High;
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawLayerOrig, rectangle, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
                     }
-                    if (chipData.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 &&
-                        Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
+                    if (chipData.character == "Z" && oriboss_view &&
+                        Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki) && Global.config.draw.ExtendDraw)
                     {
-                        Point p = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
+                        Point p = int.Parse(oriboss_ugoki) switch
                         {
                             1 => new Point(352, 256),
                             2 => new Point(96, 0),
@@ -288,10 +302,14 @@ namespace MasaoPlus
                             27 => new Point(32, 128),
                             _ => throw new ArgumentException(),
                         };
+                        // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
+                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(p, chipsize), GraphicsUnit.Pixel);
                     }
                     else if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
                     {
+                        // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
+                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
                     }
                     e.Graphics.PixelOffsetMode = default;
@@ -301,7 +319,7 @@ namespace MasaoPlus
                         e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
                         Color col = ColorTranslator.FromHtml(chipData.idColor);
                         using Brush brush = new SolidBrush(Color.FromArgb(240, col));
-                        e.Graphics.FillRectangle(brush, 0, 0, 10, 5);
+                        e.Graphics.FillRectangle(brush, 0, 0, 10 * DeviceDpi / 96, 5 * DeviceDpi / 96);
                         e.Graphics.Restore(transState);
                     }
                     if (Global.state.MapEditMode && Global.state.CurrentChip.character == chipData.character
@@ -351,7 +369,7 @@ namespace MasaoPlus
                         e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                     using (Brush brush = new SolidBrush(Global.state.Background))
                     {
-                        e.Graphics.FillRectangle(brush, e.ClipRectangle);
+                        e.Graphics.FillRectangle(brush, e.ClipRectangle); // 背景色で塗りつぶす
                     }
                     int num = 0, num2 = 0;
                     if (Global.state.MapEditMode)
@@ -359,7 +377,7 @@ namespace MasaoPlus
                         num = Global.cpd.Worldchip.Length;
                         AddChipData(Global.cpd.Worldchip, num, e);
                     }
-                    else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                    else if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                     {
                         num = Global.cpd.Mapchip.Length;
                         AddChipData(Global.cpd.Mapchip, num, e);
@@ -369,7 +387,7 @@ namespace MasaoPlus
                             if (Global.cpd.CustomPartsChip != null)
                             {
                                 num2 += Global.cpd.CustomPartsChip.Length;
-                                AddChipData(Global.cpd.VarietyChip.Concat(Global.cpd.CustomPartsChip).ToArray(), num + num2, e, num);
+                                AddChipData([.. Global.cpd.VarietyChip, .. Global.cpd.CustomPartsChip], num + num2, e, num);
                             }
                             AddChipData(Global.cpd.VarietyChip, num + num2, e, num);
                         }
@@ -400,18 +418,18 @@ namespace MasaoPlus
                 return;
             }
             int hMaxChip = this.hMaxChip;
-            if (e.X > hMaxChip * Global.cpd.runtime.Definitions.ChipSize.Width)
+            if (e.X > hMaxChip * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96)
             {
                 return;
             }
-            int num = (int)Math.Floor(e.X / (double)Global.cpd.runtime.Definitions.ChipSize.Width);
-            num += (int)Math.Floor((e.Y + vPosition) / (double)Global.cpd.runtime.Definitions.ChipSize.Height) * hMaxChip;
+            int num = (int)Math.Floor(e.X / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96));
+            num += (int)Math.Floor((e.Y + vPosition) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96)) * hMaxChip;
             int num2;
             if (Global.state.MapEditMode)
             {
                 num2 = Global.cpd.Worldchip.Length;
             }
-            else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+            else if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
             {
                 num2 = Global.cpd.Mapchip.Length;
                 if (Global.cpd.project.Use3rdMapData)
@@ -491,31 +509,33 @@ namespace MasaoPlus
 
         protected virtual void InitializeComponent()
         {
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             vScr = new VScrollBar();
             MainPanel = new PictureBox();
             ((ISupportInitialize)MainPanel).BeginInit();
             SuspendLayout();
             vScr.Dock = DockStyle.Right;
-            vScr.Location = new Point(265, 0);
+            vScr.Location = new Point(265 * DeviceDpi / 96, 0);
             vScr.Name = "vScr";
-            vScr.Size = new Size(20, 264);
+            vScr.Size = new Size(20 * DeviceDpi / 96, 264 * DeviceDpi / 96);
             vScr.TabIndex = 0;
             vScr.Scroll += vScr_Scroll;
             MainPanel.Dock = DockStyle.Fill;
             MainPanel.Location = new Point(0, 0);
             MainPanel.Name = "MainPanel";
-            MainPanel.Size = new Size(265, 264);
+            MainPanel.Size = new Size(265 * DeviceDpi / 96, 264 * DeviceDpi / 96);
             MainPanel.TabIndex = 1;
             MainPanel.TabStop = false;
             MainPanel.MouseMove += MainPanel_MouseMove;
             MainPanel.MouseDown += MainPanel_MouseDown;
             MainPanel.Paint += MainPanel_Paint;
-            AutoScaleDimensions = new SizeF(6f, 12f);
-            AutoScaleMode = AutoScaleMode.Font;
+            // AutoScaleDimensions = new SizeF(6f, 12f);
+            // AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(MainPanel);
             Controls.Add(vScr);
             Name = "GUIChipList";
-            Size = new Size(285, 264);
+            Size = new Size(285 * DeviceDpi / 96, 264 * DeviceDpi / 96);
             PreviewKeyDown += GUIChipList_PreviewKeyDown;
             Resize += GUIChipList_Resize;
             KeyDown += GUIChipList_KeyDown;

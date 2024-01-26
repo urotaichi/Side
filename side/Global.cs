@@ -8,12 +8,12 @@ namespace MasaoPlus
 
         public static MainWindow MainWnd = null;
 
-        public static Definition definition = new Definition();
+        public static Definition definition = new();
 
-        public static Config config = new Config();
+        public static Config config = new();
 
-        public static State state = new State();
+        public static State state = new();
 
-        public static CurrentProjectData cpd = new CurrentProjectData();
+        public static CurrentProjectData cpd = new();
     }
 }

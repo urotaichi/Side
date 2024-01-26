@@ -350,6 +350,7 @@ MigrationBackup/
 .ionide/
 side.xml
 side.exe
+/net8.0-windows
 ~temp.html
 projects/NewProject
 /dmp.txt

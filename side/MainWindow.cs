@@ -84,8 +84,8 @@ namespace MasaoPlus
         private void MainWindow_Load(object sender, EventArgs e)
         {
             MUpdateApp.Enabled = Global.definition.IsAutoUpdateEnabled;
-            SetDesktopLocation(Global.config.lastData.WndPoint.X, Global.config.lastData.WndPoint.Y);
-            Size = Global.config.lastData.WndSize;
+            SetDesktopLocation(Global.config.lastData.WndPoint.X * DeviceDpi / 96, Global.config.lastData.WndPoint.Y * DeviceDpi / 96);
+            Size = new Size(Global.config.lastData.WndSize.Width * DeviceDpi / 96, Global.config.lastData.WndSize.Height * DeviceDpi / 96);
             WindowState = Global.config.lastData.WndState;
             MainSplit.SplitterDistance = (int)(Width * Global.config.lastData.SpliterDist);
             if (Global.config.localSystem.ReverseTabView)
@@ -174,7 +174,7 @@ namespace MasaoPlus
             }
             if (text == "")
             {
-                using StartUp startUp = new StartUp();
+                using StartUp startUp = new();
                 if (startUp.ShowDialog() != DialogResult.OK)
                 {
                     Close();
@@ -183,7 +183,7 @@ namespace MasaoPlus
                 }
                 text = startUp.ProjectPath;
             }
-            using (ProjectLoading projectLoading = new ProjectLoading(text))
+            using (ProjectLoading projectLoading = new(text))
             {
                 if (projectLoading.ShowDialog() == DialogResult.Abort)
                 {
@@ -195,7 +195,7 @@ namespace MasaoPlus
             MainDesigner.AddBuffer();
             EditorSystemPanel_Resize(this, new EventArgs());
             UpdateScrollbar();
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
                 LayerState(true);
             }
@@ -251,6 +251,7 @@ namespace MasaoPlus
         // ステータスバーっぽいところに表示される小さいアイコンや文字
         private void MainDesigner_MouseMove(object sender, MouseEventArgs e)
         {
+            bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
             Point p = default;
             p.X = (e.X + Global.state.MapPoint.X) / MainDesigner.CurrentChipSize.Width;
             p.Y = (e.Y + Global.state.MapPoint.Y) / MainDesigner.CurrentChipSize.Height;
@@ -272,12 +273,12 @@ namespace MasaoPlus
                 ChipsData chipsData;
                 if (Global.state.MapEditMode)
                 {
-                    if (text == Global.cpd.Worldchip[0].character || !MainDesigner.DrawWorldRef.ContainsKey(text))
+                    if (text == Global.cpd.Worldchip[0].character || !MainDesigner.DrawWorldRef.TryGetValue(text, out ChipsData value))
                     {
                         ChipNavigator.Visible = false;
                         return;
                     }
-                    chipsData = MainDesigner.DrawWorldRef[text];
+                    chipsData = value;
                 }
                 else if (Global.state.EditingForeground)
                 {
@@ -303,7 +304,7 @@ namespace MasaoPlus
                 }
                 ChipData cschip = chipsData.GetCSChip();
                 Size size = (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size;
-                if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
+                if (oriboss_view && chipsData.character == "Z")
                     size = MainDesigner.DrawOribossOrig.Size;
                 ChipNavigator.Image?.Dispose();
                 Bitmap bitmap;
@@ -320,7 +321,7 @@ namespace MasaoPlus
                 if (Global.state.EditingForeground)
                 {
                     graphics.PixelOffsetMode = PixelOffsetMode.Half;
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
+                    if (oriboss_view && chipsData.character == "Z")
                     {
                         graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, MainDesigner.DrawOribossOrig.Size.Width, MainDesigner.DrawOribossOrig.Size.Height);
                     }
@@ -364,9 +365,9 @@ namespace MasaoPlus
                                 graphics.RotateTransform(cschip.rotate);
 
                                 // 水の半透明処理
-                                if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && chipsData.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                                if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && chipsData.character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
                                 {
-                                    float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                    float water_clear_level = float.Parse(value);
                                     var colorMatrix = new ColorMatrix
                                     {
                                         Matrix00 = 1f,
@@ -392,12 +393,12 @@ namespace MasaoPlus
                 bitmap.Dispose();
                 string name, description;
 
-                if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
+                if (Global.state.EditingForeground && oriboss_view && chipsData.character == "Z")
                 {
                     name = "オリジナルボス";
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki))
                     {
-                        description = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
+                        description = int.Parse(oriboss_ugoki) switch
                         {
                             1 => "停止",
                             2 => "左右移動",
@@ -459,9 +460,9 @@ namespace MasaoPlus
         public void UpdateScrollbar(double oldZoomIndex)
         {
             double num = Global.config.draw.ZoomIndex / oldZoomIndex;
-            Point point = new Point((int)(GHorzScroll.Value * num), (int)(GVirtScroll.Value * num));
+            Point point = new((int)(GHorzScroll.Value * num), (int)(GVirtScroll.Value * num));
             Size displaySize = MainDesigner.DisplaySize;
-            Size mapMoveMax = new Size(displaySize.Width - MainDesigner.Width, displaySize.Height - MainDesigner.Height);
+            Size mapMoveMax = new(displaySize.Width - MainDesigner.Width, displaySize.Height - MainDesigner.Height);
             Global.state.MapMoveMax = mapMoveMax;
             if (displaySize.Width <= MainDesigner.Width)
             {
@@ -469,7 +470,7 @@ namespace MasaoPlus
             }
             else
             {
-                Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : MainDesigner.CurrentStageSize;
+                Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : GUIDesigner.CurrentStageSize;
                 GHorzScroll.Enabled = true;
                 GHorzScroll.LargeChange = (int)(displaySize.Width / (stageSizeData.x / 4.0) * Global.config.draw.ZoomIndex);
                 GHorzScroll.Maximum = mapMoveMax.Width + GHorzScroll.LargeChange - 1;
@@ -480,7 +481,7 @@ namespace MasaoPlus
             }
             else
             {
-                Runtime.DefinedData.StageSizeData stageSizeData2 = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : MainDesigner.CurrentStageSize;
+                Runtime.DefinedData.StageSizeData stageSizeData2 = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : GUIDesigner.CurrentStageSize;
                 GVirtScroll.Enabled = true;
                 GVirtScroll.LargeChange = (int)(displaySize.Height / (stageSizeData2.y / 4.0) * Global.config.draw.ZoomIndex);
                 GVirtScroll.Maximum = mapMoveMax.Height + GVirtScroll.LargeChange - 1;
@@ -524,8 +525,8 @@ namespace MasaoPlus
 
         private void EditorSystemPanel_Resize(object sender, EventArgs e)
         {
-            MainDesigner.Width = EditorSystemPanel.Width - 20;
-            MainDesigner.Height = EditorSystemPanel.Height - 20;
+            MainDesigner.Width = EditorSystemPanel.Width - 20 * DeviceDpi / 96;
+            MainDesigner.Height = EditorSystemPanel.Height - 20 * DeviceDpi / 96;
             GVirtScroll.Left = MainDesigner.Width;
             GVirtScroll.Height = MainDesigner.Height;
             GVirtScroll.Refresh();
@@ -678,7 +679,7 @@ namespace MasaoPlus
 
         public void ChipItemReady()
         {
-            CRID method = new CRID(ChipItemReadyInvoke);
+            CRID method = new(ChipItemReadyInvoke);
             Invoke(method);
         }
 
@@ -688,7 +689,7 @@ namespace MasaoPlus
             ChipList.BeginUpdate();
             ChipList.Items.Clear();
             ChipsData[] array;
-            if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+            if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
             {
                 if (Global.state.MapEditMode)
                 {
@@ -699,10 +700,10 @@ namespace MasaoPlus
                     array = Global.cpd.Mapchip;
                     if (Global.cpd.project.Use3rdMapData)
                     {
-                        array = array.Concat(Global.cpd.VarietyChip).ToArray();
+                        array = [.. array, .. Global.cpd.VarietyChip];
                         if (Global.cpd.CustomPartsChip != null)
                         {
-                            array = array.Concat(Global.cpd.CustomPartsChip).ToArray();
+                            array = [.. array, .. Global.cpd.CustomPartsChip];
                         }
                     }
                 }
@@ -719,12 +720,12 @@ namespace MasaoPlus
                 {
                     ChipList.Items.Add(chipData.name);
                 }
-                else if (Global.state.EditingForeground && chipsData.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+                else if (Global.state.EditingForeground && chipsData.character == "Z" && Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3)
                 {
                     string description;
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki))
                     {
-                        description = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
+                        description = int.Parse(oriboss_ugoki) switch
                         {
                             1 => "停止",
                             2 => "左右移動",
@@ -864,15 +865,15 @@ namespace MasaoPlus
                     Global.state.CurrentChip = Global.cpd.Worldchip[i];
                     return;
                 }
-                if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                 {
                     ChipsData[] array = Global.cpd.Mapchip;
                     if (Global.cpd.project.Use3rdMapData)
                     {
-                        array = array.Concat(Global.cpd.VarietyChip).ToArray();
+                        array = [.. array, .. Global.cpd.VarietyChip];
                         if (Global.cpd.CustomPartsChip != null)
                         {
-                            array = array.Concat(Global.cpd.CustomPartsChip).ToArray();
+                            array = [.. array, .. Global.cpd.CustomPartsChip];
                         }
                     }
                     Global.state.CurrentChip = array[i];
@@ -885,23 +886,24 @@ namespace MasaoPlus
         // 選択中のチップが変わったらチップリストの左上の文字を変える
         private void state_UpdateCurrentChipInvoke()
         {
+            bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
             ChipImage.Refresh();
             string chara;
             ChipsData cc = Global.state.CurrentChip;
             if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) chara = cc.code;
             else chara = cc.character;
 
-            if (cc.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+            if (cc.character == "Z" && oriboss_view)
                 ChipDescription.Text = "オリジナルボス";
             else ChipDescription.Text = cc.GetCSChip().name;
             if (cc.GetCSChip().description != "")
             {
-                if (Global.state.EditingForeground && cc.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3)
+                if (Global.state.EditingForeground && cc.character == "Z" && oriboss_view)
                 {
                     string description;
-                    if (Global.state.ChipRegister.ContainsKey("oriboss_ugoki"))
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki))
                     {
-                        description = int.Parse(Global.state.ChipRegister["oriboss_ugoki"]) switch
+                        description = int.Parse(oriboss_ugoki) switch
                         {
                             1 => "停止",
                             2 => "左右移動",
@@ -963,7 +965,7 @@ namespace MasaoPlus
                 }
                 return;
             }
-            if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+            if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
             {
                 if (Global.cpd.project.Use3rdMapData)
                 {
@@ -1015,18 +1017,24 @@ namespace MasaoPlus
         }
 
         // チップリストの左上の画像が変わった時
+        // 左上のチップのサンプル画像　拡張描画画像がなぜか描画されていないので後で追加？
         private void ChipImage_Paint(object sender, PaintEventArgs e)
         {
+            bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
             if (MainDesigner.DrawChipOrig != null)
             {
-                e.Graphics.InterpolationMode = InterpolationMode.High;
+                e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                 ChipData cschip = Global.state.CurrentChip.GetCSChip();
-                if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                if (DeviceDpi / 96 >= 2 && (cschip.size == default || cschip.size.Width / cschip.size.Height == 1))
                 {
-                    e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
-                    if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.state.CurrentChip.character == "Z")
+                    e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                }
+                else e.Graphics.InterpolationMode = InterpolationMode.High;
+                if (!CurrentProjectData.UseLayer || Global.state.EditingForeground) // パターン画像
+                {
+                    if (Global.state.EditingForeground && oriboss_view && Global.state.CurrentChip.character == "Z")
                     {
-                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, ChipImage.Size.Width, ChipImage.Size.Height);
+                        e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, ChipImage.Width, ChipImage.Height);
                     }
                     else
                     {
@@ -1056,16 +1064,16 @@ namespace MasaoPlus
                             case "スイッチ式ファイヤーバー":
                             case "スイッチ式動くＴ字型":
                             case "スイッチ式速く動くＴ字型":
-                                AthleticView.list[cschip.name].Main(cschip, e.Graphics, new Size(ChipImage.Width, ChipImage.Height));
+                                AthleticView.list[cschip.name].Main(DeviceDpi, cschip, e.Graphics, new Size(32, 32));
                                 break;
                             default:
                                 e.Graphics.TranslateTransform(ChipImage.Width / 2, ChipImage.Height / 2);
                                 if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
                                 // 水の半透明処理
-                                if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.state.CurrentChip.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                                if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && Global.state.CurrentChip.character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
                                 {
-                                    float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                    float water_clear_level = float.Parse(value);
                                     var colorMatrix = new ColorMatrix
                                     {
                                         Matrix00 = 1f,
@@ -1083,7 +1091,7 @@ namespace MasaoPlus
                         }
                     }
                 }
-                else
+                else // レイヤー画像
                 {
                     e.Graphics.DrawImage(MainDesigner.DrawLayerOrig, new Rectangle(new Point(0, 0), ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
                 }
@@ -1114,9 +1122,13 @@ namespace MasaoPlus
         {
             if (MainDesigner.DrawChipOrig != null)
             {
-                e.Graphics.InterpolationMode = InterpolationMode.High;
                 ChipData cschip = Global.state.CurrentCustomPartsChip.GetCSChip();
                 e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
+                if (DeviceDpi / 96 >= 2 && (cschip.size == default || cschip.size.Width / cschip.size.Height == 1))
+                {
+                    e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                }
+                else e.Graphics.InterpolationMode = InterpolationMode.High;
                 switch (cschip.name)
                 {
                     case "一方通行":
@@ -1143,7 +1155,7 @@ namespace MasaoPlus
                     case "スイッチ式ファイヤーバー":
                     case "スイッチ式動くＴ字型":
                     case "スイッチ式速く動くＴ字型":
-                        AthleticView.list[cschip.name].Main(cschip, e.Graphics, new Size(ChipImage.Width, ChipImage.Height));
+                        AthleticView.list[cschip.name].Main(DeviceDpi, cschip, e.Graphics, new Size(ChipImage.Width, ChipImage.Height));
                         break;
                     default:
                         e.Graphics.TranslateTransform(ChipImage.Width / 2, ChipImage.Height / 2);
@@ -1284,7 +1296,7 @@ namespace MasaoPlus
                     switch (keyCode)
                     {
                         case Keys.Space:
-                            using (OverViewWindow overViewWindow = new OverViewWindow())
+                            using (OverViewWindow overViewWindow = new())
                             {
                                 overViewWindow.ShowDialog();
                                 return;
@@ -1573,37 +1585,37 @@ namespace MasaoPlus
             e.DrawBackground();
             try
             {
+                bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
                 ChipData cschip;
+                ChipsData[] array = Global.cpd.Mapchip;
                 using Brush brush = new SolidBrush(e.ForeColor);
                 int width = 0;
                 GraphicsState transState;
                 Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
+                if (Global.state.MapEditMode)
+                {
+                    cschip = Global.cpd.Worldchip[i].GetCSChip();
+                }
+                else
+                {
+                    if (Global.cpd.project.Use3rdMapData)
+                    {
+                        array = [.. array, .. Global.cpd.VarietyChip, .. Global.cpd.CustomPartsChip];
+                    }
+                    cschip = array[i].GetCSChip();
+                }
 
                 switch (DrawType.SelectedIndex)
                 {
                     case 0: // サムネイル
-                        if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                        if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                         {
-                            if (Global.state.MapEditMode)
-                            {
-                                cschip = Global.cpd.Worldchip[i].GetCSChip();
-                            }
-                            else
-                            {
-                                ChipsData[] array = Global.cpd.Mapchip;
-                                if (Global.cpd.project.Use3rdMapData)
-                                {
-                                    array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
-                                }
-                                cschip = array[i].GetCSChip();
-                            }
-
                             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                             transState = e.Graphics.Save();
                             e.Graphics.TranslateTransform(e.Bounds.X, e.Bounds.Y);
-                            if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[i].character == "Z")
+                            if (Global.state.EditingForeground && oriboss_view && array[i].character == "Z")
                             {
-                                e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, e.Bounds.Height, e.Bounds.Height);
+                                e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, e.Bounds.Height, e.Bounds.Height);
                             }
                             else
                             {
@@ -1633,15 +1645,15 @@ namespace MasaoPlus
                                     case "スイッチ式ファイヤーバー":
                                     case "スイッチ式動くＴ字型":
                                     case "スイッチ式速く動くＴ字型":
-                                        AthleticView.list[cschip.name].Small(cschip, e.Graphics, chipsize, e.Bounds.Height);
+                                        AthleticView.list[cschip.name].Small(DeviceDpi, cschip, e.Graphics, chipsize, e.Bounds.Height);
                                         break;
                                     default:
                                         e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
                                         if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
                                         // 水の半透明処理
-                                        if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.cpd.Mapchip[i].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                                        if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && array[i].character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
                                         {
-                                            float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                            float water_clear_level = float.Parse(value);
                                             var colorMatrix = new ColorMatrix
                                             {
                                                 Matrix00 = 1f,
@@ -1668,22 +1680,8 @@ namespace MasaoPlus
                         width = e.Bounds.Height;
                         break;
                     case 2: // チップ
-                        if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                        if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                         {
-                            if (Global.state.MapEditMode)
-                            {
-                                cschip = Global.cpd.Worldchip[i].GetCSChip();
-                            }
-                            else
-                            {
-                                ChipsData[] array = Global.cpd.Mapchip;
-                                if (Global.cpd.project.Use3rdMapData)
-                                {
-                                    array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
-                                }
-                                cschip = array[i].GetCSChip();
-                            }
-
                             e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                             transState = e.Graphics.Save();
 
@@ -1722,9 +1720,9 @@ namespace MasaoPlus
                                         e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
                                         e.Graphics.RotateTransform(cschip.rotate);
                                         // 水の半透明処理
-                                        if (Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && Global.cpd.Mapchip[i].character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
+                                        if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && array[i].character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
                                         {
-                                            float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
+                                            float water_clear_level = float.Parse(value);
                                             var colorMatrix = new ColorMatrix
                                             {
                                                 Matrix00 = 1f,
@@ -1744,10 +1742,10 @@ namespace MasaoPlus
                             }
                             else
                             {
-                                if (Global.state.EditingForeground && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[i].character == "Z")
+                                if (Global.state.EditingForeground && oriboss_view && array[i].character == "Z")
                                 {
-                                    e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0);
-                                    width = Global.MainWnd.MainDesigner.DrawOribossOrig.Width;
+                                    e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0);
+                                    width = MainDesigner.DrawOribossOrig.Width;
                                 }
                                 else
                                 {
@@ -1824,13 +1822,13 @@ namespace MasaoPlus
                         e.ItemHeight = height;
                         return;
                     }
-                    if (!Global.cpd.UseLayer || Global.state.EditingForeground)
+                    if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
                     {
                         ChipData cschip;
                         ChipsData[] array = Global.cpd.Mapchip;
                         if (Global.cpd.project.Use3rdMapData)
                         {
-                            array = array.Concat(Global.cpd.VarietyChip).ToArray().Concat(Global.cpd.CustomPartsChip).ToArray();
+                            array = [.. array, .. Global.cpd.VarietyChip, .. Global.cpd.CustomPartsChip];
                         }
                         cschip = array[i].GetCSChip();
                         if (cschip.size.Height == 0)
@@ -1845,9 +1843,9 @@ namespace MasaoPlus
                             }
                             else
                             {
-                                if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && Global.cpd.Mapchip[i].character == "Z")
+                                if (Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3 && array[i].character == "Z")
                                 {
-                                    height = Global.MainWnd.MainDesigner.DrawOribossOrig.Height;
+                                    height = MainDesigner.DrawOribossOrig.Height;
                                 }
                                 else height = cschip.size.Height;
                             }
@@ -1948,7 +1946,7 @@ namespace MasaoPlus
             MSaveAs.Enabled = true;
             MTSave.Enabled = true;
             Global.state.EditFlag = false;
-            using (ProjectLoading projectLoading = new ProjectLoading(su))
+            using (ProjectLoading projectLoading = new(su))
             {
                 if (projectLoading.ShowDialog() == DialogResult.Abort)
                 {
@@ -1964,7 +1962,7 @@ namespace MasaoPlus
             MainDesigner.ForceBufferResize();
             UpdateLayer();
             UpdateScrollbar();
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
                 LayerState(true);
             }
@@ -1990,7 +1988,7 @@ namespace MasaoPlus
             {
                 return;
             }
-            using NewProject newProject = new NewProject();
+            using NewProject newProject = new();
             if (newProject.ShowDialog() == DialogResult.OK)
             {
                 RestartUp(newProject.CreatedProject);
@@ -2003,7 +2001,7 @@ namespace MasaoPlus
             {
                 return;
             }
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}|全てのファイル|*.*";
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -2021,7 +2019,7 @@ namespace MasaoPlus
 
         private void MSaveAs_Click(object sender, EventArgs e)
         {
-            using SaveFileDialog saveFileDialog = new SaveFileDialog();
+            using SaveFileDialog saveFileDialog = new();
             saveFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}|全てのファイル|*.*";
             saveFileDialog.InitialDirectory = Global.cpd.where;
             saveFileDialog.FileName = Path.GetFileName(Global.cpd.filename);
@@ -2052,7 +2050,7 @@ namespace MasaoPlus
 
         private void MWriteHTML_Click(object sender, EventArgs e)
         {
-            using SaveFileDialog saveFileDialog = new SaveFileDialog();
+            using SaveFileDialog saveFileDialog = new();
             saveFileDialog.DefaultExt = Global.cpd.runtime.DefaultConfigurations.FileExt;
             saveFileDialog.AddExtension = true;
             saveFileDialog.Filter = $"出力ファイル(*.{Global.cpd.runtime.DefaultConfigurations.FileExt})|*{Global.cpd.runtime.DefaultConfigurations.FileExt}";
@@ -2060,13 +2058,13 @@ namespace MasaoPlus
             {
                 if (Path.GetDirectoryName(saveFileDialog.FileName) != Global.cpd.where)
                 {
-                    using OutputControl outputControl = new OutputControl(Path.GetDirectoryName(saveFileDialog.FileName));
+                    using OutputControl outputControl = new(Path.GetDirectoryName(saveFileDialog.FileName));
                     if (outputControl.ShowDialog() == DialogResult.Cancel)
                     {
                         return;
                     }
                 }
-                using (StreamWriter streamWriter = new StreamWriter(saveFileDialog.FileName, false, Global.config.localSystem.FileEncoding))
+                using (StreamWriter streamWriter = new(saveFileDialog.FileName, false, Global.config.localSystem.FileEncoding))
                 {
                     string value = Subsystem.MakeHTMLCode(0);
                     streamWriter.Write(value);
@@ -2206,28 +2204,28 @@ namespace MasaoPlus
                     Global.cpd.EditingLayer = Global.cpd.project.LayerData;
                     MEditStage1.Checked = true;
                     Global.state.Background = Global.cpd.project.Config.Background;
-                    LayerState(Global.cpd.UseLayer);
+                    LayerState(CurrentProjectData.UseLayer);
                     break;
                 case 1:
                     Global.cpd.EditingMap = Global.cpd.project.StageData2;
                     Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
                     MEditStage2.Checked = true;
                     Global.state.Background = Global.cpd.project.Config.Background2;
-                    LayerState(Global.cpd.UseLayer);
+                    LayerState(CurrentProjectData.UseLayer);
                     break;
                 case 2:
                     Global.cpd.EditingMap = Global.cpd.project.StageData3;
                     Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
                     MEditStage3.Checked = true;
                     Global.state.Background = Global.cpd.project.Config.Background3;
-                    LayerState(Global.cpd.UseLayer);
+                    LayerState(CurrentProjectData.UseLayer);
                     break;
                 case 3:
                     Global.cpd.EditingMap = Global.cpd.project.StageData4;
                     Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
                     MEditStage4.Checked = true;
                     Global.state.Background = Global.cpd.project.Config.Background4;
-                    LayerState(Global.cpd.UseLayer);
+                    LayerState(CurrentProjectData.UseLayer);
                     break;
                 case 4:
                     Global.cpd.EditingMap = Global.cpd.project.MapData;
@@ -2302,7 +2300,7 @@ namespace MasaoPlus
 
         public void MSysConfig_Click(object sender, EventArgs e)
         {
-            using SideConfig sideConfig = new SideConfig();
+            using SideConfig sideConfig = new();
             if (sideConfig.ShowDialog() == DialogResult.OK && EditTab.SelectedIndex == 0)
             {
                 UpdateStatus("描画を更新しています...");
@@ -2319,7 +2317,7 @@ namespace MasaoPlus
 
         private void MVersion_Click(object sender, EventArgs e)
         {
-            using VersionInfo versionInfo = new VersionInfo();
+            using VersionInfo versionInfo = new();
             versionInfo.ShowDialog();
         }
 
@@ -2337,8 +2335,8 @@ namespace MasaoPlus
             {
                 Global.config.lastData.SpliterDist = MainSplit.SplitterDistance / (double)Width;
                 Rectangle normalWindowLocation = Native.GetNormalWindowLocation(this);
-                Global.config.lastData.WndSize = normalWindowLocation.Size;
-                Global.config.lastData.WndPoint = normalWindowLocation.Location;
+                Global.config.lastData.WndSize = new Size(normalWindowLocation.Size.Width * 96 / DeviceDpi, normalWindowLocation.Size.Height * 96 / DeviceDpi);
+                Global.config.lastData.WndPoint = new Point(normalWindowLocation.Location.X * 96 / DeviceDpi, normalWindowLocation.Location.Y * 96 / DeviceDpi);
                 Global.config.lastData.WndState = WindowState;
                 Global.config.SaveXML(Path.Combine(Application.StartupPath, Global.definition.ConfigFile));
                 if (Global.state.RunFile != null)
@@ -2428,7 +2426,7 @@ namespace MasaoPlus
 
         public void ProjectConfig_Click(object sender, EventArgs e)
         {
-            using (ProjectConfig projectConfig = new ProjectConfig())
+            using (ProjectConfig projectConfig = new())
             {
                 projectConfig.ShowDialog();
             }
@@ -2438,7 +2436,7 @@ namespace MasaoPlus
         private void MWriteStagePicture_Click(object sender, EventArgs e)
         {
             string text = "";
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            using (SaveFileDialog saveFileDialog = new())
             {
                 saveFileDialog.Filter = "PNG画像(*.png)|*.png|GIF画像(*.gif)|*.gif|JPEG画像(*.jpg)|*.jpg|ビットマップ(*.bmp)|*.bmp";
                 saveFileDialog.DefaultExt = ".png";
@@ -2449,8 +2447,8 @@ namespace MasaoPlus
                 }
                 text = saveFileDialog.FileName;
             }
-            Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : MainDesigner.CurrentStageSize;
-            using (Bitmap bitmap = new Bitmap(stageSizeData.x * Global.cpd.runtime.Definitions.ChipSize.Width, stageSizeData.y * Global.cpd.runtime.Definitions.ChipSize.Height))
+            Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : GUIDesigner.CurrentStageSize;
+            using (Bitmap bitmap = new(stageSizeData.x * Global.cpd.runtime.Definitions.ChipSize.Width, stageSizeData.y * Global.cpd.runtime.Definitions.ChipSize.Height))
             {
                 using (Graphics graphics = Graphics.FromImage(bitmap))
                 {
@@ -2492,7 +2490,7 @@ namespace MasaoPlus
 
         private void MResetProjRuntime_Click(object sender, EventArgs e)
         {
-            using (ResetRuntime resetRuntime = new ResetRuntime())
+            using (ResetRuntime resetRuntime = new())
             {
                 if (resetRuntime.ShowDialog() != DialogResult.OK)
                 {
@@ -2502,7 +2500,7 @@ namespace MasaoPlus
             MainDesigner.ClearBuffer();
             MainDesigner.AddBuffer();
             EditorSystemPanel_Resize(this, new EventArgs());
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
                 LayerState(true);
                 return;
@@ -2515,7 +2513,7 @@ namespace MasaoPlus
             DialogResult dialogResult = DialogResult.Retry;
             while (dialogResult == DialogResult.Retry)
             {
-                using RuntimeManager runtimeManager = new RuntimeManager();
+                using RuntimeManager runtimeManager = new();
                 dialogResult = runtimeManager.ShowDialog();
             }
         }
@@ -2526,12 +2524,12 @@ namespace MasaoPlus
             {
                 return;
             }
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.Filter = $"{Global.definition.AppName} プロジェクト (*{Global.definition.ProjExt})|*{Global.definition.ProjExt}";
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                using ProjInheritance projInheritance = new ProjInheritance(openFileDialog.FileName);
+                using ProjInheritance projInheritance = new(openFileDialog.FileName);
                 if (projInheritance.ShowDialog() == DialogResult.OK)
                 {
                     RestartUp(projInheritance.NewProjectName);
@@ -2545,12 +2543,12 @@ namespace MasaoPlus
             {
                 return;
             }
-            using OpenFileDialog openFileDialog = new OpenFileDialog();
+            using OpenFileDialog openFileDialog = new();
             openFileDialog.Filter = "HTML/XML ドキュメント(*.htm*;*.xml)|*.htm*;*.xml|全てのファイル|*.*";
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                using HTMLInheritance htmlinheritance = new HTMLInheritance(openFileDialog.FileName);
+                using HTMLInheritance htmlinheritance = new(openFileDialog.FileName);
                 if (htmlinheritance.ShowDialog() == DialogResult.OK)
                 {
                     RestartUp(htmlinheritance.ProjectFile);
@@ -2560,7 +2558,7 @@ namespace MasaoPlus
 
         private void MUpdateApp_Click(object sender, EventArgs e)
         {
-            using WebUpdate webUpdate = new WebUpdate();
+            using WebUpdate webUpdate = new();
             if (webUpdate.ShowDialog() == DialogResult.Retry)
             {
                 Global.state.RunFile = (string)webUpdate.runfile.Clone();
@@ -2572,10 +2570,10 @@ namespace MasaoPlus
         {
             UpdateStatus("ステージ反転処理中...");
             List<string> list;
-            Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : MainDesigner.CurrentStageSize;
+            Runtime.DefinedData.StageSizeData stageSizeData = Global.state.MapEditMode ? Global.cpd.project.Runtime.Definitions.MapSize : GUIDesigner.CurrentStageSize;
             for (int i = 0; i < stageSizeData.y; i++)
             {
-                list = new List<string>();
+                list = [];
                 string text = Global.cpd.EditingMap[i];
 
                 if (Global.cpd.project.Use3rdMapData)
@@ -2593,7 +2591,7 @@ namespace MasaoPlus
                         list.Add(text.Substring(j * stageSizeData.bytesize, stageSizeData.bytesize));
                     }
                 }
-                string[] array = list.ToArray();
+                string[] array = [.. list];
                 Array.Reverse(array);
                 if (Global.cpd.project.Use3rdMapData)
                 {
@@ -2604,12 +2602,12 @@ namespace MasaoPlus
                     Global.cpd.EditingMap[i] = string.Join("", array);
                 }
             }
-            if (Global.cpd.UseLayer)
+            if (CurrentProjectData.UseLayer)
             {
-                stageSizeData = MainDesigner.CurrentLayerSize;
+                stageSizeData = GUIDesigner.CurrentLayerSize;
                 for (int k = 0; k < stageSizeData.y; k++)
                 {
-                    list = new List<string>();
+                    list = [];
                     string text2 = Global.cpd.EditingLayer[k];
                     if (Global.cpd.project.Use3rdMapData)
                     {
@@ -2626,7 +2624,7 @@ namespace MasaoPlus
                             list.Add(text2.Substring(l * stageSizeData.bytesize, stageSizeData.bytesize));
                         }
                     }
-                    string[] array2 = list.ToArray();
+                    string[] array2 = [.. list];
                     Array.Reverse(array2);
                     if (Global.cpd.project.Use3rdMapData)
                     {

@@ -15,7 +15,7 @@ namespace MasaoPlus
                 {
                     return Global.cpd.runtime.Definitions.MapSize.bytesize;
                 }
-                if (!Global.cpd.UseLayer || EditingForeground)
+                if (!CurrentProjectData.UseLayer || EditingForeground)
                 {
                     return Global.cpd.runtime.Definitions.StageSize.bytesize;
                 }
@@ -31,11 +31,11 @@ namespace MasaoPlus
                 {
                     return Global.cpd.runtime.Definitions.MapSize.StageByteWidth;
                 }
-                if (!Global.cpd.UseLayer || EditingForeground)
+                if (!CurrentProjectData.UseLayer || EditingForeground)
                 {
-                    return Global.MainWnd.MainDesigner.CurrentStageSize.StageByteWidth;
+                    return GUIDesigner.CurrentStageSize.StageByteWidth;
                 }
-                return Global.MainWnd.MainDesigner.CurrentLayerSize.StageByteWidth;
+                return GUIDesigner.CurrentLayerSize.StageByteWidth;
             }
         }
 
@@ -47,11 +47,11 @@ namespace MasaoPlus
                 {
                     return Global.cpd.runtime.Definitions.MapSize;
                 }
-                if (!Global.cpd.UseLayer || EditingForeground)
+                if (!CurrentProjectData.UseLayer || EditingForeground)
                 {
-                    return Global.MainWnd.MainDesigner.CurrentStageSize;
+                    return GUIDesigner.CurrentStageSize;
                 }
-                return Global.MainWnd.MainDesigner.CurrentLayerSize;
+                return GUIDesigner.CurrentLayerSize;
             }
         }
 
@@ -155,7 +155,7 @@ namespace MasaoPlus
         {
             get
             {
-                return !Global.cpd.UseLayer || efg;
+                return !CurrentProjectData.UseLayer || efg;
             }
             set
             {
@@ -206,7 +206,7 @@ namespace MasaoPlus
 
         public string[] QuickTestrunSource;
 
-        public Dictionary<string, string> ChipRegister = new Dictionary<string, string>();
+        public Dictionary<string, string> ChipRegister = [];
 
         public bool ParseCommandline;
 
@@ -226,6 +226,6 @@ namespace MasaoPlus
 
         public bool StageSizeChanged = false;
 
-        public Size MinimumStageSize = new Size(16, 10);
+        public Size MinimumStageSize = new(16, 10);
     }
 }

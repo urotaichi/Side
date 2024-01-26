@@ -16,8 +16,8 @@ namespace MasaoPlus
             Project result;
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Project));
-                using FileStream fileStream = new FileStream(file, FileMode.Open);
+                XmlSerializer xmlSerializer = new(typeof(Project));
+                using FileStream fileStream = new(file, FileMode.Open);
                 Project project = (Project)xmlSerializer.Deserialize(fileStream);
                 project.Config.ConfigReady();
                 result = project;
@@ -30,26 +30,26 @@ namespace MasaoPlus
             return result;
         }
 
-        public static Project ParseBinary(string file)
-        {
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            Project result;
-            using (FileStream fileStream = new FileStream(file, FileMode.Create))
-            {
-                Project project = (Project)binaryFormatter.Deserialize(fileStream);
-                project.Config.ConfigReady();
-                result = project;
-            }
-            return result;
-        }
+        //public static Project ParseBinary(string file)
+        //{
+        //    BinaryFormatter binaryFormatter = new BinaryFormatter();
+        //    Project result;
+        //    using (FileStream fileStream = new FileStream(file, FileMode.Create))
+        //    {
+        //        Project project = (Project)binaryFormatter.Deserialize(fileStream);
+        //        project.Config.ConfigReady();
+        //        result = project;
+        //    }
+        //    return result;
+        //}
 
         public void SaveXML(string file)
         {
             ProjVer = Global.definition.CProjVer;
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Project));
+            XmlSerializer xmlSerializer = new(typeof(Project));
             try
             {
-                using FileStream fileStream = new FileStream(file, FileMode.Create);
+                using FileStream fileStream = new(file, FileMode.Create);
                 xmlSerializer.Serialize(fileStream, this);
             }
             catch (Exception ex)
@@ -58,19 +58,19 @@ namespace MasaoPlus
             }
         }
 
-        public void SaveBinary(string file)
-        {
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            using FileStream fileStream = new FileStream(file, FileMode.Create);
-            using DeflateStream deflateStream = new DeflateStream(fileStream, CompressionMode.Compress);
-            binaryFormatter.Serialize(deflateStream, this);
-        }
+        //public void SaveBinary(string file)
+        //{
+        //    BinaryFormatter binaryFormatter = new BinaryFormatter();
+        //    using FileStream fileStream = new FileStream(file, FileMode.Create);
+        //    using DeflateStream deflateStream = new DeflateStream(fileStream, CompressionMode.Compress);
+        //    binaryFormatter.Serialize(deflateStream, this);
+        //}
 
         public static void Convert3rdMapData(string[] StageData, int bytesize = 1)
         {
             for (int i = 0; i < StageData.Length; i++)
             {
-                if (StageData[i].Contains(",")) continue;
+                if (StageData[i].Contains(',')) continue;
                 char[] array = StageData[i].ToCharArray();
                 int[] array2 = new int[array.Length / bytesize];
                 for (int j = 0; j < array.Length; j += bytesize)
@@ -98,7 +98,7 @@ namespace MasaoPlus
         {
             for (int i = 0; i < StageData.Length; i++)
             {
-                if (!StageData[i].Contains(",")) continue;
+                if (!StageData[i].Contains(',')) continue;
                 string[] array = StageData[i].Split(',');
                 for (int j = 0; j < array.Length; j ++)
                 {
@@ -127,7 +127,7 @@ namespace MasaoPlus
 
         public double ProjVer;
 
-        public Runtime Runtime = new Runtime();
+        public Runtime Runtime = new();
 
         public bool Use3rdMapData = false;
 
@@ -151,6 +151,6 @@ namespace MasaoPlus
 
         public string[] MapData = new string[0];
 
-        public ConfigurationOwner Config = new ConfigurationOwner();
+        public ConfigurationOwner Config = new();
     }
 }
