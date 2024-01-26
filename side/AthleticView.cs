@@ -1849,9 +1849,8 @@ namespace MasaoPlus
                             {
                                 radius = 112 / 10;
                             }
-                            using (SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
-                                FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
-                            }
+                            using SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou));
+                            FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                         }
                         else
                         {
@@ -1870,9 +1869,8 @@ namespace MasaoPlus
                             {
                                 radius = 96 / 10;
                             }
-                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                                FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
-                            }
+                            using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
+                            FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                         }
                     },
                     (dpi, cschip, g, chipsize, gd, base_y) => {
@@ -1887,9 +1885,8 @@ namespace MasaoPlus
                                 radius = 112; TranslateTransform(dpi, g, 0, 24);
                                 if(cschip.description.Contains("下から")) TranslateTransform(dpi, g, 0, 106);
                             }
-                            using (SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
-                                FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
-                            }
+                            using SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou));
+                            FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                         }
                         else
                         {
@@ -1904,9 +1901,8 @@ namespace MasaoPlus
                             {
                                 radius = 96; TranslateTransform(dpi, g, 16, 0);
                             }
-                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                                FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
-                            }
+                            using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
+                            FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                         }
                     },
                     (cschip, g, chipsize) => {
@@ -1922,9 +1918,8 @@ namespace MasaoPlus
                             {
                                 radius = 112 / 10;
                             }
-                            using (SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
-                                g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
-                            }
+                            using SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou));
+                            g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
                         }
                         else
                         {
@@ -1943,9 +1938,8 @@ namespace MasaoPlus
                             {
                                 radius = 96 / 10;
                             }
-                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                                g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
-                            }
+                            using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
+                            g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
                         }
                     },
                     (dpi, cschip, g, chipsize, height) => {
@@ -1961,9 +1955,8 @@ namespace MasaoPlus
                             {
                                 radius = 112 / 25;
                             }
-                            using (SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
-                                FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
-                            }
+                            using SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou));
+                            FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                         }
                         else
                         {
@@ -1982,9 +1975,8 @@ namespace MasaoPlus
                             {
                                 radius = 96 / 25;
                             }
-                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                                FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
-                            }
+                            using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
+                            FillEllipse(dpi, g, brush, -radius, -radius, radius * 2, radius * 2);
                         }
                     },
                     (cschip, g, chipsize) => {
@@ -2000,9 +1992,8 @@ namespace MasaoPlus
                             {
                                 radius = 112 / 10;
                             }
-                            using (SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou))){
-                                g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
-                            }
+                            using SolidBrush brush = new(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou));
+                            g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
                         }
                         else
                         {
@@ -2021,9 +2012,8 @@ namespace MasaoPlus
                             {
                                 radius = 96 / 10;
                             }
-                            using (SolidBrush brush = new(Global.cpd.project.Config.Firebar2)){
-                                g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
-                            }
+                            using SolidBrush brush = new(Global.cpd.project.Config.Firebar2);
+                            g.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
                         }
                     })
                 },
