@@ -77,10 +77,10 @@ namespace MasaoPlus
             if (CurrentProjectData.UseLayer)
             {
                 UpdateBackgroundBuffer();
-                g.DrawImage(BackLayerBmp, 0, 0, this.ForeLayerBmp.Width / DeviceDpi * 96, this.ForeLayerBmp.Height / DeviceDpi * 96);
+                g.DrawImage(BackLayerBmp, 0, 0, ForeLayerBmp.Width / DeviceDpi * 96, ForeLayerBmp.Height / DeviceDpi * 96);
             }
             UpdateForegroundBuffer();
-            g.DrawImage(ForeLayerBmp, 0, 0, this.ForeLayerBmp.Width / DeviceDpi * 96, this.ForeLayerBmp.Height / DeviceDpi * 96);
+            g.DrawImage(ForeLayerBmp, 0, 0, ForeLayerBmp.Width / DeviceDpi * 96, ForeLayerBmp.Height / DeviceDpi * 96);
             Global.config.draw.ExtendDraw = extendDraw;
             UpdateForegroundBuffer();
             UpdateBackgroundBuffer();

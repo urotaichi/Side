@@ -47,14 +47,16 @@ namespace MasaoPlus
                 }
                 return true;
             }
+            Browser.Visible = true;
             Enabled = true;
             Browser.CoreWebView2.Navigate(str);
             return true;
         }
 
 		public void TrySuspendAsync()
-		{
-            this.Browser.CoreWebView2.TrySuspendAsync();
+        {
+            Browser.Visible = false;
+            Browser.CoreWebView2.TrySuspendAsync();
         }
 
         /*
@@ -286,7 +288,7 @@ namespace MasaoPlus
             Browser.CoreWebView2.NewWindowRequested += CoreWebView2_NewWindowRequested;
         }
 
-        private IContainer components;
+        private Container components;
 
         private ToolStrip MainToolStrip;
 
