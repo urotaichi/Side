@@ -145,6 +145,8 @@ namespace MasaoPlus
 
         private void InitializeComponent()
         {
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             components = new Container();
             MainToolStrip = new ToolStrip();
             Back = new ToolStripButton();
@@ -178,43 +180,43 @@ namespace MasaoPlus
             });
             MainToolStrip.Location = new Point(0, 0);
             MainToolStrip.Name = "MainToolStrip";
-            MainToolStrip.Size = new Size(414, 25);
+            MainToolStrip.Size = new Size(414 * DeviceDpi / 96, 25 * DeviceDpi / 96);
             MainToolStrip.TabIndex = 0;
             MainToolStrip.Text = "toolStrip1";
             Back.DisplayStyle = ToolStripItemDisplayStyle.Image;
             Back.Image = new IconImageView(DeviceDpi, Resources.back).View();
             Back.ImageTransparentColor = Color.Magenta;
             Back.Name = "Back";
-            Back.Size = new Size(23, 22);
+            Back.Size = new Size(23 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             Back.Text = "戻る";
             Back.Click += Back_Click;
             Forward.DisplayStyle = ToolStripItemDisplayStyle.Image;
             Forward.Image = new IconImageView(DeviceDpi, Resources.next).View();
             Forward.ImageTransparentColor = Color.Magenta;
             Forward.Name = "Forward";
-            Forward.Size = new Size(23, 22);
+            Forward.Size = new Size(23 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             Forward.Text = "進む";
             Forward.Click += Forward_Click;
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 25);
+            toolStripSeparator1.Size = new Size(6 * DeviceDpi / 96, 25 * DeviceDpi / 96);
             Reload.DisplayStyle = ToolStripItemDisplayStyle.Image;
             Reload.Image = new IconImageView(DeviceDpi, Resources.refresh).View();
             Reload.ImageTransparentColor = Color.Magenta;
             Reload.Name = "Reload";
-            Reload.Size = new Size(23, 22);
+            Reload.Size = new Size(23 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             Reload.Text = "更新";
             Reload.Click += Reload_Click;
             ReRun.DisplayStyle = ToolStripItemDisplayStyle.Image;
             ReRun.Image = new IconImageView(DeviceDpi, Resources.testrunstage).View();
             ReRun.ImageTransparentColor = Color.Magenta;
             ReRun.Name = "ReRun";
-            ReRun.Size = new Size(23, 22);
+            ReRun.Size = new Size(23 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             ReRun.Text = "再度テストラン";
             ReRun.Click += ReRun_Click;
             toolStripSeparator2.Name = "toolStripSeparator2";
             toolStripSeparator2.Size = new Size(6, 25);
             URL.Name = "URL";
-            URL.Size = new Size(48, 22);
+            URL.Size = new Size(48 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             URL.Text = "No File";
             URL.TextAlign = ContentAlignment.MiddleLeft;
             OnWeb.Alignment = ToolStripItemAlignment.Right;
@@ -222,7 +224,7 @@ namespace MasaoPlus
             OnWeb.Image = new IconImageView(DeviceDpi, Resources.web).View();
             OnWeb.ImageTransparentColor = Color.Magenta;
             OnWeb.Name = "OnWeb";
-            OnWeb.Size = new Size(23, 22);
+            OnWeb.Size = new Size(23 * DeviceDpi / 96, 22 * DeviceDpi / 96);
             OnWeb.Text = "関連付けられたブラウザで開く";
             OnWeb.Click += OnWeb_Click;
             MainStatusStrip.Items.AddRange(new ToolStripItem[]
@@ -230,13 +232,13 @@ namespace MasaoPlus
                 Status,
 				//this.Progress
 			});
-            MainStatusStrip.Location = new Point(0, 197);
+            MainStatusStrip.Location = new Point(0, 197 * DeviceDpi / 96);
             MainStatusStrip.Name = "MainStatusStrip";
-            MainStatusStrip.Size = new Size(414, 23);
+            MainStatusStrip.Size = new Size(414 * DeviceDpi / 96, 23 * DeviceDpi / 96);
             MainStatusStrip.TabIndex = 1;
             MainStatusStrip.Text = "statusStrip1";
             Status.Name = "Status";
-            Status.Size = new Size(297, 18);
+            Status.Size = new Size(297 * DeviceDpi / 96, 18 * DeviceDpi / 96);
             Status.Spring = true;
             Status.Text = "完了";
             Status.TextAlign = ContentAlignment.MiddleLeft;
@@ -244,10 +246,10 @@ namespace MasaoPlus
             //this.Progress.Size = new Size(100, 17);
             //this.Browser.ContextMenuStrip = this.contextMenuStrip1;
             Browser.Dock = DockStyle.Fill;
-            Browser.Location = new Point(0, 25);
-            Browser.MinimumSize = new Size(20, 20);
+            Browser.Location = new Point(0, 25 * DeviceDpi / 96);
+            Browser.MinimumSize = new Size(20 * DeviceDpi / 96, 20 * DeviceDpi / 96);
             Browser.Name = "Browser";
-            Browser.Size = new Size(414, 172);
+            Browser.Size = new Size(414 * DeviceDpi / 96, 172 * DeviceDpi / 96);
             Browser.TabIndex = 2;
             //this.Browser.ProgressChanged += this.Browser_ProgressChanged;
             //this.Browser.DocumentCompleted += this.Browser_DocumentCompleted;
@@ -263,13 +265,13 @@ namespace MasaoPlus
             //this.testToolStripMenuItem.Name = "testToolStripMenuItem";
             //this.testToolStripMenuItem.Size = new Size(101, 22);
             //this.testToolStripMenuItem.Text = "Test";
-            AutoScaleDimensions = new SizeF(6f, 12f);
-            AutoScaleMode = AutoScaleMode.Font;
+            //AutoScaleDimensions = new SizeF(6f, 12f);
+            //AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(Browser);
             Controls.Add(MainStatusStrip);
             Controls.Add(MainToolStrip);
             Name = "IntegratedBrowser";
-            Size = new Size(414, 220);
+            Size = new Size(414 * DeviceDpi / 96, 220 * DeviceDpi / 96);
             MainToolStrip.ResumeLayout(false);
             MainToolStrip.PerformLayout();
             MainStatusStrip.ResumeLayout(false);
