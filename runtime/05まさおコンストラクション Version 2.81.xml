@@ -2,7 +2,7 @@
 <MasaoRuntime xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Definitions>
     <Name>まさおコンストラクション Version 2.81</Name>
-    <DefVersion>5.0</DefVersion>
+    <DefVersion>5.01</DefVersion>
     <RequireLower>2.4</RequireLower>
     <Author>RYO</Author>
     <Update>https://urotaichi.com/other/side/mc28.xml</Update>

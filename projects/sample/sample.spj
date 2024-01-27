@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<MasaoProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="utf-8"?>
+<MasaoProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>sample</Name>
   <ProjVer>1</ProjVer>
   <Runtime>
@@ -12,7 +12,7 @@
       <ChipDefinition>chipresolv.sdx</ChipDefinition>
       <ChipExtender>ex.png</ChipExtender>
       <Chipset />
-      <DefVersion>4.3</DefVersion>
+      <DefVersion>5.01</DefVersion>
       <RequireLower>2.4</RequireLower>
       <ChipSize>
         <Width>32</Width>
@@ -30,7 +30,13 @@
       <LayerName4 />
       <MapName>chizu-{0}</MapName>
       <StageSize x="180" y="30" bytesize="1" />
+      <StageSize2 x="180" y="30" bytesize="1" />
+      <StageSize3 x="180" y="30" bytesize="1" />
+      <StageSize4 x="180" y="30" bytesize="1" />
       <LayerSize x="0" y="0" bytesize="0" />
+      <LayerSize2 x="0" y="0" bytesize="0" />
+      <LayerSize3 x="0" y="0" bytesize="0" />
+      <LayerSize4 x="0" y="0" bytesize="0" />
       <MapSize x="15" y="9" bytesize="1" />
       <MaxAthleticNumber>0</MaxAthleticNumber>
     </Definitions>
@@ -106,6 +112,7 @@ new JSMasao({</HeaderHTML>
       <RunFile />
     </DefaultConfigurations>
   </Runtime>
+  <Use3rdMapData>false</Use3rdMapData>
   <StageData>
     <string>....................................................................................................................................................................................</string>
     <string>....................................................................................................................................................................................</string>
@@ -286,7 +293,7 @@ new JSMasao({</HeaderHTML>
       <list>ブロック１を壊せる</list>
       <list>敵を倒せてブロック１を壊せる</list>
     </param>
-    <param type="bool21" value="true" desc="しっぽの標準装備をする" name="j_tail_hf" category="装備" row="0" stage="0" />
+    <param type="bool21" value="true" desc="しっぽの標準装備をする" name="j_tail_hf" chip="tokugi" category="装備" row="0" stage="0" />
     <param type="bool" value="true" desc="水中でファイアボールが消える" name="j_fire_mkf" chip="FireT" category="装備" row="0" stage="0" />
     <param type="list" value="1" desc="グレネードの種類" name="grenade_type" chip="GrenadeT" category="装備" row="0" stage="0">
       <list>グレネード(ボスを倒せる)</list>
