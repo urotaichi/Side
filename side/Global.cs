@@ -2,18 +2,18 @@
 
 namespace MasaoPlus
 {
-	internal static class Global
-	{
-		public const int ScrollbarWidth = 20;
+    internal static class Global
+    {
+        public const int ScrollbarWidth = 20;
 
-		public static MainWindow MainWnd = null;
+        public static MainWindow MainWnd = null;
 
-		public static Definition definition = new Definition();
+        public static Definition definition = new();
 
-		public static Config config = new Config();
+        public static Config config = new();
 
-		public static State state = new State();
+        public static State state = new();
 
-		public static CurrentProjectData cpd = new CurrentProjectData();
-	}
+        public static CurrentProjectData cpd = new();
+    }
 }

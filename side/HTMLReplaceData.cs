@@ -3,20 +3,14 @@ using System.Xml.Serialization;
 
 namespace MasaoPlus
 {
-	[XmlType("repl")]
-	[Serializable]
-	public struct HTMLReplaceData
-	{
-		public HTMLReplaceData(string n, string v)
-		{
-			this.Name = n;
-			this.Value = v;
-		}
+    [XmlType("repl")]
+    [Serializable]
+    public struct HTMLReplaceData(string n, string v)
+    {
+        [XmlAttribute("name")]
+        public string Name = n;
 
-		[XmlAttribute("name")]
-		public string Name;
-
-		[XmlAttribute("value")]
-		public string Value;
-	}
+        [XmlAttribute("value")]
+        public string Value = v;
+    }
 }

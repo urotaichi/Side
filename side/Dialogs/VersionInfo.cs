@@ -7,31 +7,31 @@ using MasaoPlus.Properties;
 
 namespace MasaoPlus.Dialogs
 {
-	public partial class VersionInfo : Form
-	{
-		public VersionInfo()
-		{
-			this.InitializeComponent();
-		}
+    public partial class VersionInfo : Form
+    {
+        public VersionInfo()
+        {
+            InitializeComponent();
+        }
 
-		private void VersionInfo_Load(object sender, EventArgs e)
-		{
-			this.VersionLabel.Text = Global.definition.Version;
-		}
+        private void VersionInfo_Load(object sender, EventArgs e)
+        {
+            VersionLabel.Text = Global.definition.Version;
+        }
 
-		private void LinkLabelClicked(object sender, LinkLabelLinkClickedEventArgs e)
-		{
-			Process.Start(((LinkLabel)sender).Text);
-		}
+        private void LinkLabelClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo { FileName = ((LinkLabel)sender).Text, UseShellExecute = true });
+        }
 
-		private void ViewDat_LinkClicked(object sender, LinkClickedEventArgs e)
-		{
-			Process.Start(e.LinkText);
-		}
+        private void ViewDat_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo { FileName = e.LinkText, UseShellExecute = true });
+        }
 
-		private void OKButton_Click(object sender, EventArgs e)
-		{
-			base.Close();
-		}
-	}
+        private void OKButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+    }
 }

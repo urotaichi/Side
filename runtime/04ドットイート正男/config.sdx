@@ -86,7 +86,7 @@
     <list>左下横２画面分</list><list>左下縦２画面分</list><list>左下４画面分</list>
   </param>
   <param name="view_move_type" desc="表示領域の動き方" type="list" value="1" category="システム" chip="view_move_type">
-    <list>右進行用の視界</list><list>左進行用の視界</list>
+    <list>右進行用の視界</list><list>左進行用の視界</list><list>全方向進行用の視界</list>
   </param>
   <param name="clear_type" desc="ステージクリア条件" type="list" value="1" category="システム">
     <list>星を取る</list><list>ｺｲﾝ全部で星出現</list><list>ｺｲﾝ全部で脱出ﾊｼｺﾞ出現</list>
@@ -1952,7 +1952,7 @@
   <param name="audio_bgm_switch_wave" desc="Wave形式の音声ファイルをBGMに使う" type="bool" value="false" category="BGM" />
   <param name="audio_bgm_switch_mp3" desc="MP3形式の音声ファイルをBGMに使う" type="bool" value="true" category="BGM" />
   <param name="audio_bgm_switch_ogg" desc="Ogg形式の音声ファイルをBGMに使う" type="bool" value="true" category="BGM" />
-  <param name="filename_fx_bgm_stage1" desc="ステージ１のBGM" type="file_audio" value="stage1.mp3" category="BGM" />
+  <param name="filename_fx_bgm_stage1" desc="ステージ1のBGM" type="file_audio" value="stage1.mp3" category="BGM" />
   <param name="filename_fx_bgm_stage2" desc="ステージ2のBGM" type="file_audio" value="stage2.mp3" category="BGM" stage="2" />
   <param name="filename_fx_bgm_stage3" desc="ステージ3のBGM" type="file_audio" value="stage3.mp3" category="BGM" stage="3" />
   <param name="filename_fx_bgm_stage4" desc="ステージ4のBGM" type="file_audio" value="stage4.mp3" category="BGM" stage="4" />

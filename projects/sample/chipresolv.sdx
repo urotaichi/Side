@@ -199,10 +199,6 @@
           <Width>64</Width>
           <Height>64</Height>
         </size>
-        <center>
-          <X>0</X>
-          <Y>32</Y>
-        </center>
         <name>乗れるカイオール</name>
         <description>乗ると右へ進みます</description>
       </chip>
@@ -215,7 +211,7 @@
         <description>高くジャンプできます</description>
       </chip>
     </chips>
-    <chips char="L" rel="HMovFloor">
+    <chips char="L" rel="HMovFloor" color="yellow">
       <chip value="1">
         <pattern>
           <X>0</X>
@@ -297,10 +293,6 @@
           <Width>64</Width>
           <Height>64</Height>
         </size>
-        <center>
-          <X>0</X>
-          <Y>32</Y>
-        </center>
         <name>乗れるカイオール</name>
         <description>乗ると右へ進みます</description>
       </chip>
@@ -395,10 +387,6 @@
           <Width>64</Width>
           <Height>64</Height>
         </size>
-        <center>
-          <X>0</X>
-          <Y>32</Y>
-        </center>
         <name>乗れるカイオール</name>
         <description>乗ると右へ進みます</description>
       </chip>

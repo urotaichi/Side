@@ -4,54 +4,62 @@ using System.Reflection;
 
 namespace MasaoPlus
 {
-	public class Definition
-	{
-		public string AppName = "Side";
+    public class Definition
+    {
+        public Definition()
+        {
+            var version = Assembly.GetExecutingAssembly().GetName().Version;
 
-		public string AppNameFull = "Supermasao Integrated Development Environment";
+            Version = $"{version.Major}.{version.Minor}.{version.Build}";
 
-		public double CProjVer = 1.0;
+            EditorIdStr = $"/* [MI]Created By:Side - the Supermasao Integrated Development Environment v{Version}[/MI] */";
+    }
+        public string AppName = "Side";
 
-		public string ProjExt = ".spj";
+        public string AppNameFull = "Supermasao Integrated Development Environment";
 
-		public string ProjFileType = "Project";
+        public double CProjVer = 1.0;
 
-		public string ProjFileDescription = "Side プロジェクトファイル";
+        public string ProjExt = ".spj";
 
-		public string RuntimeArchiveExt = ".srp";
+        public string ProjFileType = "Project";
 
-		public string RuntimeFileType = "RuntimePackage";
+        public string ProjFileDescription = "Side プロジェクトファイル";
 
-		public string RuntimeFileDescription = "Side ランタイムパッケージ";
+        public string RuntimeArchiveExt = ".srp";
 
-		public string Dump = "dmp.txt";
+        public string RuntimeFileType = "RuntimePackage";
 
-		public string RuntimeDir = "runtime";
+        public string RuntimeFileDescription = "Side ランタイムパッケージ";
 
-		public string ConfigFile = "side.xml";
+        public string Dump = "dmp.txt";
 
-		public string UpdateTempData = "su.xml";
+        public string RuntimeDir = "runtime";
 
-		public int GridInterval = 2;
+        public string ConfigFile = "side.xml";
 
-		public int RulerStep = 5;
+        public string UpdateTempData = "su.xml";
 
-		public bool RulerPutDot = true;
+        public int GridInterval = 2;
 
-		public int LineNoPaddingRight = 1;
+        public int RulerStep = 5;
 
-		public int LineNoPaddingTop = 1;
+        public bool RulerPutDot = true;
 
-		public int ZipExtractBufferLength = 10240;
+        public int LineNoPaddingRight = 1;
 
-		public string Version = FileVersionInfo.GetVersionInfo((new Uri(Assembly.GetExecutingAssembly().CodeBase)).LocalPath).FileVersion;
+        public int LineNoPaddingTop = 1;
 
-		public double CheckVersion = 2.9;
+        public int ZipExtractBufferLength = 10240;
 
-		public string EditorIdStr = "/* [MI]Created By:Side - the Supermasao Integrated Development Environment v2.9.0[/MI] */";
+        public string Version;
 
-		public bool IsAutoUpdateEnabled = true;
+        public double CheckVersion = 3.301;
 
-		public string BaseUpdateServer = "https://urotaichi.com/other/side/side.xml";
-	}
+        public string EditorIdStr;
+
+        public bool IsAutoUpdateEnabled = true;
+
+        public string BaseUpdateServer = "https://urotaichi.com/other/side/side.xml";
+    }
 }

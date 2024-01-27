@@ -5,205 +5,227 @@ using System.Drawing;
 
 namespace MasaoPlus
 {
-	public class State
-	{
-		public int GetCByte
-		{
-			get
-			{
-				if (Global.state.MapEditMode)
-				{
-					return Global.cpd.runtime.Definitions.MapSize.bytesize;
-				}
-				if (!Global.cpd.UseLayer || this.EditingForeground)
-				{
-					return Global.cpd.runtime.Definitions.StageSize.bytesize;
-				}
-				return Global.cpd.runtime.Definitions.LayerSize.bytesize;
-			}
-		}
+    public class State
+    {
+        public int GetCByte
+        {
+            get
+            {
+                if (Global.state.MapEditMode)
+                {
+                    return Global.cpd.runtime.Definitions.MapSize.bytesize;
+                }
+                if (!CurrentProjectData.UseLayer || EditingForeground)
+                {
+                    return Global.cpd.runtime.Definitions.StageSize.bytesize;
+                }
+                return Global.cpd.runtime.Definitions.LayerSize.bytesize;
+            }
+        }
 
-		public int GetCByteWidth
-		{
-			get
-			{
-				if (Global.state.MapEditMode)
-				{
-					return Global.cpd.runtime.Definitions.MapSize.StageByteWidth;
-				}
-				if (!Global.cpd.UseLayer || this.EditingForeground)
-				{
-					return Global.cpd.runtime.Definitions.StageSize.StageByteWidth;
-				}
-				return Global.cpd.runtime.Definitions.LayerSize.StageByteWidth;
-			}
-		}
+        public int GetCByteWidth
+        {
+            get
+            {
+                if (Global.state.MapEditMode)
+                {
+                    return Global.cpd.runtime.Definitions.MapSize.StageByteWidth;
+                }
+                if (!CurrentProjectData.UseLayer || EditingForeground)
+                {
+                    return GUIDesigner.CurrentStageSize.StageByteWidth;
+                }
+                return GUIDesigner.CurrentLayerSize.StageByteWidth;
+            }
+        }
 
-		public Runtime.DefinedData.StageSizeData GetCSSize
-		{
-			get
-			{
-				if (Global.state.MapEditMode)
-				{
-					return Global.cpd.runtime.Definitions.MapSize;
-				}
-				if (!Global.cpd.UseLayer || this.EditingForeground)
-				{
-					return Global.cpd.runtime.Definitions.StageSize;
-				}
-				return Global.cpd.runtime.Definitions.LayerSize;
-			}
-		}
+        public Runtime.DefinedData.StageSizeData GetCSSize
+        {
+            get
+            {
+                if (Global.state.MapEditMode)
+                {
+                    return Global.cpd.runtime.Definitions.MapSize;
+                }
+                if (!CurrentProjectData.UseLayer || EditingForeground)
+                {
+                    return GUIDesigner.CurrentStageSize;
+                }
+                return GUIDesigner.CurrentLayerSize;
+            }
+        }
 
-		public void AdjustMapPoint()
-		{
-			if (this.MapPoint.X > this.MapMoveMax.Width)
-			{
-				this.MapPoint.X = this.MapMoveMax.Width;
-			}
-			else if (this.MapPoint.X < 0)
-			{
-				this.MapPoint.X = 0;
-			}
-			if (this.MapPoint.Y > this.MapMoveMax.Height)
-			{
-				this.MapPoint.Y = this.MapMoveMax.Height;
-			}
-			else if (this.MapPoint.Y < 0)
-			{
-				this.MapPoint.Y = 0;
-			}
-			if (this.MapMoveMax.Width <= 0)
-			{
-				this.MapPoint.X = 0;
-			}
-			if (this.MapMoveMax.Height <= 0)
-			{
-				this.MapPoint.Y = 0;
-			}
-		}
+        public void AdjustMapPoint()
+        {
+            if (MapPoint.X > MapMoveMax.Width)
+            {
+                MapPoint.X = MapMoveMax.Width;
+            }
+            else if (MapPoint.X < 0)
+            {
+                MapPoint.X = 0;
+            }
+            if (MapPoint.Y > MapMoveMax.Height)
+            {
+                MapPoint.Y = MapMoveMax.Height;
+            }
+            else if (MapPoint.Y < 0)
+            {
+                MapPoint.Y = 0;
+            }
+            if (MapMoveMax.Width <= 0)
+            {
+                MapPoint.X = 0;
+            }
+            if (MapMoveMax.Height <= 0)
+            {
+                MapPoint.Y = 0;
+            }
+        }
 
-		public Point MapPointTranslated
-		{
-			get
-			{
-				double num = 1.0 / Global.config.draw.ZoomIndex;
-				return new Point((int)((double)this.MapPoint.X * num), (int)((double)this.MapPoint.Y * num));
-			}
-		}
+        public Point MapPointTranslated
+        {
+            get
+            {
+                double num = 1.0 / Global.config.draw.ZoomIndex;
+                return new Point((int)(MapPoint.X * num), (int)(MapPoint.Y * num));
+            }
+        }
 
-		public Point MapPointMap
-		{
-			get
-			{
-				return new Point(this.MapPoint.X / Global.cpd.runtime.Definitions.ChipSize.Width, this.MapPoint.Y / Global.cpd.runtime.Definitions.ChipSize.Height);
-			}
-			set
-			{
-				this.MapPoint.X = value.X * Global.cpd.runtime.Definitions.ChipSize.Width;
-				this.MapPoint.Y = value.Y * Global.cpd.runtime.Definitions.ChipSize.Height;
-			}
-		}
+        public Point MapPointMap
+        {
+            get
+            {
+                return new Point(MapPoint.X / Global.cpd.runtime.Definitions.ChipSize.Width, MapPoint.Y / Global.cpd.runtime.Definitions.ChipSize.Height);
+            }
+            set
+            {
+                MapPoint.X = value.X * Global.cpd.runtime.Definitions.ChipSize.Width;
+                MapPoint.Y = value.Y * Global.cpd.runtime.Definitions.ChipSize.Height;
+            }
+        }
 
-		public Point MapPointTranslatedMap
-		{
-			get
-			{
-				Point mapPointTranslated = this.MapPointTranslated;
-				return new Point(mapPointTranslated.X / Global.cpd.runtime.Definitions.ChipSize.Width, mapPointTranslated.Y / Global.cpd.runtime.Definitions.ChipSize.Height);
-			}
-			set
-			{
-				this.MapPoint.X = (int)((double)(value.X * Global.cpd.runtime.Definitions.ChipSize.Width) * Global.config.draw.ZoomIndex);
-				this.MapPoint.Y = (int)((double)(value.Y * Global.cpd.runtime.Definitions.ChipSize.Height) * Global.config.draw.ZoomIndex);
-			}
-		}
+        public Point MapPointTranslatedMap
+        {
+            get
+            {
+                Point mapPointTranslated = MapPointTranslated;
+                return new Point(mapPointTranslated.X / Global.cpd.runtime.Definitions.ChipSize.Width, mapPointTranslated.Y / Global.cpd.runtime.Definitions.ChipSize.Height);
+            }
+            set
+            {
+                MapPoint.X = (int)(value.X * Global.cpd.runtime.Definitions.ChipSize.Width * Global.config.draw.ZoomIndex);
+                MapPoint.Y = (int)(value.Y * Global.cpd.runtime.Definitions.ChipSize.Height * Global.config.draw.ZoomIndex);
+            }
+        }
 
-		public ChipsData CurrentChip
-		{
-			get
-			{
-				return this.CurrentChipData;
-			}
-			set
-			{
-				this.CurrentChipData = value;
-				if (this.UpdateCurrentChipInvoke != null)
-				{
-					this.UpdateCurrentChipInvoke();
-				}
-			}
-		}
+        public ChipsData CurrentChip
+        {
+            get
+            {
+                return CurrentChipData;
+            }
+            set
+            {
+                CurrentChipData = value;
+                // 現在選択しているチップが変わったら発火
+                UpdateCurrentChipInvoke?.Invoke();
+            }
+        }
 
-		public event State.UpdateCurrentChip UpdateCurrentChipInvoke;
+        public event UpdateCurrentChip UpdateCurrentChipInvoke;
 
-		public bool EditingForeground
-		{
-			get
-			{
-				return !Global.cpd.UseLayer || this.efg;
-			}
-			set
-			{
-				this.efg = value;
-			}
-		}
+        public ChipsData CurrentCustomPartsChip
+        {
+            get
+            {
+                return CurrentCustomPartsChipData;
+            }
+            set
+            {
+                CurrentCustomPartsChipData = value;
+                // 現在選択しているカスタムパーツが変わったら発火
+                UpdateCurrentCustomPartsChipInvoke?.Invoke();
+            }
+        }
 
-		public bool EditFlag
-		{
-			get
-			{
-				return this.editFlag;
-			}
-			set
-			{
-				this.editFlag = value;
-				Global.MainWnd.UpdateTitle();
-			}
-		}
+        public event UpdateCurrentCustomPartsChip UpdateCurrentCustomPartsChipInvoke;
 
-		public bool UseBuffered
-		{
-			get
-			{
-				return !this.ForceNoBuffering && Global.config.draw.SkipBufferedDraw;
-			}
-		}
+        public bool EditingForeground
+        {
+            get
+            {
+                return !CurrentProjectData.UseLayer || efg;
+            }
+            set
+            {
+                efg = value;
+            }
+        }
 
-		public Color Background = Color.FromArgb(0, 255, 255);
+        public bool EditFlag
+        {
+            get
+            {
+                return editFlag;
+            }
+            set
+            {
+                editFlag = value;
+                Global.MainWnd.UpdateTitle();
+            }
+        }
 
-		public bool DrawUnactiveLayer = true;
+        public bool UseBuffered
+        {
+            get
+            {
+                return !ForceNoBuffering && Global.config.draw.SkipBufferedDraw;
+            }
+        }
 
-		public bool TransparentUnactiveLayer = true;
+        public Color Background = Color.FromArgb(0, 255, 255);
 
-		public Point MapPoint = default(Point);
+        public bool DrawUnactiveLayer = true;
 
-		public Size MapMoveMax = default(Size);
+        public bool TransparentUnactiveLayer = true;
 
-		private ChipsData CurrentChipData = default(ChipsData);
+        public Point MapPoint = default;
 
-		public Process Testrun;
+        public Size MapMoveMax = default;
 
-		private bool efg = true;
+        private ChipsData CurrentChipData = default;
 
-		private bool editFlag;
+        private ChipsData CurrentCustomPartsChipData = default;
 
-		public string[] QuickTestrunSource;
+        public Process Testrun;
 
-		public Dictionary<string, string> ChipRegister = new Dictionary<string, string>();
+        private bool efg = true;
 
-		public bool ParseCommandline;
+        private bool editFlag;
 
-		public string RunFile;
+        public string[] QuickTestrunSource;
 
-		public bool ForceNoBuffering;
+        public Dictionary<string, string> ChipRegister = [];
 
-		public int EdittingStage;
+        public bool ParseCommandline;
 
-		public bool MapEditMode;
+        public string RunFile;
 
-		public bool TestrunAll;
+        public bool ForceNoBuffering;
 
-		public delegate void UpdateCurrentChip();
-	}
+        public int EdittingStage;
+
+        public bool MapEditMode;
+
+        public bool TestrunAll;
+
+        public delegate void UpdateCurrentChip();
+
+        public delegate void UpdateCurrentCustomPartsChip();
+
+        public bool StageSizeChanged = false;
+
+        public Size MinimumStageSize = new(16, 10);
+    }
 }

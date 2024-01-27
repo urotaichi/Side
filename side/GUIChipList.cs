@@ -3,1182 +3,552 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MasaoPlus
 {
-	public class GUIChipList : UserControl
-	{
-		public int SelectedIndex
-		{
-			get
-			{
-				return this.selectedIndex;
-			}
-			set
-			{
-				if (Global.cpd.runtime == null)
-				{
-					return;
-				}
-				if (Global.state.MapEditMode)
-				{
-					if (value >= Global.cpd.Worldchip.Length || value < 0)
-					{
-						return;
-					}
-					Global.state.CurrentChip = Global.cpd.Worldchip[value];
-				}
-				else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
-				{
-					if (value >= Global.cpd.Mapchip.Length || value < 0)
-					{
-						return;
-					}
-					Global.state.CurrentChip = Global.cpd.Mapchip[value];
-				}
-				else
-				{
-					if (value >= Global.cpd.Layerchip.Length || value < 0)
-					{
-						return;
-					}
-					Global.state.CurrentChip = Global.cpd.Layerchip[value];
-				}
-				this.selectedIndex = value;
-				this.Refresh();
-			}
-		}
+    public class GUIChipList : UserControl
+    {
+        public virtual int SelectedIndex
+        {
+            get
+            {
+                return selectedIndex;
+            }
+            set
+            {
+                if (Global.cpd.runtime == null)
+                {
+                    return;
+                }
+                if (Global.state.MapEditMode)
+                {
+                    if (value >= Global.cpd.Worldchip.Length || value < 0)
+                    {
+                        return;
+                    }
+                    Global.state.CurrentChip = Global.cpd.Worldchip[value];
+                }
+                else if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
+                {
+                    ChipsData[] array = Global.cpd.Mapchip;
+                    if (Global.cpd.project.Use3rdMapData)
+                    {
+                        array = [.. array, .. Global.cpd.VarietyChip];
+                        if(Global.cpd.CustomPartsChip != null)
+                        {
+                            array = [.. array, .. Global.cpd.CustomPartsChip];
+                        }
+                    }
 
-		private int vPosition
-		{
-			get
-			{
-				return this.vScr.Value;
-			}
-			set
-			{
-				this.vScr.Value = this.vPosition;
-				this.vScr.Refresh();
-				this.MainPanel.Refresh();
-			}
-		}
+                    if (value >= array.Length || value < 0)
+                    {
+                        return;
+                    }
+                    Global.state.CurrentChip = array[value];
+                }
+                else
+                {
+                    if (value >= Global.cpd.Layerchip.Length || value < 0)
+                    {
+                        return;
+                    }
+                    Global.state.CurrentChip = Global.cpd.Layerchip[value];
+                }
+                selectedIndex = value;
+                Refresh();
+            }
+        }
 
-		private int hMaxChip
-		{
-			get
-			{
-				int num = (int)Math.Floor((double)this.MainPanel.Width / (double)Global.cpd.runtime.Definitions.ChipSize.Width);
-				if (num <= 0)
-				{
-					return 1;
-				}
-				return num;
-			}
-		}
+        protected int vPosition
+        {
+            get
+            {
+                return vScr.Value;
+            }
+            set
+            {
+                vScr.Value = vPosition;
+                vScr.Refresh();
+                MainPanel.Refresh();
+            }
+        }
 
-		private void vScr_Scroll(object sender, ScrollEventArgs e)
-		{
-			this.MainPanel.Refresh();
-		}
+        protected int hMaxChip
+        {
+            get
+            {
+                int num = (int)Math.Floor(MainPanel.Width / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96));
+                if (num <= 0)
+                {
+                    return 1;
+                }
+                return num;
+            }
+        }
 
-		private void SetMaxValue()
-		{
-			this.vScr.LargeChange = this.MainPanel.Height;
-			this.vScr.SmallChange = Global.cpd.runtime.Definitions.ChipSize.Height;
-			this.vScr.Maximum = this.GetVirtSize() - this.MainPanel.Height + this.vScr.LargeChange - 1;
-		}
+        protected void vScr_Scroll(object sender, ScrollEventArgs e)
+        {
+            MainPanel.Refresh();
+        }
 
-		public GUIChipList()
-		{
-			this.InitializeComponent();
-		}
+        protected void SetMaxValue()
+        {
+            vScr.LargeChange = MainPanel.Height;
+            vScr.SmallChange = Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96;
+            vScr.Maximum = GetVirtSize() - MainPanel.Height + vScr.LargeChange - 1;
+        }
 
-		public Point GetPosition(int idx)
-		{
-			int num = this.MainPanel.Width / Global.cpd.runtime.Definitions.ChipSize.Width;
-			if (num <= 0)
-			{
-				num = 1;
-			}
-			return new Point(idx % num, (int)Math.Floor((double)idx / (double)num));
-		}
+        public GUIChipList()
+        {
+            InitializeComponent();
+        }
 
-		public int GetVirtSize()
-		{
-			return this.GetVirtSize(this.MainPanel.Width);
-		}
+        public Point GetPosition(int idx)
+        {
+            int num = MainPanel.Width / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96);
+            if (num <= 0)
+            {
+                num = 1;
+            }
+            return new Point(idx % num, (int)Math.Floor(idx / (double)num));
+        }
 
-		public int GetVirtSize(int wid)
-		{
-			if (Global.cpd.runtime == null)
-			{
-				return 0;
-			}
-			int num = wid / Global.cpd.runtime.Definitions.ChipSize.Width;
-			if (num <= 0)
-			{
-				num = 1;
-			}
-			if (!Global.cpd.UseLayer || Global.state.EditingForeground)
-			{
-				return (int)Math.Ceiling((double)Global.cpd.Mapchip.Length / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height;
-			}
-			return (int)Math.Ceiling((double)Global.cpd.Layerchip.Length / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height;
-		}
+        public int GetVirtSize()
+        {
+            return GetVirtSize(MainPanel.Width);
+        }
 
-		public void ResizeInvoke()
-		{
-			this.GUIChipList_Resize(this, new EventArgs());
-		}
+        public virtual int GetVirtSize(int wid)
+        {
+            if (Global.cpd.runtime == null)
+            {
+                return 0;
+            }
+            int num = wid / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96);
+            if (num <= 0)
+            {
+                num = 1;
+            }
+            if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
+            {
+                int num2 = Global.cpd.Mapchip.Length;
+                if (Global.cpd.project.Use3rdMapData)
+                {
+                    num2 += Global.cpd.VarietyChip.Length;
+                    if(Global.cpd.CustomPartsChip != null)
+                    {
+                        num2 += Global.cpd.CustomPartsChip.Length;
+                    }
+                }
+                return (int)Math.Ceiling(num2 / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96;
+            }
+            return (int)Math.Ceiling(Global.cpd.Layerchip.Length / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96;
+        }
 
-		private void GUIChipList_Resize(object sender, EventArgs e)
-		{
-			if (this.GetVirtSize(base.Width) < base.Height)
-			{
-				this.vScr.Value = 0;
-				this.vScr.Visible = false;
-			}
-			else
-			{
-				this.vScr.Visible = true;
-				this.SetMaxValue();
-			}
-			this.MainPanel.Refresh();
-		}
+        public void ResizeInvoke()
+        {
+            GUIChipList_Resize(this, new EventArgs());
+        }
+
+        protected void GUIChipList_Resize(object sender, EventArgs e)
+        {
+            if (GetVirtSize(Width) < Height)
+            {
+                vScr.Value = 0;
+                vScr.Visible = false;
+            }
+            else
+            {
+                vScr.Visible = true;
+                SetMaxValue();
+            }
+            MainPanel.Refresh();
+        }
+
+        protected virtual void AddChipData(ChipsData[] chipsData, int num, PaintEventArgs e, int inital = 0)
+        {
+            bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
+            for (int i = inital; i < num; i++)
+            {
+                ChipsData chipData = chipsData[i - inital];
+                Point point = GetPosition(i);
+                Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
+                Rectangle rectangle = new(point.X * chipsize.Width * DeviceDpi / 96, point.Y * chipsize.Height * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
+                rectangle.Y -= vPosition;
+                if (rectangle.Top > MainPanel.Height) break;
+
+                if (rectangle.Bottom >= 0)
+                {
+                    ChipData cschip = chipData.GetCSChip();
+                    if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd) // チップ裏に拡張画像を描画
+                    {
+                        // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
+                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                    }
+                    if (!CurrentProjectData.UseLayer || Global.state.EditingForeground) // パターンマップチップ
+                    {
+                        if (DeviceDpi / 96 >= 2 && (cschip.size == default || cschip.size.Width / cschip.size.Height == 1))
+                        {
+                            e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                        }
+                        else if (Global.config.draw.ClassicChipListInterpolation) e.Graphics.InterpolationMode = InterpolationMode.High;
+                        e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
+                        GraphicsState transState = e.Graphics.Save();
+                        e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
+                        if (oriboss_view && chipData.character == "Z")
+                        {
+                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, rectangle.Width, rectangle.Height);
+                        }
+                        else
+                        {
+                            switch (cschip.name)
+                            {
+                                case "一方通行":
+                                case "左右へ押せるドッスンスンのゴール":
+                                case "シーソー":
+                                case "ブランコ":
+                                case "スウィングバー":
+                                case "動くＴ字型":
+                                case "ロープ":
+                                case "長いロープ":
+                                case "ゆれる棒":
+                                case "人間大砲":
+                                case "曲線による上り坂":
+                                case "曲線による下り坂":
+                                case "乗れる円":
+                                case "跳ねる円":
+                                case "円":
+                                case "半円":
+                                case "ファイヤーバー":
+                                case "スウィングファイヤーバー":
+                                case "人口太陽":
+                                case "ファイヤーリング":
+                                case "ファイヤーウォール":
+                                case "スイッチ式ファイヤーバー":
+                                case "スイッチ式動くＴ字型":
+                                case "スイッチ式速く動くＴ字型":
+                                    AthleticView.list[cschip.name].Main(DeviceDpi, cschip, e.Graphics, chipsize);
+                                    break;
+                                default:
+                                    e.Graphics.TranslateTransform(chipsize.Width * DeviceDpi / 96 / 2, chipsize.Height * DeviceDpi / 96 / 2);
+                                    var rect = new Rectangle(-chipsize.Width * DeviceDpi / 96 / 2, -chipsize.Height * DeviceDpi / 96 / 2, rectangle.Width, rectangle.Height);
+                                    if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
+
+                                    // 水の半透明処理
+                                    if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && chipData.character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string water_clear_level_value))
+                                    {
+                                        float water_clear_level = float.Parse(water_clear_level_value);
+                                        var colorMatrix = new ColorMatrix
+                                        {
+                                            Matrix00 = 1f,
+                                            Matrix11 = 1f,
+                                            Matrix22 = 1f,
+                                            Matrix33 = water_clear_level / 255f,
+                                            Matrix44 = 1f
+                                        };
+                                        using var imageAttributes = new ImageAttributes();
+                                        imageAttributes.SetColorMatrix(colorMatrix);
+                                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
+                                    }
+                                    else e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+                                    break;
+                            }
+                        }
+                        e.Graphics.Restore(transState);
+                    }
+                    else // レイヤーマップチップ
+                    {
+                        if (DeviceDpi / 96 >= 2 && (cschip.size == default || cschip.size.Width / cschip.size.Height == 1))
+                        {
+                            e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                        }
+                        else if (Global.config.draw.ClassicChipListInterpolation) e.Graphics.InterpolationMode = InterpolationMode.High;
+                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawLayerOrig, rectangle, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+                    }
+                    if (chipData.character == "Z" && oriboss_view &&
+                        Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki) && Global.config.draw.ExtendDraw)
+                    {
+                        Point p = int.Parse(oriboss_ugoki) switch
+                        {
+                            1 => new Point(352, 256),
+                            2 => new Point(96, 0),
+                            3 => new Point(64, 0),
+                            4 => new Point(256, 0),
+                            5 => new Point(288, 0),
+                            6 => new Point(288, 448),
+                            7 => new Point(320, 448),
+                            8 => new Point(32, 32),
+                            9 => new Point(96, 0),
+                            10 => new Point(0, 32),
+                            11 => new Point(64, 0),
+                            12 => new Point(96, 32),
+                            13 => new Point(64, 0),
+                            14 => new Point(352, 448),
+                            15 => new Point(416, 448),
+                            16 => new Point(288, 448),
+                            17 => new Point(320, 448),
+                            18 => new Point(96, 0),
+                            19 => new Point(96, 0),
+                            20 => new Point(256, 0),
+                            21 => new Point(256, 0),
+                            22 => new Point(352, 448),
+                            23 => new Point(384, 448),
+                            24 => new Point(32, 32),
+                            25 => new Point(32, 32),
+                            26 => new Point(32, 128),
+                            27 => new Point(32, 128),
+                            _ => throw new ArgumentException(),
+                        };
+                        // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
+                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(p, chipsize), GraphicsUnit.Pixel);
+                    }
+                    else if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
+                    {
+                        // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
+                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                    }
+                    e.Graphics.PixelOffsetMode = default;
+                    if (chipData.idColor != null)
+                    {
+                        GraphicsState transState = e.Graphics.Save();
+                        e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
+                        Color col = ColorTranslator.FromHtml(chipData.idColor);
+                        using Brush brush = new SolidBrush(Color.FromArgb(240, col));
+                        e.Graphics.FillRectangle(brush, 0, 0, 10 * DeviceDpi / 96, 5 * DeviceDpi / 96);
+                        e.Graphics.Restore(transState);
+                    }
+                    if (Global.state.MapEditMode && Global.state.CurrentChip.character == chipData.character
+                        || !Global.state.MapEditMode
+                            && (Global.cpd.project.Use3rdMapData && Global.state.CurrentChip.code == chipData.code
+                            || !Global.cpd.project.Use3rdMapData && Global.state.CurrentChip.character == chipData.character))
+                    {
+                        if (i != selectedIndex) selectedIndex = i;
+                        switch (Global.config.draw.SelDrawMode)
+                        {
+                            case Config.Draw.SelectionDrawMode.SideOriginal:
+                                using (Brush brush2 = new SolidBrush(Color.FromArgb(100, DrawEx.GetForegroundColor(Global.state.Background))))
+                                {
+                                    ControlPaint.DrawFocusRectangle(e.Graphics, rectangle);
+                                    e.Graphics.FillRectangle(brush2, rectangle);
+                                    break;
+                                }
+                            case Config.Draw.SelectionDrawMode.mtpp:
+                                ControlPaint.DrawFocusRectangle(e.Graphics, rectangle);
+                                ControlPaint.DrawSelectionFrame(e.Graphics, true, rectangle, new Rectangle(0, 0, 0, 0), Color.Blue);
+                                break;
+                            case Config.Draw.SelectionDrawMode.MTool:
+                                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1));
+                                e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 1, rectangle.Y + 1, rectangle.Width - 3, rectangle.Height - 3));
+                                e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 2, rectangle.Y + 2, rectangle.Width - 5, rectangle.Height - 5));
+                                e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 3, rectangle.Y + 3, rectangle.Width - 7, rectangle.Height - 7));
+                                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(rectangle.X + 4, rectangle.Y + 4, rectangle.Width - 9, rectangle.Height - 9));
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+        }
 
         // クラシックチップリスト
-        private void MainPanel_Paint(object sender, PaintEventArgs e)
-		{
-			try
-			{
-				if (Global.MainWnd.MainDesigner.DrawChipOrig != null && Global.cpd.project != null)
-				{
-					if (Global.config.draw.ClassicChipListInterpolation)
-						e.Graphics.InterpolationMode = InterpolationMode.High;
-					else
-						e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-					using (Brush brush = new SolidBrush(Global.state.Background))
-					{
-						e.Graphics.FillRectangle(brush, e.ClipRectangle);
-					}
-					Point point = default(Point);
-					ChipsData chipsData = default(ChipsData);
-					Rectangle rectangle = default(Rectangle);
-					GraphicsState transState;
-					int num = 0;
-					if (Global.state.MapEditMode)
-						num = Global.cpd.Worldchip.Length;
-					else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
-						num = Global.cpd.Mapchip.Length;
-					else
-						num = Global.cpd.Layerchip.Length;
-					for (int i = 0; i < num; i++)
-					{
-						if (Global.state.MapEditMode)
-							chipsData = Global.cpd.Worldchip[i];
-						else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
-							chipsData = Global.cpd.Mapchip[i];
-						else
-							chipsData = Global.cpd.Layerchip[i];
+        protected virtual void MainPanel_Paint(object sender, PaintEventArgs e)
+        {
+            try
+            {
+                if (Global.MainWnd.MainDesigner.DrawChipOrig != null && Global.cpd.project != null)
+                {
+                    if (Global.config.draw.ClassicChipListInterpolation)
+                        e.Graphics.InterpolationMode = InterpolationMode.High;
+                    else
+                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+                    using (Brush brush = new SolidBrush(Global.state.Background))
+                    {
+                        e.Graphics.FillRectangle(brush, e.ClipRectangle); // 背景色で塗りつぶす
+                    }
+                    int num = 0, num2 = 0;
+                    if (Global.state.MapEditMode)
+                    {
+                        num = Global.cpd.Worldchip.Length;
+                        AddChipData(Global.cpd.Worldchip, num, e);
+                    }
+                    else if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
+                    {
+                        num = Global.cpd.Mapchip.Length;
+                        AddChipData(Global.cpd.Mapchip, num, e);
+                        if (Global.cpd.project.Use3rdMapData)
+                        {
+                            num2 = Global.cpd.VarietyChip.Length;
+                            if (Global.cpd.CustomPartsChip != null)
+                            {
+                                num2 += Global.cpd.CustomPartsChip.Length;
+                                AddChipData([.. Global.cpd.VarietyChip, .. Global.cpd.CustomPartsChip], num + num2, e, num);
+                            }
+                            AddChipData(Global.cpd.VarietyChip, num + num2, e, num);
+                        }
+                    }
+                    else
+                    {
+                        num = Global.cpd.Layerchip.Length;
+                        AddChipData(Global.cpd.Layerchip, num, e);
+                    }
 
-						point = this.GetPosition(i);
-						Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
-						rectangle = new Rectangle(new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsize);
-						rectangle.Y -= this.vPosition;
-						if (rectangle.Top > this.MainPanel.Height) break;
+                    if (!Enabled)
+                    {
+                        using Brush brush3 = new SolidBrush(Color.FromArgb(160, Color.White));
+                        e.Graphics.FillRectangle(brush3, e.ClipRectangle);
+                    }
+                }
+            }
+            catch
+            {
+            }
+        }
 
-						if (rectangle.Bottom >= 0)
-						{
-							ChipData cschip = chipsData.GetCSChip();
-							if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && cschip.xdbackgrnd)
-							{
-								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
-							}
-							if (!Global.cpd.UseLayer || Global.state.EditingForeground)
-							{
-								e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
-								transState = e.Graphics.Save();
-								e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
-								if (Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && chipsData.character == "Z")
-								{
-									e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, chipsize.Width, chipsize.Height);
-								}
-								else
-								{
-									Pen pen;
-									SolidBrush brush;
-									PointF[] vo_pa;
-									double rad = 0;
-									const double math_pi = 3.1415926535897931;
-									switch (cschip.name)
-									{
-										case "一方通行":
-											if (cschip.description.Contains("表示なし")) break;
-											pen = new Pen(Global.cpd.project.Config.Firebar2, 2);
-											if (cschip.description.Contains("右"))
-												e.Graphics.DrawLine(pen, chipsize.Width - 1, 0, chipsize.Width - 1, chipsize.Height);
-											else if (cschip.description.Contains("左"))
-												e.Graphics.DrawLine(pen, 1, 0, 1, chipsize.Height);
-											else if (cschip.description.Contains("上"))
-												e.Graphics.DrawLine(pen, 0, 1, chipsize.Width, 1);
-											else if (cschip.description.Contains("下"))
-												e.Graphics.DrawLine(pen, 0, chipsize.Height - 1, chipsize.Width, chipsize.Height - 1);
-											pen.Dispose();
-											break;
-										case "左右へ押せるドッスンスンのゴール":
-											pen = new Pen(Global.cpd.project.Config.Firebar1, 1);
-											e.Graphics.TranslateTransform(1, 1);
-											e.Graphics.DrawRectangle(pen, 0, 11, chipsize.Width - 1, chipsize.Height - 1 - 11);
-											e.Graphics.TranslateTransform(-1, -1);
-											e.Graphics.DrawLine(pen, 0, 11, chipsize.Width, chipsize.Height);
-											e.Graphics.DrawLine(pen, 0, chipsize.Height, chipsize.Width, 11);
-											pen.Dispose();
-											break;
-										case "シーソー":
-											e.Graphics.TranslateTransform(16, 17);
-											vo_pa = new PointF[4];
-											if (cschip.description.Contains("左")) rad = -56 * Math.PI / 180;
-											else if (cschip.description.Contains("右")) rad = 56 * Math.PI / 180;
-											vo_pa[0].X = (float)Math.Cos(rad + Math.PI) * chipsize.Width / 2;
-											vo_pa[0].Y = (float)Math.Sin(rad + Math.PI) * chipsize.Width / 2;
-											vo_pa[1].X = (float)Math.Cos(rad) * chipsize.Width / 2;
-											vo_pa[1].Y = (float)Math.Sin(rad) * chipsize.Width / 2;
-											vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad - Math.PI / 2) * 5;
-											vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad - Math.PI / 2) * 5;
-											vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad - Math.PI / 2) * 5;
-											vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad - Math.PI / 2) * 5;
-											brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-											e.Graphics.FillPolygon(brush, vo_pa);
-											vo_pa = new PointF[3];
-											vo_pa[0].X = 0;
-											vo_pa[0].Y = -2;
-											vo_pa[1].X = -4;
-											vo_pa[1].Y = 15;
-											vo_pa[2].X = 4;
-											vo_pa[2].Y = 15;
-											brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
-											e.Graphics.FillPolygon(brush, vo_pa);
-											brush.Dispose();
-											break;
-										case "ブランコ":
-											e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
-												new Rectangle(0, 0, chipsize.Width, chipsize.Height),
-												new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-											e.Graphics.TranslateTransform(16, -9);
-											rad = 90 * Math.PI / 180;
-											vo_pa = new PointF[4];
-											vo_pa[0].X = (float)Math.Cos(rad + Math.PI / 9) * chipsize.Width * (float)1.15;
-											vo_pa[0].Y = (float)Math.Sin(rad + Math.PI / 9) * chipsize.Width * (float)1.15;
-											vo_pa[1].X = (float)Math.Cos(rad - Math.PI / 9) * chipsize.Width * (float)1.15;
-											vo_pa[1].Y = (float)Math.Sin(rad - Math.PI / 9) * chipsize.Width * (float)1.15;
-											vo_pa[2].X = vo_pa[1].X + (float)Math.Cos(rad) * 5;
-											vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin(rad) * 5;
-											vo_pa[3].X = vo_pa[0].X + (float)Math.Cos(rad) * 5;
-											vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin(rad) * 5;
-											double dx = Math.Cos(rad) * 21;
-											double dy = Math.Sin(rad) * 21;
-											pen = new Pen(Global.cpd.project.Config.Firebar1, 2);
-											e.Graphics.DrawLine(pen, (float)Math.Cos(rad) * 10, (float)Math.Sin(rad) * 10, (float)dx, (float)dy);
-											e.Graphics.DrawLine(pen, vo_pa[0].X, vo_pa[0].Y, (float)dx, (float)dy);
-											e.Graphics.DrawLine(pen, vo_pa[1].X, vo_pa[1].Y, (float)dx, (float)dy);
-											brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-											e.Graphics.FillPolygon(brush, vo_pa);
-											pen.Dispose();
-											brush.Dispose();
-											break;
-										case "スウィングバー":
-											e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
-												new Rectangle(0, 0, chipsize.Width, chipsize.Height),
-												new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-											e.Graphics.TranslateTransform(16, 14);
-											if (cschip.description.Contains("左"))
-											{
-												e.Graphics.TranslateTransform(32, 0);
-												rad = 180 + Math.Floor((double)(-26 - 5) / 10);
-											}
-											else if (cschip.description.Contains("右"))
-											{
-												e.Graphics.TranslateTransform(-32, 0);
-												rad = 360 + Math.Floor((double)(26 + 5) / 10);
-											}
-											rad = (rad * Math.PI) / 180;
-											vo_pa = new PointF[4];
-											vo_pa[0].X = (float)(Math.Cos(rad) * 40 + Math.Cos(rad + Math.PI / 2) * 3);
-											vo_pa[0].Y = (float)(Math.Sin(rad) * 40 + Math.Sin(rad + Math.PI / 2) * 3);
-											vo_pa[1].X = (float)(Math.Cos(rad) * 20 + Math.Cos(rad + Math.PI / 2) * 3);
-											vo_pa[1].Y = (float)(Math.Sin(rad) * 20 + Math.Sin(rad + Math.PI / 2) * 3);
-											vo_pa[2].X = (float)(Math.Cos(rad) * 20 + Math.Cos(rad - Math.PI / 2) * 3);
-											vo_pa[2].Y = (float)(Math.Sin(rad) * 20 + Math.Sin(rad - Math.PI / 2) * 3);
-											vo_pa[3].X = (float)(Math.Cos(rad) * 40 + Math.Cos(rad - Math.PI / 2) * 3);
-											vo_pa[3].Y = (float)(Math.Sin(rad) * 40 + Math.Sin(rad - Math.PI / 2) * 3);
-											brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-											e.Graphics.FillPolygon(brush, vo_pa);
-											brush.Dispose();
-											break;
-										case "動くＴ字型":
-											e.Graphics.TranslateTransform(16, 37);
-											rad = 270;
-											vo_pa = new PointF[3];
-											vo_pa[0].X = (float)Math.Cos(((rad + 6) * Math.PI) / 180) * chipsize.Width;
-											vo_pa[0].Y = (float)Math.Sin(((rad + 6) * Math.PI) / 180) * chipsize.Width;
-											vo_pa[1].X = (float)Math.Cos(((rad - 6) * Math.PI) / 180) * chipsize.Width;
-											vo_pa[1].Y = (float)Math.Sin(((rad - 6) * Math.PI) / 180) * chipsize.Width;
-											vo_pa[2].X = 0;
-											vo_pa[2].Y = 0;
-											brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
-											e.Graphics.FillPolygon(brush, vo_pa);
-											vo_pa = new PointF[4];
-											vo_pa[0].X = (float)Math.Cos(((rad + 20) * Math.PI) / 180) * chipsize.Width * (float)1.3;
-											vo_pa[0].Y = (float)Math.Sin(((rad + 20) * Math.PI) / 180) * chipsize.Width;
-											vo_pa[1].X = (float)Math.Cos(((rad - 20) * Math.PI) / 180) * chipsize.Width * (float)1.3;
-											vo_pa[1].Y = (float)Math.Sin(((rad - 20) * Math.PI) / 180) * chipsize.Width;
-											vo_pa[2].X = vo_pa[1].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
-											vo_pa[2].Y = vo_pa[1].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
-											vo_pa[3].X = vo_pa[0].X + (float)Math.Cos((rad * Math.PI) / 180) * 5;
-											vo_pa[3].Y = vo_pa[0].Y + (float)Math.Sin((rad * Math.PI) / 180) * 5;
-											brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-											e.Graphics.FillPolygon(brush, vo_pa);
-											brush.Dispose();
-											break;
-										case "ロープ":
-										case "長いロープ":
-										case "ゆれる棒":
-											e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
-												new Rectangle(0, 0, chipsize.Width, chipsize.Height),
-												new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-											int length;
-											if (cschip.name == "ロープ") length = 2;
-											else length = 1;
-											if (cschip.description == "つかまると左から動く")
-											{
-												e.Graphics.TranslateTransform(39, 5);
-												rad = 168;
-											}
-											else
-											{
-												e.Graphics.TranslateTransform(16, -9);
-												rad = 90;
-											}
-											vo_pa = new PointF[4];
-											vo_pa[0].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
-											vo_pa[0].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
-											vo_pa[1].X = (float)(Math.Cos((rad * Math.PI) / 180) * 12 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
-											vo_pa[1].Y = (float)(Math.Sin((rad * Math.PI) / 180) * 12 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
-											vo_pa[2].X = (float)(Math.Cos((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Cos(((rad - 90) * Math.PI) / 180) * length);
-											vo_pa[2].Y = (float)(Math.Sin((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Sin(((rad - 90) * Math.PI) / 180) * length);
-											vo_pa[3].X = (float)(Math.Cos((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Cos(((rad + 90) * Math.PI) / 180) * length);
-											vo_pa[3].Y = (float)(Math.Sin((rad * Math.PI) / 180) * chipsize.Width * 1.2 + Math.Sin(((rad + 90) * Math.PI) / 180) * length);
-											brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-											e.Graphics.FillPolygon(brush, vo_pa);
-											brush.Dispose();
-											break;
-										case "人間大砲":
-											if (cschip.description == "右向き") { rad = 330; e.Graphics.TranslateTransform(-9, 3); }
-											else if (cschip.description == "左向き") { rad = 225; e.Graphics.TranslateTransform(9, 3); }
-											else if (cschip.description == "天井") { rad = 30; e.Graphics.TranslateTransform(-9, 0); }
-											else if (cschip.description == "右の壁") { rad = 270; e.Graphics.TranslateTransform(0, 9); }
-											else if (cschip.description == "左の壁") { rad = 300; e.Graphics.TranslateTransform(0, 9); }
-											brush = new SolidBrush(Global.cpd.project.Config.Mizunohadou);
-											e.Graphics.FillEllipse(brush, 16 - 7, 16 - 7, 14, 14);
-											vo_pa = new PointF[4];
-											vo_pa[0].X = 16 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
-											vo_pa[0].Y = 16 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
-											vo_pa[1].X = 16 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
-											vo_pa[1].Y = 16 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
-											vo_pa[2].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad - 90) * Math.PI) / 180) * 7;
-											vo_pa[2].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad - 90) * Math.PI) / 180) * 7;
-											vo_pa[3].X = 16 + (float)Math.Cos((rad * Math.PI) / 180) * 20 + (float)Math.Cos(((rad + 90) * Math.PI) / 180) * 7;
-											vo_pa[3].Y = 16 + (float)Math.Sin((rad * Math.PI) / 180) * 20 + (float)Math.Sin(((rad + 90) * Math.PI) / 180) * 7;
-											e.Graphics.FillPolygon(brush, vo_pa);
-											brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-											if (cschip.description == "天井")
-											{
-												vo_pa[0].X = 16 - 2;
-												vo_pa[0].Y = 16 + 1;
-												vo_pa[1].X = 16 + 2;
-												vo_pa[1].Y = 16 + 1;
-												vo_pa[2].X = 16 + 5;
-												vo_pa[2].Y = 0;
-												vo_pa[3].X = 16 - 5;
-												vo_pa[3].Y = 0;
-											}
-											else if (cschip.description == "右の壁")
-											{
-												vo_pa[0].X = 16 - 1;
-												vo_pa[0].Y = 16 - 2;
-												vo_pa[1].X = 16 - 1;
-												vo_pa[1].Y = 16 + 2;
-												vo_pa[2].X = chipsize.Width;
-												vo_pa[2].Y = 16 + 5;
-												vo_pa[3].X = chipsize.Width;
-												vo_pa[3].Y = 16 - 5;
-											}
-											else if (cschip.description == "左の壁")
-											{
-												vo_pa[0].X = 16 + 1;
-												vo_pa[0].Y = 16 - 2;
-												vo_pa[1].X = 16 + 1;
-												vo_pa[1].Y = 16 + 2;
-												vo_pa[2].X = 0;
-												vo_pa[2].Y = 16 + 5;
-												vo_pa[3].X = 0;
-												vo_pa[3].Y = 16 - 5;
-											}
-											else
-											{
-												vo_pa[0].X = 16 - 2;
-												vo_pa[0].Y = 16 - 1;
-												vo_pa[1].X = 16 + 2;
-												vo_pa[1].Y = 16 - 1;
-												vo_pa[2].X = 16 + 5;
-												vo_pa[2].Y = chipsize.Width - 3;
-												vo_pa[3].X = 16 - 5;
-												vo_pa[3].Y = chipsize.Width - 3;
-											}
-											e.Graphics.FillPolygon(brush, vo_pa);
-											brush.Dispose();
-											break;
-										case "曲線による上り坂":
-										case "曲線による下り坂":
-											var k21 = 0; float j20 = default, k20 = default, l20 = default, i21 = default;
-											if (cschip.description.Contains("線のみ"))
-											{
-												vo_pa = new PointF[11];
-												pen = new Pen(Global.cpd.project.Config.Firebar2, 1);
-												for (var i1 = 0; i1 <= 50; i1 += 5)
-												{
-													if (cschip.name.Contains("上"))
-														vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-													else if (cschip.name.Contains("下"))
-														vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-													vo_pa[k21].Y = (float)Math.Floor(Math.Cos((i1 * math_pi) / 180) * chipsize.Height * 5 / 8) - 1;
-													if (i1 == 50)
-													{
-														j20 = vo_pa[k21].X;
-														k20 = vo_pa[k21].Y;
-													}
-													k21++;
-												}
+        protected virtual void MainPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            Focus();
+            if (!Enabled)
+            {
+                return;
+            }
+            int hMaxChip = this.hMaxChip;
+            if (e.X > hMaxChip * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96)
+            {
+                return;
+            }
+            int num = (int)Math.Floor(e.X / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96));
+            num += (int)Math.Floor((e.Y + vPosition) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96)) * hMaxChip;
+            int num2;
+            if (Global.state.MapEditMode)
+            {
+                num2 = Global.cpd.Worldchip.Length;
+            }
+            else if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
+            {
+                num2 = Global.cpd.Mapchip.Length;
+                if (Global.cpd.project.Use3rdMapData)
+                {
+                    num2 += Global.cpd.VarietyChip.Length;
+                    if (Global.cpd.CustomPartsChip != null)
+                    {
+                        num2 += Global.cpd.CustomPartsChip.Length;
+                    }
+                }
+            }
+            else
+            {
+                num2 = Global.cpd.Layerchip.Length;
+            }
+            if (num >= num2)
+            {
+                return;
+            }
+            SelectedIndex = num;
+        }
 
-												e.Graphics.DrawLines(pen, vo_pa);
-												k21 = 0;
-												for (var i1 = 0; i1 <= 50; i1 += 5)
-												{
-													if (cschip.name.Contains("上"))
-														vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-													else if (cschip.name.Contains("下"))
-														vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-													vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos((i1 * math_pi) / 180) * chipsize.Height * 5 / 8) + 1;
-													if (i1 == 50)
-													{
-														l20 = vo_pa[k21].X;
-														i21 = vo_pa[k21].Y;
-													}
-													k21++;
-												}
-												e.Graphics.DrawLines(pen, vo_pa);
-												vo_pa = new PointF[2];
-												vo_pa[0].X = j20;
-												vo_pa[0].Y = k20;
-												vo_pa[1].X = l20;
-												vo_pa[1].Y = i21;
-												e.Graphics.DrawLines(pen, vo_pa);
-												pen.Dispose();
-											}
-											else
-											{
-												vo_pa = new PointF[13];
-												brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-												for (var i1 = 0; i1 <= 50; i1 += 5)
-												{
-													if (cschip.name.Contains("上"))
-														vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-													else if (cschip.name.Contains("下"))
-														vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-													vo_pa[k21].Y = (float)Math.Floor(Math.Cos((i1 * math_pi) / 180) * chipsize.Height * 5 / 8);
-													if (i1 == 50)
-													{
-														j20 = vo_pa[k21].X;
-														k20 = vo_pa[k21].Y;
-													}
-													k21++;
-												}
+        protected void MainPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                MainPanel_MouseDown(sender, e);
+            }
+        }
 
-												vo_pa[k21].X = j20;
-												vo_pa[k21].Y = chipsize.Height;
-												k21++;
-												if (cschip.name.Contains("上")) vo_pa[k21].X = 0;
-												else if (cschip.name.Contains("下")) vo_pa[k21].X = chipsize.Width;
-												vo_pa[k21].Y = chipsize.Height;
-												e.Graphics.FillPolygon(brush, vo_pa);
-												vo_pa = new PointF[13];
-												k21 = 0;
-												for (var i1 = 0; i1 <= 50; i1 += 5)
-												{
-													if (cschip.name.Contains("上"))
-														vo_pa[k21].X = (float)Math.Floor(chipsize.Width - Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-													else if (cschip.name.Contains("下"))
-														vo_pa[k21].X = (float)Math.Floor(Math.Sin((i1 * math_pi) / 180) * chipsize.Width * 5 / 8);
-													vo_pa[k21].Y = (float)Math.Floor(chipsize.Height * 5 / 8 - Math.Cos((i1 * math_pi) / 180) * chipsize.Height * 5 / 8);
-													if (i1 == 50)
-													{
-														l20 = vo_pa[k21].X;
-														i21 = vo_pa[k21].Y;
-													}
-													k21++;
-												}
+        protected void GUIChipList_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                case Keys.Up:
+                case Keys.Right:
+                case Keys.Down:
+                    e.IsInputKey = true;
+                    return;
+                default:
+                    return;
+            }
+        }
 
-												vo_pa[k21].X = l20;
-												vo_pa[k21].Y = chipsize.Height;
-												k21++;
-												if (cschip.name.Contains("上")) vo_pa[k21].X = chipsize.Width;
-												else if (cschip.name.Contains("下")) vo_pa[k21].X = 0;
-												vo_pa[k21].Y = chipsize.Height;
-												e.Graphics.FillPolygon(brush, vo_pa);
-												vo_pa = new PointF[4];
-												vo_pa[0].X = j20;
-												vo_pa[0].Y = k20;
-												vo_pa[1].X = l20;
-												vo_pa[1].Y = i21;
-												vo_pa[2].X = l20;
-												vo_pa[2].Y = chipsize.Height;
-												vo_pa[3].X = j20;
-												vo_pa[3].Y = chipsize.Height;
-												e.Graphics.FillPolygon(brush, vo_pa);
-												brush.Dispose();
-											}
-											break;
-										case "乗れる円":
-										case "跳ねる円":
-										case "円":
-											int radius = default;
-											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
-											if (cschip.name == "円")
-											{
-												brush = new SolidBrush(Color.FromArgb(176, Global.cpd.project.Config.Mizunohadou));
-												if (cschip.description.Contains("乗ると下がる"))
-												{
-													e.Graphics.TranslateTransform(0, 3);
-													radius = 80 / 10;
-												}
-												else
-												{
-													radius = 112 / 10;
-												}
-											}
-											else
-											{
-												brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-												if (cschip.description.Contains("大"))
-												{
-													if (cschip.name == "乗れる円")
-													{
-														radius = 144 / 10;
-													}
-													else if (cschip.name == "跳ねる円")
-													{
-														radius = 128 / 10;
-													}
-												}
-												else
-												{
-													radius = 96 / 10;
-												}
-											}
-											e.Graphics.FillEllipse(brush, -radius, -radius, radius * 2, radius * 2);
-											brush.Dispose();
-											break;
-										case "半円":
-											e.Graphics.TranslateTransform(1, 2);
-											if (cschip.description.Contains("乗れる"))
-											{
-												if (cschip.description.Contains("線のみ"))
-												{
-													pen = new Pen(Global.cpd.project.Config.Firebar2, 1);
-													vo_pa = new PointF[12];
-													var j21 = 0;
-													vo_pa[j21].X = 1 / 8;
-													vo_pa[j21].Y = 63 / 8;
-													j21++;
-													for (var j = 140; j >= 90; j -= 5)
-													{
-														vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 8;
-														vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((j * math_pi) / 180) * 144) / 8;
-														j21++;
-													}
-													e.Graphics.DrawLines(pen, vo_pa);
-													j21 = 0;
-													for (var k2 = 90; k2 >= 40; k2 -= 5)
-													{
-														vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 8;
-														vo_pa[j21].Y = (float)Math.Floor(145 - Math.Sin((k2 * math_pi) / 180) * 144) / 8;
-														j21++;
-													}
-													vo_pa[j21].X = 240 / 8;
-													vo_pa[j21].Y = 63 / 8;
-													e.Graphics.DrawLines(pen, vo_pa);
-													pen.Dispose();
-												}
-												else
-												{
-													brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-													vo_pa = new PointF[13];
-													var j21 = 0;
-													vo_pa[j21].X = 0;
-													vo_pa[j21].Y = 64 / 8;
-													j21++;
-													for (var j = 140; j >= 90; j -= 5)
-													{
-														vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 8;
-														vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144) / 8;
-														j21++;
-													}
+        protected void GUIChipList_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
+            switch (e.KeyCode)
+            {
+                case Keys.Left:
+                    SelectedIndex--;
+                    return;
+                case Keys.Up:
+                    SelectedIndex -= hMaxChip;
+                    return;
+                case Keys.Right:
+                    SelectedIndex++;
+                    return;
+                case Keys.Down:
+                    SelectedIndex += hMaxChip;
+                    return;
+                default:
+                    e.Handled = false;
+                    return;
+            }
+        }
 
-													vo_pa[j21].X = 120 / 8;
-													vo_pa[j21].Y = 64 / 8;
-													e.Graphics.FillPolygon(brush, vo_pa);
-													j21 = 0;
-													for (var k2 = 90; k2 >= 40; k2 -= 5)
-													{
-														vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 8;
-														vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * math_pi) / 180) * 144) / 8;
-														j21++;
-													}
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && components != null)
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-													vo_pa[j21].X = 240 / 8;
-													vo_pa[j21].Y = 64 / 8;
-													j21++;
-													vo_pa[j21].X = 120 / 8;
-													vo_pa[j21].Y = 64 / 8;
-													e.Graphics.FillPolygon(brush, vo_pa);
-													brush.Dispose();
-												}
-											}
-											else
-											{
-												e.Graphics.TranslateTransform(0, 10);
-												brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
-												e.Graphics.FillRectangle(brush, (120 - 20) / 8, 64 / 8, 40 / 8, 12);
-												brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-												vo_pa = new PointF[13];
-												var j21 = 0;
-												vo_pa[j21].X = 0;
-												vo_pa[j21].Y = 64 / 8;
-												j21++;
-												for (var j = 140; j >= 90; j -= 5)
-												{
-													vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((j * math_pi) / 180) * 144) / 8;
-													vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((j * math_pi) / 180) * 144) / 8;
-													j21++;
-												}
+        protected virtual void InitializeComponent()
+        {
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            vScr = new VScrollBar();
+            MainPanel = new PictureBox();
+            ((ISupportInitialize)MainPanel).BeginInit();
+            SuspendLayout();
+            vScr.Dock = DockStyle.Right;
+            vScr.Location = new Point(265 * DeviceDpi / 96, 0);
+            vScr.Name = "vScr";
+            vScr.Size = new Size(20 * DeviceDpi / 96, 264 * DeviceDpi / 96);
+            vScr.TabIndex = 0;
+            vScr.Scroll += vScr_Scroll;
+            MainPanel.Dock = DockStyle.Fill;
+            MainPanel.Location = new Point(0, 0);
+            MainPanel.Name = "MainPanel";
+            MainPanel.Size = new Size(265 * DeviceDpi / 96, 264 * DeviceDpi / 96);
+            MainPanel.TabIndex = 1;
+            MainPanel.TabStop = false;
+            MainPanel.MouseMove += MainPanel_MouseMove;
+            MainPanel.MouseDown += MainPanel_MouseDown;
+            MainPanel.Paint += MainPanel_Paint;
+            // AutoScaleDimensions = new SizeF(6f, 12f);
+            // AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(MainPanel);
+            Controls.Add(vScr);
+            Name = "GUIChipList";
+            Size = new Size(285 * DeviceDpi / 96, 264 * DeviceDpi / 96);
+            PreviewKeyDown += GUIChipList_PreviewKeyDown;
+            Resize += GUIChipList_Resize;
+            KeyDown += GUIChipList_KeyDown;
+            ((ISupportInitialize)MainPanel).EndInit();
+            ResumeLayout(false);
+        }
 
-												vo_pa[j21].X = 120 / 8;
-												vo_pa[j21].Y = 64 / 8;
-												e.Graphics.FillPolygon(brush, vo_pa);
-												j21 = 0;
-												for (var k2 = 90; k2 >= 40; k2 -= 5)
-												{
-													vo_pa[j21].X = (float)Math.Floor(120 + Math.Cos((k2 * math_pi) / 180) * 144) / 8;
-													vo_pa[j21].Y = (float)Math.Floor(144 - Math.Sin((k2 * math_pi) / 180) * 144) / 8;
-													j21++;
-												}
+        protected int selectedIndex;
 
-												vo_pa[j21].X = 240 / 8;
-												vo_pa[j21].Y = 64 / 8;
-												j21++;
-												vo_pa[j21].X = 120 / 8;
-												vo_pa[j21].Y = 64 / 8;
-												e.Graphics.FillPolygon(brush, vo_pa);
-												brush.Dispose();
-											}
-											break;
-										case "ファイヤーバー":
-										case "スウィングファイヤーバー":
-											{ 
-												e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
-												e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig,
-													new Rectangle(0, 0, chipsize.Width / 2, chipsize.Height / 2),
-													new Rectangle(cschip.pattern, new Size(chipsize.Width / 2, chipsize.Height / 2)), GraphicsUnit.Pixel);
-												int v = 225;
-												e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
-												rad = ((v + 90) * Math.PI) / 180;
-												const double d = 0.017453292519943295;
-												vo_pa = new PointF[4];
-												vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 25) + Math.Cos(rad) * 4);
-												vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) + Math.Sin(rad) * 4);
-												vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 25) - Math.Cos(rad) * 4);
-												vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 25) - Math.Sin(rad) * 4);
-												vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 42) - Math.Cos(rad) * 4);
-												vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) - Math.Sin(rad) * 4);
-												vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 42) + Math.Cos(rad) * 4);
-												vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 42) + Math.Sin(rad) * 4);
-												brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
-												e.Graphics.FillPolygon(brush, vo_pa);
-												// 内側の色を描画
-												brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-												vo_pa[0].X = (float)(Math.Cos(v * d) * 28 + Math.Cos(rad) * 2);
-												vo_pa[0].Y = (float)(Math.Sin(v * d) * 28 + Math.Sin(rad) * 2);
-												vo_pa[1].X = (float)(Math.Cos(v * d) * 28 - Math.Cos(rad) * 2);
-												vo_pa[1].Y = (float)(Math.Sin(v * d) * 28 - Math.Sin(rad) * 2);
-												vo_pa[2].X = (float)(Math.Cos(v * d) * 40 - Math.Cos(rad) * 2);
-												vo_pa[2].Y = (float)(Math.Sin(v * d) * 40 - Math.Sin(rad) * 2);
-												vo_pa[3].X = (float)(Math.Cos(v * d) * 40 + Math.Cos(rad) * 2);
-												vo_pa[3].Y = (float)(Math.Sin(v * d) * 40 + Math.Sin(rad) * 2);
-												e.Graphics.FillPolygon(brush, vo_pa);
-												brush.Dispose();
-											}
-											break;
-										case "人口太陽":
-											{
-												e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
+        protected IContainer components;
 
-												int v = default, n = default;
-												const double d = 0.017453292519943295;
-												vo_pa = new PointF[4];
-												if (cschip.description.Contains("棒５本")) n = 5;
-												else n = 3;
-												if (cschip.description.Contains("左")) v = 360 - 2;
-												else v = 2;
+        protected VScrollBar vScr;
 
-												for (var ii = 0; ii < n; ii++)
-												{
-													v += 360 / n;
-													rad = ((v + 90) * Math.PI) / 180;
-													brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
-													vo_pa[0].X = (float)(Math.Floor(Math.Cos(v * d) * 4) + Math.Cos(rad) * 3);
-													vo_pa[0].Y = (float)(Math.Floor(Math.Sin(v * d) * 4) + Math.Sin(rad) * 3);
-													vo_pa[1].X = (float)(Math.Floor(Math.Cos(v * d) * 4) - Math.Cos(rad) * 3);
-													vo_pa[1].Y = (float)(Math.Floor(Math.Sin(v * d) * 4) - Math.Sin(rad) * 3);
-													vo_pa[2].X = (float)(Math.Floor(Math.Cos(v * d) * 15) - Math.Cos(rad) * 3);
-													vo_pa[2].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) - Math.Sin(rad) * 3);
-													vo_pa[3].X = (float)(Math.Floor(Math.Cos(v * d) * 15) + Math.Cos(rad) * 3);
-													vo_pa[3].Y = (float)(Math.Floor(Math.Sin(v * d) * 15) + Math.Sin(rad) * 3);
-													e.Graphics.FillPolygon(brush, vo_pa);
-
-													// 内側の色を描画
-													brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-													vo_pa[0].X = (float)(Math.Cos(v * d) * 6 + Math.Cos(rad) * 1);
-													vo_pa[0].Y = (float)(Math.Sin(v * d) * 6 + Math.Sin(rad) * 1);
-													vo_pa[1].X = (float)(Math.Cos(v * d) * 6 - Math.Cos(rad) * 1);
-													vo_pa[1].Y = (float)(Math.Sin(v * d) * 6 - Math.Sin(rad) * 1);
-													vo_pa[2].X = (float)(Math.Cos(v * d) * 13 - Math.Cos(rad) * 1);
-													vo_pa[2].Y = (float)(Math.Sin(v * d) * 13 - Math.Sin(rad) * 1);
-													vo_pa[3].X = (float)(Math.Cos(v * d) * 13 + Math.Cos(rad) * 1);
-													vo_pa[3].Y = (float)(Math.Sin(v * d) * 13 + Math.Sin(rad) * 1);
-													e.Graphics.FillPolygon(brush, vo_pa);
-												}
-												brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
-												e.Graphics.FillEllipse(brush, -6, -6, 12, 12);
-												brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-												e.Graphics.FillEllipse(brush, -2, -2, 4, 4);
-
-												brush.Dispose();
-											}
-											break;
-										case "ファイヤーリング":
-											{
-												e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Width / 2);
-
-												int v = default, n = default;
-												if (cschip.description.Contains("2本")) n = 2;
-												else n = 3;
-												if (cschip.description.Contains("左回り"))
-												{
-													if (cschip.description.Contains("高速")) v = -4 + 360;
-													else v = -2 + 360;
-												}
-												else
-												{
-													if (cschip.description.Contains("高速")) v = 4;
-													else v = 2;
-												}
-
-												brush = default;
-
-												for (var ii = 0; ii < n; ii++)
-												{
-													var k6 = 0;
-													if (cschip.description.Contains("2本"))
-													{
-														vo_pa = new PointF[26];
-														for (var i4 = 0; i4 >= -120; i4 -= 10)
-														{
-															vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
-															vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
-															k6++;
-														}
-
-														for (var j4 = -120; j4 <= 0; j4 += 10)
-														{
-															vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
-															vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
-															k6++;
-														}
-													}
-													else
-													{
-														vo_pa = new PointF[12];
-														for (var i4 = 0; i4 >= -50; i4 -= 10)
-														{
-															vo_pa[k6].X = (float)(Math.Cos(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
-															vo_pa[k6].Y = (float)(Math.Sin(((v + i4) * Math.PI) / 180) * chipsize.Width / 2);
-															k6++;
-														}
-
-														for (var j4 = -50; j4 <= 0; j4 += 10)
-														{
-															vo_pa[k6].X = (float)(Math.Cos(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
-															vo_pa[k6].Y = (float)(Math.Sin(((v + j4) * Math.PI) / 180) * chipsize.Width / 2 * 0.3);
-															k6++;
-														}
-													}
-
-													brush = new SolidBrush(Global.cpd.project.Config.Firebar1);
-													e.Graphics.FillPolygon(brush, vo_pa);
-
-													// 内側の色を描画
-													k6 = 0;
-													if (cschip.description.Contains("2本"))
-													{
-														vo_pa = new PointF[24];
-														for (var k4 = -5; k4 >= -115; k4 -= 10)
-														{
-															vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
-															vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
-															k6++;
-														}
-
-														for (var l4 = -115; l4 <= -5; l4 += 10)
-														{
-															vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
-															vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
-															k6++;
-														}
-													}
-													else
-													{
-														for (var k4 = -5; k4 >= -45; k4 -= 8)
-														{
-															vo_pa[k6].X = (float)(Math.Cos(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
-															vo_pa[k6].Y = (float)(Math.Sin(((v + k4) * Math.PI) / 180) * chipsize.Width / 2 * 0.925);
-															k6++;
-														}
-
-														for (var l4 = -45; l4 <= -5; l4 += 8)
-														{
-															vo_pa[k6].X = (float)(Math.Cos(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
-															vo_pa[k6].Y = (float)(Math.Sin(((v + l4) * Math.PI) / 180) * chipsize.Width / 2 * 0.5);
-															k6++;
-														}
-													}
-
-													brush = new SolidBrush(Global.cpd.project.Config.Firebar2);
-													e.Graphics.FillPolygon(brush, vo_pa);
-
-													v += 360 / n;
-												}
-
-												brush.Dispose();
-											}
-											break;
-										default:
-											e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
-											if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
-
-                                            // 水の半透明処理
-                                            if(Global.state.ChipRegister.ContainsKey("water_clear_switch") && bool.Parse(Global.state.ChipRegister["water_clear_switch"]) == false && chipsData.character == "4" && Global.state.ChipRegister.ContainsKey("water_clear_level"))
-                                            {
-												float water_clear_level = float.Parse(Global.state.ChipRegister["water_clear_level"]);
-                                                var colorMatrix = new ColorMatrix
-                                                {
-                                                    Matrix00 = 1f,
-                                                    Matrix11 = 1f,
-                                                    Matrix22 = 1f,
-                                                    Matrix33 = water_clear_level / 255f,
-                                                    Matrix44 = 1f
-                                                };
-                                                using var imageAttributes = new ImageAttributes();
-                                                imageAttributes.SetColorMatrix(colorMatrix);
-                                                e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
-                                            }
-											else e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
-											break;
-									}
-								}
-								e.Graphics.Restore(transState);
-							}
-							else
-							{
-								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawLayerOrig, rectangle, new Rectangle(cschip.pattern, (cschip.size == default(Size)) ? chipsize : cschip.size), GraphicsUnit.Pixel);
-							}
-							if (chipsData.character == "Z" && Global.state.ChipRegister.ContainsKey("oriboss_v") && int.Parse(Global.state.ChipRegister["oriboss_v"]) == 3 && 
-								Global.state.ChipRegister.ContainsKey("oriboss_ugoki") && Global.config.draw.ExtendDraw)
-							{
-								Point p = default;
-								switch (int.Parse(Global.state.ChipRegister["oriboss_ugoki"]))
-									{
-										case 1:
-											p = new Point(352, 256);
-											break;
-										case 2:
-											p = new Point(96, 0);
-											break;
-										case 3:
-											p = new Point(64, 0);
-											break;
-										case 4:
-											p = new Point(256, 0);
-											break;
-										case 5:
-											p = new Point(288, 0);
-											break;
-										case 6:
-											p = new Point(288, 448);
-											break;
-										case 7:
-											p = new Point(320, 448);
-											break;
-										case 8:
-											p = new Point(32, 32);
-											break;
-										case 9:
-											p = new Point(96, 0);
-											break;
-										case 10:
-											p = new Point(0, 32);
-											break;
-										case 11:
-											p = new Point(64, 0);
-											break;
-										case 12:
-											p = new Point(96, 32);
-											break;
-										case 13:
-											p = new Point(64, 0);
-											break;
-										case 14:
-											p = new Point(352, 448);
-											break;
-										case 15:
-											p = new Point(416, 448);
-											break;
-										case 16:
-											p = new Point(288, 448);
-											break;
-										case 17:
-											p = new Point(320, 448);
-											break;
-										case 18:
-											p = new Point(96, 0);
-											break;
-										case 19:
-											p = new Point(96, 0);
-											break;
-										case 20:
-											p = new Point(256, 0);
-											break;
-										case 21:
-											p = new Point(256, 0);
-											break;
-										case 22:
-											p = new Point(352, 448);
-											break;
-										case 23:
-											p = new Point(384, 448);
-											break;
-										case 24:
-											p = new Point(32, 32);
-											break;
-										case 25:
-											p = new Point(32, 32);
-											break;
-										case 26:
-											p = new Point(32, 128);
-											break;
-										case 27:
-											p = new Point(32, 128);
-											break;
-									}
-								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(p, chipsize), GraphicsUnit.Pixel);
-							}
-							else if (Global.config.draw.ExtendDraw && cschip.xdraw != default(Point) && !cschip.xdbackgrnd)
-							{
-								e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
-							}
-							e.Graphics.PixelOffsetMode = default;
-							if (Global.state.CurrentChip.character == chipsData.character)
-							{
-								if (i != this.selectedIndex) this.selectedIndex = i;
-								switch (Global.config.draw.SelDrawMode)
-								{
-								case Config.Draw.SelectionDrawMode.SideOriginal:
-									using (Brush brush2 = new SolidBrush(Color.FromArgb(100, DrawEx.GetForegroundColor(Global.state.Background))))
-									{
-										ControlPaint.DrawFocusRectangle(e.Graphics, rectangle);
-										e.Graphics.FillRectangle(brush2, rectangle);
-										break;
-									}
-								case Config.Draw.SelectionDrawMode.mtpp:
-									ControlPaint.DrawFocusRectangle(e.Graphics, rectangle);
-									ControlPaint.DrawSelectionFrame(e.Graphics, true, rectangle, new Rectangle(0, 0, 0, 0), Color.Blue);
-									break;
-								case Config.Draw.SelectionDrawMode.MTool:
-									e.Graphics.DrawRectangle(Pens.Black, new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1));
-									e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 1, rectangle.Y + 1, rectangle.Width - 3, rectangle.Height - 3));
-									e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 2, rectangle.Y + 2, rectangle.Width - 5, rectangle.Height - 5));
-									e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 3, rectangle.Y + 3, rectangle.Width - 7, rectangle.Height - 7));
-									e.Graphics.DrawRectangle(Pens.Black, new Rectangle(rectangle.X + 4, rectangle.Y + 4, rectangle.Width - 9, rectangle.Height - 9));
-									break;
-								default:
-									break;
-								}
-							}
-						}
-					}
-					if (!base.Enabled)
-					{
-						using (Brush brush3 = new SolidBrush(Color.FromArgb(160, Color.White)))
-						{
-							e.Graphics.FillRectangle(brush3, e.ClipRectangle);
-						}
-					}
-				}
-			}
-			catch
-			{
-			}
-		}
-
-		private void MainPanel_MouseDown(object sender, MouseEventArgs e)
-		{
-			base.Focus();
-			if (!base.Enabled)
-			{
-				return;
-			}
-			int hMaxChip = this.hMaxChip;
-			if (e.X > hMaxChip * Global.cpd.runtime.Definitions.ChipSize.Width)
-			{
-				return;
-			}
-			int num = (int)Math.Floor((double)e.X / (double)Global.cpd.runtime.Definitions.ChipSize.Width);
-			num += (int)Math.Floor((double)(e.Y + this.vPosition) / (double)Global.cpd.runtime.Definitions.ChipSize.Height) * hMaxChip;
-			int num2;
-			if (Global.state.MapEditMode)
-			{
-				num2 = Global.cpd.Worldchip.Length;
-			}
-			else if (!Global.cpd.UseLayer || Global.state.EditingForeground)
-			{
-				num2 = Global.cpd.Mapchip.Length;
-			}
-			else
-			{
-				num2 = Global.cpd.Layerchip.Length;
-			}
-			if (num >= num2)
-			{
-				return;
-			}
-			this.SelectedIndex = num;
-		}
-
-		private void MainPanel_MouseMove(object sender, MouseEventArgs e)
-		{
-			if (e.Button == MouseButtons.Left)
-			{
-				this.MainPanel_MouseDown(sender, e);
-			}
-		}
-
-		private void GUIChipList_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-		{
-			switch (e.KeyCode)
-			{
-			case Keys.Left:
-			case Keys.Up:
-			case Keys.Right:
-			case Keys.Down:
-				e.IsInputKey = true;
-				return;
-			default:
-				return;
-			}
-		}
-
-		private void GUIChipList_KeyDown(object sender, KeyEventArgs e)
-		{
-			e.Handled = true;
-			switch (e.KeyCode)
-			{
-			case Keys.Left:
-				this.SelectedIndex--;
-				return;
-			case Keys.Up:
-				this.SelectedIndex -= this.hMaxChip;
-				return;
-			case Keys.Right:
-				this.SelectedIndex++;
-				return;
-			case Keys.Down:
-				this.SelectedIndex += this.hMaxChip;
-				return;
-			default:
-				e.Handled = false;
-				return;
-			}
-		}
-
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing && this.components != null)
-			{
-				this.components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
-
-		private void InitializeComponent()
-		{
-			this.vScr = new VScrollBar();
-			this.MainPanel = new PictureBox();
-			((ISupportInitialize)this.MainPanel).BeginInit();
-			base.SuspendLayout();
-			this.vScr.Dock = DockStyle.Right;
-			this.vScr.Location = new Point(265, 0);
-			this.vScr.Name = "vScr";
-			this.vScr.Size = new Size(20, 264);
-			this.vScr.TabIndex = 0;
-			this.vScr.Scroll += this.vScr_Scroll;
-			this.MainPanel.Dock = DockStyle.Fill;
-			this.MainPanel.Location = new Point(0, 0);
-			this.MainPanel.Name = "MainPanel";
-			this.MainPanel.Size = new Size(265, 264);
-			this.MainPanel.TabIndex = 1;
-			this.MainPanel.TabStop = false;
-			this.MainPanel.MouseMove += this.MainPanel_MouseMove;
-			this.MainPanel.MouseDown += this.MainPanel_MouseDown;
-			this.MainPanel.Paint += this.MainPanel_Paint;
-			base.AutoScaleDimensions = new SizeF(6f, 12f);
-			base.AutoScaleMode = AutoScaleMode.Font;
-			base.Controls.Add(this.MainPanel);
-			base.Controls.Add(this.vScr);
-			base.Name = "GUIChipList";
-			base.Size = new Size(285, 264);
-			base.PreviewKeyDown += this.GUIChipList_PreviewKeyDown;
-			base.Resize += this.GUIChipList_Resize;
-			base.KeyDown += this.GUIChipList_KeyDown;
-			((ISupportInitialize)this.MainPanel).EndInit();
-			base.ResumeLayout(false);
-		}
-
-		private int selectedIndex;
-
-		private IContainer components;
-
-		private VScrollBar vScr;
-
-		private PictureBox MainPanel;
-	}
+        protected PictureBox MainPanel;
+    }
 }

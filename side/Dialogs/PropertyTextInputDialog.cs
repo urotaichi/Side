@@ -5,23 +5,23 @@ using System.Windows.Forms;
 
 namespace MasaoPlus.Dialogs
 {
-	public partial class PropertyTextInputDialog : Form
-	{
-		public PropertyTextInputDialog()
-		{
-			this.InitializeComponent();
-		}
+    public partial class PropertyTextInputDialog : Form
+    {
+        public PropertyTextInputDialog()
+        {
+            InitializeComponent();
+        }
 
-		private void PropertyTextInputDialog_Shown(object sender, EventArgs e)
-		{
-			this.InputText.Text = this.InputStr;
-		}
+        private void PropertyTextInputDialog_Shown(object sender, EventArgs e)
+        {
+            InputText.Text = InputStr;
+        }
 
-		private void PropertyTextInputDialog_FormClosing(object sender, FormClosingEventArgs e)
-		{
-			this.InputStr = this.InputText.Text;
-		}
+        private void PropertyTextInputDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            InputStr = InputText.Text;
+        }
 
-		public string InputStr = "";
-	}
+        public string InputStr = "";
+    }
 }
