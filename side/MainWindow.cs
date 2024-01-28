@@ -84,8 +84,8 @@ namespace MasaoPlus
         private void MainWindow_Load(object sender, EventArgs e)
         {
             MUpdateApp.Enabled = Global.definition.IsAutoUpdateEnabled;
-            SetDesktopLocation(Global.config.lastData.WndPoint.X * DeviceDpi / 96, Global.config.lastData.WndPoint.Y * DeviceDpi / 96);
-            Size = new Size(Global.config.lastData.WndSize.Width * DeviceDpi / 96, Global.config.lastData.WndSize.Height * DeviceDpi / 96);
+            SetDesktopLocation(LogicalToDeviceUnits(Global.config.lastData.WndPoint.X), LogicalToDeviceUnits(Global.config.lastData.WndPoint.Y));
+            Size = LogicalToDeviceUnits(Global.config.lastData.WndSize);
             WindowState = Global.config.lastData.WndState;
             MainSplit.SplitterDistance = (int)(Width * Global.config.lastData.SpliterDist);
             if (Global.config.localSystem.ReverseTabView)
@@ -525,8 +525,8 @@ namespace MasaoPlus
 
         private void EditorSystemPanel_Resize(object sender, EventArgs e)
         {
-            MainDesigner.Width = EditorSystemPanel.Width - 20 * DeviceDpi / 96;
-            MainDesigner.Height = EditorSystemPanel.Height - 20 * DeviceDpi / 96;
+            MainDesigner.Width = EditorSystemPanel.Width - LogicalToDeviceUnits(20);
+            MainDesigner.Height = EditorSystemPanel.Height - LogicalToDeviceUnits(20);
             GVirtScroll.Left = MainDesigner.Width;
             GVirtScroll.Height = MainDesigner.Height;
             GVirtScroll.Refresh();

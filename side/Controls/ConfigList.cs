@@ -742,7 +742,7 @@ namespace MasaoPlus.Controls
             ConfigSelector.FormattingEnabled = true;
             ConfigSelector.Location = new Point(0, 0);
             ConfigSelector.Name = "ConfigSelector";
-            ConfigSelector.Size = new Size(298 * DeviceDpi / 96, 20 * DeviceDpi / 96);
+            ConfigSelector.Size = LogicalToDeviceUnits(new Size(298, 20));
             ConfigSelector.TabIndex = 3;
             ConfigSelector.Resize += ConfigSelector_Resize;
             ConfigSelector.SelectedIndexChanged += ConfigSelector_SelectedIndexChanged;
@@ -761,13 +761,13 @@ namespace MasaoPlus.Controls
             ]);
             ConfView.Dock = DockStyle.Fill;
             ConfView.EditMode = DataGridViewEditMode.EditOnEnter;
-            ConfView.Location = new Point(0, 20 * DeviceDpi / 96);
+            ConfView.Location = new Point(0, LogicalToDeviceUnits(20));
             ConfView.MultiSelect = false;
             ConfView.Name = "ConfView";
             ConfView.RowHeadersVisible = false;
             ConfView.RowTemplate.Height = 21;
             ConfView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ConfView.Size = new Size(298 * DeviceDpi / 96, 338 * DeviceDpi / 96);
+            ConfView.Size = LogicalToDeviceUnits(new Size(298, 338));
             ConfView.TabIndex = 4;
             ConfView.CellValueChanged += ConfView_CellValueChanged;
             ConfView.CellClick += ConfView_CellClick;
@@ -789,7 +789,7 @@ namespace MasaoPlus.Controls
             Controls.Add(ConfView);
             Controls.Add(ConfigSelector);
             Name = "ConfigList";
-            Size = new Size(298 * DeviceDpi / 96, 358 * DeviceDpi / 96);
+            Size = LogicalToDeviceUnits(new Size(298, 358));
             ((ISupportInitialize)ConfView).EndInit();
             ResumeLayout(false);
 

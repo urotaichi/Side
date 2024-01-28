@@ -1284,13 +1284,13 @@ namespace MasaoPlus.Controls
             ]);
             ConfView.Dock = DockStyle.Fill;
             ConfView.EditMode = DataGridViewEditMode.EditOnEnter;
-            ConfView.Location = new Point(0, 20 * DeviceDpi / 96);
+            ConfView.Location = new Point(0, LogicalToDeviceUnits(20));
             ConfView.MultiSelect = false;
             ConfView.Name = "CustomPartsConfView";
             ConfView.RowHeadersVisible = false;
             ConfView.RowTemplate.Height = 21;
             ConfView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            ConfView.Size = new Size(298 * DeviceDpi / 96, 338 * DeviceDpi / 96);
+            ConfView.Size = LogicalToDeviceUnits(new Size(298, 338));
             ConfView.TabIndex = 4;
             ConfView.CellValueChanged += ConfView_CellValueChanged;
             ConfView.CellClick += ConfView_CellClick;
@@ -1331,7 +1331,7 @@ namespace MasaoPlus.Controls
             //AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(ConfView);
             Name = "CustomPartsConfigList";
-            Size = new Size(298 * DeviceDpi / 96, 358 * DeviceDpi / 96);
+            Size = LogicalToDeviceUnits(new Size(298, 358));
             ((ISupportInitialize)ConfView).EndInit();
             ResumeLayout(false);
         }

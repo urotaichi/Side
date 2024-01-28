@@ -79,7 +79,7 @@ namespace MasaoPlus
         {
             get
             {
-                int num = (int)Math.Floor(MainPanel.Width / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96));
+                int num = (int)Math.Floor(MainPanel.Width / ((double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width)));
                 if (num <= 0)
                 {
                     return 1;
@@ -96,7 +96,7 @@ namespace MasaoPlus
         protected void SetMaxValue()
         {
             vScr.LargeChange = MainPanel.Height;
-            vScr.SmallChange = Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96;
+            vScr.SmallChange = LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height);
             vScr.Maximum = GetVirtSize() - MainPanel.Height + vScr.LargeChange - 1;
         }
 
@@ -107,7 +107,7 @@ namespace MasaoPlus
 
         public Point GetPosition(int idx)
         {
-            int num = MainPanel.Width / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96);
+            int num = MainPanel.Width / LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width);
             if (num <= 0)
             {
                 num = 1;
@@ -126,7 +126,7 @@ namespace MasaoPlus
             {
                 return 0;
             }
-            int num = wid / (Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96);
+            int num = wid / LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width);
             if (num <= 0)
             {
                 num = 1;
@@ -142,9 +142,9 @@ namespace MasaoPlus
                         num2 += Global.cpd.CustomPartsChip.Length;
                     }
                 }
-                return (int)Math.Ceiling(num2 / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96;
+                return (int)Math.Ceiling(num2 / (double)num) * LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height);
             }
-            return (int)Math.Ceiling(Global.cpd.Layerchip.Length / (double)num) * Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96;
+            return (int)Math.Ceiling(Global.cpd.Layerchip.Length / (double)num) * LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height);
         }
 
         public void ResizeInvoke()
@@ -175,7 +175,7 @@ namespace MasaoPlus
                 ChipsData chipData = chipsData[i - inital];
                 Point point = GetPosition(i);
                 Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
-                Rectangle rectangle = new(point.X * chipsize.Width * DeviceDpi / 96, point.Y * chipsize.Height * DeviceDpi / 96, chipsize.Width * DeviceDpi / 96, chipsize.Height * DeviceDpi / 96);
+                Rectangle rectangle = new(new Point(LogicalToDeviceUnits(point.X * chipsize.Width), LogicalToDeviceUnits(point.Y * chipsize.Height)), LogicalToDeviceUnits(chipsize));
                 rectangle.Y -= vPosition;
                 if (rectangle.Top > MainPanel.Height) break;
 
@@ -233,8 +233,8 @@ namespace MasaoPlus
                                     AthleticView.list[cschip.name].Main(DeviceDpi, cschip, e.Graphics, chipsize);
                                     break;
                                 default:
-                                    e.Graphics.TranslateTransform(chipsize.Width * DeviceDpi / 96 / 2, chipsize.Height * DeviceDpi / 96 / 2);
-                                    var rect = new Rectangle(-chipsize.Width * DeviceDpi / 96 / 2, -chipsize.Height * DeviceDpi / 96 / 2, rectangle.Width, rectangle.Height);
+                                    e.Graphics.TranslateTransform(LogicalToDeviceUnits(chipsize.Width) / 2, LogicalToDeviceUnits(chipsize.Height) / 2);
+                                    var rect = new Rectangle(-LogicalToDeviceUnits(chipsize.Width) / 2, -LogicalToDeviceUnits(chipsize.Height) / 2, rectangle.Width, rectangle.Height);
                                     if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
                                     // 水の半透明処理
@@ -319,7 +319,7 @@ namespace MasaoPlus
                         e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
                         Color col = ColorTranslator.FromHtml(chipData.idColor);
                         using Brush brush = new SolidBrush(Color.FromArgb(240, col));
-                        e.Graphics.FillRectangle(brush, 0, 0, 10 * DeviceDpi / 96, 5 * DeviceDpi / 96);
+                        e.Graphics.FillRectangle(brush, new Rectangle(new Point(0, 0), LogicalToDeviceUnits(new Size(10, 5))));
                         e.Graphics.Restore(transState);
                     }
                     if (Global.state.MapEditMode && Global.state.CurrentChip.character == chipData.character
@@ -418,12 +418,12 @@ namespace MasaoPlus
                 return;
             }
             int hMaxChip = this.hMaxChip;
-            if (e.X > hMaxChip * Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96)
+            if (e.X > hMaxChip * LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width))
             {
                 return;
             }
-            int num = (int)Math.Floor(e.X / ((double)Global.cpd.runtime.Definitions.ChipSize.Width * DeviceDpi / 96));
-            num += (int)Math.Floor((e.Y + vPosition) / ((double)Global.cpd.runtime.Definitions.ChipSize.Height * DeviceDpi / 96)) * hMaxChip;
+            int num = (int)Math.Floor(e.X / ((double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width)));
+            num += (int)Math.Floor((e.Y + vPosition) / ((double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height))) * hMaxChip;
             int num2;
             if (Global.state.MapEditMode)
             {
@@ -516,15 +516,15 @@ namespace MasaoPlus
             ((ISupportInitialize)MainPanel).BeginInit();
             SuspendLayout();
             vScr.Dock = DockStyle.Right;
-            vScr.Location = new Point(265 * DeviceDpi / 96, 0);
+            vScr.Location = new Point(LogicalToDeviceUnits(265), 0);
             vScr.Name = "vScr";
-            vScr.Size = new Size(20 * DeviceDpi / 96, 264 * DeviceDpi / 96);
+            vScr.Size = LogicalToDeviceUnits(new Size(20, 264));
             vScr.TabIndex = 0;
             vScr.Scroll += vScr_Scroll;
             MainPanel.Dock = DockStyle.Fill;
             MainPanel.Location = new Point(0, 0);
             MainPanel.Name = "MainPanel";
-            MainPanel.Size = new Size(265 * DeviceDpi / 96, 264 * DeviceDpi / 96);
+            MainPanel.Size = LogicalToDeviceUnits(new Size(265, 264));
             MainPanel.TabIndex = 1;
             MainPanel.TabStop = false;
             MainPanel.MouseMove += MainPanel_MouseMove;
@@ -535,7 +535,7 @@ namespace MasaoPlus
             Controls.Add(MainPanel);
             Controls.Add(vScr);
             Name = "GUIChipList";
-            Size = new Size(285 * DeviceDpi / 96, 264 * DeviceDpi / 96);
+            Size = LogicalToDeviceUnits(new Size(285, 264));
             PreviewKeyDown += GUIChipList_PreviewKeyDown;
             Resize += GUIChipList_Resize;
             KeyDown += GUIChipList_KeyDown;
