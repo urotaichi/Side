@@ -484,7 +484,7 @@ namespace MasaoPlus
                     case "スイッチ式ファイヤーバー":
                     case "スイッチ式動くＴ字型":
                     case "スイッチ式速く動くＴ字型":
-                        AthleticView.list[cschip.name].Max(DeviceDpi, cschip, g, chipsize, this, p.Y);
+                        AthleticView.list[cschip.name].Max(this, cschip, g, chipsize, this, p.Y);
                         break;
                     default:
                         TranslateTransform(g, chipsize.Width / 2, chipsize.Height / 2);

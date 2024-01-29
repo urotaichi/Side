@@ -1066,7 +1066,7 @@ namespace MasaoPlus
                             case "スイッチ式ファイヤーバー":
                             case "スイッチ式動くＴ字型":
                             case "スイッチ式速く動くＴ字型":
-                                AthleticView.list[cschip.name].Main(DeviceDpi, cschip, e.Graphics, new Size(32, 32));
+                                AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, new Size(32, 32));
                                 break;
                             default:
                                 e.Graphics.TranslateTransform(ChipImage.Width / 2, ChipImage.Height / 2);
@@ -1157,7 +1157,7 @@ namespace MasaoPlus
                     case "スイッチ式ファイヤーバー":
                     case "スイッチ式動くＴ字型":
                     case "スイッチ式速く動くＴ字型":
-                        AthleticView.list[cschip.name].Main(DeviceDpi, cschip, e.Graphics, new Size(ChipImage.Width, ChipImage.Height));
+                        AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, new Size(ChipImage.Width, ChipImage.Height));
                         break;
                     default:
                         e.Graphics.TranslateTransform(ChipImage.Width / 2, ChipImage.Height / 2);
@@ -1647,7 +1647,7 @@ namespace MasaoPlus
                                     case "スイッチ式ファイヤーバー":
                                     case "スイッチ式動くＴ字型":
                                     case "スイッチ式速く動くＴ字型":
-                                        AthleticView.list[cschip.name].Small(DeviceDpi, cschip, e.Graphics, chipsize, e.Bounds.Height);
+                                        AthleticView.list[cschip.name].Small(this, cschip, e.Graphics, chipsize, e.Bounds.Height);
                                         break;
                                     default:
                                         e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
