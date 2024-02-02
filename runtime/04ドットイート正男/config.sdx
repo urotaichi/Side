@@ -1710,6 +1710,9 @@
     <list>３回踏む</list><list>ﾌｧｲﾔｰﾎﾞｰﾙ,しっぽ</list>
   </param>
   <param name="boss_hp_max" desc="ボスのHP(倒し方がしっぽなどの場合)" type="int" value="20" category="敵" />
+  <param name="boss_destroy" desc="ボスを倒した場合" type="list" value="1" category="敵">
+    <list>星が出る</list><list>ステージクリアー</list>
+  </param>
   <param name="j_tail_ap_boss" desc="しっぽの攻撃力　ボス用" type="int" value="4" category="装備" />
   <param name="boss_name" desc="ボスのHPゲージに表示する名前1" type="string" value="グラーダ" category="表示" />
   <param name="boss2_name" desc="ボスのHPゲージに表示する名前2" type="string" value="カイオール" category="表示" />
