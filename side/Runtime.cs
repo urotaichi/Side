@@ -159,7 +159,7 @@ namespace MasaoPlus
         [Serializable]
         public class ConfigurationData
         {
-            public HTMLReplaceData[] OutputReplace = new HTMLReplaceData[0];
+            public HTMLReplaceData[] OutputReplace = [];
 
             public string HeaderHTML = "";
 

@@ -10,7 +10,7 @@ using WMPLib;
 
 namespace MasaoPlus.Controls
 {
-    public class ConfigList : UserControl
+    public partial class ConfigList : UserControl
     {
         public ConfigList()
         {
@@ -329,7 +329,7 @@ namespace MasaoPlus.Controls
                             Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
                             Global.MainWnd.MainDesigner.Refresh();
                         }
-                        if (Regex.IsMatch(Global.cpd.project.Config.Configurations[num].Name, "^(filename_haikei|filename_second_haikei|filename_chizu)"))
+                        if (reg_file_prepare().IsMatch(Global.cpd.project.Config.Configurations[num].Name))
                         {
                             Global.MainWnd.MainDesigner.PrepareImages();
                             Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
@@ -815,5 +815,8 @@ namespace MasaoPlus.Controls
         private WindowsMediaPlayer mediaPlayer;
 
         private int now_playing_item = -1;
+
+        [GeneratedRegex("^(filename_haikei|filename_second_haikei|filename_chizu)")]
+        private static partial Regex reg_file_prepare();
     }
 }

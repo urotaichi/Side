@@ -133,23 +133,23 @@ namespace MasaoPlus
 
         public ChipsData[] CustomPartsDefinition;
 
-        public string[] StageData = new string[0];
+        public string[] StageData = [];
 
-        public string[] StageData2 = new string[0];
+        public string[] StageData2 = [];
 
-        public string[] StageData3 = new string[0];
+        public string[] StageData3 = [];
 
-        public string[] StageData4 = new string[0];
+        public string[] StageData4 = [];
 
-        public string[] LayerData = new string[0];
+        public string[] LayerData = [];
 
-        public string[] LayerData2 = new string[0];
+        public string[] LayerData2 = [];
 
-        public string[] LayerData3 = new string[0];
+        public string[] LayerData3 = [];
 
-        public string[] LayerData4 = new string[0];
+        public string[] LayerData4 = [];
 
-        public string[] MapData = new string[0];
+        public string[] MapData = [];
 
         public ConfigurationOwner Config = new();
     }

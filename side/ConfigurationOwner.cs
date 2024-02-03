@@ -604,7 +604,7 @@ namespace MasaoPlus
         }
 
         [XmlElement("param")]
-        public ConfigParam[] Configurations = new ConfigParam[0];
+        public ConfigParam[] Configurations = [];
 
         [XmlIgnore]
         public List<string> Categories = [];

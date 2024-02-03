@@ -55,12 +55,12 @@ namespace MasaoPlus
             }
         }
 
-        public ChipsData[] Mapchip = new ChipsData[0];
+        public ChipsData[] Mapchip = [];
 
-        public ChipsData[] Layerchip = new ChipsData[0];
+        public ChipsData[] Layerchip = [];
 
-        public ChipsData[] WorldChip = new ChipsData[0];
+        public ChipsData[] WorldChip = [];
 
-        public ChipsData[] VarietyChip = new ChipsData[0];
+        public ChipsData[] VarietyChip = [];
     }
 }

@@ -54,8 +54,8 @@ namespace MasaoPlus.Dialogs
                                 runtimes.Add(text);
                                 runtimedatas.Add(runtime);
                                 runtimeuselayer.Add(runtime.Definitions.LayerSize.bytesize != 0);
-                                RuntimeSet.Items.Add(string.Concat(new string[]
-                                {
+                                RuntimeSet.Items.Add(string.Concat(
+                                [
                                     runtime.Definitions.Name,
                                     " [Author:",
                                     runtime.Definitions.Author,
@@ -63,7 +63,7 @@ namespace MasaoPlus.Dialogs
                                     (runtime.Definitions.LayerSize.bytesize != 0) ? "○" : "×",
                                     "] : ",
                                     Path.GetFileName(text)
-                                }));
+                                ]));
                             }
                             else
                             {
@@ -230,13 +230,13 @@ namespace MasaoPlus.Dialogs
                 List<string> list = [];
                 if (SeekHeaderFooter.Checked)
                 {
-                    Regex regex = new("^.*?<[ ]*?APPLET .*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                    Regex regex = reg_applet_start();
                     Match match = regex.Match(input);
                     if (match.Success)
                     {
                         project.Runtime.DefaultConfigurations.HeaderHTML = match.Value;
                     }
-                    regex = new Regex("<[ ]*?/[ ]*?APPLET[ ]*?>.*$", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                    regex = reg_applet_end();
                     match = regex.Match(input);
                     if (match.Success)
                     {
@@ -246,11 +246,11 @@ namespace MasaoPlus.Dialogs
                 StatusText.Text = "HTMLデータ取得中...";
                 StatusText.Refresh();
 
-                Regex regex2 = new(@"<[ ]*PARAM[ ]+NAME=""(?<name>.*?)""[ ]+VALUE=""(?<value>.*?)"".*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                Regex regex_script = new(@"<[ ]*?script.*?>.*?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                Regex regex2 = reg_param();
+                Regex regex_script = reg_script_start();
                 if (regex_script.IsMatch(input))
                 {
-                    regex2 = new Regex(@"(""|')(?<name>.*?)(""|')\s*?:\s*?(""|')(?<value>.*?)(?<!\\)(""|')(,|\s*?)", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                    regex2 = reg_script_param();
                 }
 
                 Dictionary<string, string> dictionary = [];
@@ -364,7 +364,7 @@ namespace MasaoPlus.Dialogs
 
                                 int num2 = 1;
 
-                                Regex text_name_regex = new(@"-(\d+)$");
+                                Regex text_name_regex = reg_text_name();
                                 Match text_name_match = text_name_regex.Match(name);
                                 if (text_name_match.Success)
                                 {
@@ -694,5 +694,18 @@ namespace MasaoPlus.Dialogs
         public List<bool> runtimeuselayer = [];
 
         private readonly string ParseFile = "";
+
+        [GeneratedRegex("^.*?<[ ]*?APPLET .*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
+        private static partial Regex reg_applet_start();
+        [GeneratedRegex("<[ ]*?/[ ]*?APPLET[ ]*?>.*$", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
+        private static partial Regex reg_applet_end();
+        [GeneratedRegex(@"<[ ]*PARAM[ ]+NAME=""(?<name>.*?)""[ ]+VALUE=""(?<value>.*?)"".*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
+        private static partial Regex reg_param();
+        [GeneratedRegex(@"<[ ]*?script.*?>.*?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
+        private static partial Regex reg_script_start();
+        [GeneratedRegex(@"(""|')(?<name>.*?)(""|')\s*?:\s*?(""|')(?<value>.*?)(?<!\\)(""|')(,|\s*?)", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
+        private static partial Regex reg_script_param();
+        [GeneratedRegex(@"-(\d+)$")]
+        private static partial Regex reg_text_name();
     }
 }

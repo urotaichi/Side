@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 
 namespace MasaoPlus
 {
-    public static class Subsystem
+    public static partial class Subsystem
     {
         public static void MakeTestrun(int startup)
         {
@@ -520,86 +520,86 @@ namespace MasaoPlus
                             else break;
                         case "filename_se_start":
                         case "filename_se_item":
-                            if (new Regex(@"^item\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_item().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_gameover":
-                            if (new Regex(@"^gameover\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_gameover().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_clear":
-                            if (new Regex(@"^clear\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_clear().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_coin":
-                            if (new Regex(@"^coin\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_coin().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_get":
                         case "filename_se_dokan":
                         case "filename_se_chizugamen":
-                            if (new Regex(@"^get\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_get().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_jump":
-                            if (new Regex(@"^jump\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_jump().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_sjump":
-                            if (new Regex(@"^sjump\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_sjump().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_kiki":
-                            if (new Regex(@"^kiki\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_kiki().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_fumu":
-                            if (new Regex(@"^fumu\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_fumu().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_tobasu":
-                            if (new Regex(@"^tobasu\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_tobasu().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_fireball":
                         case "filename_se_bomb":
                         case "filename_se_senkuuza":
-                            if (new Regex(@"^shot\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_shot().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_jet":
                         case "filename_se_dengeki":
                         case "filename_se_hinoko":
                         case "filename_se_grounder":
-                            if (new Regex(@"^mgan\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_mgan().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_miss":
                         case "filename_se_dosun":
-                            if (new Regex(@"^dosun\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_dosun().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_block":
-                            if (new Regex(@"^bakuhatu\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_bakuhatu().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_mizu":
-                            if (new Regex(@"^mizu\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_mizu().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_se_happa":
                         case "filename_se_mizudeppo":
                         case "filename_se_kaiole":
-                            if (new Regex(@"^happa\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_happa().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_fx_bgm_stage1":
-                            if (new Regex(@"^stage1\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_stage1().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_fx_bgm_stage2":
-                            if (new Regex(@"^stage2\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_stage2().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_fx_bgm_stage3":
-                            if (new Regex(@"^stage3\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_stage3().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_fx_bgm_stage4":
-                            if (new Regex(@"^stage4\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_stage4().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_fx_bgm_boss":
-                            if (new Regex(@"^boss\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_boss().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_fx_bgm_title":
-                            if (new Regex(@"^title\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_title().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_fx_bgm_ending":
-                            if (new Regex(@"^ending\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_ending().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "filename_fx_bgm_chizu":
-                            if (new Regex(@"^chizu\.[0-9a-zA-Z]+$").IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_chizu().IsMatch(configParam.Value)) goto IL_718;
                             else break;
                         case "gazou_scroll_speed_x":
                         case "gazou_scroll_speed_y":
@@ -763,7 +763,7 @@ namespace MasaoPlus
                             }, StringSplitOptions.None);
                             int num2 = 1;
 
-                            Regex text_name_regx = new(@"-(\d+)$");
+                            Regex text_name_regx = reg_text_name();
                             Match text_name_match = text_name_regx.Match(configParam.Name);
                             if (text_name_match.Success)
                             {
@@ -1024,11 +1024,11 @@ namespace MasaoPlus
             }
 
             //末尾の,を除去（文法的にはセーフだが）
-            string result = new Regex(@",(\s*?)}").Replace(stringBuilder.ToString(), "$1}");
-            result = new Regex(@",(\s*?)]").Replace(result, "$1]");
+            string result = reg_object_comma1().Replace(stringBuilder.ToString(), "$1}");
+            result = reg_object_comma2().Replace(result, "$1]");
 
             //3連続以上の改行を2連続改行に
-            result = new Regex(@"(\r\n){3,}").Replace(result, "\r\n\r\n");
+            result = reg_return().Replace(result, "\r\n\r\n");
 
             return result;
         }
@@ -1114,41 +1114,41 @@ namespace MasaoPlus
                     }
                     if (StageSplit == 0) // 地図画面
                     {
-                        array[j].AppendLine(string.Format(Parameter, new object[]
-                        {
+                        array[j].AppendLine(string.Format(Parameter,
+                        [
                         num,
                         text.Substring(num2, Global.cpd.runtime.Definitions.MapSize.x / (StageSplit + 1)) // 定義されたマップ幅まで
-                        }));
+                        ]));
                     }
                     else
                     {
-                        array[j].AppendLine(string.Format(Parameter, new object[]
-                        {
+                        array[j].AppendLine(string.Format(Parameter,
+                        [
                         j,
                         num,
                         text.Substring(num2, text.Length / (StageSplit + 1))
-                        }));
+                        ]));
                     }
                     num2 += text.Length / (StageSplit + 1);
                 }
                 if (!Global.config.localSystem.OutPutInititalSourceCode && !Global.cpd.runtime.Definitions.Package.Contains("28"))  // 省略
                 {// マップデータを二次元配列に入れて管理した方がいいかも　要改善
-                    array[StageSplit].Replace(string.Format(Parameter, new object[]
-                                {
+                    array[StageSplit].Replace(string.Format(Parameter,
+                                [
                             StageSplit,
                             num,
                             null_string.ToString()
-                                }) + "\r\n", string.Empty);
+                                ]) + "\r\n", string.Empty);
                     for (int j = StageSplit - 1; j > 0; j--)
                     {
                         if (!array[j + 1].ToString().Contains($"{j + 1}-{num}"))
                         {
-                            array[j].Replace(string.Format(Parameter, new object[]
-                            {
+                            array[j].Replace(string.Format(Parameter,
+                            [
                             j,
                             num,
                             null_string.ToString()
-                            }) + "\r\n", string.Empty);
+                            ]) + "\r\n", string.Empty);
                             break;
                         }
                     }
@@ -1164,9 +1164,9 @@ namespace MasaoPlus
                 if (stringBuilder2 != null) stringBuilder.AppendLine(stringBuilder2.ToString());
             }
 
-            if (notdefaultparam && new Regex(@"^\s*?$").Match(stringBuilder.ToString()).Success)
+            if (notdefaultparam && reg_space().Match(stringBuilder.ToString()).Success)
             { // 出力結果が空白のみの場合
-                stringBuilder.AppendLine(string.Format(Parameter, new object[] { 0, 0, ".." })); //
+                stringBuilder.AppendLine(string.Format(Parameter, [0, 0, ".."])); //
             }
 
             return stringBuilder.ToString();
@@ -1445,5 +1445,64 @@ namespace MasaoPlus
         private static WebClient dlClient;
 
         private static string tempfile;
+
+        [GeneratedRegex(@"^item\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_item();
+        [GeneratedRegex(@"^gameover\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_gameover();
+        [GeneratedRegex(@"^clear\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_clear();
+        [GeneratedRegex(@"^coin\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_coin();
+        [GeneratedRegex(@"^get\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_get();
+        [GeneratedRegex(@"^jump\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_jump();
+        [GeneratedRegex(@"^sjump\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_sjump();
+        [GeneratedRegex(@"^kiki\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_kiki();
+        [GeneratedRegex(@"^fumu\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_fumu();
+        [GeneratedRegex(@"^tobasu\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_tobasu();
+        [GeneratedRegex(@"^shot\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_shot();
+        [GeneratedRegex(@"^mgan\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_mgan();
+        [GeneratedRegex(@"^dosun\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_dosun();
+        [GeneratedRegex(@"^bakuhatu\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_bakuhatu();
+        [GeneratedRegex(@"^mizu\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_mizu();
+        [GeneratedRegex(@"^happa\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_se_happa();
+        [GeneratedRegex(@"^stage1\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_bgm_stage1();
+        [GeneratedRegex(@"^stage2\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_bgm_stage2();
+        [GeneratedRegex(@"^stage3\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_bgm_stage3();
+        [GeneratedRegex(@"^stage4\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_bgm_stage4();
+        [GeneratedRegex(@"^boss\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_bgm_boss();
+        [GeneratedRegex(@"^title\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_bgm_title();
+        [GeneratedRegex(@"^ending\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_bgm_ending();
+        [GeneratedRegex(@"^chizu\.[0-9a-zA-Z]+$")]
+        private static partial Regex reg_bgm_chizu();
+        [GeneratedRegex(@"-(\d+)$")]
+        private static partial Regex reg_text_name();
+        [GeneratedRegex(@",(\s*?)}")]
+        private static partial Regex reg_object_comma1();
+        [GeneratedRegex(@",(\s*?)]")]
+        private static partial Regex reg_object_comma2();
+        [GeneratedRegex(@"(\r\n){3,}")]
+        private static partial Regex reg_return();
+        [GeneratedRegex(@"^\s*?$")]
+        private static partial Regex reg_space();
     }
 }
