@@ -294,6 +294,7 @@ namespace MasaoPlus
                         case "j_fire_type":
                         case "j_enemy_press":
                         case "boss_destroy_type":
+                        case "boss_destroy":
                         case "j_add_tokugi":
                         case "j_add_tokugi2":
                         case "j_add_tokugi3":
