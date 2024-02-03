@@ -13,7 +13,8 @@ namespace MasaoPlus
             Version = $"{version.Major}.{version.Minor}.{version.Build}";
 
             EditorIdStr = $"/* [MI]Created By:Side - the Supermasao Integrated Development Environment v{Version}[/MI] */";
-    }
+        }
+
         public string AppName = "Side";
 
         public string AppNameFull = "Supermasao Integrated Development Environment";
@@ -54,7 +55,7 @@ namespace MasaoPlus
 
         public string Version;
 
-        public double CheckVersion = 4.0;
+        public double CheckVersion = 4.1;
 
         public string EditorIdStr;
 
