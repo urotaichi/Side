@@ -86,6 +86,7 @@ namespace MasaoPlus
                     }
                     else
                     {
+                        ApplicationConfiguration.Initialize();
                         Application.Run(new MainWindow());
                     }
                 }
