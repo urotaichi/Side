@@ -200,7 +200,7 @@ namespace MasaoPlus
                         e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
                         if (oriboss_view && chipData.character == "Z")
                         {
-                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, rectangle.Width, rectangle.Height);
+                            if(Global.MainWnd.MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, rectangle.Width, rectangle.Height);
                         }
                         else
                         {

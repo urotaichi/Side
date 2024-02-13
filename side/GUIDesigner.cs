@@ -379,7 +379,7 @@ namespace MasaoPlus
             { // 標準パターン画像
                 if (oriboss_view && chara == "Z")
                 {
-                    g.DrawImage(DrawOribossOrig, new Rectangle(new(LogicalToDeviceUnits(p.X * chipsize.Width), LogicalToDeviceUnits(p.Y * chipsize.Height)), LogicalToDeviceUnits(DrawOribossOrig.Size)));
+                    if(DrawOribossOrig != null) g.DrawImage(DrawOribossOrig, new Rectangle(new(LogicalToDeviceUnits(p.X * chipsize.Width), LogicalToDeviceUnits(p.Y * chipsize.Height)), LogicalToDeviceUnits(DrawOribossOrig.Size)));
                 }
                 else
                 {
@@ -631,7 +631,7 @@ namespace MasaoPlus
                     if (Global.state.EdittingStage == 1) SecondHaikeiOrig = DrawSecondHaikei2Orig;
                     else if (Global.state.EdittingStage == 2) SecondHaikeiOrig = DrawSecondHaikei3Orig;
                     else if (Global.state.EdittingStage == 3) SecondHaikeiOrig = DrawSecondHaikei4Orig;
-                    g.DrawImage(SecondHaikeiOrig, new Rectangle(new Point(LogicalToDeviceUnits(second_gazou_scroll_x), LogicalToDeviceUnits(second_gazou_scroll_y)), LogicalToDeviceUnits(SecondHaikeiOrig.Size)));
+                    if(SecondHaikeiOrig != null) g.DrawImage(SecondHaikeiOrig, new Rectangle(new Point(LogicalToDeviceUnits(second_gazou_scroll_x), LogicalToDeviceUnits(second_gazou_scroll_y)), LogicalToDeviceUnits(SecondHaikeiOrig.Size)));
                 }
             }
             if (!Global.state.MapEditMode)
@@ -649,10 +649,10 @@ namespace MasaoPlus
                     if (Global.state.EdittingStage == 1) HaikeiOrig = DrawHaikei2Orig;
                     else if (Global.state.EdittingStage == 2) HaikeiOrig = DrawHaikei3Orig;
                     else if (Global.state.EdittingStage == 3) HaikeiOrig = DrawHaikei4Orig;
-                    g.DrawImage(HaikeiOrig, new Rectangle(new Point(LogicalToDeviceUnits(gazou_scroll_x), LogicalToDeviceUnits(gazou_scroll_y)), LogicalToDeviceUnits(HaikeiOrig.Size)));
+                    if(HaikeiOrig != null) g.DrawImage(HaikeiOrig, new Rectangle(new Point(LogicalToDeviceUnits(gazou_scroll_x), LogicalToDeviceUnits(gazou_scroll_y)), LogicalToDeviceUnits(HaikeiOrig.Size)));
                 }
             }
-            else
+            else if(DrawChizuOrig != null)
             {
                 g.DrawImage(DrawChizuOrig, new Rectangle(new Point(LogicalToDeviceUnits(-16), LogicalToDeviceUnits(-24)), LogicalToDeviceUnits(DrawChizuOrig.Size)));
             }
@@ -838,7 +838,7 @@ namespace MasaoPlus
                     int oriboss_x = default, oriboss_y = default;
                     if (Global.state.ChipRegister.TryGetValue("oriboss_x", out string oriboss_x_value)) oriboss_x = int.Parse(oriboss_x_value);
                     if (Global.state.ChipRegister.TryGetValue("oriboss_y", out string oriboss_y_value)) oriboss_y = int.Parse(oriboss_y_value);
-                    g.DrawImage(DrawOribossOrig, new Rectangle(new Point(LogicalToDeviceUnits(oriboss_x * chipsize.Width), LogicalToDeviceUnits(oriboss_y * chipsize.Height)), LogicalToDeviceUnits(DrawOribossOrig.Size)));
+                    if(DrawOribossOrig != null) g.DrawImage(DrawOribossOrig, new Rectangle(new Point(LogicalToDeviceUnits(oriboss_x * chipsize.Width), LogicalToDeviceUnits(oriboss_y * chipsize.Height)), LogicalToDeviceUnits(DrawOribossOrig.Size)));
                     if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki) && Global.config.draw.ExtendDraw)
                     {
                         Point p = int.Parse(oriboss_ugoki) switch
@@ -1129,15 +1129,22 @@ namespace MasaoPlus
             if (Global.cpd.project.Config.OribossImage != null)//オリジナルボスを使うとき
             {
                 filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.OribossImage);
-                fs = File.OpenRead(filename);
+                try
+                {
+                    fs = File.OpenRead(filename);
 
-                DrawOribossOrig = Image.FromStream(fs, false, false);
-                DrawOribossMask = new Bitmap(DrawOribossOrig.Width, DrawOribossOrig.Height);
-                using ImageAttributes imageAttributes4 = new();
-                imageAttributes4.SetRemapTable(remapTable);
-                using Graphics graphics4 = Graphics.FromImage(DrawOribossMask);
-                graphics4.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawOribossMask.Width, DrawOribossMask.Height));
-                graphics4.DrawImage(DrawOribossOrig, new Rectangle(0, 0, DrawOribossMask.Width, DrawOribossMask.Height), 0, 0, DrawOribossMask.Width, DrawOribossMask.Height, GraphicsUnit.Pixel, imageAttributes4);
+                    DrawOribossOrig = Image.FromStream(fs, false, false);
+                    DrawOribossMask = new Bitmap(DrawOribossOrig.Width, DrawOribossOrig.Height);
+                    using ImageAttributes imageAttributes4 = new();
+                    imageAttributes4.SetRemapTable(remapTable);
+                    using Graphics graphics4 = Graphics.FromImage(DrawOribossMask);
+                    graphics4.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawOribossMask.Width, DrawOribossMask.Height));
+                    graphics4.DrawImage(DrawOribossOrig, new Rectangle(0, 0, DrawOribossMask.Width, DrawOribossMask.Height), 0, 0, DrawOribossMask.Width, DrawOribossMask.Height, GraphicsUnit.Pixel, imageAttributes4);
+                }
+                catch
+                {
+                    DrawOribossOrig = null;
+                }
             }
 
             filename = Path.Combine(Global.cpd.where, Global.cpd.runtime.Definitions.ChipExtender);
@@ -1154,67 +1161,34 @@ namespace MasaoPlus
             {
                 DrawExMask = DrawEx.MakeMask(drawExMask);
             }
-            if (Global.cpd.project.Config.HaikeiImage != null)//ステージ1背景画像
+
+            static Image setImage(string source)
             {
-                filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.HaikeiImage);
-                fs = File.OpenRead(filename);
+                if (source != null)
+                {
+                    var filename = Path.Combine(Global.cpd.where, source);
+                    try
+                    {
+                        var fs = File.OpenRead(filename);
 
-                DrawHaikeiOrig = Image.FromStream(fs, false, false);
+                        return Image.FromStream(fs, false, false);
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+                else { return null; }
             }
-            if (Global.cpd.project.Config.HaikeiImage2 != null)//ステージ2背景画像
-            {
-                filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.HaikeiImage2);
-                fs = File.OpenRead(filename);
-
-                DrawHaikei2Orig = Image.FromStream(fs, false, false);
-            }
-            if (Global.cpd.project.Config.HaikeiImage3 != null)//ステージ3背景画像
-            {
-                filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.HaikeiImage3);
-                fs = File.OpenRead(filename);
-
-                DrawHaikei3Orig = Image.FromStream(fs, false, false);
-            }
-            if (Global.cpd.project.Config.HaikeiImage4 != null)//ステージ4背景画像
-            {
-                filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.HaikeiImage4);
-                fs = File.OpenRead(filename);
-
-                DrawHaikei4Orig = Image.FromStream(fs, false, false);
-            }
-            if (Global.cpd.project.Config.SecondHaikeiImage != null)//ステージ1セカンド背景画像
-            {
-                filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.SecondHaikeiImage);
-                fs = File.OpenRead(filename);
-
-                DrawSecondHaikeiOrig = Image.FromStream(fs, false, false);
-            }
-            if (Global.cpd.project.Config.SecondHaikeiImage2 != null)//ステージ2セカンド背景画像
-            {
-                filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.SecondHaikeiImage2);
-                fs = File.OpenRead(filename);
-
-                DrawSecondHaikei2Orig = Image.FromStream(fs, false, false);
-            }
-            if (Global.cpd.project.Config.SecondHaikeiImage3 != null)//ステージ3セカンド背景画像
-            {
-                filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.SecondHaikeiImage3);
-                fs = File.OpenRead(filename);
-
-                DrawSecondHaikei3Orig = Image.FromStream(fs, false, false);
-            }
-            if (Global.cpd.project.Config.SecondHaikeiImage4 != null)//ステージ4セカンド背景画像
-            {
-                filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.SecondHaikeiImage4);
-                fs = File.OpenRead(filename);
-
-                DrawSecondHaikei4Orig = Image.FromStream(fs, false, false);
-            }
-            // 地図画面の背景
-            filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.ChizuImage);
-            fs = File.OpenRead(filename);
-
-            DrawChizuOrig = Image.FromStream(fs, false, false);
+            DrawHaikeiOrig = setImage(Global.cpd.project.Config.HaikeiImage);// ステージ1背景画像
+            DrawHaikei2Orig = setImage(Global.cpd.project.Config.HaikeiImage2);// ステージ2背景画像
+            DrawHaikei3Orig = setImage(Global.cpd.project.Config.HaikeiImage3);// ステージ3背景画像
+            DrawHaikei4Orig = setImage(Global.cpd.project.Config.HaikeiImage4);// ステージ4背景画像
+            DrawSecondHaikeiOrig = setImage(Global.cpd.project.Config.SecondHaikeiImage);// ステージ1背景画像
+            DrawSecondHaikei2Orig = setImage(Global.cpd.project.Config.SecondHaikeiImage2);// ステージ1背景画像
+            DrawSecondHaikei3Orig = setImage(Global.cpd.project.Config.SecondHaikeiImage3);// ステージ1背景画像
+            DrawSecondHaikei4Orig = setImage(Global.cpd.project.Config.SecondHaikeiImage4);// ステージ1背景画像
+            DrawChizuOrig = setImage(Global.cpd.project.Config.ChizuImage);// 地図画面の背景
         }
 
         protected unsafe override void OnPaint(PaintEventArgs e)
@@ -1464,6 +1438,7 @@ namespace MasaoPlus
                 DrawChizuOrig.Dispose();
                 DrawChizuOrig = null;
             }
+            GC.SuppressFinalize(this);
         }
 
         private void GUIDesigner_MouseDown(object sender, MouseEventArgs e)
@@ -2832,7 +2807,7 @@ namespace MasaoPlus
                 Size size = default;
                 if (cd.character != null || cd.code != null)
                 {
-                    if (Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3 && cd.character == "Z")
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3 && cd.character == "Z" && DrawOribossOrig != null)
                     {
                         size = DrawOribossOrig.Size;
                     }
@@ -2858,7 +2833,7 @@ namespace MasaoPlus
                         else chipsData = DrawItemRef[stageChar];
                     }
                     chipData = chipsData.GetCSChip();
-                    if (Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3 && chipsData.character == "Z")
+                    if (Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3 && chipsData.character == "Z" && DrawOribossOrig != null)
                         size = GetLargerSize(size, DrawOribossOrig.Size);
                     else if (chipData.name.Contains("曲線による") && chipData.name.Contains('坂') || chipData.name == "半円" && !chipData.description.Contains("乗れる"))
                         size = GetLargerSize(size, new Size(chipData.view_size.Width, CurrentStageSize.y * chipsize.Height));

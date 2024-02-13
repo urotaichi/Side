@@ -304,8 +304,7 @@ namespace MasaoPlus
                 }
                 ChipData cschip = chipsData.GetCSChip();
                 Size size = (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size;
-                if (oriboss_view && chipsData.character == "Z")
-                    size = MainDesigner.DrawOribossOrig.Size;
+                if (oriboss_view && chipsData.character == "Z" && MainDesigner.DrawOribossOrig != null) size = MainDesigner.DrawOribossOrig.Size;
                 ChipNavigator.Image?.Dispose();
                 Bitmap bitmap;
                 if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
@@ -323,7 +322,7 @@ namespace MasaoPlus
                     graphics.PixelOffsetMode = PixelOffsetMode.Half;
                     if (oriboss_view && chipsData.character == "Z")
                     {
-                        graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, MainDesigner.DrawOribossOrig.Size.Width, MainDesigner.DrawOribossOrig.Size.Height);
+                        if(MainDesigner.DrawOribossOrig != null) graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, MainDesigner.DrawOribossOrig.Size.Width, MainDesigner.DrawOribossOrig.Size.Height);
                     }
                     else
                     {
@@ -1036,7 +1035,7 @@ namespace MasaoPlus
                 {
                     if (Global.state.EditingForeground && oriboss_view && Global.state.CurrentChip.character == "Z")
                     {
-                        e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, ChipImage.Width, ChipImage.Height);
+                        if(MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, ChipImage.Width, ChipImage.Height);
                     }
                     else
                     {
@@ -1617,7 +1616,7 @@ namespace MasaoPlus
                             e.Graphics.TranslateTransform(e.Bounds.X, e.Bounds.Y);
                             if (Global.state.EditingForeground && oriboss_view && array[i].character == "Z")
                             {
-                                e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, e.Bounds.Height, e.Bounds.Height);
+                                if(MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, e.Bounds.Height, e.Bounds.Height);
                             }
                             else
                             {
@@ -1746,8 +1745,15 @@ namespace MasaoPlus
                             {
                                 if (Global.state.EditingForeground && oriboss_view && array[i].character == "Z")
                                 {
-                                    e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0);
-                                    width = MainDesigner.DrawOribossOrig.Width;
+                                    if(MainDesigner.DrawOribossOrig != null)
+                                    {
+                                        e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0);
+                                        width = MainDesigner.DrawOribossOrig.Width;
+                                    }
+                                    else
+                                    {
+                                        width = cschip.size.Width;
+                                    }
                                 }
                                 else
                                 {
@@ -1845,7 +1851,7 @@ namespace MasaoPlus
                             }
                             else
                             {
-                                if (Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3 && array[i].character == "Z")
+                                if (Global.state.ChipRegister.TryGetValue("oriboss_v", out string value) && int.Parse(value) == 3 && array[i].character == "Z" && MainDesigner.DrawOribossOrig != null)
                                 {
                                     height = MainDesigner.DrawOribossOrig.Height;
                                 }
