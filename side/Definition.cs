@@ -55,7 +55,7 @@ namespace MasaoPlus
 
         public string Version;
 
-        public double CheckVersion = 4.11;
+        public double CheckVersion = 4.12;
 
         public string EditorIdStr;
 
