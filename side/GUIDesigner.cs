@@ -2238,7 +2238,7 @@ namespace MasaoPlus
                     }
                     num = l;
                 }
-                return num != 0 && num < Global.state.GetCByteWidth;
+                return num != 0 && num <= Global.state.GetCByteWidth;
             }
             else
             {
@@ -2250,7 +2250,7 @@ namespace MasaoPlus
                     }
                     num = text.Length;
                 }
-                return num != 0 && num < Global.state.GetCByteWidth;
+                return num != 0 && num <= Global.state.GetCByteWidth;
             }
         }
 
