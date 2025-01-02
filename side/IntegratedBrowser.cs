@@ -167,8 +167,8 @@ namespace MasaoPlus
             MainStatusStrip.SuspendLayout();
             //this.contextMenuStrip1.SuspendLayout();
             SuspendLayout();
-            MainToolStrip.Items.AddRange(new ToolStripItem[]
-            {
+            MainToolStrip.Items.AddRange(
+            [
                 Back,
                 Forward,
                 toolStripSeparator1,
@@ -177,7 +177,7 @@ namespace MasaoPlus
                 toolStripSeparator2,
                 URL,
                 OnWeb
-            });
+            ]);
             MainToolStrip.Location = new Point(0, 0);
             MainToolStrip.Name = "MainToolStrip";
             MainToolStrip.Size = LogicalToDeviceUnits(new Size(414, 25));
@@ -227,11 +227,11 @@ namespace MasaoPlus
             OnWeb.Size = LogicalToDeviceUnits(new Size(23, 22));
             OnWeb.Text = "関連付けられたブラウザで開く";
             OnWeb.Click += OnWeb_Click;
-            MainStatusStrip.Items.AddRange(new ToolStripItem[]
-            {
+            MainStatusStrip.Items.AddRange(
+            [
                 Status,
 				//this.Progress
-			});
+			]);
             MainStatusStrip.Location = new Point(0, LogicalToDeviceUnits(197));
             MainStatusStrip.Name = "MainStatusStrip";
             MainStatusStrip.Size = LogicalToDeviceUnits(new Size(414, 23));

@@ -507,10 +507,10 @@ namespace MasaoPlus.Controls
                             ConfView[e.ColumnIndex, e.RowIndex].Value = "";
                         }
                         string text = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
-                        string[] array = text.Split(new string[]
-                        {
+                        string[] array = text.Split(
+                        [
                     Environment.NewLine
-                        }, StringSplitOptions.None);
+                        ], StringSplitOptions.None);
                         if (configParam.Rows > 0)
                         {
                             List<string> list = new(array);

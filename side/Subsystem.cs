@@ -52,12 +52,12 @@ namespace MasaoPlus
                     text = text.Replace($"<?{htmlreplaceData.Name}>", htmlreplaceData.Value);
                 }
             }
-            foreach (string value in text.Split(new string[]
-            {
+            foreach (string value in text.Split(
+            [
                 Environment.NewLine,
                 "\r",
                 "\n"
-            }, StringSplitOptions.None))
+            ], StringSplitOptions.None))
             {
                 stringBuilder.AppendLine(value);
             }
@@ -757,10 +757,10 @@ namespace MasaoPlus
                         goto IL_718;
                     case "text":
                         {
-                            string[] array2 = configParam.Value.Split(new string[]
-                            {
+                            string[] array2 = configParam.Value.Split(
+                            [
                         Environment.NewLine
-                            }, StringSplitOptions.None);
+                            ], StringSplitOptions.None);
                             int num2 = 1;
 
                             Regex text_name_regx = reg_text_name();
@@ -821,12 +821,12 @@ namespace MasaoPlus
                     text = text.Replace($"<?{htmlreplaceData.Name}>", htmlreplaceData.Value);
                 }
             }
-            foreach (string value in text.Split(new string[]
-            {
+            foreach (string value in text.Split(
+            [
                 Environment.NewLine,
                 "\r",
                 "\n"
-            }, StringSplitOptions.None))
+            ], StringSplitOptions.None))
             {
                 stringBuilder.AppendLine(value);
             }
@@ -1013,12 +1013,12 @@ namespace MasaoPlus
                     text = text.Replace($"<?{htmlreplaceData2.Name}>", htmlreplaceData2.Value);
                 }
             }
-            foreach (string value2 in text.Split(new string[]
-            {
+            foreach (string value2 in text.Split(
+            [
                 Environment.NewLine,
                 "\r",
                 "\n"
-            }, StringSplitOptions.None))
+            ], StringSplitOptions.None))
             {
                 stringBuilder.AppendLine(value2);
             }

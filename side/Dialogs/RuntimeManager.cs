@@ -43,14 +43,14 @@ namespace MasaoPlus.Dialogs
                                 {
                                     runtimedatas.Add(runtime);
                                     runtimefiles.Add(text);
-                                    RuntimeViewer.Items.Add(new ListViewItem(new string[]
-                                    {
+                                    RuntimeViewer.Items.Add(new ListViewItem(
+                                    [
                                         runtime.Definitions.Name,
                                         runtime.Definitions.Author,
                                         runtime.Definitions.Package,
                                         (runtime.Definitions.LayerSize.bytesize != 0) ? "○" : "×",
                                         runtime.Definitions.DefVersion.ToString("F2")
-                                    }));
+                                    ]));
                                 }
                                 else
                                 {

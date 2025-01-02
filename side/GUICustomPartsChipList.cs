@@ -364,11 +364,11 @@ namespace MasaoPlus
             ((ISupportInitialize)MainPanel).BeginInit();
             CursorContextMenu.SuspendLayout();
             SuspendLayout();
-            CursorContextMenu.Items.AddRange(new ToolStripItem[]
-            {
+            CursorContextMenu.Items.AddRange(
+            [
                 Copy,
                 Delete
-            });
+            ]);
             CursorContextMenu.Name = "CursorContextMenu";
             CursorContextMenu.Size = LogicalToDeviceUnits(new Size(275, 170));
             Copy.Image = new IconImageView(DeviceDpi, Resources.copy).View();

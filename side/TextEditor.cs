@@ -191,7 +191,7 @@ namespace MasaoPlus
             {
                 string stagetext = StageTextEditor.Lines[lineFromCharIndex];
                 string[] stagetextarray = stagetext.Split(',');
-                string[] stagetextarray2 = new string(stagetext.ToCharArray(0,num)).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+                string[] stagetextarray2 = new string(stagetext.ToCharArray(0,num)).Split([","], StringSplitOptions.RemoveEmptyEntries);
                 TextPositionInfo.Text = $"{lineFromCharIndex}行 {stagetextarray2.Length}要素";
                 int length = stagetextarray.Length;
                 LineInfo.Text = $"{StageTextEditor.Lines.Length}行 {length}要素";
@@ -529,13 +529,13 @@ namespace MasaoPlus
             StageTextEditor.MouseDown += StageTextEditor_MouseDown;
             StageTextEditor.KeyUp += StageTextEditor_KeyUp;
             StageTextEditor.TextChanged += StageTextEditor_TextChanged;
-            TextEditorStatus.Items.AddRange(new ToolStripItem[]
-            {
+            TextEditorStatus.Items.AddRange(
+            [
                 TextPositionInfo,
                 TextStatus,
                 LineInfo,
                 EnableTranslate
-            });
+            ]);
             TextEditorStatus.Location = new Point(0, LogicalToDeviceUnits(240));
             TextEditorStatus.Name = "TextEditorStatus";
             TextEditorStatus.Size = LogicalToDeviceUnits(new Size(553, 27));
@@ -560,8 +560,8 @@ namespace MasaoPlus
             EnableTranslate.Name = "EnableTranslate";
             EnableTranslate.Size = LogicalToDeviceUnits(new Size(204, 22));
             EnableTranslate.Text = "テストプレイ/GUIコンバート不可能";
-            TextEditorTool.Items.AddRange(new ToolStripItem[]
-            {
+            TextEditorTool.Items.AddRange(
+            [
                 StageLayer,
                 toolStripSeparator1,
                 TextUndo,
@@ -573,18 +573,18 @@ namespace MasaoPlus
                 toolStripSeparator9,
                 TextProjConfig,
                 TextTestRun
-            });
+            ]);
             TextEditorTool.Location = new Point(0, 0);
             TextEditorTool.Name = "TextEditorTool";
             TextEditorTool.Size = LogicalToDeviceUnits(new Size(553, 25));
             TextEditorTool.TabIndex = 7;
             TextEditorTool.Text = "toolStrip1";
             StageLayer.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            StageLayer.DropDownItems.AddRange(new ToolStripItem[]
-            {
+            StageLayer.DropDownItems.AddRange(
+            [
                 PatternChipLayer,
                 BackgroundLayer
-            });
+            ]);
             StageLayer.Image = new IconImageView(DeviceDpi, Resources.layers).View();
             StageLayer.ImageTransparentColor = Color.Magenta;
             StageLayer.Name = "StageLayer";

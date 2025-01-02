@@ -1594,10 +1594,10 @@ namespace MasaoPlus
                         EnsureScroll(e.X, e.Y);
                         Global.MainWnd.UpdateStatus("描画しています...");
                         Rectangle rectangle = new(MouseLastPoint, GetBufferSize());
-                        string[] array = ClipedString.Split(new string[]
-                        {
+                        string[] array = ClipedString.Split(
+                        [
                     Environment.NewLine
-                        }, StringSplitOptions.None);
+                        ], StringSplitOptions.None);
                         ChipsData cd = default;
                         Point point = new(0, 0);
                         for (int j = rectangle.Top; j < rectangle.Bottom; j++)
@@ -2223,10 +2223,10 @@ namespace MasaoPlus
                 return false;
             }
             int num = -1;
-            string[] cp = ClipedString.Split(new string[]
-                {
+            string[] cp = ClipedString.Split(
+                [
                 Environment.NewLine
-                }, StringSplitOptions.None);
+                ], StringSplitOptions.None);
             if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
             {
                 foreach (string text in cp)
@@ -2256,10 +2256,10 @@ namespace MasaoPlus
 
         private Size GetBufferSize()
         {
-            string[] array = ClipedString.Split(new string[]
-            {
+            string[] array = ClipedString.Split(
+            [
                 Environment.NewLine
-            }, StringSplitOptions.None);
+            ], StringSplitOptions.None);
             if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
             {
                 return new Size(array[0].Split(',').Length, array.Length);
@@ -3186,8 +3186,8 @@ namespace MasaoPlus
             ProjectConfig = new ToolStripMenuItem();
             CursorContextMenu.SuspendLayout();
             SuspendLayout();
-            CursorContextMenu.Items.AddRange(new ToolStripItem[]
-            {
+            CursorContextMenu.Items.AddRange(
+            [
                 QuickTestRun,
                 PickChip,
                 toolStripMenuItem3,
@@ -3197,7 +3197,7 @@ namespace MasaoPlus
                 toolStripMenuItem2,
                 DoTestrun,
                 ProjectConfig
-            });
+            ]);
             CursorContextMenu.Name = "CursorContextMenu";
             CursorContextMenu.Size = LogicalToDeviceUnits(new Size(275, 170));
             QuickTestRun.Image = new IconImageView(DeviceDpi, Resources.testrunplace).View();

@@ -47,12 +47,12 @@ namespace MasaoPlus.Dialogs
                                 {
                                     runtimes.Add(text);
                                     runtimedatas.Add(runtime);
-                                    RuntimeView.Items.Add(new ListViewItem(new string[]
-                                    {
+                                    RuntimeView.Items.Add(new ListViewItem(
+                                    [
                                         runtime.Definitions.Name,
                                         runtime.Definitions.Author,
                                         (runtime.Definitions.LayerSize.bytesize != 0) ? "○" : "×"
-                                    }));
+                                    ]));
                                 }
                                 else
                                 {
