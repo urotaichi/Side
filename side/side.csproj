@@ -24,6 +24,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+	<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\</OutputPath>
@@ -99,30 +100,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\CommandLinkButton.resources" />
-    <EmbeddedResource Include="Controls\ConfigList.resources" />
-    <EmbeddedResource Include="Controls\OverViewer.resources" />
-    <EmbeddedResource Include="Dialogs\HTMLInheritance.resources" />
-    <EmbeddedResource Include="Dialogs\NewProject.resources" />
-    <EmbeddedResource Include="Dialogs\OutputControl.resources" />
-    <EmbeddedResource Include="Dialogs\ProjectConfig.resources" />
-    <EmbeddedResource Include="Dialogs\ProjectLoading.resources" />
-    <EmbeddedResource Include="Dialogs\ProjInheritance.resources" />
-    <EmbeddedResource Include="Dialogs\PropertyTextInputDialog.resources" />
-    <EmbeddedResource Include="Dialogs\ResetRuntime.resources" />
-    <EmbeddedResource Include="Dialogs\RuntimeManager.resources" />
-    <EmbeddedResource Include="Dialogs\StartUp.resources" />
-    <EmbeddedResource Include="Dialogs\VersionInfo.resources" />
-    <EmbeddedResource Include="Dialogs\WebUpdate.resources" />
-    <EmbeddedResource Include="GUIChipList.resources" />
-    <EmbeddedResource Include="IntegratedBrowser.resources" />
-    <EmbeddedResource Include="MainWindow.resources" />
-    <EmbeddedResource Include="OverViewWindow.resources" />
+    <EmbeddedResource Include="Dialogs\VersionInfo.resx" />
+    <EmbeddedResource Include="MainWindow.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="SideConfig.resources" />
-    <EmbeddedResource Include="TextEditor.resources" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="famfamfam-silk" Version="1.0.0" />
@@ -158,9 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="side.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Properties\Settings.settings">
