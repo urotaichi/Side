@@ -55,7 +55,6 @@ namespace MasaoPlus.Dialogs
                                 runtimedatas.Add(runtime);
                                 runtimeuselayer.Add(runtime.Definitions.LayerSize.bytesize != 0);
                                 RuntimeSet.Items.Add(string.Concat(
-                                [
                                     runtime.Definitions.Name,
                                     " [Author:",
                                     runtime.Definitions.Author,
@@ -63,7 +62,7 @@ namespace MasaoPlus.Dialogs
                                     (runtime.Definitions.LayerSize.bytesize != 0) ? "○" : "×",
                                     "] : ",
                                     Path.GetFileName(text)
-                                ]));
+                                ));
                             }
                             else
                             {
@@ -390,7 +389,7 @@ namespace MasaoPlus.Dialogs
                                     {
                                         list2.RemoveRange(project.Config.Configurations[num].Rows, list2.Count - project.Config.Configurations[num].Rows);
                                     }
-                                    project.Config.Configurations[num].Value = string.Join(Environment.NewLine, [.. list2]);
+                                    project.Config.Configurations[num].Value = string.Join(Environment.NewLine, list2);
                                     // 文字列に\"が含まれていた場合エスケープを戻す
                                     project.Config.Configurations[num].Value = project.Config.Configurations[num].Value.Replace(@"\""", @"""");
                                     project.Config.Configurations[num].Value = project.Config.Configurations[num].Value.Replace(@"\\", @"\");

@@ -351,6 +351,7 @@ MigrationBackup/
 side.xml
 side.exe
 /net8.0-windows
+/net9.0-windows*
 ~temp.html
 projects/NewProject
 /dmp.txt
