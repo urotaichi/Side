@@ -376,6 +376,7 @@ namespace MasaoPlus
             Copy.Size = LogicalToDeviceUnits(new Size(274, 22));
             Copy.Text = "コピー(&C)";
             Copy.Click += Copy_Click;
+            Delete.Image = new IconImageView(DeviceDpi, Resources.cross).View();
             Delete.Name = "Copy";
             Delete.Size = LogicalToDeviceUnits(new Size(274, 22));
             Delete.Text = "削除";

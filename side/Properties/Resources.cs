@@ -331,9 +331,18 @@ namespace MasaoPlus.Properties
 				object @object = Resources.ResourceManager.GetObject("world_add", Resources.resourceCulture);
 				return (Bitmap)@object;
 			}
-		}
+        }
 
-		private static ResourceManager resourceMan;
+        internal static Bitmap cross
+        {
+            get
+            {
+                object @object = Resources.ResourceManager.GetObject("cross", Resources.resourceCulture);
+                return (Bitmap)@object;
+            }
+        }
+
+        private static ResourceManager resourceMan;
 
 		private static CultureInfo resourceCulture;
 	}
