@@ -114,3 +114,12 @@ jobs:
         asset_path: side/bin/Release/net9.0-windows10.0.17763.0/Side.zip
         asset_name: Side.zip
         asset_content_type: application/zip
+
+    - name: Upload to FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4
+      with:
+        ftp-server: ${{ secrets.FTP_SERVER }}
+        ftp-username: ${{ secrets.FTP_USERNAME }}
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: side/bin/Release/net9.0-windows10.0.17763.0/Side.zip
+        server-dir: ${{ secrets.FTP_SERVER_DIR }}
