@@ -28,6 +28,13 @@ jobs:
           exit 1
         fi
 
+    - name: Extract release notes
+      id: extract_notes
+      run: |
+        version=${{ steps.read_version.outputs.version }}
+        notes=$(sed -n "/□$version/,/□[0-9]\+\.[0-9]\+\.[0-9]\+/{/□$version/b;/□[0-9]\+\.[0-9]\+\.[0-9]\+/b;p}" readme.txt | sed 's/^/ - /' | tr '\n' ' ' | sed 's/ - /\n - /g')
+        echo "notes=$notes" >> $GITHUB_OUTPUT
+
     - name: Update Definition.cs
       run: |
         version=${{ steps.read_version.outputs.version }}
@@ -94,6 +101,7 @@ jobs:
       with:
         tag_name: "v${{ steps.read_version.outputs.version }}"
         release_name: "Side ${{ steps.read_version.outputs.version }}"
+        body: ${{ steps.extract_notes.outputs.notes }}
         draft: true
         prerelease: false
 
