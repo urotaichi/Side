@@ -17,7 +17,7 @@ namespace MasaoPlus.Controls
             }
             set
             {
-                if (!(value is DataGridViewNumericUpdownCell))
+                if (value is not DataGridViewNumericUpdownCell)
                 {
                     throw new InvalidCastException("DataGridViewNumericUpdownCellオブジェクトを指定してください。");
                 }
