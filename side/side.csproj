@@ -24,6 +24,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+	<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\</OutputPath>
@@ -89,35 +90,24 @@
     <Compile Update="IntegratedBrowser.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Update="TextEditor.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\CommandLinkButton.resources" />
-    <EmbeddedResource Include="Controls\ConfigList.resources" />
-    <EmbeddedResource Include="Controls\OverViewer.resources" />
-    <EmbeddedResource Include="Dialogs\HTMLInheritance.resources" />
-    <EmbeddedResource Include="Dialogs\NewProject.resources" />
-    <EmbeddedResource Include="Dialogs\OutputControl.resources" />
-    <EmbeddedResource Include="Dialogs\ProjectConfig.resources" />
-    <EmbeddedResource Include="Dialogs\ProjectLoading.resources" />
-    <EmbeddedResource Include="Dialogs\ProjInheritance.resources" />
-    <EmbeddedResource Include="Dialogs\PropertyTextInputDialog.resources" />
-    <EmbeddedResource Include="Dialogs\ResetRuntime.resources" />
-    <EmbeddedResource Include="Dialogs\RuntimeManager.resources" />
-    <EmbeddedResource Include="Dialogs\StartUp.resources" />
-    <EmbeddedResource Include="Dialogs\VersionInfo.resources" />
-    <EmbeddedResource Include="Dialogs\WebUpdate.resources" />
-    <EmbeddedResource Include="GUIChipList.resources" />
-    <EmbeddedResource Include="IntegratedBrowser.resources" />
-    <EmbeddedResource Include="MainWindow.resources" />
-    <EmbeddedResource Include="OverViewWindow.resources" />
-    <EmbeddedResource Include="Properties\Resources.resources" />
-    <EmbeddedResource Include="SideConfig.resources" />
-    <EmbeddedResource Include="TextEditor.resources" />
+    <EmbeddedResource Include="Dialogs\VersionInfo.resx" />
+    <EmbeddedResource Include="MainWindow.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="famfamfam-silk" Version="1.0.0" />
     <PackageReference Include="Microsoft.Web.WebView2">
       <Version>1.0.2903.40</Version>
     </PackageReference>
@@ -147,5 +137,14 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="side.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 </Project>

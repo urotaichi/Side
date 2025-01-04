@@ -72,7 +72,8 @@
 			this.ViewDat.ReadOnly = true;
 			this.ViewDat.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(428, 136));
 			this.ViewDat.TabIndex = 0;
-			this.ViewDat.Text = componentResourceManager.GetString("ViewDat.Text");
+			byte[] viewDatBytes = (byte[])componentResourceManager.GetObject("ViewDat.Text");
+			this.ViewDat.Text = System.Text.Encoding.UTF8.GetString(viewDatBytes);
 			this.ViewDat.WordWrap = false;
 			this.ViewDat.LinkClicked += new global::System.Windows.Forms.LinkClickedEventHandler(this.ViewDat_LinkClicked);
 			this.VersionLabel.Font = new global::System.Drawing.Font("メイリオ", 9f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 0);

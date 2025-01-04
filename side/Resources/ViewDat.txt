@@ -1,0 +1,46 @@
+﻿Supermasao Integrated Development Environment - Side
+
+Support
+■urotaichi corporation
+　https://urotaichi.com/
+
+■Side Official Site
+　http://side.xrea.jp/
+■StarWing.net
+　http://starwing.net/
+
+Special Thanks
+■Project Idea
+　□"Masao Construction Plus" Develop Member
+　　https://meetplay.net/
+■Program Advise
+　□Rex 
+　　http://rex.nm.land.to/
+　□NV
+　　http://j-ynv.net/
+■Design Advise
+　□Kp
+■Icons
+　□famfamfam silk icons
+　　https://github.com/legacy-icons/famfamfam-silk
+　□Kotobuki
+　□VS2005 Image Library
+■Included Libraries
+　□#ziplib by IC#Code
+　　https://github.com/icsharpcode
+■Included Images
+　□Naoto Fukuda
+　　http://www.t3.rim.or.jp/~naoto/naoto.html
+　□juner
+　　http://juner.csx.jp/
+■Reference Software
+　□Masao Tool ++ by yuntara
+　　http://mtpp.yuntara.net/
+　□正男スタジオ by Hansyou
+　　http://ms.hansyou.net/ms1/
+　□正男ツール by Naoto Fukuda
+
+Masao Construction is Copyright© Naoto Fukuda.
+Canvas Masao is Copyright© RYO.
+Side is Copyright© 2025 urotaichi.
+Original SoftWare: © 2007-2008 Karno.
