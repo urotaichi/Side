@@ -1,0 +1,108 @@
+name: Update Version and Release
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'readme.txt'
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Read version and check tag
+      id: read_version
+      run: |
+        version=$(sed -n '5p' readme.txt | grep -oP '\d+\.\d+\.\d+')
+        echo "version=$version" >> $GITHUB_OUTPUT
+        
+        if git rev-parse "v$version" >/dev/null 2>&1; then
+          echo "Tag v$version already exists"
+          exit 1
+        fi
+
+    - name: Update Definition.cs
+      run: |
+        version=${{ steps.read_version.outputs.version }}
+        version_double=$(echo $version | awk -F. '{print $1 "." $2 $3}')
+        sed -i "s/CheckVersion = .*/CheckVersion = $version_double;/" Definition.cs
+
+    - name: Update side.csproj
+      run: |
+        version=${{ steps.read_version.outputs.version }}
+        sed -i "/<PropertyGroup>/,/<\/PropertyGroup>/ s|<Version>[0-9]\+\.[0-9]\+\.[0-9]\+</Version>|<Version>$version</Version>|" side.csproj
+
+    - name: Commit changes
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add Definition.cs side.csproj
+        git commit -m "Update version to ${{ steps.read_version.outputs.version }}"
+        git push
+
+    - name: Create tag
+      run: |
+        version=${{ steps.read_version.outputs.version }}
+        git tag -a "v$version" -m "Release $version"
+        git push origin "v$version"
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+      
+    - name: Build project
+      run: |
+        msbuild /p:Configuration=Release
+
+    - name: Remove unnecessary files
+      run: |
+        cd side/bin/Release/net9.0-windows10.0.17763.0
+        rm -f Microsoft.Web.WebView2.Core.xml
+        rm -f Microsoft.Web.WebView2.WinForms.xml
+        rm -f Microsoft.Web.WebView2.Wpf.dll
+        rm -f Microsoft.Web.WebView2.Wpf.xml
+        rm -f Microsoft.Windows.SDK.NET.dll
+        rm -f Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll
+        rm -f Microsoft.WindowsAPICodePack.Sensors.dll
+        rm -f Microsoft.WindowsAPICodePack.ShellExtensions.dll
+
+    - name: Copy necessary files
+      run: |
+        cp -r pictures side/bin/Release/net9.0-windows10.0.17763.0/
+        cp -r projects side/bin/Release/net9.0-windows10.0.17763.0/
+        cp -r runtime side/bin/Release/net9.0-windows10.0.17763.0/
+        cp readme.txt side/bin/Release/net9.0-windows10.0.17763.0/
+        cp 使い方.txt side/bin/Release/net9.0-windows10.0.17763.0/
+        cp 勝手にFx14説明書.txt side/bin/Release/net9.0-windows10.0.17763.0/
+
+    - name: Create ZIP file
+      run: |
+        cd side/bin/Release/net9.0-windows10.0.17763.0
+        zip -r Side.zip ./*
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: "v${{ steps.read_version.outputs.version }}"
+        release_name: "Side ${{ steps.read_version.outputs.version }}"
+        draft: true
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: side/bin/Release/net9.0-windows10.0.17763.0/Side.zip
+        asset_name: Side.zip
+        asset_content_type: application/zip
