@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace MasaoPlus.Controls
 {
@@ -58,6 +59,7 @@ namespace MasaoPlus.Controls
             TextAlign = HorizontalAlignment.Left;
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DataGridView EditingControlDataGridView
         {
             get
@@ -70,6 +72,7 @@ namespace MasaoPlus.Controls
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public object EditingControlFormattedValue
         {
             get
@@ -82,6 +85,7 @@ namespace MasaoPlus.Controls
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int EditingControlRowIndex
         {
             get
@@ -94,6 +98,7 @@ namespace MasaoPlus.Controls
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool EditingControlValueChanged
         {
             get

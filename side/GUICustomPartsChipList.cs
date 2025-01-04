@@ -11,6 +11,7 @@ namespace MasaoPlus
 {
     public class GUICustomPartsChipList : GUIChipList
     {
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override int SelectedIndex
         {
             get

@@ -14,6 +14,7 @@ namespace MasaoPlus
 {
     public class GUIDesigner : UserControl, IDisposable
     {
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public EditTool CurrentTool
         {
             get
@@ -28,6 +29,7 @@ namespace MasaoPlus
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public CopyPasteTool CopyPaste
         {
             get

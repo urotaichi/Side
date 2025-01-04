@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace MasaoPlus.Controls
 {
@@ -9,6 +10,7 @@ namespace MasaoPlus.Controls
         {
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override DataGridViewCell CellTemplate
         {
             get
@@ -25,6 +27,7 @@ namespace MasaoPlus.Controls
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int Max
         {
             get
@@ -37,6 +40,7 @@ namespace MasaoPlus.Controls
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int Min
         {
             get

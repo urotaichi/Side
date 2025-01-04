@@ -10,6 +10,7 @@ namespace MasaoPlus
 {
     public class GUIChipList : UserControl
     {
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public virtual int SelectedIndex
         {
             get

@@ -26,6 +26,7 @@ namespace MasaoPlus.Controls
             ResumeLayout(false);
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public new Size Size
         {
             get
