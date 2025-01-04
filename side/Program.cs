@@ -16,6 +16,7 @@ namespace MasaoPlus
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
+                Application.SetColorMode(SystemColorMode.Dark);
                 try
                 {
                     if (File.Exists(Path.Combine(Application.StartupPath, Global.definition.ConfigFile)))
