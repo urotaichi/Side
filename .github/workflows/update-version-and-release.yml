@@ -55,14 +55,14 @@ jobs:
       shell: pwsh
       run: |
         $version = '${{ steps.read_version.outputs.version }}'
-        $version_double = $version -replace '\.', ''
+        $version_double = $version -replace '\.(\d+)\.(\d+)$', '.$2$1'
         (Get-Content side/Definition.cs) -replace 'CheckVersion = .*;', "CheckVersion = $version_double;" | Set-Content side/Definition.cs
 
     - name: Update side.csproj
       shell: pwsh
       run: |
         $version = '${{ steps.read_version.outputs.version }}'
-        (Get-Content side/side.csproj) -replace '<Version>[0-9]+\.[0-9]+\.[0-9]+</Version>', "<Version>$version</Version>" | Set-Content side/side.csproj
+        (Get-Content side/side.csproj) -replace '(<PropertyGroup>.*?<Version>)[0-9]+\.[0-9]+\.[0-9]+(</Version>.*?</PropertyGroup>)', "`$1$version`$2" -Raw | Set-Content side/side.csproj
 
     - name: Commit changes
       shell: pwsh
