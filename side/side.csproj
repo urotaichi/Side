@@ -1,50 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net9.0-windows10.0.17763.0</TargetFramework>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>MasaoPlus</RootNamespace>
-    <ApplicationIcon>side.ico</ApplicationIcon>
-    <StartupObject>MasaoPlus.Program</StartupObject>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-    <UseWindowsForms>true</UseWindowsForms>
-    <UseWPF>true</UseWPF>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-	<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\</OutputPath>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>8.0</LangVersion>
-    <DebugType>embedded</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>8.0</LangVersion>
-    <DebugType>embedded</DebugType>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-    <AssemblyVersion></AssemblyVersion>
-    <FileVersion></FileVersion>
-	<AssemblyTitle>Side</AssemblyTitle>
-    <Copyright>© 2025 urotaichi</Copyright>
-    <Title>Side</Title>
-    <Version>4.1.3</Version>
+  $14.2.0</Version>
     <Authors>urotaichi</Authors>
     <Product>Supermasao Integrated Development Environment</Product>
     <Description>正男エディタ</Description>
@@ -149,3 +104,4 @@
     </None>
   </ItemGroup>
 </Project>
+
