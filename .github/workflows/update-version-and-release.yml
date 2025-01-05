@@ -46,7 +46,10 @@ jobs:
                  Select-String -Pattern "□[0-9]+\.[0-9]+\.[0-9]+" -NotMatch |
                  ForEach-Object { " - $_" } | Out-String -Stream | Out-String
         $notes = $notes -replace "`r`n", "`n" -replace "`r", "`n"
-        echo "notes=$notes" >> $env:GITHUB_OUTPUT
+        $notes = $notes.Trim()
+        echo "notes<<EOF" >> $env:GITHUB_OUTPUT
+        echo "$notes" >> $env:GITHUB_OUTPUT
+        echo "EOF" >> $env:GITHUB_OUTPUT
 
     - name: Update Definition.cs
       shell: pwsh
