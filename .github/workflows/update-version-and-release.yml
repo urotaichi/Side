@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - 'readme.txt'
+  workflow_dispatch:
 
 jobs:
   update-version:
@@ -117,7 +118,7 @@ jobs:
         asset_content_type: application/zip
 
     - name: Upload to FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         ftp-server: ${{ secrets.FTP_SERVER }}
         ftp-username: ${{ secrets.FTP_USERNAME }}
