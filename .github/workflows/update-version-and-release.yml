@@ -42,9 +42,9 @@ jobs:
       shell: pwsh
       run: |
         $version = '${{ steps.read_version.outputs.version }}'
-        $notes = (Get-Content readme.txt | Select-String -Pattern "□$version" -Context 0,1000).Context.PostContext -join "`n" |
+        $notes = (Get-Content readme.txt | Select-String -Pattern "□$version" -Context 0,1000).Context.PostContext |
                  Select-String -Pattern "□[0-9]+\.[0-9]+\.[0-9]+" -NotMatch |
-                 ForEach-Object { " - $_" } -join "`n"
+                 ForEach-Object { " - $_" } | Out-String -Stream | Out-String
         echo "notes=$notes" >> $env:GITHUB_OUTPUT
 
     - name: Update Definition.cs
