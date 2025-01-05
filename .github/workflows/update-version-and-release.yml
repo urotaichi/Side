@@ -61,11 +61,29 @@ jobs:
     - name: Update side.csproj
       shell: pwsh
       run: |
+        $csprojFilePath = "side/side.csproj"
         $version = '${{ steps.read_version.outputs.version }}'
-        $content = Get-Content side/side.csproj -Raw
-        $pattern = '(<PropertyGroup>(?!.*?Configuration).*?<Version>)[0-9]+\.[0-9]+\.[0-9]+(</Version>.*?</PropertyGroup>)'
-        $replacement = "`${1}$version`${2}"
-        $content -replace $pattern, $replacement | Set-Content side/side.csproj
+        [xml]$xml = Get-Content $csprojFilePath
+        $propertyGroups = $xml.Project.PropertyGroup
+        foreach ($group in $propertyGroups) {
+            if ($group.Version -and -not $group.Condition) {
+                $group.Version = $version
+                break
+            }
+        }
+        $settings = New-Object System.Xml.XmlWriterSettings
+        $settings.Indent = $true
+        $settings.IndentChars = "  "
+        $settings.OmitXmlDeclaration = $true
+        $settings.NewLineChars = "`r`n"
+        $settings.NewLineHandling = [System.Xml.NewLineHandling]::Replace
+        $writer = [System.Xml.XmlWriter]::Create($csprojFilePath, $settings)
+        try {
+            $xml.PreserveWhitespace = $true
+            $xml.Save($writer)
+        } finally {
+            $writer.Close()
+        }
 
     - name: Commit changes
       shell: pwsh
