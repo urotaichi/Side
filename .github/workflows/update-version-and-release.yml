@@ -138,6 +138,15 @@ jobs:
       run: |
         Compress-Archive -Path side/bin/Release/net9.0-windows10.0.17763.0/* -DestinationPath side/bin/Release/net9.0-windows10.0.17763.0/Side.zip
 
+    - name: Create temporary directory
+      shell: pwsh
+      run: |
+        $tempDir = "side/temp"
+        if (-Not (Test-Path $tempDir)) {
+          New-Item -ItemType Directory -Path $tempDir
+        }
+        Copy-Item -Path side/bin/Release/net9.0-windows10.0.17763.0/Side.zip -Destination $tempDir/
+
     - name: Create GitHub Release
       id: create_release
       uses: actions/create-release@v1
@@ -166,6 +175,7 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: side/bin/Release/net9.0-windows10.0.17763.0/Side.zip
+        protocol: ftps
+        local-dir: side/temp/
         server-dir: ${{ secrets.FTP_SERVER_DIR }}
         dangerous-clean-slate: true
