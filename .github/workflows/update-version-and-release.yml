@@ -22,12 +22,19 @@ jobs:
       id: read_version
       shell: pwsh
       run: |
-        $version = (Get-Content readme.txt | Select-Object -Index 4) -match '\d+\.\d+\.\d+' | Out-Null; $matches[0]
-        echo "version=$version" >> $env:GITHUB_OUTPUT
-        
-        if (git rev-parse "v$version" -ErrorAction SilentlyContinue) {
-          echo "Tag v$version already exists"
-          exit 1
+        $content = Get-Content readme.txt
+        if ($content[4] -match '\d+\.\d+\.\d+') {
+            $version = $matches[0]
+            echo "version=$version" >> $env:GITHUB_OUTPUT
+            
+            $existingTag = git tag -l "v$version"
+            if ($existingTag) {
+                echo "Tag v$version already exists"
+                exit 1
+            }
+        } else {
+            echo "Version not found in readme.txt"
+            exit 1
         }
 
     - name: Extract release notes
@@ -75,7 +82,7 @@ jobs:
     - name: Build project
       shell: pwsh
       run: |
-        msbuild /p:Configuration=Release
+        msbuild /p:Configuration=Release /p:Platform="Any CPU" /p:RestorePackagesConfig=true /t:Restore,Build
 
     - name: Remove unnecessary files
       shell: pwsh
@@ -87,18 +94,19 @@ jobs:
                           side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.Windows.SDK.NET.dll,
                           side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll,
                           side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.Sensors.dll,
-                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.ShellExtensions.dll
+                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.ShellExtensions.dll -ErrorAction SilentlyContinue
 
     - name: Copy necessary files
       shell: pwsh
       run: |
-        Copy-Item -Path pictures -Destination side/bin/Release/net9.0-windows10.0.17763.0/ -Recurse
-        Copy-Item -Path projects -Destination side/bin/Release/net9.0-windows10.0.17763.0/ -Recurse
-        Copy-Item -Path runtime -Destination side/bin/Release/net9.0-windows10.0.17763.0/ -Recurse
-        Copy-Item -Path readme.txt -Destination side/bin/Release/net9.0-windows10.0.17763.0/
-        Copy-Item -Path 使い方.txt -Destination side/bin/Release/net9.0-windows10.0.17763.0/
-        Copy-Item -Path 勝手にFx14説明書.txt -Destination side/bin/Release/net9.0-windows10.0.17763.0/
-        Copy-Item -Path runtimes/MicrosoftEdgeWebview2Setup.exe -Destination side/bin/Release/net9.0-windows10.0.17763.0/runtimes/
+        $targetPath = "side/bin/Release/net9.0-windows10.0.17763.0"
+        Copy-Item -Path pictures -Destination $targetPath/ -Recurse
+        Copy-Item -Path projects -Destination $targetPath/ -Recurse
+        Copy-Item -Path runtime -Destination $targetPath/ -Recurse
+        Copy-Item -Path readme.txt -Destination $targetPath/
+        Copy-Item -Path 使い方.txt -Destination $targetPath/
+        Copy-Item -Path 勝手にFx14説明書.txt -Destination $targetPath/
+        Copy-Item -Path runtimes/MicrosoftEdgeWebview2Setup.exe -Destination "$targetPath/runtimes/"
 
     - name: Create ZIP file
       shell: pwsh
@@ -130,8 +138,9 @@ jobs:
     - name: Upload to FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        ftp-server: ${{ secrets.FTP_SERVER }}
-        ftp-username: ${{ secrets.FTP_USERNAME }}
-        ftp-password: ${{ secrets.FTP_PASSWORD }}
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
         local-dir: side/bin/Release/net9.0-windows10.0.17763.0/Side.zip
         server-dir: ${{ secrets.FTP_SERVER_DIR }}
+        dangerous-clean-slate: true
