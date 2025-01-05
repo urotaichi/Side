@@ -20,34 +20,41 @@ jobs:
 
     - name: Read version and check tag
       id: read_version
+      shell: pwsh
       run: |
-        version=$(sed -n '5p' readme.txt | grep -oP '\d+\.\d+\.\d+')
-        echo "version=$version" >> $GITHUB_OUTPUT
+        $version = (Get-Content readme.txt | Select-Object -Index 4) -match '\d+\.\d+\.\d+' | Out-Null; $matches[0]
+        echo "version=$version" >> $env:GITHUB_OUTPUT
         
-        if git rev-parse "v$version" >/dev/null 2>&1; then
+        if (git rev-parse "v$version" -ErrorAction SilentlyContinue) {
           echo "Tag v$version already exists"
           exit 1
-        fi
+        }
 
     - name: Extract release notes
       id: extract_notes
+      shell: pwsh
       run: |
-        version=${{ steps.read_version.outputs.version }}
-        notes=$(sed -n "/□$version/,/□[0-9]\+\.[0-9]\+\.[0-9]\+/{/□$version/b;/□[0-9]\+\.[0-9]\+\.[0-9]\+/b;p}" readme.txt | sed 's/^/ - /' | tr '\n' ' ' | sed 's/ - /\n - /g')
-        echo "notes=$notes" >> $GITHUB_OUTPUT
+        $version = '${{ steps.read_version.outputs.version }}'
+        $notes = (Get-Content readme.txt | Select-String -Pattern "□$version" -Context 0,1000).Context.PostContext -join "`n" |
+                 Select-String -Pattern "□[0-9]+\.[0-9]+\.[0-9]+" -NotMatch |
+                 ForEach-Object { " - $_" } -join "`n"
+        echo "notes=$notes" >> $env:GITHUB_OUTPUT
 
     - name: Update Definition.cs
+      shell: pwsh
       run: |
-        version=${{ steps.read_version.outputs.version }}
-        version_double=$(echo $version | awk -F. '{print $1 "." $2 $3}')
-        sed -i "s/CheckVersion = .*/CheckVersion = $version_double;/" Definition.cs
+        $version = '${{ steps.read_version.outputs.version }}'
+        $version_double = $version -replace '\.', ''
+        (Get-Content Definition.cs) -replace 'CheckVersion = .*;', "CheckVersion = $version_double;" | Set-Content Definition.cs
 
     - name: Update side.csproj
+      shell: pwsh
       run: |
-        version=${{ steps.read_version.outputs.version }}
-        sed -i "/<PropertyGroup>/,/<\/PropertyGroup>/ s|<Version>[0-9]\+\.[0-9]\+\.[0-9]\+</Version>|<Version>$version</Version>|" side.csproj
+        $version = '${{ steps.read_version.outputs.version }}'
+        (Get-Content side.csproj) -replace '<Version>[0-9]+\.[0-9]+\.[0-9]+</Version>', "<Version>$version</Version>" | Set-Content side.csproj
 
     - name: Commit changes
+      shell: pwsh
       run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
@@ -56,8 +63,9 @@ jobs:
         git push
 
     - name: Create tag
+      shell: pwsh
       run: |
-        version=${{ steps.read_version.outputs.version }}
+        $version = '${{ steps.read_version.outputs.version }}'
         git tag -a "v$version" -m "Release $version"
         git push origin "v$version"
 
@@ -65,35 +73,37 @@ jobs:
       uses: microsoft/setup-msbuild@v2
       
     - name: Build project
+      shell: pwsh
       run: |
         msbuild /p:Configuration=Release
 
     - name: Remove unnecessary files
+      shell: pwsh
       run: |
-        cd side/bin/Release/net9.0-windows10.0.17763.0
-        rm -f Microsoft.Web.WebView2.Core.xml
-        rm -f Microsoft.Web.WebView2.WinForms.xml
-        rm -f Microsoft.Web.WebView2.Wpf.dll
-        rm -f Microsoft.Web.WebView2.Wpf.xml
-        rm -f Microsoft.Windows.SDK.NET.dll
-        rm -f Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll
-        rm -f Microsoft.WindowsAPICodePack.Sensors.dll
-        rm -f Microsoft.WindowsAPICodePack.ShellExtensions.dll
+        Remove-Item -Path side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.Web.WebView2.Core.xml,
+                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.Web.WebView2.WinForms.xml,
+                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.Web.WebView2.Wpf.dll,
+                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.Web.WebView2.Wpf.xml,
+                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.Windows.SDK.NET.dll,
+                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll,
+                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.Sensors.dll,
+                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.ShellExtensions.dll
 
     - name: Copy necessary files
+      shell: pwsh
       run: |
-        cp -r pictures side/bin/Release/net9.0-windows10.0.17763.0/
-        cp -r projects side/bin/Release/net9.0-windows10.0.17763.0/
-        cp -r runtime side/bin/Release/net9.0-windows10.0.17763.0/
-        cp readme.txt side/bin/Release/net9.0-windows10.0.17763.0/
-        cp 使い方.txt side/bin/Release/net9.0-windows10.0.17763.0/
-        cp 勝手にFx14説明書.txt side/bin/Release/net9.0-windows10.0.17763.0/
-        cp runtimes/MicrosoftEdgeWebview2Setup.exe side/bin/Release/net9.0-windows10.0.17763.0/runtimes/
+        Copy-Item -Path pictures -Destination side/bin/Release/net9.0-windows10.0.17763.0/ -Recurse
+        Copy-Item -Path projects -Destination side/bin/Release/net9.0-windows10.0.17763.0/ -Recurse
+        Copy-Item -Path runtime -Destination side/bin/Release/net9.0-windows10.0.17763.0/ -Recurse
+        Copy-Item -Path readme.txt -Destination side/bin/Release/net9.0-windows10.0.17763.0/
+        Copy-Item -Path 使い方.txt -Destination side/bin/Release/net9.0-windows10.0.17763.0/
+        Copy-Item -Path 勝手にFx14説明書.txt -Destination side/bin/Release/net9.0-windows10.0.17763.0/
+        Copy-Item -Path runtimes/MicrosoftEdgeWebview2Setup.exe -Destination side/bin/Release/net9.0-windows10.0.17763.0/runtimes/
 
     - name: Create ZIP file
+      shell: pwsh
       run: |
-        cd side/bin/Release/net9.0-windows10.0.17763.0
-        zip -r Side.zip ./*
+        Compress-Archive -Path side/bin/Release/net9.0-windows10.0.17763.0/* -DestinationPath side/bin/Release/net9.0-windows10.0.17763.0/Side.zip
 
     - name: Create GitHub Release
       id: create_release
