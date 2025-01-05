@@ -63,6 +63,10 @@ jobs:
                 echo "notes<<EOF" >> $env:GITHUB_OUTPUT
                 echo ($releaseNotes -join "`n") >> $env:GITHUB_OUTPUT
                 echo "EOF" >> $env:GITHUB_OUTPUT
+
+                # 最新バージョンのリリースノートの年を記憶
+                $releaseYear = ($lines[$startIndex + 1] -match '^\d{4}') ? $matches[0] : $null
+                echo "releaseYear=$releaseYear" >> $env:GITHUB_OUTPUT
             } else {
                 Write-Error "Version $version not found in readme.txt"
             }
@@ -112,6 +116,26 @@ jobs:
         git add side/Definition.cs side/side.csproj
         git commit -m "Update version to ${{ steps.read_version.outputs.version }}"
         git push
+
+    - name: Update copyright year
+      shell: pwsh
+      run: |
+        $releaseYear = '${{ steps.extract_notes.outputs.releaseYear }}'
+        if ($releaseYear) {
+            $filesToUpdate = @(
+                "side/side.csproj",
+                "side/Dialogs/VersionInfo.Designer.cs",
+                "side/Resources/ViewDat.txt"
+            )
+            foreach ($file in $filesToUpdate) {
+                (Get-Content $file) -replace '© \d{4} urotaichi', "© $releaseYear urotaichi" | Set-Content $file
+            }
+            git config --global user.name 'github-actions'
+            git config --global user.email 'github-actions@github.com'
+            git add side/side.csproj side/Dialogs/VersionInfo.Designer.cs side/Resources/ViewDat.txt
+            git commit -m "Update copyright year to $releaseYear"
+            git push
+        }
 
     - name: Create tag
       shell: pwsh
