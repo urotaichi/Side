@@ -103,7 +103,7 @@ jobs:
         tag_name: "v${{ steps.read_version.outputs.version }}"
         release_name: "Side ${{ steps.read_version.outputs.version }}"
         body: ${{ steps.extract_notes.outputs.notes }}
-        draft: true
+        draft: false
         prerelease: false
 
     - name: Upload Release Asset
