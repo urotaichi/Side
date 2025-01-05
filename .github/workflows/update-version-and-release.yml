@@ -42,14 +42,33 @@ jobs:
       shell: pwsh
       run: |
         $version = '${{ steps.read_version.outputs.version }}'
-        $notes = (Get-Content readme.txt | Select-String -Pattern "□$version" -Context 0,1000).Context.PostContext |
-                 Select-String -Pattern "□[0-9]+\.[0-9]+\.[0-9]+" -NotMatch |
-                 ForEach-Object { " - $_" } | Out-String -Stream | Out-String
-        $notes = $notes -replace "`r`n", "`n" -replace "`r", "`n"
-        $notes = $notes.Trim()
-        echo "notes<<EOF" >> $env:GITHUB_OUTPUT
-        echo "$notes" >> $env:GITHUB_OUTPUT
-        echo "EOF" >> $env:GITHUB_OUTPUT
+        try {
+            $notes = Get-Content readme.txt -Raw
+            $lines = $notes -split "`r`n"
+            $startIndex = [array]::IndexOf($lines, "□$version")
+            if ($startIndex -ne -1) {
+                $searchLines = $lines[($startIndex + 1)..($lines.Length - 1)]
+                $nextVersionLine = $searchLines | Where-Object { $_ -match "^□\d+\.\d+\.\d+" } | Select-Object -First 1
+                $endIndex = if ($nextVersionLine) {
+                    [array]::IndexOf($lines, $nextVersionLine)
+                } else {
+                    $lines.Length
+                }
+                $releaseNotes = $lines[($startIndex + 1)..($endIndex - 1)] |
+                    Where-Object { $_ -match '\S' } |
+                    ForEach-Object { $_.Trim() -replace '^\d{4}/\d{2}/\d{2}\s*', '' } |
+                    Where-Object { $_ -notmatch '^□' }
+                $releaseNotes = $releaseNotes | Where-Object { $_ -ne "" }
+                $releaseNotes = $releaseNotes | ForEach-Object { "- $_" }
+                echo "notes<<EOF" >> $env:GITHUB_OUTPUT
+                echo ($releaseNotes -join "`n") >> $env:GITHUB_OUTPUT
+                echo "EOF" >> $env:GITHUB_OUTPUT
+            } else {
+                Write-Error "Version $version not found in readme.txt"
+            }
+        } catch {
+            Write-Error "Error processing readme.txt: $_"
+        }
 
     - name: Update Definition.cs
       shell: pwsh
