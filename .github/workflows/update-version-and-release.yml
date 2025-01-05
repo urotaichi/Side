@@ -127,14 +127,24 @@ jobs:
                 "side/Dialogs/VersionInfo.Designer.cs",
                 "side/Resources/ViewDat.txt"
             )
+            $updateNeeded = $false
             foreach ($file in $filesToUpdate) {
-                (Get-Content $file) -replace '© \d{4} urotaichi', "© $releaseYear urotaichi" | Set-Content $file
+                $content = Get-Content $file
+                if ($content -match '© (\d{4}) urotaichi' -and $matches[1] -ne $releaseYear) {
+                    $updateNeeded = $true
+                    break
+                }
             }
-            git config --global user.name 'github-actions'
-            git config --global user.email 'github-actions@github.com'
-            git add side/side.csproj side/Dialogs/VersionInfo.Designer.cs side/Resources/ViewDat.txt
-            git commit -m "Update copyright year to $releaseYear"
-            git push
+            if ($updateNeeded) {
+                foreach ($file in $filesToUpdate) {
+                    (Get-Content $file) -replace '© \d{4} urotaichi', "© $releaseYear urotaichi" | Set-Content $file
+                }
+                git config --global user.name 'github-actions'
+                git config --global user.email 'github-actions@github.com'
+                git add side/side.csproj side/Dialogs/VersionInfo.Designer.cs side/Resources/ViewDat.txt
+                git commit -m "Update copyright year to $releaseYear"
+                git push
+            }
         }
 
     - name: Create tag
