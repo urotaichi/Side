@@ -9,7 +9,7 @@ on:
 
 jobs:
   update-version:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
@@ -87,6 +87,7 @@ jobs:
         cp readme.txt side/bin/Release/net9.0-windows10.0.17763.0/
         cp 使い方.txt side/bin/Release/net9.0-windows10.0.17763.0/
         cp 勝手にFx14説明書.txt side/bin/Release/net9.0-windows10.0.17763.0/
+        cp runtimes/MicrosoftEdgeWebview2Setup.exe side/bin/Release/net9.0-windows10.0.17763.0/runtimes/
 
     - name: Create ZIP file
       run: |
