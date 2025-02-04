@@ -1,0 +1,52 @@
+name: Update Runtime Version
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Update version numbers
+        run: |
+          # 更新対象のファイルリスト
+          XML_FILES=(
+            "runtime/01普通の正男.xml"
+            "runtime/02ロードランナー正男.xml"
+            "runtime/03シューティング正男.xml"
+            "runtime/04ドットイート正男.xml"
+            "runtime/06普通の正男(640×480).xml"
+          )
+          
+          # 各ファイルを処理
+          for xml_file in "${XML_FILES[@]}"; do
+            if [ -f "$xml_file" ]; then
+              # 現在のバージョンを取得
+              CURRENT_VERSION=$(grep -o '<DefVersion>.*</DefVersion>' "$xml_file" | sed 's/<DefVersion>\(.*\)<\/DefVersion>/\1/')
+              
+              # バージョンを分解して計算
+              VERSION_MAJOR=$(echo $CURRENT_VERSION | cut -d. -f1)
+              VERSION_MINOR=$(echo $CURRENT_VERSION | cut -d. -f2)
+              
+              # 小数第2位を1増やす
+              NEW_MINOR=$(printf "%02d" $((10#$VERSION_MINOR + 1)))
+              NEW_VERSION="$VERSION_MAJOR.$NEW_MINOR"
+              
+              # ファイルを更新
+              sed -i "s/<DefVersion>$CURRENT_VERSION<\/DefVersion>/<DefVersion>$NEW_VERSION<\/DefVersion>/" "$xml_file"
+              
+              echo "Updated $xml_file from $CURRENT_VERSION to $NEW_VERSION"
+            else
+              echo "Warning: $xml_file not found"
+            fi
+          done
+
+      - name: Commit changes
+        run: |
+          git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          git add runtime/*.xml
+          git commit -m "Update DefVersion in runtime XML files"
+          git push
