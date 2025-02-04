@@ -48,5 +48,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git config --local user.email "action@github.com"
           git add runtime/*.xml
-          git commit -m "Update DefVersion in runtime XML files"
+          git commit -m "ランタイム更新（FX）"
           git push

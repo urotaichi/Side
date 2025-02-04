@@ -1,0 +1,54 @@
+name: Update Runtime Version 2.8
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Update version numbers
+        run: |
+          # ランタイムXMLの更新
+          XML_FILE="runtime/05まさおコンストラクション Version 2.81.xml"
+          
+          if [ -f "$XML_FILE" ]; then
+            # 現在のバージョンを取得
+            CURRENT_VERSION=$(grep -o '<DefVersion>.*</DefVersion>' "$XML_FILE" | sed 's/<DefVersion>\(.*\)<\/DefVersion>/\1/')
+            
+            # バージョンを分解して計算
+            VERSION_MAJOR=$(echo $CURRENT_VERSION | cut -d. -f1)
+            VERSION_MINOR=$(echo $CURRENT_VERSION | cut -d. -f2)
+            
+            # 小数第2位を1増やす
+            NEW_MINOR=$(printf "%02d" $((10#$VERSION_MINOR + 1)))
+            NEW_VERSION="$VERSION_MAJOR.$NEW_MINOR"
+            
+            # ファイルを更新
+            sed -i "s/<DefVersion>$CURRENT_VERSION<\/DefVersion>/<DefVersion>$NEW_VERSION<\/DefVersion>/" "$XML_FILE"
+            
+            echo "Updated $XML_FILE from $CURRENT_VERSION to $NEW_VERSION"
+            
+            # SPJファイルの更新
+            find projects/sample -name "*.spj" -type f | while read spj_file; do
+              if [ -f "$spj_file" ]; then
+                # SPJファイルのバージョン番号を更新
+                sed -i "s/<DefVersion>$CURRENT_VERSION<\/DefVersion>/<DefVersion>$NEW_VERSION<\/DefVersion>/" "$spj_file"
+                echo "Updated $spj_file from $CURRENT_VERSION to $NEW_VERSION"
+              fi
+            done
+          else
+            echo "Warning: Runtime XML file not found"
+            exit 1
+          fi
+
+      - name: Commit changes
+        run: |
+          git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          git add "runtime/05まさおコンストラクション Version 2.81.xml"
+          git add "projects/sample/*.spj"
+          git commit -m "ランタイム更新(2.8)"
+          git push
