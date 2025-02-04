@@ -1,0 +1,38 @@
+name: Sync Files from Other Repository
+on:
+  workflow_dispatch:
+
+jobs:
+  sync-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Checkout source repository
+        uses: actions/checkout@v4
+        with:
+          repository: Ryo-9399/mc_canvas
+          path: temp-source
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Copy files
+        run: |
+          for dir in "01普通の正男" "02ロードランナー正男" "03シューティング正男" "04ドットイート正男" "06普通の正男(640×480)"; do
+            cp temp-source/Outputs/CanvasMasao.js "runtime/$dir/"
+            cp temp-source/Outputs/MasaoKani2.js "runtime/$dir/"
+          done
+          for dir in "runtime/05まさおコンストラクション Version 2.81" "projects/sample"; do
+            cp temp-source/Outputs/CanvasMasao_v28.js "$dir/"
+          done
+          rm -rf temp-source
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff --quiet && git diff --staged --quiet || git commit -m "本体ファイルを同期"
+          git push
