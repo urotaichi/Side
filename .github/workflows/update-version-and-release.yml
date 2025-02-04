@@ -111,8 +111,8 @@ jobs:
     - name: Commit changes
       shell: pwsh
       run: |
-        git config --global user.name 'github-actions'
-        git config --global user.email 'github-actions@github.com'
+        git config --local user.name 'GitHub Action'
+        git config --local user.email 'action@github.com'
         git add side/Definition.cs side/side.csproj
         git commit -m "Update version to ${{ steps.read_version.outputs.version }}"
         git push
@@ -139,8 +139,8 @@ jobs:
                 foreach ($file in $filesToUpdate) {
                     (Get-Content $file) -replace '© \d{4} urotaichi', "© $releaseYear urotaichi" | Set-Content $file
                 }
-                git config --global user.name 'github-actions'
-                git config --global user.email 'github-actions@github.com'
+                git config --local user.name 'GitHub Action'
+                git config --local user.email 'action@github.com'
                 git add side/side.csproj side/Dialogs/VersionInfo.Designer.cs side/Resources/ViewDat.txt
                 git commit -m "Update copyright year to $releaseYear"
                 git push
