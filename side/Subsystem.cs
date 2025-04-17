@@ -1182,7 +1182,7 @@ namespace MasaoPlus
             using (FileStream fileStream = new(path, FileMode.Open))
             {
                 array = new byte[fileStream.Length];
-                fileStream.Read(array, 0, array.Length);
+                fileStream.ReadExactly(array);
             }
             return GetCode(array).GetString(array);
         }
