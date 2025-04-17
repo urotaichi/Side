@@ -281,7 +281,7 @@ namespace MasaoPlus
             func(Global.cpd.project.StageData3);
             func(Global.cpd.project.StageData4);
             Global.MainWnd.MainDesigner.DrawItemCodeRef.Remove(Global.cpd.CustomPartsChip[selectedIndex].code);
-            Global.cpd.CustomPartsChip = Global.cpd.CustomPartsChip.Where((_, index) => index != selectedIndex).ToArray();
+            Global.cpd.CustomPartsChip = [.. Global.cpd.CustomPartsChip.Where((_, index) => index != selectedIndex)];
             if(Global.cpd.CustomPartsChip.Length > 0)
             {
                 Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];

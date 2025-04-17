@@ -297,7 +297,7 @@ namespace MasaoPlus.Dialogs
                 StatusText.Refresh();
 
                 var s = string.Join(string.Empty, project.MapData);
-                string Mapdata = new(s.Except(s.Where(ch => s.Count(c => c == ch) > 1)).ToArray()); // 地図画面データを圧縮
+                string Mapdata = new([.. s.Except(s.Where(ch => s.Count(c => c == ch) > 1))]); // 地図画面データを圧縮
 
                 int num = 0;
                 while (num < project.Config.Configurations.Length)
