@@ -1016,21 +1016,6 @@ namespace MasaoPlus.Dialogs
             return false;
         }
 
-        private static int FindMatchingBrace(string text, int openBraceIndex)
-        {
-            int braceCount = 1;
-            for (int i = openBraceIndex + 1; i < text.Length; i++)
-            {
-                if (text[i] == '{') braceCount++;
-                else if (text[i] == '}')
-                {
-                    braceCount--;
-                    if (braceCount == 0) return i;
-                }
-            }
-            return -1;
-        }
-
         private static string ConvertToValidJson(string jsCode)
         {
             // URLを一時的なプレースホルダーに置換
