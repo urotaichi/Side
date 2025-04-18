@@ -258,7 +258,6 @@ namespace MasaoPlus.Dialogs
                     if (jsEnd > jsStart)
                     {
                         string jsCode = input.Substring(jsStart, jsEnd - jsStart).Trim();
-                        
                         // '(' から始まる部分を見つけて、最後の ');' を除去
                         jsCode = jsCode.TrimStart('(');
                         if (jsCode.EndsWith(");"))
@@ -268,27 +267,53 @@ namespace MasaoPlus.Dialogs
 
                         // 引数を分割
                         var args = SplitJSMasaoArgs(jsCode);
-                        
+
                         if (args.Count > 0)
                         {
                             // 第1引数の処理（基本設定）
                             string jsonText = ConvertToValidJson(args[0]);
-
-                            var jsonDoc = System.Text.Json.JsonDocument.Parse(jsonText);
-                            foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                            try
                             {
-                                dictionary[prop.Name] = prop.Value.ToString();
+                                var jsonDoc = System.Text.Json.JsonDocument.Parse(jsonText);
+                                foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                                {
+                                    dictionary[prop.Name] = prop.Value.ToString();
+                                }
+                            }
+                            catch (System.Text.Json.JsonException ex)
+                            {
+                                // JSON解析に失敗した場合は従来の正規表現による解析を試みる
+                                var regex2 = reg_script_param();
+                                Match match2 = regex2.Match(input);
+                                while (match2.Success)
+                                {
+                                    dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
+                                    match2 = match2.NextMatch();
+                                }
                             }
 
                             // 第3引数の処理（advanced-map等）
                             if (args.Count >= 3 && args[2].Trim() != "null")
                             {
                                 jsonText = ConvertToValidJson(args[2]);
-
-                                jsonDoc = System.Text.Json.JsonDocument.Parse(jsonText);
-                                foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                                try
                                 {
-                                    dictionary[prop.Name] = prop.Value.ToString();
+                                    var jsonDoc = System.Text.Json.JsonDocument.Parse(jsonText);
+                                    foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                                    {
+                                        dictionary[prop.Name] = prop.Value.ToString();
+                                    }
+                                }
+                                catch (System.Text.Json.JsonException ex)
+                                {
+                                    // JSON解析に失敗した場合は従来の正規表現による解析を試みる
+                                    var regex2 = reg_script_param();
+                                    Match match2 = regex2.Match(input);
+                                    while (match2.Success)
+                                    {
+                                        dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
+                                        match2 = match2.NextMatch();
+                                    }
                                 }
                             }
                         }
@@ -549,7 +574,7 @@ namespace MasaoPlus.Dialogs
                                         project.StageData4 = new string[sizeY];
                                         if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                                         {
-                                            project.Runtime.Definitions.LayerSize4.x = sizeX;
+                                            project.Runtime.Definitions.StageSize4.x = sizeX;
                                             project.Runtime.Definitions.StageSize4.y = sizeY;
                                             project.LayerData4 = new string[sizeY];
                                         }
