@@ -245,20 +245,92 @@ namespace MasaoPlus.Dialogs
                 StatusText.Text = "HTMLデータ取得中...";
                 StatusText.Refresh();
 
-                Regex regex2 = reg_param();
-                Regex regex_script = reg_script_start();
-                if (regex_script.IsMatch(input))
+                Dictionary<string, string> dictionary = [];
+
+                // JavaScriptのパラメータを解析
+                Regex regex_js = reg_script_start();
+                Match js_match = regex_js.Match(input);
+                if (js_match.Success)
                 {
-                    regex2 = reg_script_param();
+                    // JavaScriptのコードを取得
+                    int jsStart = js_match.Index + js_match.Length;
+                    int jsEnd = input.IndexOf("</script>", jsStart);
+                    if (jsEnd > jsStart)
+                    {
+                        string jsCode = input.Substring(jsStart, jsEnd - jsStart).Trim();
+                        // '(' から始まる部分を見つけて、最後の ');' を除去
+                        jsCode = jsCode.TrimStart('(');
+                        if (jsCode.EndsWith(");"))
+                        {
+                            jsCode = jsCode.Substring(0, jsCode.Length - 2);
+                        }
+
+                        // 引数を分割
+                        var args = SplitJSMasaoArgs(jsCode);
+
+                        if (args.Count > 0)
+                        {
+                            // 第1引数の処理（基本設定）
+                            string jsonText = ConvertToValidJson(args[0]);
+                            try
+                            {
+                                var jsonDoc = System.Text.Json.JsonDocument.Parse(jsonText);
+                                foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                                {
+                                    dictionary[prop.Name] = prop.Value.ToString();
+                                }
+                            }
+                            catch (System.Text.Json.JsonException ex)
+                            {
+                                // JSON解析に失敗した場合は従来の正規表現による解析を試みる
+                                var regex2 = reg_script_param();
+                                Match match2 = regex2.Match(input);
+                                while (match2.Success)
+                                {
+                                    dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
+                                    match2 = match2.NextMatch();
+                                }
+                            }
+
+                            // 第3引数の処理（advanced-map等）
+                            if (args.Count >= 3 && args[2].Trim() != "null")
+                            {
+                                jsonText = ConvertToValidJson(args[2]);
+                                try
+                                {
+                                    var jsonDoc = System.Text.Json.JsonDocument.Parse(jsonText);
+                                    foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                                    {
+                                        dictionary[prop.Name] = prop.Value.ToString();
+                                    }
+                                }
+                                catch (System.Text.Json.JsonException ex)
+                                {
+                                    // JSON解析に失敗した場合は従来の正規表現による解析を試みる
+                                    var regex2 = reg_script_param();
+                                    Match match2 = regex2.Match(input);
+                                    while (match2.Success)
+                                    {
+                                        dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
+                                        match2 = match2.NextMatch();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    // HTMLパラメータタグの解析
+                    var regex2 = reg_param();
+                    Match match2 = regex2.Match(input);
+                    while (match2.Success)
+                    {
+                        dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
+                        match2 = match2.NextMatch();
+                    }
                 }
 
-                Dictionary<string, string> dictionary = [];
-                Match match2 = regex2.Match(input);
-                while (match2.Success)
-                {
-                    dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
-                    match2 = match2.NextMatch();
-                }
                 StatusText.Text = "マップソース生成中...";
                 StatusText.Refresh();
                 GetMapSource(ref project.MapData, project.Runtime.Definitions.MapName, project.Runtime.Definitions.MapSize, ref dictionary, chipDataClass.WorldChip);
@@ -289,15 +361,273 @@ namespace MasaoPlus.Dialogs
                     StatusText.Refresh();
                     GetMapSource(ref project.LayerData4, project.Runtime.Definitions.LayerName4, project.Runtime.Definitions.LayerSize4, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
                 }
+
                 if(dictionary.ContainsKey("advanced-map") || dictionary.ContainsKey("advance-map"))
                 {
-                    // 第3版マップデータを含む場合の処理
+                    string mapData = dictionary.ContainsKey("advanced-map") ? 
+                        dictionary["advanced-map"] : dictionary["advance-map"];
+                    
+                    try {
+                        // JavaScriptの文字列をJSONに変換
+                        mapData = mapData.Trim();
+                        if (mapData.StartsWith("'") || mapData.StartsWith("\""))
+                        {
+                            mapData = mapData[1..^1]; // 最初と最後のクォートを削除
+                            mapData = mapData.Replace(@"\""", @"""").Replace(@"\\", @"\").Replace("¥", "\\");
+                        }
+                        
+                        var jsonData = System.Text.Json.JsonDocument.Parse(mapData);
+                        
+                        // カスタムパーツ定義の読み込み
+                        if (jsonData.RootElement.TryGetProperty("customParts", out var customParts))
+                        {
+                            var customPartsArray = customParts.EnumerateObject().ToArray();
+                            var customPartsList = new List<ChipsData>();
+                            for (int i = 0; i < customPartsArray.Length; i++)
+                            {
+                                var part = customPartsArray[i];
+                                var chipData = new ChipsData 
+                                {
+                                    code = part.Name,  // カスタムパーツのID
+                                    basecode = part.Value.GetProperty("extends").ToString() // 継承元の基本パーツID
+                                };
+
+                                // baseCodeに対応するチップ定義を探してプロパティをコピー
+                                var baseChip = chipDataClass.VarietyChip?.FirstOrDefault(x => x.code == chipData.basecode);
+                                if (baseChip != null)
+                                {
+                                    chipData.color = baseChip?.color;
+                                    chipData.relation = baseChip?.relation; 
+                                    chipData.idColor = $"#{Guid.NewGuid().ToString("N").Substring(0, 6)}";
+                                    
+                                    // Chipsプロパティを新しい配列として複製
+                                    chipData.Chips = new ChipData[(int)(baseChip?.Chips.Length)];
+                                    for (int j = 0; j < baseChip?.Chips.Length; j++)
+                                    {
+                                        chipData.Chips[j] = (ChipData)(baseChip?.Chips[j]);
+                                        chipData.Chips[j].name = $"カスタムパーツ{i + 1}";
+                                    }
+                                }
+
+                                // propertiesを持つ場合の処理
+                                if (part.Value.TryGetProperty("properties", out var properties))
+                                {
+                                    chipData.Properties = new CustomPartsProperties();
+                                    foreach (var prop in properties.EnumerateObject())
+                                    {
+                                        switch (prop.Name)
+                                        {
+                                            case "walk_speed":
+                                                chipData.Properties.walk_speed = prop.Value.GetInt32();
+                                                break;
+                                            case "fall_speed":
+                                                chipData.Properties.fall_speed = prop.Value.GetInt32();
+                                                break;
+                                            case "jump_vy":
+                                                chipData.Properties.jump_vy = prop.Value.GetInt32();
+                                                break;
+                                            case "search_range":
+                                                chipData.Properties.search_range = prop.Value.GetInt32();
+                                                break;
+                                            case "interval":
+                                                chipData.Properties.interval = prop.Value.GetInt32();
+                                                break;
+                                            case "period":
+                                                chipData.Properties.period = prop.Value.GetInt32();
+                                                break;
+                                            case "attack_timing":
+                                                chipData.Properties.attack_timing = new List<attack_timing>();
+                                                foreach (var timing in prop.Value.EnumerateObject())
+                                                {
+                                                    chipData.Properties.attack_timing.Add(new attack_timing
+                                                    {
+                                                        AttackFrame = int.Parse(timing.Name),
+                                                        IsPlaySoundFrame = timing.Value.GetInt32() == 2
+                                                    });
+                                                }
+                                                break;
+                                            case "speed":
+                                                chipData.Properties.speed = prop.Value.GetInt32();
+                                                break;
+                                            case "accel":
+                                                chipData.Properties.accel = prop.Value.GetInt32();
+                                                break;
+                                            case "distance":
+                                                chipData.Properties.distance = prop.Value.GetInt32();
+                                                break;
+                                            case "attack_speed":
+                                                chipData.Properties.attack_speed = prop.Value.GetInt32();
+                                                break;
+                                            case "return_speed":
+                                                chipData.Properties.return_speed = prop.Value.GetInt32();
+                                                break;
+                                            case "speed_x":
+                                                chipData.Properties.speed_x = prop.Value.GetInt32();
+                                                break;
+                                            case "speed_y":
+                                                chipData.Properties.speed_y = prop.Value.GetInt32();
+                                                break;
+                                            case "radius":
+                                                chipData.Properties.radius = prop.Value.GetInt32();
+                                                break;
+                                            case "init_vy":
+                                                chipData.Properties.init_vy = prop.Value.GetInt32();
+                                                break;
+                                        }
+                                    }
+                                }
+                                customPartsList.Add(chipData);
+                            }
+                            project.CustomPartsDefinition = [.. customPartsList];
+                        }
+
+                        // ステージデータの読み込み
+                        project.Use3rdMapData = true;
+
+                        // ステージデータの初期化処理
+                        void InitializeEmptyStageData(string[] data, int width, ChipsData[] chips)
+                        {
+                            var defaultCode = ChipDataClass.CharToCode(chips[0].character);
+                            for (int y = 0; y < data.Length; y++)
+                            {
+                                var row = new int[width];
+                                for (int x = 0; x < width; x++)
+                                {
+                                    row[x] = int.Parse(defaultCode);
+                                }
+                                data[y] = string.Join(",", row);
+                            }
+                        }
+
+                        // advanced-map用に既存のステージデータを初期化
+                        InitializeEmptyStageData(project.StageData, project.Runtime.Definitions.StageSize.x, 
+                            chipDataClass.Mapchip);
+                        InitializeEmptyStageData(project.StageData2, project.Runtime.Definitions.StageSize2.x,
+                            chipDataClass.Mapchip);
+                        InitializeEmptyStageData(project.StageData3, project.Runtime.Definitions.StageSize3.x,
+                            chipDataClass.Mapchip);
+                        InitializeEmptyStageData(project.StageData4, project.Runtime.Definitions.StageSize4.x,
+                            chipDataClass.Mapchip);
+                            
+                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                        {
+                            InitializeEmptyStageData(project.LayerData, project.Runtime.Definitions.LayerSize.x,
+                                chipDataClass.Layerchip);
+                            InitializeEmptyStageData(project.LayerData2, project.Runtime.Definitions.LayerSize2.x,
+                                chipDataClass.Layerchip);
+                            InitializeEmptyStageData(project.LayerData3, project.Runtime.Definitions.LayerSize3.x,
+                                chipDataClass.Layerchip);
+                            InitializeEmptyStageData(project.LayerData4, project.Runtime.Definitions.LayerSize4.x,
+                                chipDataClass.Layerchip);
+                        }
+
+                        // ステージデータの読み込みとサイズの設定を一元化
+                        var stages = jsonData.RootElement.GetProperty("stages");
+                        var stagesList = stages.EnumerateArray().ToList();
+                        for (int stageIndex = 0; stageIndex < stagesList.Count && stageIndex < 4; stageIndex++)
+                        {
+                            var stage = stagesList[stageIndex];
+                            if (stage.TryGetProperty("size", out var size))
+                            {
+                                int sizeX = size.GetProperty("x").GetInt32();
+                                int sizeY = size.GetProperty("y").GetInt32();
+
+                                // ステージ番号に応じてサイズとデータ配列を更新
+                                switch (stageIndex)
+                                {
+                                    case 0:
+                                        project.Runtime.Definitions.StageSize.x = sizeX;
+                                        project.Runtime.Definitions.StageSize.y = sizeY;
+                                        project.StageData = new string[sizeY];
+                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                        {
+                                            project.Runtime.Definitions.LayerSize.x = sizeX;
+                                            project.Runtime.Definitions.LayerSize.y = sizeY;
+                                            project.LayerData = new string[sizeY];
+                                        }
+                                        break;
+                                    case 1:
+                                        project.Runtime.Definitions.StageSize2.x = sizeX;
+                                        project.Runtime.Definitions.StageSize2.y = sizeY;
+                                        project.StageData2 = new string[sizeY];
+                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                        {
+                                            project.Runtime.Definitions.LayerSize2.x = sizeX;
+                                            project.Runtime.Definitions.LayerSize2.y = sizeY;
+                                            project.LayerData2 = new string[sizeY];
+                                        }
+                                        break;
+                                    case 2:
+                                        project.Runtime.Definitions.StageSize3.x = sizeX;
+                                        project.Runtime.Definitions.StageSize3.y = sizeY;
+                                        project.StageData3 = new string[sizeY];
+                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                        {
+                                            project.Runtime.Definitions.LayerSize3.x = sizeX;
+                                            project.Runtime.Definitions.StageSize3.y = sizeY;
+                                            project.LayerData3 = new string[sizeY];
+                                        }
+                                        break;
+                                    case 3:
+                                        project.Runtime.Definitions.StageSize4.x = sizeX;
+                                        project.Runtime.Definitions.StageSize4.y = sizeY;
+                                        project.StageData4 = new string[sizeY];
+                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                        {
+                                            project.Runtime.Definitions.StageSize4.x = sizeX;
+                                            project.Runtime.Definitions.StageSize4.y = sizeY;
+                                            project.LayerData4 = new string[sizeY];
+                                        }
+                                        break;
+                                }
+
+                                // レイヤーデータの読み込み
+                                if (stage.TryGetProperty("layers", out var layers))
+                                {
+                                    foreach (var layer in layers.EnumerateArray())
+                                    {
+                                        var type = layer.GetProperty("type").GetString();
+                                        var map = layer.GetProperty("map");
+
+                                        // ステージ番号とレイヤータイプに応じてターゲットデータを選択
+                                        string[] targetData = (type, stageIndex) switch
+                                        {
+                                            ("main", 0) => project.StageData,
+                                            ("main", 1) => project.StageData2,
+                                            ("main", 2) => project.StageData3,
+                                            ("main", 3) => project.StageData4,
+                                            ("mapchip", 0) => project.LayerData,
+                                            ("mapchip", 1) => project.LayerData2,
+                                            ("mapchip", 2) => project.LayerData3,
+                                            ("mapchip", 3) => project.LayerData4,
+                                            _ => null
+                                        };
+
+                                        if (targetData != null)
+                                        {
+                                            for (int y = 0; y < map.GetArrayLength() && y < targetData.Length; y++)
+                                            {
+                                                var row = map[y];
+                                                targetData[y] = string.Join(",", row.EnumerateArray().Select(x => x.GetInt32()));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"マップデータの解析に失敗しました。{Environment.NewLine}{ex.Message}", 
+                            "マップデータ解析エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+
                 StatusText.Text = "パラメータ反映中...";
                 StatusText.Refresh();
 
                 var s = string.Join(string.Empty, project.MapData);
-                string Mapdata = new(s.Except(s.Where(ch => s.Count(c => c == ch) > 1)).ToArray()); // 地図画面データを圧縮
+                string Mapdata = new([.. s.Except(s.Where(ch => s.Count(c => c == ch) > 1))]); // 地図画面データを圧縮
 
                 int num = 0;
                 while (num < project.Config.Configurations.Length)
@@ -307,33 +637,31 @@ namespace MasaoPlus.Dialogs
                         case ConfigParam.Types.b:
                         case ConfigParam.Types.b2:
                         case ConfigParam.Types.b0:
-                            if (dictionary.TryGetValue(project.Config.Configurations[num].Name, out string value1))
+                            // シングルクォートなし・あり両方でdictionaryを探す
                             {
-                                if (value1 == "2" || value1 == "0")
+                                string configName = project.Config.Configurations[num].Name;
+                                string configNameNoQuote = configName.Trim('\'');
+                                if (dictionary.TryGetValue(configName, out string value1) || dictionary.TryGetValue(configNameNoQuote, out value1))
                                 {
-                                    project.Config.Configurations[num].Value = "false";
+                                    project.Config.Configurations[num].Value = (value1 == "2" || value1 == "0" || value1 == "false") ? "false" : "true";
                                 }
                                 else
                                 {
-                                    project.Config.Configurations[num].Value = "true";
-                                }
-                            }
-                            else
-                            {
-                                switch (project.Config.Configurations[num].Name) // 個別に初期値を設定
-                                {
-                                    case "se_switch":
-                                    case "mcs_haikei_visible":
-                                    case "fx_bgm_loop":
-                                    case "se_filename":
-                                        project.Config.Configurations[num].Value =
-                                            "false";
-                                        break;
-                                    case "pause_switch":
-                                    case "j_fire_mkf":
-                                        project.Config.Configurations[num].Value =
-                                            "true";
-                                        break;
+                                    switch (project.Config.Configurations[num].Name) // 個別に初期値を設定
+                                    {
+                                        case "se_switch":
+                                        case "mcs_haikei_visible":
+                                        case "fx_bgm_loop":
+                                        case "se_filename":
+                                            project.Config.Configurations[num].Value =
+                                                "false";
+                                            break;
+                                        case "pause_switch":
+                                        case "j_fire_mkf":
+                                            project.Config.Configurations[num].Value =
+                                                "true";
+                                            break;
+                                    }
                                 }
                             }
                             break;
@@ -682,6 +1010,179 @@ namespace MasaoPlus.Dialogs
                 return true;
             }
             return false;
+        }
+
+        private static int FindMatchingBrace(string text, int openBraceIndex)
+        {
+            int braceCount = 1;
+            for (int i = openBraceIndex + 1; i < text.Length; i++)
+            {
+                if (text[i] == '{') braceCount++;
+                else if (text[i] == '}')
+                {
+                    braceCount--;
+                    if (braceCount == 0) return i;
+                }
+            }
+            return -1;
+        }
+
+        private static string ConvertToValidJson(string jsCode)
+        {
+            // URLを一時的なプレースホルダーに置換
+            var urlPlaceholders = new Dictionary<string, string>();
+            int urlCounter = 0;
+            
+            // URLを一時的なプレースホルダーに置換
+            var urlPattern = new Regex(@"(?<=[""'])(https?://[^""']+)(?=[""'])");
+            jsCode = urlPattern.Replace(jsCode, match => {
+                var placeholder = $"__URL_PLACEHOLDER_{urlCounter}__";
+                urlPlaceholders[placeholder] = match.Value;
+                urlCounter++;
+                return placeholder;
+            });
+
+            // コメントと空行を削除
+            jsCode = Regex.Replace(jsCode, @"/\*.*?\*/", "", RegexOptions.Singleline);
+            jsCode = Regex.Replace(jsCode, @"//.*?$", "", RegexOptions.Multiline);
+            jsCode = Regex.Replace(jsCode, @"^\s*$[\r\n]*", "", RegexOptions.Multiline);
+            jsCode = jsCode.Trim();
+
+            // JavaScriptのブーリアン値をJSONのbooleanに変換
+            jsCode = Regex.Replace(jsCode, @"\btrue\b", "true");
+            jsCode = Regex.Replace(jsCode, @"\bfalse\b", "false");
+
+            // advanced-map内のattack_timingオブジェクトのキーを文字列化
+            jsCode = Regex.Replace(jsCode, @"(\d+)(\s*:)", "\"$1\"$2");
+
+            // プロパティ名をクォートで囲む（既にクォートされている場合を除く）
+            jsCode = Regex.Replace(jsCode, @"(?<![""|'])(\b[a-zA-Z_][a-zA-Z0-9_-]*\b)(?=\s*:)", "\"$1\"");
+
+            // シングルクォートをダブルクォートに変換（エスケープされていないものだけ）
+            var result = new StringBuilder();
+            bool inString = false;
+            char stringDelimiter = '"';
+            
+            for (int i = 0; i < jsCode.Length; i++)
+            {
+                char c = jsCode[i];
+                if (c == '\\' && i + 1 < jsCode.Length)
+                {
+                    result.Append(c);
+                    result.Append(jsCode[++i]);
+                    continue;
+                }
+                
+                if (c == '"' || c == '\'')
+                {
+                    if (!inString)
+                    {
+                        inString = true;
+                        stringDelimiter = c;
+                        result.Append('"'); // 常にダブルクォートを使用
+                    }
+                    else if (c == stringDelimiter)
+                    {
+                        inString = false;
+                        result.Append('"');
+                    }
+                    else
+                    {
+                        result.Append(c);
+                    }
+                }
+                else
+                {
+                    result.Append(c);
+                }
+            }
+            jsCode = result.ToString();
+
+            // 数値の前のプラス記号を削除（JSONでは不要）
+            jsCode = Regex.Replace(jsCode, @":\s*\+(\d+)", ": $1");
+
+            // 末尾のカンマを削除
+            jsCode = Regex.Replace(jsCode, @",(\s*[}\]])", "$1");
+
+            // オブジェクトの最後のプロパティの後のカンマを削除
+            jsCode = Regex.Replace(jsCode, @",(\s*})", "$1");
+
+            // 配列の最後の要素の後のカンマを削除
+            jsCode = Regex.Replace(jsCode, @",(\s*\])", "$1");
+
+            // URLプレースホルダーを元のURLに戻す
+            foreach (var placeholder in urlPlaceholders)
+            {
+                jsCode = jsCode.Replace(placeholder.Key, placeholder.Value);
+            }
+
+            return jsCode;
+        }
+
+        private static List<string> SplitJSMasaoArgs(string argsText)
+        {
+            var args = new List<string>();
+            var currentArg = new StringBuilder();
+            var braceCount = 0;
+            var inString = false;
+            var stringDelimiter = '"';
+
+            for (int i = 0; i < argsText.Length; i++)
+            {
+                char c = argsText[i];
+
+                // エスケープシーケンスの処理
+                if (c == '\\' && i + 1 < argsText.Length)
+                {
+                    currentArg.Append(c);
+                    currentArg.Append(argsText[++i]);
+                    continue;
+                }
+
+                // 文字列の処理
+                if (c == '"' || c == '\'')
+                {
+                    if (!inString)
+                    {
+                        inString = true;
+                        stringDelimiter = c;
+                    }
+                    else if (c == stringDelimiter)
+                    {
+                        inString = false;
+                    }
+                    currentArg.Append(c);
+                    continue;
+                }
+
+                // オブジェクトの深さを追跡
+                if (!inString)
+                {
+                    if (c == '{' || c == '[')
+                    {
+                        braceCount++;
+                    }
+                    else if (c == '}' || c == ']')
+                    {
+                        braceCount--;
+                    }
+                    else if (c == ',' && braceCount == 0)
+                    {
+                        args.Add(currentArg.ToString().Trim());
+                        currentArg.Clear();
+                        continue;
+                    }
+                }
+
+                currentArg.Append(c);
+            }
+
+            if (currentArg.Length > 0)
+            {
+                args.Add(currentArg.ToString().Trim());
+            }
+
+            return args;
         }
 
         public string ProjectFile = "";

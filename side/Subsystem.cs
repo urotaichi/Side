@@ -1093,7 +1093,7 @@ namespace MasaoPlus
             StringBuilder null_string = new(), null_string_all = new();
             for (int j = 0; j < StageSizeData.x / (StageSplit + 1); j++)
                 for (int i = 0; i < StageSizeData.bytesize; i++)
-                    null_string.Append("."); // 空白文字をベタ書きしてるので後で直す？
+                    null_string.Append('.'); // 空白文字をベタ書きしてるので後で直す？
             for (int i = 0; i <= StageSplit; i++)
                 null_string_all.Append(null_string);
             int num = 0; // 何行目か
@@ -1182,7 +1182,7 @@ namespace MasaoPlus
             using (FileStream fileStream = new(path, FileMode.Open))
             {
                 array = new byte[fileStream.Length];
-                fileStream.Read(array, 0, array.Length);
+                fileStream.ReadExactly(array);
             }
             return GetCode(array).GetString(array);
         }
