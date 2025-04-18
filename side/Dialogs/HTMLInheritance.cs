@@ -245,20 +245,67 @@ namespace MasaoPlus.Dialogs
                 StatusText.Text = "HTMLデータ取得中...";
                 StatusText.Refresh();
 
-                Regex regex2 = reg_param();
-                Regex regex_script = reg_script_start();
-                if (regex_script.IsMatch(input))
+                Dictionary<string, string> dictionary = [];
+
+                // JavaScriptのパラメータを解析
+                Regex regex_js = reg_script_start();
+                Match js_match = regex_js.Match(input);
+                if (js_match.Success)
                 {
-                    regex2 = reg_script_param();
+                    // JavaScriptのコードを取得
+                    int jsStart = js_match.Index + js_match.Length;
+                    int jsEnd = input.IndexOf("</script>", jsStart);
+                    if (jsEnd > jsStart)
+                    {
+                        string jsCode = input.Substring(jsStart, jsEnd - jsStart).Trim();
+                        
+                        // '(' から始まる部分を見つけて、最後の ');' を除去
+                        jsCode = jsCode.TrimStart('(');
+                        if (jsCode.EndsWith(");"))
+                        {
+                            jsCode = jsCode.Substring(0, jsCode.Length - 2);
+                        }
+
+                        // 引数を分割
+                        var args = SplitJSMasaoArgs(jsCode);
+                        
+                        if (args.Count > 0)
+                        {
+                            // 第1引数の処理（基本設定）
+                            string jsonText = ConvertToValidJson(args[0]);
+
+                            var jsonDoc = System.Text.Json.JsonDocument.Parse(jsonText);
+                            foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                            {
+                                dictionary[prop.Name] = prop.Value.ToString();
+                            }
+
+                            // 第3引数の処理（advanced-map等）
+                            if (args.Count >= 3 && args[2].Trim() != "null")
+                            {
+                                jsonText = ConvertToValidJson(args[2]);
+
+                                jsonDoc = System.Text.Json.JsonDocument.Parse(jsonText);
+                                foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                                {
+                                    dictionary[prop.Name] = prop.Value.ToString();
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    // HTMLパラメータタグの解析
+                    var regex2 = reg_param();
+                    Match match2 = regex2.Match(input);
+                    while (match2.Success)
+                    {
+                        dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
+                        match2 = match2.NextMatch();
+                    }
                 }
 
-                Dictionary<string, string> dictionary = [];
-                Match match2 = regex2.Match(input);
-                while (match2.Success)
-                {
-                    dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
-                    match2 = match2.NextMatch();
-                }
                 StatusText.Text = "マップソース生成中...";
                 StatusText.Refresh();
                 GetMapSource(ref project.MapData, project.Runtime.Definitions.MapName, project.Runtime.Definitions.MapSize, ref dictionary, chipDataClass.WorldChip);
@@ -682,6 +729,179 @@ namespace MasaoPlus.Dialogs
                 return true;
             }
             return false;
+        }
+
+        private static int FindMatchingBrace(string text, int openBraceIndex)
+        {
+            int braceCount = 1;
+            for (int i = openBraceIndex + 1; i < text.Length; i++)
+            {
+                if (text[i] == '{') braceCount++;
+                else if (text[i] == '}')
+                {
+                    braceCount--;
+                    if (braceCount == 0) return i;
+                }
+            }
+            return -1;
+        }
+
+        private static string ConvertToValidJson(string jsCode)
+        {
+            // URLを一時的なプレースホルダーに置換
+            var urlPlaceholders = new Dictionary<string, string>();
+            int urlCounter = 0;
+            
+            // URLを一時的なプレースホルダーに置換
+            var urlPattern = new Regex(@"(?<=[""'])(https?://[^""']+)(?=[""'])");
+            jsCode = urlPattern.Replace(jsCode, match => {
+                var placeholder = $"__URL_PLACEHOLDER_{urlCounter}__";
+                urlPlaceholders[placeholder] = match.Value;
+                urlCounter++;
+                return placeholder;
+            });
+
+            // コメントと空行を削除
+            jsCode = Regex.Replace(jsCode, @"/\*.*?\*/", "", RegexOptions.Singleline);
+            jsCode = Regex.Replace(jsCode, @"//.*?$", "", RegexOptions.Multiline);
+            jsCode = Regex.Replace(jsCode, @"^\s*$[\r\n]*", "", RegexOptions.Multiline);
+            jsCode = jsCode.Trim();
+
+            // JavaScriptのブーリアン値をJSONのbooleanに変換
+            jsCode = Regex.Replace(jsCode, @"\btrue\b", "true");
+            jsCode = Regex.Replace(jsCode, @"\bfalse\b", "false");
+
+            // advanced-map内のattack_timingオブジェクトのキーを文字列化
+            jsCode = Regex.Replace(jsCode, @"(\d+)(\s*:)", "\"$1\"$2");
+
+            // プロパティ名をクォートで囲む（既にクォートされている場合を除く）
+            jsCode = Regex.Replace(jsCode, @"(?<![""|'])(\b[a-zA-Z_][a-zA-Z0-9_-]*\b)(?=\s*:)", "\"$1\"");
+
+            // シングルクォートをダブルクォートに変換（エスケープされていないものだけ）
+            var result = new StringBuilder();
+            bool inString = false;
+            char stringDelimiter = '"';
+            
+            for (int i = 0; i < jsCode.Length; i++)
+            {
+                char c = jsCode[i];
+                if (c == '\\' && i + 1 < jsCode.Length)
+                {
+                    result.Append(c);
+                    result.Append(jsCode[++i]);
+                    continue;
+                }
+                
+                if (c == '"' || c == '\'')
+                {
+                    if (!inString)
+                    {
+                        inString = true;
+                        stringDelimiter = c;
+                        result.Append('"'); // 常にダブルクォートを使用
+                    }
+                    else if (c == stringDelimiter)
+                    {
+                        inString = false;
+                        result.Append('"');
+                    }
+                    else
+                    {
+                        result.Append(c);
+                    }
+                }
+                else
+                {
+                    result.Append(c);
+                }
+            }
+            jsCode = result.ToString();
+
+            // 数値の前のプラス記号を削除（JSONでは不要）
+            jsCode = Regex.Replace(jsCode, @":\s*\+(\d+)", ": $1");
+
+            // 末尾のカンマを削除
+            jsCode = Regex.Replace(jsCode, @",(\s*[}\]])", "$1");
+
+            // オブジェクトの最後のプロパティの後のカンマを削除
+            jsCode = Regex.Replace(jsCode, @",(\s*})", "$1");
+
+            // 配列の最後の要素の後のカンマを削除
+            jsCode = Regex.Replace(jsCode, @",(\s*\])", "$1");
+
+            // URLプレースホルダーを元のURLに戻す
+            foreach (var placeholder in urlPlaceholders)
+            {
+                jsCode = jsCode.Replace(placeholder.Key, placeholder.Value);
+            }
+
+            return jsCode;
+        }
+
+        private static List<string> SplitJSMasaoArgs(string argsText)
+        {
+            var args = new List<string>();
+            var currentArg = new StringBuilder();
+            var braceCount = 0;
+            var inString = false;
+            var stringDelimiter = '"';
+
+            for (int i = 0; i < argsText.Length; i++)
+            {
+                char c = argsText[i];
+
+                // エスケープシーケンスの処理
+                if (c == '\\' && i + 1 < argsText.Length)
+                {
+                    currentArg.Append(c);
+                    currentArg.Append(argsText[++i]);
+                    continue;
+                }
+
+                // 文字列の処理
+                if (c == '"' || c == '\'')
+                {
+                    if (!inString)
+                    {
+                        inString = true;
+                        stringDelimiter = c;
+                    }
+                    else if (c == stringDelimiter)
+                    {
+                        inString = false;
+                    }
+                    currentArg.Append(c);
+                    continue;
+                }
+
+                // オブジェクトの深さを追跡
+                if (!inString)
+                {
+                    if (c == '{' || c == '[')
+                    {
+                        braceCount++;
+                    }
+                    else if (c == '}' || c == ']')
+                    {
+                        braceCount--;
+                    }
+                    else if (c == ',' && braceCount == 0)
+                    {
+                        args.Add(currentArg.ToString().Trim());
+                        currentArg.Clear();
+                        continue;
+                    }
+                }
+
+                currentArg.Append(c);
+            }
+
+            if (currentArg.Length > 0)
+            {
+                args.Add(currentArg.ToString().Trim());
+            }
+
+            return args;
         }
 
         public string ProjectFile = "";
