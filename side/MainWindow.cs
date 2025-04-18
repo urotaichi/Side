@@ -2552,7 +2552,7 @@ namespace MasaoPlus
                 return;
             }
             using OpenFileDialog openFileDialog = new();
-            openFileDialog.Filter = "HTML/XML ドキュメント(*.htm*;*.xml)|*.htm*;*.xml|全てのファイル|*.*";
+            openFileDialog.Filter = "HTML/XML/JS ドキュメント(*.htm*;*.xml;*.js)|*.htm*;*.xml;*.js|全てのファイル|*.*";
             openFileDialog.InitialDirectory = Global.config.lastData.ProjDirF;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {

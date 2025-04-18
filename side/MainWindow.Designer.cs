@@ -759,7 +759,7 @@
 			this.MProjectInheritNew.Click += new global::System.EventHandler(this.MProjectInheritNew_Click);
 			this.MConvertHTML.Name = "MConvertHTML";
 			this.MConvertHTML.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(259, 22));
-			this.MConvertHTML.Text = "HTMLを変換して新規(&C)...";
+			this.MConvertHTML.Text = "HTML/JSを変換して新規(&C)...";
 			this.MConvertHTML.Click += new global::System.EventHandler(this.MConvertHTML_Click);
 			this.toolStripMenuItem16.Name = "toolStripMenuItem16";
 			this.toolStripMenuItem16.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(199, 6));

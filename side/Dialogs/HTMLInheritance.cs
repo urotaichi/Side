@@ -255,6 +255,10 @@ namespace MasaoPlus.Dialogs
                     // JavaScriptのコードを取得
                     int jsStart = js_match.Index + js_match.Length;
                     int jsEnd = input.IndexOf("</script>", jsStart);
+                    if (jsEnd == -1) // scriptタグが見つからない場合（外部JSファイル）は最後まで読む
+                    {
+                        jsEnd = input.Length;
+                    }
                     if (jsEnd > jsStart)
                     {
                         string jsCode = input.Substring(jsStart, jsEnd - jsStart).Trim();
@@ -1201,7 +1205,7 @@ namespace MasaoPlus.Dialogs
         private static partial Regex reg_applet_end();
         [GeneratedRegex(@"<[ ]*PARAM[ ]+NAME=""(?<name>.*?)""[ ]+VALUE=""(?<value>.*?)"".*?>", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
         private static partial Regex reg_param();
-        [GeneratedRegex(@"<[ ]*?script.*?>.*?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
+        [GeneratedRegex(@"(?:<[ ]*?script.*?>.*?)?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
         private static partial Regex reg_script_start();
         [GeneratedRegex(@"(""|')(?<name>.*?)(""|')\s*?:\s*?(""|')(?<value>.*?)(?<!\\)(""|')(,|\s*?)", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
         private static partial Regex reg_script_param();
