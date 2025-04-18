@@ -336,10 +336,268 @@ namespace MasaoPlus.Dialogs
                     StatusText.Refresh();
                     GetMapSource(ref project.LayerData4, project.Runtime.Definitions.LayerName4, project.Runtime.Definitions.LayerSize4, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
                 }
+
                 if(dictionary.ContainsKey("advanced-map") || dictionary.ContainsKey("advance-map"))
                 {
-                    // 第3版マップデータを含む場合の処理
+                    string mapData = dictionary.ContainsKey("advanced-map") ? 
+                        dictionary["advanced-map"] : dictionary["advance-map"];
+                    
+                    try {
+                        // JavaScriptの文字列をJSONに変換
+                        mapData = mapData.Trim();
+                        if (mapData.StartsWith("'") || mapData.StartsWith("\""))
+                        {
+                            mapData = mapData[1..^1]; // 最初と最後のクォートを削除
+                            mapData = mapData.Replace(@"\""", @"""").Replace(@"\\", @"\").Replace("¥", "\\");
+                        }
+                        
+                        var jsonData = System.Text.Json.JsonDocument.Parse(mapData);
+                        
+                        // カスタムパーツ定義の読み込み
+                        if (jsonData.RootElement.TryGetProperty("customParts", out var customParts))
+                        {
+                            var customPartsArray = customParts.EnumerateObject().ToArray();
+                            var customPartsList = new List<ChipsData>();
+                            for (int i = 0; i < customPartsArray.Length; i++)
+                            {
+                                var part = customPartsArray[i];
+                                var chipData = new ChipsData 
+                                {
+                                    code = part.Name,  // カスタムパーツのID
+                                    basecode = part.Value.GetProperty("extends").ToString() // 継承元の基本パーツID
+                                };
+
+                                // baseCodeに対応するチップ定義を探してプロパティをコピー
+                                var baseChip = chipDataClass.VarietyChip?.FirstOrDefault(x => x.code == chipData.basecode);
+                                if (baseChip != null)
+                                {
+                                    chipData.color = baseChip?.color;
+                                    chipData.relation = baseChip?.relation; 
+                                    chipData.idColor = $"#{Guid.NewGuid().ToString("N").Substring(0, 6)}";
+                                    
+                                    // Chipsプロパティを新しい配列として複製
+                                    chipData.Chips = new ChipData[(int)(baseChip?.Chips.Length)];
+                                    for (int j = 0; j < baseChip?.Chips.Length; j++)
+                                    {
+                                        chipData.Chips[j] = (ChipData)(baseChip?.Chips[j]);
+                                        chipData.Chips[j].name = $"カスタムパーツ{i + 1}";
+                                    }
+                                }
+
+                                // propertiesを持つ場合の処理
+                                if (part.Value.TryGetProperty("properties", out var properties))
+                                {
+                                    chipData.Properties = new CustomPartsProperties();
+                                    foreach (var prop in properties.EnumerateObject())
+                                    {
+                                        switch (prop.Name)
+                                        {
+                                            case "walk_speed":
+                                                chipData.Properties.walk_speed = prop.Value.GetInt32();
+                                                break;
+                                            case "fall_speed":
+                                                chipData.Properties.fall_speed = prop.Value.GetInt32();
+                                                break;
+                                            case "jump_vy":
+                                                chipData.Properties.jump_vy = prop.Value.GetInt32();
+                                                break;
+                                            case "search_range":
+                                                chipData.Properties.search_range = prop.Value.GetInt32();
+                                                break;
+                                            case "interval":
+                                                chipData.Properties.interval = prop.Value.GetInt32();
+                                                break;
+                                            case "period":
+                                                chipData.Properties.period = prop.Value.GetInt32();
+                                                break;
+                                            case "attack_timing":
+                                                chipData.Properties.attack_timing = new List<attack_timing>();
+                                                foreach (var timing in prop.Value.EnumerateObject())
+                                                {
+                                                    chipData.Properties.attack_timing.Add(new attack_timing
+                                                    {
+                                                        AttackFrame = int.Parse(timing.Name),
+                                                        IsPlaySoundFrame = timing.Value.GetInt32() == 2
+                                                    });
+                                                }
+                                                break;
+                                            case "speed":
+                                                chipData.Properties.speed = prop.Value.GetInt32();
+                                                break;
+                                            case "accel":
+                                                chipData.Properties.accel = prop.Value.GetInt32();
+                                                break;
+                                            case "distance":
+                                                chipData.Properties.distance = prop.Value.GetInt32();
+                                                break;
+                                            case "attack_speed":
+                                                chipData.Properties.attack_speed = prop.Value.GetInt32();
+                                                break;
+                                            case "return_speed":
+                                                chipData.Properties.return_speed = prop.Value.GetInt32();
+                                                break;
+                                            case "speed_x":
+                                                chipData.Properties.speed_x = prop.Value.GetInt32();
+                                                break;
+                                            case "speed_y":
+                                                chipData.Properties.speed_y = prop.Value.GetInt32();
+                                                break;
+                                            case "radius":
+                                                chipData.Properties.radius = prop.Value.GetInt32();
+                                                break;
+                                            case "init_vy":
+                                                chipData.Properties.init_vy = prop.Value.GetInt32();
+                                                break;
+                                        }
+                                    }
+                                }
+                                customPartsList.Add(chipData);
+                            }
+                            project.CustomPartsDefinition = [.. customPartsList];
+                        }
+
+                        // ステージデータの読み込み
+                        project.Use3rdMapData = true;
+
+                        // ステージデータの初期化処理
+                        void InitializeEmptyStageData(string[] data, int width, ChipsData[] chips)
+                        {
+                            var defaultCode = ChipDataClass.CharToCode(chips[0].character);
+                            for (int y = 0; y < data.Length; y++)
+                            {
+                                var row = new int[width];
+                                for (int x = 0; x < width; x++)
+                                {
+                                    row[x] = int.Parse(defaultCode);
+                                }
+                                data[y] = string.Join(",", row);
+                            }
+                        }
+
+                        // advanced-map用に既存のステージデータを初期化
+                        InitializeEmptyStageData(project.StageData, project.Runtime.Definitions.StageSize.x, 
+                            chipDataClass.Mapchip);
+                        InitializeEmptyStageData(project.StageData2, project.Runtime.Definitions.StageSize2.x,
+                            chipDataClass.Mapchip);
+                        InitializeEmptyStageData(project.StageData3, project.Runtime.Definitions.StageSize3.x,
+                            chipDataClass.Mapchip);
+                        InitializeEmptyStageData(project.StageData4, project.Runtime.Definitions.StageSize4.x,
+                            chipDataClass.Mapchip);
+                            
+                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                        {
+                            InitializeEmptyStageData(project.LayerData, project.Runtime.Definitions.LayerSize.x,
+                                chipDataClass.Layerchip);
+                            InitializeEmptyStageData(project.LayerData2, project.Runtime.Definitions.LayerSize2.x,
+                                chipDataClass.Layerchip);
+                            InitializeEmptyStageData(project.LayerData3, project.Runtime.Definitions.LayerSize3.x,
+                                chipDataClass.Layerchip);
+                            InitializeEmptyStageData(project.LayerData4, project.Runtime.Definitions.LayerSize4.x,
+                                chipDataClass.Layerchip);
+                        }
+
+                        // ステージデータの読み込みとサイズの設定を一元化
+                        var stages = jsonData.RootElement.GetProperty("stages");
+                        var stagesList = stages.EnumerateArray().ToList();
+                        for (int stageIndex = 0; stageIndex < stagesList.Count && stageIndex < 4; stageIndex++)
+                        {
+                            var stage = stagesList[stageIndex];
+                            if (stage.TryGetProperty("size", out var size))
+                            {
+                                int sizeX = size.GetProperty("x").GetInt32();
+                                int sizeY = size.GetProperty("y").GetInt32();
+
+                                // ステージ番号に応じてサイズとデータ配列を更新
+                                switch (stageIndex)
+                                {
+                                    case 0:
+                                        project.Runtime.Definitions.StageSize.x = sizeX;
+                                        project.Runtime.Definitions.StageSize.y = sizeY;
+                                        project.StageData = new string[sizeY];
+                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                        {
+                                            project.Runtime.Definitions.LayerSize.x = sizeX;
+                                            project.Runtime.Definitions.LayerSize.y = sizeY;
+                                            project.LayerData = new string[sizeY];
+                                        }
+                                        break;
+                                    case 1:
+                                        project.Runtime.Definitions.StageSize2.x = sizeX;
+                                        project.Runtime.Definitions.StageSize2.y = sizeY;
+                                        project.StageData2 = new string[sizeY];
+                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                        {
+                                            project.Runtime.Definitions.LayerSize2.x = sizeX;
+                                            project.Runtime.Definitions.LayerSize2.y = sizeY;
+                                            project.LayerData2 = new string[sizeY];
+                                        }
+                                        break;
+                                    case 2:
+                                        project.Runtime.Definitions.StageSize3.x = sizeX;
+                                        project.Runtime.Definitions.StageSize3.y = sizeY;
+                                        project.StageData3 = new string[sizeY];
+                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                        {
+                                            project.Runtime.Definitions.LayerSize3.x = sizeX;
+                                            project.Runtime.Definitions.StageSize3.y = sizeY;
+                                            project.LayerData3 = new string[sizeY];
+                                        }
+                                        break;
+                                    case 3:
+                                        project.Runtime.Definitions.StageSize4.x = sizeX;
+                                        project.Runtime.Definitions.StageSize4.y = sizeY;
+                                        project.StageData4 = new string[sizeY];
+                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                        {
+                                            project.Runtime.Definitions.LayerSize4.x = sizeX;
+                                            project.Runtime.Definitions.StageSize4.y = sizeY;
+                                            project.LayerData4 = new string[sizeY];
+                                        }
+                                        break;
+                                }
+
+                                // レイヤーデータの読み込み
+                                if (stage.TryGetProperty("layers", out var layers))
+                                {
+                                    foreach (var layer in layers.EnumerateArray())
+                                    {
+                                        var type = layer.GetProperty("type").GetString();
+                                        var map = layer.GetProperty("map");
+
+                                        // ステージ番号とレイヤータイプに応じてターゲットデータを選択
+                                        string[] targetData = (type, stageIndex) switch
+                                        {
+                                            ("main", 0) => project.StageData,
+                                            ("main", 1) => project.StageData2,
+                                            ("main", 2) => project.StageData3,
+                                            ("main", 3) => project.StageData4,
+                                            ("mapchip", 0) => project.LayerData,
+                                            ("mapchip", 1) => project.LayerData2,
+                                            ("mapchip", 2) => project.LayerData3,
+                                            ("mapchip", 3) => project.LayerData4,
+                                            _ => null
+                                        };
+
+                                        if (targetData != null)
+                                        {
+                                            for (int y = 0; y < map.GetArrayLength() && y < targetData.Length; y++)
+                                            {
+                                                var row = map[y];
+                                                targetData[y] = string.Join(",", row.EnumerateArray().Select(x => x.GetInt32()));
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"マップデータの解析に失敗しました。{Environment.NewLine}{ex.Message}", 
+                            "マップデータ解析エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+
                 StatusText.Text = "パラメータ反映中...";
                 StatusText.Refresh();
 
