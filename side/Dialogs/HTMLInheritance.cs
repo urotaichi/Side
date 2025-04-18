@@ -637,33 +637,31 @@ namespace MasaoPlus.Dialogs
                         case ConfigParam.Types.b:
                         case ConfigParam.Types.b2:
                         case ConfigParam.Types.b0:
-                            if (dictionary.TryGetValue(project.Config.Configurations[num].Name, out string value1))
+                            // シングルクォートなし・あり両方でdictionaryを探す
                             {
-                                if (value1 == "2" || value1 == "0")
+                                string configName = project.Config.Configurations[num].Name;
+                                string configNameNoQuote = configName.Trim('\'');
+                                if (dictionary.TryGetValue(configName, out string value1) || dictionary.TryGetValue(configNameNoQuote, out value1))
                                 {
-                                    project.Config.Configurations[num].Value = "false";
+                                    project.Config.Configurations[num].Value = (value1 == "2" || value1 == "0" || value1 == "false") ? "false" : "true";
                                 }
                                 else
                                 {
-                                    project.Config.Configurations[num].Value = "true";
-                                }
-                            }
-                            else
-                            {
-                                switch (project.Config.Configurations[num].Name) // 個別に初期値を設定
-                                {
-                                    case "se_switch":
-                                    case "mcs_haikei_visible":
-                                    case "fx_bgm_loop":
-                                    case "se_filename":
-                                        project.Config.Configurations[num].Value =
-                                            "false";
-                                        break;
-                                    case "pause_switch":
-                                    case "j_fire_mkf":
-                                        project.Config.Configurations[num].Value =
-                                            "true";
-                                        break;
+                                    switch (project.Config.Configurations[num].Name) // 個別に初期値を設定
+                                    {
+                                        case "se_switch":
+                                        case "mcs_haikei_visible":
+                                        case "fx_bgm_loop":
+                                        case "se_filename":
+                                            project.Config.Configurations[num].Value =
+                                                "false";
+                                            break;
+                                        case "pause_switch":
+                                        case "j_fire_mkf":
+                                            project.Config.Configurations[num].Value =
+                                                "true";
+                                            break;
+                                    }
                                 }
                             }
                             break;
