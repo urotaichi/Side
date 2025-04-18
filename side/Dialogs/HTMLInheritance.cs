@@ -326,13 +326,95 @@ namespace MasaoPlus.Dialogs
                 }
                 else
                 {
-                    // HTMLパラメータタグの解析
-                    var regex2 = reg_param();
-                    Match match2 = regex2.Match(input);
-                    while (match2.Success)
+                    // JSONファイル形式の検出と解析
+                    try
                     {
-                        dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
-                        match2 = match2.NextMatch();
+                        var jsonData = JsonDocument.Parse(input);
+                        
+                        // フォーマットバージョンの確認
+                        if (jsonData.RootElement.TryGetProperty("masao-json-format-version", out var formatVersion))
+                        {
+                            // パラメータの読み込み
+                            if (jsonData.RootElement.TryGetProperty("params", out var parameters))
+                            {
+                                foreach (var param in parameters.EnumerateObject())
+                                {
+                                    dictionary[param.Name] = param.Value.ToString();
+                                }
+                            }
+
+                            // メタデータの読み込み
+                            if (jsonData.RootElement.TryGetProperty("metadata", out var metadata))
+                            {
+                                if (metadata.TryGetProperty("title", out var title))
+                                {
+                                    if (project.Runtime.DefaultConfigurations.OutputReplace?.Any(r => r.Name == "タイトル") == true)
+                                    {
+                                        var titleReplace = project.Runtime.DefaultConfigurations.OutputReplace.First(r => r.Name == "タイトル");
+                                        titleReplace.Value = title.ToString();
+                                    }
+                                }
+                            }
+
+                            // advanced-mapの読み込み
+                            if (jsonData.RootElement.TryGetProperty("advanced-map", out var advancedMap) && advancedMap.ValueKind != JsonValueKind.Null)
+                            {
+                                dictionary["advanced-map"] = advancedMap.ToString();
+                            }
+
+                            // スクリプトの読み込み
+                            if (jsonData.RootElement.TryGetProperty("script", out var script) && script.ValueKind != JsonValueKind.Null)
+                            {
+                                var scriptContent = $@"<script>
+{script}
+</script>";
+
+                                // HeaderHTMLからhead要素を探す
+                                var headerHtml = project.Runtime.DefaultConfigurations.HeaderHTML;
+                                if (headerHtml.Contains("<head>"))
+                                {
+                                    // head要素が存在する場合、</head>の直前にスクリプトを挿入
+                                    int headEndIndex = headerHtml.IndexOf("</head>");
+                                    if (headEndIndex != -1)
+                                    {
+                                        project.Runtime.DefaultConfigurations.HeaderHTML = 
+                                            headerHtml.Insert(headEndIndex, scriptContent);
+                                    }
+                                }
+                                else
+                                {
+                                    // head要素がない場合、HTMLの先頭にhead要素を作成してスクリプトを追加
+                                    var headElement = $@"<head>
+<meta charset=""UTF-8"">
+{scriptContent}
+</head>
+
+";
+                                    // <!DOCTYPE>がある場合はその後に挿入
+                                    if (headerHtml.Contains("<!DOCTYPE"))
+                                    {
+                                        int doctypeEndIndex = headerHtml.IndexOf(">", headerHtml.IndexOf("<!DOCTYPE")) + 1;
+                                        project.Runtime.DefaultConfigurations.HeaderHTML = 
+                                            headerHtml.Insert(doctypeEndIndex, Environment.NewLine + headElement);
+                                    }
+                                    else
+                                    {
+                                        project.Runtime.DefaultConfigurations.HeaderHTML = headElement + headerHtml;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (JsonException)
+                    {
+                        // JSONとして解析できない場合は従来のHTMLパラメータ解析を試みる
+                        var regex2 = reg_param();
+                        Match match2 = regex2.Match(input);
+                        while (match2.Success)
+                        {
+                            dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
+                            match2 = match2.NextMatch();
+                        }
                     }
                 }
 
