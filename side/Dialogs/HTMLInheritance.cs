@@ -733,8 +733,11 @@ namespace MasaoPlus.Dialogs
                         case ConfigParam.Types.f_a:
                             if (dictionary.TryGetValue(project.Config.Configurations[num].Name, out string value2))
                             {
-                                list.Add(value2);
-                                project.Config.Configurations[num].Value = Path.GetFileName(value2);
+                                if (!string.IsNullOrEmpty(value2))
+                                {
+                                    list.Add(value2);
+                                    project.Config.Configurations[num].Value = Path.GetFileName(value2);
+                                }
                             }
                             break;
                         case ConfigParam.Types.c:
