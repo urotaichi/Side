@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -278,13 +279,13 @@ namespace MasaoPlus.Dialogs
                             string jsonText = ConvertToValidJson(args[0]);
                             try
                             {
-                                var jsonDoc = System.Text.Json.JsonDocument.Parse(jsonText);
+                                var jsonDoc = JsonDocument.Parse(jsonText);
                                 foreach (var prop in jsonDoc.RootElement.EnumerateObject())
                                 {
                                     dictionary[prop.Name] = prop.Value.ToString();
                                 }
                             }
-                            catch (System.Text.Json.JsonException ex)
+                            catch (JsonException)
                             {
                                 // JSON解析に失敗した場合は従来の正規表現による解析を試みる
                                 var regex2 = reg_script_param();
@@ -302,13 +303,13 @@ namespace MasaoPlus.Dialogs
                                 jsonText = ConvertToValidJson(args[2]);
                                 try
                                 {
-                                    var jsonDoc = System.Text.Json.JsonDocument.Parse(jsonText);
+                                    var jsonDoc = JsonDocument.Parse(jsonText);
                                     foreach (var prop in jsonDoc.RootElement.EnumerateObject())
                                     {
                                         dictionary[prop.Name] = prop.Value.ToString();
                                     }
                                 }
-                                catch (System.Text.Json.JsonException ex)
+                                catch (JsonException)
                                 {
                                     // JSON解析に失敗した場合は従来の正規表現による解析を試みる
                                     var regex2 = reg_script_param();
@@ -368,19 +369,18 @@ namespace MasaoPlus.Dialogs
 
                 if(dictionary.ContainsKey("advanced-map") || dictionary.ContainsKey("advance-map"))
                 {
-                    string mapData = dictionary.ContainsKey("advanced-map") ? 
-                        dictionary["advanced-map"] : dictionary["advance-map"];
+                    string mapData = dictionary.TryGetValue("advanced-map", out string value) ? value : dictionary["advance-map"];
                     
                     try {
                         // JavaScriptの文字列をJSONに変換
                         mapData = mapData.Trim();
-                        if (mapData.StartsWith("'") || mapData.StartsWith("\""))
+                        if (mapData.StartsWith('\'') || mapData.StartsWith('\"'))
                         {
                             mapData = mapData[1..^1]; // 最初と最後のクォートを削除
                             mapData = mapData.Replace(@"\""", @"""").Replace(@"\\", @"\").Replace("¥", "\\");
                         }
                         
-                        var jsonData = System.Text.Json.JsonDocument.Parse(mapData);
+                        var jsonData = JsonDocument.Parse(mapData);
                         
                         // カスタムパーツ定義の読み込み
                         if (jsonData.RootElement.TryGetProperty("customParts", out var customParts))
@@ -1023,7 +1023,7 @@ namespace MasaoPlus.Dialogs
             int urlCounter = 0;
             
             // URLを一時的なプレースホルダーに置換
-            var urlPattern = new Regex(@"(?<=[""'])(https?://[^""']+)(?=[""'])");
+            var urlPattern = reg_url();
             jsCode = urlPattern.Replace(jsCode, match => {
                 var placeholder = $"__URL_PLACEHOLDER_{urlCounter}__";
                 urlPlaceholders[placeholder] = match.Value;
@@ -1032,20 +1032,20 @@ namespace MasaoPlus.Dialogs
             });
 
             // コメントと空行を削除
-            jsCode = Regex.Replace(jsCode, @"/\*.*?\*/", "", RegexOptions.Singleline);
-            jsCode = Regex.Replace(jsCode, @"//.*?$", "", RegexOptions.Multiline);
-            jsCode = Regex.Replace(jsCode, @"^\s*$[\r\n]*", "", RegexOptions.Multiline);
+            jsCode = reg_comment_single().Replace(jsCode, "");
+            jsCode = reg_comment_multi().Replace(jsCode, "");
+            jsCode = reg_return().Replace(jsCode, "");
             jsCode = jsCode.Trim();
 
             // JavaScriptのブーリアン値をJSONのbooleanに変換
-            jsCode = Regex.Replace(jsCode, @"\btrue\b", "true");
-            jsCode = Regex.Replace(jsCode, @"\bfalse\b", "false");
+            jsCode = reg_bool_true().Replace(jsCode, "true");
+            jsCode = reg_bool_false().Replace(jsCode, "false");
 
             // advanced-map内のattack_timingオブジェクトのキーを文字列化
-            jsCode = Regex.Replace(jsCode, @"(\d+)(\s*:)", "\"$1\"$2");
+            jsCode = reg_object_number().Replace(jsCode, "\"$1\"$2");
 
             // プロパティ名をクォートで囲む（既にクォートされている場合を除く）
-            jsCode = Regex.Replace(jsCode, @"(?<![""|'])(\b[a-zA-Z_][a-zA-Z0-9_-]*\b)(?=\s*:)", "\"$1\"");
+            jsCode = reg_quotation().Replace(jsCode, "\"$1\"");
 
             // シングルクォートをダブルクォートに変換（エスケープされていないものだけ）
             var result = new StringBuilder();
@@ -1088,16 +1088,16 @@ namespace MasaoPlus.Dialogs
             jsCode = result.ToString();
 
             // 数値の前のプラス記号を削除（JSONでは不要）
-            jsCode = Regex.Replace(jsCode, @":\s*\+(\d+)", ": $1");
+            jsCode = reg_number_plus().Replace(jsCode, ": $1");
 
             // 末尾のカンマを削除
-            jsCode = Regex.Replace(jsCode, @",(\s*[}\]])", "$1");
+            jsCode = reg_comma().Replace(jsCode, "$1");
 
             // オブジェクトの最後のプロパティの後のカンマを削除
-            jsCode = Regex.Replace(jsCode, @",(\s*})", "$1");
+            jsCode = reg_object_comma().Replace(jsCode, "$1");
 
             // 配列の最後の要素の後のカンマを削除
-            jsCode = Regex.Replace(jsCode, @",(\s*\])", "$1");
+            jsCode = reg_array_comma().Replace(jsCode, "$1");
 
             // URLプレースホルダーを元のURLに戻す
             foreach (var placeholder in urlPlaceholders)
@@ -1196,5 +1196,29 @@ namespace MasaoPlus.Dialogs
         private static partial Regex reg_script_param();
         [GeneratedRegex(@"-(\d+)$")]
         private static partial Regex reg_text_name();
+        [GeneratedRegex(@"(?<=[""'])(https?://[^""']+)(?=[""'])")]
+        private static partial Regex reg_url();
+        [GeneratedRegex(@"/\*.*?\*/", RegexOptions.Singleline)]
+        private static partial Regex reg_comment_single();
+        [GeneratedRegex(@"//.*?$", RegexOptions.Multiline)]
+        private static partial Regex reg_comment_multi();
+        [GeneratedRegex(@"^\s*$[\r\n]*", RegexOptions.Multiline)]
+        private static partial Regex reg_return();
+        [GeneratedRegex(@"\btrue\b")]
+        private static partial Regex reg_bool_true();
+        [GeneratedRegex(@"\bfalse\b")]
+        private static partial Regex reg_bool_false();
+        [GeneratedRegex(@"(\d+)(\s*:)")]
+        private static partial Regex reg_object_number();
+        [GeneratedRegex(@"(?<![""|'])(\b[a-zA-Z_][a-zA-Z0-9_-]*\b)(?=\s*:)")]
+        private static partial Regex reg_quotation();
+        [GeneratedRegex(@":\s*\+(\d+)")]
+        private static partial Regex reg_number_plus();
+        [GeneratedRegex(@",(\s*[}\]])")]
+        private static partial Regex reg_comma();
+        [GeneratedRegex(@",(\s*})")]
+        private static partial Regex reg_object_comma();
+        [GeneratedRegex(@",(\s*\])")]
+        private static partial Regex reg_array_comma();
     }
 }
