@@ -37,6 +37,24 @@ jobs:
             exit 1
         }
 
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+
+    - name: Check and update NuGet packages
+      shell: pwsh
+      run: |
+        dotnet tool install --global dotnet-outdated-tool
+        # パッケージのアップデートを確認
+        $updates = dotnet outdated side/side.csproj --upgrade
+        if ($updates -match "Updated \d+ packages?") {
+          # 変更があった場合はコミット
+          git config --local user.name 'GitHub Action'
+          git config --local user.email 'action@github.com'
+          git add side/side.csproj
+          git commit -m "パッケージアップグレード"
+          git push
+        }
+
     - name: Extract release notes
       id: extract_notes
       shell: pwsh
