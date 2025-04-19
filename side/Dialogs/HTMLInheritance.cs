@@ -1068,9 +1068,10 @@ namespace MasaoPlus.Dialogs
                         else if (Params.ContainsKey(string.Format(f, num2, num)))
                             list[num] += Params[string.Format(f, num2, num)];
                         else
-                            for (int j = 0; j < dxsize / (Split + 1) / NullChar.Length; j++)
-                                list[num] += NullChar;
-
+                        {
+                            string nullSegment = new(NullChar[0], dxsize / (Split + 1) * NullChar.Length);
+                            list[num] += nullSegment;
+                        }
                     }
                 }
                 else // 地図画面の時
@@ -1087,13 +1088,15 @@ namespace MasaoPlus.Dialogs
                 for (int i = 0; i < dysize; i++) // 空行はデフォルトの値を代入（実質地図画面専用化してるけど）
                     if (list[i] != null) overwrite[i] = list[i];
 
-                // 文字数が足りない場合空白文字を追加
-                int k;
+                // 文字数が足りない場合、必要なだけ補完
                 for (int i = 0; i < dysize; i++)
                 {
-                    k = dxsize - overwrite[i].Length / NullChar.Length;
-                    for (int j = 0; j < k; j++)
-                        overwrite[i] += NullChar;
+                    // 従来の形式の場合は文字で補完
+                    int k = dxsize - overwrite[i].Length / NullChar.Length;
+                    if (k > 0)
+                    {
+                        overwrite[i] += new string(NullChar[0], k * NullChar.Length);
+                    }
                 }
 
                 return true;
