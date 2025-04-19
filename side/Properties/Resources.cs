@@ -189,6 +189,15 @@ namespace MasaoPlus.Properties
 			}
 		}
 
+		internal static Bitmap page_white_code_red
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("page_white_code_red", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
+
 		internal static Bitmap paintcan
 		{
 			get

@@ -801,7 +801,7 @@
 			this.MWriteHTML.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(213, 22));
 			this.MWriteHTML.Text = "整形済みHTMLファイル(&H)...";
 			this.MWriteHTML.Click += new global::System.EventHandler(this.MWriteHTML_Click);
-			this.MWriteJSON.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.page_white_code).View();
+			this.MWriteJSON.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.page_white_code_red).View();
 			this.MWriteJSON.Name = "MWriteJSON";
 			this.MWriteJSON.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(213, 22));
 			this.MWriteJSON.Text = "JSONファイル(&J)...";
@@ -1291,7 +1291,7 @@
 			this.MTOutput.Text = "HTML書き出し";
 			this.MTOutput.Click += new global::System.EventHandler(this.MWriteHTML_Click);
 			this.MTOutputJSON.DisplayStyle = global::System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-			this.MTOutputJSON.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.page_white_code).View();
+			this.MTOutputJSON.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.page_white_code_red).View();
 			this.MTOutputJSON.ImageTransparentColor = global::System.Drawing.Color.Magenta;
 			this.MTOutputJSON.Name = "MTOutputJSON";
 			this.MTOutputJSON.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(23, 22));
