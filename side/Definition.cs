@@ -12,7 +12,7 @@ namespace MasaoPlus
 
             Version = $"{version.Major}.{version.Minor}.{version.Build}";
 
-            EditorIdStr = $"/* [MI]Created By:{AppName} - the {AppNameFull} v{Version}[/MI] */";
+            EditorIdStr = $"Created By:{AppName} - the {AppNameFull} v{Version}";
         }
 
         public string AppName = "Side";
