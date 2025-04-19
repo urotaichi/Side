@@ -650,7 +650,7 @@ namespace MasaoPlus.Dialogs
                                         if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                                         {
                                             project.Runtime.Definitions.LayerSize3.x = sizeX;
-                                            project.Runtime.Definitions.StageSize3.y = sizeY;
+                                            project.Runtime.Definitions.LayerSize3.y = sizeY;
                                             project.LayerData3 = new string[sizeY];
                                         }
                                         break;
@@ -660,8 +660,8 @@ namespace MasaoPlus.Dialogs
                                         project.StageData4 = new string[sizeY];
                                         if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                                         {
-                                            project.Runtime.Definitions.StageSize4.x = sizeX;
-                                            project.Runtime.Definitions.StageSize4.y = sizeY;
+                                            project.Runtime.Definitions.LayerSize4.x = sizeX;
+                                            project.Runtime.Definitions.LayerSize4.y = sizeY;
                                             project.LayerData4 = new string[sizeY];
                                         }
                                         break;
