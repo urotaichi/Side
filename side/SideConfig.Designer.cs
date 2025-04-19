@@ -130,7 +130,7 @@
 			this.IntegrateEditorId.Name = "IntegrateEditorId";
 			this.IntegrateEditorId.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(212, 16));
 			this.IntegrateEditorId.TabIndex = 4;
-			this.IntegrateEditorId.Text = "HTMLにエディタ識別コードを埋め込む(&I)";
+			this.IntegrateEditorId.Text = "出力ファイルにエディタ識別コードを埋め込む(&I)";
 			this.IntegrateEditorId.UseVisualStyleBackColor = true;
 			this.EnableAutoUpdate.AutoSize = true;
 			this.EnableAutoUpdate.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(6), base.LogicalToDeviceUnits(54));
