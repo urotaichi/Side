@@ -259,6 +259,8 @@ namespace MasaoPlus.Dialogs
                     if (jsEnd == -1) // scriptタグが見つからない場合（外部JSファイル）は最後まで読む
                     {
                         jsEnd = input.Length;
+                        StatusText.Text = "JSデータ取得中...";
+                        StatusText.Refresh();
                     }
                     if (jsEnd > jsStart)
                     {
@@ -334,6 +336,8 @@ namespace MasaoPlus.Dialogs
                         // フォーマットバージョンの確認
                         if (jsonData.RootElement.TryGetProperty("masao-json-format-version", out var formatVersion))
                         {
+                            StatusText.Text = "JSONデータ取得中...";
+                            StatusText.Refresh();
                             // パラメータの読み込み
                             if (jsonData.RootElement.TryGetProperty("params", out var parameters))
                             {
@@ -421,39 +425,14 @@ namespace MasaoPlus.Dialogs
                 StatusText.Text = "マップソース生成中...";
                 StatusText.Refresh();
                 GetMapSource(ref project.MapData, project.Runtime.Definitions.MapName, project.Runtime.Definitions.MapSize, ref dictionary, chipDataClass.WorldChip);
-                StatusText.Text = "ステージソース生成中[1/4]...";
-                StatusText.Refresh();
-                GetMapSource(ref project.StageData, project.Runtime.Definitions.ParamName, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
-                StatusText.Text = "ステージソース生成中[2/4]...";
-                StatusText.Refresh();
-                GetMapSource(ref project.StageData2, project.Runtime.Definitions.ParamName2, project.Runtime.Definitions.StageSize2, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
-                StatusText.Text = "ステージソース生成中[3/4]...";
-                StatusText.Refresh();
-                GetMapSource(ref project.StageData3, project.Runtime.Definitions.ParamName3, project.Runtime.Definitions.StageSize3, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
-                StatusText.Text = "ステージソース生成中[4/4]...";
-                StatusText.Refresh();
-                GetMapSource(ref project.StageData4, project.Runtime.Definitions.ParamName4, project.Runtime.Definitions.StageSize4, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
-                if (project.Runtime.Definitions.LayerSize.bytesize != 0)
-                {
-                    StatusText.Text = "レイヤーソース生成中[1/4]...";
-                    StatusText.Refresh();
-                    GetMapSource(ref project.LayerData, project.Runtime.Definitions.LayerName, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
-                    StatusText.Text = "レイヤーソース生成中[2/4]...";
-                    StatusText.Refresh();
-                    GetMapSource(ref project.LayerData2, project.Runtime.Definitions.LayerName2, project.Runtime.Definitions.LayerSize2, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
-                    StatusText.Text = "レイヤーソース生成中[3/4]...";
-                    StatusText.Refresh();
-                    GetMapSource(ref project.LayerData3, project.Runtime.Definitions.LayerName3, project.Runtime.Definitions.LayerSize3, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
-                    StatusText.Text = "レイヤーソース生成中[4/4]...";
-                    StatusText.Refresh();
-                    GetMapSource(ref project.LayerData4, project.Runtime.Definitions.LayerName4, project.Runtime.Definitions.LayerSize4, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
-                }
 
                 if(dictionary.ContainsKey("advanced-map") || dictionary.ContainsKey("advance-map"))
                 {
                     string mapData = dictionary.TryGetValue("advanced-map", out string value) ? value : dictionary["advance-map"];
                     
                     try {
+                        StatusText.Text = "カスタムパーツ解析中...";
+                        StatusText.Refresh();
                         // JavaScriptの文字列をJSONに変換
                         mapData = mapData.Trim();
                         if (mapData.StartsWith('\'') || mapData.StartsWith('\"'))
@@ -567,6 +546,8 @@ namespace MasaoPlus.Dialogs
                             project.CustomPartsDefinition = [.. customPartsList];
                         }
 
+                        StatusText.Text = "ステージデータ変換中...";
+                        StatusText.Refresh();
                         // ステージデータの読み込み
                         project.Use3rdMapData = true;
 
@@ -585,34 +566,16 @@ namespace MasaoPlus.Dialogs
                             }
                         }
 
-                        // advanced-map用に既存のステージデータを初期化
-                        InitializeEmptyStageData(project.StageData, project.Runtime.Definitions.StageSize.x, 
-                            chipDataClass.Mapchip);
-                        InitializeEmptyStageData(project.StageData2, project.Runtime.Definitions.StageSize2.x,
-                            chipDataClass.Mapchip);
-                        InitializeEmptyStageData(project.StageData3, project.Runtime.Definitions.StageSize3.x,
-                            chipDataClass.Mapchip);
-                        InitializeEmptyStageData(project.StageData4, project.Runtime.Definitions.StageSize4.x,
-                            chipDataClass.Mapchip);
-                            
-                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
-                        {
-                            InitializeEmptyStageData(project.LayerData, project.Runtime.Definitions.LayerSize.x,
-                                chipDataClass.Layerchip);
-                            InitializeEmptyStageData(project.LayerData2, project.Runtime.Definitions.LayerSize2.x,
-                                chipDataClass.Layerchip);
-                            InitializeEmptyStageData(project.LayerData3, project.Runtime.Definitions.LayerSize3.x,
-                                chipDataClass.Layerchip);
-                            InitializeEmptyStageData(project.LayerData4, project.Runtime.Definitions.LayerSize4.x,
-                                chipDataClass.Layerchip);
-                        }
-
                         // ステージデータの読み込みとサイズの設定を一元化
-                        var stages = jsonData.RootElement.GetProperty("stages");
-                        var stagesList = stages.EnumerateArray().ToList();
-                        for (int stageIndex = 0; stageIndex < stagesList.Count && stageIndex < 4; stageIndex++)
+                        var stages = jsonData.RootElement.TryGetProperty("stages", out var stagesElement) ?
+                            [.. stagesElement.EnumerateArray()] : 
+                            new List<JsonElement>();
+
+                        StatusText.Text = "ステージサイズ設定中...";
+                        StatusText.Refresh();
+                        for (int stageIndex = 0; stageIndex < 4; stageIndex++)
                         {
-                            var stage = stagesList[stageIndex];
+                            var stage = stages[stageIndex];
                             if (stage.TryGetProperty("size", out var size))
                             {
                                 int sizeX = size.GetProperty("x").GetInt32();
@@ -667,6 +630,44 @@ namespace MasaoPlus.Dialogs
                                         break;
                                 }
 
+                                // 指定サイズでデフォルト値を設定
+                                string[] targetStageData = null;
+                                string[] targetLayerData = null;
+                                ChipsData[] targetChips = chipDataClass.Mapchip;
+                                ChipsData[] targetLayerChips = chipDataClass.Layerchip;
+                                int width = sizeX;
+
+                                switch (stageIndex)
+                                {
+                                    case 0:
+                                        targetStageData = project.StageData;
+                                        targetLayerData = project.LayerData;
+                                        break;
+                                    case 1:
+                                        targetStageData = project.StageData2;
+                                        targetLayerData = project.LayerData2;
+                                        break;
+                                    case 2:
+                                        targetStageData = project.StageData3;
+                                        targetLayerData = project.LayerData3;
+                                        break;
+                                    case 3:
+                                        targetStageData = project.StageData4;
+                                        targetLayerData = project.LayerData4;
+                                        break;
+                                }
+
+                                // メインステージのデフォルト値設定
+                                InitializeEmptyStageData(targetStageData, width, targetChips);
+
+                                // レイヤーのデフォルト値設定
+                                if (project.Runtime.Definitions.LayerSize.bytesize != 0 && targetLayerData != null)
+                                {
+                                    InitializeEmptyStageData(targetLayerData, width, targetLayerChips);
+                                }
+
+                                StatusText.Text = $"ステージソース生成中[{stageIndex + 1}/4]...";
+                                StatusText.Refresh();
                                 // レイヤーデータの読み込み
                                 if (stage.TryGetProperty("layers", out var layers))
                                 {
@@ -675,26 +676,38 @@ namespace MasaoPlus.Dialogs
                                         var type = layer.GetProperty("type").GetString();
                                         var map = layer.GetProperty("map");
 
-                                        // ステージ番号とレイヤータイプに応じてターゲットデータを選択
-                                        string[] targetData = (type, stageIndex) switch
-                                        {
-                                            ("main", 0) => project.StageData,
-                                            ("main", 1) => project.StageData2,
-                                            ("main", 2) => project.StageData3,
-                                            ("main", 3) => project.StageData4,
-                                            ("mapchip", 0) => project.LayerData,
-                                            ("mapchip", 1) => project.LayerData2,
-                                            ("mapchip", 2) => project.LayerData3,
-                                            ("mapchip", 3) => project.LayerData4,
-                                            _ => null
-                                        };
+                                        // レイヤーの種類に応じてターゲットデータを選択
+                                        string[] targetData = type == "main" ? targetStageData : targetLayerData;
+                                        var chips = type == "main" ? targetChips : targetLayerChips;
+                                        var defaultCode = ChipDataClass.CharToCode(chips[0].character);
 
                                         if (targetData != null)
                                         {
                                             for (int y = 0; y < map.GetArrayLength() && y < targetData.Length; y++)
                                             {
                                                 var row = map[y];
-                                                targetData[y] = string.Join(",", row.EnumerateArray().Select(x => x.GetInt32()));
+                                                var rowValues = new List<int>();
+
+                                                // マップデータの各セルを処理
+                                                foreach (var cell in row.EnumerateArray())
+                                                {
+                                                    if (cell.TryGetInt32(out int cellvalue))
+                                                    {
+                                                        rowValues.Add(cellvalue);
+                                                    }
+                                                    else
+                                                    {
+                                                        rowValues.Add(int.Parse(defaultCode));
+                                                    }
+                                                }
+
+                                                // 幅が足りない場合はデフォルト値で補完
+                                                while (rowValues.Count < width)
+                                                {
+                                                    rowValues.Add(int.Parse(defaultCode));
+                                                }
+
+                                                targetData[y] = string.Join(",", rowValues);
                                             }
                                         }
                                     }
@@ -706,6 +719,35 @@ namespace MasaoPlus.Dialogs
                     {
                         MessageBox.Show($"マップデータの解析に失敗しました。{Environment.NewLine}{ex.Message}", 
                             "マップデータ解析エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else{
+                    StatusText.Text = "ステージソース生成中[1/4]...";
+                    StatusText.Refresh();
+                    GetMapSource(ref project.StageData, project.Runtime.Definitions.ParamName, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
+                    StatusText.Text = "ステージソース生成中[2/4]...";
+                    StatusText.Refresh();
+                    GetMapSource(ref project.StageData2, project.Runtime.Definitions.ParamName2, project.Runtime.Definitions.StageSize2, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
+                    StatusText.Text = "ステージソース生成中[3/4]...";
+                    StatusText.Refresh();
+                    GetMapSource(ref project.StageData3, project.Runtime.Definitions.ParamName3, project.Runtime.Definitions.StageSize3, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
+                    StatusText.Text = "ステージソース生成中[4/4]...";
+                    StatusText.Refresh();
+                    GetMapSource(ref project.StageData4, project.Runtime.Definitions.ParamName4, project.Runtime.Definitions.StageSize4, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
+                    if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                    {
+                        StatusText.Text = "レイヤーソース生成中[1/4]...";
+                        StatusText.Refresh();
+                        GetMapSource(ref project.LayerData, project.Runtime.Definitions.LayerName, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
+                        StatusText.Text = "レイヤーソース生成中[2/4]...";
+                        StatusText.Refresh();
+                        GetMapSource(ref project.LayerData2, project.Runtime.Definitions.LayerName2, project.Runtime.Definitions.LayerSize2, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
+                        StatusText.Text = "レイヤーソース生成中[3/4]...";
+                        StatusText.Refresh();
+                        GetMapSource(ref project.LayerData3, project.Runtime.Definitions.LayerName3, project.Runtime.Definitions.LayerSize3, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
+                        StatusText.Text = "レイヤーソース生成中[4/4]...";
+                        StatusText.Refresh();
+                        GetMapSource(ref project.LayerData4, project.Runtime.Definitions.LayerName4, project.Runtime.Definitions.LayerSize4, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
                     }
                 }
 
