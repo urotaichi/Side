@@ -141,7 +141,7 @@ namespace MasaoPlus
                         goto IL_SKIP_PARAM;
                     }
                 }
-                else if (configParam.RequireStages == 5 && !Global.cpd.project.Config.UseWorldmap)
+                else if (configParam.RequireStages != 5 || Global.cpd.project.Config.UseWorldmap)
                 {
                     goto IL_SKIP_PARAM;
                 }
@@ -772,7 +772,7 @@ namespace MasaoPlus
                         {
                             string[] array2 = configParam.Value.Split(
                             [
-                        Environment.NewLine
+                            Environment.NewLine
                             ], StringSplitOptions.None);
                             int num2 = 1;
 
