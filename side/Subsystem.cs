@@ -84,41 +84,41 @@ namespace MasaoPlus
 
             if (!Global.cpd.project.Use3rdMapData)
             {
-                stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize, true));
+                stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize, true, isJSON));
                 if (Global.cpd.project.Config.StageNum >= 2)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize2));
+                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize2, false, isJSON));
                 }
                 if (Global.cpd.project.Config.StageNum >= 3)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize3));
+                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize3, false, isJSON));
                 }
                 if (Global.cpd.project.Config.StageNum >= 4)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize4));
+                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize4, false, isJSON));
                 }
 
                 if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize));
+                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize, false, isJSON));
                     if (Global.cpd.project.Config.StageNum >= 2)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize2));
+                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize2, false, isJSON));
                     }
                     if (Global.cpd.project.Config.StageNum >= 3)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize3));
+                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize3, false, isJSON));
                     }
                     if (Global.cpd.project.Config.StageNum >= 4)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize4));
+                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize4, false, isJSON));
                     }
                 }
             }
 
             if (Global.cpd.project.Config.UseWorldmap)
             {
-                stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.MapParam, 0, Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize));
+                stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.MapParam, 0, Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize, false, isJSON));
             }
 
             //パラメータを出力
@@ -754,10 +754,10 @@ namespace MasaoPlus
                 {
                     case "bool":
                     case "bool21":
-                        stringBuilder.AppendLine(string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "1" : "2"));
+                        stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "1" : "2"));
                         goto IL_SKIP;
                     case "bool10":
-                        stringBuilder.AppendLine(string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "1" : "0"));
+                        stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "1" : "0"));
                         goto IL_SKIP;
                     case "int":
                     case "list":
@@ -766,7 +766,7 @@ namespace MasaoPlus
                     case "file":
                     case "file_img":
                     case "file_audio":
-                        stringBuilder.AppendLine(string.Format(parameter, configParam.Name, configParam.Value));
+                        stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name, configParam.Value));
                         goto IL_SKIP;
                     case "text":
                         {
@@ -786,7 +786,7 @@ namespace MasaoPlus
 
                             foreach (string arg in array2)
                             {
-                                stringBuilder.AppendLine(string.Format(parameter, configParam.Name + "-" + num2.ToString(), arg));
+                                stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name + "-" + num2.ToString(), arg));
                                 num2++;
                             }
                             goto IL_SKIP;
@@ -801,7 +801,7 @@ namespace MasaoPlus
                                 || (param == "grenade_@1" || param == "grenade_@2" || param == "firebar_@1" || param == "firebar_@2" || param == "message_border_@" || param == "message_text_@" || param == "gauge_border_@" || param == "gauge_back_@1" || param == "gauge_back_@2") && colors.r == 255
                                 || param == "backcolor_@_f" && colors.r == 192
                             ))
-                                stringBuilder.AppendLine(string.Format(parameter, configParam.Name.Replace("@", "red"), colors.r.ToString()));
+                                stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name.Replace("@", "red"), colors.r.ToString()));
 
                             if (Global.config.localSystem.OutPutInititalSourceCode || Global.cpd.runtime.Definitions.Package.Contains("28")
                                 || !((param == "scorecolor_@" || param == "kaishi_@" || param == "firebar_@1" || param == "backcolor_@_s" || param == "message_back_@" || param == "gauge_back_@2") && colors.g == 0
@@ -810,14 +810,14 @@ namespace MasaoPlus
                                 || param == "firebar_@2" && colors.g == 192
                                 || param == "backcolor_@_f" && colors.g == 48
                             ))
-                                stringBuilder.AppendLine(string.Format(parameter, configParam.Name.Replace("@", "green"), colors.g.ToString()));
+                                stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name.Replace("@", "green"), colors.g.ToString()));
 
                             if (Global.config.localSystem.OutPutInititalSourceCode || Global.cpd.runtime.Definitions.Package.Contains("28")
                                 || !((param == "grenade_@2" || param == "firebar_@1" || param == "firebar_@2" || param == "kaishi_@" || param == "backcolor_@_s" || param == "message_back_@" || param == "gauge_back_@1" || param == "gauge_back_@2") && colors.b == 0
                                 || (param == "backcolor_@" || param == "scorecolor_@" || param == "grenade_@1" || param == "mizunohadou_@" || param == "backcolor_@_t" || param == "message_border_@" || param == "message_name_@" || param == "message_text_@" || param == "gauge_border_@") && colors.b == 255
                                 || param == "backcolor_@_f" && colors.b == 48
                             ))
-                                stringBuilder.AppendLine(string.Format(parameter, configParam.Name.Replace("@", "blue"), colors.b.ToString()));
+                                stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name.Replace("@", "blue"), colors.b.ToString()));
 
                             goto IL_SKIP;
                         }
@@ -1123,7 +1123,7 @@ namespace MasaoPlus
             return stringBuilder.ToString();
         }
 
-        public static string MakeStageParameter(string Parameter, int StageSplit, string[] StageText, Runtime.DefinedData.StageSizeData StageSizeData, bool notdefaultparam = false)
+        public static string MakeStageParameter(string Parameter, int StageSplit, string[] StageText, Runtime.DefinedData.StageSizeData StageSizeData, bool notdefaultparam = false, bool isJSON = false)
         {
             StringBuilder stringBuilder = new();
 
@@ -1152,7 +1152,7 @@ namespace MasaoPlus
                     }
                     if (StageSplit == 0) // 地図画面
                     {
-                        array[j].AppendLine(string.Format(Parameter,
+                        array[j].AppendLine((isJSON ? "\t" : "") + string.Format(Parameter,
                         [
                         num,
                         text.Substring(num2, Global.cpd.runtime.Definitions.MapSize.x / (StageSplit + 1)) // 定義されたマップ幅まで
@@ -1160,7 +1160,7 @@ namespace MasaoPlus
                     }
                     else
                     {
-                        array[j].AppendLine(string.Format(Parameter,
+                        array[j].AppendLine((isJSON ? "\t" : "") + string.Format(Parameter,
                         [
                         j,
                         num,
@@ -1204,7 +1204,7 @@ namespace MasaoPlus
 
             if (notdefaultparam && reg_space().Match(stringBuilder.ToString()).Success)
             { // 出力結果が空白のみの場合
-                stringBuilder.AppendLine(string.Format(Parameter, [0, 0, ".."])); //
+                stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(Parameter, [0, 0, ".."])); //
             }
 
             return stringBuilder.ToString();
