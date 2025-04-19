@@ -2082,6 +2082,31 @@ namespace MasaoPlus
             }
         }
 
+        private void MWriteJSON_Click(object sender, EventArgs e)
+        {
+            using SaveFileDialog saveFileDialog = new();
+            saveFileDialog.DefaultExt = ".json";
+            saveFileDialog.AddExtension = true;
+            saveFileDialog.Filter = "JSONファイル(*.json)|*.json|全てのファイル(*.*)|*.*";
+            if (saveFileDialog.ShowDialog() != DialogResult.Cancel)
+            {
+                if (Path.GetDirectoryName(saveFileDialog.FileName) != Global.cpd.where)
+                {
+                    using OutputControl outputControl = new(Path.GetDirectoryName(saveFileDialog.FileName));
+                    if (outputControl.ShowDialog() == DialogResult.Cancel)
+                    {
+                        return;
+                    }
+                }
+                using (StreamWriter streamWriter = new(saveFileDialog.FileName, false, Global.config.localSystem.FileEncoding))
+                {
+                    streamWriter.Write(Subsystem.MakeHTMLCode(0, true));
+                    streamWriter.Close();
+                }
+                MessageBox.Show("出力しました。", "確認", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+        }
+
         private void MExit_Click(object sender, EventArgs e)
         {
             Close();

@@ -94,6 +94,7 @@
 			this.toolStripMenuItem4 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.MOutput = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.MWriteHTML = new global::System.Windows.Forms.ToolStripMenuItem();
+			this.MWriteJSON = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.MWriteStagePicture = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem5 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.MExit = new global::System.Windows.Forms.ToolStripMenuItem();
@@ -788,6 +789,7 @@
 			this.MOutput.DropDownItems.AddRange(new global::System.Windows.Forms.ToolStripItem[]
 			{
 				this.MWriteHTML,
+				this.MWriteJSON,
 				this.MWriteStagePicture
 			});
 			this.MOutput.Name = "MOutput";
@@ -798,6 +800,11 @@
 			this.MWriteHTML.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(213, 22));
 			this.MWriteHTML.Text = "整形済みHTMLファイル(&H)...";
 			this.MWriteHTML.Click += new global::System.EventHandler(this.MWriteHTML_Click);
+			this.MWriteJSON.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.page_white_code).View();
+			this.MWriteJSON.Name = "MWriteJSON";
+			this.MWriteJSON.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(213, 22));
+			this.MWriteJSON.Text = "JSONファイル(&J)...";
+			this.MWriteJSON.Click += new global::System.EventHandler(this.MWriteJSON_Click);
 			this.MWriteStagePicture.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.stv_dot).View();
 			this.MWriteStagePicture.Name = "MWriteStagePicture";
 			this.MWriteStagePicture.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(213, 22));
@@ -1766,5 +1773,7 @@
 		private global::System.Windows.Forms.ToolStripMenuItem MReloadImage;
 
 		private global::System.Windows.Forms.ToolStripMenuItem ShowOverView;
+
+		private global::System.Windows.Forms.ToolStripMenuItem MWriteJSON;
 	}
 }
