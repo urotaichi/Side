@@ -175,6 +175,7 @@
 			this.toolStripSeparator1 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.MTImgOut = new global::System.Windows.Forms.ToolStripButton();
 			this.MTOutput = new global::System.Windows.Forms.ToolStripButton();
+			this.MTOutputJSON = new global::System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator4 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.MTEditConfig = new global::System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator5 = new global::System.Windows.Forms.ToolStripSeparator();
@@ -1241,6 +1242,7 @@
 				this.toolStripSeparator1,
 				this.MTImgOut,
 				this.MTOutput,
+				this.MTOutputJSON,
 				this.toolStripSeparator4,
 				this.MTEditConfig,
 				this.toolStripSeparator5,
@@ -1288,6 +1290,13 @@
 			this.MTOutput.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(23, 22));
 			this.MTOutput.Text = "HTML書き出し";
 			this.MTOutput.Click += new global::System.EventHandler(this.MWriteHTML_Click);
+			this.MTOutputJSON.DisplayStyle = global::System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.MTOutputJSON.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.page_white_code).View();
+			this.MTOutputJSON.ImageTransparentColor = global::System.Drawing.Color.Magenta;
+			this.MTOutputJSON.Name = "MTOutputJSON";
+			this.MTOutputJSON.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(23, 22));
+			this.MTOutputJSON.Text = "JSON書き出し";
+			this.MTOutputJSON.Click += new global::System.EventHandler(this.MWriteJSON_Click);
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
 			this.toolStripSeparator4.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(6, 25));
 			this.MTEditConfig.DisplayStyle = global::System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1775,5 +1784,7 @@
 		private global::System.Windows.Forms.ToolStripMenuItem ShowOverView;
 
 		private global::System.Windows.Forms.ToolStripMenuItem MWriteJSON;
+
+		private global::System.Windows.Forms.ToolStripButton MTOutputJSON;
 	}
 }
