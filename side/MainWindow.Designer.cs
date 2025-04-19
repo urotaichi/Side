@@ -796,7 +796,7 @@
 			this.MWriteHTML.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.page_white_code).View();
 			this.MWriteHTML.Name = "MWriteHTML";
 			this.MWriteHTML.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(213, 22));
-			this.MWriteHTML.Text = "整形済みファイル(&H)...";
+			this.MWriteHTML.Text = "整形済みHTMLファイル(&H)...";
 			this.MWriteHTML.Click += new global::System.EventHandler(this.MWriteHTML_Click);
 			this.MWriteStagePicture.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.stv_dot).View();
 			this.MWriteStagePicture.Name = "MWriteStagePicture";
