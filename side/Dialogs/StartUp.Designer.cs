@@ -90,7 +90,7 @@
 			this.CmdInheritNew.Text = "過去のプロジェクトを継承して新規作成";
 			global::MasaoPlus.Controls.CommandLinkButton cmdInheritNew = this.CmdInheritNew;
 			cmdInheritNew.Click = (global::System.EventHandler)global::System.Delegate.Combine(cmdInheritNew.Click, new global::System.EventHandler(this.InheritNew_Click));
-			this.CmdOpenFile.Description = "既存のプロジェクトを開いたり、\r\n正男HTMLから新しいプロジェクトを作成したりします。";
+			this.CmdOpenFile.Description = "既存のプロジェクトを開いたり、\r\n正男HTML/JS/JSONから新しいプロジェクトを作成したりします。";
 			this.CmdOpenFile.DialogResult = global::System.Windows.Forms.DialogResult.None;
 			this.CmdOpenFile.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(12), base.LogicalToDeviceUnits(67));
 			this.CmdOpenFile.Name = "CmdOpenFile";
