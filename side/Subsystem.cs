@@ -84,45 +84,45 @@ namespace MasaoPlus
 
             if (!Global.cpd.project.Use3rdMapData)
             {
-                stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize, true, isJSON));
+                stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"map{0}-{1}\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize, true, isJSON));
                 if (Global.cpd.project.Config.StageNum >= 2)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize2, false, isJSON));
+                    stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"map{0}-{1}-s\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize2, false, isJSON));
                 }
                 if (Global.cpd.project.Config.StageNum >= 3)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize3, false, isJSON));
+                    stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"map{0}-{1}-t\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize3, false, isJSON));
                 }
                 if (Global.cpd.project.Config.StageNum >= 4)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize4, false, isJSON));
+                    stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"map{0}-{1}-f\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize4, false, isJSON));
                 }
 
                 if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize, false, isJSON));
+                    stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize, false, isJSON));
                     if (Global.cpd.project.Config.StageNum >= 2)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize2, false, isJSON));
+                        stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}-s\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize2, false, isJSON));
                     }
                     if (Global.cpd.project.Config.StageNum >= 3)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize3, false, isJSON));
+                        stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}-t\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize3, false, isJSON));
                     }
                     if (Global.cpd.project.Config.StageNum >= 4)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize4, false, isJSON));
+                        stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}-f\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize4, false, isJSON));
                     }
                 }
             }
 
             if (Global.cpd.project.Config.UseWorldmap)
             {
-                stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.MapParam, 0, Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize, false, isJSON));
+                stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"chizu-{0}\": \"{1}\"," : Global.cpd.runtime.DefaultConfigurations.MapParam, 0, Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize, false, isJSON));
             }
 
             //パラメータを出力
-            string parameter = Global.cpd.runtime.DefaultConfigurations.Parameter;
+            string parameter = isJSON ? "\t\"{0}\": \"{1}\"," : Global.cpd.runtime.DefaultConfigurations.Parameter;
             ConfigParam[] configurations = Global.cpd.project.Config.Configurations;
             int k = 0;//現在読み込まれている行
             int mcs_screen_size = 2;
