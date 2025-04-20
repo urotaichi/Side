@@ -829,7 +829,7 @@ namespace MasaoPlus
                 stringBuilder.AppendLine("\n\t},");
 
                 // バージョン情報を出力
-                stringBuilder.AppendLine("\t\"version\": \"fx16\",");
+                stringBuilder.AppendLine($"\t\"version\": \"{(Global.cpd.runtime.Definitions.Package.Contains("28") ? "2.8" : "kani2")}\",");
             }
             else{
                 // 中間を出力
