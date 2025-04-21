@@ -1073,12 +1073,30 @@ namespace MasaoPlus
 
         public static string DecodeBase64(string s)
         {
-            return s;
+            if (string.IsNullOrEmpty(s)) return string.Empty;
+            try 
+            {
+                byte[] bytes = Convert.FromBase64String(s);
+                return Encoding.UTF8.GetString(bytes);
+            }
+            catch
+            {
+                return s; // デコードに失敗した場合は元の文字列を返す
+            }
         }
 
         public static string EncodeBase64(string str)
         {
-            return str;
+            if (string.IsNullOrEmpty(str)) return string.Empty;
+            try
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(str);
+                return Convert.ToBase64String(bytes);
+            }
+            catch
+            {
+                return str; // エンコードに失敗した場合は元の文字列を返す
+            }
         }
 
         public static string MakeStage3rdMapData(Runtime.DefinedData.StageSizeData StageSizeData, string[] MainStageText, string[] LayerStageText = null)
