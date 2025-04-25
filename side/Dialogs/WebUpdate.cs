@@ -80,6 +80,7 @@ namespace MasaoPlus.Dialogs
             {
                 MessageBox.Show("最新版を利用しています。更新の必要はありません。", "更新結果", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 DialogResult = DialogResult.Abort;
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
                 Close();
                 return;
             }
@@ -87,12 +88,14 @@ namespace MasaoPlus.Dialogs
             {
                 MessageBox.Show($"このバージョンからの更新は、自動アップデートでは対応していません。{Environment.NewLine}公式サイトから手動で更新してください。", "自動更新非対応", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 DialogResult = DialogResult.Abort;
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
                 Close();
                 return;
             }
             if (MessageBox.Show($"バージョン{ud.Name}がリリースされています。{Environment.NewLine}ダウンロードしてインストールしてもよろしいですか？", $"{Global.definition.AppName}の更新", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 DialogResult = DialogResult.Abort;
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
                 Close();
                 return;
             }
