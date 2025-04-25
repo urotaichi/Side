@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Taskbar;
+using System.Net.Http.Handlers;
 
 namespace MasaoPlus.Dialogs
 {
@@ -16,6 +17,22 @@ namespace MasaoPlus.Dialogs
             InitializeComponent();
         }
 
+        private void InitializeHttpClient()
+        {
+            var handler = new HttpClientHandler();
+            var progressHandler = new ProgressMessageHandler(handler);
+            progressHandler.HttpReceiveProgress += (_, args) =>
+            {
+                if (args.TotalBytes.HasValue)
+                {
+                    dlClient_DownloadProgressChanged(args.BytesTransferred, args.TotalBytes.Value);
+                }
+            };
+
+            dlClient = new HttpClient(progressHandler);
+            dlClient.DefaultRequestHeaders.Add("User-Agent", $"{Global.definition.AppName}/{Global.definition.Version} ({Global.definition.AppNameFull}; Windows NT 10.0; Win64; x64)");
+        }
+
         private async void WebUpdate_Shown(object sender, EventArgs e)
         {
             SUpdate("更新を確認しています...");
@@ -23,8 +40,7 @@ namespace MasaoPlus.Dialogs
             {
                 Global.config.localSystem.UpdateServer = Global.definition.BaseUpdateServer;
             }
-            dlClient = new HttpClient();
-            dlClient.DefaultRequestHeaders.Add("User-Agent", $"{Global.definition.AppName}/{Global.definition.Version} ({Global.definition.AppNameFull}; Windows NT 10.0; Win64; x64)");
+            InitializeHttpClient();
             tempfile = Path.GetTempFileName();
             Uri address = new(Global.config.localSystem.UpdateServer);
             try
@@ -35,10 +51,6 @@ namespace MasaoPlus.Dialogs
                 {
                     await stream.CopyToAsync(fs);
                     await fs.FlushAsync();
-                    if (response.Content.Headers.ContentLength.HasValue)
-                    {
-                        dlClient_DownloadProgressChanged(fs.Length, response.Content.Headers.ContentLength.Value);
-                    }
                 }
                 await dlClient_DownloadFileCompleted();
             }
@@ -86,8 +98,7 @@ namespace MasaoPlus.Dialogs
             }
             progressBar1.Value = 0;
             SUpdate("パッケージをダウンロードしています...[1/2]");
-            dlClient = new HttpClient();
-            dlClient.DefaultRequestHeaders.Add("User-Agent", $"{Global.definition.AppName}/{Global.definition.Version} ({Global.definition.AppNameFull}; Windows NT 10.0; Win64; x64)");
+            InitializeHttpClient();
             while (TemporaryFolder == null || Directory.Exists(TemporaryFolder))
             {
                 TemporaryFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -103,10 +114,6 @@ namespace MasaoPlus.Dialogs
                 {
                     await stream.CopyToAsync(fs);
                     await fs.FlushAsync();
-                    if (response.Content.Headers.ContentLength.HasValue)
-                    {
-                        dlClient_DownloadProgressChanged(fs.Length, response.Content.Headers.ContentLength.Value);
-                    }
                 }
                 await dlClient_DownloadFileCompleted2();
             }
@@ -125,8 +132,7 @@ namespace MasaoPlus.Dialogs
             dlClient.Dispose();
             progressBar1.Value = 0;
             SUpdate("パッケージをダウンロードしています...[2/2]");
-            dlClient = new HttpClient();
-            dlClient.DefaultRequestHeaders.Add("User-Agent", $"{Global.definition.AppName}/{Global.definition.Version} ({Global.definition.AppNameFull}; Windows NT 10.0; Win64; x64)");
+            InitializeHttpClient();
             runfile = Path.Combine(TemporaryFolder, Path.GetFileName(ud.Installer.Replace('/', '\\')));
             Uri address = new(ud.Installer);
             try
@@ -137,10 +143,6 @@ namespace MasaoPlus.Dialogs
                 {
                     await stream.CopyToAsync(fs);
                     await fs.FlushAsync();
-                    if (response.Content.Headers.ContentLength.HasValue)
-                    {
-                        dlClient_DownloadProgressChanged(fs.Length, response.Content.Headers.ContentLength.Value);
-                    }
                 }
                 await dlClient_DownloadFileCompleted3();
             }

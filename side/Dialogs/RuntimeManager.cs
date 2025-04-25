@@ -7,6 +7,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Http.Handlers;
 
 namespace MasaoPlus.Dialogs
 {
@@ -15,6 +16,22 @@ namespace MasaoPlus.Dialogs
         public RuntimeManager()
         {
             InitializeComponent();
+        }
+
+        private void InitializeHttpClient()
+        {
+            var handler = new HttpClientHandler();
+            var progressHandler = new ProgressMessageHandler(handler);
+            progressHandler.HttpReceiveProgress += (_, args) =>
+            {
+                if (args.TotalBytes.HasValue)
+                {
+                    dlClient_DownloadProgressChanged(args.BytesTransferred, args.TotalBytes.Value);
+                }
+            };
+
+            dlClient = new HttpClient(progressHandler);
+            dlClient.DefaultRequestHeaders.Add("User-Agent", $"{Global.definition.AppName}/{Global.definition.Version} ({Global.definition.AppNameFull}; Windows NT 10.0; Win64; x64)");
         }
 
         private void InstalledRuntime_Shown(object sender, EventArgs e)
@@ -147,8 +164,7 @@ namespace MasaoPlus.Dialogs
             DownProgress.Visible = true;
             Enabled = false;
             tempfile = Path.GetTempFileName();
-            dlClient = new HttpClient();
-            dlClient.DefaultRequestHeaders.Add("User-Agent", $"{Global.definition.AppName}/{Global.definition.Version} ({Global.definition.AppNameFull}; Windows NT 10.0; Win64; x64)");
+            InitializeHttpClient();
             Uri address = new(update);
             try
             {
@@ -158,10 +174,6 @@ namespace MasaoPlus.Dialogs
                 {
                     await stream.CopyToAsync(fs);
                     await fs.FlushAsync();
-                    if (response.Content.Headers.ContentLength.HasValue)
-                    {
-                        dlClient_DownloadProgressChanged(fs.Length, response.Content.Headers.ContentLength.Value);
-                    }
                 }
                 await dlClient_DownloadFileCompleted();
             }
@@ -195,8 +207,7 @@ namespace MasaoPlus.Dialogs
             {
                 dlClient.Dispose();
                 tempfile = Path.GetTempFileName();
-                dlClient = new HttpClient();
-                dlClient.DefaultRequestHeaders.Add("User-Agent", $"{Global.definition.AppName}/{Global.definition.Version} ({Global.definition.AppNameFull}; Windows NT 10.0; Win64; x64)");
+                InitializeHttpClient();
                 Uri address = new(updateData.Update);
                 try
                 {
@@ -207,10 +218,6 @@ namespace MasaoPlus.Dialogs
                     {
                         await stream.CopyToAsync(fs);
                         await fs.FlushAsync();
-                        if (response.Content.Headers.ContentLength.HasValue)
-                        {
-                            dlClient_DownloadProgressChanged(fs.Length, response.Content.Headers.ContentLength.Value);
-                        }
                     }
                     dlClient_DownloadFileCompleted_Package();
                     return;
