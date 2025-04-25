@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
-using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MasaoPlus.Dialogs
@@ -123,7 +124,7 @@ namespace MasaoPlus.Dialogs
             Uninstall.Enabled = true;
         }
 
-        private void NetworkUpdate_Click(object sender, EventArgs e)
+        private async void NetworkUpdate_Click(object sender, EventArgs e)
         {
             if (RuntimeViewer.SelectedIndices.Count == 0)
             {
@@ -146,13 +147,23 @@ namespace MasaoPlus.Dialogs
             DownProgress.Visible = true;
             Enabled = false;
             tempfile = Path.GetTempFileName();
-            dlClient = new WebClient();
-            dlClient.DownloadProgressChanged += dlClient_DownloadProgressChanged;
-            dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted;
+            dlClient = new HttpClient();
+            dlClient.DefaultRequestHeaders.Add("User-Agent", $"{Global.definition.AppName}/{Global.definition.Version} ({Global.definition.AppNameFull}; Windows NT 10.0; Win64; x64)");
             Uri address = new(update);
             try
             {
-                dlClient.DownloadFileAsync(address, tempfile);
+                using var response = await dlClient.GetAsync(address);
+                using var stream = await response.Content.ReadAsStreamAsync();
+                using (var fs = File.Create(tempfile))
+                {
+                    await stream.CopyToAsync(fs);
+                    await fs.FlushAsync();
+                    if (response.Content.Headers.ContentLength.HasValue)
+                    {
+                        dlClient_DownloadProgressChanged(fs.Length, response.Content.Headers.ContentLength.Value);
+                    }
+                }
+                await dlClient_DownloadFileCompleted();
             }
             catch (Exception ex)
             {
@@ -160,17 +171,17 @@ namespace MasaoPlus.Dialogs
                 DialogResult = DialogResult.Retry;
                 Close();
             }
+            finally
+            {
+                if (File.Exists(tempfile))
+                {
+                    try { File.Delete(tempfile); } catch { }
+                }
+            }
         }
 
-        private void dlClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        private async Task dlClient_DownloadFileCompleted()
         {
-            if (e.Error != null)
-            {
-                MessageBox.Show($"更新できませんでした。{Environment.NewLine}{e.Error.Message}", "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                DialogResult = DialogResult.Retry;
-                Close();
-                return;
-            }
             UpdateData updateData = UpdateData.ParseXML(tempfile);
             if (ur.Definitions.DefVersion >= updateData.DefVersion)
             {
@@ -184,15 +195,24 @@ namespace MasaoPlus.Dialogs
             {
                 dlClient.Dispose();
                 tempfile = Path.GetTempFileName();
-                dlClient = new WebClient();
-                dlClient.DownloadProgressChanged += dlClient_DownloadProgressChanged;
-                dlClient.DownloadProgressChanged += dlClient_DownloadTaskbarManagerProgressChanged;
-                dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted_Package;
+                dlClient = new HttpClient();
+                dlClient.DefaultRequestHeaders.Add("User-Agent", $"{Global.definition.AppName}/{Global.definition.Version} ({Global.definition.AppNameFull}; Windows NT 10.0; Win64; x64)");
                 Uri address = new(updateData.Update);
                 try
                 {
                     Text = "ランタイムをダウンロードしています...";
-                    dlClient.DownloadFileAsync(address, tempfile);
+                    using var response = await dlClient.GetAsync(address);
+                    using var stream = await response.Content.ReadAsStreamAsync();
+                    using (var fs = File.Create(tempfile))
+                    {
+                        await stream.CopyToAsync(fs);
+                        await fs.FlushAsync();
+                        if (response.Content.Headers.ContentLength.HasValue)
+                        {
+                            dlClient_DownloadProgressChanged(fs.Length, response.Content.Headers.ContentLength.Value);
+                        }
+                    }
+                    dlClient_DownloadFileCompleted_Package();
                     return;
                 }
                 catch (Exception ex)
@@ -209,7 +229,7 @@ namespace MasaoPlus.Dialogs
             Close();
         }
 
-        private void dlClient_DownloadFileCompleted_Package(object sender, AsyncCompletedEventArgs e)
+        private void dlClient_DownloadFileCompleted_Package()
         {
             Text = "ランタイムをインストールしています...";
             Subsystem.InstallRuntime(tempfile);
@@ -218,15 +238,16 @@ namespace MasaoPlus.Dialogs
             Close();
         }
 
-        private void dlClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        private void dlClient_DownloadProgressChanged(long bytesReceived, long totalBytes)
         {
-            DownProgress.Value = e.ProgressPercentage;
-        }
-
-        private void dlClient_DownloadTaskbarManagerProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        {
-            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
-            TaskbarManager.Instance.SetProgressValue(e.ProgressPercentage, 100);
+            if (totalBytes > 0)
+            {
+                int progress = (int)(100 * bytesReceived / totalBytes);
+                DownProgress.Value = progress;
+                DownProgress.Refresh();
+                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
+                TaskbarManager.Instance.SetProgressValue(progress, 100);
+            }
         }
 
         private void Uninstall_Click(object sender, EventArgs e)
@@ -250,7 +271,7 @@ namespace MasaoPlus.Dialogs
             Close();
         }
 
-        private WebClient dlClient;
+        private HttpClient dlClient;
 
         private string tempfile;
 
