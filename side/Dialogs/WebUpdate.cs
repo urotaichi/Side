@@ -31,7 +31,7 @@ namespace MasaoPlus.Dialogs
             {
                 using var response = await dlClient.GetAsync(address);
                 using var stream = await response.Content.ReadAsStreamAsync();
-                using (var fs = File.Create(runfile))
+                using (var fs = File.Create(tempfile))
                 {
                     await stream.CopyToAsync(fs);
                     await fs.FlushAsync();
