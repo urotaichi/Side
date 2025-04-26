@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using System.IO.Compression;
 using MasaoPlus.Dialogs;
 using System.Text.RegularExpressions;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace MasaoPlus
@@ -1459,13 +1458,12 @@ namespace MasaoPlus
             {
                 Global.config.localSystem.UpdateServer = Global.definition.BaseUpdateServer;
             }
-            dlClient = new HttpClient();
-            dlClient.DefaultRequestHeaders.Add("User-Agent", $"{Global.definition.AppName}/{Global.definition.Version} ({Global.definition.AppNameFull}; Windows NT 10.0; Win64; x64)");
+            
             tempfile = Path.GetTempFileName();
             Uri address = new(Global.config.localSystem.UpdateServer);
             try
             {
-                using var response = await dlClient.GetAsync(address);
+                using var response = await HttpClientManager.DefaultClient.GetAsync(address);
                 response.EnsureSuccessStatusCode(); // HTTPエラーをチェック
 
                 // メモリストリームにダウンロード
@@ -1495,7 +1493,6 @@ namespace MasaoPlus
 
         private static async Task dlClient_DownloadFileCompleted()
         {
-            dlClient.Dispose();
             try
             {
                 var updateData = await Task.Run(() => UpdateData.ParseXML(tempfile));
@@ -1525,8 +1522,6 @@ namespace MasaoPlus
                 }
             }
         }
-
-        private static HttpClient dlClient;
 
         private static string tempfile;
 

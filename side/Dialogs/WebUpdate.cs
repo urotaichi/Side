@@ -2,11 +2,9 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.WindowsAPICodePack.Taskbar;
-using System.Net.Http.Handlers;
 
 namespace MasaoPlus.Dialogs
 {
@@ -19,8 +17,7 @@ namespace MasaoPlus.Dialogs
 
         private void InitializeHttpClient()
         {
-            var handler = new HttpClientHandler();
-            var progressHandler = new ProgressMessageHandler(handler);
+            var progressHandler = HttpClientManager.ProgressHandler;
             progressHandler.HttpReceiveProgress += (_, args) =>
             {
                 if (args.TotalBytes.HasValue)
@@ -28,9 +25,6 @@ namespace MasaoPlus.Dialogs
                     dlClient_DownloadProgressChanged(args.BytesTransferred, args.TotalBytes.Value);
                 }
             };
-
-            dlClient = new HttpClient(progressHandler);
-            dlClient.DefaultRequestHeaders.Add("User-Agent", $"{Global.definition.AppName}/{Global.definition.Version} ({Global.definition.AppNameFull}; Windows NT 10.0; Win64; x64)");
         }
 
         private async void WebUpdate_Shown(object sender, EventArgs e)
@@ -45,7 +39,7 @@ namespace MasaoPlus.Dialogs
             Uri address = new(Global.config.localSystem.UpdateServer);
             try
             {
-                using var response = await dlClient.GetAsync(address);
+                using var response = await HttpClientManager.ProgressClient.GetAsync(address);
                 using var stream = await response.Content.ReadAsStreamAsync();
                 using (var fs = File.Create(tempfile))
                 {
@@ -72,7 +66,6 @@ namespace MasaoPlus.Dialogs
 
         private async Task dlClient_DownloadFileCompleted()
         {
-            dlClient.Dispose();
             SUpdate("更新をチェックしています...");
             ud = UpdateData.ParseXML(tempfile);
             File.Delete(tempfile);
@@ -101,7 +94,6 @@ namespace MasaoPlus.Dialogs
             }
             progressBar1.Value = 0;
             SUpdate("パッケージをダウンロードしています...[1/2]");
-            InitializeHttpClient();
             while (TemporaryFolder == null || Directory.Exists(TemporaryFolder))
             {
                 TemporaryFolder = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -111,7 +103,7 @@ namespace MasaoPlus.Dialogs
             Uri address = new(ud.Update);
             try
             {
-                using var response = await dlClient.GetAsync(address);
+                using var response = await HttpClientManager.ProgressClient.GetAsync(address);
                 using var stream = await response.Content.ReadAsStreamAsync();
                 using (var fs = File.Create(tempfile))
                 {
@@ -132,15 +124,13 @@ namespace MasaoPlus.Dialogs
 
         private async Task dlClient_DownloadFileCompleted2()
         {
-            dlClient.Dispose();
             progressBar1.Value = 0;
             SUpdate("パッケージをダウンロードしています...[2/2]");
-            InitializeHttpClient();
             runfile = Path.Combine(TemporaryFolder, Path.GetFileName(ud.Installer.Replace('/', '\\')));
             Uri address = new(ud.Installer);
             try
             {
-                using var response = await dlClient.GetAsync(address);
+                using var response = await HttpClientManager.ProgressClient.GetAsync(address);
                 using var stream = await response.Content.ReadAsStreamAsync();
                 using (var fs = File.Create(runfile))
                 {
@@ -161,7 +151,6 @@ namespace MasaoPlus.Dialogs
 
         private Task dlClient_DownloadFileCompleted3()
         {
-            dlClient.Dispose();
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
             SUpdate("更新の準備をしています...");
             new UpdateData
@@ -181,8 +170,21 @@ namespace MasaoPlus.Dialogs
             if (totalBytes > 0)
             {
                 int progress = (int)(100 * bytesReceived / totalBytes);
-                progressBar1.Value = progress;
-                progressBar1.Refresh();
+                
+                if (progressBar1.InvokeRequired)
+                {
+                    progressBar1.Invoke(() =>
+                    {
+                        progressBar1.Value = progress;
+                        progressBar1.Refresh();
+                    });
+                }
+                else
+                {
+                    progressBar1.Value = progress;
+                    progressBar1.Refresh();
+                }
+
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
                 TaskbarManager.Instance.SetProgressValue(progress, 100);
             }
@@ -193,8 +195,6 @@ namespace MasaoPlus.Dialogs
             StateLabel.Text = state;
             StateLabel.Refresh();
         }
-
-        private HttpClient dlClient;
 
         private string tempfile;
 

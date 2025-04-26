@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Net.Http.Handlers;
 
 namespace MasaoPlus.Dialogs
 {
@@ -20,8 +18,7 @@ namespace MasaoPlus.Dialogs
 
         private void InitializeHttpClient()
         {
-            var handler = new HttpClientHandler();
-            var progressHandler = new ProgressMessageHandler(handler);
+            var progressHandler = HttpClientManager.ProgressHandler;
             progressHandler.HttpReceiveProgress += (_, args) =>
             {
                 if (args.TotalBytes.HasValue)
@@ -29,9 +26,6 @@ namespace MasaoPlus.Dialogs
                     dlClient_DownloadProgressChanged(args.BytesTransferred, args.TotalBytes.Value);
                 }
             };
-
-            dlClient = new HttpClient(progressHandler);
-            dlClient.DefaultRequestHeaders.Add("User-Agent", $"{Global.definition.AppName}/{Global.definition.Version} ({Global.definition.AppNameFull}; Windows NT 10.0; Win64; x64)");
         }
 
         private void InstalledRuntime_Shown(object sender, EventArgs e)
@@ -168,7 +162,7 @@ namespace MasaoPlus.Dialogs
             Uri address = new(update);
             try
             {
-                using var response = await dlClient.GetAsync(address);
+                using var response = await HttpClientManager.ProgressClient.GetAsync(address);
                 using var stream = await response.Content.ReadAsStreamAsync();
                 using (var fs = File.Create(tempfile))
                 {
@@ -205,14 +199,12 @@ namespace MasaoPlus.Dialogs
             }
             else if (MessageBox.Show($"新しいランタイムがリリースされています。{Environment.NewLine}{ur.Definitions.DefVersion} -> {updateData.DefVersion}{Environment.NewLine}更新しますか？", "更新の確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                dlClient.Dispose();
                 tempfile = Path.GetTempFileName();
-                InitializeHttpClient();
                 Uri address = new(updateData.Update);
                 try
                 {
                     Text = "ランタイムをダウンロードしています...";
-                    using var response = await dlClient.GetAsync(address);
+                    using var response = await HttpClientManager.ProgressClient.GetAsync(address);
                     using var stream = await response.Content.ReadAsStreamAsync();
                     using (var fs = File.Create(tempfile))
                     {
@@ -250,8 +242,21 @@ namespace MasaoPlus.Dialogs
             if (totalBytes > 0)
             {
                 int progress = (int)(100 * bytesReceived / totalBytes);
-                DownProgress.Value = progress;
-                DownProgress.Refresh();
+                
+                if (DownProgress.InvokeRequired)
+                {
+                    DownProgress.Invoke(() =>
+                    {
+                        DownProgress.Value = progress;
+                        DownProgress.Refresh();
+                    });
+                }
+                else
+                {
+                    DownProgress.Value = progress;
+                    DownProgress.Refresh();
+                }
+
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
                 TaskbarManager.Instance.SetProgressValue(progress, 100);
             }
@@ -277,8 +282,6 @@ namespace MasaoPlus.Dialogs
             DialogResult = DialogResult.Retry;
             Close();
         }
-
-        private HttpClient dlClient;
 
         private string tempfile;
 
