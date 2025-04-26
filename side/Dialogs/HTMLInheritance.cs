@@ -264,12 +264,12 @@ namespace MasaoPlus.Dialogs
                     }
                     if (jsEnd > jsStart)
                     {
-                        string jsCode = input.Substring(jsStart, jsEnd - jsStart).Trim();
+                        string jsCode = input[jsStart..jsEnd].Trim();
                         // '(' から始まる部分を見つけて、最後の ');' を除去
                         jsCode = jsCode.TrimStart('(');
                         if (jsCode.EndsWith(");"))
                         {
-                            jsCode = jsCode.Substring(0, jsCode.Length - 2);
+                            jsCode = jsCode[..^2];
                         }
 
                         // 引数を分割
@@ -331,6 +331,11 @@ namespace MasaoPlus.Dialogs
                     // JSONファイル形式の検出と解析
                     try
                     {
+                        // BOMを削除
+                        if (input.StartsWith('\ufeff'))
+                        {
+                            input = input[1..];
+                        }
                         var jsonData = JsonDocument.Parse(input);
                         
                         // フォーマットバージョンの確認
@@ -463,7 +468,7 @@ namespace MasaoPlus.Dialogs
                                 {
                                     chipData.color = baseChip?.color;
                                     chipData.relation = baseChip?.relation; 
-                                    chipData.idColor = $"#{Guid.NewGuid().ToString("N").Substring(0, 6)}";
+                                    chipData.idColor = $"#{Guid.NewGuid().ToString("N")[..6]}";
                                     
                                     // Chipsプロパティを新しい配列として複製
                                     chipData.Chips = new ChipData[(int)(baseChip?.Chips.Length)];

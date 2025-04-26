@@ -654,7 +654,7 @@ namespace MasaoPlus.Controls
                             Array.Resize(ref Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize.y);
                             for (int i = 0; i < Global.cpd.runtime.Definitions.MapSize.y; i++)
                             {
-                                Global.cpd.project.MapData[i] = Global.cpd.project.MapData[i].Substring(0, Global.cpd.runtime.Definitions.MapSize.x);
+                                Global.cpd.project.MapData[i] = Global.cpd.project.MapData[i][..Global.cpd.runtime.Definitions.MapSize.x];
                             }
                             Global.state.MinimumStageSize = new Size(16, 10);
                         }
