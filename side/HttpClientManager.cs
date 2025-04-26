@@ -43,26 +43,39 @@ namespace MasaoPlus
             progressHandler.HttpReceiveProgress += (_, args) =>
             {
                 if (!args.TotalBytes.HasValue || args.TotalBytes.Value <= 0) return;
-
-                int progress = (int)(100 * args.BytesTransferred / args.TotalBytes.Value);
-                
-                if (progressBar.InvokeRequired)
-                {
-                    progressBar.Invoke(() =>
-                    {
-                        progressBar.Value = progress;
-                        progressBar.Refresh();
-                    });
-                }
-                else
-                {
-                    progressBar.Value = progress;
-                    progressBar.Refresh();
-                }
-
-                taskbarManager.SetProgressState(TaskbarProgressBarState.Normal);
-                taskbarManager.SetProgressValue(progress, 100);
+                UpdateDownloadProgress(progressBar, taskbarManager, args);
             };
+        }
+
+        private static void UpdateDownloadProgress(ProgressBar progressBar, TaskbarManager taskbarManager, HttpProgressEventArgs args)
+        {
+            int progress = (int)(100 * args.BytesTransferred / args.TotalBytes!.Value);
+            UpdateProgressUI(progressBar, progress);
+            UpdateTaskbarProgress(taskbarManager, progress);
+        }
+
+        private static void UpdateProgressUI(ProgressBar progressBar, int progress)
+        {
+            if (progressBar.InvokeRequired)
+            {
+                progressBar.Invoke(() => SetProgressBarValue(progressBar, progress));
+            }
+            else
+            {
+                SetProgressBarValue(progressBar, progress);
+            }
+        }
+
+        private static void SetProgressBarValue(ProgressBar progressBar, int progress)
+        {
+            progressBar.Value = progress;
+            progressBar.Refresh();
+        }
+
+        private static void UpdateTaskbarProgress(TaskbarManager taskbarManager, int progress)
+        {
+            taskbarManager.SetProgressState(TaskbarProgressBarState.Normal);
+            taskbarManager.SetProgressValue(progress, 100);
         }
 
         private static async Task DownloadFileInternalAsync(HttpClient client, string url, string destinationPath)
