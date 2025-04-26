@@ -172,7 +172,9 @@ jobs:
                           side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.Windows.SDK.NET.dll,
                           side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll,
                           side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.Sensors.dll,
-                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.ShellExtensions.dll -ErrorAction SilentlyContinue
+                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.ShellExtensions.dll,
+                          side/bin/Release/net9.0-windows10.0.17763.0/Newtonsoft.Json.dll,
+                          side/bin/Release/net9.0-windows10.0.17763.0/Newtonsoft.Json.Bson.dll -ErrorAction SilentlyContinue
 
     - name: Copy necessary files
       shell: pwsh
