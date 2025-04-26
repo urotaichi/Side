@@ -2098,7 +2098,7 @@ namespace MasaoPlus
                         return;
                     }
                 }
-                using (StreamWriter streamWriter = new(saveFileDialog.FileName, false, Global.config.localSystem.FileEncoding))
+                using (StreamWriter streamWriter = new(saveFileDialog.FileName, false, new UTF8Encoding(false)))
                 {
                     streamWriter.Write(Subsystem.MakeHTMLCode(0, true));
                     streamWriter.Close();
