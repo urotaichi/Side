@@ -24,16 +24,11 @@ namespace MasaoPlus.Dialogs
             }
             HttpClientManager.InitializeDownloadProgress(progressBar1);
             tempfile = Path.GetTempFileName();
-            Uri address = new(Global.config.localSystem.UpdateServer);
             try
             {
-                using var response = await HttpClientManager.ProgressClient.GetAsync(address);
-                using var stream = await response.Content.ReadAsStreamAsync();
-                using (var fs = File.Create(tempfile))
-                {
-                    await stream.CopyToAsync(fs);
-                    await fs.FlushAsync();
-                }
+                await HttpClientManager.DownloadFileAsync(
+                    Global.config.localSystem.UpdateServer, 
+                    tempfile);
                 await dlClient_DownloadFileCompleted();
             }
             catch (Exception ex)
@@ -88,16 +83,11 @@ namespace MasaoPlus.Dialogs
             }
             Directory.CreateDirectory(TemporaryFolder);
             tempfile = Path.Combine(TemporaryFolder, Path.GetFileName(ud.Update.Replace('/', '\\')));
-            Uri address = new(ud.Update);
             try
             {
-                using var response = await HttpClientManager.ProgressClient.GetAsync(address);
-                using var stream = await response.Content.ReadAsStreamAsync();
-                using (var fs = File.Create(tempfile))
-                {
-                    await stream.CopyToAsync(fs);
-                    await fs.FlushAsync();
-                }
+                await HttpClientManager.DownloadFileAsync(
+                    ud.Update,
+                    tempfile);
                 await dlClient_DownloadFileCompleted2();
             }
             catch (Exception ex)
@@ -115,16 +105,11 @@ namespace MasaoPlus.Dialogs
             progressBar1.Value = 0;
             SUpdate("パッケージをダウンロードしています...[2/2]");
             runfile = Path.Combine(TemporaryFolder, Path.GetFileName(ud.Installer.Replace('/', '\\')));
-            Uri address = new(ud.Installer);
             try
             {
-                using var response = await HttpClientManager.ProgressClient.GetAsync(address);
-                using var stream = await response.Content.ReadAsStreamAsync();
-                using (var fs = File.Create(runfile))
-                {
-                    await stream.CopyToAsync(fs);
-                    await fs.FlushAsync();
-                }
+                await HttpClientManager.DownloadFileAsync(
+                    ud.Installer,
+                    runfile);
                 await dlClient_DownloadFileCompleted3();
             }
             catch (Exception ex)

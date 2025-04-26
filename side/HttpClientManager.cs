@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Http;
 using System.Net.Http.Handlers;
@@ -61,6 +63,17 @@ namespace MasaoPlus
                 taskbarManager.SetProgressState(TaskbarProgressBarState.Normal);
                 taskbarManager.SetProgressValue(progress, 100);
             };
+        }
+
+        public static async Task DownloadFileAsync(string url, string destinationPath)
+        {
+            Uri address = new(url);
+
+            using var response = await ProgressClient.GetAsync(address);
+            using var stream = await response.Content.ReadAsStreamAsync();
+            using var fs = File.Create(destinationPath);
+            await stream.CopyToAsync(fs);
+            await fs.FlushAsync();
         }
     }
 }

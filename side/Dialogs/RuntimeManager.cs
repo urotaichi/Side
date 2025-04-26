@@ -147,16 +147,9 @@ namespace MasaoPlus.Dialogs
             Enabled = false;
             tempfile = Path.GetTempFileName();
             HttpClientManager.InitializeDownloadProgress(DownProgress);
-            Uri address = new(update);
             try
             {
-                using var response = await HttpClientManager.ProgressClient.GetAsync(address);
-                using var stream = await response.Content.ReadAsStreamAsync();
-                using (var fs = File.Create(tempfile))
-                {
-                    await stream.CopyToAsync(fs);
-                    await fs.FlushAsync();
-                }
+                await HttpClientManager.DownloadFileAsync(update, tempfile);
                 await dlClient_DownloadFileCompleted();
             }
             catch (Exception ex)
@@ -188,17 +181,10 @@ namespace MasaoPlus.Dialogs
             else if (MessageBox.Show($"新しいランタイムがリリースされています。{Environment.NewLine}{ur.Definitions.DefVersion} -> {updateData.DefVersion}{Environment.NewLine}更新しますか？", "更新の確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
                 tempfile = Path.GetTempFileName();
-                Uri address = new(updateData.Update);
                 try
                 {
                     Text = "ランタイムをダウンロードしています...";
-                    using var response = await HttpClientManager.ProgressClient.GetAsync(address);
-                    using var stream = await response.Content.ReadAsStreamAsync();
-                    using (var fs = File.Create(tempfile))
-                    {
-                        await stream.CopyToAsync(fs);
-                        await fs.FlushAsync();
-                    }
+                    await HttpClientManager.DownloadFileAsync(updateData.Update, tempfile);
                     dlClient_DownloadFileCompleted_Package();
                     return;
                 }
