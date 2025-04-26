@@ -16,18 +16,6 @@ namespace MasaoPlus.Dialogs
             InitializeComponent();
         }
 
-        private void InitializeHttpClient()
-        {
-            var progressHandler = HttpClientManager.ProgressHandler;
-            progressHandler.HttpReceiveProgress += (_, args) =>
-            {
-                if (args.TotalBytes.HasValue)
-                {
-                    dlClient_DownloadProgressChanged(args.BytesTransferred, args.TotalBytes.Value);
-                }
-            };
-        }
-
         private void InstalledRuntime_Shown(object sender, EventArgs e)
         {
             Application.DoEvents();
@@ -158,7 +146,7 @@ namespace MasaoPlus.Dialogs
             DownProgress.Visible = true;
             Enabled = false;
             tempfile = Path.GetTempFileName();
-            InitializeHttpClient();
+            HttpClientManager.InitializeDownloadProgress(DownProgress);
             Uri address = new(update);
             try
             {
@@ -235,31 +223,6 @@ namespace MasaoPlus.Dialogs
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
             DialogResult = DialogResult.Retry;
             Close();
-        }
-
-        private void dlClient_DownloadProgressChanged(long bytesReceived, long totalBytes)
-        {
-            if (totalBytes > 0)
-            {
-                int progress = (int)(100 * bytesReceived / totalBytes);
-                
-                if (DownProgress.InvokeRequired)
-                {
-                    DownProgress.Invoke(() =>
-                    {
-                        DownProgress.Value = progress;
-                        DownProgress.Refresh();
-                    });
-                }
-                else
-                {
-                    DownProgress.Value = progress;
-                    DownProgress.Refresh();
-                }
-
-                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
-                TaskbarManager.Instance.SetProgressValue(progress, 100);
-            }
         }
 
         private void Uninstall_Click(object sender, EventArgs e)

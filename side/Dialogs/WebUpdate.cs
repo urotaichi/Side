@@ -15,18 +15,6 @@ namespace MasaoPlus.Dialogs
             InitializeComponent();
         }
 
-        private void InitializeHttpClient()
-        {
-            var progressHandler = HttpClientManager.ProgressHandler;
-            progressHandler.HttpReceiveProgress += (_, args) =>
-            {
-                if (args.TotalBytes.HasValue)
-                {
-                    dlClient_DownloadProgressChanged(args.BytesTransferred, args.TotalBytes.Value);
-                }
-            };
-        }
-
         private async void WebUpdate_Shown(object sender, EventArgs e)
         {
             SUpdate("更新を確認しています...");
@@ -34,7 +22,7 @@ namespace MasaoPlus.Dialogs
             {
                 Global.config.localSystem.UpdateServer = Global.definition.BaseUpdateServer;
             }
-            InitializeHttpClient();
+            HttpClientManager.InitializeDownloadProgress(progressBar1);
             tempfile = Path.GetTempFileName();
             Uri address = new(Global.config.localSystem.UpdateServer);
             try
@@ -163,31 +151,6 @@ namespace MasaoPlus.Dialogs
             DialogResult = DialogResult.Retry;
             Close();
             return Task.CompletedTask;
-        }
-
-        private void dlClient_DownloadProgressChanged(long bytesReceived, long totalBytes)
-        {
-            if (totalBytes > 0)
-            {
-                int progress = (int)(100 * bytesReceived / totalBytes);
-                
-                if (progressBar1.InvokeRequired)
-                {
-                    progressBar1.Invoke(() =>
-                    {
-                        progressBar1.Value = progress;
-                        progressBar1.Refresh();
-                    });
-                }
-                else
-                {
-                    progressBar1.Value = progress;
-                    progressBar1.Refresh();
-                }
-
-                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
-                TaskbarManager.Instance.SetProgressValue(progress, 100);
-            }
         }
 
         private void SUpdate(string state)
