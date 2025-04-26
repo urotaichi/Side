@@ -19,7 +19,7 @@ namespace MasaoPlus.Dialogs
         private async void ProjectLoading_Shown(object sender, EventArgs e)
         {
             Application.DoEvents();
-            await Task.Run(() => LoadProject());
+            await Task.Run(LoadProject);
             EndInvInv();
         }
 
