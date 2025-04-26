@@ -154,9 +154,7 @@ namespace MasaoPlus.Dialogs
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"更新できませんでした。{Environment.NewLine}{ex.Message}", "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                DialogResult = DialogResult.Retry;
-                Close();
+                HttpClientManager.HandleDownloadError(ex, this);
             }
             finally
             {
@@ -190,11 +188,7 @@ namespace MasaoPlus.Dialogs
                 }
                 catch (Exception ex)
                 {
-                    TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
-                    MessageBox.Show($"更新できませんでした。{Environment.NewLine}{ex.Message}", "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
-                    DialogResult = DialogResult.Retry;
-                    Close();
+                    HttpClientManager.HandleDownloadError(ex, this);
                 }
             }
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);

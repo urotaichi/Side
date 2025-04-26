@@ -78,6 +78,16 @@ namespace MasaoPlus
             taskbarManager.SetProgressValue(progress, 100);
         }
 
+        public static void HandleDownloadError(Exception ex, Form form)
+        {
+            var taskbarManager = TaskbarManager.Instance;
+            taskbarManager.SetProgressState(TaskbarProgressBarState.Error);
+            MessageBox.Show($"更新できませんでした。{Environment.NewLine}{ex.Message}", "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            taskbarManager.SetProgressState(TaskbarProgressBarState.NoProgress);
+            form.DialogResult = DialogResult.Retry;
+            form.Close();
+        }
+
         private static async Task DownloadFileInternalAsync(HttpClient client, string url, string destinationPath)
         {
             Uri address = new(url);
