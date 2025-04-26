@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.IO.Compression;
 using MasaoPlus.Dialogs;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace MasaoPlus
 {
@@ -1447,7 +1448,7 @@ namespace MasaoPlus
             return true;
         }
 
-        public static void UpdateAutoCheck()
+        public static async void UpdateAutoCheck()
         {
             if (!Global.definition.IsAutoUpdateEnabled)
             {
@@ -1457,48 +1458,55 @@ namespace MasaoPlus
             {
                 Global.config.localSystem.UpdateServer = Global.definition.BaseUpdateServer;
             }
-            dlClient = new WebClient();
-            dlClient.Headers.Add("User-Agent", $"{Global.definition.AppName} - {Global.definition.AppNameFull}/{Global.definition.Version}(Windows NT 10.0; Win64; x64)");
-            dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted;
+            
             tempfile = Path.GetTempFileName();
-            Uri address = new(Global.config.localSystem.UpdateServer);
             try
             {
-                dlClient.DownloadFileAsync(address, tempfile);
+                await HttpClientManager.DownloadFileSimpleAsync(
+                    Global.config.localSystem.UpdateServer,
+                    tempfile);
+                await dlClient_DownloadFileCompleted();
             }
             catch
             {
+                if (File.Exists(tempfile))
+                {
+                    File.Delete(tempfile);
+                }
             }
         }
 
-        private static void dlClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        private static async Task dlClient_DownloadFileCompleted()
         {
-            dlClient.Dispose();
-            if (e.Error != null)
+            try
             {
-                return;
+                var updateData = await Task.Run(() => UpdateData.ParseXML(tempfile));
+                File.Delete(tempfile);
+                if (updateData.DefVersion <= Global.definition.CheckVersion)
+                {
+                    return;
+                }
+                if (MessageBox.Show($"Sideの新しいバージョンが公開されています。{Environment.NewLine}(バージョン {updateData.Name}){Environment.NewLine}更新しますか？", "Sideの更新", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.No)
+                {
+                    MessageBox.Show($"自動更新チェックはオフになります。{Environment.NewLine}再度有効にする場合はエディタオプションより設定してください。", "更新の中止", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    Global.config.localSystem.CheckAutoUpdate = false;
+                    return;
+                }
+                using WebUpdate webUpdate = new();
+                if (webUpdate.ShowDialog() == DialogResult.Retry)
+                {
+                    Global.state.RunFile = (string)webUpdate.runfile.Clone();
+                    Global.MainWnd.Close();
+                }
             }
-            UpdateData updateData = UpdateData.ParseXML(tempfile);
-            File.Delete(tempfile);
-            if (updateData.DefVersion <= Global.definition.CheckVersion)
+            catch
             {
-                return;
-            }
-            if (MessageBox.Show($"Sideの新しいバージョンが公開されています。{Environment.NewLine}(バージョン {updateData.Name}){Environment.NewLine}更新しますか？", "Sideの更新", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.No)
-            {
-                MessageBox.Show($"自動更新チェックはオフになります。{Environment.NewLine}再度有効にする場合はエディタオプションより設定してください。", "更新の中止", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                Global.config.localSystem.CheckAutoUpdate = false;
-                return;
-            }
-            using WebUpdate webUpdate = new();
-            if (webUpdate.ShowDialog() == DialogResult.Retry)
-            {
-                Global.state.RunFile = (string)webUpdate.runfile.Clone();
-                Global.MainWnd.Close();
+                if (File.Exists(tempfile))
+                {
+                    File.Delete(tempfile);
+                }
             }
         }
-
-        private static WebClient dlClient;
 
         private static string tempfile;
 
