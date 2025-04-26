@@ -1460,26 +1460,11 @@ namespace MasaoPlus
             }
             
             tempfile = Path.GetTempFileName();
-            Uri address = new(Global.config.localSystem.UpdateServer);
             try
             {
-                using var response = await HttpClientManager.DefaultClient.GetAsync(address);
-                response.EnsureSuccessStatusCode(); // HTTPエラーをチェック
-
-                // メモリストリームにダウンロード
-                using var memStream = new MemoryStream();
-                using (var stream = await response.Content.ReadAsStreamAsync())
-                {
-                    await stream.CopyToAsync(memStream);
-                }
-                memStream.Position = 0;
-
-                // メモリからファイルに書き込み
-                using (var fileStream = File.Create(tempfile))
-                {
-                    await memStream.CopyToAsync(fileStream);
-                    await fileStream.FlushAsync();
-                }
+                await HttpClientManager.DownloadFileSimpleAsync(
+                    Global.config.localSystem.UpdateServer,
+                    tempfile);
                 await dlClient_DownloadFileCompleted();
             }
             catch

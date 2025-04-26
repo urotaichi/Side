@@ -31,9 +31,9 @@ namespace MasaoPlus
         private static readonly Lazy<HttpClient> _progressClient = new(() => 
             CreateHttpClient(_progressHandler.Value));
 
-        public static HttpClient DefaultClient => _defaultClient.Value;
+        private static HttpClient DefaultClient => _defaultClient.Value;
         private static ProgressMessageHandler ProgressHandler => _progressHandler.Value;
-        public static HttpClient ProgressClient => _progressClient.Value;
+        private static HttpClient ProgressClient => _progressClient.Value;
 
         public static void InitializeDownloadProgress(ProgressBar progressBar)
         {
@@ -65,15 +65,25 @@ namespace MasaoPlus
             };
         }
 
-        public static async Task DownloadFileAsync(string url, string destinationPath)
+        private static async Task DownloadFileInternalAsync(HttpClient client, string url, string destinationPath)
         {
             Uri address = new(url);
 
-            using var response = await ProgressClient.GetAsync(address);
+            using var response = await client.GetAsync(address);
             using var stream = await response.Content.ReadAsStreamAsync();
             using var fs = File.Create(destinationPath);
             await stream.CopyToAsync(fs);
             await fs.FlushAsync();
+        }
+
+        public static Task DownloadFileAsync(string url, string destinationPath)
+        {
+            return DownloadFileInternalAsync(ProgressClient, url, destinationPath);
+        }
+
+        public static Task DownloadFileSimpleAsync(string url, string destinationPath)
+        {
+            return DownloadFileInternalAsync(DefaultClient, url, destinationPath);
         }
     }
 }
