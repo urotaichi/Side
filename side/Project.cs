@@ -124,6 +124,12 @@ namespace MasaoPlus
             }
         }
 
+        private static void CheckStageSize(ref Runtime.DefinedData.StageSizeData size)
+        {
+            if (size.x < Global.state.MinimumStageSize.Width) size.x = Global.state.DefaultStageSize.Width;
+            if (size.y < Global.state.MinimumStageSize.Height) size.y = Global.state.DefaultStageSize.Height;
+        }
+
         private static void SetStageSize(ref Runtime.DefinedData.StageSizeData size, Runtime.DefinedData.StageSizeData baseSize)
         {
             size.x = baseSize.x;
@@ -149,8 +155,7 @@ namespace MasaoPlus
             Project baseProject = PrevProject ?? project;
             if (baseProject.Runtime.Definitions.LayerSize.bytesize != 0)
             {
-                if (baseProject.Runtime.Definitions.LayerSize.x < Global.state.MinimumStageSize.Width) baseProject.Runtime.Definitions.LayerSize.x = Global.state.DefaultStageSize.Width;
-                if (baseProject.Runtime.Definitions.LayerSize.y < Global.state.MinimumStageSize.Height) baseProject.Runtime.Definitions.LayerSize.y = Global.state.DefaultStageSize.Height;
+                CheckStageSize(ref baseProject.Runtime.Definitions.LayerSize);
                 SetStageSize(ref baseProject.Runtime.Definitions.LayerSize2, baseProject.Runtime.Definitions.LayerSize);
                 SetStageSize(ref baseProject.Runtime.Definitions.LayerSize3, baseProject.Runtime.Definitions.LayerSize);
                 SetStageSize(ref baseProject.Runtime.Definitions.LayerSize4, baseProject.Runtime.Definitions.LayerSize);
@@ -159,8 +164,7 @@ namespace MasaoPlus
                 project.LayerData3 = new string[baseProject.Runtime.Definitions.LayerSize3.y];
                 project.LayerData4 = new string[baseProject.Runtime.Definitions.LayerSize4.y];
             }
-            if (baseProject.Runtime.Definitions.StageSize.x < Global.state.MinimumStageSize.Width) baseProject.Runtime.Definitions.StageSize.x = Global.state.DefaultStageSize.Width;
-            if (baseProject.Runtime.Definitions.StageSize.y < Global.state.MinimumStageSize.Height) baseProject.Runtime.Definitions.StageSize.y = Global.state.DefaultStageSize.Height;
+            CheckStageSize(ref baseProject.Runtime.Definitions.StageSize);
             SetStageSize(ref baseProject.Runtime.Definitions.StageSize2, baseProject.Runtime.Definitions.StageSize);
             SetStageSize(ref baseProject.Runtime.Definitions.StageSize3, baseProject.Runtime.Definitions.StageSize);
             SetStageSize(ref baseProject.Runtime.Definitions.StageSize4, baseProject.Runtime.Definitions.StageSize);
