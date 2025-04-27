@@ -377,32 +377,20 @@ namespace MasaoPlus.Dialogs
                 project.MapData = new string[project.Runtime.Definitions.MapSize.y];
                 project.Config.StageNum = (int)StageNum.Value;
                 ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(text3, project.Runtime.Definitions.ChipDefinition));
-                void setStageData(string[] data, int x, string character)
-                {
-                    for (int i = 0; i < data.Length; i++)
-                    {
-                        StringBuilder stringBuilder = new();
-                        for (int j = 0; j < x; j++)
-                        {
-                            stringBuilder.Append(character);
-                        }
-                        data[i] = stringBuilder.ToString();
-                    }
-                }
                 string character = chipDataClass.Mapchip[0].character;
-                setStageData(project.StageData, project.Runtime.Definitions.StageSize.x, character);
-                setStageData(project.StageData2, project.Runtime.Definitions.StageSize2.x, character);
-                setStageData(project.StageData3, project.Runtime.Definitions.StageSize3.x, character);
-                setStageData(project.StageData4, project.Runtime.Definitions.StageSize4.x, character);
+                Project.setStageData(project.StageData, project.Runtime.Definitions.StageSize.x, character);
+                Project.setStageData(project.StageData2, project.Runtime.Definitions.StageSize2.x, character);
+                Project.setStageData(project.StageData3, project.Runtime.Definitions.StageSize3.x, character);
+                Project.setStageData(project.StageData4, project.Runtime.Definitions.StageSize4.x, character);
                 character = chipDataClass.WorldChip[0].character;
-                setStageData(project.MapData, project.Runtime.Definitions.MapSize.x, character);
+                Project.setStageData(project.MapData, project.Runtime.Definitions.MapSize.x, character);
                 if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                 {
                     character = chipDataClass.Layerchip[0].character;
-                    setStageData(project.LayerData, project.Runtime.Definitions.LayerSize.x, character);
-                    setStageData(project.LayerData2, project.Runtime.Definitions.LayerSize2.x, character);
-                    setStageData(project.LayerData3, project.Runtime.Definitions.LayerSize3.x, character);
-                    setStageData(project.LayerData4, project.Runtime.Definitions.LayerSize4.x, character);
+                    Project.setStageData(project.LayerData, project.Runtime.Definitions.LayerSize.x, character);
+                    Project.setStageData(project.LayerData2, project.Runtime.Definitions.LayerSize2.x, character);
+                    Project.setStageData(project.LayerData3, project.Runtime.Definitions.LayerSize3.x, character);
+                    Project.setStageData(project.LayerData4, project.Runtime.Definitions.LayerSize4.x, character);
                 }
                 Directory.CreateDirectory(text);
                 foreach (string text4 in Directory.GetFiles(text3, "*", SearchOption.TopDirectoryOnly))

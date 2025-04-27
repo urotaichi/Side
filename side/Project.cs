@@ -2,6 +2,7 @@
 using System.IO;
 using System.IO.Compression;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -120,6 +121,19 @@ namespace MasaoPlus
                     }
                 }
                 StageData[i] = string.Join("", array);
+            }
+        }
+
+        public static void setStageData(string[] data, int x, string character)
+        {
+            for (int i = 0; i < data.Length; i++)
+            {
+                StringBuilder stringBuilder = new();
+                for (int j = 0; j < x; j++)
+                {
+                    stringBuilder.Append(character);
+                }
+                data[i] = stringBuilder.ToString();
             }
         }
 
