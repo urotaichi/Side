@@ -56,11 +56,11 @@ namespace MasaoPlus.Dialogs
             {
                 foreach (HTMLReplaceData htmlreplaceData in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
                 {
-                    OutputReplaceView.Rows.Add(new string[]
-                    {
+                    OutputReplaceView.Rows.Add(
+                    [
                         htmlreplaceData.Name,
                         htmlreplaceData.Value
-                    });
+                    ]);
                 }
             }
         }

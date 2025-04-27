@@ -113,82 +113,82 @@ namespace MasaoPlus.Controls
                         case 40: // ヒノララシ
                         case 80: // ミズタロウ
                         case 120: // 追跡亀
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "歩く速度",
                                         c.Properties.walk_speed.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.walk_speed.ToString()
                             };
                             break;
                         case 11: // 亀（落ちる）
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "歩く速度",
                                         c.Properties.walk_speed.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.walk_speed.ToString()
                             };
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "落ちる速度",
                                         c.Properties.fall_speed.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.fall_speed.ToString()
                             };
                             break;
                         case 20: // ピカチー
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "ジャンプの初速",
                                         c.Properties.jump_vy.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.jump_vy.ToString()
                             };
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "索敵範囲",
                                         c.Properties.search_range.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.search_range.ToString()
                             };
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "行動間隔",
                                         c.Properties.interval.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.interval.ToString()
                             };
                             break;
                         case 30: // チコリン（はっぱカッター）
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                 "行動周期",
                                 c.Properties.period.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.period.ToString()
                             };
                             for (int j = 0; j < c.Properties.attack_timing.Count; j++)
                             {
-                                ConfView.Rows.Add(new string[]
-                                {
+                                ConfView.Rows.Add(
+                                [
                                     "葉っぱを投げるタイミング",
                                     c.Properties.attack_timing[j].AttackFrame.ToString()
-                                });
+                                ]);
                                 ConfView[1, j + 3] = new DataGridViewNumericUpdownCell
                                 {
                                     Value = c.Properties.attack_timing[j].AttackFrame.ToString()
@@ -209,11 +209,11 @@ namespace MasaoPlus.Controls
                                 ConfView[2, j + 3] = dataGridViewCheckBoxCell;
                                 ConfView[2, j + 3].ReadOnly = false;
                             }
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                 "葉っぱを投げるタイミング",
                                 "＋"
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                             ConfView[1, ConfView.Rows.Count - 1].ReadOnly = true;
                             break;
@@ -227,11 +227,11 @@ namespace MasaoPlus.Controls
                         case 72: // ヤチャモ（破壊光線）
                         case 92: // エアームズ（その場で投下）
                         case 110: // クラゲッソ（バブル光線 水中専用）
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "行動間隔",
                                         c.Properties.interval.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.interval.ToString()
@@ -241,20 +241,20 @@ namespace MasaoPlus.Controls
                         case 53: // ポッピー（火の粉 ３連射）
                             break;
                         case 50: // ポッピー（上下移動）
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "飛行速度",
                                         c.Properties.speed.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.speed.ToString()
                             };
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "折り返し時の加速度",
                                         c.Properties.accel.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.accel.ToString()
@@ -262,11 +262,11 @@ namespace MasaoPlus.Controls
                             break;
                         case 51: // ポッピー（直進）
                         case 93: // エアームズ（左右に動いて爆弾投下）
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "飛行速度",
                                         c.Properties.speed.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.speed.ToString()
@@ -274,80 +274,80 @@ namespace MasaoPlus.Controls
                             break;
                         case 100: // タイキング（左右移動 水中専用）
                         case 140: // 重力無視の追跡ピカチー等
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "移動速度",
                                         c.Properties.speed.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.speed.ToString()
                             };
                             break;
                         case 60: // マリリ（ジャンプ）
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "横方向の移動速度",
                                         c.Properties.jump_vy.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.jump_vy.ToString()
                             };
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "ジャンプの初速",
                                         c.Properties.speed.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.speed.ToString()
                             };
                             break;
                         case 66: // マリリ（左右移動）
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "移動速度",
                                         c.Properties.speed.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.speed.ToString()
                             };
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "移動距離",
                                         c.Properties.distance.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.distance.ToString()
                             };
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "行動間隔",
                                         c.Properties.interval.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.interval.ToString()
                             };
                             break;
                         case 67: // マリリ（体当たり）
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "体当たりの速度",
                                         c.Properties.attack_speed.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.attack_speed.ToString()
                             };
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "戻る速度",
                                         c.Properties.return_speed.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.return_speed.ToString()
@@ -355,40 +355,40 @@ namespace MasaoPlus.Controls
                             break;
                         case 90: // エアームズ（壁に当たると止まる）
                         case 95: // エアームズ（壁に当たると向きを変える）
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "飛行速度",
                                         c.Properties.speed.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.speed.ToString()
                             };
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "行動間隔",
                                         c.Properties.interval.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.interval.ToString()
                             };
                             break;
                         case 105: // タイキング（はねる）
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "ジャンプの初速",
                                         c.Properties.jump_vy.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.jump_vy.ToString()
                             };
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "行動間隔",
                                         c.Properties.interval.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.interval.ToString()
@@ -396,20 +396,20 @@ namespace MasaoPlus.Controls
                             break;
                         case 106: // タイキング（縄張りをまもる）
                         case 116: // クラゲッソ（近づくと落ちる）
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "移動速度（横方向）",
                                         c.Properties.speed_x.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.speed_x.ToString()
                             };
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "移動速度（縦方向）",
                                         c.Properties.speed_y.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.speed_y.ToString()
@@ -419,31 +419,31 @@ namespace MasaoPlus.Controls
                         case 108: // タイキング（右回り）
                         case 117: // クラゲッソ（左回り）
                         case 118: // クラゲッソ（右回り）
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "角速度",
                                         c.Properties.speed.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.speed.ToString()
                             };
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "回転半径",
                                         c.Properties.radius.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.radius.ToString()
                             };
                             break;
                         case 115: // クラゲッソ（近づくと落ちる）
-                            ConfView.Rows.Add(new string[]
-                            {
+                            ConfView.Rows.Add(
+                            [
                                         "落下の初速",
                                         c.Properties.init_vy.ToString()
-                            });
+                            ]);
                             ConfView[1, ConfView.Rows.Count - 1] = new DataGridViewNumericUpdownCell
                             {
                                 Value = c.Properties.init_vy.ToString()
@@ -1236,11 +1236,11 @@ namespace MasaoPlus.Controls
                     {
                         next = num2 + 1;
                     }
-                    ConfView.Rows.Insert(ConfView.Rows.Count - 1, new string[]
-                    {
+                    ConfView.Rows.Insert(ConfView.Rows.Count - 1,
+                    [
                         "葉っぱを投げるタイミング",
                         next.ToString()
-                    });
+                    ]);
                     ConfView[1, ConfView.Rows.Count - 2] = new DataGridViewNumericUpdownCell
                     {
                         Value = next.ToString()
@@ -1312,16 +1312,16 @@ namespace MasaoPlus.Controls
             SE.Name = "SE";
             SE.SortMode = DataGridViewColumnSortMode.NotSortable;
             SE.ReadOnly = true;
-            ConfView.Rows.Add(new string[]
-            {
+            ConfView.Rows.Add(
+            [
                 "カスタムパーツ名",
                 "名前"
-            });
-            ConfView.Rows.Add(new string[]
-            {
+            ]);
+            ConfView.Rows.Add(
+            [
                 "ベース",
                 "ベースパーツ名"
-            });
+            ]);
             ConfView[1, 0].Value = "";
             ConfView[1, 1].Value = "";
             ConfView[1, 0].ReadOnly = true;

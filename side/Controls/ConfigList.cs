@@ -52,11 +52,11 @@ namespace MasaoPlus.Controls
                     else if (configParam.Name == "height") height_index = i;
 
                     OrigIdx.Add(i);
-                    ConfView.Rows.Add(new string[]
-                    {
+                    ConfView.Rows.Add(
+                    [
                         configParam.Description,
                         configParam.Value
-                    });
+                    ]);
                     switch (configParam.Type)
                     {
                         case ConfigParam.Types.b:
