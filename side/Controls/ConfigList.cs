@@ -412,7 +412,7 @@ namespace MasaoPlus.Controls
                 }
             }
         }
-        private void PreviewAudio_error(object pMediaObject)
+        private static void PreviewAudio_error(object pMediaObject)
         {
             MessageBox.Show("ファイルの読み込みに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
         }
