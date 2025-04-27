@@ -336,15 +336,15 @@ namespace MasaoPlus.Dialogs
                         {
                             input = input[1..];
                         }
-                        var jsonData = JsonDocument.Parse(input);
+                        rootJsonElement = JsonDocument.Parse(input).RootElement;
                         
                         // フォーマットバージョンの確認
-                        if (jsonData.RootElement.TryGetProperty("masao-json-format-version", out var formatVersion))
+                        if (rootJsonElement.TryGetProperty("masao-json-format-version", out var formatVersion))
                         {
                             StatusText.Text = "JSONデータ取得中...";
                             StatusText.Refresh();
                             // パラメータの読み込み
-                            if (jsonData.RootElement.TryGetProperty("params", out var parameters))
+                            if (rootJsonElement.TryGetProperty("params", out var parameters))
                             {
                                 foreach (var param in parameters.EnumerateObject())
                                 {
@@ -353,7 +353,7 @@ namespace MasaoPlus.Dialogs
                             }
 
                             // メタデータの読み込み
-                            if (jsonData.RootElement.TryGetProperty("metadata", out var metadata))
+                            if (rootJsonElement.TryGetProperty("metadata", out var metadata))
                             {
                                 if (metadata.TryGetProperty("title", out var title))
                                 {
@@ -366,13 +366,13 @@ namespace MasaoPlus.Dialogs
                             }
 
                             // advanced-mapの読み込み
-                            if (jsonData.RootElement.TryGetProperty("advanced-map", out var advancedMap) && advancedMap.ValueKind != JsonValueKind.Null)
+                            if (rootJsonElement.TryGetProperty("advanced-map", out var advancedMap) && advancedMap.ValueKind != JsonValueKind.Null)
                             {
                                 dictionary["advanced-map"] = advancedMap.ToString();
                             }
 
                             // スクリプトの読み込み
-                            if (jsonData.RootElement.TryGetProperty("script", out var script) && script.ValueKind != JsonValueKind.Null)
+                            if (rootJsonElement.TryGetProperty("script", out var script) && script.ValueKind != JsonValueKind.Null)
                             {
                                 var scriptContent = $@"<script>
 {script}
@@ -402,7 +402,7 @@ namespace MasaoPlus.Dialogs
                                     // <!DOCTYPE>がある場合はその後に挿入
                                     if (headerHtml.Contains("<!DOCTYPE"))
                                     {
-                                        int doctypeEndIndex = headerHtml.IndexOf(">", headerHtml.IndexOf("<!DOCTYPE")) + 1;
+                                        int doctypeEndIndex = headerHtml.IndexOf('>', headerHtml.IndexOf("<!DOCTYPE")) + 1;
                                         project.Runtime.DefaultConfigurations.HeaderHTML = 
                                             headerHtml.Insert(doctypeEndIndex, Environment.NewLine + headElement);
                                     }
@@ -446,10 +446,10 @@ namespace MasaoPlus.Dialogs
                             mapData = mapData.Replace(@"\""", @"""").Replace(@"\\", @"\").Replace("¥", "\\");
                         }
                         
-                        var jsonData = JsonDocument.Parse(mapData);
+                        var jsonElement = JsonDocument.Parse(mapData).RootElement;
                         
                         // カスタムパーツ定義の読み込み
-                        if (jsonData.RootElement.TryGetProperty("customParts", out var customParts))
+                        if (jsonElement.TryGetProperty("customParts", out var customParts))
                         {
                             var customPartsArray = customParts.EnumerateObject().ToArray();
                             var customPartsList = new List<ChipsData>();
@@ -469,13 +469,23 @@ namespace MasaoPlus.Dialogs
                                     chipData.color = baseChip?.color;
                                     chipData.relation = baseChip?.relation; 
                                     chipData.idColor = $"#{Guid.NewGuid().ToString("N")[..6]}";
+
+                                    // _meme_coreからカスタムパーツ名を取得
+                                    var customPartName = string.Empty;
+                                    if (rootJsonElement.TryGetProperty("_meme_core", out var memeCore) &&
+                                        memeCore.TryGetProperty("customParts", out var memeCustomParts) &&
+                                        memeCustomParts.TryGetProperty(part.Name, out var memePart) &&
+                                        memePart.TryGetProperty("name", out var memeName))
+                                    {
+                                        customPartName = memeName.GetString();
+                                    }
                                     
                                     // Chipsプロパティを新しい配列として複製
                                     chipData.Chips = new ChipData[(int)(baseChip?.Chips.Length)];
                                     for (int j = 0; j < baseChip?.Chips.Length; j++)
                                     {
                                         chipData.Chips[j] = (ChipData)(baseChip?.Chips[j]);
-                                        chipData.Chips[j].name = $"カスタムパーツ{i + 1}";
+                                        chipData.Chips[j].name = customPartName.Length > 0 ? customPartName : $"カスタムパーツ{i + 1}";
                                     }
                                 }
 
@@ -572,7 +582,7 @@ namespace MasaoPlus.Dialogs
                         }
 
                         // ステージデータの読み込みとサイズの設定を一元化
-                        var stages = jsonData.RootElement.TryGetProperty("stages", out var stagesElement) ?
+                        var stages = jsonElement.TryGetProperty("stages", out var stagesElement) ?
                             [.. stagesElement.EnumerateArray()] : 
                             new List<JsonElement>();
 
@@ -1373,5 +1383,6 @@ namespace MasaoPlus.Dialogs
         private static partial Regex reg_object_comma();
         [GeneratedRegex(@",(\s*\])")]
         private static partial Regex reg_array_comma();
+        private static JsonElement rootJsonElement;
     }
 }
