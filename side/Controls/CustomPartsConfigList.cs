@@ -1248,9 +1248,9 @@ namespace MasaoPlus.Controls
                     DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new()
                     {
                         TrueValue = "true",
-                        FalseValue = "false"
+                        FalseValue = "false",
+                        Value = false
                     };
-                    dataGridViewCheckBoxCell.Value = false;
                     ConfView[2, ConfView.Rows.Count - 2] = dataGridViewCheckBoxCell;
                     Global.cpd.CustomPartsChip[cs_i].Properties.attack_timing.Add(new attack_timing { AttackFrame = next, IsPlaySoundFrame = false });
                     Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[cs_i];
