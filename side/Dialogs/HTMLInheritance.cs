@@ -516,7 +516,7 @@ namespace MasaoPlus.Dialogs
                                                 chipData.Properties.period = prop.Value.GetInt32();
                                                 break;
                                             case "attack_timing":
-                                                chipData.Properties.attack_timing = new List<attack_timing>();
+                                                chipData.Properties.attack_timing = [];
                                                 foreach (var timing in prop.Value.EnumerateObject())
                                                 {
                                                     chipData.Properties.attack_timing.Add(new attack_timing

@@ -513,7 +513,7 @@ namespace MasaoPlus.Controls
                         ], StringSplitOptions.None);
                         if (configParam.Rows > 0)
                         {
-                            List<string> list = new(array);
+                            List<string> list = [.. array];
                             if (list.Count > configParam.Rows)
                             {
                                 MessageBox.Show($"行数が最大値を超えています。{Environment.NewLine}超えた行は削除されます。", "行の超過", MessageBoxButtons.OK, MessageBoxIcon.Hand);
