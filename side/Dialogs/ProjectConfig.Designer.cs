@@ -205,7 +205,7 @@
 				this.MapSizeWidth.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(140), base.LogicalToDeviceUnits(150));
                 global::System.Windows.Forms.NumericUpDown MapSizeWidth = this.MapSizeWidth;
                 int[] array11 = new int[4];
-                array11[0] = 500;
+                array11[0] = Global.state.MaximumStageSize.Width;
                 MapSizeWidth.Maximum = new decimal(array11);
                 global::System.Windows.Forms.NumericUpDown MapSizeWidth2 = this.MapSizeWidth;
 				int[] array12 = new int[4];
@@ -228,7 +228,7 @@
                 this.MapSizeHeight.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(245), base.LogicalToDeviceUnits(150));
                 global::System.Windows.Forms.NumericUpDown MapSizeHeight = this.MapSizeHeight;
                 int[] array21 = new int[4];
-                array21[0] = 500;
+                array21[0] = Global.state.MaximumStageSize.Height;
                 MapSizeHeight.Maximum = new decimal(array21);
                 global::System.Windows.Forms.NumericUpDown MapSizeHeight2 = this.MapSizeHeight;
                 int[] array22 = new int[4];
@@ -252,7 +252,7 @@
                 this.MapSize2Width.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(140), base.LogicalToDeviceUnits(175));
                 global::System.Windows.Forms.NumericUpDown MapSize2Width = this.MapSize2Width;
                 int[] array31 = new int[4];
-                array31[0] = 500;
+                array31[0] = Global.state.MaximumStageSize.Width;
                 MapSize2Width.Maximum = new decimal(array31);
                 global::System.Windows.Forms.NumericUpDown MapSize2Width2 = this.MapSize2Width;
                 int[] array32 = new int[4];
@@ -275,7 +275,7 @@
                 this.MapSize2Height.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(245), base.LogicalToDeviceUnits(175));
                 global::System.Windows.Forms.NumericUpDown MapSize2Height = this.MapSize2Height;
                 int[] array41 = new int[4];
-                array41[0] = 500;
+                array41[0] = Global.state.MaximumStageSize.Height;
                 MapSize2Height.Maximum = new decimal(array41);
                 global::System.Windows.Forms.NumericUpDown MapSize2Height2 = this.MapSize2Height;
                 int[] array42 = new int[4];
@@ -299,7 +299,7 @@
                 this.MapSize3Width.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(140), base.LogicalToDeviceUnits(200));
                 global::System.Windows.Forms.NumericUpDown MapSize3Width = this.MapSize3Width;
                 int[] array51 = new int[4];
-                array51[0] = 500;
+                array51[0] = Global.state.MaximumStageSize.Width;
                 MapSize3Width.Maximum = new decimal(array51);
                 global::System.Windows.Forms.NumericUpDown MapSize3Width2 = this.MapSize3Width;
                 int[] array52 = new int[4];
@@ -322,7 +322,7 @@
                 this.MapSize3Height.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(245), base.LogicalToDeviceUnits(200));
                 global::System.Windows.Forms.NumericUpDown MapSize3Height = this.MapSize3Height;
                 int[] array61 = new int[4];
-                array61[0] = 500;
+                array61[0] = Global.state.MaximumStageSize.Height;
                 MapSize3Height.Maximum = new decimal(array61);
                 global::System.Windows.Forms.NumericUpDown MapSize3Height2 = this.MapSize3Height;
                 int[] array62 = new int[4];
@@ -346,7 +346,7 @@
                 this.MapSize4Width.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(140), base.LogicalToDeviceUnits(225));
                 global::System.Windows.Forms.NumericUpDown MapSize4Width = this.MapSize4Width;
                 int[] array71 = new int[4];
-                array71[0] = 500;
+                array71[0] = Global.state.MaximumStageSize.Width;
                 MapSize4Width.Maximum = new decimal(array71);
                 global::System.Windows.Forms.NumericUpDown MapSize4Width2 = this.MapSize4Width;
                 int[] array72 = new int[4];
@@ -369,7 +369,7 @@
                 this.MapSize4Height.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(245), base.LogicalToDeviceUnits(225));
                 global::System.Windows.Forms.NumericUpDown MapSize4Height = this.MapSize4Height;
                 int[] array81 = new int[4];
-                array81[0] = 500;
+                array81[0] = Global.state.MaximumStageSize.Height;
                 MapSize4Height.Maximum = new decimal(array81);
                 global::System.Windows.Forms.NumericUpDown MapSize4Height2 = this.MapSize4Height;
                 int[] array82 = new int[4];

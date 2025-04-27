@@ -585,20 +585,15 @@ namespace MasaoPlus.Dialogs
                                 int sizeY = size.GetProperty("y").GetInt32();
                                 
                                 // マップサイズが500x500を超える場合は警告して500に丸める
-                                bool showWarning = false;
-                                if (sizeX > 500)
-                                {
-                                    sizeX = 500;
-                                    showWarning = true;
-                                }
-                                if (sizeY > 500)
-                                {
-                                    sizeY = 500;
-                                    showWarning = true;
-                                }
-                                
-                                if (showWarning)
-                                {
+                                if(sizeX > Global.state.MaximumStageSize.Width || sizeY > Global.state.MaximumStageSize.Height){
+                                    if (sizeX > Global.state.MaximumStageSize.Width)
+                                    {
+                                        sizeX = Global.state.MaximumStageSize.Width;
+                                    }
+                                    if (sizeY > Global.state.MaximumStageSize.Height)
+                                    {
+                                        sizeY = Global.state.MaximumStageSize.Height;
+                                    }
                                     MessageBox.Show($"マップサイズがSideで扱える最大値(500×500)を超えています。\nサイズを500×500に制限します。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
 
