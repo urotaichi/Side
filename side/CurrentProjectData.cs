@@ -20,6 +20,10 @@ namespace MasaoPlus
 
         public string[] EditingLayer;
 
+        public string[][] EditingMapArray;
+
+        public string[][] EditingLayerArray;
+
         public ChipsData[] Mapchip;
 
         public ChipsData[] Layerchip;

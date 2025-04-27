@@ -144,6 +144,18 @@ namespace MasaoPlus
             }
         }
 
+        public static void SetStageDataArray(string[][] array, Runtime.DefinedData.StageSizeData size, string character)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = new string[size.x];
+                for (int j = 0; j < size.x; j++)
+                {
+                    array[i][j] = character;
+                }
+            }
+        }
+
         public static ChipDataClass SetAllStageData(Project project, string projPath, Project PrevProject = null)
         {
             Project baseProject = PrevProject ?? project;
@@ -158,6 +170,10 @@ namespace MasaoPlus
                 project.LayerData2 = new string[baseProject.Runtime.Definitions.LayerSize2.y];
                 project.LayerData3 = new string[baseProject.Runtime.Definitions.LayerSize3.y];
                 project.LayerData4 = new string[baseProject.Runtime.Definitions.LayerSize4.y];
+                project.LayerDataArray = new string[project.Runtime.Definitions.LayerSize.y][];
+                project.LayerDataArray2 = new string[project.Runtime.Definitions.LayerSize2.y][];
+                project.LayerDataArray3 = new string[project.Runtime.Definitions.LayerSize3.y][];
+                project.LayerDataArray4 = new string[project.Runtime.Definitions.LayerSize4.y][];
             }
             if (baseProject.Runtime.Definitions.StageSize.x < Global.state.MinimumStageSize.Width) baseProject.Runtime.Definitions.StageSize.x = Global.state.DefaultStageSize.Width;
             if (baseProject.Runtime.Definitions.StageSize.y < Global.state.MinimumStageSize.Height) baseProject.Runtime.Definitions.StageSize.y = Global.state.DefaultStageSize.Height;
@@ -168,15 +184,25 @@ namespace MasaoPlus
             project.StageData2 = new string[baseProject.Runtime.Definitions.StageSize2.y];
             project.StageData3 = new string[baseProject.Runtime.Definitions.StageSize3.y];
             project.StageData4 = new string[baseProject.Runtime.Definitions.StageSize4.y];
+            project.StageDataArray = new string[project.Runtime.Definitions.StageSize.y][];
+            project.StageDataArray2 = new string[project.Runtime.Definitions.StageSize2.y][];
+            project.StageDataArray3 = new string[project.Runtime.Definitions.StageSize3.y][];
+            project.StageDataArray4 = new string[project.Runtime.Definitions.StageSize4.y][];
             project.MapData = new string[baseProject.Runtime.Definitions.MapSize.y];
+            project.MapDataArray = new string[project.Runtime.Definitions.MapSize.y][];
             ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(Path.GetDirectoryName(projPath), project.Runtime.Definitions.ChipDefinition));
             string character = chipDataClass.Mapchip[0].character;
             SetStageData(project.StageData, baseProject.Runtime.Definitions.StageSize.x, character);
             SetStageData(project.StageData2, baseProject.Runtime.Definitions.StageSize2.x, character);
             SetStageData(project.StageData3, baseProject.Runtime.Definitions.StageSize3.x, character);
             SetStageData(project.StageData4, baseProject.Runtime.Definitions.StageSize4.x, character);
+            SetStageDataArray(project.StageDataArray, baseProject.Runtime.Definitions.StageSize, character);
+            SetStageDataArray(project.StageDataArray2, baseProject.Runtime.Definitions.StageSize2, character);
+            SetStageDataArray(project.StageDataArray3, baseProject.Runtime.Definitions.StageSize3, character);
+            SetStageDataArray(project.StageDataArray4, baseProject.Runtime.Definitions.StageSize4, character);
             character = chipDataClass.WorldChip[0].character;
             SetStageData(project.MapData, baseProject.Runtime.Definitions.MapSize.x, character);
+            SetStageDataArray(project.MapDataArray, baseProject.Runtime.Definitions.MapSize, character);
             if (baseProject.Runtime.Definitions.LayerSize.bytesize != 0)
             {
                 character = chipDataClass.Layerchip[0].character;
@@ -184,6 +210,10 @@ namespace MasaoPlus
                 SetStageData(project.LayerData2, baseProject.Runtime.Definitions.LayerSize2.x, character);
                 SetStageData(project.LayerData3, baseProject.Runtime.Definitions.LayerSize3.x, character);
                 SetStageData(project.LayerData4, baseProject.Runtime.Definitions.LayerSize4.x, character);
+                SetStageDataArray(project.LayerDataArray, baseProject.Runtime.Definitions.LayerSize, character);
+                SetStageDataArray(project.LayerDataArray2, baseProject.Runtime.Definitions.LayerSize2, character);
+                SetStageDataArray(project.LayerDataArray3, baseProject.Runtime.Definitions.LayerSize3, character);
+                SetStageDataArray(project.LayerDataArray4, baseProject.Runtime.Definitions.LayerSize4, character);
             }
             return chipDataClass;
         }
@@ -215,6 +245,26 @@ namespace MasaoPlus
         public string[] LayerData4 = [];
 
         public string[] MapData = [];
+
+        [XmlIgnore]
+        public string[][] StageDataArray = [];
+        [XmlIgnore]
+        public string[][] StageDataArray2 = [];
+        [XmlIgnore]
+        public string[][] StageDataArray3 = [];
+        [XmlIgnore]
+        public string[][] StageDataArray4 = [];
+
+        [XmlIgnore]
+        public string[][] LayerDataArray = [];
+        [XmlIgnore]
+        public string[][] LayerDataArray2 = [];
+        [XmlIgnore]
+        public string[][] LayerDataArray3 = [];
+        [XmlIgnore]
+        public string[][] LayerDataArray4 = [];
+        [XmlIgnore]
+        public string[][] MapDataArray = [];
 
         public ConfigurationOwner Config = new();
     }
