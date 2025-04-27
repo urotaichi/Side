@@ -326,17 +326,17 @@ namespace MasaoPlus
             {
                 Array.Resize(ref Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length + 1);
             }
-            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1] = basedata;
-            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips = (ChipData[])basedata.Chips.Clone(); // 配列は個別に複製
-            for (int j = 0; j < Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips.Length; j++)
+            Global.cpd.CustomPartsChip[^1] = basedata;
+            Global.cpd.CustomPartsChip[^1].Chips = (ChipData[])basedata.Chips.Clone(); // 配列は個別に複製
+            for (int j = 0; j < Global.cpd.CustomPartsChip[^1].Chips.Length; j++)
             {
-                Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips[j].name = name;
-                Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips[j].description = $"{data.Chips[j].name} {data.Chips[j].description}";
+                Global.cpd.CustomPartsChip[^1].Chips[j].name = name;
+                Global.cpd.CustomPartsChip[^1].Chips[j].description = $"{data.Chips[j].name} {data.Chips[j].description}";
             }
-            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].basecode = data.code;
-            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].code = string.Join("", Enumerable.Range(0, 10).Select(_ => PWS_CHARS[r.Next(PWS_CHARS.Length)]));
-            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].idColor = $"#{Guid.NewGuid().ToString("N")[..6]}";
-            Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1];
+            Global.cpd.CustomPartsChip[^1].basecode = data.code;
+            Global.cpd.CustomPartsChip[^1].code = string.Join("", Enumerable.Range(0, 10).Select(_ => PWS_CHARS[r.Next(PWS_CHARS.Length)]));
+            Global.cpd.CustomPartsChip[^1].idColor = $"#{Guid.NewGuid().ToString("N")[..6]}";
+            Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[^1];
             Global.MainWnd.MainDesigner.DrawItemCodeRef[Global.state.CurrentCustomPartsChip.code] = Global.state.CurrentCustomPartsChip;
             if (Global.cpd.project.CustomPartsDefinition == null)
             {
