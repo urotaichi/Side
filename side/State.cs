@@ -226,6 +226,8 @@ namespace MasaoPlus
 
         public bool StageSizeChanged = false;
 
+        public Size DefaultStageSize = new(180, 30);
+
         public Size MinimumStageSize = new(16, 10);
 
         public Size MaximumStageSize = new(500, 500);

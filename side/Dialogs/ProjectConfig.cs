@@ -214,14 +214,14 @@ namespace MasaoPlus.Dialogs
                         {
                             return;
                         }
-                        MapSizeWidth.Value = 180;
-                        MapSizeHeight.Value = 30;
-                        MapSize2Width.Value = 180;
-                        MapSize2Height.Value = 30;
-                        MapSize3Width.Value = 180;
-                        MapSize3Height.Value = 30;
-                        MapSize4Width.Value = 180;
-                        MapSize4Height.Value = 30;
+                        MapSizeWidth.Value = Global.state.DefaultStageSize.Width;
+                        MapSizeHeight.Value = Global.state.DefaultStageSize.Height;
+                        MapSize2Width.Value = Global.state.DefaultStageSize.Width;
+                        MapSize2Height.Value = Global.state.DefaultStageSize.Height;
+                        MapSize3Width.Value = Global.state.DefaultStageSize.Width;
+                        MapSize3Height.Value = Global.state.DefaultStageSize.Height;
+                        MapSize4Width.Value = Global.state.DefaultStageSize.Width;
+                        MapSize4Height.Value = Global.state.DefaultStageSize.Height;
                         var nullcode = Global.cpd.Mapchip[0].code;
                         ResizeY(Global.cpd.runtime.Definitions.StageSize, MapSizeHeight.Value, ref Global.cpd.project.StageData, nullcode);
                         ResizeX(Global.cpd.runtime.Definitions.StageSize.x, MapSizeWidth.Value, ref Global.cpd.project.StageData, nullcode);
