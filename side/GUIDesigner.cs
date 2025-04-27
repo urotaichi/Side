@@ -2337,11 +2337,11 @@ namespace MasaoPlus
                                         {
                                             if (Global.state.EditingForeground)
                                             {
-                                                stringBuilder.Append(Global.cpd.EditingMap[i].Substring(rectangle.Left * Global.state.GetCByte, (rectangle.Width + 1) * Global.state.GetCByte));
+                                                stringBuilder.Append(Global.cpd.EditingMap[i].AsSpan(rectangle.Left * Global.state.GetCByte, (rectangle.Width + 1) * Global.state.GetCByte));
                                             }
                                             else
                                             {
-                                                stringBuilder.Append(Global.cpd.EditingLayer[i].Substring(rectangle.Left * Global.state.GetCByte, (rectangle.Width + 1) * Global.state.GetCByte));
+                                                stringBuilder.Append(Global.cpd.EditingLayer[i].AsSpan(rectangle.Left * Global.state.GetCByte, (rectangle.Width + 1) * Global.state.GetCByte));
                                             }
                                         }
                                         if (i != rectangle.Bottom)
