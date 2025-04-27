@@ -119,15 +119,11 @@ namespace MasaoPlus
             ChangeBufferInvoke?.Invoke();
         }
 
-        public void Undo()
+        private void ApplyBuffer(int newBufferCurrent)
         {
-            if (BufferCurrent <= 0)
-            {
-                return;
-            }
             Global.state.EditFlag = true;
             Global.MainWnd.UpdateStatus("描画しています...");
-            BufferCurrent--;
+            BufferCurrent = newBufferCurrent;
             if (Global.state.EditingForeground)
             {
                 switch (Global.state.EdittingStage)
@@ -182,67 +178,22 @@ namespace MasaoPlus
             Global.MainWnd.UpdateStatus("完了");
         }
 
+        public void Undo()
+        {
+            if (BufferCurrent <= 0)
+            {
+                return;
+            }
+            ApplyBuffer(BufferCurrent - 1);
+        }
+
         public void Redo()
         {
             if (BufferCurrent >= StageBuffer.Count - 1)
             {
                 return;
             }
-            Global.state.EditFlag = true;
-            Global.MainWnd.UpdateStatus("描画しています...");
-            BufferCurrent++;
-            if (Global.state.EditingForeground)
-            {
-                switch (Global.state.EdittingStage)
-                {
-                    case 0:
-                        Global.cpd.project.StageData = (string[])StageBuffer[BufferCurrent].Clone();
-                        Global.cpd.EditingMap = Global.cpd.project.StageData;
-                        break;
-                    case 1:
-                        Global.cpd.project.StageData2 = (string[])StageBuffer[BufferCurrent].Clone();
-                        Global.cpd.EditingMap = Global.cpd.project.StageData2;
-                        break;
-                    case 2:
-                        Global.cpd.project.StageData3 = (string[])StageBuffer[BufferCurrent].Clone();
-                        Global.cpd.EditingMap = Global.cpd.project.StageData3;
-                        break;
-                    case 3:
-                        Global.cpd.project.StageData4 = (string[])StageBuffer[BufferCurrent].Clone();
-                        Global.cpd.EditingMap = Global.cpd.project.StageData4;
-                        break;
-                    case 4:
-                        Global.cpd.project.MapData = (string[])StageBuffer[BufferCurrent].Clone();
-                        Global.cpd.EditingMap = Global.cpd.project.MapData;
-                        break;
-                }
-            }
-            else
-            {
-                switch (Global.state.EdittingStage)
-                {
-                    case 0:
-                        Global.cpd.project.LayerData = (string[])StageBuffer[BufferCurrent].Clone();
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData;
-                        break;
-                    case 1:
-                        Global.cpd.project.LayerData2 = (string[])StageBuffer[BufferCurrent].Clone();
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
-                        break;
-                    case 2:
-                        Global.cpd.project.LayerData3 = (string[])StageBuffer[BufferCurrent].Clone();
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
-                        break;
-                    case 3:
-                        Global.cpd.project.LayerData4 = (string[])StageBuffer[BufferCurrent].Clone();
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
-                        break;
-                }
-            }
-            ChangeBufferInvoke?.Invoke();
-            StageSourceToDrawBuffer();
-            Refresh();
-            Global.MainWnd.UpdateStatus("完了");
+            ApplyBuffer(BufferCurrent + 1); 
         }
 
         public Size BufferSize
@@ -2412,8 +2363,7 @@ namespace MasaoPlus
                                     Global.MainWnd.UpdateStatus("切り取りしています...");
                                     for (int j = rectangle.Top; j <= rectangle.Bottom; j++)
                                     {
-                                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
-                                        {
+                                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) {
                                             string[] array = PutItemTextCodeStart(j);
                                             if (array != null)
                                             {
