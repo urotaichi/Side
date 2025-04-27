@@ -124,7 +124,14 @@ namespace MasaoPlus
             }
         }
 
-        public static void setStageData(string[] data, int x, string character)
+        private static void SetStageSize(ref Runtime.DefinedData.StageSizeData size, Runtime.DefinedData.StageSizeData baseSize)
+        {
+            size.x = baseSize.x;
+            size.y = baseSize.y;
+            size.bytesize = baseSize.bytesize;
+        }
+
+        private static void SetStageData(string[] data, int x, string character)
         {
             for (int i = 0; i < data.Length; i++)
             {
@@ -135,6 +142,50 @@ namespace MasaoPlus
                 }
                 data[i] = stringBuilder.ToString();
             }
+        }
+
+        public static ChipDataClass SetAllStageData(Project project, string projPath, Project PrevProject = null)
+        {
+            Project baseProject = PrevProject ?? project;
+            if (baseProject.Runtime.Definitions.LayerSize.bytesize != 0)
+            {
+                if (baseProject.Runtime.Definitions.LayerSize.x < Global.state.MinimumStageSize.Width) baseProject.Runtime.Definitions.LayerSize.x = Global.state.DefaultStageSize.Width;
+                if (baseProject.Runtime.Definitions.LayerSize.y < Global.state.MinimumStageSize.Height) baseProject.Runtime.Definitions.LayerSize.y = Global.state.DefaultStageSize.Height;
+                SetStageSize(ref baseProject.Runtime.Definitions.LayerSize2, baseProject.Runtime.Definitions.LayerSize);
+                SetStageSize(ref baseProject.Runtime.Definitions.LayerSize3, baseProject.Runtime.Definitions.LayerSize);
+                SetStageSize(ref baseProject.Runtime.Definitions.LayerSize4, baseProject.Runtime.Definitions.LayerSize);
+                project.LayerData = new string[baseProject.Runtime.Definitions.LayerSize.y];
+                project.LayerData2 = new string[baseProject.Runtime.Definitions.LayerSize2.y];
+                project.LayerData3 = new string[baseProject.Runtime.Definitions.LayerSize3.y];
+                project.LayerData4 = new string[baseProject.Runtime.Definitions.LayerSize4.y];
+            }
+            if (baseProject.Runtime.Definitions.StageSize.x < Global.state.MinimumStageSize.Width) baseProject.Runtime.Definitions.StageSize.x = Global.state.DefaultStageSize.Width;
+            if (baseProject.Runtime.Definitions.StageSize.y < Global.state.MinimumStageSize.Height) baseProject.Runtime.Definitions.StageSize.y = Global.state.DefaultStageSize.Height;
+            SetStageSize(ref baseProject.Runtime.Definitions.StageSize2, baseProject.Runtime.Definitions.StageSize);
+            SetStageSize(ref baseProject.Runtime.Definitions.StageSize3, baseProject.Runtime.Definitions.StageSize);
+            SetStageSize(ref baseProject.Runtime.Definitions.StageSize4, baseProject.Runtime.Definitions.StageSize);
+            project.StageData = new string[baseProject.Runtime.Definitions.StageSize.y];
+            project.StageData2 = new string[baseProject.Runtime.Definitions.StageSize2.y];
+            project.StageData3 = new string[baseProject.Runtime.Definitions.StageSize3.y];
+            project.StageData4 = new string[baseProject.Runtime.Definitions.StageSize4.y];
+            project.MapData = new string[baseProject.Runtime.Definitions.MapSize.y];
+            ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(Path.GetDirectoryName(projPath), project.Runtime.Definitions.ChipDefinition));
+            string character = chipDataClass.Mapchip[0].character;
+            SetStageData(project.StageData, baseProject.Runtime.Definitions.StageSize.x, character);
+            SetStageData(project.StageData2, baseProject.Runtime.Definitions.StageSize2.x, character);
+            SetStageData(project.StageData3, baseProject.Runtime.Definitions.StageSize3.x, character);
+            SetStageData(project.StageData4, baseProject.Runtime.Definitions.StageSize4.x, character);
+            character = chipDataClass.WorldChip[0].character;
+            SetStageData(project.MapData, baseProject.Runtime.Definitions.MapSize.x, character);
+            if (baseProject.Runtime.Definitions.LayerSize.bytesize != 0)
+            {
+                character = chipDataClass.Layerchip[0].character;
+                SetStageData(project.LayerData, baseProject.Runtime.Definitions.LayerSize.x, character);
+                SetStageData(project.LayerData2, baseProject.Runtime.Definitions.LayerSize2.x, character);
+                SetStageData(project.LayerData3, baseProject.Runtime.Definitions.LayerSize3.x, character);
+                SetStageData(project.LayerData4, baseProject.Runtime.Definitions.LayerSize4.x, character);
+            }
+            return chipDataClass;
         }
 
         public string Name = "";

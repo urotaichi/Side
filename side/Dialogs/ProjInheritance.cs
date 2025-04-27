@@ -58,54 +58,7 @@ namespace MasaoPlus.Dialogs
                 Config = PrevProject.Config,
                 CustomPartsDefinition = PrevProject.CustomPartsDefinition
             };
-            if (PrevProject.Runtime.Definitions.LayerSize.bytesize != 0)
-            {
-                void setLayerSize(ref Runtime.DefinedData.StageSizeData size)
-                {
-                    size.x = 180;
-                    size.y = 30;
-                    size.bytesize = PrevProject.Runtime.Definitions.LayerSize.bytesize;
-                }
-                setLayerSize(ref PrevProject.Runtime.Definitions.LayerSize);
-                setLayerSize(ref PrevProject.Runtime.Definitions.LayerSize2);
-                setLayerSize(ref PrevProject.Runtime.Definitions.LayerSize3);
-                setLayerSize(ref PrevProject.Runtime.Definitions.LayerSize4);
-                project.LayerData = new string[PrevProject.Runtime.Definitions.LayerSize.y];
-                project.LayerData2 = new string[PrevProject.Runtime.Definitions.LayerSize2.y];
-                project.LayerData3 = new string[PrevProject.Runtime.Definitions.LayerSize3.y];
-                project.LayerData4 = new string[PrevProject.Runtime.Definitions.LayerSize4.y];
-            }
-            void setStageSize(ref Runtime.DefinedData.StageSizeData size)
-            {
-                size.x = 180;
-                size.y = 30;
-                size.bytesize = PrevProject.Runtime.Definitions.StageSize.bytesize;
-            }
-            setStageSize(ref PrevProject.Runtime.Definitions.StageSize);
-            setStageSize(ref PrevProject.Runtime.Definitions.StageSize2);
-            setStageSize(ref PrevProject.Runtime.Definitions.StageSize3);
-            setStageSize(ref PrevProject.Runtime.Definitions.StageSize4);
-            project.StageData = new string[PrevProject.Runtime.Definitions.StageSize.y];
-            project.StageData2 = new string[PrevProject.Runtime.Definitions.StageSize2.y];
-            project.StageData3 = new string[PrevProject.Runtime.Definitions.StageSize3.y];
-            project.StageData4 = new string[PrevProject.Runtime.Definitions.StageSize4.y];
-            project.MapData = new string[PrevProject.Runtime.Definitions.MapSize.y];
-            ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(Path.GetDirectoryName(PrevProjPath), PrevProject.Runtime.Definitions.ChipDefinition));
-            string character = chipDataClass.Mapchip[0].character;
-            Project.setStageData(project.StageData, PrevProject.Runtime.Definitions.StageSize.x, character);
-            Project.setStageData(project.StageData2, PrevProject.Runtime.Definitions.StageSize2.x, character);
-            Project.setStageData(project.StageData3, PrevProject.Runtime.Definitions.StageSize3.x, character);
-            Project.setStageData(project.StageData4, PrevProject.Runtime.Definitions.StageSize4.x, character);
-            character = chipDataClass.WorldChip[0].character;
-            Project.setStageData(project.MapData, PrevProject.Runtime.Definitions.MapSize.x, character);
-            if (PrevProject.Runtime.Definitions.LayerSize.bytesize != 0)
-            {
-                character = chipDataClass.Layerchip[0].character;
-                Project.setStageData(project.LayerData, PrevProject.Runtime.Definitions.LayerSize.x, character);
-                Project.setStageData(project.LayerData2, PrevProject.Runtime.Definitions.LayerSize2.x, character);
-                Project.setStageData(project.LayerData3, PrevProject.Runtime.Definitions.LayerSize3.x, character);
-                Project.setStageData(project.LayerData4, PrevProject.Runtime.Definitions.LayerSize4.x, character);
-            }
+            Project.SetAllStageData(project, PrevProjPath, PrevProject);
             project.SaveXML(text);
             NewProjectName = text;
             DialogResult = DialogResult.OK;

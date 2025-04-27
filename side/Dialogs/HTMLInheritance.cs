@@ -154,54 +154,7 @@ namespace MasaoPlus.Dialogs
                     Runtime = runtimedatas[RuntimeSet.SelectedIndex],
                     Config = ConfigurationOwner.LoadXML(Path.Combine(text2, runtimedatas[RuntimeSet.SelectedIndex].Definitions.Configurations))
                 };
-                if (project.Runtime.Definitions.LayerSize.bytesize != 0)
-                {
-                    void setLayerSize(ref Runtime.DefinedData.StageSizeData size)
-                    {
-                        size.x = 180;
-                        size.y = 30;
-                        size.bytesize = project.Runtime.Definitions.LayerSize.bytesize;
-                    }
-                    setLayerSize(ref project.Runtime.Definitions.LayerSize);
-                    setLayerSize(ref project.Runtime.Definitions.LayerSize2);
-                    setLayerSize(ref project.Runtime.Definitions.LayerSize3);
-                    setLayerSize(ref project.Runtime.Definitions.LayerSize4);
-                    project.LayerData = new string[project.Runtime.Definitions.LayerSize.y];
-                    project.LayerData2 = new string[project.Runtime.Definitions.LayerSize2.y];
-                    project.LayerData3 = new string[project.Runtime.Definitions.LayerSize3.y];
-                    project.LayerData4 = new string[project.Runtime.Definitions.LayerSize4.y];
-                }
-                void setStageSize(ref Runtime.DefinedData.StageSizeData size)
-                {
-                    size.x = 180;
-                    size.y = 30;
-                    size.bytesize = project.Runtime.Definitions.StageSize.bytesize;
-                }
-                setStageSize(ref project.Runtime.Definitions.StageSize);
-                setStageSize(ref project.Runtime.Definitions.StageSize2);
-                setStageSize(ref project.Runtime.Definitions.StageSize3);
-                setStageSize(ref project.Runtime.Definitions.StageSize4);
-                project.StageData = new string[project.Runtime.Definitions.StageSize.y];
-                project.StageData2 = new string[project.Runtime.Definitions.StageSize2.y];
-                project.StageData3 = new string[project.Runtime.Definitions.StageSize3.y];
-                project.StageData4 = new string[project.Runtime.Definitions.StageSize4.y];
-                project.MapData = new string[project.Runtime.Definitions.MapSize.y];
-                ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(text2, project.Runtime.Definitions.ChipDefinition));
-                string character = chipDataClass.Mapchip[0].character;
-                Project.setStageData(project.StageData, project.Runtime.Definitions.StageSize.x, character);
-                Project.setStageData(project.StageData2, project.Runtime.Definitions.StageSize2.x, character);
-                Project.setStageData(project.StageData3, project.Runtime.Definitions.StageSize3.x, character);
-                Project.setStageData(project.StageData4, project.Runtime.Definitions.StageSize4.x, character);
-                character = chipDataClass.WorldChip[0].character;
-                Project.setStageData(project.MapData, project.Runtime.Definitions.MapSize.x, character);
-                if (project.Runtime.Definitions.LayerSize.bytesize != 0)
-                {
-                    character = chipDataClass.Layerchip[0].character;
-                    Project.setStageData(project.LayerData, project.Runtime.Definitions.LayerSize.x, character);
-                    Project.setStageData(project.LayerData2, project.Runtime.Definitions.LayerSize2.x, character);
-                    Project.setStageData(project.LayerData3, project.Runtime.Definitions.LayerSize3.x, character);
-                    Project.setStageData(project.LayerData4, project.Runtime.Definitions.LayerSize4.x, character);
-                }
+                ChipDataClass chipDataClass = Project.SetAllStageData(project, text2);
                 StatusText.Text = "HTMLデータ取得準備中...";
                 StatusText.Refresh();
                 string input = "";
