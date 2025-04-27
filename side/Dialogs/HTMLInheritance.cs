@@ -508,7 +508,7 @@ namespace MasaoPlus.Dialogs
                         project.Use3rdMapData = true;
 
                         // ステージデータの初期化処理
-                        void InitializeEmptyStageData(string[] data, int width, ChipsData[] chips)
+                        static void InitializeEmptyStageData(string[] data, int width, ChipsData[] chips)
                         {
                             var defaultCode = ChipDataClass.CharToCode(chips[0].character);
                             for (int y = 0; y < data.Length; y++)
@@ -547,7 +547,7 @@ namespace MasaoPlus.Dialogs
                                     {
                                         sizeY = Global.state.MaximumStageSize.Height;
                                     }
-                                    MessageBox.Show($"マップサイズがSideで扱える最大値(500×500)を超えています。\nサイズを500×500に制限します。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    MessageBox.Show($"マップサイズがSideで扱える最大値({Global.state.MaximumStageSize.Width}×{Global.state.MaximumStageSize.Height})を超えています。\nサイズを{Global.state.MaximumStageSize.Width}×{Global.state.MaximumStageSize.Height}に制限します。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 }
 
                                 // ステージ番号に応じてサイズとデータ配列を更新
