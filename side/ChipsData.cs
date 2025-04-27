@@ -7,7 +7,7 @@ namespace MasaoPlus
     [Serializable]
     public struct ChipsData
     {
-        public ChipData GetCSChip()
+        public readonly ChipData GetCSChip()
         {
             if (Chips == null)
             {

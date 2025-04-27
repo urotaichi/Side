@@ -8,7 +8,7 @@ namespace MasaoPlus
     {
         public Color c
         {
-            get
+            readonly get
             {
                 return Color.FromArgb(r, g, b);
             }
@@ -20,7 +20,7 @@ namespace MasaoPlus
             }
         }
 
-        public override string ToString()
+        public override readonly string ToString()
         {
             return $"{r},{g},{b}";
         }
