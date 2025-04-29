@@ -612,7 +612,6 @@ namespace MasaoPlus
 
             ChipsData chipsData;
             ChipData c;
-            new List<KeepDrawData>();
             List<KeepDrawData> list = [];
             int num = 0;
             g.PixelOffsetMode = PixelOffsetMode.Half;
@@ -1824,7 +1823,7 @@ namespace MasaoPlus
             return result;
         }
 
-        private int scanLeft(Point pt, List<char[]> newmap, ChipsData old)
+        private static int scanLeft(Point pt, List<char[]> newmap, ChipsData old)
         {
             int result = pt.X;
 
@@ -1846,7 +1845,7 @@ namespace MasaoPlus
             return result;
         }
 
-        private int scanRight(Point pt, List<char[]> newmap, ChipsData old)
+        private static int scanRight(Point pt, List<char[]> newmap, ChipsData old)
         {
             int result = pt.X;
 
@@ -1880,7 +1879,7 @@ namespace MasaoPlus
             }
         }
 
-        private void searchLine(int left, int right, int y, List<string[]> newmap, ChipsData old, Queue<BufStr> queue)
+        private static void searchLine(int left, int right, int y, List<string[]> newmap, ChipsData old, Queue<BufStr> queue)
         {
             int l = -1;
             for (int x = left; x <= right; x++)
