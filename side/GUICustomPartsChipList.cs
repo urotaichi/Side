@@ -82,41 +82,17 @@ namespace MasaoPlus
                     e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                     GraphicsState transState = e.Graphics.Save();
                     e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
-                    switch (cschip.name)
+                    if (ChipRenderer.IsAthleticChip(cschip.name))
                     {
-                        case "一方通行":
-                        case "左右へ押せるドッスンスンのゴール":
-                        case "シーソー":
-                        case "ブランコ":
-                        case "スウィングバー":
-                        case "動くＴ字型":
-                        case "ロープ":
-                        case "長いロープ":
-                        case "ゆれる棒":
-                        case "人間大砲":
-                        case "曲線による上り坂":
-                        case "曲線による下り坂":
-                        case "乗れる円":
-                        case "跳ねる円":
-                        case "円":
-                        case "半円":
-                        case "ファイヤーバー":
-                        case "スウィングファイヤーバー":
-                        case "人口太陽":
-                        case "ファイヤーリング":
-                        case "ファイヤーウォール":
-                        case "スイッチ式ファイヤーバー":
-                        case "スイッチ式動くＴ字型":
-                        case "スイッチ式速く動くＴ字型":
-                            AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, chipsize);
-                            break;
-                        default:
-                            e.Graphics.TranslateTransform(LogicalToDeviceUnits(chipsize.Width) / 2, LogicalToDeviceUnits(chipsize.Height) / 2);
-                            var rect = new Rectangle(-LogicalToDeviceUnits(chipsize.Width) / 2, -LogicalToDeviceUnits(chipsize.Height) / 2, rectangle.Width, rectangle.Height);
-                            if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
+                        AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, chipsize);
+                    }
+                    else
+                    {
+                        e.Graphics.TranslateTransform(LogicalToDeviceUnits(chipsize.Width) / 2, LogicalToDeviceUnits(chipsize.Height) / 2);
+                        var rect = new Rectangle(-LogicalToDeviceUnits(chipsize.Width) / 2, -LogicalToDeviceUnits(chipsize.Height) / 2, rectangle.Width, rectangle.Height);
+                        if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
-                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
-                            break;
+                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
                     }
                     e.Graphics.Restore(transState);
                     if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)

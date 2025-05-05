@@ -203,60 +203,22 @@ namespace MasaoPlus
                         {
                             if(Global.MainWnd.MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, rectangle.Width, rectangle.Height);
                         }
+                        else if (ChipRenderer.IsAthleticChip(cschip.name))
+                        {
+                            AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, chipsize);
+                        }
                         else
                         {
-                            switch (cschip.name)
-                            {
-                                case "一方通行":
-                                case "左右へ押せるドッスンスンのゴール":
-                                case "シーソー":
-                                case "ブランコ":
-                                case "スウィングバー":
-                                case "動くＴ字型":
-                                case "ロープ":
-                                case "長いロープ":
-                                case "ゆれる棒":
-                                case "人間大砲":
-                                case "曲線による上り坂":
-                                case "曲線による下り坂":
-                                case "乗れる円":
-                                case "跳ねる円":
-                                case "円":
-                                case "半円":
-                                case "ファイヤーバー":
-                                case "スウィングファイヤーバー":
-                                case "人口太陽":
-                                case "ファイヤーリング":
-                                case "ファイヤーウォール":
-                                case "スイッチ式ファイヤーバー":
-                                case "スイッチ式動くＴ字型":
-                                case "スイッチ式速く動くＴ字型":
-                                    AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, chipsize);
-                                    break;
-                                default:
-                                    e.Graphics.TranslateTransform(LogicalToDeviceUnits(chipsize.Width) / 2, LogicalToDeviceUnits(chipsize.Height) / 2);
-                                    var rect = new Rectangle(-LogicalToDeviceUnits(chipsize.Width) / 2, -LogicalToDeviceUnits(chipsize.Height) / 2, rectangle.Width, rectangle.Height);
-                                    if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
+                            e.Graphics.TranslateTransform(LogicalToDeviceUnits(chipsize.Width) / 2, LogicalToDeviceUnits(chipsize.Height) / 2);
+                            var rect = new Rectangle(-LogicalToDeviceUnits(chipsize.Width) / 2, -LogicalToDeviceUnits(chipsize.Height) / 2, rectangle.Width, rectangle.Height);
+                            if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
-                                    // 水の半透明処理
-                                    if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && chipData.character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string water_clear_level_value))
-                                    {
-                                        float water_clear_level = float.Parse(water_clear_level_value);
-                                        var colorMatrix = new ColorMatrix
-                                        {
-                                            Matrix00 = 1f,
-                                            Matrix11 = 1f,
-                                            Matrix22 = 1f,
-                                            Matrix33 = water_clear_level / 255f,
-                                            Matrix44 = 1f
-                                        };
-                                        using var imageAttributes = new ImageAttributes();
-                                        imageAttributes.SetColorMatrix(colorMatrix);
-                                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
-                                    }
-                                    else e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
-                                    break;
+                            // 水の半透明処理
+                            if (ChipRenderer.ShouldApplyWaterTransparency(out float waterLevel) && chipData.character == "4")
+                            {
+                                ChipRenderer.ApplyWaterTransparency(e.Graphics, Global.MainWnd.MainDesigner.DrawChipOrig, rect, cschip.pattern, chipsize, waterLevel);
                             }
+                            else e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
                         }
                         e.Graphics.Restore(transState);
                     }
@@ -272,37 +234,7 @@ namespace MasaoPlus
                     if (chipData.character == "Z" && oriboss_view &&
                         Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki) && Global.config.draw.ExtendDraw)
                     {
-                        Point p = int.Parse(oriboss_ugoki) switch
-                        {
-                            1 => new Point(352, 256),
-                            2 => new Point(96, 0),
-                            3 => new Point(64, 0),
-                            4 => new Point(256, 0),
-                            5 => new Point(288, 0),
-                            6 => new Point(288, 448),
-                            7 => new Point(320, 448),
-                            8 => new Point(32, 32),
-                            9 => new Point(96, 0),
-                            10 => new Point(0, 32),
-                            11 => new Point(64, 0),
-                            12 => new Point(96, 32),
-                            13 => new Point(64, 0),
-                            14 => new Point(352, 448),
-                            15 => new Point(416, 448),
-                            16 => new Point(288, 448),
-                            17 => new Point(320, 448),
-                            18 => new Point(96, 0),
-                            19 => new Point(96, 0),
-                            20 => new Point(256, 0),
-                            21 => new Point(256, 0),
-                            22 => new Point(352, 448),
-                            23 => new Point(384, 448),
-                            24 => new Point(32, 32),
-                            25 => new Point(32, 32),
-                            26 => new Point(32, 128),
-                            27 => new Point(32, 128),
-                            _ => throw new ArgumentException(),
-                        };
+                        Point p = ChipRenderer.GetOribossExtensionPoint(int.Parse(oriboss_ugoki));
                         // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
                         e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                         e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(p, chipsize), GraphicsUnit.Pixel);

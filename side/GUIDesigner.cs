@@ -356,37 +356,7 @@ namespace MasaoPlus
             if (chara == "Z" && oriboss_view &&
                 Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string value) && Global.config.draw.ExtendDraw)
             {
-                Point point = int.Parse(value) switch
-                {
-                    1 => new Point(352, 256),
-                    2 => new Point(96, 0),
-                    3 => new Point(64, 0),
-                    4 => new Point(256, 0),
-                    5 => new Point(288, 0),
-                    6 => new Point(288, 448),
-                    7 => new Point(320, 448),
-                    8 => new Point(32, 32),
-                    9 => new Point(96, 0),
-                    10 => new Point(0, 32),
-                    11 => new Point(64, 0),
-                    12 => new Point(96, 32),
-                    13 => new Point(64, 0),
-                    14 => new Point(352, 448),
-                    15 => new Point(416, 448),
-                    16 => new Point(288, 448),
-                    17 => new Point(320, 448),
-                    18 => new Point(96, 0),
-                    19 => new Point(96, 0),
-                    20 => new Point(256, 0),
-                    21 => new Point(256, 0),
-                    22 => new Point(352, 448),
-                    23 => new Point(384, 448),
-                    24 => new Point(32, 32),
-                    25 => new Point(32, 32),
-                    26 => new Point(32, 128),
-                    27 => new Point(32, 128),
-                    _ => throw new ArgumentException(),
-                };
+                Point point = ChipRenderer.GetOribossExtensionPoint(int.Parse(value));
                 g.DrawImage(DrawExOrig, new Rectangle(new Point(LogicalToDeviceUnits(p.X * chipsize.Width), LogicalToDeviceUnits(p.Y * chipsize.Height)), rectangle.Size), new Rectangle(point, chipsize), GraphicsUnit.Pixel);
             }
             else if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
@@ -408,93 +378,55 @@ namespace MasaoPlus
                 transState = g.Save();
                 TranslateTransform(g, p.X * chipsize.Width, p.Y * chipsize.Height);
                 var rect = new Rectangle(new Point(-LogicalToDeviceUnits(chipsize.Width / 2), -LogicalToDeviceUnits(chipsize.Height / 2)), rectangle.Size);
-                switch (cschip.name)
+                if (ChipRenderer.IsAthleticChip(cschip.name))
                 {
-                    case "一方通行":
-                    case "左右へ押せるドッスンスンのゴール":
-                    case "シーソー":
-                    case "ブランコ":
-                    case "スウィングバー":
-                    case "動くＴ字型":
-                    case "ロープ":
-                    case "長いロープ":
-                    case "ゆれる棒":
-                    case "人間大砲":
-                    case "曲線による上り坂":
-                    case "曲線による下り坂":
-                    case "乗れる円":
-                    case "跳ねる円":
-                    case "円":
-                    case "半円":
-                    case "ファイヤーバー":
-                    case "ファイヤーバー2本":
-                    case "ファイヤーバー3本　左回り":
-                    case "ファイヤーバー3本　右回り":
-                    case "スウィングファイヤーバー":
-                    case "人口太陽":
-                    case "ファイヤーリング":
-                    case "ファイヤーウォール":
-                    case "スイッチ式ファイヤーバー":
-                    case "スイッチ式動くＴ字型":
-                    case "スイッチ式速く動くＴ字型":
-                        AthleticView.list[cschip.name].Max(this, cschip, g, chipsize, this, p.Y);
-                        break;
-                    default:
-                        TranslateTransform(g, chipsize.Width / 2, chipsize.Height / 2);
-                        if (chara == Global.cpd.Mapchip[1].character)
+                    AthleticView.list[cschip.name].Max(this, cschip, g, chipsize, this, p.Y);
+                }
+                else
+                {
+                    TranslateTransform(g, chipsize.Width / 2, chipsize.Height / 2);
+                    if (chara == Global.cpd.Mapchip[1].character)
+                    {
+                        g.ScaleTransform(-1, 1); // 基本主人公は逆向き
+                        if (Global.state.MapEditMode && x > Global.cpd.runtime.Definitions.MapSize.x / 2 ||
+                            Global.state.ChipRegister.ContainsKey("view_move_type") && int.Parse(Global.state.ChipRegister["view_move_type"]) == 2)
                         {
-                            g.ScaleTransform(-1, 1); // 基本主人公は逆向き
-                            if (Global.state.MapEditMode && x > Global.cpd.runtime.Definitions.MapSize.x / 2 ||
-                                Global.state.ChipRegister.ContainsKey("view_move_type") && int.Parse(Global.state.ChipRegister["view_move_type"]) == 2)
-                            {
-                                g.ScaleTransform(-1, 1);// 特殊条件下では元の向き
-                            }
+                            g.ScaleTransform(-1, 1);// 特殊条件下では元の向き
                         }
-                        g.RotateTransform(cschip.rotate);
-                        if (cschip.repeat != default)
+                    }
+                    g.RotateTransform(cschip.rotate);
+                    if (cschip.repeat != default)
+                    {
+                        for (int j = 0; j < cschip.repeat; j++)
                         {
-                            for (int j = 0; j < cschip.repeat; j++)
-                            {
-                                g.DrawImage(DrawChipOrig,
-                                    new Rectangle(new Point(LogicalToDeviceUnits(-chipsize.Width / 2 + j * chipsize.Width * Math.Sign(cschip.rotate)), -LogicalToDeviceUnits(chipsize.Height / 2)), rectangle.Size),
-                                    new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-                            }
+                            g.DrawImage(DrawChipOrig,
+                                new Rectangle(new Point(LogicalToDeviceUnits(-chipsize.Width / 2 + j * chipsize.Width * Math.Sign(cschip.rotate)), -LogicalToDeviceUnits(chipsize.Height / 2)), rectangle.Size),
+                                new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                         }
-                        else if (cschip.repeat_x != default)
+                    }
+                    else if (cschip.repeat_x != default)
+                    {
+                        for (int j = 0; j < cschip.repeat_x; j++)
                         {
-                            for (int j = 0; j < cschip.repeat_x; j++)
-                            {
-                                g.DrawImage(DrawChipOrig,
-                                    new Rectangle(new Point(LogicalToDeviceUnits(-chipsize.Width / 2 + j * chipsize.Width), -LogicalToDeviceUnits(chipsize.Height / 2)), rectangle.Size),
-                                    new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-                            }
+                            g.DrawImage(DrawChipOrig,
+                                new Rectangle(new Point(LogicalToDeviceUnits(-chipsize.Width / 2 + j * chipsize.Width), -LogicalToDeviceUnits(chipsize.Height / 2)), rectangle.Size),
+                                new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                         }
-                        else if (cschip.repeat_y != default)
+                    }
+                    else if (cschip.repeat_y != default)
+                    {
+                        for (int j = 0; j < cschip.repeat_y; j++)
                         {
-                            for (int j = 0; j < cschip.repeat_y; j++)
-                            {
-                                g.DrawImage(DrawChipOrig,
-                                    new Rectangle(new Point(-LogicalToDeviceUnits(chipsize.Width / 2), LogicalToDeviceUnits(-chipsize.Height / 2 + j * chipsize.Height)), rectangle.Size),
-                                    new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-                            }
+                            g.DrawImage(DrawChipOrig,
+                                new Rectangle(new Point(-LogicalToDeviceUnits(chipsize.Width / 2), LogicalToDeviceUnits(-chipsize.Height / 2 + j * chipsize.Height)), rectangle.Size),
+                                new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                         }
-                        else if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && chara == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
-                        {// 水の半透明処理
-                            float water_clear_level = float.Parse(value);
-                            var colorMatrix = new ColorMatrix
-                            {
-                                Matrix00 = 1f,
-                                Matrix11 = 1f,
-                                Matrix22 = 1f,
-                                Matrix33 = water_clear_level / 255f,
-                                Matrix44 = 1f
-                            };
-                            using var imageAttributes = new ImageAttributes();
-                            imageAttributes.SetColorMatrix(colorMatrix);
-                            g.DrawImage(DrawChipOrig, rect, cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
-                        }
-                        else g.DrawImage(DrawChipOrig, rect, new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-                        break;
+                    }
+                    else if (ChipRenderer.ShouldApplyWaterTransparency(out float water_clear_level) && chara == "4")
+                    {// 水の半透明処理
+                        ChipRenderer.ApplyWaterTransparency(g, DrawChipOrig, rect, cschip.pattern, chipsize, water_clear_level);
+                    }
+                    else g.DrawImage(DrawChipOrig, rect, new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                 }
                 g.Restore(transState);
             }
