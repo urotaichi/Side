@@ -377,13 +377,13 @@ namespace MasaoPlus
             { // 標準パターン画像
                 transState = g.Save();
                 TranslateTransform(g, p.X * chipsize.Width, p.Y * chipsize.Height);
-                var rect = new Rectangle(new Point(-LogicalToDeviceUnits(chipsize.Width / 2), -LogicalToDeviceUnits(chipsize.Height / 2)), rectangle.Size);
                 if (ChipRenderer.IsAthleticChip(cschip.name))
                 {
                     AthleticView.list[cschip.name].Max(this, cschip, g, chipsize, this, p.Y);
                 }
                 else
                 {
+                    var rect = new Rectangle(new Point(-LogicalToDeviceUnits(chipsize.Width / 2), -LogicalToDeviceUnits(chipsize.Height / 2)), rectangle.Size);
                     TranslateTransform(g, chipsize.Width / 2, chipsize.Height / 2);
                     if (chara == Global.cpd.Mapchip[1].character)
                     {
