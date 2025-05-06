@@ -114,29 +114,7 @@ namespace MasaoPlus
                     if (Global.state.CurrentCustomPartsChip.code == chipData.code)
                     {
                         if (i != selectedIndex) selectedIndex = i;
-                        switch (Global.config.draw.SelDrawMode)
-                        {
-                            case Config.Draw.SelectionDrawMode.SideOriginal:
-                                using (Brush brush2 = new SolidBrush(Color.FromArgb(100, DrawEx.GetForegroundColor(Global.state.Background))))
-                                {
-                                    ControlPaint.DrawFocusRectangle(e.Graphics, rectangle);
-                                    e.Graphics.FillRectangle(brush2, rectangle);
-                                    break;
-                                }
-                            case Config.Draw.SelectionDrawMode.mtpp:
-                                ControlPaint.DrawFocusRectangle(e.Graphics, rectangle);
-                                ControlPaint.DrawSelectionFrame(e.Graphics, true, rectangle, new Rectangle(0, 0, 0, 0), Color.Blue);
-                                break;
-                            case Config.Draw.SelectionDrawMode.MTool:
-                                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1));
-                                e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 1, rectangle.Y + 1, rectangle.Width - 3, rectangle.Height - 3));
-                                e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 2, rectangle.Y + 2, rectangle.Width - 5, rectangle.Height - 5));
-                                e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 3, rectangle.Y + 3, rectangle.Width - 7, rectangle.Height - 7));
-                                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(rectangle.X + 4, rectangle.Y + 4, rectangle.Width - 9, rectangle.Height - 9));
-                                break;
-                            default:
-                                break;
-                        }
+                        DrawSelectionFrame(e.Graphics, rectangle);
                     }
                 }
             }
