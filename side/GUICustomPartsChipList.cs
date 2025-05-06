@@ -70,9 +70,7 @@ namespace MasaoPlus
                     ChipData cschip = chipData.GetCSChip();
                     if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd) // チップ裏に拡張画像を描画
                     {
-                        // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
-                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                        ChipRenderer.DrawExtendChip(e.Graphics, rectangle, cschip.xdraw, chipsize);
                     }
                     if (DeviceDpi / 96 >= 2 && (cschip.size == default || cschip.size.Width / cschip.size.Height == 1))
                     {
@@ -82,48 +80,22 @@ namespace MasaoPlus
                     e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                     GraphicsState transState = e.Graphics.Save();
                     e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
-                    switch (cschip.name)
+                    if (ChipRenderer.IsAthleticChip(cschip.name))
                     {
-                        case "一方通行":
-                        case "左右へ押せるドッスンスンのゴール":
-                        case "シーソー":
-                        case "ブランコ":
-                        case "スウィングバー":
-                        case "動くＴ字型":
-                        case "ロープ":
-                        case "長いロープ":
-                        case "ゆれる棒":
-                        case "人間大砲":
-                        case "曲線による上り坂":
-                        case "曲線による下り坂":
-                        case "乗れる円":
-                        case "跳ねる円":
-                        case "円":
-                        case "半円":
-                        case "ファイヤーバー":
-                        case "スウィングファイヤーバー":
-                        case "人口太陽":
-                        case "ファイヤーリング":
-                        case "ファイヤーウォール":
-                        case "スイッチ式ファイヤーバー":
-                        case "スイッチ式動くＴ字型":
-                        case "スイッチ式速く動くＴ字型":
-                            AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, chipsize);
-                            break;
-                        default:
-                            e.Graphics.TranslateTransform(LogicalToDeviceUnits(chipsize.Width) / 2, LogicalToDeviceUnits(chipsize.Height) / 2);
-                            var rect = new Rectangle(-LogicalToDeviceUnits(chipsize.Width) / 2, -LogicalToDeviceUnits(chipsize.Height) / 2, rectangle.Width, rectangle.Height);
-                            if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
+                        AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, chipsize);
+                    }
+                    else
+                    {
+                        e.Graphics.TranslateTransform(LogicalToDeviceUnits(chipsize.Width) / 2, LogicalToDeviceUnits(chipsize.Height) / 2);
+                        var rect = new Rectangle(-LogicalToDeviceUnits(chipsize.Width) / 2, -LogicalToDeviceUnits(chipsize.Height) / 2, rectangle.Width, rectangle.Height);
+                        if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
-                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
-                            break;
+                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
                     }
                     e.Graphics.Restore(transState);
                     if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
                     {
-                        // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
-                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                        ChipRenderer.DrawExtendChip(e.Graphics, rectangle, cschip.xdraw, chipsize);
                     }
                     e.Graphics.PixelOffsetMode = default;
                     if (chipData.idColor != null)
@@ -138,29 +110,7 @@ namespace MasaoPlus
                     if (Global.state.CurrentCustomPartsChip.code == chipData.code)
                     {
                         if (i != selectedIndex) selectedIndex = i;
-                        switch (Global.config.draw.SelDrawMode)
-                        {
-                            case Config.Draw.SelectionDrawMode.SideOriginal:
-                                using (Brush brush2 = new SolidBrush(Color.FromArgb(100, DrawEx.GetForegroundColor(Global.state.Background))))
-                                {
-                                    ControlPaint.DrawFocusRectangle(e.Graphics, rectangle);
-                                    e.Graphics.FillRectangle(brush2, rectangle);
-                                    break;
-                                }
-                            case Config.Draw.SelectionDrawMode.mtpp:
-                                ControlPaint.DrawFocusRectangle(e.Graphics, rectangle);
-                                ControlPaint.DrawSelectionFrame(e.Graphics, true, rectangle, new Rectangle(0, 0, 0, 0), Color.Blue);
-                                break;
-                            case Config.Draw.SelectionDrawMode.MTool:
-                                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1));
-                                e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 1, rectangle.Y + 1, rectangle.Width - 3, rectangle.Height - 3));
-                                e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 2, rectangle.Y + 2, rectangle.Width - 5, rectangle.Height - 5));
-                                e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 3, rectangle.Y + 3, rectangle.Width - 7, rectangle.Height - 7));
-                                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(rectangle.X + 4, rectangle.Y + 4, rectangle.Width - 9, rectangle.Height - 9));
-                                break;
-                            default:
-                                break;
-                        }
+                        DrawSelectionFrame(e.Graphics, rectangle);
                     }
                 }
             }

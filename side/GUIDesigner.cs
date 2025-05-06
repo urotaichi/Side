@@ -326,7 +326,7 @@ namespace MasaoPlus
             Rectangle rectangle = new(new Point(LogicalToDeviceUnits(p.X * chipsize.Width - cschip.center.X), LogicalToDeviceUnits(p.Y * chipsize.Height - cschip.center.Y)), LogicalToDeviceUnits(chipsize));
             if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd)
             { // 拡張画像　背面
-                g.DrawImage(DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                ChipRenderer.DrawExtendChip(g, rectangle, cschip.xdraw, chipsize);
             }
             if (foreground)
             { // 標準パターン画像
@@ -356,42 +356,12 @@ namespace MasaoPlus
             if (chara == "Z" && oriboss_view &&
                 Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string value) && Global.config.draw.ExtendDraw)
             {
-                Point point = int.Parse(value) switch
-                {
-                    1 => new Point(352, 256),
-                    2 => new Point(96, 0),
-                    3 => new Point(64, 0),
-                    4 => new Point(256, 0),
-                    5 => new Point(288, 0),
-                    6 => new Point(288, 448),
-                    7 => new Point(320, 448),
-                    8 => new Point(32, 32),
-                    9 => new Point(96, 0),
-                    10 => new Point(0, 32),
-                    11 => new Point(64, 0),
-                    12 => new Point(96, 32),
-                    13 => new Point(64, 0),
-                    14 => new Point(352, 448),
-                    15 => new Point(416, 448),
-                    16 => new Point(288, 448),
-                    17 => new Point(320, 448),
-                    18 => new Point(96, 0),
-                    19 => new Point(96, 0),
-                    20 => new Point(256, 0),
-                    21 => new Point(256, 0),
-                    22 => new Point(352, 448),
-                    23 => new Point(384, 448),
-                    24 => new Point(32, 32),
-                    25 => new Point(32, 32),
-                    26 => new Point(32, 128),
-                    27 => new Point(32, 128),
-                    _ => throw new ArgumentException(),
-                };
+                Point point = ChipRenderer.GetOribossExtensionPoint(int.Parse(value));
                 g.DrawImage(DrawExOrig, new Rectangle(new Point(LogicalToDeviceUnits(p.X * chipsize.Width), LogicalToDeviceUnits(p.Y * chipsize.Height)), rectangle.Size), new Rectangle(point, chipsize), GraphicsUnit.Pixel);
             }
             else if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
             { // 拡張画像　前面
-                g.DrawImage(DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                ChipRenderer.DrawExtendChip(g, rectangle, cschip.xdraw, chipsize);
             }
         }
         private void DrawNormalSizeMap(ChipData cschip, Graphics g, Point p, bool foreground, string chara, int x)
@@ -401,100 +371,62 @@ namespace MasaoPlus
             Rectangle rectangle = new(new Point(LogicalToDeviceUnits(p.X * chipsize.Width), LogicalToDeviceUnits(p.Y * chipsize.Height)), LogicalToDeviceUnits(chipsize));
             if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd)
             { // 拡張画像　背面
-                g.DrawImage(DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                ChipRenderer.DrawExtendChip(g, rectangle, cschip.xdraw, chipsize);
             }
             if (foreground)
             { // 標準パターン画像
                 transState = g.Save();
                 TranslateTransform(g, p.X * chipsize.Width, p.Y * chipsize.Height);
-                var rect = new Rectangle(new Point(-LogicalToDeviceUnits(chipsize.Width / 2), -LogicalToDeviceUnits(chipsize.Height / 2)), rectangle.Size);
-                switch (cschip.name)
+                if (ChipRenderer.IsAthleticChip(cschip.name))
                 {
-                    case "一方通行":
-                    case "左右へ押せるドッスンスンのゴール":
-                    case "シーソー":
-                    case "ブランコ":
-                    case "スウィングバー":
-                    case "動くＴ字型":
-                    case "ロープ":
-                    case "長いロープ":
-                    case "ゆれる棒":
-                    case "人間大砲":
-                    case "曲線による上り坂":
-                    case "曲線による下り坂":
-                    case "乗れる円":
-                    case "跳ねる円":
-                    case "円":
-                    case "半円":
-                    case "ファイヤーバー":
-                    case "ファイヤーバー2本":
-                    case "ファイヤーバー3本　左回り":
-                    case "ファイヤーバー3本　右回り":
-                    case "スウィングファイヤーバー":
-                    case "人口太陽":
-                    case "ファイヤーリング":
-                    case "ファイヤーウォール":
-                    case "スイッチ式ファイヤーバー":
-                    case "スイッチ式動くＴ字型":
-                    case "スイッチ式速く動くＴ字型":
-                        AthleticView.list[cschip.name].Max(this, cschip, g, chipsize, this, p.Y);
-                        break;
-                    default:
-                        TranslateTransform(g, chipsize.Width / 2, chipsize.Height / 2);
-                        if (chara == Global.cpd.Mapchip[1].character)
+                    AthleticView.list[cschip.name].Max(this, cschip, g, chipsize, this, p.Y);
+                }
+                else
+                {
+                    var rect = new Rectangle(new Point(-LogicalToDeviceUnits(chipsize.Width / 2), -LogicalToDeviceUnits(chipsize.Height / 2)), rectangle.Size);
+                    TranslateTransform(g, chipsize.Width / 2, chipsize.Height / 2);
+                    if (chara == Global.cpd.Mapchip[1].character)
+                    {
+                        g.ScaleTransform(-1, 1); // 基本主人公は逆向き
+                        if (Global.state.MapEditMode && x > Global.cpd.runtime.Definitions.MapSize.x / 2 ||
+                            Global.state.ChipRegister.ContainsKey("view_move_type") && int.Parse(Global.state.ChipRegister["view_move_type"]) == 2)
                         {
-                            g.ScaleTransform(-1, 1); // 基本主人公は逆向き
-                            if (Global.state.MapEditMode && x > Global.cpd.runtime.Definitions.MapSize.x / 2 ||
-                                Global.state.ChipRegister.ContainsKey("view_move_type") && int.Parse(Global.state.ChipRegister["view_move_type"]) == 2)
-                            {
-                                g.ScaleTransform(-1, 1);// 特殊条件下では元の向き
-                            }
+                            g.ScaleTransform(-1, 1);// 特殊条件下では元の向き
                         }
-                        g.RotateTransform(cschip.rotate);
-                        if (cschip.repeat != default)
+                    }
+                    g.RotateTransform(cschip.rotate);
+                    if (cschip.repeat != default)
+                    {
+                        for (int j = 0; j < cschip.repeat; j++)
                         {
-                            for (int j = 0; j < cschip.repeat; j++)
-                            {
-                                g.DrawImage(DrawChipOrig,
-                                    new Rectangle(new Point(LogicalToDeviceUnits(-chipsize.Width / 2 + j * chipsize.Width * Math.Sign(cschip.rotate)), -LogicalToDeviceUnits(chipsize.Height / 2)), rectangle.Size),
-                                    new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-                            }
+                            g.DrawImage(DrawChipOrig,
+                                new Rectangle(new Point(LogicalToDeviceUnits(-chipsize.Width / 2 + j * chipsize.Width * Math.Sign(cschip.rotate)), -LogicalToDeviceUnits(chipsize.Height / 2)), rectangle.Size),
+                                new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                         }
-                        else if (cschip.repeat_x != default)
+                    }
+                    else if (cschip.repeat_x != default)
+                    {
+                        for (int j = 0; j < cschip.repeat_x; j++)
                         {
-                            for (int j = 0; j < cschip.repeat_x; j++)
-                            {
-                                g.DrawImage(DrawChipOrig,
-                                    new Rectangle(new Point(LogicalToDeviceUnits(-chipsize.Width / 2 + j * chipsize.Width), -LogicalToDeviceUnits(chipsize.Height / 2)), rectangle.Size),
-                                    new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-                            }
+                            g.DrawImage(DrawChipOrig,
+                                new Rectangle(new Point(LogicalToDeviceUnits(-chipsize.Width / 2 + j * chipsize.Width), -LogicalToDeviceUnits(chipsize.Height / 2)), rectangle.Size),
+                                new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                         }
-                        else if (cschip.repeat_y != default)
+                    }
+                    else if (cschip.repeat_y != default)
+                    {
+                        for (int j = 0; j < cschip.repeat_y; j++)
                         {
-                            for (int j = 0; j < cschip.repeat_y; j++)
-                            {
-                                g.DrawImage(DrawChipOrig,
-                                    new Rectangle(new Point(-LogicalToDeviceUnits(chipsize.Width / 2), LogicalToDeviceUnits(-chipsize.Height / 2 + j * chipsize.Height)), rectangle.Size),
-                                    new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-                            }
+                            g.DrawImage(DrawChipOrig,
+                                new Rectangle(new Point(-LogicalToDeviceUnits(chipsize.Width / 2), LogicalToDeviceUnits(-chipsize.Height / 2 + j * chipsize.Height)), rectangle.Size),
+                                new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                         }
-                        else if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && chara == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
-                        {// 水の半透明処理
-                            float water_clear_level = float.Parse(value);
-                            var colorMatrix = new ColorMatrix
-                            {
-                                Matrix00 = 1f,
-                                Matrix11 = 1f,
-                                Matrix22 = 1f,
-                                Matrix33 = water_clear_level / 255f,
-                                Matrix44 = 1f
-                            };
-                            using var imageAttributes = new ImageAttributes();
-                            imageAttributes.SetColorMatrix(colorMatrix);
-                            g.DrawImage(DrawChipOrig, rect, cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
-                        }
-                        else g.DrawImage(DrawChipOrig, rect, new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-                        break;
+                    }
+                    else if (ChipRenderer.ShouldApplyWaterTransparency(out float water_clear_level) && chara == "4")
+                    {// 水の半透明処理
+                        ChipRenderer.ApplyWaterTransparency(g, DrawChipOrig, rect, cschip.pattern, chipsize, water_clear_level);
+                    }
+                    else g.DrawImage(DrawChipOrig, rect, new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                 }
                 g.Restore(transState);
             }
@@ -504,7 +436,7 @@ namespace MasaoPlus
             }
             if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
             { // 拡張画像　前面
-                g.DrawImage(DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                ChipRenderer.DrawExtendChip(g, rectangle, cschip.xdraw, chipsize);
             }
         }
 
@@ -620,7 +552,7 @@ namespace MasaoPlus
             Runtime.DefinedData.StageSizeData StageSize = CurrentStageSize;
             Runtime.DefinedData.StageSizeData LayerSize = CurrentLayerSize;
 
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            if (Global.state.Use3rdMapDataCurrently)
             {
                 while (num < StageSize.y)
                 {
@@ -793,37 +725,7 @@ namespace MasaoPlus
                     if(DrawOribossOrig != null) g.DrawImage(DrawOribossOrig, new Rectangle(new Point(LogicalToDeviceUnits(oriboss_x * chipsize.Width), LogicalToDeviceUnits(oriboss_y * chipsize.Height)), LogicalToDeviceUnits(DrawOribossOrig.Size)));
                     if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki) && Global.config.draw.ExtendDraw)
                     {
-                        Point p = int.Parse(oriboss_ugoki) switch
-                        {
-                            1 => new Point(352, 256),
-                            2 => new Point(96, 0),
-                            3 => new Point(64, 0),
-                            4 => new Point(256, 0),
-                            5 => new Point(288, 0),
-                            6 => new Point(288, 448),
-                            7 => new Point(320, 448),
-                            8 => new Point(32, 32),
-                            9 => new Point(96, 0),
-                            10 => new Point(0, 32),
-                            11 => new Point(64, 0),
-                            12 => new Point(96, 32),
-                            13 => new Point(64, 0),
-                            14 => new Point(352, 448),
-                            15 => new Point(416, 448),
-                            16 => new Point(288, 448),
-                            17 => new Point(320, 448),
-                            18 => new Point(96, 0),
-                            19 => new Point(96, 0),
-                            20 => new Point(256, 0),
-                            21 => new Point(256, 0),
-                            22 => new Point(352, 448),
-                            23 => new Point(384, 448),
-                            24 => new Point(32, 32),
-                            25 => new Point(32, 32),
-                            26 => new Point(32, 128),
-                            27 => new Point(32, 128),
-                            _ => default,
-                        };
+                        Point p = ChipRenderer.GetOribossExtensionPoint(int.Parse(oriboss_ugoki));
                         g.DrawImage(DrawExOrig, LogicalToDeviceUnits(oriboss_x * chipsize.Width), LogicalToDeviceUnits(oriboss_y * chipsize.Height), new Rectangle(p, chipsize), GraphicsUnit.Pixel);
                     }
                 }
@@ -1502,7 +1404,7 @@ namespace MasaoPlus
                     List<string> list = [];
                     foreach (string text in Global.cpd.EditingMap)
                     {
-                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                        if (Global.state.Use3rdMapDataCurrently)
                         {
                             string[] t = text.Split(',');
                             for (int i = 0; i < t.Length; i++)
@@ -1516,7 +1418,7 @@ namespace MasaoPlus
                              list.Add(text.Replace(Global.cpd.Mapchip[1].character, Global.cpd.Mapchip[0].character));
                         }
                     }
-                    if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                    if (Global.state.Use3rdMapDataCurrently)
                     {
                         string[] l = list[p.Y].Split(',');
                         l[p.X] = Global.cpd.Mapchip[1].code;
@@ -1555,7 +1457,7 @@ namespace MasaoPlus
                         for (int j = rectangle.Top; j < rectangle.Bottom; j++)
                         {
                             point.X = 0;
-                            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                            if (Global.state.Use3rdMapDataCurrently)
                             {
                                 string[] array2 = PutItemTextCodeStart(j);
                                 if (array2 != null)
@@ -1640,346 +1542,7 @@ namespace MasaoPlus
         // 塗りつぶすチップデータ、塗りつぶし開始座標
         private void FillStart(ChipsData repl, Point pt)
         {
-            // 画面外なら終了
-            if (StageText.IsOverflow(pt))
-            {
-                return;
-            }
-            repls.Clear();
-            replsCode.Clear();
-            if (Global.state.EditingForeground)
-            {
-                int num = 0;
-                while (Global.state.MapEditMode ? (num < Global.cpd.project.Runtime.Definitions.MapSize.y) : (num < CurrentStageSize.y))
-                {
-                    if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
-                    {
-                        string[] array = PutItemTextCodeStart(num);
-                        if (array != null)
-                        {
-                            replsCode.Add(array);
-                        }
-                    }
-                    else
-                    {
-                        char[] array = PutItemTextStart(num);
-                        if (array != null)
-                        {
-                            repls.Add(array);
-                        }
-                    }
-                    num++;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < CurrentLayerSize.y; i++)
-                {
-                    if (Global.cpd.project.Use3rdMapData)
-                    {
-                        string[] array2 = PutItemTextCodeStart(i);
-                        if (array2 != null)
-                        {
-                            replsCode.Add(array2);
-                        }
-                    }
-                    else
-                    {
-                        char[] array2 = PutItemTextStart(i);
-                        if (array2 != null)
-                        {
-                            repls.Add(array2);
-                        }
-                    }
-                }
-            }
-            string stageChar = StageText.GetStageChar(pt);
-            // 塗りつぶしたマスと同じなら終了
-            if (Global.state.MapEditMode && stageChar == repl.character
-                || !Global.state.MapEditMode && (Global.cpd.project.Use3rdMapData && stageChar == repl.code
-                    || !Global.cpd.project.Use3rdMapData && stageChar == repl.character))
-            {
-                return;
-            }
-            if (Global.state.MapEditMode)
-            {
-                if (DrawWorldRef.TryGetValue(stageChar, out ChipsData value) && CheckChar(pt, value))
-                {
-                    FillThis(value, repl, pt);
-                }
-            }
-            else if (Global.state.EditingForeground)
-            {
-                if (Global.cpd.project.Use3rdMapData && DrawItemCodeRef.TryGetValue(stageChar, out ChipsData value1) && CheckChar(pt, value1))
-                {
-                    FillThisCode(value1, repl, pt);
-                }
-                else if (!Global.cpd.project.Use3rdMapData && DrawItemRef.TryGetValue(stageChar, out ChipsData value2) && CheckChar(pt, value2))
-                {
-                    FillThis(value2, repl, pt);
-                }
-            }
-            else
-            {
-                if (Global.cpd.project.Use3rdMapData && DrawLayerCodeRef.TryGetValue(stageChar, out ChipsData value1) && CheckChar(pt, value1))
-                {
-                    FillThisCode(value1, repl, pt);
-                }
-                else if (!Global.cpd.project.Use3rdMapData && DrawLayerRef.TryGetValue(stageChar, out ChipsData value2) && CheckChar(pt, value2))
-                {
-                    FillThis(value2, repl, pt);
-                }
-            }
-
-            for (int j = 0; j < Global.state.GetCSSize.y; j++)
-            {
-                if(Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
-                {
-                    PutItemTextEnd(replsCode[j], j);
-                }
-                else
-                {
-                    PutItemTextEnd(repls[j], j);
-                }
-            }
-        }
-
-        // 塗りつぶす前のチップデータ、塗りつぶすチップデータ、塗りつぶし開始座標
-        private void FillThisCode(ChipsData old, ChipsData repl, Point pt)
-        {
-            var queue = new Queue<BufStr>();
-
-            queue.Enqueue(new BufStr(
-                scanLeft(pt, replsCode, old),
-                scanRight(pt, replsCode, old),
-                pt.Y
-            ));
-
-            var newmap = new List<string[]>(replsCode);
-
-            while (queue.Count > 0)
-            {
-                int left = queue.Peek().left;
-                int right = queue.Peek().right;
-                int y = queue.Peek().y;
-                queue.Dequeue();
-
-                updateLine(left, right, y, repl);
-
-                // 上下を探索
-                if (0 < y)
-                {
-                    searchLine(left, right, y - 1, newmap, old, queue);
-                }
-                if (y < Global.state.GetCSSize.y - 1)
-                {
-                    searchLine(left, right, y + 1, newmap, old, queue);
-                }
-            }
-        }
-
-        // 塗りつぶす前のチップデータ、塗りつぶすチップデータ、塗りつぶし開始座標
-        private void FillThis(ChipsData old, ChipsData repl, Point pt)
-        {
-            var queue = new Queue<BufStr>();
-
-            queue.Enqueue(new BufStr(
-                scanLeft(pt, repls, old),
-                scanRight(pt, repls, old),
-                pt.Y
-            ));
-
-            var newmap = new List<char[]>(repls);
-
-            while (queue.Count > 0)
-            {
-                int left = queue.Peek().left;
-                int right = queue.Peek().right;
-                int y = queue.Peek().y;
-                queue.Dequeue();
-
-                updateLine(left, right, y, repl);
-
-                // 上下を探索
-                if (0 < y)
-                {
-                    searchLine(left, right, y - 1, newmap, old, queue);
-                }
-                if (y < Global.state.GetCSSize.y - 1)
-                {
-                    searchLine(left, right, y + 1, newmap, old, queue);
-                }
-            }
-        }
-
-        private static int scanLeft(Point pt, List<string[]> newmap, ChipsData old)
-        {
-            int result = pt.X;
-
-            while (0 < result && newmap[pt.Y][result - 1].Equals(old.code))
-            {
-                result--;
-            }
-            return result;
-        }
-
-        private static int scanLeft(Point pt, List<char[]> newmap, ChipsData old)
-        {
-            int result = pt.X;
-
-            while (0 < result && getMapChipString(result - 1, pt.Y, newmap).Equals(old.character))
-            {
-                result--;
-            }
-            return result;
-        }
-
-        private static int scanRight(Point pt, List<string[]> newmap, ChipsData old)
-        {
-            int result = pt.X;
-
-            while (result < Global.state.GetCSSize.x - 1 && newmap[pt.Y][result + 1].Equals(old.code))
-            {
-                result++;
-            }
-            return result;
-        }
-
-        private static int scanRight(Point pt, List<char[]> newmap, ChipsData old)
-        {
-            int result = pt.X;
-
-            while (result < Global.state.GetCSSize.x - 1 && getMapChipString(result + 1, pt.Y, newmap).Equals(old.character))
-            {
-                result++;
-            }
-            return result;
-        }
-
-        private void updateLine(int left, int right, int y, ChipsData repl)
-        {
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
-            {
-                //マップの文字を書き換える
-                for (int x = left; x <= right; x++)
-                {
-                     replsCode[y][x] = repl.code;
-                }
-            }
-            else
-            {
-                //マップの文字を書き換える
-                for (int x = left; x <= right; x++)
-                {
-                    for (int i = 0; i < Global.state.GetCByte; i++)
-                    {
-                        repls[y][x * Global.state.GetCByte + i] = repl.character[i];
-                    }
-                }
-            }
-        }
-
-        private static void searchLine(int left, int right, int y, List<string[]> newmap, ChipsData old, Queue<BufStr> queue)
-        {
-            int l = -1;
-            for (int x = left; x <= right; x++)
-            {
-                var c = newmap[y][x];
-
-                if (c.Equals(old.code) && l == -1)
-                {
-                    if (x == left)
-                    {
-                        l = scanLeft(new Point(x, y), newmap, old);
-                    }
-                    else
-                    {
-                        l = x;
-                    }
-                }
-                else if (!c.Equals(old.code) && l != -1)
-                {
-                    int r = x - 1;
-                    queue.Enqueue(new BufStr(l, r, y));
-                    l = -1;
-                }
-            }
-            if (l != -1)
-            {
-                int r = scanRight(new Point(right, y), newmap, old);
-                queue.Enqueue(new BufStr(l, r, y));
-            }
-        }
-
-        private void searchLine(int left, int right, int y, List<char[]> newmap, ChipsData old, Queue<BufStr> queue)
-        {
-            int l = -1;
-            for (int x = left; x <= right; x++)
-            {
-                var c = getMapChipString(x, y, newmap);
-
-                if (c.Equals(old.character) && l == -1)
-                {
-                    if (x == left)
-                    {
-                        l = scanLeft(new Point(x, y), newmap, old);
-                    }
-                    else
-                    {
-                        l = x;
-                    }
-                }
-                else if (!c.Equals(old.character) && l != -1)
-                {
-                    int r = x - 1;
-                    queue.Enqueue(new BufStr(l, r, y));
-                    l = -1;
-                }
-            }
-            if (l != -1)
-            {
-                int r = scanRight(new Point(right, y), newmap, old);
-                queue.Enqueue(new BufStr(l, r, y));
-            }
-        }
-
-        private bool CheckChar(Point pt, ChipsData cd)
-        {
-            if (StageText.IsOverflow(pt))
-            {
-                return false;
-            }
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
-            {
-                if (replsCode[pt.Y][pt.X] != cd.code)
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                for (int i = 0; i < Global.state.GetCByte; i++)
-                {
-                    if (repls[pt.Y][pt.X * Global.state.GetCByte + i] != cd.character[i])
-                    {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        }
-
-        // マップ文字列から特定の座標の文字(String型)を取り出す。通常は1文字。レイヤーは2文字。
-        private static string getMapChipString(int x, int y, List<char[]> newmap)
-        {
-            var c = new char[Global.state.GetCByte];
-
-            for (int i = 0; i < Global.state.GetCByte; i++)
-            {
-                c[i] = newmap[y][x * Global.state.GetCByte + i];
-            }
-
-            return new string(c);
+            fillToolHelper.FillStart(repl, pt);
         }
 
         private void GUIDesigner_MouseMove(object sender, MouseEventArgs e)
@@ -2179,7 +1742,7 @@ namespace MasaoPlus
                 [
                 Environment.NewLine
                 ], StringSplitOptions.None);
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            if (Global.state.Use3rdMapDataCurrently)
             {
                 foreach (string text in cp)
                 {
@@ -2212,7 +1775,7 @@ namespace MasaoPlus
             [
                 Environment.NewLine
             ], StringSplitOptions.None);
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            if (Global.state.Use3rdMapDataCurrently)
             {
                 return new Size(array[0].Split(',').Length, array.Length);
             }
@@ -2321,7 +1884,7 @@ namespace MasaoPlus
                                 {
                                     for (int i = rectangle.Top; i <= rectangle.Bottom; i++)
                                     {
-                                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                                        if (Global.state.Use3rdMapDataCurrently)
                                         {
                                             if (Global.state.EditingForeground)
                                             {
@@ -2362,7 +1925,7 @@ namespace MasaoPlus
                                     Global.MainWnd.UpdateStatus("切り取りしています...");
                                     for (int j = rectangle.Top; j <= rectangle.Bottom; j++)
                                     {
-                                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) {
+                                        if (Global.state.Use3rdMapDataCurrently) {
                                             string[] array = PutItemTextCodeStart(j);
                                             if (array != null)
                                             {
@@ -2507,7 +2070,7 @@ namespace MasaoPlus
                                     }
                                     for (int l = rectangle2.Top; l <= rectangle2.Bottom; l++)
                                     {
-                                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) {
+                                        if (Global.state.Use3rdMapDataCurrently) {
                                             string[] array2 = PutItemTextCodeStart(l);
                                             if (array2 != null)
                                             {
@@ -2719,7 +2282,7 @@ namespace MasaoPlus
             if (Global.state.MapEditMode && cd.character.Equals(stageChar)
                 || !Global.state.MapEditMode && (!Global.cpd.project.Use3rdMapData && cd.character.Equals(stageChar)
                     || Global.cpd.project.Use3rdMapData && cd.code == stageChar)) return;
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            if (Global.state.Use3rdMapDataCurrently)
             {
                 if (Global.state.EditingForeground)
                 {
@@ -3004,7 +2567,7 @@ namespace MasaoPlus
             List<string> list = [];
             foreach (string text in Global.cpd.EditingMap)
             {
-                if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                if (Global.state.Use3rdMapDataCurrently)
                 {
                     string[] t = text.Split(',');
                     for (int i = 0; i < t.Length; i++)
@@ -3018,7 +2581,7 @@ namespace MasaoPlus
                     list.Add(text.Replace(Global.cpd.Mapchip[1].character, Global.cpd.Mapchip[0].character));
                 }
             }
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            if (Global.state.Use3rdMapDataCurrently)
             {
                 string[] l = list[mouseStartPoint.Y].Split(',');
                 l[mouseStartPoint.X] = Global.cpd.Mapchip[1].code;
@@ -3281,16 +2844,7 @@ namespace MasaoPlus
 
         private bool MousePressed;
 
-        private readonly List<char[]> repls = [];
-
-        private readonly List<string[]> replsCode = [];
-
-        private struct BufStr(int left, int right, int y)
-        {
-            public int left = left;
-            public int right = right;
-            public int y = y;
-        };
+        private readonly FillToolHelper fillToolHelper = new FillToolHelper();
 
         private IContainer components;
 
@@ -3326,12 +2880,12 @@ namespace MasaoPlus
             {
                 if (IsOverflow(p))
                 {
-                    if(Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) return Global.cpd.Mapchip[0].code;
+                    if(Global.state.Use3rdMapDataCurrently) return Global.cpd.Mapchip[0].code;
                     else return Global.cpd.Mapchip[0].character;
                 }
                 if (Global.state.EditingForeground)
                 {
-                    if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) return Global.cpd.EditingMap[p.Y].Split(',')[p.X];
+                    if (Global.state.Use3rdMapDataCurrently) return Global.cpd.EditingMap[p.Y].Split(',')[p.X];
                     else return Global.cpd.EditingMap[p.Y].Substring(p.X * Global.state.GetCByte, Global.state.GetCByte);
                 }
                 if (Global.cpd.project.Use3rdMapData) return Global.cpd.EditingLayer[p.Y].Split(',')[p.X];

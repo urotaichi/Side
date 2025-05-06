@@ -262,7 +262,7 @@ namespace MasaoPlus
                 string text;
                 if (Global.state.EditingForeground)
                 {
-                    if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) text = Global.cpd.EditingMap[p.Y].Split(',')[p.X];
+                    if (Global.state.Use3rdMapDataCurrently) text = Global.cpd.EditingMap[p.Y].Split(',')[p.X];
                     else text = Global.cpd.EditingMap[p.Y].Substring(p.X * num, num);
                 }
                 else
@@ -324,64 +324,28 @@ namespace MasaoPlus
                     {
                         if(MainDesigner.DrawOribossOrig != null) graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, MainDesigner.DrawOribossOrig.Size.Width, MainDesigner.DrawOribossOrig.Size.Height);
                     }
+                    else if (ChipRenderer.IsAthleticChip(cschip.name))
+                    {
+                        AthleticView.list[cschip.name].Min(cschip, graphics, size);
+                    }
                     else
                     {
-                        switch (cschip.name)
+                        int rotate_o = default;
+                        if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
                         {
-                            case "一方通行":
-                            case "左右へ押せるドッスンスンのゴール":
-                            case "シーソー":
-                            case "ブランコ":
-                            case "スウィングバー":
-                            case "動くＴ字型":
-                            case "ロープ":
-                            case "長いロープ":
-                            case "ゆれる棒":
-                            case "人間大砲":
-                            case "曲線による上り坂":
-                            case "曲線による下り坂":
-                            case "乗れる円":
-                            case "跳ねる円":
-                            case "円":
-                            case "半円":
-                            case "ファイヤーバー":
-                            case "スウィングファイヤーバー":
-                            case "人口太陽":
-                            case "ファイヤーリング":
-                            case "ファイヤーウォール":
-                            case "スイッチ式ファイヤーバー":
-                            case "スイッチ式動くＴ字型":
-                            case "スイッチ式速く動くＴ字型":
-                                AthleticView.list[cschip.name].Min(cschip, graphics, size);
-                                break;
-                            default:
-                                int rotate_o = default;
-                                if (Math.Abs(cschip.rotate) % 180 == 90 && cschip.size.Width > cschip.size.Height)
-                                {
-                                    rotate_o = (cschip.size.Width - cschip.size.Height) / (cschip.size.Width / cschip.size.Height) * Math.Sign(cschip.rotate);
-                                }
-                                graphics.TranslateTransform(size.Width / 2, size.Height / 2);
-                                graphics.RotateTransform(cschip.rotate);
-
-                                // 水の半透明処理
-                                if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && chipsData.character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
-                                {
-                                    float water_clear_level = float.Parse(value);
-                                    var colorMatrix = new ColorMatrix
-                                    {
-                                        Matrix00 = 1f,
-                                        Matrix11 = 1f,
-                                        Matrix22 = 1f,
-                                        Matrix33 = water_clear_level / 255f,
-                                        Matrix44 = 1f
-                                    };
-                                    using var imageAttributes = new ImageAttributes();
-                                    imageAttributes.SetColorMatrix(colorMatrix);
-                                    graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size), cschip.pattern.X, cschip.pattern.Y, size.Width, size.Height, GraphicsUnit.Pixel, imageAttributes);
-                                }
-                                else graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size), new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
-                                break;
+                            rotate_o = (cschip.size.Width - cschip.size.Height) / (cschip.size.Width / cschip.size.Height) * Math.Sign(cschip.rotate);
                         }
+                        graphics.TranslateTransform(size.Width / 2, size.Height / 2);
+                        graphics.RotateTransform(cschip.rotate);
+
+                        // 水の半透明処理
+                        if (ChipRenderer.ShouldApplyWaterTransparency(out float waterLevel) && chipsData.character == "4")
+                        {
+                            ChipRenderer.ApplyWaterTransparency(graphics, MainDesigner.DrawChipOrig, 
+                                new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size),
+                                cschip.pattern, size, waterLevel);
+                        }
+                        else graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size), new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
                     }
                 }
                 else
@@ -397,37 +361,7 @@ namespace MasaoPlus
                     name = "オリジナルボス";
                     if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki))
                     {
-                        description = int.Parse(oriboss_ugoki) switch
-                        {
-                            1 => "停止",
-                            2 => "左右移動",
-                            3 => "上下移動",
-                            4 => "左回り",
-                            5 => "右回り",
-                            6 => "四角形左回り",
-                            7 => "四角形右回り",
-                            8 => "HPが半分になると左へ移動",
-                            9 => "HPが減ると左と右へ移動",
-                            10 => "HPが半分になると上へ移動",
-                            11 => "HPが減ると上と下へ移動",
-                            12 => "HPが半分になると下へ移動",
-                            13 => "HPが減ると下と上へ移動",
-                            14 => "画面の端で方向転換",
-                            15 => "ジグザグ移動",
-                            16 => "画面の内側を左回り",
-                            17 => "画面の内側を右回り",
-                            18 => "HPが半分以下になると左右移動",
-                            19 => "HPが1/3以下になると左右移動",
-                            20 => "HPが半分以下になると左回り",
-                            21 => "HPが1/3以下になると左回り",
-                            22 => "斜め上へ往復",
-                            23 => "斜め下へ往復",
-                            24 => "中央で停止",
-                            25 => "中央で停止 主人公の方を向く",
-                            26 => "巨大化  中央から",
-                            27 => "巨大化  右から",
-                            _ => "",
-                        };
+                        description = ChipRenderer.GetOribossMovementDescription(int.Parse(oriboss_ugoki));
                     }
                     else description = "";
 
@@ -438,7 +372,7 @@ namespace MasaoPlus
                     description = cschip.description;
                 }
 
-                if(Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) ChipNavigator.Text = $"[{chipsData.code}]{name}/{description}";
+                if(Global.state.Use3rdMapDataCurrently) ChipNavigator.Text = $"[{chipsData.code}]{name}/{description}";
                 else ChipNavigator.Text = $"[{chipsData.character}]{name}/{description}";
                 ChipNavigator.Visible = true;
             }
@@ -726,37 +660,7 @@ namespace MasaoPlus
                     string description;
                     if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki))
                     {
-                        description = int.Parse(oriboss_ugoki) switch
-                        {
-                            1 => "停止",
-                            2 => "左右移動",
-                            3 => "上下移動",
-                            4 => "左回り",
-                            5 => "右回り",
-                            6 => "四角形左回り",
-                            7 => "四角形右回り",
-                            8 => "HPが半分になると左へ移動",
-                            9 => "HPが減ると左と右へ移動",
-                            10 => "HPが半分になると上へ移動",
-                            11 => "HPが減ると上と下へ移動",
-                            12 => "HPが半分になると下へ移動",
-                            13 => "HPが減ると下と上へ移動",
-                            14 => "画面の端で方向転換",
-                            15 => "ジグザグ移動",
-                            16 => "画面の内側を左回り",
-                            17 => "画面の内側を右回り",
-                            18 => "HPが半分以下になると左右移動",
-                            19 => "HPが1/3以下になると左右移動",
-                            20 => "HPが半分以下になると左回り",
-                            21 => "HPが1/3以下になると左回り",
-                            22 => "斜め上へ往復",
-                            23 => "斜め下へ往復",
-                            24 => "中央で停止",
-                            25 => "中央で停止 主人公の方を向く",
-                            26 => "巨大化  中央から",
-                            27 => "巨大化  右から",
-                            _ => "",
-                        };
+                        description = ChipRenderer.GetOribossMovementDescription(int.Parse(oriboss_ugoki));
                     }
                     else description = "";
 
@@ -891,7 +795,7 @@ namespace MasaoPlus
             ChipImage.Refresh();
             string chara;
             ChipsData cc = Global.state.CurrentChip;
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) chara = cc.code;
+            if (Global.state.Use3rdMapDataCurrently) chara = cc.code;
             else chara = cc.character;
 
             if (cc.character == "Z" && oriboss_view)
@@ -904,37 +808,7 @@ namespace MasaoPlus
                     string description;
                     if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki))
                     {
-                        description = int.Parse(oriboss_ugoki) switch
-                        {
-                            1 => "停止",
-                            2 => "左右移動",
-                            3 => "上下移動",
-                            4 => "左回り",
-                            5 => "右回り",
-                            6 => "四角形左回り",
-                            7 => "四角形右回り",
-                            8 => "HPが半分になると左へ移動",
-                            9 => "HPが減ると左と右へ移動",
-                            10 => "HPが半分になると上へ移動",
-                            11 => "HPが減ると上と下へ移動",
-                            12 => "HPが半分になると下へ移動",
-                            13 => "HPが減ると下と上へ移動",
-                            14 => "画面の端で方向転換",
-                            15 => "ジグザグ移動",
-                            16 => "画面の内側を左回り",
-                            17 => "画面の内側を右回り",
-                            18 => "HPが半分以下になると左右移動",
-                            19 => "HPが1/3以下になると左右移動",
-                            20 => "HPが半分以下になると左回り",
-                            21 => "HPが1/3以下になると左回り",
-                            22 => "斜め上へ往復",
-                            23 => "斜め下へ往復",
-                            24 => "中央で停止",
-                            25 => "中央で停止 主人公の方を向く",
-                            26 => "巨大化  中央から",
-                            27 => "巨大化  右から",
-                            _ => "",
-                        };
+                        description = ChipRenderer.GetOribossMovementDescription(int.Parse(oriboss_ugoki));
                     }
                     else description = "";
 
@@ -1037,59 +911,23 @@ namespace MasaoPlus
                     {
                         if(MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, ChipImage.Width, ChipImage.Height);
                     }
+                    else if (ChipRenderer.IsAthleticChip(cschip.name))
+                    {
+                        AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, new Size(32, 32));
+                    }
                     else
                     {
-                        switch (cschip.name)
-                        {
-                            case "一方通行":
-                            case "左右へ押せるドッスンスンのゴール":
-                            case "シーソー":
-                            case "ブランコ":
-                            case "スウィングバー":
-                            case "動くＴ字型":
-                            case "ロープ":
-                            case "長いロープ":
-                            case "ゆれる棒":
-                            case "人間大砲":
-                            case "曲線による上り坂":
-                            case "曲線による下り坂":
-                            case "乗れる円":
-                            case "跳ねる円":
-                            case "円":
-                            case "半円":
-                            case "ファイヤーバー":
-                            case "スウィングファイヤーバー":
-                            case "人口太陽":
-                            case "ファイヤーリング":
-                            case "ファイヤーウォール":
-                            case "スイッチ式ファイヤーバー":
-                            case "スイッチ式動くＴ字型":
-                            case "スイッチ式速く動くＴ字型":
-                                AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, new Size(32, 32));
-                                break;
-                            default:
-                                e.Graphics.TranslateTransform(ChipImage.Width / 2, ChipImage.Height / 2);
-                                if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
+                        e.Graphics.TranslateTransform(ChipImage.Width / 2, ChipImage.Height / 2);
+                        if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
-                                // 水の半透明処理
-                                if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && Global.state.CurrentChip.character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
-                                {
-                                    float water_clear_level = float.Parse(value);
-                                    var colorMatrix = new ColorMatrix
-                                    {
-                                        Matrix00 = 1f,
-                                        Matrix11 = 1f,
-                                        Matrix22 = 1f,
-                                        Matrix33 = water_clear_level / 255f,
-                                        Matrix44 = 1f
-                                    };
-                                    using var imageAttributes = new ImageAttributes();
-                                    imageAttributes.SetColorMatrix(colorMatrix);
-                                    e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-ChipImage.Width / 2, -ChipImage.Height / 2), ChipImage.Size), cschip.pattern.X, cschip.pattern.Y, Global.cpd.runtime.Definitions.ChipSize.Width, Global.cpd.runtime.Definitions.ChipSize.Height, GraphicsUnit.Pixel, imageAttributes);
-                                }
-                                else e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-ChipImage.Width / 2, -ChipImage.Height / 2), ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
-                                break;
+                        // 水の半透明処理
+                        if (ChipRenderer.ShouldApplyWaterTransparency(out float waterLevel) && Global.state.CurrentChip.character == "4")
+                        {
+                            ChipRenderer.ApplyWaterTransparency(e.Graphics, MainDesigner.DrawChipOrig, 
+                                new Rectangle(-ChipImage.Width / 2, -ChipImage.Height / 2, ChipImage.Width, ChipImage.Height),
+                                cschip.pattern, Global.cpd.runtime.Definitions.ChipSize, waterLevel);
                         }
+                        else e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(-ChipImage.Width / 2, -ChipImage.Height / 2, ChipImage.Width, ChipImage.Height), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
                     }
                 }
                 else // レイヤー画像
@@ -1130,43 +968,21 @@ namespace MasaoPlus
                     e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                 }
                 else e.Graphics.InterpolationMode = InterpolationMode.High;
-                switch (cschip.name)
+                
+                if (ChipRenderer.IsAthleticChip(cschip.name))
                 {
-                    case "一方通行":
-                    case "左右へ押せるドッスンスンのゴール":
-                    case "シーソー":
-                    case "ブランコ":
-                    case "スウィングバー":
-                    case "動くＴ字型":
-                    case "ロープ":
-                    case "長いロープ":
-                    case "ゆれる棒":
-                    case "人間大砲":
-                    case "曲線による上り坂":
-                    case "曲線による下り坂":
-                    case "乗れる円":
-                    case "跳ねる円":
-                    case "円":
-                    case "半円":
-                    case "ファイヤーバー":
-                    case "スウィングファイヤーバー":
-                    case "人口太陽":
-                    case "ファイヤーリング":
-                    case "ファイヤーウォール":
-                    case "スイッチ式ファイヤーバー":
-                    case "スイッチ式動くＴ字型":
-                    case "スイッチ式速く動くＴ字型":
-                        AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, new Size(ChipImage.Width, ChipImage.Height));
-                        break;
-                    default:
-                        e.Graphics.TranslateTransform(ChipImage.Width / 2, ChipImage.Height / 2);
-                        if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
+                    AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, new Size(ChipImage.Width, ChipImage.Height));
+                }
+                else
+                {
+                    e.Graphics.TranslateTransform(ChipImage.Width / 2, ChipImage.Height / 2);
+                    if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
-                        e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-ChipImage.Width / 2, -ChipImage.Height / 2), ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
-                        break;
+                    e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(-ChipImage.Width / 2, -ChipImage.Height / 2, ChipImage.Width, ChipImage.Height), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
                 }
             }
         }
+
         private void ItemReload_Click(object sender, EventArgs e)
         {
             UpdateStatus("描画中...");
@@ -1618,58 +1434,22 @@ namespace MasaoPlus
                             {
                                 if(MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, e.Bounds.Height, e.Bounds.Height);
                             }
+                            else if (ChipRenderer.IsAthleticChip(cschip.name))
+                            {
+                                AthleticView.list[cschip.name].Small(this, cschip, e.Graphics, chipsize, e.Bounds.Height);
+                            }
                             else
                             {
-                                switch (cschip.name)
+                                e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
+                                if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
+                                // 水の半透明処理
+                                if (ChipRenderer.ShouldApplyWaterTransparency(out float waterLevel) && array[i].character == "4")
                                 {
-                                    case "一方通行":
-                                    case "左右へ押せるドッスンスンのゴール":
-                                    case "シーソー":
-                                    case "ブランコ":
-                                    case "スウィングバー":
-                                    case "動くＴ字型":
-                                    case "ロープ":
-                                    case "長いロープ":
-                                    case "ゆれる棒":
-                                    case "人間大砲":
-                                    case "曲線による上り坂":
-                                    case "曲線による下り坂":
-                                    case "乗れる円":
-                                    case "跳ねる円":
-                                    case "円":
-                                    case "半円":
-                                    case "ファイヤーバー":
-                                    case "スウィングファイヤーバー":
-                                    case "人口太陽":
-                                    case "ファイヤーリング":
-                                    case "ファイヤーウォール":
-                                    case "スイッチ式ファイヤーバー":
-                                    case "スイッチ式動くＴ字型":
-                                    case "スイッチ式速く動くＴ字型":
-                                        AthleticView.list[cschip.name].Small(this, cschip, e.Graphics, chipsize, e.Bounds.Height);
-                                        break;
-                                    default:
-                                        e.Graphics.TranslateTransform(e.Bounds.Height / 2, e.Bounds.Height / 2);
-                                        if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
-                                        // 水の半透明処理
-                                        if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && array[i].character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
-                                        {
-                                            float water_clear_level = float.Parse(value);
-                                            var colorMatrix = new ColorMatrix
-                                            {
-                                                Matrix00 = 1f,
-                                                Matrix11 = 1f,
-                                                Matrix22 = 1f,
-                                                Matrix33 = water_clear_level / 255f,
-                                                Matrix44 = 1f
-                                            };
-                                            using var imageAttributes = new ImageAttributes();
-                                            imageAttributes.SetColorMatrix(colorMatrix);
-                                            e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
-                                        }
-                                        else e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
-                                        break;
+                                    ChipRenderer.ApplyWaterTransparency(e.Graphics, MainDesigner.DrawChipOrig,
+                                        new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height),
+                                        cschip.pattern, chipsize, waterLevel);
                                 }
+                                else e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(-e.Bounds.Height / 2, -e.Bounds.Height / 2, e.Bounds.Height, e.Bounds.Height), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
                             }
                             e.Graphics.Restore(transState);
                         }
@@ -1689,55 +1469,22 @@ namespace MasaoPlus
                             e.Graphics.TranslateTransform(e.Bounds.X, e.Bounds.Y);
                             if (cschip.size == default)
                             {
-                                switch (cschip.name)
+                                if (ChipRenderer.IsAthleticChip(cschip.name))
                                 {
-                                    case "一方通行":
-                                    case "左右へ押せるドッスンスンのゴール":
-                                    case "シーソー":
-                                    case "ブランコ":
-                                    case "スウィングバー":
-                                    case "動くＴ字型":
-                                    case "ロープ":
-                                    case "長いロープ":
-                                    case "ゆれる棒":
-                                    case "人間大砲":
-                                    case "曲線による上り坂":
-                                    case "曲線による下り坂":
-                                    case "乗れる円":
-                                    case "跳ねる円":
-                                    case "円":
-                                    case "半円":
-                                    case "ファイヤーバー":
-                                    case "スウィングファイヤーバー":
-                                    case "人口太陽":
-                                    case "ファイヤーリング":
-                                    case "ファイヤーウォール":
-                                    case "スイッチ式ファイヤーバー":
-                                    case "スイッチ式動くＴ字型":
-                                    case "スイッチ式速く動くＴ字型":
-                                        AthleticView.list[cschip.name].Large(cschip, e.Graphics, chipsize);
-                                        break;
-                                    default:
-                                        e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
-                                        e.Graphics.RotateTransform(cschip.rotate);
-                                        // 水の半透明処理
-                                        if (Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && bool.Parse(water_clear_switch) == false && array[i].character == "4" && Global.state.ChipRegister.TryGetValue("water_clear_level", out string value))
-                                        {
-                                            float water_clear_level = float.Parse(value);
-                                            var colorMatrix = new ColorMatrix
-                                            {
-                                                Matrix00 = 1f,
-                                                Matrix11 = 1f,
-                                                Matrix22 = 1f,
-                                                Matrix33 = water_clear_level / 255f,
-                                                Matrix44 = 1f
-                                            };
-                                            using var imageAttributes = new ImageAttributes();
-                                            imageAttributes.SetColorMatrix(colorMatrix);
-                                            e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), cschip.pattern.X, cschip.pattern.Y, chipsize.Width, chipsize.Height, GraphicsUnit.Pixel, imageAttributes);
-                                        }
-                                        else e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
-                                        break;
+                                    AthleticView.list[cschip.name].Large(cschip, e.Graphics, chipsize);
+                                }
+                                else
+                                {
+                                    e.Graphics.TranslateTransform(chipsize.Width / 2, chipsize.Height / 2);
+                                    e.Graphics.RotateTransform(cschip.rotate);
+                                    // 水の半透明処理
+                                    if (ChipRenderer.ShouldApplyWaterTransparency(out float waterLevel) && array[i].character == "4")
+                                    {
+                                        ChipRenderer.ApplyWaterTransparency(e.Graphics, MainDesigner.DrawChipOrig,
+                                            new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize),
+                                            cschip.pattern, chipsize, waterLevel);
+                                    }
+                                    else e.Graphics.DrawImage(MainDesigner.DrawChipOrig, new Rectangle(new Point(-chipsize.Width / 2, -chipsize.Height / 2), chipsize), new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                                 }
                                 width = chipsize.Width;
                             }
