@@ -552,7 +552,7 @@ namespace MasaoPlus
             Runtime.DefinedData.StageSizeData StageSize = CurrentStageSize;
             Runtime.DefinedData.StageSizeData LayerSize = CurrentLayerSize;
 
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            if (Global.state.Use3rdMapDataCurrently)
             {
                 while (num < StageSize.y)
                 {
@@ -1404,7 +1404,7 @@ namespace MasaoPlus
                     List<string> list = [];
                     foreach (string text in Global.cpd.EditingMap)
                     {
-                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                        if (Global.state.Use3rdMapDataCurrently)
                         {
                             string[] t = text.Split(',');
                             for (int i = 0; i < t.Length; i++)
@@ -1418,7 +1418,7 @@ namespace MasaoPlus
                              list.Add(text.Replace(Global.cpd.Mapchip[1].character, Global.cpd.Mapchip[0].character));
                         }
                     }
-                    if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                    if (Global.state.Use3rdMapDataCurrently)
                     {
                         string[] l = list[p.Y].Split(',');
                         l[p.X] = Global.cpd.Mapchip[1].code;
@@ -1457,7 +1457,7 @@ namespace MasaoPlus
                         for (int j = rectangle.Top; j < rectangle.Bottom; j++)
                         {
                             point.X = 0;
-                            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                            if (Global.state.Use3rdMapDataCurrently)
                             {
                                 string[] array2 = PutItemTextCodeStart(j);
                                 if (array2 != null)
@@ -1554,7 +1554,7 @@ namespace MasaoPlus
                 int num = 0;
                 while (Global.state.MapEditMode ? (num < Global.cpd.project.Runtime.Definitions.MapSize.y) : (num < CurrentStageSize.y))
                 {
-                    if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                    if (Global.state.Use3rdMapDataCurrently)
                     {
                         string[] array = PutItemTextCodeStart(num);
                         if (array != null)
@@ -1635,7 +1635,7 @@ namespace MasaoPlus
 
             for (int j = 0; j < Global.state.GetCSSize.y; j++)
             {
-                if(Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                if(Global.state.Use3rdMapDataCurrently)
                 {
                     PutItemTextEnd(replsCode[j], j);
                 }
@@ -1760,7 +1760,7 @@ namespace MasaoPlus
 
         private void updateLine(int left, int right, int y, ChipsData repl)
         {
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            if (Global.state.Use3rdMapDataCurrently)
             {
                 //マップの文字を書き換える
                 for (int x = left; x <= right; x++)
@@ -1851,7 +1851,7 @@ namespace MasaoPlus
             {
                 return false;
             }
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            if (Global.state.Use3rdMapDataCurrently)
             {
                 if (replsCode[pt.Y][pt.X] != cd.code)
                 {
@@ -2081,7 +2081,7 @@ namespace MasaoPlus
                 [
                 Environment.NewLine
                 ], StringSplitOptions.None);
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            if (Global.state.Use3rdMapDataCurrently)
             {
                 foreach (string text in cp)
                 {
@@ -2114,7 +2114,7 @@ namespace MasaoPlus
             [
                 Environment.NewLine
             ], StringSplitOptions.None);
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            if (Global.state.Use3rdMapDataCurrently)
             {
                 return new Size(array[0].Split(',').Length, array.Length);
             }
@@ -2223,7 +2223,7 @@ namespace MasaoPlus
                                 {
                                     for (int i = rectangle.Top; i <= rectangle.Bottom; i++)
                                     {
-                                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                                        if (Global.state.Use3rdMapDataCurrently)
                                         {
                                             if (Global.state.EditingForeground)
                                             {
@@ -2264,7 +2264,7 @@ namespace MasaoPlus
                                     Global.MainWnd.UpdateStatus("切り取りしています...");
                                     for (int j = rectangle.Top; j <= rectangle.Bottom; j++)
                                     {
-                                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) {
+                                        if (Global.state.Use3rdMapDataCurrently) {
                                             string[] array = PutItemTextCodeStart(j);
                                             if (array != null)
                                             {
@@ -2409,7 +2409,7 @@ namespace MasaoPlus
                                     }
                                     for (int l = rectangle2.Top; l <= rectangle2.Bottom; l++)
                                     {
-                                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) {
+                                        if (Global.state.Use3rdMapDataCurrently) {
                                             string[] array2 = PutItemTextCodeStart(l);
                                             if (array2 != null)
                                             {
@@ -2621,7 +2621,7 @@ namespace MasaoPlus
             if (Global.state.MapEditMode && cd.character.Equals(stageChar)
                 || !Global.state.MapEditMode && (!Global.cpd.project.Use3rdMapData && cd.character.Equals(stageChar)
                     || Global.cpd.project.Use3rdMapData && cd.code == stageChar)) return;
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            if (Global.state.Use3rdMapDataCurrently)
             {
                 if (Global.state.EditingForeground)
                 {
@@ -2906,7 +2906,7 @@ namespace MasaoPlus
             List<string> list = [];
             foreach (string text in Global.cpd.EditingMap)
             {
-                if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                if (Global.state.Use3rdMapDataCurrently)
                 {
                     string[] t = text.Split(',');
                     for (int i = 0; i < t.Length; i++)
@@ -2920,7 +2920,7 @@ namespace MasaoPlus
                     list.Add(text.Replace(Global.cpd.Mapchip[1].character, Global.cpd.Mapchip[0].character));
                 }
             }
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            if (Global.state.Use3rdMapDataCurrently)
             {
                 string[] l = list[mouseStartPoint.Y].Split(',');
                 l[mouseStartPoint.X] = Global.cpd.Mapchip[1].code;
@@ -3228,12 +3228,12 @@ namespace MasaoPlus
             {
                 if (IsOverflow(p))
                 {
-                    if(Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) return Global.cpd.Mapchip[0].code;
+                    if(Global.state.Use3rdMapDataCurrently) return Global.cpd.Mapchip[0].code;
                     else return Global.cpd.Mapchip[0].character;
                 }
                 if (Global.state.EditingForeground)
                 {
-                    if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) return Global.cpd.EditingMap[p.Y].Split(',')[p.X];
+                    if (Global.state.Use3rdMapDataCurrently) return Global.cpd.EditingMap[p.Y].Split(',')[p.X];
                     else return Global.cpd.EditingMap[p.Y].Substring(p.X * Global.state.GetCByte, Global.state.GetCByte);
                 }
                 if (Global.cpd.project.Use3rdMapData) return Global.cpd.EditingLayer[p.Y].Split(',')[p.X];

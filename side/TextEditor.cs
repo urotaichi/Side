@@ -187,7 +187,7 @@ namespace MasaoPlus
             int lineFromCharIndex = StageTextEditor.GetLineFromCharIndex(num);
             num = StageTextEditor.SelectionStart - num;
 
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+            if (Global.state.Use3rdMapDataCurrently)
             {
                 string stagetext = StageTextEditor.Lines[lineFromCharIndex];
                 string[] stagetextarray = stagetext.Split(',');
@@ -242,7 +242,7 @@ namespace MasaoPlus
                 int height = (int)e.Graphics.MeasureString(num2.ToString(), StageTextEditor.Font).Height;
                 Color textColor;
                 int length;
-                if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                if (Global.state.Use3rdMapDataCurrently)
                 {
                     length = StageTextEditor.Lines[num2].Split(',').Length;
                 }
@@ -291,7 +291,7 @@ namespace MasaoPlus
             }
             foreach (string text in StageTextEditor.Lines)
             {
-                if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) 
+                if (Global.state.Use3rdMapDataCurrently) 
                 {
                     if (text.Split(',').Length != Global.state.GetCByteWidth)
                     {

@@ -134,7 +134,7 @@ namespace MasaoPlus
                 {
                     get
                     {
-                        if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode)
+                        if (Global.state.Use3rdMapDataCurrently)
                         {
                             return x;
                         }

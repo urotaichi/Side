@@ -262,7 +262,7 @@ namespace MasaoPlus
                 string text;
                 if (Global.state.EditingForeground)
                 {
-                    if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) text = Global.cpd.EditingMap[p.Y].Split(',')[p.X];
+                    if (Global.state.Use3rdMapDataCurrently) text = Global.cpd.EditingMap[p.Y].Split(',')[p.X];
                     else text = Global.cpd.EditingMap[p.Y].Substring(p.X * num, num);
                 }
                 else
@@ -372,7 +372,7 @@ namespace MasaoPlus
                     description = cschip.description;
                 }
 
-                if(Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) ChipNavigator.Text = $"[{chipsData.code}]{name}/{description}";
+                if(Global.state.Use3rdMapDataCurrently) ChipNavigator.Text = $"[{chipsData.code}]{name}/{description}";
                 else ChipNavigator.Text = $"[{chipsData.character}]{name}/{description}";
                 ChipNavigator.Visible = true;
             }
@@ -795,7 +795,7 @@ namespace MasaoPlus
             ChipImage.Refresh();
             string chara;
             ChipsData cc = Global.state.CurrentChip;
-            if (Global.cpd.project.Use3rdMapData && !Global.state.MapEditMode) chara = cc.code;
+            if (Global.state.Use3rdMapDataCurrently) chara = cc.code;
             else chara = cc.character;
 
             if (cc.character == "Z" && oriboss_view)

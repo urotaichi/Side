@@ -55,6 +55,17 @@ namespace MasaoPlus
             }
         }
 
+        /// <summary>
+        /// 現在3rdMapDataを使用しているかどうか。Use3rdMapDataがtrueかつMapEditModeがfalseの場合にtrueを返す。
+        /// </summary>
+        public bool Use3rdMapDataCurrently
+        {
+            get
+            {
+                return Global.cpd.project != null && Global.cpd.project.Use3rdMapData && !MapEditMode;
+            }
+        }
+
         public void AdjustMapPoint()
         {
             if (MapPoint.X > MapMoveMax.Width)
