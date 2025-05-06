@@ -168,14 +168,6 @@ namespace MasaoPlus
             MainPanel.Refresh();
         }
 
-        // 拡張画像描画の共通処理
-        protected void DrawExtendedImage(Graphics g, Rectangle rectangle, ChipData cschip, Size chipsize)
-        {
-            // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
-            g.InterpolationMode = InterpolationMode.NearestNeighbor;
-            g.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
-        }
-
         protected virtual void AddChipData(ChipsData[] chipsData, int num, PaintEventArgs e, int inital = 0)
         {
             bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
@@ -193,7 +185,7 @@ namespace MasaoPlus
                     ChipData cschip = chipData.GetCSChip();
                     if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd) // チップ裏に拡張画像を描画
                     {
-                        DrawExtendedImage(e.Graphics, rectangle, cschip, chipsize);
+                        ChipRenderer.DrawExtendChip(e.Graphics, rectangle, cschip.xdraw, chipsize);
                     }
                     if (!CurrentProjectData.UseLayer || Global.state.EditingForeground) // パターンマップチップ
                     {
@@ -248,7 +240,7 @@ namespace MasaoPlus
                     else if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
                     {
                         // 前面拡張画像描画
-                        DrawExtendedImage(e.Graphics, rectangle, cschip, chipsize);
+                        ChipRenderer.DrawExtendChip(e.Graphics, rectangle, cschip.xdraw, chipsize);
                     }
                     e.Graphics.PixelOffsetMode = default;
                     if (chipData.idColor != null)

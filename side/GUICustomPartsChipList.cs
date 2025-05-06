@@ -70,7 +70,7 @@ namespace MasaoPlus
                     ChipData cschip = chipData.GetCSChip();
                     if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd) // チップ裏に拡張画像を描画
                     {
-                        DrawExtendedImage(e.Graphics, rectangle, cschip, chipsize);
+                        ChipRenderer.DrawExtendChip(e.Graphics, rectangle, cschip.xdraw, chipsize);
                     }
                     if (DeviceDpi / 96 >= 2 && (cschip.size == default || cschip.size.Width / cschip.size.Height == 1))
                     {
@@ -95,7 +95,7 @@ namespace MasaoPlus
                     e.Graphics.Restore(transState);
                     if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
                     {
-                        DrawExtendedImage(e.Graphics, rectangle, cschip, chipsize);
+                        ChipRenderer.DrawExtendChip(e.Graphics, rectangle, cschip.xdraw, chipsize);
                     }
                     e.Graphics.PixelOffsetMode = default;
                     if (chipData.idColor != null)

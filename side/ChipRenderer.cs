@@ -11,6 +11,16 @@ namespace MasaoPlus
     public static class ChipRenderer
     {
         /// <summary>
+        /// 拡張画像を描画します
+        /// </summary>
+        public static void DrawExtendChip(Graphics g, Rectangle rectangle, Point xdraw, Size chipsize)
+        {
+            // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
+            g.InterpolationMode = InterpolationMode.NearestNeighbor;
+            g.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(xdraw, chipsize), GraphicsUnit.Pixel);
+        }
+
+        /// <summary>
         /// 水チップの透明度を適用して描画します
         /// </summary>
         public static void ApplyWaterTransparency(Graphics g, Image chipImage, Rectangle destRect, Point srcPoint, Size srcSize, float waterLevel)

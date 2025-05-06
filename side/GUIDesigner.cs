@@ -326,7 +326,7 @@ namespace MasaoPlus
             Rectangle rectangle = new(new Point(LogicalToDeviceUnits(p.X * chipsize.Width - cschip.center.X), LogicalToDeviceUnits(p.Y * chipsize.Height - cschip.center.Y)), LogicalToDeviceUnits(chipsize));
             if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd)
             { // 拡張画像　背面
-                g.DrawImage(DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                ChipRenderer.DrawExtendChip(g, rectangle, cschip.xdraw, chipsize);
             }
             if (foreground)
             { // 標準パターン画像
@@ -361,7 +361,7 @@ namespace MasaoPlus
             }
             else if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
             { // 拡張画像　前面
-                g.DrawImage(DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                ChipRenderer.DrawExtendChip(g, rectangle, cschip.xdraw, chipsize);
             }
         }
         private void DrawNormalSizeMap(ChipData cschip, Graphics g, Point p, bool foreground, string chara, int x)
@@ -371,7 +371,7 @@ namespace MasaoPlus
             Rectangle rectangle = new(new Point(LogicalToDeviceUnits(p.X * chipsize.Width), LogicalToDeviceUnits(p.Y * chipsize.Height)), LogicalToDeviceUnits(chipsize));
             if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd)
             { // 拡張画像　背面
-                g.DrawImage(DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                ChipRenderer.DrawExtendChip(g, rectangle, cschip.xdraw, chipsize);
             }
             if (foreground)
             { // 標準パターン画像
@@ -436,7 +436,7 @@ namespace MasaoPlus
             }
             if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
             { // 拡張画像　前面
-                g.DrawImage(DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                ChipRenderer.DrawExtendChip(g, rectangle, cschip.xdraw, chipsize);
             }
         }
 
@@ -725,37 +725,7 @@ namespace MasaoPlus
                     if(DrawOribossOrig != null) g.DrawImage(DrawOribossOrig, new Rectangle(new Point(LogicalToDeviceUnits(oriboss_x * chipsize.Width), LogicalToDeviceUnits(oriboss_y * chipsize.Height)), LogicalToDeviceUnits(DrawOribossOrig.Size)));
                     if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki) && Global.config.draw.ExtendDraw)
                     {
-                        Point p = int.Parse(oriboss_ugoki) switch
-                        {
-                            1 => new Point(352, 256),
-                            2 => new Point(96, 0),
-                            3 => new Point(64, 0),
-                            4 => new Point(256, 0),
-                            5 => new Point(288, 0),
-                            6 => new Point(288, 448),
-                            7 => new Point(320, 448),
-                            8 => new Point(32, 32),
-                            9 => new Point(96, 0),
-                            10 => new Point(0, 32),
-                            11 => new Point(64, 0),
-                            12 => new Point(96, 32),
-                            13 => new Point(64, 0),
-                            14 => new Point(352, 448),
-                            15 => new Point(416, 448),
-                            16 => new Point(288, 448),
-                            17 => new Point(320, 448),
-                            18 => new Point(96, 0),
-                            19 => new Point(96, 0),
-                            20 => new Point(256, 0),
-                            21 => new Point(256, 0),
-                            22 => new Point(352, 448),
-                            23 => new Point(384, 448),
-                            24 => new Point(32, 32),
-                            25 => new Point(32, 32),
-                            26 => new Point(32, 128),
-                            27 => new Point(32, 128),
-                            _ => default,
-                        };
+                        Point p = ChipRenderer.GetOribossExtensionPoint(int.Parse(oriboss_ugoki));
                         g.DrawImage(DrawExOrig, LogicalToDeviceUnits(oriboss_x * chipsize.Width), LogicalToDeviceUnits(oriboss_y * chipsize.Height), new Rectangle(p, chipsize), GraphicsUnit.Pixel);
                     }
                 }
