@@ -173,7 +173,7 @@ namespace MasaoPlus
             project.StageData3 = new string[baseProject.Runtime.Definitions.StageSize3.y];
             project.StageData4 = new string[baseProject.Runtime.Definitions.StageSize4.y];
             project.MapData = new string[baseProject.Runtime.Definitions.MapSize.y];
-            ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(Path.GetDirectoryName(projPath), project.Runtime.Definitions.ChipDefinition));
+            ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(projPath, project.Runtime.Definitions.ChipDefinition));
             string character = chipDataClass.Mapchip[0].character;
             SetStageData(project.StageData, baseProject.Runtime.Definitions.StageSize.x, character);
             SetStageData(project.StageData2, baseProject.Runtime.Definitions.StageSize2.x, character);

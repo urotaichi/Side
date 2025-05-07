@@ -58,7 +58,7 @@ namespace MasaoPlus.Dialogs
                 Config = PrevProject.Config,
                 CustomPartsDefinition = PrevProject.CustomPartsDefinition
             };
-            Project.SetAllStageData(project, PrevProjPath, PrevProject);
+            Project.SetAllStageData(project, Path.GetDirectoryName(PrevProjPath), PrevProject);
             project.SaveXML(text);
             NewProjectName = text;
             DialogResult = DialogResult.OK;
