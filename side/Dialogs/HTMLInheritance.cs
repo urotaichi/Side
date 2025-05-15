@@ -497,117 +497,134 @@ namespace MasaoPlus.Dialogs
                             [.. stagesElement.EnumerateArray()] : 
                             new List<JsonElement>();
 
+                            // ステージ配列の長さを4にする処理
+                        if (stages.Count < 4)
+                        {
+                            stages.AddRange(Enumerable.Repeat(default(JsonElement), 4 - stages.Count));
+                        }
+
                         StatusText.Text = "ステージサイズ設定中...";
                         StatusText.Refresh();
                         for (int stageIndex = 0; stageIndex < stages.Count; stageIndex++)
                         {
                             var stage = stages[stageIndex];
-                            if (stage.TryGetProperty("size", out var size))
+                            try{
+                                if (stage.TryGetProperty("size", out var size))
+                                {
+                                    int sizeX = size.GetProperty("x").GetInt32();
+                                    int sizeY = size.GetProperty("y").GetInt32();
+                                    
+                                    // マップサイズが500x500を超える場合は警告して500に丸める
+                                    if(sizeX > Global.state.MaximumStageSize.Width || sizeY > Global.state.MaximumStageSize.Height){
+                                        if (sizeX > Global.state.MaximumStageSize.Width)
+                                        {
+                                            sizeX = Global.state.MaximumStageSize.Width;
+                                        }
+                                        if (sizeY > Global.state.MaximumStageSize.Height)
+                                        {
+                                            sizeY = Global.state.MaximumStageSize.Height;
+                                        }
+                                        MessageBox.Show($"マップサイズがSideで扱える最大値({Global.state.MaximumStageSize.Width}×{Global.state.MaximumStageSize.Height})を超えています。\nサイズを{Global.state.MaximumStageSize.Width}×{Global.state.MaximumStageSize.Height}に制限します。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+
+                                    // ステージ番号に応じてサイズとデータ配列を更新
+                                    switch (stageIndex)
+                                    {
+                                        case 0:
+                                            project.Runtime.Definitions.StageSize.x = sizeX;
+                                            project.Runtime.Definitions.StageSize.y = sizeY;
+                                            project.StageData = new string[sizeY];
+                                            if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                            {
+                                                project.Runtime.Definitions.LayerSize.x = sizeX;
+                                                project.Runtime.Definitions.LayerSize.y = sizeY;
+                                                project.LayerData = new string[sizeY];
+                                            }
+                                            break;
+                                        case 1:
+                                            project.Runtime.Definitions.StageSize2.x = sizeX;
+                                            project.Runtime.Definitions.StageSize2.y = sizeY;
+                                            project.StageData2 = new string[sizeY];
+                                            if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                            {
+                                                project.Runtime.Definitions.LayerSize2.x = sizeX;
+                                                project.Runtime.Definitions.LayerSize2.y = sizeY;
+                                                project.LayerData2 = new string[sizeY];
+                                            }
+                                            break;
+                                        case 2:
+                                            project.Runtime.Definitions.StageSize3.x = sizeX;
+                                            project.Runtime.Definitions.StageSize3.y = sizeY;
+                                            project.StageData3 = new string[sizeY];
+                                            if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                            {
+                                                project.Runtime.Definitions.LayerSize3.x = sizeX;
+                                                project.Runtime.Definitions.LayerSize3.y = sizeY;
+                                                project.LayerData3 = new string[sizeY];
+                                            }
+                                            break;
+                                        case 3:
+                                            project.Runtime.Definitions.StageSize4.x = sizeX;
+                                            project.Runtime.Definitions.StageSize4.y = sizeY;
+                                            project.StageData4 = new string[sizeY];
+                                            if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                            {
+                                                project.Runtime.Definitions.LayerSize4.x = sizeX;
+                                                project.Runtime.Definitions.LayerSize4.y = sizeY;
+                                                project.LayerData4 = new string[sizeY];
+                                            }
+                                            break;
+                                    }
+                                }
+                            }
+                            catch (Exception)
                             {
-                                int sizeX = size.GetProperty("x").GetInt32();
-                                int sizeY = size.GetProperty("y").GetInt32();
-                                
-                                // マップサイズが500x500を超える場合は警告して500に丸める
-                                if(sizeX > Global.state.MaximumStageSize.Width || sizeY > Global.state.MaximumStageSize.Height){
-                                    if (sizeX > Global.state.MaximumStageSize.Width)
-                                    {
-                                        sizeX = Global.state.MaximumStageSize.Width;
-                                    }
-                                    if (sizeY > Global.state.MaximumStageSize.Height)
-                                    {
-                                        sizeY = Global.state.MaximumStageSize.Height;
-                                    }
-                                    MessageBox.Show($"マップサイズがSideで扱える最大値({Global.state.MaximumStageSize.Width}×{Global.state.MaximumStageSize.Height})を超えています。\nサイズを{Global.state.MaximumStageSize.Width}×{Global.state.MaximumStageSize.Height}に制限します。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                }
+                            }
 
-                                // ステージ番号に応じてサイズとデータ配列を更新
-                                switch (stageIndex)
-                                {
-                                    case 0:
-                                        project.Runtime.Definitions.StageSize.x = sizeX;
-                                        project.Runtime.Definitions.StageSize.y = sizeY;
-                                        project.StageData = new string[sizeY];
-                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
-                                        {
-                                            project.Runtime.Definitions.LayerSize.x = sizeX;
-                                            project.Runtime.Definitions.LayerSize.y = sizeY;
-                                            project.LayerData = new string[sizeY];
-                                        }
-                                        break;
-                                    case 1:
-                                        project.Runtime.Definitions.StageSize2.x = sizeX;
-                                        project.Runtime.Definitions.StageSize2.y = sizeY;
-                                        project.StageData2 = new string[sizeY];
-                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
-                                        {
-                                            project.Runtime.Definitions.LayerSize2.x = sizeX;
-                                            project.Runtime.Definitions.LayerSize2.y = sizeY;
-                                            project.LayerData2 = new string[sizeY];
-                                        }
-                                        break;
-                                    case 2:
-                                        project.Runtime.Definitions.StageSize3.x = sizeX;
-                                        project.Runtime.Definitions.StageSize3.y = sizeY;
-                                        project.StageData3 = new string[sizeY];
-                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
-                                        {
-                                            project.Runtime.Definitions.LayerSize3.x = sizeX;
-                                            project.Runtime.Definitions.LayerSize3.y = sizeY;
-                                            project.LayerData3 = new string[sizeY];
-                                        }
-                                        break;
-                                    case 3:
-                                        project.Runtime.Definitions.StageSize4.x = sizeX;
-                                        project.Runtime.Definitions.StageSize4.y = sizeY;
-                                        project.StageData4 = new string[sizeY];
-                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
-                                        {
-                                            project.Runtime.Definitions.LayerSize4.x = sizeX;
-                                            project.Runtime.Definitions.LayerSize4.y = sizeY;
-                                            project.LayerData4 = new string[sizeY];
-                                        }
-                                        break;
-                                }
+                            // 指定サイズでデフォルト値を設定
+                            string[] targetStageData = null;
+                            string[] targetLayerData = null;
+                            ChipsData[] targetChips = chipDataClass.Mapchip;
+                            ChipsData[] targetLayerChips = chipDataClass.Layerchip;
+                            int width = default;
 
-                                // 指定サイズでデフォルト値を設定
-                                string[] targetStageData = null;
-                                string[] targetLayerData = null;
-                                ChipsData[] targetChips = chipDataClass.Mapchip;
-                                ChipsData[] targetLayerChips = chipDataClass.Layerchip;
-                                int width = sizeX;
+                            switch (stageIndex)
+                            {
+                                case 0:
+                                    targetStageData = project.StageData;
+                                    targetLayerData = project.LayerData;
+                                    width = project.Runtime.Definitions.StageSize.x;
+                                    break;
+                                case 1:
+                                    targetStageData = project.StageData2;
+                                    targetLayerData = project.LayerData2;
+                                    width = project.Runtime.Definitions.StageSize2.x;
+                                    break;
+                                case 2:
+                                    targetStageData = project.StageData3;
+                                    targetLayerData = project.LayerData3;
+                                    width = project.Runtime.Definitions.StageSize3.x;
+                                    break;
+                                case 3:
+                                    targetStageData = project.StageData4;
+                                    targetLayerData = project.LayerData4;
+                                    width = project.Runtime.Definitions.StageSize4.x;
+                                    break;
+                            }
 
-                                switch (stageIndex)
-                                {
-                                    case 0:
-                                        targetStageData = project.StageData;
-                                        targetLayerData = project.LayerData;
-                                        break;
-                                    case 1:
-                                        targetStageData = project.StageData2;
-                                        targetLayerData = project.LayerData2;
-                                        break;
-                                    case 2:
-                                        targetStageData = project.StageData3;
-                                        targetLayerData = project.LayerData3;
-                                        break;
-                                    case 3:
-                                        targetStageData = project.StageData4;
-                                        targetLayerData = project.LayerData4;
-                                        break;
-                                }
+                            // メインステージのデフォルト値設定
+                            InitializeEmptyStageData(targetStageData, width, targetChips);
 
-                                // メインステージのデフォルト値設定
-                                InitializeEmptyStageData(targetStageData, width, targetChips);
+                            // レイヤーのデフォルト値設定
+                            if (project.Runtime.Definitions.LayerSize.bytesize != 0 && targetLayerData != null)
+                            {
+                                InitializeEmptyStageData(targetLayerData, width, targetLayerChips);
+                            }
 
-                                // レイヤーのデフォルト値設定
-                                if (project.Runtime.Definitions.LayerSize.bytesize != 0 && targetLayerData != null)
-                                {
-                                    InitializeEmptyStageData(targetLayerData, width, targetLayerChips);
-                                }
-
-                                StatusText.Text = $"ステージソース生成中[{stageIndex + 1}/4]...";
-                                StatusText.Refresh();
-                                // レイヤーデータの読み込み
+                            StatusText.Text = $"ステージソース生成中[{stageIndex + 1}/4]...";
+                            StatusText.Refresh();
+                            // レイヤーデータの読み込み
+                            try{
                                 if (stage.TryGetProperty("layers", out var layers))
                                 {
                                     foreach (var layer in layers.EnumerateArray())
@@ -657,6 +674,9 @@ namespace MasaoPlus.Dialogs
                                         }
                                     }
                                 }
+                            }
+                            catch (Exception)
+                            {
                             }
                         }
                     }
