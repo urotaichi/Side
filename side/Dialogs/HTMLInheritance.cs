@@ -208,7 +208,17 @@ namespace MasaoPlus.Dialogs
                         string jsCode = input[jsStart..jsEnd].Trim();
                         // '(' から始まる部分を見つけて、最後の ');' を除去
                         jsCode = jsCode.TrimStart('(');
-                        if (jsCode.EndsWith(");"))
+                        // 最後の行を確認してJSMasao.pad.avoidAD = true;のような追加コードがないか確認
+                        int lastSemicolonPos = jsCode.LastIndexOf(';');
+                        int lastCloseBracePos = jsCode.LastIndexOf("});");
+                        
+                        // });の後にコードがある場合はそれを除外
+                        if (lastCloseBracePos > 0 && lastSemicolonPos > lastCloseBracePos)
+                        {
+                            jsCode = jsCode[..(lastCloseBracePos + 1)];
+                        }
+                        // 末尾が);なら除去
+                        else if (jsCode.EndsWith(");"))
                         {
                             jsCode = jsCode[..^2];
                         }
@@ -246,7 +256,9 @@ namespace MasaoPlus.Dialogs
                                 jsonText = ConvertToValidJson(args[2]);
                                 try
                                 {
-                                    var jsonDoc = JsonDocument.Parse(jsonText);
+                                    // JSONパースする前にuserJSCallbackなど関数リテラルを含むプロパティを除外
+                                    string jsonText2 = CleanJSONForParsing(jsonText);
+                                    var jsonDoc = JsonDocument.Parse(jsonText2);
                                     foreach (var prop in jsonDoc.RootElement.EnumerateObject())
                                     {
                                         dictionary[prop.Name] = prop.Value.ToString();
@@ -269,6 +281,112 @@ namespace MasaoPlus.Dialogs
                 }
                 else
                 {
+                    // スクリプトタグ内容全体から正男パラメータを探す
+                    Regex regexScriptTag = reg_script_tag();
+                    foreach (Match scriptMatch in regexScriptTag.Matches(input))
+                    {
+                        string scriptContent = scriptMatch.Groups[1].Value;
+                        
+                        // 標準パラメータ名のリストを作成
+                        var commonParams = new[] { "map0-", "stage_max", "score_v", "j_tail_type", "time_max", "filename_pattern" };
+                        
+                        foreach (var param in commonParams)
+                        {
+                            if (scriptContent.Contains("\"" + param) || scriptContent.Contains("'" + param))
+                            {
+                                // 正男パラメータを含むスクリプトを発見したので解析
+                                StatusText.Text = "スクリプト内のパラメータ解析中...";
+                                StatusText.Refresh();
+
+                                string objText = scriptContent;
+                                
+                                string jsCode = objText.Trim();
+                                // '(' から始まる部分を検出して、それ以前の文字列を削除
+                                int openBracketIndex = jsCode.IndexOf('(');
+                                if (openBracketIndex >= 0)
+                                {
+                                    jsCode = jsCode[openBracketIndex..];
+                                    // 先頭の括弧を削除
+                                    jsCode = jsCode.TrimStart('(');
+                                }
+                                // 最後の行を確認してJSMasao.pad.avoidAD = true;のような追加コードがないか確認
+                                int lastSemicolonPos = jsCode.LastIndexOf(';');
+                                int lastCloseBracePos = jsCode.LastIndexOf("});");
+                                
+                                // });の後にコードがある場合はそれを除外
+                                if (lastCloseBracePos > 0 && lastSemicolonPos > lastCloseBracePos)
+                                {
+                                    jsCode = jsCode[..(lastCloseBracePos + 1)];
+                                }
+                                // 末尾が);なら除去
+                                else if (jsCode.EndsWith(");"))
+                                {
+                                    jsCode = jsCode[..^2];
+                                }
+
+                                // 引数を分割
+                                var args = SplitJSMasaoArgs(jsCode);
+
+                                if (args.Count > 0)
+                                {
+                                    // 第1引数の処理（基本設定）
+                                    string jsonText = ConvertToValidJson(args[0]);
+                                    try
+                                    {
+                                        var jsonDoc = JsonDocument.Parse(jsonText);
+                                        foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                                        {
+                                            dictionary[prop.Name] = prop.Value.ToString();
+                                        }
+                                    }
+                                    catch (JsonException)
+                                    {
+                                        // JSON解析に失敗した場合は従来の正規表現による解析を試みる
+                                        var regex2 = reg_script_param();
+                                        Match match2 = regex2.Match(input);
+                                        while (match2.Success)
+                                        {
+                                            dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
+                                            match2 = match2.NextMatch();
+                                        }
+                                    }
+
+                                    // 第2引数から順に処理（advanced-map等）
+                                    for (int argIndex = 1; argIndex < args.Count; argIndex++)
+                                    {
+                                        if (args[argIndex].Trim() == "null") continue;
+
+                                        jsonText = ConvertToValidJson(args[argIndex]);
+                                        try
+                                        {
+                                            // JSONパースする前にuserJSCallbackなど関数リテラルを含むプロパティを除外
+                                            string jsonText2 = CleanJSONForParsing(jsonText);
+                                            var jsonDoc = JsonDocument.Parse(jsonText2);
+                                            foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                                            {
+                                                dictionary[prop.Name] = prop.Value.ToString();
+                                            }
+                                            // 1つでも成功したらループを抜ける
+                                            break;
+                                        }
+                                        catch (JsonException)
+                                        {
+                                            // JSON解析に失敗した場合は従来の正規表現による解析を試みる
+                                            var regex2 = reg_script_param();
+                                            Match match2 = regex2.Match(input);
+                                            while (match2.Success)
+                                            {
+                                                dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
+                                                match2 = match2.NextMatch();
+                                            }
+                                        }
+                                    }
+                                }
+                                break; // 正男パラメータを含むスクリプトが見つかったらループを抜ける
+                            }
+                        }
+                    }
+                    
                     // JSONファイル形式の検出と解析
                     try
                     {
@@ -1189,14 +1307,8 @@ namespace MasaoPlus.Dialogs
             // 数値の前のプラス記号を削除（JSONでは不要）
             jsCode = reg_number_plus().Replace(jsCode, ": $1");
 
-            // 末尾のカンマを削除
-            jsCode = reg_comma().Replace(jsCode, "$1");
-
-            // オブジェクトの最後のプロパティの後のカンマを削除
-            jsCode = reg_object_comma().Replace(jsCode, "$1");
-
-            // 配列の最後の要素の後のカンマを削除
-            jsCode = reg_array_comma().Replace(jsCode, "$1");
+            // 末尾のカンマを削除する共通パターン
+            jsCode = reg_trailing_comma().Replace(jsCode, "$1");
 
             // URLプレースホルダーを元のURLに戻す
             foreach (var placeholder in urlPlaceholders)
@@ -1273,6 +1385,179 @@ namespace MasaoPlus.Dialogs
             return args;
         }
 
+        // JSONパース前に関数リテラル（userJSCallbackやhighscoreCallbackなど）を除外するメソッド
+        private static string CleanJSONForParsing(string jsonText)
+        {
+            // 関数リテラルを取り除くためのプロパティリスト
+            string[] propertiesToRemove = [
+                "userJSCallback",
+                "highscoreCallback",
+                "extensions"
+            ];
+
+            var cleanedJson = jsonText;
+            
+            // デリゲートタイプの特別処理 - より単純なアプローチを最初に試す
+            foreach (var prop in propertiesToRemove)
+            {
+                string pattern = $@"[""|']{prop}[""|']\s*:\s*\([^)]*\)\s*=>\s*\{{.*?\}}\s*\(\)\s*,?";
+                cleanedJson = Regex.Replace(cleanedJson, pattern, "", RegexOptions.Singleline);
+                
+                // 即時実行関数式（IIFE）を検出するための別パターン
+                pattern = $@"[""|']{prop}[""|']\s*:\s*\(\s*\(\s*\)\s*=>\s*\{{.*?\}}\s*\)\(\)\s*,?";
+                cleanedJson = Regex.Replace(cleanedJson, pattern, "", RegexOptions.Singleline);
+                
+                // 通常の関数リテラルパターン
+                pattern = $@"[""|']{prop}[""|']\s*:\s*function\s*\(.*?\)\s*\{{.*?\}}\s*,?";
+                cleanedJson = Regex.Replace(cleanedJson, pattern, "", RegexOptions.Singleline);
+            }
+
+            // まだプロパティが残っていれば、より詳細な分析を実施
+            foreach (var prop in propertiesToRemove)
+            {
+                int propStart;
+                while ((propStart = cleanedJson.IndexOf($"\"{prop}\"")) >= 0 || 
+                       (propStart = cleanedJson.IndexOf($"'{prop}'")) >= 0)
+                {
+                    // プロパティの終わりを見つける
+                    int colonPos = cleanedJson.IndexOf(':', propStart);
+                    if (colonPos < 0) break;
+                    
+                    // プロパティ値の開始位置
+                    int valueStart = colonPos + 1;
+                    while (valueStart < cleanedJson.Length && char.IsWhiteSpace(cleanedJson[valueStart]))
+                        valueStart++;
+                    
+                    if (valueStart >= cleanedJson.Length) break;
+                    
+                    // 関数リテラルの開始を検出
+                    bool isFunction = false;
+                    int endPos = valueStart;
+                    int braceCount = 0;
+                    int parenCount = 0;
+                    
+                    // 関数の開始パターンを確認
+                    if (cleanedJson[valueStart] == '(' ||
+                        cleanedJson[valueStart..].StartsWith("function") ||
+                        (valueStart + 1 < cleanedJson.Length && cleanedJson.Substring(valueStart, 2) == "=>"))
+                    {
+                        isFunction = true;
+                        
+                        // 関数本体の終わりを探す
+                        while (endPos < cleanedJson.Length)
+                        {
+                            char c = cleanedJson[endPos];
+                            
+                            if (c == '(')
+                            {
+                                parenCount++;
+                            }
+                            else if (c == ')')
+                            {
+                                parenCount--;
+                                // 即時実行関数 (() => {})() の終わりを検出
+                                if (parenCount == 0 && braceCount == 0)
+                                {
+                                    int nextPos = endPos + 1;
+                                    while (nextPos < cleanedJson.Length && char.IsWhiteSpace(cleanedJson[nextPos]))
+                                        nextPos++;
+                                    
+                                    if (nextPos < cleanedJson.Length && cleanedJson[nextPos] == '(')
+                                    {
+                                        // 即時実行関数の終わりまでスキップ
+                                        endPos = FindMatchingCloseParen(cleanedJson, nextPos);
+                                        if (endPos < 0) break; // 対応する括弧がない場合
+                                        endPos++;
+                                    }
+                                }
+                            }
+                            else if (c == '{')
+                            {
+                                braceCount++;
+                            }
+                            else if (c == '}')
+                            {
+                                braceCount--;
+                                if (braceCount == 0 && parenCount <= 0)
+                                {
+                                    endPos++;
+                                    break; // 関数本体の終わりを見つけた
+                                }
+                            }
+                            
+                            endPos++;
+                            
+                            // すべての括弧が閉じられた後にコンマや括弧を探す
+                            if (braceCount == 0 && parenCount == 0 && endPos < cleanedJson.Length)
+                            {
+                                // 空白をスキップ
+                                while (endPos < cleanedJson.Length && char.IsWhiteSpace(cleanedJson[endPos]))
+                                    endPos++;
+                                
+                                if (endPos < cleanedJson.Length)
+                                {
+                                    if (cleanedJson[endPos] == '(')
+                                    {
+                                        // 即時実行関数の呼び出し括弧
+                                        int closePos = FindMatchingCloseParen(cleanedJson, endPos);
+                                        if (closePos >= 0)
+                                        {
+                                            endPos = closePos + 1;
+                                        }
+                                        
+                                        // 括弧の後に空白をスキップ
+                                        while (endPos < cleanedJson.Length && char.IsWhiteSpace(cleanedJson[endPos]))
+                                            endPos++;
+                                    }
+                                    
+                                    // カンマがあれば、それも含める
+                                    if (endPos < cleanedJson.Length && cleanedJson[endPos] == ',')
+                                    {
+                                        endPos++;
+                                    }
+                                    
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (isFunction)
+                    {
+                        // プロパティ全体を削除
+                        cleanedJson = cleanedJson.Remove(propStart, endPos - propStart);
+                    }
+                    else
+                    {
+                        // 関数でなければ、このプロパティはスキップ
+                        break;
+                    }
+                }
+            }
+            
+            // 構文の修正（連続カンマ、末尾カンマの除去など）
+            cleanedJson = Regex.Replace(cleanedJson, ",\\s*}", "}");
+            cleanedJson = Regex.Replace(cleanedJson, ",\\s*]", "]");
+            cleanedJson = Regex.Replace(cleanedJson, ",\\s*,", ",");
+            cleanedJson = Regex.Replace(cleanedJson, "{\\s*,", "{");
+            
+            return cleanedJson;
+        }
+        
+        // 対応する閉じ括弧の位置を見つける補助メソッド
+        private static int FindMatchingCloseParen(string text, int openPos)
+        {
+            int count = 1;
+            for (int i = openPos + 1; i < text.Length; i++)
+            {
+                if (text[i] == '(') count++;
+                else if (text[i] == ')') count--;
+                
+                if (count == 0) return i; // 対応する閉じ括弧を見つけた
+            }
+            return -1; // 見つからなかった
+        }
+
         public string ProjectFile = "";
 
         public List<string> runtimes = [];
@@ -1291,6 +1576,8 @@ namespace MasaoPlus.Dialogs
         private static partial Regex reg_param();
         [GeneratedRegex(@"(?:<[ ]*?script.*?>.*?)?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
         private static partial Regex reg_script_start();
+        [GeneratedRegex(@"<script[^>]*>(.*?)<\/script>", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
+        private static partial Regex reg_script_tag();
         [GeneratedRegex(@"(""|')(?<name>.*?)(""|')\s*?:\s*?(""|')(?<value>.*?)(?<!\\)(""|')(,|\s*?)", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
         private static partial Regex reg_script_param();
         [GeneratedRegex(@"-(\d+)$")]
@@ -1314,11 +1601,7 @@ namespace MasaoPlus.Dialogs
         [GeneratedRegex(@":\s*\+(\d+)")]
         private static partial Regex reg_number_plus();
         [GeneratedRegex(@",(\s*[}\]])")]
-        private static partial Regex reg_comma();
-        [GeneratedRegex(@",(\s*})")]
-        private static partial Regex reg_object_comma();
-        [GeneratedRegex(@",(\s*\])")]
-        private static partial Regex reg_array_comma();
+        private static partial Regex reg_trailing_comma();
         private static JsonElement rootJsonElement;
     }
 }
