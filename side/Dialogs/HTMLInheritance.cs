@@ -377,14 +377,20 @@ namespace MasaoPlus.Dialogs
 
                                     // _meme_coreからカスタムパーツ名を取得
                                     var customPartName = string.Empty;
-                                    if (rootJsonElement.TryGetProperty("_meme_core", out var memeCore) &&
-                                        memeCore.TryGetProperty("customParts", out var memeCustomParts) &&
-                                        memeCustomParts.TryGetProperty(part.Name, out var memePart) &&
-                                        memePart.TryGetProperty("name", out var memeName))
+                                    try 
                                     {
-                                        customPartName = memeName.GetString();
+                                        if (rootJsonElement.TryGetProperty("_meme_core", out var memeCore) &&
+                                            memeCore.TryGetProperty("customParts", out var memeCustomParts) &&
+                                            memeCustomParts.TryGetProperty(part.Name, out var memePart) &&
+                                            memePart.TryGetProperty("name", out var memeName))
+                                        {
+                                            customPartName = memeName.GetString();
+                                        }
                                     }
-                                    
+                                    catch (Exception)
+                                    {
+                                        // エラーが発生した場合は無視する
+                                    }
                                     // Chipsプロパティを新しい配列として複製
                                     chipData.Chips = new ChipData[(int)(baseChip?.Chips.Length)];
                                     for (int j = 0; j < baseChip?.Chips.Length; j++)
