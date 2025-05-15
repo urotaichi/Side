@@ -499,7 +499,7 @@ namespace MasaoPlus.Dialogs
 
                         StatusText.Text = "ステージサイズ設定中...";
                         StatusText.Refresh();
-                        for (int stageIndex = 0; stageIndex < 4; stageIndex++)
+                        for (int stageIndex = 0; stageIndex < stages.Count; stageIndex++)
                         {
                             var stage = stages[stageIndex];
                             if (stage.TryGetProperty("size", out var size))
@@ -625,17 +625,23 @@ namespace MasaoPlus.Dialogs
                                             for (int y = 0; y < map.GetArrayLength() && y < targetData.Length; y++)
                                             {
                                                 var row = map[y];
-                                                var rowValues = new List<int>();
+                                                var rowValues = new List<object>();
 
                                                 // マップデータの各セルを処理
                                                 foreach (var cell in row.EnumerateArray())
                                                 {
-                                                    if (cell.TryGetInt32(out int cellvalue))
+                                                    if (cell.ValueKind == JsonValueKind.Number && cell.TryGetInt32(out int cellvalue))
                                                     {
                                                         rowValues.Add(cellvalue);
                                                     }
+                                                    else if (cell.ValueKind == JsonValueKind.String)
+                                                    {
+                                                        // 文字列の場合はそのまま追加
+                                                        rowValues.Add(cell.GetString());
+                                                    }
                                                     else
                                                     {
+                                                        // それ以外はデフォルト値
                                                         rowValues.Add(int.Parse(defaultCode));
                                                     }
                                                 }
