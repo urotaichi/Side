@@ -241,13 +241,7 @@ namespace MasaoPlus.Dialogs
                             catch (JsonException)
                             {
                                 // JSON解析に失敗した場合は従来の正規表現による解析を試みる
-                                var regex2 = reg_script_param();
-                                Match match2 = regex2.Match(input);
-                                while (match2.Success)
-                                {
-                                    dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
-                                    match2 = match2.NextMatch();
-                                }
+                                ParseParamsWithRegex(input, dictionary);
                             }
 
                             // 第3引数の処理（advanced-map等）
@@ -267,13 +261,7 @@ namespace MasaoPlus.Dialogs
                                 catch (JsonException)
                                 {
                                     // JSON解析に失敗した場合は従来の正規表現による解析を試みる
-                                    var regex2 = reg_script_param();
-                                    Match match2 = regex2.Match(input);
-                                    while (match2.Success)
-                                    {
-                                        dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
-                                        match2 = match2.NextMatch();
-                                    }
+                                    ParseParamsWithRegex(input, dictionary);
                                 }
                             }
                         }
@@ -342,13 +330,7 @@ namespace MasaoPlus.Dialogs
                                     catch (JsonException)
                                     {
                                         // JSON解析に失敗した場合は従来の正規表現による解析を試みる
-                                        var regex2 = reg_script_param();
-                                        Match match2 = regex2.Match(input);
-                                        while (match2.Success)
-                                        {
-                                            dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
-                                            match2 = match2.NextMatch();
-                                        }
+                                        ParseParamsWithRegex(input, dictionary);
                                     }
 
                                     // 第2引数から順に処理（advanced-map等）
@@ -372,13 +354,7 @@ namespace MasaoPlus.Dialogs
                                         catch (JsonException)
                                         {
                                             // JSON解析に失敗した場合は従来の正規表現による解析を試みる
-                                            var regex2 = reg_script_param();
-                                            Match match2 = regex2.Match(input);
-                                            while (match2.Success)
-                                            {
-                                                dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
-                                                match2 = match2.NextMatch();
-                                            }
+                                            ParseParamsWithRegex(input, dictionary);
                                         }
                                     }
                                 }
@@ -1556,6 +1532,18 @@ namespace MasaoPlus.Dialogs
                 if (count == 0) return i; // 対応する閉じ括弧を見つけた
             }
             return -1; // 見つからなかった
+        }
+
+        // Jsonパース失敗時の処理を共通関数化
+        private static void ParseParamsWithRegex(string input, Dictionary<string, string> dictionary)
+        {
+            var regex2 = reg_script_param();
+            Match match2 = regex2.Match(input);
+            while (match2.Success)
+            {
+                dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
+                match2 = match2.NextMatch();
+            }
         }
 
         public string ProjectFile = "";
