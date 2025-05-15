@@ -206,65 +206,9 @@ namespace MasaoPlus.Dialogs
                     if (jsEnd > jsStart)
                     {
                         string jsCode = input[jsStart..jsEnd].Trim();
-                        // '(' から始まる部分を見つけて、最後の ');' を除去
-                        jsCode = jsCode.TrimStart('(');
-                        // 最後の行を確認してJSMasao.pad.avoidAD = true;のような追加コードがないか確認
-                        int lastSemicolonPos = jsCode.LastIndexOf(';');
-                        int lastCloseBracePos = jsCode.LastIndexOf("});");
-                        
-                        // });の後にコードがある場合はそれを除外
-                        if (lastCloseBracePos > 0 && lastSemicolonPos > lastCloseBracePos)
-                        {
-                            jsCode = jsCode[..(lastCloseBracePos + 1)];
-                        }
-                        // 末尾が);なら除去
-                        else if (jsCode.EndsWith(");"))
-                        {
-                            jsCode = jsCode[..^2];
-                        }
-
-                        // 引数を分割
-                        var args = SplitJSMasaoArgs(jsCode);
-
-                        if (args.Count > 0)
-                        {
-                            // 第1引数の処理（基本設定）
-                            string jsonText = ConvertToValidJson(args[0]);
-                            try
-                            {
-                                var jsonDoc = JsonDocument.Parse(jsonText);
-                                foreach (var prop in jsonDoc.RootElement.EnumerateObject())
-                                {
-                                    dictionary[prop.Name] = prop.Value.ToString();
-                                }
-                            }
-                            catch (JsonException)
-                            {
-                                // JSON解析に失敗した場合は従来の正規表現による解析を試みる
-                                ParseParamsWithRegex(input, dictionary);
-                            }
-
-                            // 第3引数の処理（advanced-map等）
-                            if (args.Count >= 3 && args[2].Trim() != "null")
-                            {
-                                jsonText = ConvertToValidJson(args[2]);
-                                try
-                                {
-                                    // JSONパースする前にuserJSCallbackなど関数リテラルを含むプロパティを除外
-                                    string jsonText2 = CleanJSONForParsing(jsonText);
-                                    var jsonDoc = JsonDocument.Parse(jsonText2);
-                                    foreach (var prop in jsonDoc.RootElement.EnumerateObject())
-                                    {
-                                        dictionary[prop.Name] = prop.Value.ToString();
-                                    }
-                                }
-                                catch (JsonException)
-                                {
-                                    // JSON解析に失敗した場合は従来の正規表現による解析を試みる
-                                    ParseParamsWithRegex(input, dictionary);
-                                }
-                            }
-                        }
+                        // 共通関数を使用してJavaScriptコードを処理
+                        var args = PrepareJavaScriptCode(jsCode);
+                        ProcessJavaScriptArgs(args, dictionary, input);
                     }
                 }
                 else
@@ -286,78 +230,10 @@ namespace MasaoPlus.Dialogs
                                 StatusText.Text = "スクリプト内のパラメータ解析中...";
                                 StatusText.Refresh();
 
-                                string objText = scriptContent;
+                                // 共通関数を使用してJavaScriptコードを処理
+                                var args = PrepareJavaScriptCode(scriptContent);
+                                ProcessJavaScriptArgs(args, dictionary, input);
                                 
-                                string jsCode = objText.Trim();
-                                // '(' から始まる部分を検出して、それ以前の文字列を削除
-                                int openBracketIndex = jsCode.IndexOf('(');
-                                if (openBracketIndex >= 0)
-                                {
-                                    jsCode = jsCode[openBracketIndex..];
-                                    // 先頭の括弧を削除
-                                    jsCode = jsCode.TrimStart('(');
-                                }
-                                // 最後の行を確認してJSMasao.pad.avoidAD = true;のような追加コードがないか確認
-                                int lastSemicolonPos = jsCode.LastIndexOf(';');
-                                int lastCloseBracePos = jsCode.LastIndexOf("});");
-                                
-                                // });の後にコードがある場合はそれを除外
-                                if (lastCloseBracePos > 0 && lastSemicolonPos > lastCloseBracePos)
-                                {
-                                    jsCode = jsCode[..(lastCloseBracePos + 1)];
-                                }
-                                // 末尾が);なら除去
-                                else if (jsCode.EndsWith(");"))
-                                {
-                                    jsCode = jsCode[..^2];
-                                }
-
-                                // 引数を分割
-                                var args = SplitJSMasaoArgs(jsCode);
-
-                                if (args.Count > 0)
-                                {
-                                    // 第1引数の処理（基本設定）
-                                    string jsonText = ConvertToValidJson(args[0]);
-                                    try
-                                    {
-                                        var jsonDoc = JsonDocument.Parse(jsonText);
-                                        foreach (var prop in jsonDoc.RootElement.EnumerateObject())
-                                        {
-                                            dictionary[prop.Name] = prop.Value.ToString();
-                                        }
-                                    }
-                                    catch (JsonException)
-                                    {
-                                        // JSON解析に失敗した場合は従来の正規表現による解析を試みる
-                                        ParseParamsWithRegex(input, dictionary);
-                                    }
-
-                                    // 第2引数から順に処理（advanced-map等）
-                                    for (int argIndex = 1; argIndex < args.Count; argIndex++)
-                                    {
-                                        if (args[argIndex].Trim() == "null") continue;
-
-                                        jsonText = ConvertToValidJson(args[argIndex]);
-                                        try
-                                        {
-                                            // JSONパースする前にuserJSCallbackなど関数リテラルを含むプロパティを除外
-                                            string jsonText2 = CleanJSONForParsing(jsonText);
-                                            var jsonDoc = JsonDocument.Parse(jsonText2);
-                                            foreach (var prop in jsonDoc.RootElement.EnumerateObject())
-                                            {
-                                                dictionary[prop.Name] = prop.Value.ToString();
-                                            }
-                                            // 1つでも成功したらループを抜ける
-                                            break;
-                                        }
-                                        catch (JsonException)
-                                        {
-                                            // JSON解析に失敗した場合は従来の正規表現による解析を試みる
-                                            ParseParamsWithRegex(input, dictionary);
-                                        }
-                                    }
-                                }
                                 break; // 正男パラメータを含むスクリプトが見つかったらループを抜ける
                             }
                         }
@@ -1543,6 +1419,87 @@ namespace MasaoPlus.Dialogs
             {
                 dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
                 match2 = match2.NextMatch();
+            }
+        }
+
+        // JavaScript文字列からパラメータを抽出する共通処理を関数化
+        private static List<string> PrepareJavaScriptCode(string jsContent)
+        {
+            string jsCode = jsContent.Trim();
+            
+            // '(' から始まる部分を検出して、それ以前の文字列を削除
+            int openBracketIndex = jsCode.IndexOf('(');
+            if (openBracketIndex >= 0)
+            {
+                jsCode = jsCode[openBracketIndex..];
+                // 先頭の括弧を削除
+                jsCode = jsCode.TrimStart('(');
+            }
+            
+            // 最後の行を確認してJSMasao.pad.avoidAD = true;のような追加コードがないか確認
+            int lastSemicolonPos = jsCode.LastIndexOf(';');
+            int lastCloseBracePos = jsCode.LastIndexOf("});");
+            
+            // });の後にコードがある場合はそれを除外
+            if (lastCloseBracePos > 0 && lastSemicolonPos > lastCloseBracePos)
+            {
+                jsCode = jsCode[..(lastCloseBracePos + 1)];
+            }
+            // 末尾が);なら除去
+            else if (jsCode.EndsWith(");"))
+            {
+                jsCode = jsCode[..^2];
+            }
+
+            // 引数を分割して返す
+            return SplitJSMasaoArgs(jsCode);
+        }
+
+        // 抽出したJavaScript引数からパラメータ辞書にデータを追加する共通処理
+        private static void ProcessJavaScriptArgs(List<string> args, Dictionary<string, string> dictionary, string input)
+        {
+            if (args.Count > 0)
+            {
+                // 第1引数の処理（基本設定）
+                string jsonText = ConvertToValidJson(args[0]);
+                try
+                {
+                    var jsonDoc = JsonDocument.Parse(jsonText);
+                    foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                    {
+                        dictionary[prop.Name] = prop.Value.ToString();
+                    }
+                }
+                catch (JsonException)
+                {
+                    // JSON解析に失敗した場合は従来の正規表現による解析を試みる
+                    ParseParamsWithRegex(input, dictionary);
+                }
+
+                // 第2引数以降の処理（advanced-map等）
+                for (int argIndex = 1; argIndex < args.Count; argIndex++)
+                {
+                    if (args[argIndex].Trim() == "null") continue;
+
+                    jsonText = ConvertToValidJson(args[argIndex]);
+                    try
+                    {
+                        // JSONパースする前にuserJSCallbackなど関数リテラルを含むプロパティを除外
+                        string jsonText2 = CleanJSONForParsing(jsonText);
+                        var jsonDoc = JsonDocument.Parse(jsonText2);
+                        foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                        {
+                            dictionary[prop.Name] = prop.Value.ToString();
+                        }
+                        // 1つでも成功したらループを抜ける
+                        break;
+                    }
+                    catch (JsonException)
+                    {
+                        // JSON解析に失敗した場合は従来の正規表現による解析を試みる
+                        ParseParamsWithRegex(input, dictionary);
+                    }
+                }
             }
         }
 
