@@ -328,13 +328,7 @@ namespace MasaoPlus.Dialogs
                     catch (JsonException)
                     {
                         // JSONとして解析できない場合は従来のHTMLパラメータ解析を試みる
-                        var regex2 = reg_param();
-                        Match match2 = regex2.Match(input);
-                        while (match2.Success)
-                        {
-                            dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
-                            match2 = match2.NextMatch();
-                        }
+                        ParseParamsWithRegex(input, dictionary);
                     }
                 }
 
