@@ -14,6 +14,9 @@ namespace MasaoPlus
 {
     public class GUIDesigner : UserControl, IDisposable
     {
+        private const string DEFAULT_PATTERN_IMAGE = "pattern.gif";
+        private const string DEFAULT_LAYER_IMAGE = "mapchip.gif";
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public EditTool CurrentTool
         {
@@ -955,7 +958,8 @@ namespace MasaoPlus
             string filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.PatternImage);
             if (!File.Exists(filename))
             {
-                filename = Path.Combine(Global.cpd.where, "pattern.gif");
+                filename = Path.Combine(Global.cpd.where, DEFAULT_PATTERN_IMAGE);
+                Global.cpd.project.Config.PatternImage = DEFAULT_PATTERN_IMAGE;
             }
 
             FileStream fs;
@@ -978,7 +982,8 @@ namespace MasaoPlus
                 filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.LayerImage);
                 if (!File.Exists(filename))
                 {
-                    filename = Path.Combine(Global.cpd.where, "mapchip.gif");
+                    filename = Path.Combine(Global.cpd.where, DEFAULT_LAYER_IMAGE);
+                    Global.cpd.project.Config.LayerImage = DEFAULT_LAYER_IMAGE;
                 }
                 
                 DrawLayerOrig = Image.FromStream(File.OpenRead(filename), false, false);
