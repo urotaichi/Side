@@ -206,69 +206,39 @@ namespace MasaoPlus.Dialogs
                     if (jsEnd > jsStart)
                     {
                         string jsCode = input[jsStart..jsEnd].Trim();
-                        // '(' から始まる部分を見つけて、最後の ');' を除去
-                        jsCode = jsCode.TrimStart('(');
-                        if (jsCode.EndsWith(");"))
-                        {
-                            jsCode = jsCode[..^2];
-                        }
-
-                        // 引数を分割
-                        var args = SplitJSMasaoArgs(jsCode);
-
-                        if (args.Count > 0)
-                        {
-                            // 第1引数の処理（基本設定）
-                            string jsonText = ConvertToValidJson(args[0]);
-                            try
-                            {
-                                var jsonDoc = JsonDocument.Parse(jsonText);
-                                foreach (var prop in jsonDoc.RootElement.EnumerateObject())
-                                {
-                                    dictionary[prop.Name] = prop.Value.ToString();
-                                }
-                            }
-                            catch (JsonException)
-                            {
-                                // JSON解析に失敗した場合は従来の正規表現による解析を試みる
-                                var regex2 = reg_script_param();
-                                Match match2 = regex2.Match(input);
-                                while (match2.Success)
-                                {
-                                    dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
-                                    match2 = match2.NextMatch();
-                                }
-                            }
-
-                            // 第3引数の処理（advanced-map等）
-                            if (args.Count >= 3 && args[2].Trim() != "null")
-                            {
-                                jsonText = ConvertToValidJson(args[2]);
-                                try
-                                {
-                                    var jsonDoc = JsonDocument.Parse(jsonText);
-                                    foreach (var prop in jsonDoc.RootElement.EnumerateObject())
-                                    {
-                                        dictionary[prop.Name] = prop.Value.ToString();
-                                    }
-                                }
-                                catch (JsonException)
-                                {
-                                    // JSON解析に失敗した場合は従来の正規表現による解析を試みる
-                                    var regex2 = reg_script_param();
-                                    Match match2 = regex2.Match(input);
-                                    while (match2.Success)
-                                    {
-                                        dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
-                                        match2 = match2.NextMatch();
-                                    }
-                                }
-                            }
-                        }
+                        // 共通関数を使用してJavaScriptコードを処理
+                        var args = PrepareJavaScriptCode(jsCode);
+                        ProcessJavaScriptArgs(args, dictionary, input);
                     }
                 }
                 else
                 {
+                    // スクリプトタグ内容全体から正男パラメータを探す
+                    Regex regexScriptTag = reg_script_tag();
+                    foreach (Match scriptMatch in regexScriptTag.Matches(input))
+                    {
+                        string scriptContent = scriptMatch.Groups[1].Value;
+                        
+                        // 標準パラメータ名のリストを作成
+                        var commonParams = new[] { "map0-", "stage_max", "score_v", "j_tail_type", "time_max", "filename_pattern" };
+                        
+                        foreach (var param in commonParams)
+                        {
+                            if (scriptContent.Contains("\"" + param) || scriptContent.Contains("'" + param))
+                            {
+                                // 正男パラメータを含むスクリプトを発見したので解析
+                                StatusText.Text = "スクリプト内のパラメータ解析中...";
+                                StatusText.Refresh();
+
+                                // 共通関数を使用してJavaScriptコードを処理
+                                var args = PrepareJavaScriptCode(scriptContent);
+                                ProcessJavaScriptArgs(args, dictionary, input);
+                                
+                                break; // 正男パラメータを含むスクリプトが見つかったらループを抜ける
+                            }
+                        }
+                    }
+                    
                     // JSONファイル形式の検出と解析
                     try
                     {
@@ -358,13 +328,7 @@ namespace MasaoPlus.Dialogs
                     catch (JsonException)
                     {
                         // JSONとして解析できない場合は従来のHTMLパラメータ解析を試みる
-                        var regex2 = reg_param();
-                        Match match2 = regex2.Match(input);
-                        while (match2.Success)
-                        {
-                            dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
-                            match2 = match2.NextMatch();
-                        }
+                        ParseParamsWithRegex(input, dictionary);
                     }
                 }
 
@@ -413,14 +377,20 @@ namespace MasaoPlus.Dialogs
 
                                     // _meme_coreからカスタムパーツ名を取得
                                     var customPartName = string.Empty;
-                                    if (rootJsonElement.TryGetProperty("_meme_core", out var memeCore) &&
-                                        memeCore.TryGetProperty("customParts", out var memeCustomParts) &&
-                                        memeCustomParts.TryGetProperty(part.Name, out var memePart) &&
-                                        memePart.TryGetProperty("name", out var memeName))
+                                    try 
                                     {
-                                        customPartName = memeName.GetString();
+                                        if (rootJsonElement.TryGetProperty("_meme_core", out var memeCore) &&
+                                            memeCore.TryGetProperty("customParts", out var memeCustomParts) &&
+                                            memeCustomParts.TryGetProperty(part.Name, out var memePart) &&
+                                            memePart.TryGetProperty("name", out var memeName))
+                                        {
+                                            customPartName = memeName.GetString();
+                                        }
                                     }
-                                    
+                                    catch (Exception)
+                                    {
+                                        // エラーが発生した場合は無視する
+                                    }
                                     // Chipsプロパティを新しい配列として複製
                                     chipData.Chips = new ChipData[(int)(baseChip?.Chips.Length)];
                                     for (int j = 0; j < baseChip?.Chips.Length; j++)
@@ -527,117 +497,134 @@ namespace MasaoPlus.Dialogs
                             [.. stagesElement.EnumerateArray()] : 
                             new List<JsonElement>();
 
+                            // ステージ配列の長さを4にする処理
+                        if (stages.Count < 4)
+                        {
+                            stages.AddRange(Enumerable.Repeat(default(JsonElement), 4 - stages.Count));
+                        }
+
                         StatusText.Text = "ステージサイズ設定中...";
                         StatusText.Refresh();
-                        for (int stageIndex = 0; stageIndex < 4; stageIndex++)
+                        for (int stageIndex = 0; stageIndex < stages.Count; stageIndex++)
                         {
                             var stage = stages[stageIndex];
-                            if (stage.TryGetProperty("size", out var size))
+                            try{
+                                if (stage.TryGetProperty("size", out var size))
+                                {
+                                    int sizeX = size.GetProperty("x").GetInt32();
+                                    int sizeY = size.GetProperty("y").GetInt32();
+                                    
+                                    // マップサイズが500x500を超える場合は警告して500に丸める
+                                    if(sizeX > Global.state.MaximumStageSize.Width || sizeY > Global.state.MaximumStageSize.Height){
+                                        if (sizeX > Global.state.MaximumStageSize.Width)
+                                        {
+                                            sizeX = Global.state.MaximumStageSize.Width;
+                                        }
+                                        if (sizeY > Global.state.MaximumStageSize.Height)
+                                        {
+                                            sizeY = Global.state.MaximumStageSize.Height;
+                                        }
+                                        MessageBox.Show($"マップサイズがSideで扱える最大値({Global.state.MaximumStageSize.Width}×{Global.state.MaximumStageSize.Height})を超えています。\nサイズを{Global.state.MaximumStageSize.Width}×{Global.state.MaximumStageSize.Height}に制限します。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    }
+
+                                    // ステージ番号に応じてサイズとデータ配列を更新
+                                    switch (stageIndex)
+                                    {
+                                        case 0:
+                                            project.Runtime.Definitions.StageSize.x = sizeX;
+                                            project.Runtime.Definitions.StageSize.y = sizeY;
+                                            project.StageData = new string[sizeY];
+                                            if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                            {
+                                                project.Runtime.Definitions.LayerSize.x = sizeX;
+                                                project.Runtime.Definitions.LayerSize.y = sizeY;
+                                                project.LayerData = new string[sizeY];
+                                            }
+                                            break;
+                                        case 1:
+                                            project.Runtime.Definitions.StageSize2.x = sizeX;
+                                            project.Runtime.Definitions.StageSize2.y = sizeY;
+                                            project.StageData2 = new string[sizeY];
+                                            if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                            {
+                                                project.Runtime.Definitions.LayerSize2.x = sizeX;
+                                                project.Runtime.Definitions.LayerSize2.y = sizeY;
+                                                project.LayerData2 = new string[sizeY];
+                                            }
+                                            break;
+                                        case 2:
+                                            project.Runtime.Definitions.StageSize3.x = sizeX;
+                                            project.Runtime.Definitions.StageSize3.y = sizeY;
+                                            project.StageData3 = new string[sizeY];
+                                            if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                            {
+                                                project.Runtime.Definitions.LayerSize3.x = sizeX;
+                                                project.Runtime.Definitions.LayerSize3.y = sizeY;
+                                                project.LayerData3 = new string[sizeY];
+                                            }
+                                            break;
+                                        case 3:
+                                            project.Runtime.Definitions.StageSize4.x = sizeX;
+                                            project.Runtime.Definitions.StageSize4.y = sizeY;
+                                            project.StageData4 = new string[sizeY];
+                                            if (project.Runtime.Definitions.LayerSize.bytesize != 0)
+                                            {
+                                                project.Runtime.Definitions.LayerSize4.x = sizeX;
+                                                project.Runtime.Definitions.LayerSize4.y = sizeY;
+                                                project.LayerData4 = new string[sizeY];
+                                            }
+                                            break;
+                                    }
+                                }
+                            }
+                            catch (Exception)
                             {
-                                int sizeX = size.GetProperty("x").GetInt32();
-                                int sizeY = size.GetProperty("y").GetInt32();
-                                
-                                // マップサイズが500x500を超える場合は警告して500に丸める
-                                if(sizeX > Global.state.MaximumStageSize.Width || sizeY > Global.state.MaximumStageSize.Height){
-                                    if (sizeX > Global.state.MaximumStageSize.Width)
-                                    {
-                                        sizeX = Global.state.MaximumStageSize.Width;
-                                    }
-                                    if (sizeY > Global.state.MaximumStageSize.Height)
-                                    {
-                                        sizeY = Global.state.MaximumStageSize.Height;
-                                    }
-                                    MessageBox.Show($"マップサイズがSideで扱える最大値({Global.state.MaximumStageSize.Width}×{Global.state.MaximumStageSize.Height})を超えています。\nサイズを{Global.state.MaximumStageSize.Width}×{Global.state.MaximumStageSize.Height}に制限します。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                }
+                            }
 
-                                // ステージ番号に応じてサイズとデータ配列を更新
-                                switch (stageIndex)
-                                {
-                                    case 0:
-                                        project.Runtime.Definitions.StageSize.x = sizeX;
-                                        project.Runtime.Definitions.StageSize.y = sizeY;
-                                        project.StageData = new string[sizeY];
-                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
-                                        {
-                                            project.Runtime.Definitions.LayerSize.x = sizeX;
-                                            project.Runtime.Definitions.LayerSize.y = sizeY;
-                                            project.LayerData = new string[sizeY];
-                                        }
-                                        break;
-                                    case 1:
-                                        project.Runtime.Definitions.StageSize2.x = sizeX;
-                                        project.Runtime.Definitions.StageSize2.y = sizeY;
-                                        project.StageData2 = new string[sizeY];
-                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
-                                        {
-                                            project.Runtime.Definitions.LayerSize2.x = sizeX;
-                                            project.Runtime.Definitions.LayerSize2.y = sizeY;
-                                            project.LayerData2 = new string[sizeY];
-                                        }
-                                        break;
-                                    case 2:
-                                        project.Runtime.Definitions.StageSize3.x = sizeX;
-                                        project.Runtime.Definitions.StageSize3.y = sizeY;
-                                        project.StageData3 = new string[sizeY];
-                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
-                                        {
-                                            project.Runtime.Definitions.LayerSize3.x = sizeX;
-                                            project.Runtime.Definitions.LayerSize3.y = sizeY;
-                                            project.LayerData3 = new string[sizeY];
-                                        }
-                                        break;
-                                    case 3:
-                                        project.Runtime.Definitions.StageSize4.x = sizeX;
-                                        project.Runtime.Definitions.StageSize4.y = sizeY;
-                                        project.StageData4 = new string[sizeY];
-                                        if (project.Runtime.Definitions.LayerSize.bytesize != 0)
-                                        {
-                                            project.Runtime.Definitions.LayerSize4.x = sizeX;
-                                            project.Runtime.Definitions.LayerSize4.y = sizeY;
-                                            project.LayerData4 = new string[sizeY];
-                                        }
-                                        break;
-                                }
+                            // 指定サイズでデフォルト値を設定
+                            string[] targetStageData = null;
+                            string[] targetLayerData = null;
+                            ChipsData[] targetChips = chipDataClass.Mapchip;
+                            ChipsData[] targetLayerChips = chipDataClass.Layerchip;
+                            int width = default;
 
-                                // 指定サイズでデフォルト値を設定
-                                string[] targetStageData = null;
-                                string[] targetLayerData = null;
-                                ChipsData[] targetChips = chipDataClass.Mapchip;
-                                ChipsData[] targetLayerChips = chipDataClass.Layerchip;
-                                int width = sizeX;
+                            switch (stageIndex)
+                            {
+                                case 0:
+                                    targetStageData = project.StageData;
+                                    targetLayerData = project.LayerData;
+                                    width = project.Runtime.Definitions.StageSize.x;
+                                    break;
+                                case 1:
+                                    targetStageData = project.StageData2;
+                                    targetLayerData = project.LayerData2;
+                                    width = project.Runtime.Definitions.StageSize2.x;
+                                    break;
+                                case 2:
+                                    targetStageData = project.StageData3;
+                                    targetLayerData = project.LayerData3;
+                                    width = project.Runtime.Definitions.StageSize3.x;
+                                    break;
+                                case 3:
+                                    targetStageData = project.StageData4;
+                                    targetLayerData = project.LayerData4;
+                                    width = project.Runtime.Definitions.StageSize4.x;
+                                    break;
+                            }
 
-                                switch (stageIndex)
-                                {
-                                    case 0:
-                                        targetStageData = project.StageData;
-                                        targetLayerData = project.LayerData;
-                                        break;
-                                    case 1:
-                                        targetStageData = project.StageData2;
-                                        targetLayerData = project.LayerData2;
-                                        break;
-                                    case 2:
-                                        targetStageData = project.StageData3;
-                                        targetLayerData = project.LayerData3;
-                                        break;
-                                    case 3:
-                                        targetStageData = project.StageData4;
-                                        targetLayerData = project.LayerData4;
-                                        break;
-                                }
+                            // メインステージのデフォルト値設定
+                            InitializeEmptyStageData(targetStageData, width, targetChips);
 
-                                // メインステージのデフォルト値設定
-                                InitializeEmptyStageData(targetStageData, width, targetChips);
+                            // レイヤーのデフォルト値設定
+                            if (project.Runtime.Definitions.LayerSize.bytesize != 0 && targetLayerData != null)
+                            {
+                                InitializeEmptyStageData(targetLayerData, width, targetLayerChips);
+                            }
 
-                                // レイヤーのデフォルト値設定
-                                if (project.Runtime.Definitions.LayerSize.bytesize != 0 && targetLayerData != null)
-                                {
-                                    InitializeEmptyStageData(targetLayerData, width, targetLayerChips);
-                                }
-
-                                StatusText.Text = $"ステージソース生成中[{stageIndex + 1}/4]...";
-                                StatusText.Refresh();
-                                // レイヤーデータの読み込み
+                            StatusText.Text = $"ステージソース生成中[{stageIndex + 1}/4]...";
+                            StatusText.Refresh();
+                            // レイヤーデータの読み込み
+                            try{
                                 if (stage.TryGetProperty("layers", out var layers))
                                 {
                                     foreach (var layer in layers.EnumerateArray())
@@ -655,17 +642,23 @@ namespace MasaoPlus.Dialogs
                                             for (int y = 0; y < map.GetArrayLength() && y < targetData.Length; y++)
                                             {
                                                 var row = map[y];
-                                                var rowValues = new List<int>();
+                                                var rowValues = new List<object>();
 
                                                 // マップデータの各セルを処理
                                                 foreach (var cell in row.EnumerateArray())
                                                 {
-                                                    if (cell.TryGetInt32(out int cellvalue))
+                                                    if (cell.ValueKind == JsonValueKind.Number && cell.TryGetInt32(out int cellvalue))
                                                     {
                                                         rowValues.Add(cellvalue);
                                                     }
+                                                    else if (cell.ValueKind == JsonValueKind.String)
+                                                    {
+                                                        // 文字列の場合はそのまま追加
+                                                        rowValues.Add(cell.GetString());
+                                                    }
                                                     else
                                                     {
+                                                        // それ以外はデフォルト値
                                                         rowValues.Add(int.Parse(defaultCode));
                                                     }
                                                 }
@@ -681,6 +674,9 @@ namespace MasaoPlus.Dialogs
                                         }
                                     }
                                 }
+                            }
+                            catch (Exception)
+                            {
                             }
                         }
                     }
@@ -1189,14 +1185,8 @@ namespace MasaoPlus.Dialogs
             // 数値の前のプラス記号を削除（JSONでは不要）
             jsCode = reg_number_plus().Replace(jsCode, ": $1");
 
-            // 末尾のカンマを削除
-            jsCode = reg_comma().Replace(jsCode, "$1");
-
-            // オブジェクトの最後のプロパティの後のカンマを削除
-            jsCode = reg_object_comma().Replace(jsCode, "$1");
-
-            // 配列の最後の要素の後のカンマを削除
-            jsCode = reg_array_comma().Replace(jsCode, "$1");
+            // 末尾のカンマを削除する共通パターン
+            jsCode = reg_trailing_comma().Replace(jsCode, "$1");
 
             // URLプレースホルダーを元のURLに戻す
             foreach (var placeholder in urlPlaceholders)
@@ -1273,6 +1263,271 @@ namespace MasaoPlus.Dialogs
             return args;
         }
 
+        // JSONパース前に関数リテラル（userJSCallbackやhighscoreCallbackなど）を除外するメソッド
+        private static string CleanJSONForParsing(string jsonText)
+        {
+            // 関数リテラルを取り除くためのプロパティリスト
+            string[] propertiesToRemove = [
+                "userJSCallback",
+                "highscoreCallback",
+                "extensions"
+            ];
+
+            var cleanedJson = jsonText;
+            
+            // デリゲートタイプの特別処理 - より単純なアプローチを最初に試す
+            foreach (var prop in propertiesToRemove)
+            {
+                string pattern = $@"[""|']{prop}[""|']\s*:\s*\([^)]*\)\s*=>\s*\{{.*?\}}\s*\(\)\s*,?";
+                cleanedJson = Regex.Replace(cleanedJson, pattern, "", RegexOptions.Singleline);
+                
+                // 即時実行関数式（IIFE）を検出するための別パターン
+                pattern = $@"[""|']{prop}[""|']\s*:\s*\(\s*\(\s*\)\s*=>\s*\{{.*?\}}\s*\)\(\)\s*,?";
+                cleanedJson = Regex.Replace(cleanedJson, pattern, "", RegexOptions.Singleline);
+                
+                // 通常の関数リテラルパターン
+                pattern = $@"[""|']{prop}[""|']\s*:\s*function\s*\(.*?\)\s*\{{.*?\}}\s*,?";
+                cleanedJson = Regex.Replace(cleanedJson, pattern, "", RegexOptions.Singleline);
+            }
+
+            // まだプロパティが残っていれば、より詳細な分析を実施
+            foreach (var prop in propertiesToRemove)
+            {
+                int propStart;
+                while ((propStart = cleanedJson.IndexOf($"\"{prop}\"")) >= 0 || 
+                       (propStart = cleanedJson.IndexOf($"'{prop}'")) >= 0)
+                {
+                    // プロパティの終わりを見つける
+                    int colonPos = cleanedJson.IndexOf(':', propStart);
+                    if (colonPos < 0) break;
+                    
+                    // プロパティ値の開始位置
+                    int valueStart = colonPos + 1;
+                    while (valueStart < cleanedJson.Length && char.IsWhiteSpace(cleanedJson[valueStart]))
+                        valueStart++;
+                    
+                    if (valueStart >= cleanedJson.Length) break;
+                    
+                    // 関数リテラルの開始を検出
+                    bool isFunction = false;
+                    int endPos = valueStart;
+                    int braceCount = 0;
+                    int parenCount = 0;
+                    
+                    // 関数の開始パターンを確認
+                    if (cleanedJson[valueStart] == '(' ||
+                        cleanedJson[valueStart..].StartsWith("function") ||
+                        (valueStart + 1 < cleanedJson.Length && cleanedJson.Substring(valueStart, 2) == "=>"))
+                    {
+                        isFunction = true;
+                        
+                        // 関数本体の終わりを探す
+                        while (endPos < cleanedJson.Length)
+                        {
+                            char c = cleanedJson[endPos];
+                            
+                            if (c == '(')
+                            {
+                                parenCount++;
+                            }
+                            else if (c == ')')
+                            {
+                                parenCount--;
+                                // 即時実行関数 (() => {})() の終わりを検出
+                                if (parenCount == 0 && braceCount == 0)
+                                {
+                                    int nextPos = endPos + 1;
+                                    while (nextPos < cleanedJson.Length && char.IsWhiteSpace(cleanedJson[nextPos]))
+                                        nextPos++;
+                                    
+                                    if (nextPos < cleanedJson.Length && cleanedJson[nextPos] == '(')
+                                    {
+                                        // 即時実行関数の終わりまでスキップ
+                                        endPos = FindMatchingCloseParen(cleanedJson, nextPos);
+                                        if (endPos < 0) break; // 対応する括弧がない場合
+                                        endPos++;
+                                    }
+                                }
+                            }
+                            else if (c == '{')
+                            {
+                                braceCount++;
+                            }
+                            else if (c == '}')
+                            {
+                                braceCount--;
+                                if (braceCount == 0 && parenCount <= 0)
+                                {
+                                    endPos++;
+                                    break; // 関数本体の終わりを見つけた
+                                }
+                            }
+                            
+                            endPos++;
+                            
+                            // すべての括弧が閉じられた後にコンマや括弧を探す
+                            if (braceCount == 0 && parenCount == 0 && endPos < cleanedJson.Length)
+                            {
+                                // 空白をスキップ
+                                while (endPos < cleanedJson.Length && char.IsWhiteSpace(cleanedJson[endPos]))
+                                    endPos++;
+                                
+                                if (endPos < cleanedJson.Length)
+                                {
+                                    if (cleanedJson[endPos] == '(')
+                                    {
+                                        // 即時実行関数の呼び出し括弧
+                                        int closePos = FindMatchingCloseParen(cleanedJson, endPos);
+                                        if (closePos >= 0)
+                                        {
+                                            endPos = closePos + 1;
+                                        }
+                                        
+                                        // 括弧の後に空白をスキップ
+                                        while (endPos < cleanedJson.Length && char.IsWhiteSpace(cleanedJson[endPos]))
+                                            endPos++;
+                                    }
+                                    
+                                    // カンマがあれば、それも含める
+                                    if (endPos < cleanedJson.Length && cleanedJson[endPos] == ',')
+                                    {
+                                        endPos++;
+                                    }
+                                    
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (isFunction)
+                    {
+                        // プロパティ全体を削除
+                        cleanedJson = cleanedJson.Remove(propStart, endPos - propStart);
+                    }
+                    else
+                    {
+                        // 関数でなければ、このプロパティはスキップ
+                        break;
+                    }
+                }
+            }
+            
+            // 構文の修正（連続カンマ、末尾カンマの除去など）
+            cleanedJson = reg_trailing_comma().Replace(cleanedJson, "$1"); // 末尾カンマの除去（オブジェクトと配列）
+            cleanedJson = reg_double_comma().Replace(cleanedJson, ","); // 連続カンマの除去
+            cleanedJson = reg_object_start_comma().Replace(cleanedJson, "{"); // オブジェクト開始直後のカンマの除去
+            
+            return cleanedJson;
+        }
+        
+        // 対応する閉じ括弧の位置を見つける補助メソッド
+        private static int FindMatchingCloseParen(string text, int openPos)
+        {
+            int count = 1;
+            for (int i = openPos + 1; i < text.Length; i++)
+            {
+                if (text[i] == '(') count++;
+                else if (text[i] == ')') count--;
+                
+                if (count == 0) return i; // 対応する閉じ括弧を見つけた
+            }
+            return -1; // 見つからなかった
+        }
+
+        // Jsonパース失敗時の処理を共通関数化
+        private static void ParseParamsWithRegex(string input, Dictionary<string, string> dictionary)
+        {
+            var regex2 = reg_script_param();
+            Match match2 = regex2.Match(input);
+            while (match2.Success)
+            {
+                dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
+                match2 = match2.NextMatch();
+            }
+        }
+
+        // JavaScript文字列からパラメータを抽出する共通処理を関数化
+        private static List<string> PrepareJavaScriptCode(string jsContent)
+        {
+            string jsCode = jsContent.Trim();
+            
+            // '(' から始まる部分を検出して、それ以前の文字列を削除
+            int openBracketIndex = jsCode.IndexOf('(');
+            if (openBracketIndex >= 0)
+            {
+                jsCode = jsCode[openBracketIndex..];
+                // 先頭の括弧を削除
+                jsCode = jsCode.TrimStart('(');
+            }
+            
+            // 最後の行を確認してJSMasao.pad.avoidAD = true;のような追加コードがないか確認
+            int lastSemicolonPos = jsCode.LastIndexOf(';');
+            int lastCloseBracePos = jsCode.LastIndexOf("});");
+            
+            // });の後にコードがある場合はそれを除外
+            if (lastCloseBracePos > 0 && lastSemicolonPos > lastCloseBracePos)
+            {
+                jsCode = jsCode[..(lastCloseBracePos + 1)];
+            }
+            // 末尾が);なら除去
+            else if (jsCode.EndsWith(");"))
+            {
+                jsCode = jsCode[..^2];
+            }
+
+            // 引数を分割して返す
+            return SplitJSMasaoArgs(jsCode);
+        }
+
+        // 抽出したJavaScript引数からパラメータ辞書にデータを追加する共通処理
+        private static void ProcessJavaScriptArgs(List<string> args, Dictionary<string, string> dictionary, string input)
+        {
+            if (args.Count > 0)
+            {
+                // 第1引数の処理（基本設定）
+                string jsonText = ConvertToValidJson(args[0]);
+                try
+                {
+                    var jsonDoc = JsonDocument.Parse(jsonText);
+                    foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                    {
+                        dictionary[prop.Name] = prop.Value.ToString();
+                    }
+                }
+                catch (JsonException)
+                {
+                    // JSON解析に失敗した場合は従来の正規表現による解析を試みる
+                    ParseParamsWithRegex(input, dictionary);
+                }
+
+                // 第2引数以降の処理（advanced-map等）
+                for (int argIndex = 1; argIndex < args.Count; argIndex++)
+                {
+                    if (args[argIndex].Trim() == "null") continue;
+
+                    jsonText = ConvertToValidJson(args[argIndex]);
+                    try
+                    {
+                        // JSONパースする前にuserJSCallbackなど関数リテラルを含むプロパティを除外
+                        string jsonText2 = CleanJSONForParsing(jsonText);
+                        var jsonDoc = JsonDocument.Parse(jsonText2);
+                        foreach (var prop in jsonDoc.RootElement.EnumerateObject())
+                        {
+                            dictionary[prop.Name] = prop.Value.ToString();
+                        }
+                        // 1つでも成功したらループを抜ける
+                        break;
+                    }
+                    catch (JsonException)
+                    {
+                        // JSON解析に失敗した場合は従来の正規表現による解析を試みる
+                        ParseParamsWithRegex(input, dictionary);
+                    }
+                }
+            }
+        }
+
         public string ProjectFile = "";
 
         public List<string> runtimes = [];
@@ -1291,6 +1546,8 @@ namespace MasaoPlus.Dialogs
         private static partial Regex reg_param();
         [GeneratedRegex(@"(?:<[ ]*?script.*?>.*?)?new\s*?(JSMasao|CanvasMasao\.\s*?Game)", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
         private static partial Regex reg_script_start();
+        [GeneratedRegex(@"<script[^>]*>(.*?)<\/script>", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
+        private static partial Regex reg_script_tag();
         [GeneratedRegex(@"(""|')(?<name>.*?)(""|')\s*?:\s*?(""|')(?<value>.*?)(?<!\\)(""|')(,|\s*?)", RegexOptions.IgnoreCase | RegexOptions.Singleline, "ja-JP")]
         private static partial Regex reg_script_param();
         [GeneratedRegex(@"-(\d+)$")]
@@ -1314,11 +1571,12 @@ namespace MasaoPlus.Dialogs
         [GeneratedRegex(@":\s*\+(\d+)")]
         private static partial Regex reg_number_plus();
         [GeneratedRegex(@",(\s*[}\]])")]
-        private static partial Regex reg_comma();
-        [GeneratedRegex(@",(\s*})")]
-        private static partial Regex reg_object_comma();
-        [GeneratedRegex(@",(\s*\])")]
-        private static partial Regex reg_array_comma();
+        private static partial Regex reg_trailing_comma();
         private static JsonElement rootJsonElement;
+
+        [GeneratedRegex(",\\s*,")]
+        private static partial Regex reg_double_comma();
+        [GeneratedRegex("{\\s*,")]
+        private static partial Regex reg_object_start_comma();
     }
 }

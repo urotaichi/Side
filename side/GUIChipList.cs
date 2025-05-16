@@ -265,7 +265,7 @@ namespace MasaoPlus
         }
         
         // 共通の選択フレーム描画処理
-        protected void DrawSelectionFrame(Graphics g, Rectangle rectangle)
+        protected static void DrawSelectionFrame(Graphics g, Rectangle rectangle)
         {
             switch (Global.config.draw.SelDrawMode)
             {
