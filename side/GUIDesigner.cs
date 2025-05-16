@@ -953,6 +953,11 @@ namespace MasaoPlus
                 DrawChizuOrig = null;
             }
             string filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.PatternImage);
+            if (!File.Exists(filename))
+            {
+                filename = Path.Combine(Global.cpd.where, "pattern.gif");
+            }
+
             FileStream fs;
             DrawChipOrig = Image.FromStream(File.OpenRead(filename), false, false);
             DrawMask = new Bitmap(DrawChipOrig.Width, DrawChipOrig.Height);
@@ -971,6 +976,11 @@ namespace MasaoPlus
             if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
             {
                 filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.LayerImage);
+                if (!File.Exists(filename))
+                {
+                    filename = Path.Combine(Global.cpd.where, "mapchip.gif");
+                }
+                
                 DrawLayerOrig = Image.FromStream(File.OpenRead(filename), false, false);
                 DrawLayerMask = new Bitmap(DrawLayerOrig.Width, DrawLayerOrig.Height);
                 using ImageAttributes imageAttributes2 = new();
