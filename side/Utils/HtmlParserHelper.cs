@@ -13,6 +13,11 @@ namespace MasaoPlus.Utils
     /// </summary>
     public static partial class HtmlParserHelper
     {
+        /// <summary>
+        /// 正男の標準パラメータ名のリスト
+        /// </summary>
+        public static readonly string[] CommonParams = ["map0-", "stage_max", "score_v", "j_tail_type", "time_max", "filename_pattern"];
+
         public static bool GetMapSource(ref string[] overwrite, string f, Runtime.DefinedData.StageSizeData StageSizeData, ref Dictionary<string, string> Params, ChipsData[] MapChip, int Split = 0)
         {
             int dxsize = StageSizeData.x, dysize = StageSizeData.y;

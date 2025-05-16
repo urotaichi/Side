@@ -220,10 +220,7 @@ namespace MasaoPlus.Dialogs
                     {
                         string scriptContent = scriptMatch.Groups[1].Value;
                         
-                        // 標準パラメータ名のリストを作成
-                        var commonParams = new[] { "map0-", "stage_max", "score_v", "j_tail_type", "time_max", "filename_pattern" };
-                        
-                        foreach (var param in commonParams)
+                        foreach (var param in HtmlParserHelper.CommonParams)
                         {
                             if (scriptContent.Contains("\"" + param) || scriptContent.Contains("'" + param))
                             {
