@@ -16,7 +16,94 @@ namespace MasaoPlus.Utils
         /// <summary>
         /// 正男の標準パラメータ名のリスト
         /// </summary>
-        public static readonly string[] CommonParams = ["map0-", "stage_max", "score_v", "j_tail_type", "time_max", "filename_pattern"];
+        public static readonly string[] CommonParams = [
+            // マップ関連
+            "map0-", "map1-", "map2-", "map3-", "map4-", "stage_max", "stage_kaishi",
+            // 画面表示関連
+            "mcs_screen_size", "scroll_area", "view_move_type", "scroll_mode", "scroll_mode_s", "scroll_mode_t", "scroll_mode_f",
+            // ゲームシステム関連
+            "score_v", "time_max", "clear_type", "jibun_left_shoki", "score_1up_1", "score_1up_2", "easy_mode", "pause_switch", 
+            "door_score", "dokan_mode", "game_speed",
+            // 色設定関連
+            "backcolor_red", "backcolor_green", "backcolor_blue", "backcolor_red_s", "backcolor_green_s", "backcolor_blue_s", 
+            "backcolor_red_t", "backcolor_green_t", "backcolor_blue_t", "backcolor_red_f", "backcolor_green_f", "backcolor_blue_f", 
+            "kaishi_red", "kaishi_green", "kaishi_blue", "scorecolor_red", "scorecolor_green", "scorecolor_blue",
+            "grenade_red1", "grenade_green1", "grenade_blue1", "grenade_red2", "grenade_green2", "grenade_blue2",
+            "mizunohadou_red", "mizunohadou_green", "mizunohadou_blue", "firebar_red1", "firebar_green1", "firebar_blue1", 
+            "firebar_red2", "firebar_green2", "firebar_blue2", "message_back_red", "message_back_green", "message_back_blue",
+            "message_border_red", "message_border_green", "message_border_blue", "message_name_red", "message_name_green", 
+            "message_name_blue", "message_text_red", "message_text_green", "message_text_blue", "gauge_border_red", 
+            "gauge_border_green", "gauge_border_blue", "gauge_back_red1", "gauge_back_green1", "gauge_back_blue1",
+            "gauge_back_red2", "gauge_back_green2", "gauge_back_blue2",
+            // 主人公能力関連
+            "j_hp", "j_hp_name", "j_tokugi", "j_add_tokugi", "j_add_tokugi2", "j_add_tokugi3", "j_add_tokugi4", 
+            "j_equip_grenade", "j_tail_hf", "j_tail_type", "j_tail_ap_boss", "j_fire_equip", "j_fire_type", "j_fire_mkf", 
+            "j_enemy_press",
+            // 敵関連
+            "grenade_type", "poppie_attack", "mizutaro_attack", "chikorin_attack", "mariri_attack", "yachamo_kf", 
+            "dengeki_mkf", "airms_kf", "taiking_attack", "kuragesso_attack", "dossunsun_type", "firebar1_type", 
+            "firebar2_type", "ugokuyuka1_type", "ugokuyuka2_type", "ugokuyuka3_type", "coin1_type", "coin3_type", 
+            "dokan1_type", "dokan2_type", "dokan3_type", "dokan4_type", "suberuyuka_hkf",
+            // ボス関連
+            "boss_type", "boss2_type", "boss3_type", "boss_destroy_type", "boss_hp_max", "boss_name", "boss2_name", 
+            "boss3_name", "oriboss_v", "oriboss_name", "oriboss_hp", "oriboss_speed", "oriboss_x", "oriboss_y", 
+            "oriboss_width", "oriboss_height", "oriboss_ugoki", "oriboss_waza_select", "oriboss_waza_select_option", 
+            "oriboss_waza1", "oriboss_waza2", "oriboss_waza3", "oriboss_waza1_wait", "oriboss_waza2_wait", 
+            "oriboss_waza3_wait", "oriboss_fumeru_f", "oriboss_tail_f", "oriboss_destroy", "oriboss_anime_type",
+            // 背景画像関連
+            "layer_mode", "filename_haikei", "filename_haikei2", "filename_haikei3", "filename_haikei4", "control_parts_visible", 
+            "mcs_haikei_visible", "gazou_scroll", "gazou_scroll_speed_x", "gazou_scroll_speed_y", "gazou_scroll_x", 
+            "gazou_scroll_y", "second_gazou_visible", "filename_second_haikei", "filename_second_haikei2", 
+            "filename_second_haikei3", "filename_second_haikei4", "second_gazou_scroll", "second_gazou_scroll_speed_x", 
+            "second_gazou_scroll_speed_y", "second_gazou_scroll_x", "second_gazou_scroll_y", "second_gazou_priority", 
+            "water_visible", "water_clear_switch", "water_clear_level",
+            // ファイル名関連
+            "filename_mapchip", "filename_pattern", "filename_title", "filename_ending", "filename_gameover", 
+            "filename_oriboss_left1", "filename_oriboss_left2", "filename_oriboss_tubure_left", "filename_oriboss_right1", 
+            "filename_oriboss_right2", "filename_oriboss_tubure_right", "x_backimage1_view_x", "x_backimage1_filename", 
+            "x_backimage2_view_x", "x_backimage2_filename", "x_backimage3_view_x", "x_backimage3_filename", 
+            "x_backimage4_view_x", "x_backimage4_filename", "ximage1_view_x", "filename_ximage1", "ximage1_x", "ximage1_y", 
+            "ximage2_view_x", "filename_ximage2", "ximage2_x", "ximage2_y", "ximage3_view_x", "filename_ximage3", 
+            "ximage3_x", "ximage3_y", "ximage4_view_x", "filename_ximage4", "ximage4_x", "ximage4_y",
+            // テキスト関連
+            "moji_score", "moji_highscore", "moji_time", "moji_jet", "moji_grenade", "moji_left", "moji_size", 
+            "font_score", "font_message", "now_loading",
+            // ショップ関連
+            "shop_name", "serifu5-1", "serifu5-2", "serifu5-3", "shop_serifu1", "shop_serifu2", "shop_serifu3", 
+            "shop_serifu4", "shop_serifu5", "shop_serifu6", "shop_item_name1", "shop_item_teika1", "shop_item_name2", 
+            "shop_item_teika2", "shop_item_name3", "shop_item_teika3", "shop_item_name4", "shop_item_teika4", 
+            "shop_item_name5", "shop_item_teika5", "shop_item_name6", "shop_item_teika6", "shop_item_name7", 
+            "shop_item_teika7", "shop_item_name8", "shop_item_teika8", "shop_item_name9", "shop_item_teika9",
+            // セリフ関連
+            "mes1_name", "serifu1-1", "serifu1-2", "serifu1-3", "serifu2-1", "serifu2-2", "serifu2-3", "mes2_name", 
+            "serifu3-1", "serifu3-2", "serifu3-3", "serifu4-1", "serifu4-2", "serifu4-3", "fs_name", "serifu7-1", 
+            "serifu7-2", "serifu7-3", "fs_serifu1", "fs_serifu2", "fs_item_name1", "fs_item_name2", "fs_item_name3",
+            // 鍵関連
+            "serifu_key1_on_name", "serifu_key1_on-1", "serifu_key1_on-2", "serifu_key1_on-3", "serifu_key1_on-4", 
+            "serifu_key1_on-5", "serifu_key1_on-6", "serifu_key1_on-7", "serifu_key1_on-8", "serifu_key1_on-9", 
+            "serifu_key1_on-10", "key1_on_count", "serifu_key2_on_name", "serifu_key2_on-1", "serifu_key2_on-2", 
+            "serifu_key2_on-3", "serifu_key2_on-4", "serifu_key2_on-5", "serifu_key2_on-6", "serifu_key2_on-7", 
+            "serifu_key2_on-8", "serifu_key2_on-9", "serifu_key2_on-10", "key2_on_count",
+            // グレネードショップ関連
+            "serifu_grenade_shop_name", "serifu_grenade_shop-1", "serifu_grenade_shop-2", "serifu_grenade_shop-3", 
+            "serifu_grenade_shop-4", "serifu_grenade_shop-5", "serifu_grenade_shop-6", "grenade_shop_score",
+            // ひとこと関連
+            "hitokoto1_name", "hitokoto1-1", "hitokoto1-2", "hitokoto1-3", "hitokoto2_name", "hitokoto2-1", "hitokoto2-2", 
+            "hitokoto2-3", "hitokoto3_name", "hitokoto3-1", "hitokoto3-2", "hitokoto3-3", "hitokoto4_name", "hitokoto4-1", 
+            "hitokoto4-2", "hitokoto4-3",
+            // URL関連
+            "url1", "url2", "url3", "url4",
+            // 音声関連
+            "fx_bgm_switch", "se_switch", "fx_bgm_loop", "audio_bgm_switch_wave", "audio_bgm_switch_mp3", "audio_bgm_switch_ogg", 
+            "se_filename", "audio_se_switch_wave", "audio_se_switch_mp3", "audio_se_switch_ogg", "filename_fx_bgm_stage1", 
+            "filename_fx_bgm_stage2", "filename_fx_bgm_stage3", "filename_fx_bgm_stage4", "filename_fx_bgm_boss", 
+            "filename_fx_bgm_title", "filename_fx_bgm_ending", "filename_se_start", "filename_se_gameover", "filename_se_clear", 
+            "filename_se_coin", "filename_se_get", "filename_se_item", "filename_se_jump", "filename_se_sjump", "filename_se_kiki", 
+            "filename_se_fumu", "filename_se_tobasu", "filename_se_fireball", "filename_se_jet", "filename_se_miss", 
+            "filename_se_block", "filename_se_mizu", "filename_se_dengeki", "filename_se_happa", "filename_se_hinoko", 
+            "filename_se_mizudeppo", "filename_se_bomb", "filename_se_dosun", "filename_se_grounder", "filename_se_kaiole", 
+            "filename_se_senkuuza", "filename_se_dokan"
+        ];
 
         public static bool GetMapSource(ref string[] overwrite, string f, Runtime.DefinedData.StageSizeData StageSizeData, ref Dictionary<string, string> Params, ChipsData[] MapChip, int Split = 0)
         {
