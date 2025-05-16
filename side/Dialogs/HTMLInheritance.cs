@@ -1414,10 +1414,9 @@ namespace MasaoPlus.Dialogs
             }
             
             // 構文の修正（連続カンマ、末尾カンマの除去など）
-            cleanedJson = Regex.Replace(cleanedJson, ",\\s*}", "}");
-            cleanedJson = Regex.Replace(cleanedJson, ",\\s*]", "]");
-            cleanedJson = Regex.Replace(cleanedJson, ",\\s*,", ",");
-            cleanedJson = Regex.Replace(cleanedJson, "{\\s*,", "{");
+            cleanedJson = reg_trailing_comma().Replace(cleanedJson, "$1"); // 末尾カンマの除去（オブジェクトと配列）
+            cleanedJson = reg_double_comma().Replace(cleanedJson, ","); // 連続カンマの除去
+            cleanedJson = reg_object_start_comma().Replace(cleanedJson, "{"); // オブジェクト開始直後のカンマの除去
             
             return cleanedJson;
         }
@@ -1574,5 +1573,10 @@ namespace MasaoPlus.Dialogs
         [GeneratedRegex(@",(\s*[}\]])")]
         private static partial Regex reg_trailing_comma();
         private static JsonElement rootJsonElement;
+
+        [GeneratedRegex(",\\s*,")]
+        private static partial Regex reg_double_comma();
+        [GeneratedRegex("{\\s*,")]
+        private static partial Regex reg_object_start_comma();
     }
 }
