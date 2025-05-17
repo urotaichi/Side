@@ -2859,7 +2859,7 @@ namespace MasaoPlus
 
         private bool MousePressed;
 
-        private readonly FillToolHelper fillToolHelper = new FillToolHelper();
+        private readonly FillToolHelper fillToolHelper = new();
 
         private IContainer components;
 
