@@ -557,7 +557,7 @@ namespace MasaoPlus.Controls
                             Global.cpd.runtime.Definitions.MapSize.x = 19;
                             Global.cpd.runtime.Definitions.MapSize.y = 14;
 
-                            Array.Resize(ref Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize.y);
+                            Array.Resize(ref Global.cpd.project.MapData.Strings, Global.cpd.runtime.Definitions.MapSize.y);
                             for (int i = 0; i < Global.cpd.runtime.Definitions.MapSize.y; i++)
                             {
                                 int k;
@@ -609,39 +609,39 @@ namespace MasaoPlus.Controls
                                 size.bytesize = Global.cpd.project.Runtime.Definitions.StageSize.bytesize;
                             }
                             var nullcode = Global.cpd.Mapchip[0].code;
-                            ResizeY(Global.cpd.runtime.Definitions.StageSize, Global.state.MinimumStageSize.Height, ref Global.cpd.project.StageData, nullcode);
-                            ResizeX(Global.cpd.runtime.Definitions.StageSize.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.StageData, nullcode);
-                            ResizeY(Global.cpd.runtime.Definitions.StageSize2, Global.state.MinimumStageSize.Height, ref Global.cpd.project.StageData2, nullcode);
-                            ResizeX(Global.cpd.runtime.Definitions.StageSize2.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.StageData2, nullcode);
-                            ResizeY(Global.cpd.runtime.Definitions.StageSize3, Global.state.MinimumStageSize.Height, ref Global.cpd.project.StageData3, nullcode);
-                            ResizeX(Global.cpd.runtime.Definitions.StageSize3.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.StageData3, nullcode);
-                            ResizeY(Global.cpd.runtime.Definitions.StageSize4, Global.state.MinimumStageSize.Height, ref Global.cpd.project.StageData4, nullcode);
-                            ResizeX(Global.cpd.runtime.Definitions.StageSize4.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.StageData4, nullcode);
+                            ResizeY(Global.cpd.runtime.Definitions.StageSize, Global.state.MinimumStageSize.Height, ref Global.cpd.project.StageData.Strings, nullcode);
+                            ResizeX(Global.cpd.runtime.Definitions.StageSize.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.StageData.Strings, nullcode);
+                            ResizeY(Global.cpd.runtime.Definitions.StageSize2, Global.state.MinimumStageSize.Height, ref Global.cpd.project.StageData2.Strings, nullcode);
+                            ResizeX(Global.cpd.runtime.Definitions.StageSize2.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.StageData2.Strings, nullcode);
+                            ResizeY(Global.cpd.runtime.Definitions.StageSize3, Global.state.MinimumStageSize.Height, ref Global.cpd.project.StageData3.Strings, nullcode);
+                            ResizeX(Global.cpd.runtime.Definitions.StageSize3.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.StageData3.Strings, nullcode);
+                            ResizeY(Global.cpd.runtime.Definitions.StageSize4, Global.state.MinimumStageSize.Height, ref Global.cpd.project.StageData4.Strings, nullcode);
+                            ResizeX(Global.cpd.runtime.Definitions.StageSize4.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.StageData4.Strings, nullcode);
                             setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize);
                             setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize2);
                             setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize3);
                             setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize4);
                             if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
                             {
-                                void setLayerSize(ref Runtime.DefinedData.StageSizeData size)
+                                void ProcessLayerData(List<LayerObject> layerData, ref Runtime.DefinedData.StageSizeData sizeData)
                                 {
-                                    if (size.x < Global.state.MinimumStageSize.Width) size.x = Global.state.MinimumStageSize.Width;
-                                    if (size.y < Global.state.MinimumStageSize.Height) size.y = Global.state.MinimumStageSize.Height;
-                                    size.bytesize = Global.cpd.project.Runtime.Definitions.LayerSize.bytesize;
+                                    string nullcode = Global.cpd.Layerchip[0].code;
+                                    for (int i = 0; i < layerData.Count; i++)
+                                    {
+                                        ResizeY(sizeData, Global.state.MinimumStageSize.Height, ref layerData[i].Strings, nullcode);
+                                        ResizeX(sizeData.x, Global.state.MinimumStageSize.Width, ref layerData[i].Strings, nullcode);
+                                    }
+                                    
+                                    // サイズ設定も同時に行う
+                                    if (sizeData.x < Global.state.MinimumStageSize.Width) sizeData.x = Global.state.MinimumStageSize.Width;
+                                    if (sizeData.y < Global.state.MinimumStageSize.Height) sizeData.y = Global.state.MinimumStageSize.Height;
+                                    sizeData.bytesize = Global.cpd.project.Runtime.Definitions.LayerSize.bytesize;
                                 }
-                                nullcode = Global.cpd.Layerchip[0].code;
-                                ResizeY(Global.cpd.runtime.Definitions.LayerSize, Global.state.MinimumStageSize.Height, ref Global.cpd.project.LayerData, nullcode);
-                                ResizeX(Global.cpd.runtime.Definitions.LayerSize.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.LayerData, nullcode);
-                                ResizeY(Global.cpd.runtime.Definitions.LayerSize2, Global.state.MinimumStageSize.Height, ref Global.cpd.project.LayerData2, nullcode);
-                                ResizeX(Global.cpd.runtime.Definitions.LayerSize2.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.LayerData2, nullcode);
-                                ResizeY(Global.cpd.runtime.Definitions.LayerSize3, Global.state.MinimumStageSize.Height, ref Global.cpd.project.LayerData3, nullcode);
-                                ResizeX(Global.cpd.runtime.Definitions.LayerSize3.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.LayerData3, nullcode);
-                                ResizeY(Global.cpd.runtime.Definitions.LayerSize4, Global.state.MinimumStageSize.Height, ref Global.cpd.project.LayerData4, nullcode);
-                                ResizeX(Global.cpd.runtime.Definitions.LayerSize4.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.LayerData4, nullcode);
-                                setLayerSize(ref Global.cpd.project.Runtime.Definitions.LayerSize);
-                                setLayerSize(ref Global.cpd.project.Runtime.Definitions.LayerSize2);
-                                setLayerSize(ref Global.cpd.project.Runtime.Definitions.LayerSize3);
-                                setLayerSize(ref Global.cpd.project.Runtime.Definitions.LayerSize4);
+
+                                ProcessLayerData(Global.cpd.project.LayerData, ref Global.cpd.project.Runtime.Definitions.LayerSize);
+                                ProcessLayerData(Global.cpd.project.LayerData2, ref Global.cpd.project.Runtime.Definitions.LayerSize2);
+                                ProcessLayerData(Global.cpd.project.LayerData3, ref Global.cpd.project.Runtime.Definitions.LayerSize3);
+                                ProcessLayerData(Global.cpd.project.LayerData4, ref Global.cpd.project.Runtime.Definitions.LayerSize4);
                             }
                         }
                         else if (Global.cpd.project.Config.Configurations[num].Value == "2")
@@ -651,7 +651,7 @@ namespace MasaoPlus.Controls
                             Global.cpd.runtime.Definitions.MapSize.x = 15;
                             Global.cpd.runtime.Definitions.MapSize.y = 9;
 
-                            Array.Resize(ref Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize.y);
+                            Array.Resize(ref Global.cpd.project.MapData.Strings, Global.cpd.runtime.Definitions.MapSize.y);
                             for (int i = 0; i < Global.cpd.runtime.Definitions.MapSize.y; i++)
                             {
                                 Global.cpd.project.MapData[i] = Global.cpd.project.MapData[i][..Global.cpd.runtime.Definitions.MapSize.x];
@@ -662,19 +662,19 @@ namespace MasaoPlus.Controls
                         {
                             case 0:
                                 Global.cpd.EditingMap = Global.cpd.project.StageData;
-                                Global.cpd.EditingLayer = Global.cpd.project.LayerData;
+                                Global.cpd.EditingLayer = Global.cpd.project.LayerData[0];
                                 break;
                             case 1:
                                 Global.cpd.EditingMap = Global.cpd.project.StageData2;
-                                Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
+                                Global.cpd.EditingLayer = Global.cpd.project.LayerData2[0];
                                 break;
                             case 2:
                                 Global.cpd.EditingMap = Global.cpd.project.StageData3;
-                                Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
+                                Global.cpd.EditingLayer = Global.cpd.project.LayerData3[0];
                                 break;
                             case 3:
                                 Global.cpd.EditingMap = Global.cpd.project.StageData4;
-                                Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
+                                Global.cpd.EditingLayer = Global.cpd.project.LayerData4[0];
                                 break;
                             case 4:
                                 Global.cpd.EditingMap = Global.cpd.project.MapData;

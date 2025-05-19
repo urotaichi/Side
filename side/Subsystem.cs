@@ -8,6 +8,7 @@ using System.IO.Compression;
 using MasaoPlus.Dialogs;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace MasaoPlus
 {
@@ -21,7 +22,7 @@ namespace MasaoPlus
             streamWriter.Close();
         }
 
-        public static void MakeTestrun(int startup, int replace, string[] sts)
+        public static void MakeTestrun(int startup, int replace, LayerObject sts)
         {
             using StreamWriter streamWriter = new(GetTempFileWhere(), false, Global.config.localSystem.FileEncoding);
             string value = MakeHTMLCode(startup, replace, sts);
@@ -44,7 +45,7 @@ namespace MasaoPlus
             return MakeHTMLCode(StartStage, -1, null, isJSON);
         }
 
-        public static string MakeHTMLCode(int StartStage, int ReplaceStage, string[] sts, bool isJSON = false)
+        public static string MakeHTMLCode(int StartStage, int ReplaceStage, LayerObject sts, bool isJSON = false)
         {
             Global.cpd.project.Config.StageStart = StartStage + 1;
             StringBuilder stringBuilder = new();
@@ -101,18 +102,18 @@ namespace MasaoPlus
 
                 if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize, false, isJSON));
+                    stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData[0], Global.cpd.runtime.Definitions.LayerSize, false, isJSON));
                     if (Global.cpd.project.Config.StageNum >= 2)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}-s\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize2, false, isJSON));
+                        stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}-s\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2[0], Global.cpd.runtime.Definitions.LayerSize2, false, isJSON));
                     }
                     if (Global.cpd.project.Config.StageNum >= 3)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}-t\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize3, false, isJSON));
+                        stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}-t\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3[0], Global.cpd.runtime.Definitions.LayerSize3, false, isJSON));
                     }
                     if (Global.cpd.project.Config.StageNum >= 4)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}-f\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize4, false, isJSON));
+                        stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}-f\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4[0], Global.cpd.runtime.Definitions.LayerSize4, false, isJSON));
                     }
                 }
             }
@@ -1100,7 +1101,7 @@ namespace MasaoPlus
             }
         }
 
-        public static string MakeStage3rdMapData(Runtime.DefinedData.StageSizeData StageSizeData, string[] MainStageText, string[] LayerStageText = null)
+        public static string MakeStage3rdMapData(Runtime.DefinedData.StageSizeData StageSizeData, LayerObject MainStageText, List<LayerObject> LayerStageText = null)
         {
             StringBuilder stringBuilder = new();
 
@@ -1110,6 +1111,7 @@ namespace MasaoPlus
             stringBuilder.AppendLine($"\t\t\t\t\t\"y\": {StageSizeData.y}");
             stringBuilder.AppendLine("\t\t\t\t},");
             stringBuilder.AppendLine("\t\t\t\t\"layers\": [");
+            
             stringBuilder.AppendLine("\t\t\t\t\t{");
             stringBuilder.AppendLine("\t\t\t\t\t\t\"type\": \"main\",");
             stringBuilder.AppendLine("\t\t\t\t\t\t\"map\": [");
@@ -1124,25 +1126,29 @@ namespace MasaoPlus
             }
             stringBuilder.AppendLine("\t\t\t\t\t\t]");
             stringBuilder.AppendLine("\t\t\t\t\t},");
-            if(LayerStageText != null)
+            foreach (LayerObject value in LayerStageText)
             {
-                stringBuilder.AppendLine("\t\t\t\t\t{");
-                stringBuilder.AppendLine("\t\t\t\t\t\t\"type\": \"mapchip\",");
-                stringBuilder.AppendLine("\t\t\t\t\t\t\"map\": [");
-                foreach (string value in LayerStageText)
+                if(LayerStageText != null)
                 {
-                    stringBuilder.AppendLine($"\t\t\t\t\t\t\t[{value}],");
+                    stringBuilder.AppendLine("\t\t\t\t\t{");
+                    stringBuilder.AppendLine("\t\t\t\t\t\t\"type\": \"mapchip\",");
+                    stringBuilder.AppendLine("\t\t\t\t\t\t\"map\": [");
+                    foreach (string value2 in value.Strings)
+                    {
+                        stringBuilder.AppendLine($"\t\t\t\t\t\t\t[{value2}],");
+                    }
+                    stringBuilder.AppendLine("\t\t\t\t\t\t]");
+                    stringBuilder.AppendLine("\t\t\t\t\t},");
                 }
-                stringBuilder.AppendLine("\t\t\t\t\t\t]");
-                stringBuilder.AppendLine("\t\t\t\t\t},");
             }
+            
             stringBuilder.AppendLine("\t\t\t\t]");
             stringBuilder.AppendLine("\t\t\t},");
 
             return stringBuilder.ToString();
         }
 
-        public static string MakeStageParameter(string Parameter, int StageSplit, string[] StageText, Runtime.DefinedData.StageSizeData StageSizeData, bool notdefaultparam = false, bool isJSON = false)
+        public static string MakeStageParameter(string Parameter, int StageSplit, LayerObject StageText, Runtime.DefinedData.StageSizeData StageSizeData, bool notdefaultparam = false, bool isJSON = false)
         {
             StringBuilder stringBuilder = new();
 

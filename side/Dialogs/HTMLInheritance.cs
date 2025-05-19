@@ -332,7 +332,7 @@ namespace MasaoPlus.Dialogs
 
                 StatusText.Text = "マップソース生成中...";
                 StatusText.Refresh();
-                HtmlParserHelper.GetMapSource(ref project.MapData, project.Runtime.Definitions.MapName, project.Runtime.Definitions.MapSize, ref dictionary, chipDataClass.WorldChip);
+                HtmlParserHelper.GetMapSource(ref project.MapData.Strings, project.Runtime.Definitions.MapName, project.Runtime.Definitions.MapSize, ref dictionary, chipDataClass.WorldChip);
 
                 if(dictionary.ContainsKey("advanced-map") || dictionary.ContainsKey("advance-map"))
                 {
@@ -476,7 +476,7 @@ namespace MasaoPlus.Dialogs
                         project.Use3rdMapData = true;
 
                         // ステージデータの初期化処理
-                        static void InitializeEmptyStageData(string[] data, int width, ChipsData[] chips)
+                        static void InitializeEmptyStageData(LayerObject data, int width, ChipsData[] chips)
                         {
                             var defaultCode = ChipDataClass.CharToCode(chips[0].character);
                             for (int y = 0; y < data.Length; y++)
@@ -531,45 +531,45 @@ namespace MasaoPlus.Dialogs
                                         case 0:
                                             project.Runtime.Definitions.StageSize.x = sizeX;
                                             project.Runtime.Definitions.StageSize.y = sizeY;
-                                            project.StageData = new string[sizeY];
+                                            project.StageData = [.. new string[sizeY]];
                                             if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                                             {
                                                 project.Runtime.Definitions.LayerSize.x = sizeX;
                                                 project.Runtime.Definitions.LayerSize.y = sizeY;
-                                                project.LayerData = new string[sizeY];
+                                                project.LayerData[0] = [.. new string[sizeY]];
                                             }
                                             break;
                                         case 1:
                                             project.Runtime.Definitions.StageSize2.x = sizeX;
                                             project.Runtime.Definitions.StageSize2.y = sizeY;
-                                            project.StageData2 = new string[sizeY];
+                                            project.StageData2 = [.. new string[sizeY]];
                                             if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                                             {
                                                 project.Runtime.Definitions.LayerSize2.x = sizeX;
                                                 project.Runtime.Definitions.LayerSize2.y = sizeY;
-                                                project.LayerData2 = new string[sizeY];
+                                                project.LayerData2[0] = [.. new string[sizeY]];
                                             }
                                             break;
                                         case 2:
                                             project.Runtime.Definitions.StageSize3.x = sizeX;
                                             project.Runtime.Definitions.StageSize3.y = sizeY;
-                                            project.StageData3 = new string[sizeY];
+                                            project.StageData3 = [.. new string[sizeY]];
                                             if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                                             {
                                                 project.Runtime.Definitions.LayerSize3.x = sizeX;
                                                 project.Runtime.Definitions.LayerSize3.y = sizeY;
-                                                project.LayerData3 = new string[sizeY];
+                                                project.LayerData3[0] = [.. new string[sizeY]];
                                             }
                                             break;
                                         case 3:
                                             project.Runtime.Definitions.StageSize4.x = sizeX;
                                             project.Runtime.Definitions.StageSize4.y = sizeY;
-                                            project.StageData4 = new string[sizeY];
+                                            project.StageData4 = [.. new string[sizeY]];
                                             if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                                             {
                                                 project.Runtime.Definitions.LayerSize4.x = sizeX;
                                                 project.Runtime.Definitions.LayerSize4.y = sizeY;
-                                                project.LayerData4 = new string[sizeY];
+                                                project.LayerData4[0] = [.. new string[sizeY]];
                                             }
                                             break;
                                     }
@@ -580,8 +580,8 @@ namespace MasaoPlus.Dialogs
                             }
 
                             // 指定サイズでデフォルト値を設定
-                            string[] targetStageData = null;
-                            string[] targetLayerData = null;
+                            LayerObject targetStageData = null;
+                            LayerObject targetLayerData = null;
                             ChipsData[] targetChips = chipDataClass.Mapchip;
                             ChipsData[] targetLayerChips = chipDataClass.Layerchip;
                             int width = default;
@@ -590,22 +590,22 @@ namespace MasaoPlus.Dialogs
                             {
                                 case 0:
                                     targetStageData = project.StageData;
-                                    targetLayerData = project.LayerData;
+                                    targetLayerData = project.LayerData[0];
                                     width = project.Runtime.Definitions.StageSize.x;
                                     break;
                                 case 1:
                                     targetStageData = project.StageData2;
-                                    targetLayerData = project.LayerData2;
+                                    targetLayerData = project.LayerData2[0];
                                     width = project.Runtime.Definitions.StageSize2.x;
                                     break;
                                 case 2:
                                     targetStageData = project.StageData3;
-                                    targetLayerData = project.LayerData3;
+                                    targetLayerData = project.LayerData3[0];
                                     width = project.Runtime.Definitions.StageSize3.x;
                                     break;
                                 case 3:
                                     targetStageData = project.StageData4;
-                                    targetLayerData = project.LayerData4;
+                                    targetLayerData = project.LayerData4[0];
                                     width = project.Runtime.Definitions.StageSize4.x;
                                     break;
                             }
@@ -631,7 +631,7 @@ namespace MasaoPlus.Dialogs
                                         var map = layer.GetProperty("map");
 
                                         // レイヤーの種類に応じてターゲットデータを選択
-                                        string[] targetData = type == "main" ? targetStageData : targetLayerData;
+                                        LayerObject targetData = type == "main" ? targetStageData : targetLayerData;
                                         var chips = type == "main" ? targetChips : targetLayerChips;
                                         var defaultCode = ChipDataClass.CharToCode(chips[0].character);
 
@@ -687,30 +687,30 @@ namespace MasaoPlus.Dialogs
                 else{
                     StatusText.Text = "ステージソース生成中[1/4]...";
                     StatusText.Refresh();
-                    HtmlParserHelper.GetMapSource(ref project.StageData, project.Runtime.Definitions.ParamName, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
+                    HtmlParserHelper.GetMapSource(ref project.StageData.Strings, project.Runtime.Definitions.ParamName, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
                     StatusText.Text = "ステージソース生成中[2/4]...";
                     StatusText.Refresh();
-                    HtmlParserHelper.GetMapSource(ref project.StageData2, project.Runtime.Definitions.ParamName2, project.Runtime.Definitions.StageSize2, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
+                    HtmlParserHelper.GetMapSource(ref project.StageData2.Strings, project.Runtime.Definitions.ParamName2, project.Runtime.Definitions.StageSize2, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
                     StatusText.Text = "ステージソース生成中[3/4]...";
                     StatusText.Refresh();
-                    HtmlParserHelper.GetMapSource(ref project.StageData3, project.Runtime.Definitions.ParamName3, project.Runtime.Definitions.StageSize3, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
+                    HtmlParserHelper.GetMapSource(ref project.StageData3.Strings, project.Runtime.Definitions.ParamName3, project.Runtime.Definitions.StageSize3, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
                     StatusText.Text = "ステージソース生成中[4/4]...";
                     StatusText.Refresh();
-                    HtmlParserHelper.GetMapSource(ref project.StageData4, project.Runtime.Definitions.ParamName4, project.Runtime.Definitions.StageSize4, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
+                    HtmlParserHelper.GetMapSource(ref project.StageData4.Strings, project.Runtime.Definitions.ParamName4, project.Runtime.Definitions.StageSize4, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);
                     if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                     {
                         StatusText.Text = "レイヤーソース生成中[1/4]...";
                         StatusText.Refresh();
-                        HtmlParserHelper.GetMapSource(ref project.LayerData, project.Runtime.Definitions.LayerName, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
+                        HtmlParserHelper.GetMapSource(ref project.LayerData[0].Strings, project.Runtime.Definitions.LayerName, project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
                         StatusText.Text = "レイヤーソース生成中[2/4]...";
                         StatusText.Refresh();
-                        HtmlParserHelper.GetMapSource(ref project.LayerData2, project.Runtime.Definitions.LayerName2, project.Runtime.Definitions.LayerSize2, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
+                        HtmlParserHelper.GetMapSource(ref project.LayerData2[0].Strings, project.Runtime.Definitions.LayerName2, project.Runtime.Definitions.LayerSize2, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
                         StatusText.Text = "レイヤーソース生成中[3/4]...";
                         StatusText.Refresh();
-                        HtmlParserHelper.GetMapSource(ref project.LayerData3, project.Runtime.Definitions.LayerName3, project.Runtime.Definitions.LayerSize3, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
+                        HtmlParserHelper.GetMapSource(ref project.LayerData3[0].Strings, project.Runtime.Definitions.LayerName3, project.Runtime.Definitions.LayerSize3, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
                         StatusText.Text = "レイヤーソース生成中[4/4]...";
                         StatusText.Refresh();
-                        HtmlParserHelper.GetMapSource(ref project.LayerData4, project.Runtime.Definitions.LayerName4, project.Runtime.Definitions.LayerSize4, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
+                        HtmlParserHelper.GetMapSource(ref project.LayerData4[0].Strings, project.Runtime.Definitions.LayerName4, project.Runtime.Definitions.LayerSize4, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
                     }
                 }
 

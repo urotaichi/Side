@@ -40,19 +40,8 @@ namespace MasaoPlus.Dialogs
                     Global.cpd.project = Project.ParseXML(load);
                     if (Global.cpd.project.ProjVer != 0.0 && Global.cpd.project.ProjVer < Global.definition.CProjVer)
                     {
-                        if (MessageBox.Show($"古いバージョンのプロジェクトファイルが指定されました。{Environment.NewLine}プロジェクトファイルのアップグレードを試みます。{Environment.NewLine}よろしいですか？", "レガシー プロジェクト ファイルの読み込み", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
-                        {
-                            SetState("プロジェクトをコンバートしています...");
-                            // コンバート動作が未定義
-                            double projVer = Global.cpd.project.ProjVer;
-                            MessageBox.Show($"このプロジェクトファイルはサポートされていません。{Environment.NewLine}通常の読み込みを試みます。", "コンバート エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                        }
-                        else
-                        {
-                            MessageBox.Show($"プロジェクトをロードできませんでした。{Environment.NewLine}アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                            DialogResult = DialogResult.Abort;
-                            Close();
-                        }
+                        MessageBox.Show($"古いバージョンのプロジェクトファイルが指定されました。{Environment.NewLine}プロジェクトファイルのアップグレードを試みます。", "レガシー プロジェクト ファイルの読み込み", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        SetState("プロジェクトをコンバートしています...");
                     }
                     if (Global.cpd.project == null)
                     {
@@ -120,7 +109,7 @@ namespace MasaoPlus.Dialogs
                     Global.cpd.EditingMap = Global.cpd.project.StageData;
                     if (CurrentProjectData.UseLayer)
                     {
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData;
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData[0];
                     }
                     Global.MainWnd.MainDesigner.CreateDrawItemReference();
                     SetState("画像を準備しています...");

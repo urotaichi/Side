@@ -219,7 +219,7 @@ namespace MasaoPlus
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            void func(string[] stagedata)
+            void func(LayerObject stagedata)
             {
                 for (int i = 0; i < stagedata.Length; i++)
                 {

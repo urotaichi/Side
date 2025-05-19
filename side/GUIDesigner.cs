@@ -108,11 +108,11 @@ namespace MasaoPlus
             }
             if (Global.state.EditingForeground)
             {
-                StageBuffer.Add((string[])Global.cpd.EditingMap.Clone());
+                StageBuffer.Add((LayerObject)Global.cpd.EditingMap.Clone());
             }
             else
             {
-                StageBuffer.Add((string[])Global.cpd.EditingLayer.Clone());
+                StageBuffer.Add((LayerObject)Global.cpd.EditingLayer.Clone());
             }
             BufferCurrent = StageBuffer.Count - 1;
             if (BufferCurrent != 0)
@@ -132,23 +132,23 @@ namespace MasaoPlus
                 switch (Global.state.EdittingStage)
                 {
                     case 0:
-                        Global.cpd.project.StageData = (string[])StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.StageData = (LayerObject)StageBuffer[BufferCurrent].Clone();
                         Global.cpd.EditingMap = Global.cpd.project.StageData;
                         break;
                     case 1:
-                        Global.cpd.project.StageData2 = (string[])StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.StageData2 = (LayerObject)StageBuffer[BufferCurrent].Clone();
                         Global.cpd.EditingMap = Global.cpd.project.StageData2;
                         break;
                     case 2:
-                        Global.cpd.project.StageData3 = (string[])StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.StageData3 = (LayerObject)StageBuffer[BufferCurrent].Clone();
                         Global.cpd.EditingMap = Global.cpd.project.StageData3;
                         break;
                     case 3:
-                        Global.cpd.project.StageData4 = (string[])StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.StageData4 = (LayerObject)StageBuffer[BufferCurrent].Clone();
                         Global.cpd.EditingMap = Global.cpd.project.StageData4;
                         break;
                     case 4:
-                        Global.cpd.project.MapData = (string[])StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.MapData = (LayerObject)StageBuffer[BufferCurrent].Clone();
                         Global.cpd.EditingMap = Global.cpd.project.MapData;
                         break;
                 }
@@ -158,20 +158,20 @@ namespace MasaoPlus
                 switch (Global.state.EdittingStage)
                 {
                     case 0:
-                        Global.cpd.project.LayerData = (string[])StageBuffer[BufferCurrent].Clone();
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData;
+                        Global.cpd.project.LayerData[0] = (LayerObject)StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData[0];
                         break;
                     case 1:
-                        Global.cpd.project.LayerData2 = (string[])StageBuffer[BufferCurrent].Clone();
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
+                        Global.cpd.project.LayerData2[0] = (LayerObject)StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData2[0];
                         break;
                     case 2:
-                        Global.cpd.project.LayerData3 = (string[])StageBuffer[BufferCurrent].Clone();
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
+                        Global.cpd.project.LayerData3[0] = (LayerObject)StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData3[0];
                         break;
                     case 3:
-                        Global.cpd.project.LayerData4 = (string[])StageBuffer[BufferCurrent].Clone();
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
+                        Global.cpd.project.LayerData4[0] = (LayerObject)StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData4[0];
                         break;
                 }
             }
@@ -737,11 +737,11 @@ namespace MasaoPlus
             }
             if (foreground)
             {
-                ForePrevDrawn = (string[])Global.cpd.EditingMap.Clone();
+                ForePrevDrawn = (LayerObject)Global.cpd.EditingMap.Clone();
             }
             else
             {
-                BackPrevDrawn = (string[])Global.cpd.EditingLayer.Clone();
+                BackPrevDrawn = (LayerObject)Global.cpd.EditingLayer.Clone();
             }
             list.Clear();
         }
@@ -2002,11 +2002,11 @@ namespace MasaoPlus
                                 AddBuffer();
                                 if (Global.state.EditingForeground)
                                 {
-                                    ForePrevDrawn = (string[])Global.cpd.EditingMap.Clone();
+                                    ForePrevDrawn = (LayerObject)Global.cpd.EditingMap.Clone();
                                 }
                                 else
                                 {
-                                    BackPrevDrawn = (string[])Global.cpd.EditingLayer.Clone();
+                                    BackPrevDrawn = (LayerObject)Global.cpd.EditingLayer.Clone();
                                 }
                                 Global.MainWnd.UpdateStatus("完了");
                                 return;
@@ -2167,11 +2167,11 @@ namespace MasaoPlus
             }
             if (Global.state.EditingForeground)
             {
-                ForePrevDrawn = (string[])Global.cpd.EditingMap.Clone();
+                ForePrevDrawn = (LayerObject)Global.cpd.EditingMap.Clone();
             }
             else
             {
-                BackPrevDrawn = (string[])Global.cpd.EditingLayer.Clone();
+                BackPrevDrawn = (LayerObject)Global.cpd.EditingLayer.Clone();
             }
             Refresh();
         }
@@ -2823,7 +2823,7 @@ namespace MasaoPlus
 
         private CopyPasteTool cpaste;
 
-        public List<string[]> StageBuffer = [];
+        public List<LayerObject> StageBuffer = [];
 
         public int BufferCurrent = -1;
 
@@ -2835,9 +2835,9 @@ namespace MasaoPlus
 
         private bool bdraw = true;
 
-        private string[] ForePrevDrawn;
+        private LayerObject ForePrevDrawn;
 
-        private string[] BackPrevDrawn;
+        private LayerObject BackPrevDrawn;
 
         private Bitmap ForegroundBuffer = new(1, 1);
 

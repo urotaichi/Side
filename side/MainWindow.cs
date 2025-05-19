@@ -548,23 +548,23 @@ namespace MasaoPlus
                         switch (Global.state.EdittingStage)
                         {
                             case 0:
-                                Global.cpd.project.StageData = (string[])MainEditor.StageTextEditor.Lines.Clone();
+                                Global.cpd.project.StageData = (LayerObject)MainEditor.StageTextEditor.Lines.Clone();
                                 Global.cpd.EditingMap = Global.cpd.project.StageData;
                                 break;
                             case 1:
-                                Global.cpd.project.StageData2 = (string[])MainEditor.StageTextEditor.Lines.Clone();
+                                Global.cpd.project.StageData2 = (LayerObject)MainEditor.StageTextEditor.Lines.Clone();
                                 Global.cpd.EditingMap = Global.cpd.project.StageData2;
                                 break;
                             case 2:
-                                Global.cpd.project.StageData3 = (string[])MainEditor.StageTextEditor.Lines.Clone();
+                                Global.cpd.project.StageData3 = (LayerObject)MainEditor.StageTextEditor.Lines.Clone();
                                 Global.cpd.EditingMap = Global.cpd.project.StageData3;
                                 break;
                             case 3:
-                                Global.cpd.project.StageData4 = (string[])MainEditor.StageTextEditor.Lines.Clone();
+                                Global.cpd.project.StageData4 = (LayerObject)MainEditor.StageTextEditor.Lines.Clone();
                                 Global.cpd.EditingMap = Global.cpd.project.StageData4;
                                 break;
                             case 4:
-                                Global.cpd.project.MapData = (string[])MainEditor.StageTextEditor.Lines.Clone();
+                                Global.cpd.project.MapData = (LayerObject)MainEditor.StageTextEditor.Lines.Clone();
                                 Global.cpd.EditingMap = Global.cpd.project.MapData;
                                 break;
                         }
@@ -577,20 +577,20 @@ namespace MasaoPlus
                         switch (Global.state.EdittingStage)
                         {
                             case 0:
-                                Global.cpd.project.LayerData = (string[])MainEditor.StageTextEditor.Lines.Clone();
-                                Global.cpd.EditingLayer = Global.cpd.project.LayerData;
+                                Global.cpd.project.LayerData[0] = (LayerObject)MainEditor.StageTextEditor.Lines.Clone();
+                                Global.cpd.EditingLayer = Global.cpd.project.LayerData[0];
                                 break;
                             case 1:
-                                Global.cpd.project.LayerData2 = (string[])MainEditor.StageTextEditor.Lines.Clone();
-                                Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
+                                Global.cpd.project.LayerData2[0] = (LayerObject)MainEditor.StageTextEditor.Lines.Clone();
+                                Global.cpd.EditingLayer = Global.cpd.project.LayerData2[0];
                                 break;
                             case 2:
-                                Global.cpd.project.LayerData3 = (string[])MainEditor.StageTextEditor.Lines.Clone();
-                                Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
+                                Global.cpd.project.LayerData3[0] = (LayerObject)MainEditor.StageTextEditor.Lines.Clone();
+                                Global.cpd.EditingLayer = Global.cpd.project.LayerData3[0];
                                 break;
                             case 3:
-                                Global.cpd.project.LayerData4 = (string[])MainEditor.StageTextEditor.Lines.Clone();
-                                Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
+                                Global.cpd.project.LayerData4[0] = (LayerObject)MainEditor.StageTextEditor.Lines.Clone();
+                                Global.cpd.EditingLayer = Global.cpd.project.LayerData4[0];
                                 break;
                         }
                         MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingLayer).Clone();
@@ -1989,28 +1989,28 @@ namespace MasaoPlus
             {
                 case 0:
                     Global.cpd.EditingMap = Global.cpd.project.StageData;
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData;
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData[0];
                     MEditStage1.Checked = true;
                     Global.state.Background = Global.cpd.project.Config.Background;
                     LayerState(CurrentProjectData.UseLayer);
                     break;
                 case 1:
                     Global.cpd.EditingMap = Global.cpd.project.StageData2;
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData2;
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData2[0];
                     MEditStage2.Checked = true;
                     Global.state.Background = Global.cpd.project.Config.Background2;
                     LayerState(CurrentProjectData.UseLayer);
                     break;
                 case 2:
                     Global.cpd.EditingMap = Global.cpd.project.StageData3;
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData3;
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData3[0];
                     MEditStage3.Checked = true;
                     Global.state.Background = Global.cpd.project.Config.Background3;
                     LayerState(CurrentProjectData.UseLayer);
                     break;
                 case 3:
                     Global.cpd.EditingMap = Global.cpd.project.StageData4;
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData4;
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData4[0];
                     MEditStage4.Checked = true;
                     Global.state.Background = Global.cpd.project.Config.Background4;
                     LayerState(CurrentProjectData.UseLayer);
@@ -2068,13 +2068,13 @@ namespace MasaoPlus
             {
                 if (Global.state.EditingForeground)
                 {
-                    Global.cpd.EditingLayer = (string[])MainEditor.StageTextEditor.Lines.Clone();
+                    Global.cpd.EditingLayer = (LayerObject)MainEditor.StageTextEditor.Lines.Clone();
                     MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingMap).Clone();
                     MainEditor.BufferClear();
                     MainEditor.AddBuffer();
                     return;
                 }
-                Global.cpd.EditingMap = (string[])MainEditor.StageTextEditor.Lines.Clone();
+                Global.cpd.EditingMap = (LayerObject)MainEditor.StageTextEditor.Lines.Clone();
                 MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingLayer).Clone();
                 MainEditor.BufferClear();
                 MainEditor.AddBuffer();

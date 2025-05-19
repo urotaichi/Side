@@ -16,9 +16,9 @@ namespace MasaoPlus
 
         public Runtime runtime;
 
-        public string[] EditingMap;
+        public LayerObject EditingMap;
 
-        public string[] EditingLayer;
+        public LayerObject EditingLayer;
 
         public ChipsData[] Mapchip;
 
