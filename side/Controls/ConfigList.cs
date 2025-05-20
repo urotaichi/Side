@@ -631,7 +631,7 @@ namespace MasaoPlus.Controls
                                         ResizeY(sizeData, Global.state.MinimumStageSize.Height, ref layerData[i].Strings, nullcode);
                                         ResizeX(sizeData.x, Global.state.MinimumStageSize.Width, ref layerData[i].Strings, nullcode);
                                     }
-                                    
+
                                     // サイズ設定も同時に行う
                                     if (sizeData.x < Global.state.MinimumStageSize.Width) sizeData.x = Global.state.MinimumStageSize.Width;
                                     if (sizeData.y < Global.state.MinimumStageSize.Height) sizeData.y = Global.state.MinimumStageSize.Height;

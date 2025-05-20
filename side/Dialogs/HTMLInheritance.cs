@@ -219,7 +219,7 @@ namespace MasaoPlus.Dialogs
                     foreach (Match scriptMatch in regexScriptTag.Matches(input))
                     {
                         string scriptContent = scriptMatch.Groups[1].Value;
-                        
+
                         foreach (var param in HtmlParserHelper.CommonParams)
                         {
                             if (scriptContent.Contains("\"" + param) || scriptContent.Contains("'" + param))
@@ -231,12 +231,12 @@ namespace MasaoPlus.Dialogs
                                 // 共通関数を使用してJavaScriptコードを処理
                                 var args = HtmlParserHelper.PrepareJavaScriptCode(scriptContent);
                                 HtmlParserHelper.ProcessJavaScriptArgs(args, dictionary, input);
-                                
+
                                 break; // 正男パラメータを含むスクリプトが見つかったらループを抜ける
                             }
                         }
                     }
-                    
+
                     // JSONファイル形式の検出と解析
                     try
                     {
@@ -246,7 +246,7 @@ namespace MasaoPlus.Dialogs
                             input = input[1..];
                         }
                         rootJsonElement = JsonDocument.Parse(input).RootElement;
-                        
+
                         // フォーマットバージョンの確認
                         if (rootJsonElement.TryGetProperty("masao-json-format-version", out var formatVersion))
                         {
@@ -295,7 +295,7 @@ namespace MasaoPlus.Dialogs
                                     int headEndIndex = headerHtml.IndexOf("</head>");
                                     if (headEndIndex != -1)
                                     {
-                                        project.Runtime.DefaultConfigurations.HeaderHTML = 
+                                        project.Runtime.DefaultConfigurations.HeaderHTML =
                                             headerHtml.Insert(headEndIndex, scriptContent);
                                     }
                                 }
@@ -312,7 +312,7 @@ namespace MasaoPlus.Dialogs
                                     if (headerHtml.Contains("<!DOCTYPE"))
                                     {
                                         int doctypeEndIndex = headerHtml.IndexOf('>', headerHtml.IndexOf("<!DOCTYPE")) + 1;
-                                        project.Runtime.DefaultConfigurations.HeaderHTML = 
+                                        project.Runtime.DefaultConfigurations.HeaderHTML =
                                             headerHtml.Insert(doctypeEndIndex, Environment.NewLine + headElement);
                                     }
                                     else
@@ -334,11 +334,12 @@ namespace MasaoPlus.Dialogs
                 StatusText.Refresh();
                 HtmlParserHelper.GetMapSource(ref project.MapData.Strings, project.Runtime.Definitions.MapName, project.Runtime.Definitions.MapSize, ref dictionary, chipDataClass.WorldChip);
 
-                if(dictionary.ContainsKey("advanced-map") || dictionary.ContainsKey("advance-map"))
+                if (dictionary.ContainsKey("advanced-map") || dictionary.ContainsKey("advance-map"))
                 {
                     string mapData = dictionary.TryGetValue("advanced-map", out string value) ? value : dictionary["advance-map"];
-                    
-                    try {
+
+                    try
+                    {
                         StatusText.Text = "カスタムパーツ解析中...";
                         StatusText.Refresh();
                         // JavaScriptの文字列をJSONに変換
@@ -348,9 +349,9 @@ namespace MasaoPlus.Dialogs
                             mapData = mapData[1..^1]; // 最初と最後のクォートを削除
                             mapData = mapData.Replace(@"\""", @"""").Replace(@"\\", @"\").Replace("¥", "\\");
                         }
-                        
+
                         var jsonElement = JsonDocument.Parse(mapData).RootElement;
-                        
+
                         // カスタムパーツ定義の読み込み
                         if (jsonElement.TryGetProperty("customParts", out var customParts))
                         {
@@ -359,7 +360,7 @@ namespace MasaoPlus.Dialogs
                             for (int i = 0; i < customPartsArray.Length; i++)
                             {
                                 var part = customPartsArray[i];
-                                var chipData = new ChipsData 
+                                var chipData = new ChipsData
                                 {
                                     code = part.Name,  // カスタムパーツのID
                                     basecode = part.Value.GetProperty("extends").ToString() // 継承元の基本パーツID
@@ -370,12 +371,12 @@ namespace MasaoPlus.Dialogs
                                 if (baseChip != null)
                                 {
                                     chipData.color = baseChip?.color;
-                                    chipData.relation = baseChip?.relation; 
+                                    chipData.relation = baseChip?.relation;
                                     chipData.idColor = $"#{Guid.NewGuid().ToString("N")[..6]}";
 
                                     // _meme_coreからカスタムパーツ名を取得
                                     var customPartName = string.Empty;
-                                    try 
+                                    try
                                     {
                                         if (rootJsonElement.TryGetProperty("_meme_core", out var memeCore) &&
                                             memeCore.TryGetProperty("customParts", out var memeCustomParts) &&
@@ -492,10 +493,10 @@ namespace MasaoPlus.Dialogs
 
                         // ステージデータの読み込みとサイズの設定を一元化
                         var stages = jsonElement.TryGetProperty("stages", out var stagesElement) ?
-                            [.. stagesElement.EnumerateArray()] : 
+                            [.. stagesElement.EnumerateArray()] :
                             new List<JsonElement>();
 
-                            // ステージ配列の長さを4にする処理
+                        // ステージ配列の長さを4にする処理
                         if (stages.Count < 4)
                         {
                             stages.AddRange(Enumerable.Repeat(default(JsonElement), 4 - stages.Count));
@@ -506,14 +507,16 @@ namespace MasaoPlus.Dialogs
                         for (int stageIndex = 0; stageIndex < stages.Count; stageIndex++)
                         {
                             var stage = stages[stageIndex];
-                            try{
+                            try
+                            {
                                 if (stage.TryGetProperty("size", out var size))
                                 {
                                     int sizeX = size.GetProperty("x").GetInt32();
                                     int sizeY = size.GetProperty("y").GetInt32();
-                                    
+
                                     // マップサイズが500x500を超える場合は警告して500に丸める
-                                    if(sizeX > Global.state.MaximumStageSize.Width || sizeY > Global.state.MaximumStageSize.Height){
+                                    if (sizeX > Global.state.MaximumStageSize.Width || sizeY > Global.state.MaximumStageSize.Height)
+                                    {
                                         if (sizeX > Global.state.MaximumStageSize.Width)
                                         {
                                             sizeX = Global.state.MaximumStageSize.Width;
@@ -622,7 +625,8 @@ namespace MasaoPlus.Dialogs
                             StatusText.Text = $"ステージソース生成中[{stageIndex + 1}/4]...";
                             StatusText.Refresh();
                             // レイヤーデータの読み込み
-                            try{
+                            try
+                            {
                                 if (stage.TryGetProperty("layers", out var layers))
                                 {
                                     foreach (var layer in layers.EnumerateArray())
@@ -680,11 +684,12 @@ namespace MasaoPlus.Dialogs
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"マップデータの解析に失敗しました。{Environment.NewLine}{ex.Message}", 
+                        MessageBox.Show($"マップデータの解析に失敗しました。{Environment.NewLine}{ex.Message}",
                             "マップデータ解析エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else{
+                else
+                {
                     StatusText.Text = "ステージソース生成中[1/4]...";
                     StatusText.Refresh();
                     HtmlParserHelper.GetMapSource(ref project.StageData.Strings, project.Runtime.Definitions.ParamName, project.Runtime.Definitions.StageSize, ref dictionary, chipDataClass.Mapchip, project.Runtime.Definitions.StageSplit);

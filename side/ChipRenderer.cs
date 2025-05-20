@@ -35,7 +35,7 @@ namespace MasaoPlus
             };
             using var imageAttributes = new ImageAttributes();
             imageAttributes.SetColorMatrix(colorMatrix);
-            g.DrawImage(chipImage, destRect, srcPoint.X, srcPoint.Y, srcSize.Width, srcSize.Height, 
+            g.DrawImage(chipImage, destRect, srcPoint.X, srcPoint.Y, srcSize.Width, srcSize.Height,
                         GraphicsUnit.Pixel, imageAttributes);
         }
 
@@ -45,9 +45,9 @@ namespace MasaoPlus
         public static bool ShouldApplyWaterTransparency(out float waterLevel)
         {
             waterLevel = 1.0f;
-            return Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && 
-                   bool.Parse(water_clear_switch) == false && 
-                   Global.state.ChipRegister.TryGetValue("water_clear_level", out string value) && 
+            return Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) &&
+                   bool.Parse(water_clear_switch) == false &&
+                   Global.state.ChipRegister.TryGetValue("water_clear_level", out string value) &&
                    float.TryParse(value, out waterLevel);
         }
 

@@ -34,7 +34,7 @@ namespace MasaoPlus
         }
 
         public int Length => Strings.Length;
-        
+
         public string this[int index]
         {
             get => Strings[index];

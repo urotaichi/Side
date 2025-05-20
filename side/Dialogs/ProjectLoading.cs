@@ -56,7 +56,7 @@ namespace MasaoPlus.Dialogs
                     Global.cpd.where = Path.GetDirectoryName(load);
                     Global.cpd.filename = load;
                     Global.state.Background = Global.cpd.project.Config.Background;
-                    if(Global.cpd.project.Config.ScreenSize == "1")
+                    if (Global.cpd.project.Config.ScreenSize == "1")
                     {
                         Global.state.MinimumStageSize = new Size(20, 15);
                     }
@@ -132,7 +132,7 @@ namespace MasaoPlus.Dialogs
                     SetState("編集を開始します...");
                     Global.MainWnd.MasaoConfigList.Prepare();
                     Global.MainWnd.CustomPartsConfigList.Prepare();
-                    if(flag) Global.state.EditFlag = true;
+                    if (flag) Global.state.EditFlag = true;
                 }
                 catch (InvalidOperationException)
                 {

@@ -20,7 +20,7 @@ namespace MasaoPlus
             {
                 // まずファイルからバージョン情報を読み取る
                 double version = 0.0;
-        
+
                 try
                 {
                     using var reader = new System.Xml.XmlTextReader(file);
@@ -31,7 +31,7 @@ namespace MasaoPlus
                             if (reader.Name == "ProjVer")
                             {
                                 reader.Read();
-                                if (reader.NodeType == System.Xml.XmlNodeType.Text && 
+                                if (reader.NodeType == System.Xml.XmlNodeType.Text &&
                                     double.TryParse(reader.Value, out version))
                                 {
                                     break;
@@ -142,9 +142,9 @@ namespace MasaoPlus
             {
                 if (!StageData[i].Contains(',')) continue;
                 string[] array = StageData[i].Split(',');
-                for (int j = 0; j < array.Length; j ++)
+                for (int j = 0; j < array.Length; j++)
                 {
-                    if(int.TryParse(array[j], out int result))
+                    if (int.TryParse(array[j], out int result))
                     {
                         string c = ChipDataClass.CodeToChar(result, bytesize);
                         if (bytesize == 1 && Global.MainWnd.MainDesigner.DrawItemRef.ContainsKey(c) || bytesize == 2 && Global.MainWnd.MainDesigner.DrawLayerRef.ContainsKey(c))
@@ -190,7 +190,7 @@ namespace MasaoPlus
                 data[i] = stringBuilder.ToString();
             }
         }
-        
+
         private static void SetLayerData(List<LayerObject> data, int x, string character)
         {
             foreach (var layer in data)

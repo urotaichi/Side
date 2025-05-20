@@ -17,7 +17,7 @@ namespace MasaoPlus
             return client;
         }
 
-        private static readonly string _userAgent = 
+        private static readonly string _userAgent =
             $"{Global.definition.AppName}/{Global.definition.Version} ({Global.definition.AppNameFull}; Windows NT 10.0; Win64; x64)";
 
         private static readonly Lazy<HttpClient> _defaultClient = new(() => CreateHttpClient());
@@ -28,7 +28,7 @@ namespace MasaoPlus
             return new ProgressMessageHandler(handler);
         });
 
-        private static readonly Lazy<HttpClient> _progressClient = new(() => 
+        private static readonly Lazy<HttpClient> _progressClient = new(() =>
             CreateHttpClient(_progressHandler.Value));
 
         private static HttpClient DefaultClient => _defaultClient.Value;

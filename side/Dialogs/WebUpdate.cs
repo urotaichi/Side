@@ -27,7 +27,7 @@ namespace MasaoPlus.Dialogs
             try
             {
                 await HttpClientManager.DownloadFileAsync(
-                    Global.config.localSystem.UpdateServer, 
+                    Global.config.localSystem.UpdateServer,
                     tempfile);
                 await dlClient_DownloadFileCompleted();
             }

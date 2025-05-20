@@ -57,7 +57,7 @@ namespace MasaoPlus
             Global.state.ForceNoBuffering = true;
             GuiChipList.Refresh();
             ChipList.Refresh();
-            if(Global.cpd.project.Use3rdMapData) GuiCustomPartsChipList.Refresh();
+            if (Global.cpd.project.Use3rdMapData) GuiCustomPartsChipList.Refresh();
             ChipItemReadyInvoke();
             MainDesigner.UpdateBackgroundBuffer();
             MainDesigner.UpdateForegroundBuffer();
@@ -480,7 +480,8 @@ namespace MasaoPlus
                 e.Cancel = true;
             }
 
-            if (e.TabPageIndex == 2) {
+            if (e.TabPageIndex == 2)
+            {
                 IntegrateBrowser.TrySuspendAsync();
             }
         }
@@ -919,7 +920,7 @@ namespace MasaoPlus
                 {
                     if (Global.state.EditingForeground && oriboss_view && Global.state.CurrentChip.character == "Z")
                     {
-                        if(MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, ChipImage.Width, ChipImage.Height);
+                        if (MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, ChipImage.Width, ChipImage.Height);
                     }
                     else if (ChipRenderer.IsAthleticChip(cschip.name))
                     {
@@ -933,7 +934,7 @@ namespace MasaoPlus
                         // 水の半透明処理
                         if (ChipRenderer.ShouldApplyWaterTransparency(out float waterLevel) && Global.state.CurrentChip.character == "4")
                         {
-                            ChipRenderer.ApplyWaterTransparency(e.Graphics, MainDesigner.DrawChipOrig, 
+                            ChipRenderer.ApplyWaterTransparency(e.Graphics, MainDesigner.DrawChipOrig,
                                 new Rectangle(-ChipImage.Width / 2, -ChipImage.Height / 2, ChipImage.Width, ChipImage.Height),
                                 cschip.pattern, Global.cpd.runtime.Definitions.ChipSize, waterLevel);
                         }
@@ -978,7 +979,7 @@ namespace MasaoPlus
                     e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                 }
                 else e.Graphics.InterpolationMode = InterpolationMode.High;
-                
+
                 if (ChipRenderer.IsAthleticChip(cschip.name))
                 {
                     AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, new Size(ChipImage.Width, ChipImage.Height));
@@ -1446,7 +1447,7 @@ namespace MasaoPlus
                             e.Graphics.TranslateTransform(e.Bounds.X, e.Bounds.Y);
                             if (Global.state.EditingForeground && oriboss_view && array[i].character == "Z")
                             {
-                                if(MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, e.Bounds.Height, e.Bounds.Height);
+                                if (MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, e.Bounds.Height, e.Bounds.Height);
                             }
                             else if (ChipRenderer.IsAthleticChip(cschip.name))
                             {
@@ -1506,7 +1507,7 @@ namespace MasaoPlus
                             {
                                 if (Global.state.EditingForeground && oriboss_view && array[i].character == "Z")
                                 {
-                                    if(MainDesigner.DrawOribossOrig != null)
+                                    if (MainDesigner.DrawOribossOrig != null)
                                     {
                                         e.Graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0);
                                         width = MainDesigner.DrawOribossOrig.Width;

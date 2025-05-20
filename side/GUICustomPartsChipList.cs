@@ -41,7 +41,7 @@ namespace MasaoPlus
             {
                 return 0;
             }
-            if(Global.cpd.CustomPartsChip == null)
+            if (Global.cpd.CustomPartsChip == null)
             {
                 return Global.cpd.runtime.Definitions.ChipSize.Height;
             }
@@ -117,7 +117,7 @@ namespace MasaoPlus
             Point point2 = GetPosition(i);
             Rectangle rectangle2 = new(new Point(point2.X * LogicalToDeviceUnits(chipsize.Width), point2.Y * LogicalToDeviceUnits(chipsize.Height)), LogicalToDeviceUnits(chipsize));
             rectangle2.Y -= vPosition;
-            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle2, new Rectangle(new Point(448,448), chipsize), GraphicsUnit.Pixel);
+            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle2, new Rectangle(new Point(448, 448), chipsize), GraphicsUnit.Pixel);
         }
 
         // クラシックチップリスト
@@ -135,7 +135,7 @@ namespace MasaoPlus
                     {
                         e.Graphics.FillRectangle(brush, e.ClipRectangle); // 背景色で塗りつぶす
                     }
-                    if(Global.cpd.CustomPartsChip == null)
+                    if (Global.cpd.CustomPartsChip == null)
                     {
                         AddChipData(default, 0, e);
                     }
@@ -232,7 +232,7 @@ namespace MasaoPlus
             func(Global.cpd.project.StageData4);
             Global.MainWnd.MainDesigner.DrawItemCodeRef.Remove(Global.cpd.CustomPartsChip[selectedIndex].code);
             Global.cpd.CustomPartsChip = [.. Global.cpd.CustomPartsChip.Where((_, index) => index != selectedIndex)];
-            if(Global.cpd.CustomPartsChip.Length > 0)
+            if (Global.cpd.CustomPartsChip.Length > 0)
             {
                 Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];
                 SelectedIndex = 0;
@@ -251,7 +251,7 @@ namespace MasaoPlus
         {
             ChipsData data;
             int i;
-            if(basedata.basecode != null)
+            if (basedata.basecode != null)
             {
                 for (i = 0; i < Global.cpd.VarietyChip.Length; i++)
                 {
@@ -268,7 +268,7 @@ namespace MasaoPlus
             }
             var r = new Random();
             const string PWS_CHARS = "abcdefghijklmnopqrstuvwxyz";
-            if(Global.cpd.CustomPartsChip == null)
+            if (Global.cpd.CustomPartsChip == null)
             {
                 Array.Resize(ref Global.cpd.CustomPartsChip, 1);
             }

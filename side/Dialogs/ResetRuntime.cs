@@ -219,7 +219,7 @@ namespace MasaoPlus.Dialogs
             else
             {
                 ChipsData NullChip = chipDataClass.Mapchip[0];
-                if(project.CustomPartsDefinition == null)
+                if (project.CustomPartsDefinition == null)
                 {
                     project.StageData = StageDataCopy(project, Global.cpd.project.StageData, [.. chipDataClass.Mapchip, .. chipDataClass?.VarietyChip], NullChip, project.Runtime.Definitions.StageSize);
                     project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, [.. chipDataClass.Mapchip, .. chipDataClass?.VarietyChip], NullChip, project.Runtime.Definitions.StageSize2);
@@ -347,7 +347,7 @@ namespace MasaoPlus.Dialogs
                         }
                         string text;
                         if (project.Use3rdMapData)
-                        { 
+                        {
                             text = StageData[k].Split(',')[l];
                             switch (ChipMethod.SelectedIndex)
                             {
@@ -397,8 +397,8 @@ namespace MasaoPlus.Dialogs
                                     }
                             }
                         }
-                        else 
-                        { 
+                        else
+                        {
                             text = StageData[k].Substring(l * Global.cpd.runtime.Definitions.StageSize.bytesize, Global.cpd.runtime.Definitions.StageSize.bytesize);
                             switch (ChipMethod.SelectedIndex)
                             {

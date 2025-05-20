@@ -75,8 +75,8 @@ namespace MasaoPlus
 
         public void PaintStage(Graphics g, bool EnableExDraw)
         {
-			g.PixelOffsetMode = PixelOffsetMode.Half;
-			g.InterpolationMode = InterpolationMode.NearestNeighbor;
+            g.PixelOffsetMode = PixelOffsetMode.Half;
+            g.InterpolationMode = InterpolationMode.NearestNeighbor;
             bool extendDraw = Global.config.draw.ExtendDraw;
             Global.config.draw.ExtendDraw = EnableExDraw;
             if (CurrentProjectData.UseLayer)
@@ -128,7 +128,7 @@ namespace MasaoPlus
             Global.MainWnd.UpdateStatus("描画しています...");
             BufferCurrent = newBufferCurrent;
             LayerObject clonedBuffer = (LayerObject)StageBuffer[BufferCurrent].Clone();
-            
+
             if (Global.state.EditingForeground)
             {
                 switch (Global.state.EdittingStage)
@@ -198,7 +198,7 @@ namespace MasaoPlus
             {
                 return;
             }
-            ApplyBuffer(BufferCurrent + 1); 
+            ApplyBuffer(BufferCurrent + 1);
         }
 
         public Size BufferSize
@@ -349,7 +349,7 @@ namespace MasaoPlus
             { // 標準パターン画像
                 if (oriboss_view && chara == "Z")
                 {
-                    if(DrawOribossOrig != null) g.DrawImage(DrawOribossOrig, new Rectangle(new(LogicalToDeviceUnits(p.X * chipsize.Width), LogicalToDeviceUnits(p.Y * chipsize.Height)), LogicalToDeviceUnits(DrawOribossOrig.Size)));
+                    if (DrawOribossOrig != null) g.DrawImage(DrawOribossOrig, new Rectangle(new(LogicalToDeviceUnits(p.X * chipsize.Width), LogicalToDeviceUnits(p.Y * chipsize.Height)), LogicalToDeviceUnits(DrawOribossOrig.Size)));
                 }
                 else
                 {
@@ -533,7 +533,7 @@ namespace MasaoPlus
                     if (Global.state.EdittingStage == 1) SecondHaikeiOrig = DrawSecondHaikei2Orig;
                     else if (Global.state.EdittingStage == 2) SecondHaikeiOrig = DrawSecondHaikei3Orig;
                     else if (Global.state.EdittingStage == 3) SecondHaikeiOrig = DrawSecondHaikei4Orig;
-                    if(SecondHaikeiOrig != null) g.DrawImage(SecondHaikeiOrig, new Rectangle(new Point(LogicalToDeviceUnits(second_gazou_scroll_x), LogicalToDeviceUnits(second_gazou_scroll_y)), LogicalToDeviceUnits(SecondHaikeiOrig.Size)));
+                    if (SecondHaikeiOrig != null) g.DrawImage(SecondHaikeiOrig, new Rectangle(new Point(LogicalToDeviceUnits(second_gazou_scroll_x), LogicalToDeviceUnits(second_gazou_scroll_y)), LogicalToDeviceUnits(SecondHaikeiOrig.Size)));
                 }
             }
             if (!Global.state.MapEditMode)
@@ -551,10 +551,10 @@ namespace MasaoPlus
                     if (Global.state.EdittingStage == 1) HaikeiOrig = DrawHaikei2Orig;
                     else if (Global.state.EdittingStage == 2) HaikeiOrig = DrawHaikei3Orig;
                     else if (Global.state.EdittingStage == 3) HaikeiOrig = DrawHaikei4Orig;
-                    if(HaikeiOrig != null) g.DrawImage(HaikeiOrig, new Rectangle(new Point(LogicalToDeviceUnits(gazou_scroll_x), LogicalToDeviceUnits(gazou_scroll_y)), LogicalToDeviceUnits(HaikeiOrig.Size)));
+                    if (HaikeiOrig != null) g.DrawImage(HaikeiOrig, new Rectangle(new Point(LogicalToDeviceUnits(gazou_scroll_x), LogicalToDeviceUnits(gazou_scroll_y)), LogicalToDeviceUnits(HaikeiOrig.Size)));
                 }
             }
-            else if(DrawChizuOrig != null)
+            else if (DrawChizuOrig != null)
             {
                 g.DrawImage(DrawChizuOrig, new Rectangle(new Point(LogicalToDeviceUnits(-16), LogicalToDeviceUnits(-24)), LogicalToDeviceUnits(DrawChizuOrig.Size)));
             }
@@ -739,7 +739,7 @@ namespace MasaoPlus
                     int oriboss_x = default, oriboss_y = default;
                     if (Global.state.ChipRegister.TryGetValue("oriboss_x", out string oriboss_x_value)) oriboss_x = int.Parse(oriboss_x_value);
                     if (Global.state.ChipRegister.TryGetValue("oriboss_y", out string oriboss_y_value)) oriboss_y = int.Parse(oriboss_y_value);
-                    if(DrawOribossOrig != null) g.DrawImage(DrawOribossOrig, new Rectangle(new Point(LogicalToDeviceUnits(oriboss_x * chipsize.Width), LogicalToDeviceUnits(oriboss_y * chipsize.Height)), LogicalToDeviceUnits(DrawOribossOrig.Size)));
+                    if (DrawOribossOrig != null) g.DrawImage(DrawOribossOrig, new Rectangle(new Point(LogicalToDeviceUnits(oriboss_x * chipsize.Width), LogicalToDeviceUnits(oriboss_y * chipsize.Height)), LogicalToDeviceUnits(DrawOribossOrig.Size)));
                     if (Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki) && Global.config.draw.ExtendDraw)
                     {
                         Point p = ChipRenderer.GetOribossExtensionPoint(int.Parse(oriboss_ugoki));
@@ -857,7 +857,7 @@ namespace MasaoPlus
             {
                 DrawItemCodeRef.Add(value.code, value);
             }
-            if(Global.cpd.CustomPartsChip != null)
+            if (Global.cpd.CustomPartsChip != null)
             {
                 foreach (ChipsData value in Global.cpd.CustomPartsChip)
                 {
@@ -992,7 +992,7 @@ namespace MasaoPlus
                     filename = Path.Combine(Global.cpd.where, DEFAULT_LAYER_IMAGE);
                     Global.cpd.project.Config.LayerImage = DEFAULT_LAYER_IMAGE;
                 }
-                
+
                 DrawLayerOrig = Image.FromStream(File.OpenRead(filename), false, false);
                 DrawLayerMask = new Bitmap(DrawLayerOrig.Width, DrawLayerOrig.Height);
                 using ImageAttributes imageAttributes2 = new();
@@ -1437,7 +1437,7 @@ namespace MasaoPlus
                         }
                         else
                         {
-                             list.Add(text.Replace(Global.cpd.Mapchip[1].character, Global.cpd.Mapchip[0].character));
+                            list.Add(text.Replace(Global.cpd.Mapchip[1].character, Global.cpd.Mapchip[0].character));
                         }
                     }
                     if (Global.state.Use3rdMapDataCurrently)
@@ -1947,7 +1947,8 @@ namespace MasaoPlus
                                     Global.MainWnd.UpdateStatus("切り取りしています...");
                                     for (int j = rectangle.Top; j <= rectangle.Bottom; j++)
                                     {
-                                        if (Global.state.Use3rdMapDataCurrently) {
+                                        if (Global.state.Use3rdMapDataCurrently)
+                                        {
                                             string[] array = PutItemTextCodeStart(j);
                                             if (array != null)
                                             {
@@ -2085,7 +2086,8 @@ namespace MasaoPlus
                                     }
                                     for (int l = rectangle2.Top; l <= rectangle2.Bottom; l++)
                                     {
-                                        if (Global.state.Use3rdMapDataCurrently) {
+                                        if (Global.state.Use3rdMapDataCurrently)
+                                        {
                                             string[] array2 = PutItemTextCodeStart(l);
                                             if (array2 != null)
                                             {
@@ -2350,7 +2352,8 @@ namespace MasaoPlus
                 if (DrawItemRef.ContainsKey(stageChar) || DrawItemCodeRef.ContainsKey(stageChar))
                 {
                     if (Global.state.MapEditMode) chipsData = DrawWorldRef[stageChar];
-                    else {
+                    else
+                    {
                         if (Global.cpd.project.Use3rdMapData) chipsData = DrawItemCodeRef[stageChar];
                         else chipsData = DrawItemRef[stageChar];
                     }
@@ -2451,7 +2454,7 @@ namespace MasaoPlus
                                 }
                                 if (Global.cpd.project.Use3rdMapData) chipsData = DrawLayerCodeRef[stageChar];
                                 else chipsData = DrawLayerRef[stageChar];
-                                
+
                                 if (Global.cpd.project.Use3rdMapData && chipsData.code == Global.cpd.Layerchip[0].code
                                    || !Global.cpd.project.Use3rdMapData && chipsData.character.Equals(Global.cpd.Layerchip[0].character))
                                 {
@@ -2516,8 +2519,8 @@ namespace MasaoPlus
                                 }
                             }
                             ChipData cschip = chipsData.GetCSChip();
-                            if (cschip.size == default) 
-                            { 
+                            if (cschip.size == default)
+                            {
                                 DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X);
                                 if (chipsData.idColor != null)
                                 {
@@ -2888,7 +2891,7 @@ namespace MasaoPlus
             {
                 if (IsOverflow(p))
                 {
-                    if(Global.state.Use3rdMapDataCurrently) return Global.cpd.Mapchip[0].code;
+                    if (Global.state.Use3rdMapDataCurrently) return Global.cpd.Mapchip[0].code;
                     else return Global.cpd.Mapchip[0].character;
                 }
                 if (Global.state.EditingForeground)

@@ -191,7 +191,7 @@ namespace MasaoPlus
             {
                 string stagetext = StageTextEditor.Lines[lineFromCharIndex];
                 string[] stagetextarray = stagetext.Split(',');
-                string[] stagetextarray2 = new string(stagetext.ToCharArray(0,num)).Split([","], StringSplitOptions.RemoveEmptyEntries);
+                string[] stagetextarray2 = new string(stagetext.ToCharArray(0, num)).Split([","], StringSplitOptions.RemoveEmptyEntries);
                 TextPositionInfo.Text = $"{lineFromCharIndex}行 {stagetextarray2.Length}要素";
                 int length = stagetextarray.Length;
                 LineInfo.Text = $"{StageTextEditor.Lines.Length}行 {length}要素";
@@ -291,7 +291,7 @@ namespace MasaoPlus
             }
             foreach (string text in StageTextEditor.Lines)
             {
-                if (Global.state.Use3rdMapDataCurrently) 
+                if (Global.state.Use3rdMapDataCurrently)
                 {
                     if (text.Split(',').Length != Global.state.GetCByteWidth)
                     {

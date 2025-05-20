@@ -57,7 +57,8 @@ namespace MasaoPlus
                 stringBuilder.AppendLine("\t\"masao-json-format-version\": \"draft-4\",");
                 stringBuilder.AppendLine("\t\"params\": {");
             }
-            else{
+            else
+            {
                 // ヘッダーを出力
                 text = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
                 if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
@@ -826,14 +827,16 @@ namespace MasaoPlus
                 }
                 throw new Exception($"不明な型が含まれています:{configParam.Typestr}");
             }
-            if (isJSON){
+            if (isJSON)
+            {
                 stringBuilder.Length -= 3; // 最後のカンマと改行を削除
                 stringBuilder.AppendLine("\n\t},");
 
                 // バージョン情報を出力
                 stringBuilder.AppendLine($"\t\"version\": \"{(Global.cpd.runtime.Definitions.Package.Contains("28") ? "2.8" : "kani2")}\",");
             }
-            else{
+            else
+            {
                 // 中間を出力
                 text = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.MiddleHTML);
                 if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
@@ -904,7 +907,7 @@ namespace MasaoPlus
                         stringBuilder.AppendLine($"\t\t\t\"{parts.code}\": {{");
                         stringBuilder.AppendLine($"\t\t\t\t\"extends\": {parts.basecode},");
                         stringBuilder.AppendLine("\t\t\t\t\"properties\": {");
-                        if(int.TryParse(parts.basecode, out int code))
+                        if (int.TryParse(parts.basecode, out int code))
                         {
                             if (code != 5701) // ヤチャモ（何もしない）を除く
                             {
@@ -1007,7 +1010,8 @@ namespace MasaoPlus
                 }
                 stringBuilder.AppendLine("\t},");
             }
-            if (isJSON){
+            if (isJSON)
+            {
                 //エデイタ識別コードを出力
                 if (Global.config.localSystem.IntegrateEditorId)
                 {
@@ -1018,7 +1022,8 @@ namespace MasaoPlus
 
                 stringBuilder.AppendLine("}");
             }
-            else{
+            else
+            {
                 // オプションを出力
                 parameter = "\t{0}: {1},";
                 for (k = 0; k < configurations.Length; k++)
@@ -1076,7 +1081,7 @@ namespace MasaoPlus
         public static string DecodeBase64(string s)
         {
             if (string.IsNullOrEmpty(s)) return string.Empty;
-            try 
+            try
             {
                 byte[] bytes = Convert.FromBase64String(s);
                 return Encoding.UTF8.GetString(bytes);
@@ -1111,14 +1116,14 @@ namespace MasaoPlus
             stringBuilder.AppendLine($"\t\t\t\t\t\"y\": {StageSizeData.y}");
             stringBuilder.AppendLine("\t\t\t\t},");
             stringBuilder.AppendLine("\t\t\t\t\"layers\": [");
-            
+
             stringBuilder.AppendLine("\t\t\t\t\t{");
             stringBuilder.AppendLine("\t\t\t\t\t\t\"type\": \"main\",");
             stringBuilder.AppendLine("\t\t\t\t\t\t\"map\": [");
-            foreach(string value in MainStageText)
+            foreach (string value in MainStageText)
             {
                 var t = value.Split(',');
-                for(int i = 0; i < t.Length; i++)
+                for (int i = 0; i < t.Length; i++)
                 {
                     if (!int.TryParse(t[i], out int _)) t[i] = $"\"{t[i]}\"";
                 }
@@ -1128,7 +1133,7 @@ namespace MasaoPlus
             stringBuilder.AppendLine("\t\t\t\t\t},");
             foreach (LayerObject value in LayerStageText)
             {
-                if(LayerStageText != null)
+                if (LayerStageText != null)
                 {
                     stringBuilder.AppendLine("\t\t\t\t\t{");
                     stringBuilder.AppendLine("\t\t\t\t\t\t\"type\": \"mapchip\",");
@@ -1141,7 +1146,7 @@ namespace MasaoPlus
                     stringBuilder.AppendLine("\t\t\t\t\t},");
                 }
             }
-            
+
             stringBuilder.AppendLine("\t\t\t\t]");
             stringBuilder.AppendLine("\t\t\t},");
 
@@ -1464,7 +1469,7 @@ namespace MasaoPlus
             {
                 Global.config.localSystem.UpdateServer = Global.definition.BaseUpdateServer;
             }
-            
+
             tempfile = Path.GetTempFileName();
             try
             {

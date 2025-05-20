@@ -37,7 +37,7 @@ namespace MasaoPlus
                     if (Global.cpd.project.Use3rdMapData)
                     {
                         array = [.. array, .. Global.cpd.VarietyChip];
-                        if(Global.cpd.CustomPartsChip != null)
+                        if (Global.cpd.CustomPartsChip != null)
                         {
                             array = [.. array, .. Global.cpd.CustomPartsChip];
                         }
@@ -138,7 +138,7 @@ namespace MasaoPlus
                 if (Global.cpd.project.Use3rdMapData)
                 {
                     num2 += Global.cpd.VarietyChip.Length;
-                    if(Global.cpd.CustomPartsChip != null)
+                    if (Global.cpd.CustomPartsChip != null)
                     {
                         num2 += Global.cpd.CustomPartsChip.Length;
                     }
@@ -199,7 +199,7 @@ namespace MasaoPlus
                         e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
                         if (oriboss_view && chipData.character == "Z")
                         {
-                            if(Global.MainWnd.MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, rectangle.Width, rectangle.Height);
+                            if (Global.MainWnd.MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, rectangle.Width, rectangle.Height);
                         }
                         else if (ChipRenderer.IsAthleticChip(cschip.name))
                         {
@@ -263,7 +263,7 @@ namespace MasaoPlus
                 }
             }
         }
-        
+
         // 共通の選択フレーム描画処理
         protected static void DrawSelectionFrame(Graphics g, Rectangle rectangle)
         {
