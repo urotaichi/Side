@@ -1606,7 +1606,7 @@ namespace MasaoPlus
 
 		private global::System.Windows.Forms.ToolStripMenuItem EditPatternChip;
 
-		private global::System.Windows.Forms.ToolStripMenuItem EditBackground;
+		public global::System.Windows.Forms.ToolStripMenuItem EditBackground;
 
 		private global::System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
 
@@ -1671,7 +1671,7 @@ namespace MasaoPlus
 
 		private global::System.Windows.Forms.ToolStripMenuItem PatternChipLayer;
 
-		private global::System.Windows.Forms.ToolStripMenuItem BackgroundLayer;
+		public global::System.Windows.Forms.ToolStripMenuItem BackgroundLayer;
 
 		private global::System.Windows.Forms.ToolStripSeparator toolStripMenuItem13;
 

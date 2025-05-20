@@ -25,6 +25,7 @@ namespace MasaoPlus.Dialogs
 
         public void EndInvInv()
         {
+            Global.MainWnd.UpdateLayerVisibility();
             Global.MainWnd.UpdateTitle();
             DialogResult = DialogResult.OK;
             Close();

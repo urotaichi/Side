@@ -241,6 +241,17 @@ namespace MasaoPlus
             Text += Global.definition.AppName;
         }
 
+        public void UpdateLayerVisibility()
+        {
+            if (CurrentProjectData.UseLayer && Global.cpd.project.LayerData.Count > 1)
+            {
+                Global.MainWnd.LayerSelector.Visible = true;
+                Global.MainWnd.LayerMenuSelector.Visible = true;
+                Global.MainWnd.BackgroundLayer.Visible = false;
+                Global.MainWnd.EditBackground.Visible = false;
+            }
+        }
+
         // ステータスバーっぽいところに表示される小さいアイコンや文字
         private void MainDesigner_MouseMove(object sender, MouseEventArgs e)
         {
@@ -315,7 +326,7 @@ namespace MasaoPlus
                     graphics.PixelOffsetMode = PixelOffsetMode.Half;
                     if (oriboss_view && chipsData.character == "Z")
                     {
-                        if(MainDesigner.DrawOribossOrig != null) graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, MainDesigner.DrawOribossOrig.Size.Width, MainDesigner.DrawOribossOrig.Size.Height);
+                        if (MainDesigner.DrawOribossOrig != null) graphics.DrawImage(MainDesigner.DrawOribossOrig, 0, 0, MainDesigner.DrawOribossOrig.Size.Width, MainDesigner.DrawOribossOrig.Size.Height);
                     }
                     else if (ChipRenderer.IsAthleticChip(cschip.name))
                     {
@@ -334,7 +345,7 @@ namespace MasaoPlus
                         // 水の半透明処理
                         if (ChipRenderer.ShouldApplyWaterTransparency(out float waterLevel) && chipsData.character == "4")
                         {
-                            ChipRenderer.ApplyWaterTransparency(graphics, MainDesigner.DrawChipOrig, 
+                            ChipRenderer.ApplyWaterTransparency(graphics, MainDesigner.DrawChipOrig,
                                 new Rectangle(new Point(-size.Width / 2 + rotate_o, -size.Height / 2 + rotate_o), size),
                                 cschip.pattern, size, waterLevel);
                         }
@@ -365,7 +376,7 @@ namespace MasaoPlus
                     description = cschip.description;
                 }
 
-                if(Global.state.Use3rdMapDataCurrently) ChipNavigator.Text = $"[{chipsData.code}]{name}/{description}";
+                if (Global.state.Use3rdMapDataCurrently) ChipNavigator.Text = $"[{chipsData.code}]{name}/{description}";
                 else ChipNavigator.Text = $"[{chipsData.character}]{name}/{description}";
                 ChipNavigator.Visible = true;
             }
@@ -1735,6 +1746,25 @@ namespace MasaoPlus
             LayerMenu.Visible = enabled;
             StageLayer.Visible = enabled;
             MainEditor.StageLayer.Visible = enabled;
+        }
+
+        private static void LayerCount_Click(int layerNumber)
+        {
+            switch (Global.state.EdittingStage)
+            {
+                case 0:
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData[layerNumber];
+                    break;
+                case 1:
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData2[layerNumber];
+                    break;
+                case 2:
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData3[layerNumber];
+                    break;
+                case 3:
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData4[layerNumber];
+                    break;
+            }
         }
 
         private void MNew_Click(object sender, EventArgs e)
