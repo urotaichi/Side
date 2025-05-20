@@ -1131,9 +1131,9 @@ namespace MasaoPlus
             }
             stringBuilder.AppendLine("\t\t\t\t\t\t]");
             stringBuilder.AppendLine("\t\t\t\t\t},");
-            foreach (LayerObject value in LayerStageText)
+            if (LayerStageText != null)
             {
-                if (LayerStageText != null)
+                foreach (LayerObject value in LayerStageText)
                 {
                     stringBuilder.AppendLine("\t\t\t\t\t{");
                     stringBuilder.AppendLine("\t\t\t\t\t\t\"type\": \"mapchip\",");
