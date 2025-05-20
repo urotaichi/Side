@@ -38,10 +38,12 @@ namespace MasaoPlus.Dialogs
                 {
                     Global.state.ChipRegister = [];
                     Global.cpd.project = Project.ParseXML(load);
+                    bool flag = false;
                     if (Global.cpd.project.ProjVer != 0.0 && Global.cpd.project.ProjVer < Global.definition.CProjVer)
                     {
                         MessageBox.Show($"古いバージョンのプロジェクトファイルが指定されました。{Environment.NewLine}プロジェクトファイルのアップグレードを試みます。", "レガシー プロジェクト ファイルの読み込み", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         SetState("プロジェクトをコンバートしています...");
+                        flag = true;
                     }
                     if (Global.cpd.project == null)
                     {
@@ -129,6 +131,7 @@ namespace MasaoPlus.Dialogs
                     SetState("編集を開始します...");
                     Global.MainWnd.MasaoConfigList.Prepare();
                     Global.MainWnd.CustomPartsConfigList.Prepare();
+                    if(flag) Global.state.EditFlag = true;
                 }
                 catch (InvalidOperationException)
                 {
