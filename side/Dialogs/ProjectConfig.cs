@@ -202,10 +202,22 @@ namespace MasaoPlus.Dialogs
                         Project.Convert3rdMapData(Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize.bytesize);
                         if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
                         {
-                            Project.Convert3rdMapData(Global.cpd.project.LayerData[0], Global.cpd.runtime.Definitions.LayerSize.bytesize);
-                            Project.Convert3rdMapData(Global.cpd.project.LayerData2[0], Global.cpd.runtime.Definitions.LayerSize.bytesize);
-                            Project.Convert3rdMapData(Global.cpd.project.LayerData3[0], Global.cpd.runtime.Definitions.LayerSize.bytesize);
-                            Project.Convert3rdMapData(Global.cpd.project.LayerData4[0], Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                            foreach (var layer in Global.cpd.project.LayerData)
+                            {
+                                Project.Convert3rdMapData(layer, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                            }
+                            foreach (var layer in Global.cpd.project.LayerData2)
+                            {
+                                Project.Convert3rdMapData(layer, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                            }
+                            foreach (var layer in Global.cpd.project.LayerData3)
+                            {
+                                Project.Convert3rdMapData(layer, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                            }
+                            foreach (var layer in Global.cpd.project.LayerData4)
+                            {
+                                Project.Convert3rdMapData(layer, Global.cpd.runtime.Definitions.LayerSize.bytesize);
+                            }
                         }
                     }
                     else
