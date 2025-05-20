@@ -154,6 +154,9 @@ namespace MasaoPlus
                 [XmlAttribute]
                 public int bytesize;
 
+                [XmlAttribute]
+                public int mainOrder;
+
                 [Serializable]
                 public class LayerObject
                 {
@@ -161,15 +164,8 @@ namespace MasaoPlus
                     public string Value;
                 }
 
-                [Serializable]
-                public class MainLayerObject : LayerObject
-                {
-                    [XmlAttribute("order")]
-                    public int Order;
-                }
-
                 [XmlElement("main")]
-                public MainLayerObject mainPattern = new();
+                public LayerObject mainPattern = new();
 
                 [XmlElement("mapchip")]
                 public List<LayerObject> mapchips = [];
