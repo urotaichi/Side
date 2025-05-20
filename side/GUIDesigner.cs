@@ -127,28 +127,30 @@ namespace MasaoPlus
             Global.state.EditFlag = true;
             Global.MainWnd.UpdateStatus("描画しています...");
             BufferCurrent = newBufferCurrent;
+            LayerObject clonedBuffer = (LayerObject)StageBuffer[BufferCurrent].Clone();
+            
             if (Global.state.EditingForeground)
             {
                 switch (Global.state.EdittingStage)
                 {
                     case 0:
-                        Global.cpd.project.StageData = (LayerObject)StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.StageData = clonedBuffer;
                         Global.cpd.EditingMap = Global.cpd.project.StageData;
                         break;
                     case 1:
-                        Global.cpd.project.StageData2 = (LayerObject)StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.StageData2 = clonedBuffer;
                         Global.cpd.EditingMap = Global.cpd.project.StageData2;
                         break;
                     case 2:
-                        Global.cpd.project.StageData3 = (LayerObject)StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.StageData3 = clonedBuffer;
                         Global.cpd.EditingMap = Global.cpd.project.StageData3;
                         break;
                     case 3:
-                        Global.cpd.project.StageData4 = (LayerObject)StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.StageData4 = clonedBuffer;
                         Global.cpd.EditingMap = Global.cpd.project.StageData4;
                         break;
                     case 4:
-                        Global.cpd.project.MapData = (LayerObject)StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.MapData = clonedBuffer;
                         Global.cpd.EditingMap = Global.cpd.project.MapData;
                         break;
                 }
@@ -158,19 +160,19 @@ namespace MasaoPlus
                 switch (Global.state.EdittingStage)
                 {
                     case 0:
-                        Global.cpd.project.LayerData[0] = (LayerObject)StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.LayerData[0] = clonedBuffer;
                         Global.cpd.EditingLayer = Global.cpd.project.LayerData[0];
                         break;
                     case 1:
-                        Global.cpd.project.LayerData2[0] = (LayerObject)StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.LayerData2[0] = clonedBuffer;
                         Global.cpd.EditingLayer = Global.cpd.project.LayerData2[0];
                         break;
                     case 2:
-                        Global.cpd.project.LayerData3[0] = (LayerObject)StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.LayerData3[0] = clonedBuffer;
                         Global.cpd.EditingLayer = Global.cpd.project.LayerData3[0];
                         break;
                     case 3:
-                        Global.cpd.project.LayerData4[0] = (LayerObject)StageBuffer[BufferCurrent].Clone();
+                        Global.cpd.project.LayerData4[0] = clonedBuffer;
                         Global.cpd.EditingLayer = Global.cpd.project.LayerData4[0];
                         break;
                 }
