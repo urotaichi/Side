@@ -506,6 +506,11 @@ namespace MasaoPlus
             }
         }
 
+        private static string JoinLayerToCloneableString(LayerObject layer)
+        {
+            return (string)string.Join(Environment.NewLine, layer).Clone();
+        }
+
         private void EditTab_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Restartupping)
@@ -518,11 +523,11 @@ namespace MasaoPlus
                 {
                     if (Global.state.EditingForeground)
                     {
-                        MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingMap).Clone();
+                        MainEditor.StageTextEditor.Text = JoinLayerToCloneableString(Global.cpd.EditingMap);
                     }
                     else
                     {
-                        MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingLayer).Clone();
+                        MainEditor.StageTextEditor.Text = JoinLayerToCloneableString(Global.cpd.EditingLayer);
                     }
                 }
                 else
@@ -569,7 +574,7 @@ namespace MasaoPlus
                                 Global.cpd.EditingMap = Global.cpd.project.MapData;
                                 break;
                         }
-                        MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingMap).Clone();
+                        MainEditor.StageTextEditor.Text = JoinLayerToCloneableString(Global.cpd.EditingMap);
                         MainEditor.BufferClear();
                         MainEditor.AddBuffer();
                     }
@@ -594,7 +599,7 @@ namespace MasaoPlus
                                 Global.cpd.EditingLayer = Global.cpd.project.LayerData4[0];
                                 break;
                         }
-                        MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingLayer).Clone();
+                        MainEditor.StageTextEditor.Text = JoinLayerToCloneableString(Global.cpd.EditingLayer);
                         MainEditor.BufferClear();
                         MainEditor.AddBuffer();
                     }
@@ -2071,13 +2076,13 @@ namespace MasaoPlus
                 if (Global.state.EditingForeground)
                 {
                     Global.cpd.EditingLayer = clonedText;
-                    MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingMap).Clone();
+                    MainEditor.StageTextEditor.Text = JoinLayerToCloneableString(Global.cpd.EditingMap);
                     MainEditor.BufferClear();
                     MainEditor.AddBuffer();
                     return;
                 }
                 Global.cpd.EditingMap = clonedText;
-                MainEditor.StageTextEditor.Text = (string)string.Join(Environment.NewLine, Global.cpd.EditingLayer).Clone();
+                MainEditor.StageTextEditor.Text = JoinLayerToCloneableString(Global.cpd.EditingLayer);
                 MainEditor.BufferClear();
                 MainEditor.AddBuffer();
             }
