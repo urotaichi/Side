@@ -24,11 +24,18 @@ namespace MasaoPlus
         {
             get
             {
-                if (UseLayer && project != null && project.LayerData != null)
+                if (UseLayer && project != null)
                 {
-                    return project.LayerData.Count;
+                    return Global.state.EdittingStage switch
+                    {
+                        0 => project.LayerData != null ? project.LayerData.Count : 1,
+                        1 => project.LayerData2 != null ? project.LayerData2.Count : 1,
+                        2 => project.LayerData3 != null ? project.LayerData3.Count : 1,
+                        3 => project.LayerData4 != null ? project.LayerData4.Count : 1,
+                        _ => 0,
+                    };
                 }
-                return 1;
+                return 0;
             }
         }
 

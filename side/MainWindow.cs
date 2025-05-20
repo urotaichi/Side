@@ -252,6 +252,25 @@ namespace MasaoPlus
             }
         }
 
+        public void ClearLayerCountsExceptFirst()
+        {
+            // 最初の要素がある場合は保持する
+            if (LayerCount.Count > 1)
+            {
+                var firstItem = LayerCount[0];
+                LayerCount.Clear();
+                LayerCount.Add(firstItem);
+            }
+
+            // 最初の要素がある場合は保持する
+            if (LayerMenuCount.Count > 1)
+            {
+                var firstItem = LayerMenuCount[0];
+                LayerMenuCount.Clear();
+                LayerMenuCount.Add(firstItem);
+            }
+        }
+
         public void AddLayerMenuItem(int index)
         {
             // 共通のプロパティを持つToolStripMenuItemを作成する関数
@@ -281,6 +300,53 @@ namespace MasaoPlus
             var layerMenuCountItem = CreateMenuItem("LayerMenuCount");
             LayerMenuCount.Add(layerMenuCountItem);
             LayerMenuSelector.DropDownItems.Add(layerMenuCountItem);
+        }
+
+        private void LayerCount_Click(int layerNumber)
+        {
+            if (Global.state.EdittingLayerIndex == layerNumber)
+            {
+                return;
+            }
+            if (!ChangePreCheck())
+            {
+                return;
+            }
+            switch (Global.state.EdittingStage)
+            {
+                case 0:
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData[layerNumber];
+                    break;
+                case 1:
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData2[layerNumber];
+                    break;
+                case 2:
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData3[layerNumber];
+                    break;
+                case 3:
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData4[layerNumber];
+                    break;
+            }
+            Global.state.EditingForeground = false;
+            EditPatternChip.Checked = false;
+            PatternChipLayer.Checked = false;
+            MainEditor.PatternChipLayer.Checked = false;
+            for(int i = 0; i < LayerCount.Count; i++)
+            {
+                if (i == layerNumber)
+                {
+                    LayerCount[i].Checked = true;
+                    LayerMenuCount[i].Checked = true;
+                }
+                else
+                {
+                    LayerCount[i].Checked = false;
+                    LayerMenuCount[i].Checked = false;
+                }
+            }
+            MainEditor.BackgroundLayer.Checked = true;
+            Global.state.EdittingLayerIndex = layerNumber;
+            UpdateLayer();
         }
 
         // ステータスバーっぽいところに表示される小さいアイコンや文字
@@ -1780,25 +1846,6 @@ namespace MasaoPlus
             MainEditor.StageLayer.Visible = enabled;
         }
 
-        private static void LayerCount_Click(int layerNumber)
-        {
-            switch (Global.state.EdittingStage)
-            {
-                case 0:
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData[layerNumber];
-                    break;
-                case 1:
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData2[layerNumber];
-                    break;
-                case 2:
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData3[layerNumber];
-                    break;
-                case 3:
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData4[layerNumber];
-                    break;
-            }
-        }
-
         private void MNew_Click(object sender, EventArgs e)
         {
             if (Global.state.EditFlag && MessageBox.Show($"データが保存されていません。{Environment.NewLine}保存していないデータは失われます。{Environment.NewLine}続行してよろしいですか？", "保存の確認", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.No)
@@ -1997,7 +2044,13 @@ namespace MasaoPlus
             MainEditor.PatternChipLayer.Checked = true;
             EditBackground.Checked = false;
             BackgroundLayer.Checked = false;
+            for (int i = 0; i < LayerMenuCount.Count; i++)
+            {
+                LayerMenuCount[i].Checked = false;
+                LayerCount[i].Checked = false;
+            }
             MainEditor.BackgroundLayer.Checked = false;
+            Global.state.EdittingLayerIndex = -1;
             UpdateLayer();
         }
 
