@@ -252,6 +252,37 @@ namespace MasaoPlus
             }
         }
 
+        public void AddLayerMenuItem(int index)
+        {
+            // 共通のプロパティを持つToolStripMenuItemを作成する関数
+            ToolStripMenuItem CreateMenuItem(string name)
+            {
+                var menuItem = new ToolStripMenuItem
+                {
+                    Checked = false,
+                    CheckState = CheckState.Unchecked,
+                    Name = $"{name}{index + 1}",
+                    Size = LogicalToDeviceUnits(new Size(180, 22)),
+                    Text = $"レイヤー {index + 1}"
+                };
+                menuItem.Click += (sender, e) =>
+                {
+                    LayerCount_Click(index);
+                };
+                return menuItem;
+            }
+
+            // LayerSelector用のメニュー項目を作成
+            var layerSelectorItem = CreateMenuItem("LayerSelector");
+            LayerCount.Add(layerSelectorItem);
+            LayerSelector.DropDownItems.Add(layerSelectorItem);
+
+            // LayerMenuSelector用のメニュー項目を作成
+            var layerMenuCountItem = CreateMenuItem("LayerMenuCount");
+            LayerMenuCount.Add(layerMenuCountItem);
+            LayerMenuSelector.DropDownItems.Add(layerMenuCountItem);
+        }
+
         // ステータスバーっぽいところに表示される小さいアイコンや文字
         private void MainDesigner_MouseMove(object sender, MouseEventArgs e)
         {
