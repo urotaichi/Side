@@ -20,6 +20,18 @@ namespace MasaoPlus
 
         public LayerObject EditingLayer;
 
+        public int LayerCount
+        {
+            get
+            {
+                if (UseLayer && project != null && project.LayerData != null)
+                {
+                    return project.LayerData.Count;
+                }
+                return 1;
+            }
+        }
+
         public ChipsData[] Mapchip;
 
         public ChipsData[] Layerchip;
