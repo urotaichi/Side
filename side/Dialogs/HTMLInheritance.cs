@@ -726,6 +726,7 @@ namespace MasaoPlus.Dialogs
                 string Mapdata = new([.. s.Except(s.Where(ch => s.Count(c => c == ch) > 1))]); // 地図画面データを圧縮
 
                 int num = 0;
+                int mcs_screen_size = 2;
                 while (num < project.Config.Configurations.Length)
                 {
                     switch (project.Config.Configurations[num].Type)
@@ -763,9 +764,23 @@ namespace MasaoPlus.Dialogs
                             break;
                         case ConfigParam.Types.s:
                         case ConfigParam.Types.i:
-                        case ConfigParam.Types.l:
                         case ConfigParam.Types.l_a:
                             goto IL_D9E;
+                        case ConfigParam.Types.l:
+                            {
+                                string configName = project.Config.Configurations[num].Name;
+                                if (configName == "mcs_screen_size"){
+                                    if (dictionary.TryGetValue(configName, out string value1) || dictionary.TryGetValue(configNameNoQuote, out value1))
+                                    {
+                                        if(value1 == "1")
+                                        {
+                                            mcs_screen_size = 1;
+                                        }
+                                    }
+                                    break;
+                                }
+                                goto IL_D9E;
+                            }
                         case ConfigParam.Types.t:
                             {
                                 string name = project.Config.Configurations[num].Name;
@@ -1020,6 +1035,18 @@ namespace MasaoPlus.Dialogs
                             case "url4":
                                 project.Config.Configurations[num].Value =
                                     "http://www.t3.rim.or.jp/~naoto/naoto.html";
+                                break;
+                            case "width":
+                                if(mcs_screen_size == 1)
+                                {
+                                    project.Config.Configurations[num].Value = "640";
+                                }
+                                break;
+                            case "height":
+                                if(mcs_screen_size == 1)
+                                {
+                                    project.Config.Configurations[num].Value = "480";
+                                }
                                 break;
                         }
                     }
