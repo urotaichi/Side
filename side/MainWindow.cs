@@ -195,14 +195,7 @@ namespace MasaoPlus
             MainDesigner.AddBuffer();
             EditorSystemPanel_Resize(this, new EventArgs());
             UpdateScrollbar();
-            if (CurrentProjectData.UseLayer)
-            {
-                LayerState(true);
-            }
-            else
-            {
-                LayerState(false);
-            }
+            LayerState(CurrentProjectData.UseLayer);
             UpdateStageSelector();
         }
 
@@ -1731,14 +1724,7 @@ namespace MasaoPlus
             MainDesigner.ForceBufferResize();
             UpdateLayer();
             UpdateScrollbar();
-            if (CurrentProjectData.UseLayer)
-            {
-                LayerState(true);
-            }
-            else
-            {
-                LayerState(false);
-            }
+            LayerState(CurrentProjectData.UseLayer);
             UpdateStageSelector();
             Restartupping = false;
         }
@@ -2293,12 +2279,7 @@ namespace MasaoPlus
             MainDesigner.ClearBuffer();
             MainDesigner.AddBuffer();
             EditorSystemPanel_Resize(this, new EventArgs());
-            if (CurrentProjectData.UseLayer)
-            {
-                LayerState(true);
-                return;
-            }
-            LayerState(false);
+            LayerState(CurrentProjectData.UseLayer);
         }
 
         private void InstalledRuntime_Click(object sender, EventArgs e)
