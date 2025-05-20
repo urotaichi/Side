@@ -1,4 +1,6 @@
-﻿namespace MasaoPlus
+﻿using System.Collections.Generic;
+
+namespace MasaoPlus
 {
 	public partial class MainWindow : global::System.Windows.Forms.Form
 	{
@@ -56,6 +58,11 @@
 			this.toolStripMenuItem13 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.MDUnactiveLayer = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.MTUnactiveLayer = new global::System.Windows.Forms.ToolStripMenuItem();
+			this.LayerSelector = new global::System.Windows.Forms.ToolStripMenuItem();
+			this.LayerCount = new List<global::System.Windows.Forms.ToolStripMenuItem>
+			{
+				new global::System.Windows.Forms.ToolStripMenuItem()
+			};
 			this.toolStripSeparator2 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.ItemUndo = new global::System.Windows.Forms.ToolStripButton();
 			this.ItemRedo = new global::System.Windows.Forms.ToolStripButton();
@@ -130,6 +137,11 @@
 			this.LayerMenu = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.EditPatternChip = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.EditBackground = new global::System.Windows.Forms.ToolStripMenuItem();
+			this.LayerMenuSelector = new global::System.Windows.Forms.ToolStripMenuItem();
+			this.LayerMenuCount = new List<global::System.Windows.Forms.ToolStripMenuItem>
+			{
+				new global::System.Windows.Forms.ToolStripMenuItem()
+			};
 			this.toolStripMenuItem8 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.ViewUnactiveLayer = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.TransparentUnactiveLayer = new global::System.Windows.Forms.ToolStripMenuItem();
@@ -522,6 +534,7 @@
 			{
 				this.PatternChipLayer,
 				this.BackgroundLayer,
+				this.LayerSelector,
 				this.toolStripMenuItem13,
 				this.MDUnactiveLayer,
 				this.MTUnactiveLayer
@@ -557,6 +570,23 @@
 			this.MTUnactiveLayer.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(275, 22));
 			this.MTUnactiveLayer.Text = "アクティブでないレイヤーを透過(&T)";
 			this.MTUnactiveLayer.Click += new global::System.EventHandler(this.TransparentUnactiveLayer_Click);
+			this.LayerSelector.DisplayStyle = global::System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.LayerSelector.DropDownItems.AddRange(new global::System.Windows.Forms.ToolStripItem[]
+			{
+				this.LayerCount[0],
+			});
+			this.LayerSelector.Name = "LayerSelector";
+			this.LayerSelector.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(275, 22));
+			this.LayerSelector.Text = "背景チップレイヤー";
+			this.LayerSelector.Visible = false;
+			this.LayerCount[0].Checked = true;
+			this.LayerCount[0].CheckState = global::System.Windows.Forms.CheckState.Checked;
+			this.LayerCount[0].Name = "LayerCount1";
+			this.LayerCount[0].Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(180, 22));
+			this.LayerCount[0].Text = "レイヤー 1";
+			this.LayerCount[0].Click += (sender, e) => {
+                LayerCount_Click(0);
+			};
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(6, 25));
 			this.ItemUndo.DisplayStyle = global::System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -991,6 +1021,7 @@
 			{
 				this.EditPatternChip,
 				this.EditBackground,
+				this.LayerMenuSelector,
 				this.toolStripMenuItem8,
 				this.ViewUnactiveLayer,
 				this.TransparentUnactiveLayer
@@ -1010,6 +1041,23 @@
 			this.EditBackground.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(275, 22));
 			this.EditBackground.Text = "背景チップレイヤー(&B)";
 			this.EditBackground.Click += new global::System.EventHandler(this.EditBackground_Click);
+			this.LayerMenuSelector.DisplayStyle = global::System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.LayerMenuSelector.DropDownItems.AddRange(new global::System.Windows.Forms.ToolStripItem[]
+			{
+				this.LayerMenuCount[0]
+			});
+			this.LayerMenuSelector.Name = "LayerMenuSelector";
+			this.LayerMenuSelector.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(275, 22));
+			this.LayerMenuSelector.Text = "背景チップレイヤー";
+			this.LayerMenuSelector.Visible = false;
+			this.LayerMenuCount[0].Checked = true;
+			this.LayerMenuCount[0].CheckState = global::System.Windows.Forms.CheckState.Checked;
+			this.LayerMenuCount[0].Name = "LayerMenuCount1";
+			this.LayerMenuCount[0].Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(180, 22));
+			this.LayerMenuCount[0].Text = "レイヤー 1";
+			this.LayerMenuCount[0].Click += (sender, e) => {
+                LayerCount_Click(0);
+			};
 			this.toolStripMenuItem8.Name = "toolStripMenuItem8";
 			this.toolStripMenuItem8.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(272, 6));
 			this.ViewUnactiveLayer.Checked = Global.state.DrawUnactiveLayer;
@@ -1786,5 +1834,13 @@
 		private global::System.Windows.Forms.ToolStripMenuItem MWriteJSON;
 
 		private global::System.Windows.Forms.ToolStripButton MTOutputJSON;
+
+		public global::System.Windows.Forms.ToolStripMenuItem LayerSelector;
+
+		public List<global::System.Windows.Forms.ToolStripMenuItem> LayerCount;
+
+		public global::System.Windows.Forms.ToolStripMenuItem LayerMenuSelector;
+
+		public List<global::System.Windows.Forms.ToolStripMenuItem> LayerMenuCount;
 	}
 }
