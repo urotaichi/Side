@@ -1994,39 +1994,20 @@ namespace MasaoPlus
             switch (newValue)
             {
                 case 0:
-                    Global.cpd.EditingMap = Global.cpd.project.StageData;
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData[0];
-                    MEditStage1.Checked = true;
-                    Global.state.Background = Global.cpd.project.Config.Background;
-                    LayerState(CurrentProjectData.UseLayer);
+                    SetStageData(Global.cpd.project.StageData, Global.cpd.project.LayerData[0], Global.cpd.project.Config.Background, MEditStage1, CurrentProjectData.UseLayer);
                     break;
                 case 1:
-                    Global.cpd.EditingMap = Global.cpd.project.StageData2;
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData2[0];
-                    MEditStage2.Checked = true;
-                    Global.state.Background = Global.cpd.project.Config.Background2;
-                    LayerState(CurrentProjectData.UseLayer);
+                    SetStageData(Global.cpd.project.StageData2, Global.cpd.project.LayerData2[0], Global.cpd.project.Config.Background2, MEditStage2, CurrentProjectData.UseLayer);
                     break;
                 case 2:
-                    Global.cpd.EditingMap = Global.cpd.project.StageData3;
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData3[0];
-                    MEditStage3.Checked = true;
-                    Global.state.Background = Global.cpd.project.Config.Background3;
-                    LayerState(CurrentProjectData.UseLayer);
+                    SetStageData(Global.cpd.project.StageData3, Global.cpd.project.LayerData3[0], Global.cpd.project.Config.Background3, MEditStage3, CurrentProjectData.UseLayer);
                     break;
                 case 3:
-                    Global.cpd.EditingMap = Global.cpd.project.StageData4;
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData4[0];
-                    MEditStage4.Checked = true;
-                    Global.state.Background = Global.cpd.project.Config.Background4;
-                    LayerState(CurrentProjectData.UseLayer);
+                    SetStageData(Global.cpd.project.StageData4, Global.cpd.project.LayerData4[0], Global.cpd.project.Config.Background4, MEditStage4, CurrentProjectData.UseLayer);
                     break;
                 case 4:
-                    Global.cpd.EditingMap = Global.cpd.project.MapData;
-                    MEditMap.Checked = true;
+                    SetStageData(Global.cpd.project.MapData, null, Global.cpd.project.Config.BackgroundM, MEditMap, false);
                     Global.state.MapEditMode = true;
-                    Global.state.Background = Global.cpd.project.Config.BackgroundM; // なぜか複数ステージでステージ開始時画面の背景色を使っている
-                    LayerState(false);
                     Global.state.EditingForeground = true;
                     break;
             }
@@ -2034,6 +2015,23 @@ namespace MasaoPlus
             MainDesigner.ForceBufferResize();
             UpdateLayer();
             UpdateScrollbar();
+        }
+
+        /// <summary>
+        /// ステージデータ、レイヤーデータ、背景色を設定し、対応するメニュー項目をチェックしてレイヤー状態を更新します
+        /// </summary>
+        /// <param name="stageData">ステージデータ</param>
+        /// <param name="layerData">レイヤーデータ</param>
+        /// <param name="backgroundColor">背景色</param>
+        /// <param name="menuItem">チェックするメニュー項目</param>
+        /// <param name="enableLayer">レイヤー機能を有効にするかどうか</param>
+        private void SetStageData(LayerObject stageData, LayerObject layerData, Color backgroundColor, ToolStripMenuItem menuItem, bool enableLayer)
+        {
+            Global.cpd.EditingMap = stageData;
+            if (layerData != null) Global.cpd.EditingLayer = layerData;
+            menuItem.Checked = true;
+            Global.state.Background = backgroundColor;
+            LayerState(enableLayer);
         }
 
         private void UpdateStageSelector()
