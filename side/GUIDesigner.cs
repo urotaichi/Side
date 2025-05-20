@@ -295,6 +295,18 @@ namespace MasaoPlus
             UpdateBackgroundBuffer();
         }
 
+        private void SavePrevDrawnLayer(bool editingForeground)
+        {
+            if (editingForeground)
+            {
+                ForePrevDrawn = (LayerObject)Global.cpd.EditingMap.Clone();
+            }
+            else
+            {
+                BackPrevDrawn = (LayerObject)Global.cpd.EditingLayer.Clone();
+            }
+        }
+
         public void InitTransparent()
         {
             if (CurrentProjectData.UseLayer && Global.state.TransparentUnactiveLayer)
@@ -737,14 +749,7 @@ namespace MasaoPlus
                 // セカンド前景画像固定表示
                 viewSecondHaikei(2);
             }
-            if (foreground)
-            {
-                ForePrevDrawn = (LayerObject)Global.cpd.EditingMap.Clone();
-            }
-            else
-            {
-                BackPrevDrawn = (LayerObject)Global.cpd.EditingLayer.Clone();
-            }
+            SavePrevDrawnLayer(foreground);
             list.Clear();
         }
 
@@ -2002,14 +2007,7 @@ namespace MasaoPlus
                             case EditTool.Pen:
                                 GUIDesigner_MouseMove(sender, e);
                                 AddBuffer();
-                                if (Global.state.EditingForeground)
-                                {
-                                    ForePrevDrawn = (LayerObject)Global.cpd.EditingMap.Clone();
-                                }
-                                else
-                                {
-                                    BackPrevDrawn = (LayerObject)Global.cpd.EditingLayer.Clone();
-                                }
+                                SavePrevDrawnLayer(Global.state.EditingForeground);
                                 Global.MainWnd.UpdateStatus("完了");
                                 return;
                             case EditTool.Line:
@@ -2167,14 +2165,7 @@ namespace MasaoPlus
                 mapPos.X = point2.X + (int)Math.Round(num);
                 mapPos.Y = point2.Y + (int)Math.Round(num2);
             }
-            if (Global.state.EditingForeground)
-            {
-                ForePrevDrawn = (LayerObject)Global.cpd.EditingMap.Clone();
-            }
-            else
-            {
-                BackPrevDrawn = (LayerObject)Global.cpd.EditingLayer.Clone();
-            }
+            SavePrevDrawnLayer(Global.state.EditingForeground);
             Refresh();
         }
 
