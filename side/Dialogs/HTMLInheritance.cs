@@ -769,6 +769,7 @@ namespace MasaoPlus.Dialogs
                         case ConfigParam.Types.l:
                             {
                                 string configName = project.Config.Configurations[num].Name;
+                                string configNameNoQuote = configName.Trim('\'');
                                 if (configName == "mcs_screen_size"){
                                     if (dictionary.TryGetValue(configName, out string value1) || dictionary.TryGetValue(configNameNoQuote, out value1))
                                     {
