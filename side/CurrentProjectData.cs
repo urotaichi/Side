@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MasaoPlus
 {
@@ -19,6 +20,25 @@ namespace MasaoPlus
         public LayerObject EditingMap;
 
         public LayerObject EditingLayer;
+
+        public List<LayerObject> EditingLayers
+        {
+            get
+            {
+                if (project != null)
+                {
+                    return Global.state.EdittingStage switch
+                    {
+                        0 => project.LayerData,
+                        1 => project.LayerData2,
+                        2 => project.LayerData3,
+                        3 => project.LayerData4,
+                        _ => null,
+                    };
+                }
+                return null;
+            }
+        }
 
         public int LayerCount
         {
