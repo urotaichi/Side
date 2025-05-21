@@ -579,8 +579,6 @@ namespace MasaoPlus
 			this.LayerSelector.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(275, 22));
 			this.LayerSelector.Text = "背景チップレイヤー";
 			this.LayerSelector.Visible = false;
-			this.LayerCount[0].Checked = true;
-			this.LayerCount[0].CheckState = global::System.Windows.Forms.CheckState.Checked;
 			this.LayerCount[0].Name = "LayerCount1";
 			this.LayerCount[0].Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(180, 22));
 			this.LayerCount[0].Text = "レイヤー 1";
@@ -1050,8 +1048,6 @@ namespace MasaoPlus
 			this.LayerMenuSelector.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(275, 22));
 			this.LayerMenuSelector.Text = "背景チップレイヤー";
 			this.LayerMenuSelector.Visible = false;
-			this.LayerMenuCount[0].Checked = true;
-			this.LayerMenuCount[0].CheckState = global::System.Windows.Forms.CheckState.Checked;
 			this.LayerMenuCount[0].Name = "LayerMenuCount1";
 			this.LayerMenuCount[0].Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(180, 22));
 			this.LayerMenuCount[0].Text = "レイヤー 1";
