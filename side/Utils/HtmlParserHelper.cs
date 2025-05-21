@@ -487,12 +487,23 @@ namespace MasaoPlus.Utils
         // Jsonパース失敗時の処理を共通関数化
         public static void ParseParamsWithRegex(string input, Dictionary<string, string> dictionary)
         {
-            var regex2 = reg_script_param();
-            Match match2 = regex2.Match(input);
-            while (match2.Success)
+            ParseParamsWithPattern(input, dictionary, reg_script_param());
+        }
+
+        // HTMLのPARAMタグからパラメータを抽出する関数
+        public static void ParseParamsFromHTML(string input, Dictionary<string, string> dictionary)
+        {
+            ParseParamsWithPattern(input, dictionary, reg_param());
+        }
+
+        // 正規表現パターンを使用して共通処理を行うプライベートヘルパーメソッド
+        private static void ParseParamsWithPattern(string input, Dictionary<string, string> dictionary, Regex pattern)
+        {
+            Match match = pattern.Match(input);
+            while (match.Success)
             {
-                dictionary[match2.Groups["name"].Value] = match2.Groups["value"].Value;
-                match2 = match2.NextMatch();
+                dictionary[match.Groups["name"].Value] = match.Groups["value"].Value;
+                match = match.NextMatch();
             }
         }
 

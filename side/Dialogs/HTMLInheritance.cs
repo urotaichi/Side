@@ -326,7 +326,7 @@ namespace MasaoPlus.Dialogs
                     catch (JsonException)
                     {
                         // JSONとして解析できない場合は従来のHTMLパラメータ解析を試みる
-                        HtmlParserHelper.ParseParamsWithRegex(input, dictionary);
+                        HtmlParserHelper.ParseParamsFromHTML(input, dictionary);
                     }
                 }
 
