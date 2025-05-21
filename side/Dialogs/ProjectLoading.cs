@@ -123,7 +123,12 @@ namespace MasaoPlus.Dialogs
                     Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
                     if (CurrentProjectData.UseLayer)
                     {
-                        Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
+                        Global.MainWnd.MainDesigner.BackLayerBmp = new List<Bitmap>(Global.cpd.LayerCount);
+                        for (int i = 0; i < Global.cpd.LayerCount; i++)
+                        {
+                            Global.MainWnd.MainDesigner.BackLayerBmp.Add(null);
+                            Global.MainWnd.MainDesigner.UpdateBackgroundBuffer(i);
+                        }
                     }
                     if (Global.state.TransparentUnactiveLayer)
                     {

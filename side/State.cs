@@ -227,7 +227,7 @@ namespace MasaoPlus
 
         public int EdittingStage;
 
-        public int EdittingLayerIndex;
+        public int EdittingLayerIndex = -1;
 
         public bool MapEditMode;
 
