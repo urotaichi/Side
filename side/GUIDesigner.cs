@@ -723,12 +723,7 @@ namespace MasaoPlus
                 DrawNormalSizeMap(cschip, g, keepDrawData.pos, foreground, keepDrawData.chara, keepDrawData.pos.X);
                 if (keepDrawData.idColor != null)
                 {
-                    GraphicsState transState = g.Save();
-                    TranslateTransform(g, keepDrawData.pos.X * chipsize.Width, keepDrawData.pos.Y * chipsize.Height);
-                    Color col = ColorTranslator.FromHtml(keepDrawData.idColor);
-                    using Brush brush = new SolidBrush(Color.FromArgb(240, col));
-                    g.FillRectangle(brush, new Rectangle(new Point(0, 0), LogicalToDeviceUnits(new Size(10, 5))));
-                    g.Restore(transState);
+                    ChipRenderer.DrawIdColorMark(g, new Point(LogicalToDeviceUnits(keepDrawData.pos.X * chipsize.Width), LogicalToDeviceUnits(keepDrawData.pos.Y * chipsize.Height)), keepDrawData.idColor, this);
                 }
             }
             if (!Global.state.MapEditMode)
@@ -2524,12 +2519,7 @@ namespace MasaoPlus
                                 DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X);
                                 if (chipsData.idColor != null)
                                 {
-                                    GraphicsState transState = graphics.Save();
-                                    graphics.TranslateTransform(point.X * chipsize.Width, point.Y * chipsize.Height);
-                                    Color col = ColorTranslator.FromHtml(chipsData.idColor);
-                                    using Brush brush = new SolidBrush(Color.FromArgb(240, col));
-                                    graphics.FillRectangle(brush, new Rectangle(new Point(0, 0), LogicalToDeviceUnits(new Size(10, 5))));
-                                    graphics.Restore(transState);
+                                    ChipRenderer.DrawIdColorMark(graphics, new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsData.idColor, this);
                                 }
                             }
                         }

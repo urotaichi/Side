@@ -245,12 +245,7 @@ namespace MasaoPlus
                     e.Graphics.PixelOffsetMode = default;
                     if (chipData.idColor != null)
                     {
-                        GraphicsState transState = e.Graphics.Save();
-                        e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
-                        Color col = ColorTranslator.FromHtml(chipData.idColor);
-                        using Brush brush = new SolidBrush(Color.FromArgb(240, col));
-                        e.Graphics.FillRectangle(brush, new Rectangle(new Point(0, 0), LogicalToDeviceUnits(new Size(10, 5))));
-                        e.Graphics.Restore(transState);
+                        ChipRenderer.DrawIdColorMark(e.Graphics, new Point(rectangle.X, rectangle.Y), chipData.idColor, this);
                     }
                     if (Global.state.MapEditMode && Global.state.CurrentChip.character == chipData.character
                         || !Global.state.MapEditMode
