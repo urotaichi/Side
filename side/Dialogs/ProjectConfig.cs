@@ -222,7 +222,7 @@ namespace MasaoPlus.Dialogs
                     }
                     else
                     {
-                        if (MessageBox.Show($"第3版マップデータから第2版マップデータに移行します。{Environment.NewLine}移行すると設置済みの変種パーツやカスタムパーツが削除されます。{Environment.NewLine}本当に移行してもよろしいですか？", "移行の警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                        if (MessageBox.Show($"第3版マップデータから第2版マップデータに移行します。{Environment.NewLine}移行すると設置済みの変種パーツやカスタムパーツが削除されます。{Environment.NewLine}また、背景レイヤーを複数使用していた場合1つ目のみが変換されます。{Environment.NewLine}本当に移行してもよろしいですか？", "移行の警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
                         {
                             return;
                         }

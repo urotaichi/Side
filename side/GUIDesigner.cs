@@ -160,20 +160,20 @@ namespace MasaoPlus
                 switch (Global.state.EdittingStage)
                 {
                     case 0:
-                        Global.cpd.project.LayerData[0] = clonedBuffer;
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData[0];
+                        Global.cpd.project.LayerData[Global.state.EdittingLayerIndex] = clonedBuffer;
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData[Global.state.EdittingLayerIndex];
                         break;
                     case 1:
-                        Global.cpd.project.LayerData2[0] = clonedBuffer;
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData2[0];
+                        Global.cpd.project.LayerData2[Global.state.EdittingLayerIndex] = clonedBuffer;
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData2[Global.state.EdittingLayerIndex];
                         break;
                     case 2:
-                        Global.cpd.project.LayerData3[0] = clonedBuffer;
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData3[0];
+                        Global.cpd.project.LayerData3[Global.state.EdittingLayerIndex] = clonedBuffer;
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData3[Global.state.EdittingLayerIndex];
                         break;
                     case 3:
-                        Global.cpd.project.LayerData4[0] = clonedBuffer;
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData4[0];
+                        Global.cpd.project.LayerData4[Global.state.EdittingLayerIndex] = clonedBuffer;
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData4[Global.state.EdittingLayerIndex];
                         break;
                 }
             }
