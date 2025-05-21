@@ -28,7 +28,10 @@ namespace MasaoPlus.Dialogs
             Global.MainWnd.UpdateLayerVisibility();
             Global.MainWnd.UpdateTitle();
             Global.MainWnd.ClearLayerCountsExceptFirst();
-            Global.MainWnd.AddLayerMenuItem(Global.cpd.LayerCount - 1);
+            for (int i = 1; i < Global.cpd.LayerCount; i++)
+            {
+                Global.MainWnd.AddLayerMenuItem(i);
+            }
             DialogResult = DialogResult.OK;
             Close();
         }
