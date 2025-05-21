@@ -245,10 +245,10 @@ namespace MasaoPlus
         {
             if (CurrentProjectData.UseLayer && Global.cpd.project.LayerData.Count > 1)
             {
-                Global.MainWnd.LayerSelector.Visible = true;
-                Global.MainWnd.LayerMenuSelector.Visible = true;
-                Global.MainWnd.BackgroundLayer.Visible = false;
-                Global.MainWnd.EditBackground.Visible = false;
+                LayerSelector.Visible = true;
+                LayerMenuSelector.Visible = true;
+                BackgroundLayer.Visible = false;
+                EditBackground.Visible = false;
             }
         }
 
