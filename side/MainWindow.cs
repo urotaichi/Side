@@ -302,9 +302,9 @@ namespace MasaoPlus
             LayerMenuSelector.DropDownItems.Add(layerMenuCountItem);
         }
 
-        private void LayerCount_Click(int layerNumber)
+        private void LayerCount_Click(int layerIndex)
         {
-            if (Global.state.EdittingLayerIndex == layerNumber)
+            if (Global.state.EdittingLayerIndex == layerIndex)
             {
                 return;
             }
@@ -315,16 +315,16 @@ namespace MasaoPlus
             switch (Global.state.EdittingStage)
             {
                 case 0:
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData[layerNumber];
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData[layerIndex];
                     break;
                 case 1:
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData2[layerNumber];
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData2[layerIndex];
                     break;
                 case 2:
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData3[layerNumber];
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData3[layerIndex];
                     break;
                 case 3:
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData4[layerNumber];
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData4[layerIndex];
                     break;
             }
             Global.state.EditingForeground = false;
@@ -333,7 +333,7 @@ namespace MasaoPlus
             MainEditor.PatternChipLayer.Checked = false;
             for(int i = 0; i < LayerCount.Count; i++)
             {
-                if (i == layerNumber)
+                if (i == layerIndex)
                 {
                     LayerCount[i].Checked = true;
                     LayerMenuCount[i].Checked = true;
@@ -345,8 +345,8 @@ namespace MasaoPlus
                 }
             }
             MainEditor.BackgroundLayer.Checked = true;
-            Global.state.EdittingLayerIndex = layerNumber;
-            UpdateLayer();
+            Global.state.EdittingLayerIndex = layerIndex;
+            UpdateLayer(layerIndex);
         }
 
         // ステータスバーっぽいところに表示される小さいアイコンや文字
@@ -2143,7 +2143,7 @@ namespace MasaoPlus
             MEditMap.Enabled = Global.cpd.project.Config.UseWorldmap;
         }
 
-        public void UpdateLayer()
+        public void UpdateLayer(int layerIndex = -1)
         {
             if (EditTab.SelectedIndex == 0)
             {
@@ -2159,7 +2159,7 @@ namespace MasaoPlus
                 ChipItemReadyInvoke();
                 MainDesigner.ClearBuffer();
                 MainDesigner.UpdateForegroundBuffer();
-                MainDesigner.UpdateBackgroundBuffer();
+                MainDesigner.UpdateBackgroundBuffer(layerIndex);
                 if (Global.state.TransparentUnactiveLayer)
                 {
                     MainDesigner.InitTransparent();

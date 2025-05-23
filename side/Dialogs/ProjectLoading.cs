@@ -130,8 +130,8 @@ namespace MasaoPlus.Dialogs
                         for (int i = 0; i < Global.cpd.LayerCount; i++)
                         {
                             Global.MainWnd.MainDesigner.BackLayerBmp.Add(null);
-                            Global.MainWnd.MainDesigner.UpdateBackgroundBuffer(i);
                         }
+                        Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
                     }
                     if (Global.state.TransparentUnactiveLayer)
                     {

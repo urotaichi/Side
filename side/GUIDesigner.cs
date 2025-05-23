@@ -81,9 +81,9 @@ namespace MasaoPlus
             Global.config.draw.ExtendDraw = EnableExDraw;
             if (CurrentProjectData.UseLayer)
             {
+                UpdateBackgroundBuffer();
                 for (int i = Global.cpd.LayerCount - 1; i >= 0; i--)
                 {
-                    UpdateBackgroundBuffer(i);
                     g.DrawImage(BackLayerBmp[i], 0, 0, ForeLayerBmp.Width / DeviceDpi * 96, ForeLayerBmp.Height / DeviceDpi * 96);
                 }
             }
@@ -91,10 +91,7 @@ namespace MasaoPlus
             g.DrawImage(ForeLayerBmp, 0, 0, ForeLayerBmp.Width / DeviceDpi * 96, ForeLayerBmp.Height / DeviceDpi * 96);
             Global.config.draw.ExtendDraw = extendDraw;
             UpdateForegroundBuffer();
-            for (int i = Global.cpd.LayerCount - 1; i >= 0; i--)
-            {
-                UpdateBackgroundBuffer(i);
-            }
+            UpdateBackgroundBuffer();
             InitTransparent();
             bufpos = -1;
             Refresh();
@@ -298,10 +295,7 @@ namespace MasaoPlus
                 UpdateForegroundBuffer();
                 return;
             }
-            for (int i = Global.cpd.LayerCount - 1; i >= 0; i--)
-            {
-                UpdateBackgroundBuffer(i);
-            }
+            UpdateBackgroundBuffer();
         }
 
         private void SavePrevDrawnLayer(bool editingForeground)
@@ -331,9 +325,21 @@ namespace MasaoPlus
                             BackLayerBmp[i] = temp;
                         }
                     }
-                    return;
                 }
-                HalfTransparentBitmap2(ref ForeLayerBmp);
+                else
+                {
+                    HalfTransparentBitmap2(ref ForeLayerBmp);
+                    for (int i = 0; i < BackLayerBmp.Count; i++)
+                    {
+                        if (BackLayerBmp[i] != null && i != Global.state.EdittingLayerIndex)
+                        {
+                            UpdateSingleLayerBuffer(i);
+                            Bitmap temp = BackLayerBmp[i];
+                            HalfTransparentBitmap2(ref temp);
+                            BackLayerBmp[i] = temp;
+                        }
+                    }
+                }
             }
         }
 
@@ -508,35 +514,54 @@ namespace MasaoPlus
             bufpos = -1;
         }
 
-        public void UpdateBackgroundBuffer(int layer = 0)
+        public void UpdateBackgroundBuffer(int layerIndex = -1)
         {
-            bool flag = false;
             if (!CurrentProjectData.UseLayer)
             {
                 return;
             }
-            if (BackLayerBmp[layer] == null)
+            
+            if (layerIndex == -1)
             {
-                BackLayerBmp[layer] = new Bitmap(LogicalToDeviceUnits(CurrentLayerSize.x * Global.cpd.runtime.Definitions.ChipSize.Width), CurrentLayerSize.y * LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height), PixelFormat.Format32bppArgb);
+                for (int i = Global.cpd.LayerCount - 1; i >= 0; i--)
+                {
+                    UpdateSingleLayerBuffer(i);
+                }
+            }
+            else
+            {
+                UpdateSingleLayerBuffer(layerIndex);
+            }
+            
+            bufpos = -1;
+        }
+        
+        private void UpdateSingleLayerBuffer(int layerIndex)
+        {
+            bool flag = false;
+            
+            if (BackLayerBmp[layerIndex] == null)
+            {
+                BackLayerBmp[layerIndex] = new Bitmap(LogicalToDeviceUnits(CurrentLayerSize.x * Global.cpd.runtime.Definitions.ChipSize.Width), 
+                    CurrentLayerSize.y * LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height), PixelFormat.Format32bppArgb);
             }
             else if (!Global.state.UseBuffered)
             {
                 flag = true;
             }
-            using (Graphics graphics = Graphics.FromImage(BackLayerBmp[layer]))
+            
+            using Graphics graphics = Graphics.FromImage(BackLayerBmp[layerIndex]);
+            if (flag)
             {
-                if (flag)
-                {
-                    graphics.CompositingMode = CompositingMode.SourceCopy;
-                    graphics.FillRectangle(Brushes.Transparent, new Rectangle(0, 0, BackLayerBmp[layer].Width, BackLayerBmp[layer].Height));
-                    graphics.CompositingMode = CompositingMode.SourceOver;
-                }
-                MakeDrawBuffer(graphics, false);
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.FillRectangle(Brushes.Transparent, new Rectangle(0, 0, BackLayerBmp[layerIndex].Width, BackLayerBmp[layerIndex].Height));
+                graphics.CompositingMode = CompositingMode.SourceOver;
             }
-            bufpos = -1;
+            
+            MakeDrawBuffer(graphics, false, layerIndex);
         }
 
-        private void MakeDrawBuffer(Graphics g, bool foreground)
+        private void MakeDrawBuffer(Graphics g, bool foreground, int layerIndex = 0)
         {
             g.PixelOffsetMode = PixelOffsetMode.Half;
             g.InterpolationMode = InterpolationMode.NearestNeighbor;
@@ -603,7 +628,7 @@ namespace MasaoPlus
                         }
                         else
                         {
-                            text = Global.cpd.EditingLayer[num].Split(',')[num2];
+                            text = Global.cpd.EditingLayers[layerIndex][num].Split(',')[num2];
                         }
                         if (
                             (!Global.state.UseBuffered
@@ -1114,25 +1139,8 @@ namespace MasaoPlus
                 {
                     graphics.FillRectangle(brush, new Rectangle(0, 0, ForegroundBuffer.Width, ForegroundBuffer.Height));
                 }
-                if (Global.config.draw.StageInterpolation)
-                {
-                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                }
-                else
-                {
-                    graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-                }
-                if (CurrentProjectData.UseLayer && (!Global.state.EditingForeground || Global.state.DrawUnactiveLayer))
-                {
-                    for (int i = Global.cpd.LayerCount - 1; i >= 0; i--)
-                    {
-                        graphics.DrawImage(BackLayerBmp[i], new Rectangle(new Point(0, 0), ForegroundBuffer.Size), new Rectangle(0, 0, BackLayerBmp[i].Width, BackLayerBmp[i].Height), GraphicsUnit.Pixel);
-                    }
-                }
-                if (!CurrentProjectData.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
-                {
-                    graphics.DrawImage(ForeLayerBmp, new Rectangle(new Point(0, 0), ForegroundBuffer.Size), new Rectangle(0, 0, ForeLayerBmp.Width, ForeLayerBmp.Height), GraphicsUnit.Pixel);
-                }
+                SetGraphicsInterpolationMode(graphics);
+                DrawLayersToBuffer(graphics);
                 if (Global.config.draw.UseBufferingMemoryDraw)
                 {
                     ForegroundBuffer.RotateFlip(RotateFlipType.Rotate180FlipX);
@@ -1167,26 +1175,9 @@ namespace MasaoPlus
                 {
                     e.Graphics.FillRectangle(brush2, new Rectangle(0, 0, num, num2));
                 }
-                if (Global.config.draw.StageInterpolation)
-                {
-                    e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                }
-                else
-                {
-                    e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-                }
+                SetGraphicsInterpolationMode(e.Graphics);
                 double num3 = 1.0 / Global.config.draw.ZoomIndex;
-                if (CurrentProjectData.UseLayer && (!Global.state.EditingForeground || Global.state.DrawUnactiveLayer))
-                {
-                    for (int i = Global.cpd.LayerCount - 1; i >= 0; i--)
-                    {
-                        e.Graphics.DrawImage(BackLayerBmp[i], new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)(num * num3), (int)(num2 * num3))), GraphicsUnit.Pixel);
-                    }
-                }
-                if (!CurrentProjectData.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
-                {
-                    e.Graphics.DrawImage(ForeLayerBmp, new Rectangle(0, 0, num, num2), new Rectangle(Global.state.MapPointTranslated, new Size((int)(num * num3), (int)(num2 * num3))), GraphicsUnit.Pixel);
-                }
+                DrawLayersToGraphics(e.Graphics, num, num2, num3);
             }
             if (DrawMode != DirectDrawMode.None)
             {
@@ -1231,6 +1222,65 @@ namespace MasaoPlus
 
                 DrawEx.DrawGridEx(e.Graphics, new Rectangle((int)(LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width) * Global.config.draw.ZoomIndex) - num4, 0, num, num2), new Size((int)(LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width) * Global.config.draw.ZoomIndex), Global.definition.GridInterval), Global.state.Background);
             }
+        }
+        
+        private static void SetGraphicsInterpolationMode(Graphics graphics)
+        {
+            if (Global.config.draw.StageInterpolation)
+            {
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            }
+            else
+            {
+                graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+            }
+        }
+        
+        private void DrawLayersToBuffer(Graphics graphics)
+        {
+            DrawLayers(graphics, 
+                destRect => new Rectangle(new Point(0, 0), ForegroundBuffer.Size),
+                (bitmap, destRect) => new Rectangle(0, 0, bitmap.Width, bitmap.Height));
+        }
+        
+        private void DrawLayersToGraphics(Graphics graphics, int num, int num2, double scale)
+        {
+            DrawLayers(graphics,
+                destRect => new Rectangle(0, 0, num, num2),
+                (bitmap, destRect) => new Rectangle(Global.state.MapPointTranslated, new Size((int)(num * scale), (int)(num2 * scale))));
+        }
+        
+        private void DrawLayers(Graphics graphics, 
+            Func<Bitmap, Rectangle> getDestRect, 
+            Func<Bitmap, Rectangle, Rectangle> getSrcRect)
+        {
+            if (CurrentProjectData.UseLayer && (!Global.state.EditingForeground || Global.state.DrawUnactiveLayer))
+            {
+                if (Global.state.EdittingLayerIndex == -1 || Global.state.DrawUnactiveLayer)
+                {
+                    for (int i = Global.cpd.LayerCount - 1; i >= 0; i--)
+                    {
+                        DrawImageLayer(graphics, BackLayerBmp[i], getDestRect, getSrcRect);
+                    }
+                }
+                else
+                {
+                    DrawImageLayer(graphics, BackLayerBmp[Global.state.EdittingLayerIndex], getDestRect, getSrcRect);
+                }
+            }
+            if (!CurrentProjectData.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
+            {
+                DrawImageLayer(graphics, ForeLayerBmp, getDestRect, getSrcRect);
+            }
+        }
+        
+        private static void DrawImageLayer(Graphics graphics, Bitmap bitmap, 
+            Func<Bitmap, Rectangle> getDestRect, 
+            Func<Bitmap, Rectangle, Rectangle> getSrcRect)
+        {
+            var destRect = getDestRect(bitmap);
+            var srcRect = getSrcRect(bitmap, destRect);
+            graphics.DrawImage(bitmap, destRect, srcRect, GraphicsUnit.Pixel);
         }
 
         protected override void OnPaintBackground(PaintEventArgs e)
