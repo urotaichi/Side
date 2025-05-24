@@ -268,7 +268,7 @@ namespace MasaoPlus
             }
         }
 
-        public static Runtime.DefinedData.StageSizeData CurrentLayerSize
+        public static Runtime.DefinedData.LayerSizeData CurrentLayerSize
         {
             get
             {
@@ -612,7 +612,7 @@ namespace MasaoPlus
             Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
             Runtime.DefinedData.StageSizeData MapSize = Global.cpd.project.Runtime.Definitions.MapSize;
             Runtime.DefinedData.StageSizeData StageSize = CurrentStageSize;
-            Runtime.DefinedData.StageSizeData LayerSize = CurrentLayerSize;
+            Runtime.DefinedData.LayerSizeData LayerSize = CurrentLayerSize;
 
             if (Global.state.Use3rdMapDataCurrently)
             {
