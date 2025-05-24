@@ -171,7 +171,20 @@ namespace MasaoPlus
             if (size.y < Global.state.MinimumStageSize.Height) size.y = Global.state.DefaultStageSize.Height;
         }
 
+        private static void CheckStageSize(ref Runtime.DefinedData.LayerSizeData size)
+        {
+            if (size.x < Global.state.MinimumStageSize.Width) size.x = Global.state.DefaultStageSize.Width;
+            if (size.y < Global.state.MinimumStageSize.Height) size.y = Global.state.DefaultStageSize.Height;
+        }
+
         private static void SetStageSize(ref Runtime.DefinedData.StageSizeData size, Runtime.DefinedData.StageSizeData baseSize)
+        {
+            size.x = baseSize.x;
+            size.y = baseSize.y;
+            size.bytesize = baseSize.bytesize;
+        }
+
+        private static void SetStageSize(ref Runtime.DefinedData.LayerSizeData size, Runtime.DefinedData.StageSizeData baseSize)
         {
             size.x = baseSize.x;
             size.y = baseSize.y;

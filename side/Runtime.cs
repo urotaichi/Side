@@ -117,10 +117,10 @@ namespace MasaoPlus
             public StageSizeData StageSize3 = new();
             public StageSizeData StageSize4 = new();
 
-            public StageSizeData LayerSize = new();
-            public StageSizeData LayerSize2 = new();
-            public StageSizeData LayerSize3 = new();
-            public StageSizeData LayerSize4 = new();
+            public LayerSizeData LayerSize = new();
+            public LayerSizeData LayerSize2 = new();
+            public LayerSizeData LayerSize3 = new();
+            public LayerSizeData LayerSize4 = new();
 
             public StageSizeData MapSize = new();
 
@@ -153,7 +153,11 @@ namespace MasaoPlus
 
                 [XmlAttribute]
                 public int bytesize;
+            }
 
+            [Serializable]
+            public class LayerSizeData : StageSizeData
+            {
                 [XmlAttribute]
                 public int mainOrder;
 

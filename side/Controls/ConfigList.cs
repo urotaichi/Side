@@ -623,7 +623,7 @@ namespace MasaoPlus.Controls
                             setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize4);
                             if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
                             {
-                                void ProcessLayerData(List<LayerObject> layerData, ref Runtime.DefinedData.StageSizeData sizeData)
+                                void ProcessLayerData(List<LayerObject> layerData, ref Runtime.DefinedData.LayerSizeData sizeData)
                                 {
                                     string nullcode = Global.cpd.Layerchip[0].code;
                                     for (int i = 0; i < layerData.Count; i++)

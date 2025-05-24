@@ -85,7 +85,7 @@ namespace MasaoPlus.Dialogs
                     setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize4);
                     if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
                     {
-                        void setLayerSize(ref Runtime.DefinedData.StageSizeData size)
+                        void setLayerSize(ref Runtime.DefinedData.LayerSizeData size)
                         {
                             if (size.x < Global.state.MinimumStageSize.Width) size.x = Global.cpd.project.Runtime.Definitions.LayerSize.x;
                             if (size.y < Global.state.MinimumStageSize.Height) size.y = Global.cpd.project.Runtime.Definitions.LayerSize.y;
@@ -142,6 +142,7 @@ namespace MasaoPlus.Dialogs
                     SetState("編集を開始します...");
                     Global.MainWnd.MasaoConfigList.Prepare();
                     Global.MainWnd.CustomPartsConfigList.Prepare();
+                    Global.MainWnd.LayerObjectConfigList.Prepare();
                     if (flag) Global.state.EditFlag = true;
                 }
                 catch (InvalidOperationException)
