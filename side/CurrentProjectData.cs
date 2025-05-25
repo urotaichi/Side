@@ -59,6 +59,25 @@ namespace MasaoPlus
             }
         }
 
+        public int MainOrder
+        {
+            get
+            {
+                if (UseLayer && project != null)
+                {
+                    return Global.state.EdittingStage switch
+                    {
+                        0 => project.Runtime.Definitions.LayerSize.mainOrder,
+                        1 => project.Runtime.Definitions.LayerSize2.mainOrder,
+                        2 => project.Runtime.Definitions.LayerSize3.mainOrder,
+                        3 => project.Runtime.Definitions.LayerSize4.mainOrder,
+                        _ => 0,
+                    };
+                }
+                return 0;
+            }
+        }
+
         public ChipsData[] Mapchip;
 
         public ChipsData[] Layerchip;
