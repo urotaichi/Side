@@ -79,16 +79,27 @@ namespace MasaoPlus
             g.InterpolationMode = InterpolationMode.NearestNeighbor;
             bool extendDraw = Global.config.draw.ExtendDraw;
             Global.config.draw.ExtendDraw = EnableExDraw;
+            UpdateForegroundBuffer();
             if (CurrentProjectData.UseLayer)
             {
                 UpdateBackgroundBuffer();
+                if (Global.cpd.LayerCount <= Global.cpd.MainOrder)
+                {
+                    g.DrawImage(ForeLayerBmp, 0, 0, ForeLayerBmp.Width / DeviceDpi * 96, ForeLayerBmp.Height / DeviceDpi * 96);
+                }
                 for (int i = Global.cpd.LayerCount - 1; i >= 0; i--)
                 {
                     g.DrawImage(BackLayerBmp[i], 0, 0, ForeLayerBmp.Width / DeviceDpi * 96, ForeLayerBmp.Height / DeviceDpi * 96);
+                    if (i == Global.cpd.MainOrder)
+                    {
+                        g.DrawImage(ForeLayerBmp, 0, 0, ForeLayerBmp.Width / DeviceDpi * 96, ForeLayerBmp.Height / DeviceDpi * 96);
+                    }
                 }
             }
-            UpdateForegroundBuffer();
-            g.DrawImage(ForeLayerBmp, 0, 0, ForeLayerBmp.Width / DeviceDpi * 96, ForeLayerBmp.Height / DeviceDpi * 96);
+            else
+            {
+                g.DrawImage(ForeLayerBmp, 0, 0, ForeLayerBmp.Width / DeviceDpi * 96, ForeLayerBmp.Height / DeviceDpi * 96);
+            }
             Global.config.draw.ExtendDraw = extendDraw;
             UpdateForegroundBuffer();
             UpdateBackgroundBuffer();
@@ -1258,9 +1269,17 @@ namespace MasaoPlus
             {
                 if (Global.state.EdittingLayerIndex == -1 || Global.state.DrawUnactiveLayer)
                 {
+                    if (Global.cpd.LayerCount <= Global.cpd.MainOrder)
+                    {
+                        DrawImageLayer(graphics, ForeLayerBmp, getDestRect, getSrcRect);
+                    }
                     for (int i = Global.cpd.LayerCount - 1; i >= 0; i--)
                     {
                         DrawImageLayer(graphics, BackLayerBmp[i], getDestRect, getSrcRect);
+                        if (i == Global.cpd.MainOrder)
+                        {
+                            DrawImageLayer(graphics, ForeLayerBmp, getDestRect, getSrcRect);
+                        }
                     }
                 }
                 else
@@ -1268,7 +1287,7 @@ namespace MasaoPlus
                     DrawImageLayer(graphics, BackLayerBmp[Global.state.EdittingLayerIndex], getDestRect, getSrcRect);
                 }
             }
-            if (!CurrentProjectData.UseLayer || Global.state.EditingForeground || Global.state.DrawUnactiveLayer)
+            if (!CurrentProjectData.UseLayer || Global.state.EditingForeground)
             {
                 DrawImageLayer(graphics, ForeLayerBmp, getDestRect, getSrcRect);
             }
