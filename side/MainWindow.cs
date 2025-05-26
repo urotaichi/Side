@@ -243,63 +243,88 @@ namespace MasaoPlus
 
         public void UpdateLayerVisibility()
         {
-            if (CurrentProjectData.UseLayer && Global.cpd.project.LayerData.Count > 1)
+            bool useMultiLayers = CurrentProjectData.UseLayer && Global.cpd.LayerCount > 1;
+            
+            // レイヤー関連のUIコンポーネントの表示状態を設定
+            LayerSelector.Visible = useMultiLayers;
+            LayerMenuSelector.Visible = useMultiLayers;
+            BackgroundLayer.Visible = !useMultiLayers;
+            EditBackground.Visible = !useMultiLayers;
+            
+            if (!useMultiLayers)
+                return;
+            
+            // レイヤーメニューの再構築
+            RebuildLayerMenus();
+        }
+        
+        /// <summary>
+        /// レイヤー関連のメニューを再構築します
+        /// </summary>
+        private void RebuildLayerMenus()
+        {
+            // 最初のアイテムを保持
+            var firstLayerCountItem = LayerCount[0];
+            var firstLayerSelectorItem = LayerSelector.DropDownItems[0];
+            var firstLayerMenuCountItem = LayerMenuCount[0];
+            var firstLayerMenuSelectorItem = LayerMenuSelector.DropDownItems[0];
+            
+            // メニュー項目をクリア
+            LayerCount.Clear();
+            LayerSelector.DropDownItems.Clear();
+            LayerMenuCount.Clear();
+            LayerMenuSelector.DropDownItems.Clear();
+            
+            // 最初のアイテムを復元
+            LayerCount.Add(firstLayerCountItem);
+            LayerSelector.DropDownItems.Add(firstLayerSelectorItem);
+            LayerMenuCount.Add(firstLayerMenuCountItem);
+            LayerMenuSelector.DropDownItems.Add(firstLayerMenuSelectorItem);
+            
+            // レイヤーメニュー項目を追加
+            for(int i = 1; i < Global.cpd.LayerCount; i++)
             {
-                LayerSelector.Visible = true;
-                LayerMenuSelector.Visible = true;
-                BackgroundLayer.Visible = false;
-                EditBackground.Visible = false;
+                AddLayerMenuItem(i);
             }
         }
-
-        public void ClearLayerCountsExceptFirst()
+        
+        /// <summary>
+        /// 指定されたインデックスのレイヤーメニュー項目を追加します
+        /// </summary>
+        /// <param name="index">レイヤーのインデックス</param>
+        private void AddLayerMenuItem(int index)
         {
-            // 最初の要素がある場合は保持する
-            if (LayerCount.Count > 1)
-            {
-                var firstItem = LayerCount[0];
-                LayerCount.Clear();
-                LayerCount.Add(firstItem);
-            }
-
-            // 最初の要素がある場合は保持する
-            if (LayerMenuCount.Count > 1)
-            {
-                var firstItem = LayerMenuCount[0];
-                LayerMenuCount.Clear();
-                LayerMenuCount.Add(firstItem);
-            }
-        }
-
-        public void AddLayerMenuItem(int index)
-        {
-            // 共通のプロパティを持つToolStripMenuItemを作成する関数
-            ToolStripMenuItem CreateMenuItem(string name)
-            {
-                var menuItem = new ToolStripMenuItem
-                {
-                    Checked = false,
-                    CheckState = CheckState.Unchecked,
-                    Name = $"{name}{index + 1}",
-                    Size = LogicalToDeviceUnits(new Size(180, 22)),
-                    Text = $"レイヤー {index + 1}"
-                };
-                menuItem.Click += (sender, e) =>
-                {
-                    LayerCount_Click(index);
-                };
-                return menuItem;
-            }
-
             // LayerSelector用のメニュー項目を作成
-            var layerSelectorItem = CreateMenuItem("LayerSelector");
+            var layerSelectorItem = CreateLayerMenuItem("LayerSelector", index);
             LayerCount.Add(layerSelectorItem);
             LayerSelector.DropDownItems.Add(layerSelectorItem);
-
+            
             // LayerMenuSelector用のメニュー項目を作成
-            var layerMenuCountItem = CreateMenuItem("LayerMenuCount");
+            var layerMenuCountItem = CreateLayerMenuItem("LayerMenuCount", index);
             LayerMenuCount.Add(layerMenuCountItem);
             LayerMenuSelector.DropDownItems.Add(layerMenuCountItem);
+        }
+        
+        /// <summary>
+        /// レイヤーメニュー項目を作成します
+        /// </summary>
+        /// <param name="name">メニュー項目の名前の接頭辞</param>
+        /// <param name="index">レイヤーのインデックス</param>
+        /// <returns>作成されたToolStripMenuItem</returns>
+        private ToolStripMenuItem CreateLayerMenuItem(string name, int index)
+        {
+            var menuItem = new ToolStripMenuItem
+            {
+                Checked = false,
+                CheckState = CheckState.Unchecked,
+                Name = $"{name}{index + 1}",
+                Size = LogicalToDeviceUnits(new Size(180, 22)),
+                Text = $"レイヤー {index + 1}"
+            };
+            
+            menuItem.Click += (sender, e) => LayerCount_Click(index);
+            
+            return menuItem;
         }
 
         private void LayerCount_Click(int layerIndex)
@@ -2113,6 +2138,7 @@ namespace MasaoPlus
                     break;
             }
             Global.state.EdittingStage = newValue;
+            UpdateLayerVisibility();
             MainDesigner.ForceBufferResize();
             UpdateLayer();
             UpdateScrollbar();
