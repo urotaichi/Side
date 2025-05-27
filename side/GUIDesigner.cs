@@ -936,23 +936,13 @@ namespace MasaoPlus
                 Global.cpd.project.Config.PatternImage = DEFAULT_PATTERN_IMAGE;
             }
 
-            FileStream fs;
-            DrawChipOrig = Image.FromStream(File.OpenRead(filename), false, false);
-            DrawMask = new Bitmap(DrawChipOrig.Width, DrawChipOrig.Height);
-            ColorMap[] remapTable =
-            [
-                new()
-            ];
-            using (ImageAttributes imageAttributes = new())
-            {
-                imageAttributes.SetRemapTable(remapTable);
-                using Graphics graphics = Graphics.FromImage(DrawMask);
-                graphics.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawMask.Width, DrawMask.Height));
-                graphics.DrawImage(DrawChipOrig, new Rectangle(0, 0, DrawMask.Width, DrawMask.Height), 0, 0, DrawMask.Width, DrawMask.Height, GraphicsUnit.Pixel, imageAttributes);
-            }
+            // パターン画像の読み込みと処理
+            DrawChipOrig = LoadImageFromFile(filename);
+            DrawMask = CreateMaskFromImage(DrawChipOrig);
 
             if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
             {
+                // レイヤー画像の読み込みと処理
                 filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.LayerImage);
                 if (!File.Exists(filename))
                 {
@@ -960,29 +950,18 @@ namespace MasaoPlus
                     Global.cpd.project.Config.LayerImage = DEFAULT_LAYER_IMAGE;
                 }
 
-                DrawLayerOrig = Image.FromStream(File.OpenRead(filename), false, false);
-                DrawLayerMask = new Bitmap(DrawLayerOrig.Width, DrawLayerOrig.Height);
-                using ImageAttributes imageAttributes2 = new();
-                imageAttributes2.SetRemapTable(remapTable);
-                using Graphics graphics2 = Graphics.FromImage(DrawLayerMask);
-                graphics2.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawLayerMask.Width, DrawLayerMask.Height));
-                graphics2.DrawImage(DrawLayerOrig, new Rectangle(0, 0, DrawLayerMask.Width, DrawLayerMask.Height), 0, 0, DrawLayerMask.Width, DrawLayerMask.Height, GraphicsUnit.Pixel, imageAttributes2);
+                DrawLayerOrig = LoadImageFromFile(filename);
+                DrawLayerMask = CreateMaskFromImage(DrawLayerOrig);
             }
 
-            if (Global.cpd.project.Config.OribossImage != null)//オリジナルボスを使うとき
+            // オリジナルボス画像の読み込み（設定されている場合）
+            if (Global.cpd.project.Config.OribossImage != null)
             {
                 filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.OribossImage);
                 try
                 {
-                    fs = File.OpenRead(filename);
-
-                    DrawOribossOrig = Image.FromStream(fs, false, false);
-                    DrawOribossMask = new Bitmap(DrawOribossOrig.Width, DrawOribossOrig.Height);
-                    using ImageAttributes imageAttributes4 = new();
-                    imageAttributes4.SetRemapTable(remapTable);
-                    using Graphics graphics4 = Graphics.FromImage(DrawOribossMask);
-                    graphics4.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawOribossMask.Width, DrawOribossMask.Height));
-                    graphics4.DrawImage(DrawOribossOrig, new Rectangle(0, 0, DrawOribossMask.Width, DrawOribossMask.Height), 0, 0, DrawOribossMask.Width, DrawOribossMask.Height, GraphicsUnit.Pixel, imageAttributes4);
+                    DrawOribossOrig = LoadImageFromFile(filename);
+                    DrawOribossMask = CreateMaskFromImage(DrawOribossOrig);
                 }
                 catch
                 {
@@ -990,16 +969,10 @@ namespace MasaoPlus
                 }
             }
 
+            // 拡張チップ画像の読み込みと処理
             filename = Path.Combine(Global.cpd.where, Global.cpd.runtime.Definitions.ChipExtender);
-            DrawExOrig = Image.FromStream(File.OpenRead(filename), false, false);
-            DrawExMask = new Bitmap(DrawExOrig.Width, DrawExOrig.Height);
-            using (ImageAttributes imageAttributes3 = new())
-            {
-                imageAttributes3.SetRemapTable(remapTable);
-                using Graphics graphics3 = Graphics.FromImage(DrawExMask);
-                graphics3.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawExMask.Width, DrawExMask.Height));
-                graphics3.DrawImage(DrawExOrig, new Rectangle(0, 0, DrawExMask.Width, DrawExMask.Height), 0, 0, DrawExMask.Width, DrawExMask.Height, GraphicsUnit.Pixel, imageAttributes3);
-            }
+            DrawExOrig = LoadImageFromFile(filename);
+            DrawExMask = CreateMaskFromImage(DrawExOrig);
             using (Bitmap drawExMask = DrawExMask)
             {
                 DrawExMask = DrawEx.MakeMask(drawExMask);
@@ -1032,6 +1005,31 @@ namespace MasaoPlus
             DrawSecondHaikei3Orig = setImage(Global.cpd.project.Config.SecondHaikeiImage3);// ステージ1背景画像
             DrawSecondHaikei4Orig = setImage(Global.cpd.project.Config.SecondHaikeiImage4);// ステージ1背景画像
             DrawChizuOrig = setImage(Global.cpd.project.Config.ChizuImage);// 地図画面の背景
+        }
+
+        // ヘルパーメソッドの定義（クラス内に追加）
+        private static Image LoadImageFromFile(string filePath)
+        {
+            return Image.FromStream(File.OpenRead(filePath), false, false);
+        }
+
+        private static Bitmap CreateMaskFromImage(Image sourceImage)
+        {
+            var mask = new Bitmap(sourceImage.Width, sourceImage.Height);
+            ColorMap[] remapTable =
+            [
+                new()
+            ];
+            
+            using (ImageAttributes imageAttributes = new())
+            {
+                imageAttributes.SetRemapTable(remapTable);
+                using Graphics graphics = Graphics.FromImage(mask);
+                graphics.FillRectangle(Brushes.White, new Rectangle(0, 0, mask.Width, mask.Height));
+                graphics.DrawImage(sourceImage, new Rectangle(0, 0, mask.Width, mask.Height), 0, 0, mask.Width, mask.Height, GraphicsUnit.Pixel, imageAttributes);
+            }
+            
+            return mask;
         }
 
         private void DisposeImageResources()
