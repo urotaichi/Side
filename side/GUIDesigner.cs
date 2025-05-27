@@ -928,194 +928,149 @@ namespace MasaoPlus
         // 画像準備
         public void PrepareImages()
         {
-            if (DrawChipOrig != null)
-            {
-                DrawChipOrig.Dispose();
-                DrawChipOrig = null;
-            }
-            if (DrawMask != null)
-            {
-                DrawMask.Dispose();
-                DrawMask = null;
-            }
-            if (DrawLayerOrig != null)
-            {
-                DrawLayerOrig.Dispose();
-                DrawLayerOrig = null;
-            }
-            if (DrawLayerMask != null)
-            {
-                DrawLayerMask.Dispose();
-                DrawLayerMask = null;
-            }
-            if (DrawOribossOrig != null)
-            {
-                DrawOribossOrig.Dispose();
-                DrawOribossOrig = null;
-            }
-            if (DrawOribossMask != null)
-            {
-                DrawOribossMask.Dispose();
-                DrawOribossMask = null;
-            }
-            if (DrawExOrig != null)
-            {
-                DrawExOrig.Dispose();
-                DrawExOrig = null;
-            }
-            if (DrawExMask != null)
-            {
-                DrawExMask.Dispose();
-                DrawExMask = null;
-            }
-            if (DrawHaikeiOrig != null)
-            {
-                DrawHaikeiOrig.Dispose();
-                DrawHaikeiOrig = null;
-            }
-            if (DrawHaikei2Orig != null)
-            {
-                DrawHaikei2Orig.Dispose();
-                DrawHaikei2Orig = null;
-            }
-            if (DrawHaikei3Orig != null)
-            {
-                DrawHaikei3Orig.Dispose();
-                DrawHaikei3Orig = null;
-            }
-            if (DrawHaikei4Orig != null)
-            {
-                DrawHaikei4Orig.Dispose();
-                DrawHaikei4Orig = null;
-            }
-            if (DrawSecondHaikeiOrig != null)
-            {
-                DrawSecondHaikeiOrig.Dispose();
-                DrawSecondHaikeiOrig = null;
-            }
-            if (DrawSecondHaikei2Orig != null)
-            {
-                DrawSecondHaikei2Orig.Dispose();
-                DrawSecondHaikei2Orig = null;
-            }
-            if (DrawSecondHaikei3Orig != null)
-            {
-                DrawSecondHaikei3Orig.Dispose();
-                DrawSecondHaikei3Orig = null;
-            }
-            if (DrawSecondHaikei4Orig != null)
-            {
-                DrawSecondHaikei4Orig.Dispose();
-                DrawSecondHaikei4Orig = null;
-            }
-            if (DrawChizuOrig != null)
-            {
-                DrawChizuOrig.Dispose();
-                DrawChizuOrig = null;
-            }
-            string filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.PatternImage);
-            if (!File.Exists(filename))
-            {
-                filename = Path.Combine(Global.cpd.where, DEFAULT_PATTERN_IMAGE);
-                Global.cpd.project.Config.PatternImage = DEFAULT_PATTERN_IMAGE;
-            }
-
-            FileStream fs;
-            DrawChipOrig = Image.FromStream(File.OpenRead(filename), false, false);
-            DrawMask = new Bitmap(DrawChipOrig.Width, DrawChipOrig.Height);
-            ColorMap[] remapTable =
-            [
-                new()
-            ];
-            using (ImageAttributes imageAttributes = new())
-            {
-                imageAttributes.SetRemapTable(remapTable);
-                using Graphics graphics = Graphics.FromImage(DrawMask);
-                graphics.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawMask.Width, DrawMask.Height));
-                graphics.DrawImage(DrawChipOrig, new Rectangle(0, 0, DrawMask.Width, DrawMask.Height), 0, 0, DrawMask.Width, DrawMask.Height, GraphicsUnit.Pixel, imageAttributes);
-            }
-
+            // 既存の画像リソースを解放
+            DisposeAllImages();
+        
+            // カラーマップテーブルを準備
+            ColorMap[] remapTable = [new()];
+        
+            // パターン画像の読み込み
+            LoadPatternImage(remapTable);
+        
+            // レイヤー画像の読み込み（レイヤーサイズが有効な場合のみ）
             if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
             {
-                filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.LayerImage);
-                if (!File.Exists(filename))
-                {
-                    filename = Path.Combine(Global.cpd.where, DEFAULT_LAYER_IMAGE);
-                    Global.cpd.project.Config.LayerImage = DEFAULT_LAYER_IMAGE;
-                }
-
-                DrawLayerOrig = Image.FromStream(File.OpenRead(filename), false, false);
-                DrawLayerMask = new Bitmap(DrawLayerOrig.Width, DrawLayerOrig.Height);
-                using ImageAttributes imageAttributes2 = new();
-                imageAttributes2.SetRemapTable(remapTable);
-                using Graphics graphics2 = Graphics.FromImage(DrawLayerMask);
-                graphics2.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawLayerMask.Width, DrawLayerMask.Height));
-                graphics2.DrawImage(DrawLayerOrig, new Rectangle(0, 0, DrawLayerMask.Width, DrawLayerMask.Height), 0, 0, DrawLayerMask.Width, DrawLayerMask.Height, GraphicsUnit.Pixel, imageAttributes2);
+                LoadLayerImage(remapTable);
             }
-
-            if (Global.cpd.project.Config.OribossImage != null)//オリジナルボスを使うとき
+        
+            // オリジナルボス画像の読み込み（設定されている場合のみ）
+            if (Global.cpd.project.Config.OribossImage != null)
             {
-                filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.OribossImage);
-                try
-                {
-                    fs = File.OpenRead(filename);
-
-                    DrawOribossOrig = Image.FromStream(fs, false, false);
-                    DrawOribossMask = new Bitmap(DrawOribossOrig.Width, DrawOribossOrig.Height);
-                    using ImageAttributes imageAttributes4 = new();
-                    imageAttributes4.SetRemapTable(remapTable);
-                    using Graphics graphics4 = Graphics.FromImage(DrawOribossMask);
-                    graphics4.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawOribossMask.Width, DrawOribossMask.Height));
-                    graphics4.DrawImage(DrawOribossOrig, new Rectangle(0, 0, DrawOribossMask.Width, DrawOribossMask.Height), 0, 0, DrawOribossMask.Width, DrawOribossMask.Height, GraphicsUnit.Pixel, imageAttributes4);
-                }
-                catch
-                {
-                    DrawOribossOrig = null;
-                }
+                LoadOribossImage(remapTable);
             }
+        
+            // 拡張画像の読み込み
+            LoadExtensionImage(remapTable);
+        
+            // 背景画像の読み込み
+            LoadBackgroundImages();
+        }
+        
+        private void DisposeAllImages()
+        {
+            var imagesToDispose = new[]
+            {
+                DrawChipOrig, DrawMask, DrawLayerOrig, DrawLayerMask,
+                DrawOribossOrig, DrawOribossMask, DrawExOrig, DrawExMask,
+                DrawHaikeiOrig, DrawHaikei2Orig, DrawHaikei3Orig, DrawHaikei4Orig,
+                DrawSecondHaikeiOrig, DrawSecondHaikei2Orig, DrawSecondHaikei3Orig, DrawSecondHaikei4Orig,
+                DrawChizuOrig
+            };
 
-            filename = Path.Combine(Global.cpd.where, Global.cpd.runtime.Definitions.ChipExtender);
+            for (int i = 0; i < imagesToDispose.Length; i++)
+            {
+                imagesToDispose[i]?.Dispose();
+                imagesToDispose[i] = null;
+            }
+        }
+        
+        private void LoadPatternImage(ColorMap[] remapTable)
+        {
+            string filename = GetImagePath(Global.cpd.project.Config.PatternImage, DEFAULT_PATTERN_IMAGE);
+            if (filename != Global.cpd.project.Config.PatternImage)
+            {
+                Global.cpd.project.Config.PatternImage = DEFAULT_PATTERN_IMAGE;
+            }
+        
+            DrawChipOrig = Image.FromStream(File.OpenRead(filename), false, false);
+            DrawMask = CreateMaskBitmap(DrawChipOrig, remapTable);
+        }
+        
+        private void LoadLayerImage(ColorMap[] remapTable)
+        {
+            string filename = GetImagePath(Global.cpd.project.Config.LayerImage, DEFAULT_LAYER_IMAGE);
+            if (filename != Global.cpd.project.Config.LayerImage)
+            {
+                Global.cpd.project.Config.LayerImage = DEFAULT_LAYER_IMAGE;
+            }
+        
+            DrawLayerOrig = Image.FromStream(File.OpenRead(filename), false, false);
+            DrawLayerMask = CreateMaskBitmap(DrawLayerOrig, remapTable);
+        }
+        
+        private void LoadOribossImage(ColorMap[] remapTable)
+        {
+            string filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.OribossImage);
+            try
+            {
+                using var fs = File.OpenRead(filename);
+                DrawOribossOrig = Image.FromStream(fs, false, false);
+                DrawOribossMask = CreateMaskBitmap(DrawOribossOrig, remapTable);
+            }
+            catch
+            {
+                DrawOribossOrig = null;
+            }
+        }
+        
+        private void LoadExtensionImage(ColorMap[] remapTable)
+        {
+            string filename = Path.Combine(Global.cpd.where, Global.cpd.runtime.Definitions.ChipExtender);
             DrawExOrig = Image.FromStream(File.OpenRead(filename), false, false);
-            DrawExMask = new Bitmap(DrawExOrig.Width, DrawExOrig.Height);
-            using (ImageAttributes imageAttributes3 = new())
-            {
-                imageAttributes3.SetRemapTable(remapTable);
-                using Graphics graphics3 = Graphics.FromImage(DrawExMask);
-                graphics3.FillRectangle(Brushes.White, new Rectangle(0, 0, DrawExMask.Width, DrawExMask.Height));
-                graphics3.DrawImage(DrawExOrig, new Rectangle(0, 0, DrawExMask.Width, DrawExMask.Height), 0, 0, DrawExMask.Width, DrawExMask.Height, GraphicsUnit.Pixel, imageAttributes3);
-            }
-            using (Bitmap drawExMask = DrawExMask)
-            {
-                DrawExMask = DrawEx.MakeMask(drawExMask);
-            }
 
-            static Image setImage(string source)
+            using var tempMask = CreateMaskBitmap(DrawExOrig, remapTable);
+            DrawExMask = DrawEx.MakeMask(tempMask);
+        }
+        
+        private void LoadBackgroundImages()
+        {
+            DrawHaikeiOrig = LoadImageSafely(Global.cpd.project.Config.HaikeiImage);
+            DrawHaikei2Orig = LoadImageSafely(Global.cpd.project.Config.HaikeiImage2);
+            DrawHaikei3Orig = LoadImageSafely(Global.cpd.project.Config.HaikeiImage3);
+            DrawHaikei4Orig = LoadImageSafely(Global.cpd.project.Config.HaikeiImage4);
+            DrawSecondHaikeiOrig = LoadImageSafely(Global.cpd.project.Config.SecondHaikeiImage);
+            DrawSecondHaikei2Orig = LoadImageSafely(Global.cpd.project.Config.SecondHaikeiImage2);
+            DrawSecondHaikei3Orig = LoadImageSafely(Global.cpd.project.Config.SecondHaikeiImage3);
+            DrawSecondHaikei4Orig = LoadImageSafely(Global.cpd.project.Config.SecondHaikeiImage4);
+            DrawChizuOrig = LoadImageSafely(Global.cpd.project.Config.ChizuImage);
+        }
+        
+        private static string GetImagePath(string configPath, string defaultPath)
+        {
+            string filename = Path.Combine(Global.cpd.where, configPath);
+            return File.Exists(filename) ? filename : Path.Combine(Global.cpd.where, defaultPath);
+        }
+        
+        private static Bitmap CreateMaskBitmap(Image sourceImage, ColorMap[] remapTable)
+        {
+            var mask = new Bitmap(sourceImage.Width, sourceImage.Height);
+            using var imageAttributes = new ImageAttributes();
+            imageAttributes.SetRemapTable(remapTable);
+            using var graphics = Graphics.FromImage(mask);
+            
+            graphics.FillRectangle(Brushes.White, new Rectangle(0, 0, mask.Width, mask.Height));
+            graphics.DrawImage(sourceImage, 
+                new Rectangle(0, 0, mask.Width, mask.Height), 
+                0, 0, mask.Width, mask.Height, 
+                GraphicsUnit.Pixel, imageAttributes);
+            
+            return mask;
+        }
+        
+        private static Image LoadImageSafely(string imagePath)
+        {
+            if (imagePath == null) return null;
+            
+            var filename = Path.Combine(Global.cpd.where, imagePath);
+            try
             {
-                if (source != null)
-                {
-                    var filename = Path.Combine(Global.cpd.where, source);
-                    try
-                    {
-                        var fs = File.OpenRead(filename);
-
-                        return Image.FromStream(fs, false, false);
-                    }
-                    catch
-                    {
-                        return null;
-                    }
-                }
-                else { return null; }
+                using var fs = File.OpenRead(filename);
+                return Image.FromStream(fs, false, false);
             }
-            DrawHaikeiOrig = setImage(Global.cpd.project.Config.HaikeiImage);// ステージ1背景画像
-            DrawHaikei2Orig = setImage(Global.cpd.project.Config.HaikeiImage2);// ステージ2背景画像
-            DrawHaikei3Orig = setImage(Global.cpd.project.Config.HaikeiImage3);// ステージ3背景画像
-            DrawHaikei4Orig = setImage(Global.cpd.project.Config.HaikeiImage4);// ステージ4背景画像
-            DrawSecondHaikeiOrig = setImage(Global.cpd.project.Config.SecondHaikeiImage);// ステージ1背景画像
-            DrawSecondHaikei2Orig = setImage(Global.cpd.project.Config.SecondHaikeiImage2);// ステージ1背景画像
-            DrawSecondHaikei3Orig = setImage(Global.cpd.project.Config.SecondHaikeiImage3);// ステージ1背景画像
-            DrawSecondHaikei4Orig = setImage(Global.cpd.project.Config.SecondHaikeiImage4);// ステージ1背景画像
-            DrawChizuOrig = setImage(Global.cpd.project.Config.ChizuImage);// 地図画面の背景
+            catch
+            {
+                return null;
+            }
         }
 
         protected unsafe override void OnPaint(PaintEventArgs e)
