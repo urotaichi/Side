@@ -182,425 +182,236 @@ namespace MasaoPlus
             }
         }
 
+        // ヘルパーメソッド
+        private Color GetColorValue(int index)
+        {
+            Colors colors = new(Configurations[RelIndex[index]].Value);
+            return colors.c;
+        }
+
+        private void SetColorValue(int index, Color value)
+        {
+            Colors colors = default;
+            colors.c = value;
+            Configurations[RelIndex[index]].Value = colors.ToString();
+        }
+
+        private string GetStringValue(int index)
+        {
+            return Configurations[RelIndex[index]].Value;
+        }
+
+        private void SetStringValue(int index, string value)
+        {
+            Configurations[RelIndex[index]].Value = value;
+        }
+
+        private string GetOptionalStringValue(int index)
+        {
+            return RelIndex[index] != default ? Configurations[RelIndex[index]].Value : null;
+        }
+
         [XmlIgnore]
         public Color Background
         {
-            get
-            {
-                Colors colors = new(Configurations[RelIndex[0]].Value);
-                return colors.c;
-            }
-            set
-            {
-                Colors colors = default;
-                colors.c = value;
-                Configurations[RelIndex[0]].Value = colors.ToString();
-            }
+            get => GetColorValue(0);
+            set => SetColorValue(0, value);
         }
 
         [XmlIgnore]
         public Color Background2
         {
-            get
-            {
-                Colors colors = new(Configurations[RelIndex[1]].Value);
-                return colors.c;
-            }
-            set
-            {
-                Colors colors = default;
-                colors.c = value;
-                Configurations[RelIndex[1]].Value = colors.ToString();
-            }
+            get => GetColorValue(1);
+            set => SetColorValue(1, value);
         }
 
         [XmlIgnore]
         public Color Background3
         {
-            get
-            {
-                Colors colors = new(Configurations[RelIndex[2]].Value);
-                return colors.c;
-            }
-            set
-            {
-                Colors colors = default;
-                colors.c = value;
-                Configurations[RelIndex[2]].Value = colors.ToString();
-            }
+            get => GetColorValue(2);
+            set => SetColorValue(2, value);
         }
 
         [XmlIgnore]
         public Color Background4
         {
-            get
-            {
-                Colors colors = new(Configurations[RelIndex[3]].Value);
-                return colors.c;
-            }
-            set
-            {
-                Colors colors = default;
-                colors.c = value;
-                Configurations[RelIndex[3]].Value = colors.ToString();
-            }
+            get => GetColorValue(3);
+            set => SetColorValue(3, value);
         }
 
         [XmlIgnore]
         public Color BackgroundM
         {
-            get
-            {
-                Colors colors = new(Configurations[RelIndex[4]].Value);
-                return colors.c;
-            }
-            set
-            {
-                Colors colors = default;
-                colors.c = value;
-                Configurations[RelIndex[4]].Value = colors.ToString();
-            }
+            get => GetColorValue(4);
+            set => SetColorValue(4, value);
         }
 
         [XmlIgnore]
         public string TitleImage
         {
-            get
-            {
-                return Configurations[RelIndex[5]].Value;
-            }
-            set
-            {
-                Configurations[RelIndex[5]].Value = value;
-            }
+            get => GetStringValue(5);
+            set => SetStringValue(5, value);
         }
 
         [XmlIgnore]
         public string EndingImage
         {
-            get
-            {
-                return Configurations[RelIndex[6]].Value;
-            }
-            set
-            {
-                Configurations[RelIndex[6]].Value = value;
-            }
+            get => GetStringValue(6);
+            set => SetStringValue(6, value);
         }
 
         [XmlIgnore]
         public string GameoverImage
         {
-            get
-            {
-                return Configurations[RelIndex[7]].Value;
-            }
-            set
-            {
-                Configurations[RelIndex[7]].Value = value;
-            }
+            get => GetStringValue(7);
+            set => SetStringValue(7, value);
         }
 
         [XmlIgnore]
         public string PatternImage
         {
-            get
-            {
-                return Configurations[RelIndex[8]].Value;
-            }
-            set
-            {
-                Configurations[RelIndex[8]].Value = value;
-            }
+            get => GetStringValue(8);
+            set => SetStringValue(8, value);
         }
 
         [XmlIgnore]
         public string LayerImage
         {
-            get
-            {
-                return Configurations[RelIndex[9]].Value;
-            }
-            set
-            {
-                Configurations[RelIndex[9]].Value = value;
-            }
+            get => GetStringValue(9);
+            set => SetStringValue(9, value);
         }
 
         [XmlIgnore]
         public int StageNum
         {
-            get
-            {
-                return int.Parse(Configurations[RelIndex[10]].Value);
-            }
-            set
-            {
-                Configurations[RelIndex[10]].Value = value.ToString();
-            }
+            get => int.Parse(GetStringValue(10));
+            set => SetStringValue(10, value.ToString());
         }
 
         [XmlIgnore]
         public int StageStart
         {
-            get
-            {
-                return int.Parse(Configurations[RelIndex[11]].Value);
-            }
-            set
-            {
-                Configurations[RelIndex[11]].Value = value.ToString();
-            }
+            get => int.Parse(GetStringValue(11));
+            set => SetStringValue(11, value.ToString());
         }
 
         [XmlIgnore]
         public bool UseWorldmap
         {
-            get
-            {
-                return Configurations[RelIndex[12]].Value == "2";
-            }
-            set
-            {
-                if (value)
-                {
-                    Configurations[RelIndex[12]].Value = "2";
-                    return;
-                }
-                Configurations[RelIndex[12]].Value = "1";
-            }
+            get => GetStringValue(12) == "2";
+            set => SetStringValue(12, value ? "2" : "1");
         }
 
         [XmlIgnore]
         public Color Grenade1
         {
-            get
-            {
-                Colors colors = new(Configurations[RelIndex[13]].Value);
-                return colors.c;
-            }
-            set
-            {
-                Colors colors = default;
-                colors.c = value;
-                Configurations[RelIndex[13]].Value = colors.ToString();
-            }
+            get => GetColorValue(13);
+            set => SetColorValue(13, value);
         }
 
         [XmlIgnore]
         public Color Grenade2
         {
-            get
-            {
-                Colors colors = new(Configurations[RelIndex[14]].Value);
-                return colors.c;
-            }
-            set
-            {
-                Colors colors = default;
-                colors.c = value;
-                Configurations[RelIndex[14]].Value = colors.ToString();
-            }
+            get => GetColorValue(14);
+            set => SetColorValue(14, value);
         }
 
         [XmlIgnore]
         public Color Mizunohadou
         {
-            get
-            {
-                Colors colors = new(Configurations[RelIndex[15]].Value);
-                return colors.c;
-            }
-            set
-            {
-                Colors colors = default;
-                colors.c = value;
-                Configurations[RelIndex[15]].Value = colors.ToString();
-            }
+            get => GetColorValue(15);
+            set => SetColorValue(15, value);
         }
 
         [XmlIgnore]
         public Color Firebar1
         {
-            get
-            {
-                Colors colors = new(Configurations[RelIndex[16]].Value);
-                return colors.c;
-            }
-            set
-            {
-                Colors colors = default;
-                colors.c = value;
-                Configurations[RelIndex[16]].Value = colors.ToString();
-            }
+            get => GetColorValue(16);
+            set => SetColorValue(16, value);
         }
 
         [XmlIgnore]
         public Color Firebar2
         {
-            get
-            {
-                Colors colors = new(Configurations[RelIndex[17]].Value);
-                return colors.c;
-            }
-            set
-            {
-                Colors colors = default;
-                colors.c = value;
-                Configurations[RelIndex[17]].Value = colors.ToString();
-            }
+            get => GetColorValue(17);
+            set => SetColorValue(17, value);
         }
 
         [XmlIgnore]
         public string OribossImage
         {
-            get
-            {
-                if (RelIndex[18] != default) return Configurations[RelIndex[18]].Value;
-                else return null;
-            }
-            set
-            {
-                Configurations[RelIndex[18]].Value = value;
-            }
+            get => GetOptionalStringValue(18);
+            set => SetStringValue(18, value);
         }
 
         [XmlIgnore]
         public string HaikeiImage
         {
-            get
-            {
-                if (RelIndex[19] != default) return Configurations[RelIndex[19]].Value;
-                else return null;
-            }
-            set
-            {
-                Configurations[RelIndex[19]].Value = value;
-            }
+            get => GetOptionalStringValue(19);
+            set => SetStringValue(19, value);
         }
 
         [XmlIgnore]
         public string HaikeiImage2
         {
-            get
-            {
-                if (RelIndex[20] != default) return Configurations[RelIndex[20]].Value;
-                else return null;
-            }
-            set
-            {
-                Configurations[RelIndex[20]].Value = value;
-            }
+            get => GetOptionalStringValue(20);
+            set => SetStringValue(20, value);
         }
 
         [XmlIgnore]
         public string HaikeiImage3
         {
-            get
-            {
-                if (RelIndex[21] != default) return Configurations[RelIndex[21]].Value;
-                else return null;
-            }
-            set
-            {
-                Configurations[RelIndex[21]].Value = value;
-            }
+            get => GetOptionalStringValue(21);
+            set => SetStringValue(21, value);
         }
 
         [XmlIgnore]
         public string HaikeiImage4
         {
-            get
-            {
-                if (RelIndex[22] != default) return Configurations[RelIndex[22]].Value;
-                else return null;
-            }
-            set
-            {
-                Configurations[RelIndex[22]].Value = value;
-            }
+            get => GetOptionalStringValue(22);
+            set => SetStringValue(22, value);
         }
 
         [XmlIgnore]
         public string SecondHaikeiImage
         {
-            get
-            {
-                if (RelIndex[23] != default) return Configurations[RelIndex[23]].Value;
-                else return null;
-            }
-            set
-            {
-                Configurations[RelIndex[23]].Value = value;
-            }
+            get => GetOptionalStringValue(23);
+            set => SetStringValue(23, value);
         }
 
         [XmlIgnore]
         public string SecondHaikeiImage2
         {
-            get
-            {
-                if (RelIndex[24] != default) return Configurations[RelIndex[24]].Value;
-                else return null;
-            }
-            set
-            {
-                Configurations[RelIndex[24]].Value = value;
-            }
+            get => GetOptionalStringValue(24);
+            set => SetStringValue(24, value);
         }
 
         [XmlIgnore]
         public string SecondHaikeiImage3
         {
-            get
-            {
-                if (RelIndex[25] != default) return Configurations[RelIndex[25]].Value;
-                else return null;
-            }
-            set
-            {
-                Configurations[RelIndex[25]].Value = value;
-            }
+            get => GetOptionalStringValue(25);
+            set => SetStringValue(25, value);
         }
 
         [XmlIgnore]
         public string SecondHaikeiImage4
         {
-            get
-            {
-                if (RelIndex[26] != default) return Configurations[RelIndex[26]].Value;
-                else return null;
-            }
-            set
-            {
-                Configurations[RelIndex[26]].Value = value;
-            }
+            get => GetOptionalStringValue(26);
+            set => SetStringValue(26, value);
         }
 
         [XmlIgnore]
         public string ChizuImage
         {
-            get
-            {
-                return Configurations[RelIndex[27]].Value;
-            }
-            set
-            {
-                Configurations[RelIndex[27]].Value = value;
-            }
+            get => GetStringValue(27);
+            set => SetStringValue(27, value);
         }
 
         [XmlIgnore]
         public string ScreenSize
         {
-            get
-            {
-                return Configurations[RelIndex[28]].Value;
-            }
-            set
-            {
-                Configurations[RelIndex[28]].Value = value;
-            }
+            get => GetStringValue(28);
+            set => SetStringValue(28, value);
         }
 
         [XmlElement("param")]
