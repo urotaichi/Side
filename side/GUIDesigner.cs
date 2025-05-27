@@ -928,91 +928,7 @@ namespace MasaoPlus
         // 画像準備
         public void PrepareImages()
         {
-            if (DrawChipOrig != null)
-            {
-                DrawChipOrig.Dispose();
-                DrawChipOrig = null;
-            }
-            if (DrawMask != null)
-            {
-                DrawMask.Dispose();
-                DrawMask = null;
-            }
-            if (DrawLayerOrig != null)
-            {
-                DrawLayerOrig.Dispose();
-                DrawLayerOrig = null;
-            }
-            if (DrawLayerMask != null)
-            {
-                DrawLayerMask.Dispose();
-                DrawLayerMask = null;
-            }
-            if (DrawOribossOrig != null)
-            {
-                DrawOribossOrig.Dispose();
-                DrawOribossOrig = null;
-            }
-            if (DrawOribossMask != null)
-            {
-                DrawOribossMask.Dispose();
-                DrawOribossMask = null;
-            }
-            if (DrawExOrig != null)
-            {
-                DrawExOrig.Dispose();
-                DrawExOrig = null;
-            }
-            if (DrawExMask != null)
-            {
-                DrawExMask.Dispose();
-                DrawExMask = null;
-            }
-            if (DrawHaikeiOrig != null)
-            {
-                DrawHaikeiOrig.Dispose();
-                DrawHaikeiOrig = null;
-            }
-            if (DrawHaikei2Orig != null)
-            {
-                DrawHaikei2Orig.Dispose();
-                DrawHaikei2Orig = null;
-            }
-            if (DrawHaikei3Orig != null)
-            {
-                DrawHaikei3Orig.Dispose();
-                DrawHaikei3Orig = null;
-            }
-            if (DrawHaikei4Orig != null)
-            {
-                DrawHaikei4Orig.Dispose();
-                DrawHaikei4Orig = null;
-            }
-            if (DrawSecondHaikeiOrig != null)
-            {
-                DrawSecondHaikeiOrig.Dispose();
-                DrawSecondHaikeiOrig = null;
-            }
-            if (DrawSecondHaikei2Orig != null)
-            {
-                DrawSecondHaikei2Orig.Dispose();
-                DrawSecondHaikei2Orig = null;
-            }
-            if (DrawSecondHaikei3Orig != null)
-            {
-                DrawSecondHaikei3Orig.Dispose();
-                DrawSecondHaikei3Orig = null;
-            }
-            if (DrawSecondHaikei4Orig != null)
-            {
-                DrawSecondHaikei4Orig.Dispose();
-                DrawSecondHaikei4Orig = null;
-            }
-            if (DrawChizuOrig != null)
-            {
-                DrawChizuOrig.Dispose();
-                DrawChizuOrig = null;
-            }
+            DisposeImageResources();
             string filename = Path.Combine(Global.cpd.where, Global.cpd.project.Config.PatternImage);
             if (!File.Exists(filename))
             {
@@ -1116,6 +1032,36 @@ namespace MasaoPlus
             DrawSecondHaikei3Orig = setImage(Global.cpd.project.Config.SecondHaikeiImage3);// ステージ1背景画像
             DrawSecondHaikei4Orig = setImage(Global.cpd.project.Config.SecondHaikeiImage4);// ステージ1背景画像
             DrawChizuOrig = setImage(Global.cpd.project.Config.ChizuImage);// 地図画面の背景
+        }
+
+        private void DisposeImageResources()
+        {
+            DisposeAndSetNull(ref DrawChipOrig);
+            DisposeAndSetNull(ref DrawMask);
+            DisposeAndSetNull(ref DrawLayerOrig);
+            DisposeAndSetNull(ref DrawLayerMask);
+            DisposeAndSetNull(ref DrawOribossOrig);
+            DisposeAndSetNull(ref DrawOribossMask);
+            DisposeAndSetNull(ref DrawExOrig);
+            DisposeAndSetNull(ref DrawExMask);
+            DisposeAndSetNull(ref DrawHaikeiOrig);
+            DisposeAndSetNull(ref DrawHaikei2Orig);
+            DisposeAndSetNull(ref DrawHaikei3Orig);
+            DisposeAndSetNull(ref DrawHaikei4Orig);
+            DisposeAndSetNull(ref DrawSecondHaikeiOrig);
+            DisposeAndSetNull(ref DrawSecondHaikei2Orig);
+            DisposeAndSetNull(ref DrawSecondHaikei3Orig);
+            DisposeAndSetNull(ref DrawSecondHaikei4Orig);
+            DisposeAndSetNull(ref DrawChizuOrig);
+        }
+
+        private static void DisposeAndSetNull<T>(ref T disposable) where T : class, IDisposable
+        {
+            if (disposable != null)
+            {
+                disposable.Dispose();
+                disposable = null;
+            }
         }
 
         protected unsafe override void OnPaint(PaintEventArgs e)
@@ -1309,31 +1255,8 @@ namespace MasaoPlus
 
         void IDisposable.Dispose()
         {
-            if (DrawMask != null)
-            {
-                DrawMask.Dispose();
-                DrawMask = null;
-            }
-            if (DrawChipOrig != null)
-            {
-                DrawChipOrig.Dispose();
-                DrawChipOrig = null;
-            }
-            if (DrawLayerMask != null)
-            {
-                DrawLayerMask.Dispose();
-                DrawLayerMask = null;
-            }
-            if (DrawLayerOrig != null)
-            {
-                DrawLayerOrig.Dispose();
-                DrawLayerOrig = null;
-            }
-            if (ForeLayerBmp != null)
-            {
-                ForeLayerBmp.Dispose();
-                ForeLayerBmp = null;
-            }
+            DisposeImageResources();
+            DisposeAndSetNull(ref ForeLayerBmp);
             for (int i = 0; i < BackLayerBmp.Count; i++)
             {
                 if (BackLayerBmp[i] != null)
@@ -1341,71 +1264,6 @@ namespace MasaoPlus
                     BackLayerBmp[i].Dispose();
                     BackLayerBmp[i] = null;
                 }
-            }
-            if (DrawOribossMask != null)
-            {
-                DrawOribossMask.Dispose();
-                DrawOribossMask = null;
-            }
-            if (DrawOribossOrig != null)
-            {
-                DrawOribossOrig.Dispose();
-                DrawOribossOrig = null;
-            }
-            if (DrawExOrig != null)
-            {
-                DrawExOrig.Dispose();
-                DrawExOrig = null;
-            }
-            if (DrawExMask != null)
-            {
-                DrawExMask.Dispose();
-                DrawExMask = null;
-            }
-            if (DrawHaikeiOrig != null)
-            {
-                DrawHaikeiOrig.Dispose();
-                DrawHaikeiOrig = null;
-            }
-            if (DrawHaikei2Orig != null)
-            {
-                DrawHaikei2Orig.Dispose();
-                DrawHaikei2Orig = null;
-            }
-            if (DrawHaikei3Orig != null)
-            {
-                DrawHaikei3Orig.Dispose();
-                DrawHaikei3Orig = null;
-            }
-            if (DrawHaikei4Orig != null)
-            {
-                DrawHaikei4Orig.Dispose();
-                DrawHaikei4Orig = null;
-            }
-            if (DrawSecondHaikeiOrig != null)
-            {
-                DrawSecondHaikeiOrig.Dispose();
-                DrawSecondHaikeiOrig = null;
-            }
-            if (DrawSecondHaikei2Orig != null)
-            {
-                DrawSecondHaikei2Orig.Dispose();
-                DrawSecondHaikei2Orig = null;
-            }
-            if (DrawSecondHaikei3Orig != null)
-            {
-                DrawSecondHaikei3Orig.Dispose();
-                DrawSecondHaikei3Orig = null;
-            }
-            if (DrawSecondHaikei4Orig != null)
-            {
-                DrawSecondHaikei4Orig.Dispose();
-                DrawSecondHaikei4Orig = null;
-            }
-            if (DrawChizuOrig != null)
-            {
-                DrawChizuOrig.Dispose();
-                DrawChizuOrig = null;
             }
             GC.SuppressFinalize(this);
         }
