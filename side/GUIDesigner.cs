@@ -977,25 +977,6 @@ namespace MasaoPlus
             {
                 DrawExMask = DrawEx.MakeMask(drawExMask);
             }
-
-            static Image setImage(string source)
-            {
-                if (source != null)
-                {
-                    var filename = Path.Combine(Global.cpd.where, source);
-                    try
-                    {
-                        var fs = File.OpenRead(filename);
-
-                        return Image.FromStream(fs, false, false);
-                    }
-                    catch
-                    {
-                        return null;
-                    }
-                }
-                else { return null; }
-            }
             DrawHaikeiOrig = setImage(Global.cpd.project.Config.HaikeiImage);// ステージ1背景画像
             DrawHaikei2Orig = setImage(Global.cpd.project.Config.HaikeiImage2);// ステージ2背景画像
             DrawHaikei3Orig = setImage(Global.cpd.project.Config.HaikeiImage3);// ステージ3背景画像
@@ -1005,6 +986,25 @@ namespace MasaoPlus
             DrawSecondHaikei3Orig = setImage(Global.cpd.project.Config.SecondHaikeiImage3);// ステージ1背景画像
             DrawSecondHaikei4Orig = setImage(Global.cpd.project.Config.SecondHaikeiImage4);// ステージ1背景画像
             DrawChizuOrig = setImage(Global.cpd.project.Config.ChizuImage);// 地図画面の背景
+        }
+
+        private static Image setImage(string source)
+        {
+            if (source != null)
+            {
+                var filename = Path.Combine(Global.cpd.where, source);
+                try
+                {
+                    var fs = File.OpenRead(filename);
+
+                    return Image.FromStream(fs, false, false);
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            else { return null; }
         }
 
         // ヘルパーメソッドの定義（クラス内に追加）
