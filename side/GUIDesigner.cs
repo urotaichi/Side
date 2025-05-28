@@ -938,7 +938,7 @@ namespace MasaoPlus
 
             // パターン画像の読み込みと処理
             DrawChipOrig = LoadImageFromFile(filename);
-            DrawMask = CreateMaskFromImage(DrawChipOrig);
+            // DrawMask = CreateMaskFromImage(DrawChipOrig);
 
             if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
             {
@@ -951,7 +951,7 @@ namespace MasaoPlus
                 }
 
                 DrawLayerOrig = LoadImageFromFile(filename);
-                DrawLayerMask = CreateMaskFromImage(DrawLayerOrig);
+                // DrawLayerMask = CreateMaskFromImage(DrawLayerOrig);
             }
 
             // オリジナルボス画像の読み込み（設定されている場合）
@@ -961,7 +961,7 @@ namespace MasaoPlus
                 try
                 {
                     DrawOribossOrig = LoadImageFromFile(filename);
-                    DrawOribossMask = CreateMaskFromImage(DrawOribossOrig);
+                    // DrawOribossMask = CreateMaskFromImage(DrawOribossOrig);
                 }
                 catch
                 {
@@ -1035,11 +1035,11 @@ namespace MasaoPlus
         private void DisposeImageResources()
         {
             DisposeAndSetNull(ref DrawChipOrig);
-            DisposeAndSetNull(ref DrawMask);
+            // DisposeAndSetNull(ref DrawMask);
             DisposeAndSetNull(ref DrawLayerOrig);
-            DisposeAndSetNull(ref DrawLayerMask);
+            // DisposeAndSetNull(ref DrawLayerMask);
             DisposeAndSetNull(ref DrawOribossOrig);
-            DisposeAndSetNull(ref DrawOribossMask);
+            // DisposeAndSetNull(ref DrawOribossMask);
             DisposeAndSetNull(ref DrawExOrig);
             DisposeAndSetNull(ref DrawExMask);
             DisposeAndSetNull(ref DrawHaikeiOrig);
@@ -2727,15 +2727,15 @@ namespace MasaoPlus
 
         public Image DrawChipOrig;
 
-        public Bitmap DrawMask;
+        // public Bitmap DrawMask;
 
         public Image DrawLayerOrig;
 
-        public Bitmap DrawLayerMask;
+        // public Bitmap DrawLayerMask;
 
         public Image DrawOribossOrig;
 
-        public Bitmap DrawOribossMask;
+        // public Bitmap DrawOribossMask;
 
         public Image DrawExOrig;
 
