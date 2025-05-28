@@ -141,15 +141,7 @@ namespace MasaoPlus.Dialogs
                     Global.MainWnd.LayerObjectConfigList.Prepare();
                     if (CurrentProjectData.UseLayer)
                     {
-                        for (int i = 0; i < Global.cpd.project.LayerData.Count; i++)
-                        {
-                            Global.cpd.project.LayerData[i].Source = Global.cpd.project.Config.LayerImage;
-                            var layerValue = Global.cpd.runtime.Definitions.LayerSize?.mapchips?.ElementAtOrDefault(i)?.Value;
-                            if (!string.IsNullOrEmpty(layerValue))
-                            {
-                                Global.cpd.project.LayerData[i].Source = layerValue;
-                            }
-                        }
+                        SetLayerDataSources();
                     }
                     if (flag) Global.state.EditFlag = true;
                 }
@@ -162,6 +154,30 @@ namespace MasaoPlus.Dialogs
                 MessageBox.Show($"プロジェクトをロードできませんでした。{Environment.NewLine}{ex.Message}{Environment.NewLine}アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 Application.Restart();
                 Environment.Exit(-1);
+            }
+        }
+
+        private static void SetLayerDataSources()
+        {
+            var layerConfigs = new[]
+            {
+                (Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize),
+                (LayerData: Global.cpd.project.LayerData2, LayerSize: Global.cpd.runtime.Definitions.LayerSize2),
+                (LayerData: Global.cpd.project.LayerData3, LayerSize: Global.cpd.runtime.Definitions.LayerSize3),
+                (LayerData: Global.cpd.project.LayerData4, LayerSize: Global.cpd.runtime.Definitions.LayerSize4)
+            };
+
+            foreach (var (LayerData, LayerSize) in layerConfigs)
+            {
+                for (int i = 0; i < LayerData.Count; i++)
+                {
+                    LayerData[i].Source = Global.cpd.project.Config.LayerImage;
+                    var layerValue = LayerSize?.mapchips?.ElementAtOrDefault(i)?.Value;
+                    if (!string.IsNullOrEmpty(layerValue))
+                    {
+                        LayerData[i].Source = layerValue;
+                    }
+                }
             }
         }
 
