@@ -11,6 +11,9 @@ namespace MasaoPlus
     {
         public string[] Strings;
 
+        [XmlIgnore]
+        public string Source;
+
         public LayerObject()
         {
             Strings = [];

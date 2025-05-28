@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -138,6 +139,18 @@ namespace MasaoPlus.Dialogs
                     Global.MainWnd.MasaoConfigList.Prepare();
                     Global.MainWnd.CustomPartsConfigList.Prepare();
                     Global.MainWnd.LayerObjectConfigList.Prepare();
+                    if (CurrentProjectData.UseLayer)
+                    {
+                        for (int i = 0; i < Global.cpd.project.LayerData.Count; i++)
+                        {
+                            Global.cpd.project.LayerData[i].Source = Global.cpd.project.Config.LayerImage;
+                            var layerValue = Global.cpd.runtime.Definitions.LayerSize?.mapchips?.ElementAtOrDefault(i)?.Value;
+                            if (!string.IsNullOrEmpty(layerValue))
+                            {
+                                Global.cpd.project.LayerData[i].Source = layerValue;
+                            }
+                        }
+                    }
                     if (flag) Global.state.EditFlag = true;
                 }
                 catch (InvalidOperationException)
