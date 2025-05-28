@@ -281,175 +281,285 @@ namespace MasaoPlus.Controls
             ConfigSelector.Refresh();
         }
 
-        protected void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        protected virtual void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex != 1)
+            if (!IsValidCellClick(e))
             {
                 return;
             }
-            if (e.RowIndex >= OrigIdx.Count || e.RowIndex < 0)
+
+            int configIndex = OrigIdx[e.RowIndex];
+            ConfigParam configParam = Global.cpd.project.Config.Configurations[configIndex];
+
+            if (HandleConfigParamClick(configParam, configIndex, e))
             {
-                return;
+                Global.state.EditFlag = true;
             }
-            int num = OrigIdx[e.RowIndex];
-            ConfigParam configParam = Global.cpd.project.Config.Configurations[num];
-            switch (configParam.Type)
-            {
-                case ConfigParam.Types.t:
-                    if (Global.config.localSystem.UsePropExTextEditor)
-                    {
-                        using PropertyTextInputDialog propertyTextInputDialog = new();
-                        propertyTextInputDialog.InputStr = configParam.Value;
-                        if (propertyTextInputDialog.ShowDialog() != DialogResult.Cancel)
-                        {
-                            ConfView[e.ColumnIndex, e.RowIndex].Value = propertyTextInputDialog.InputStr;
-                            Global.cpd.project.Config.Configurations[num].Value = propertyTextInputDialog.InputStr;
-                        }
-                        break;
-                    }
-                    return;
-                case ConfigParam.Types.f:
-                case ConfigParam.Types.f_i:
-                case ConfigParam.Types.f_a:
-                    using (OpenFileDialog openFileDialog = new())
-                    {
-                        openFileDialog.InitialDirectory = Global.cpd.where;
-                        openFileDialog.FileName = configParam.Value;
-                        if (configParam.Type == ConfigParam.Types.f_i)
-                            openFileDialog.Filter = "画像(*.gif;*.png;*.jpg;*.bmp)|*.gif;*.png;*.jpg;*.bmp|全てのファイル (*.*)|*.*";
-                        else if (configParam.Type == ConfigParam.Types.f_a)
-                            openFileDialog.Filter = "音声(*.wav;*.mp3;*.ogg)|*.wav;*.mp3;*.ogg|全てのファイル (*.*)|*.*";
-                        if (openFileDialog.ShowDialog() != DialogResult.OK)
-                        {
-                            return;
-                        }
-                        string fileName = openFileDialog.FileName;
-                        string text = Path.Combine(Global.cpd.where, Path.GetFileName(openFileDialog.FileName));
-                        if (Path.GetDirectoryName(openFileDialog.FileName) != Global.cpd.where)
-                        {
-                            if (MessageBox.Show($"ファイルはプロジェクトディレクトリに含まれていません。{Environment.NewLine}プロジェクトディレクトリへコピーします。{Environment.NewLine}また、同じ名前のファイルがある場合は上書きされます。{Environment.NewLine}よろしいですか？", "ファイルの追加", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                            {
-                                return;
-                            }
-                            try
-                            {
-                                File.Copy(fileName, text, true);
-                            }
-                            catch (IOException)
-                            {
-                                MessageBox.Show($"ファイルをコピーできませんでした。{Environment.NewLine}ファイルのコピー先を再指定してください。", "コピー失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                bool flag = false;
-                                while (!flag)
-                                {
-                                    using SaveFileDialog saveFileDialog = new();
-                                    saveFileDialog.InitialDirectory = Path.GetDirectoryName(text);
-                                    saveFileDialog.FileName = Path.GetFileName(text);
-                                    saveFileDialog.Filter = "保存ファイル|*" + Path.GetExtension(fileName);
-                                    saveFileDialog.AddExtension = true;
-                                    saveFileDialog.DefaultExt = Path.GetExtension(fileName);
-                                    if (saveFileDialog.ShowDialog() != DialogResult.OK)
-                                    {
-                                        return;
-                                    }
-                                    if (File.Exists(saveFileDialog.FileName))
-                                    {
-                                        MessageBox.Show($"上書きはできません。{Environment.NewLine}元のファイルを消すか、別のファイルを指定してください。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                    }
-                                    else if (Path.GetDirectoryName(saveFileDialog.FileName) != Global.cpd.where)
-                                    {
-                                        MessageBox.Show("プロジェクトディレクトリ内に保存してください。", "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                    }
-                                    else
-                                    {
-                                        text = saveFileDialog.FileName;
-                                        flag = true;
-                                    }
-                                }
-                            }
-                        }
-                        ConfView[e.ColumnIndex, e.RowIndex].Value = $"{Path.GetFileName(text)}...";
-                        Global.cpd.project.Config.Configurations[num].Value = Path.GetFileName(text);
-                        string relation;
-                        if (Global.cpd.project.Config.Configurations[num].Relation != null && Global.cpd.project.Config.Configurations[num].Relation != "" && (relation = Global.cpd.project.Config.Configurations[num].Relation) != null)
-                        {// バグ　編集していない方のレイヤーを半透明表示にしている際にそのレイヤーの画像を変更すると半透明表示が解除される
-                            if (!(relation == "PATTERN"))
-                            {
-                                if (relation == "LAYERCHIP")
-                                {
-                                    Global.MainWnd.MainDesigner.PrepareImages();
-                                    Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
-                                    Global.MainWnd.MainDesigner.Refresh();
-                                }
-                            }
-                            else
-                            {
-                                Global.MainWnd.MainDesigner.PrepareImages();
-                                Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
-                                Global.MainWnd.MainDesigner.Refresh();
-                            }
-                        }
-                        if (Global.cpd.project.Config.Configurations[num].Name == "filename_oriboss_left1")
-                        {
-                            Global.MainWnd.MainDesigner.PrepareImages();
-                            Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
-                            Global.MainWnd.MainDesigner.Refresh();
-                        }
-                        if (reg_file_prepare().IsMatch(Global.cpd.project.Config.Configurations[num].Name))
-                        {
-                            Global.MainWnd.MainDesigner.PrepareImages();
-                            Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
-                            Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
-                            Global.MainWnd.MainDesigner.Refresh();
-                        }
-                        break;
-                    }
-                case ConfigParam.Types.l:
-                case ConfigParam.Types.l_a:
-                    return;
-                case ConfigParam.Types.c:
-                    using (ColorDialog colorDialog = new())
-                    {
-                        Colors colors = new(configParam.Value);
-                        colorDialog.Color = colors.c;
-                        if (colorDialog.ShowDialog() == DialogResult.OK)
-                        {
-                            colors.c = colorDialog.Color;
-                            ConfView[e.ColumnIndex, e.RowIndex].Value = colors.ToString();
-                            ConfView[e.ColumnIndex, e.RowIndex].Style.BackColor = colors.c;
-                            Global.cpd.project.Config.Configurations[num].Value = colors.ToString();
-                            if (Global.cpd.project.Config.Configurations[num].Relation == "BACKGROUND" && Global.state.EdittingStage == 0)
-                            {
-                                Global.state.Background = colors.c;
-                                Global.MainWnd.MainDesigner.Refresh();
-                            }
-                            else if (Global.cpd.project.Config.Configurations[num].Relation == "BACKGROUND2" && Global.state.EdittingStage == 1)
-                            {
-                                Global.state.Background = colors.c;
-                                Global.MainWnd.MainDesigner.Refresh();
-                            }
-                            else if (Global.cpd.project.Config.Configurations[num].Relation == "BACKGROUND3" && Global.state.EdittingStage == 2)
-                            {
-                                Global.state.Background = colors.c;
-                                Global.MainWnd.MainDesigner.Refresh();
-                            }
-                            else if (Global.cpd.project.Config.Configurations[num].Relation == "BACKGROUND4" && Global.state.EdittingStage == 3)
-                            {
-                                Global.state.Background = colors.c;
-                                Global.MainWnd.MainDesigner.Refresh();
-                            }
-                            else if (Global.cpd.project.Config.Configurations[num].Relation == "BACKGROUNDM" && Global.state.EdittingStage == 4)
-                            {
-                                Global.state.Background = colors.c;
-                                Global.MainWnd.MainDesigner.Refresh();
-                            }
-                        }
-                        break;
-                    }
-                default:
-                    return;
-            }
-            Global.state.EditFlag = true;
         }
+
+        private bool IsValidCellClick(DataGridViewCellEventArgs e)
+        {
+            return e.ColumnIndex == 1 && 
+                   e.RowIndex >= 0 && 
+                   e.RowIndex < OrigIdx.Count;
+        }
+
+        private bool HandleConfigParamClick(ConfigParam configParam, int configIndex, DataGridViewCellEventArgs e)
+        {
+            return configParam.Type switch
+            {
+                ConfigParam.Types.t => HandleTextConfig(configParam, configIndex, e),
+                ConfigParam.Types.f or ConfigParam.Types.f_i or ConfigParam.Types.f_a => HandleFileConfig(configParam, configIndex, e),
+                ConfigParam.Types.c => HandleColorConfig(configParam, configIndex, e),
+                ConfigParam.Types.l or ConfigParam.Types.l_a => false,
+                _ => false
+            };
+        }
+
+        private bool HandleTextConfig(ConfigParam configParam, int configIndex, DataGridViewCellEventArgs e)
+        {
+            if (!Global.config.localSystem.UsePropExTextEditor)
+            {
+                return false;
+            }
+
+            using PropertyTextInputDialog dialog = new();
+            dialog.InputStr = configParam.Value;
+            
+            if (dialog.ShowDialog() != DialogResult.Cancel)
+            {
+                ConfView[e.ColumnIndex, e.RowIndex].Value = dialog.InputStr;
+                Global.cpd.project.Config.Configurations[configIndex].Value = dialog.InputStr;
+                return true;
+            }
+            
+            return false;
+        }
+
+        private bool HandleFileConfig(ConfigParam configParam, int configIndex, DataGridViewCellEventArgs e)
+        {
+            using OpenFileDialog openFileDialog = new();
+            SetupFileDialog(openFileDialog, configParam);
+
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+            {
+                return false;
+            }
+
+            string selectedFile = openFileDialog.FileName;
+            string targetPath = Path.Combine(Global.cpd.where, Path.GetFileName(selectedFile));
+
+            if (!TryCopyFileToProject(selectedFile, ref targetPath))
+            {
+                return false;
+            }
+
+            UpdateFileConfigValue(configParam, configIndex, targetPath, e);
+            HandleFileConfigRelations(configParam, configIndex);
+            
+            return true;
+        }
+
+        private static void SetupFileDialog(OpenFileDialog dialog, ConfigParam configParam)
+        {
+            dialog.InitialDirectory = Global.cpd.where;
+            dialog.FileName = configParam.Value;
+            
+            dialog.Filter = configParam.Type switch
+            {
+                ConfigParam.Types.f_i => "画像(*.gif;*.png;*.jpg;*.bmp)|*.gif;*.png;*.jpg;*.bmp|全てのファイル (*.*)|*.*",
+                ConfigParam.Types.f_a => "音声(*.wav;*.mp3;*.ogg)|*.wav;*.mp3;*.ogg|全てのファイル (*.*)|*.*",
+                _ => "全てのファイル (*.*)|*.*"
+            };
+        }
+
+        private static bool TryCopyFileToProject(string sourceFile, ref string targetPath)
+        {
+            if (Path.GetDirectoryName(sourceFile) == Global.cpd.where)
+            {
+                return true;
+            }
+
+            if (!ConfirmFileCopy())
+            {
+                return false;
+            }
+
+            try
+            {
+                File.Copy(sourceFile, targetPath, true);
+                return true;
+            }
+            catch (IOException)
+            {
+                return HandleFileCopyError(sourceFile, ref targetPath);
+            }
+        }
+
+        private static bool ConfirmFileCopy()
+        {
+            string message = $"ファイルはプロジェクトディレクトリに含まれていません。{Environment.NewLine}" +
+                           $"プロジェクトディレクトリへコピーします。{Environment.NewLine}" +
+                           $"また、同じ名前のファイルがある場合は上書きされます。{Environment.NewLine}" +
+                           "よろしいですか？";
+            
+            return MessageBox.Show(message, "ファイルの追加", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
+        private static bool HandleFileCopyError(string sourceFile, ref string targetPath)
+        {
+            MessageBox.Show($"ファイルをコピーできませんでした。{Environment.NewLine}ファイルのコピー先を再指定してください。", 
+                          "コピー失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+
+            return GetAlternativeFilePath(sourceFile, ref targetPath);
+        }
+
+        private static bool GetAlternativeFilePath(string sourceFile, ref string targetPath)
+        {
+            while (true)
+            {
+                using SaveFileDialog saveDialog = new();
+                SetupSaveDialog(saveDialog, sourceFile, targetPath);
+
+                if (saveDialog.ShowDialog() != DialogResult.OK)
+                {
+                    return false;
+                }
+
+                if (ValidateAlternativePath(saveDialog.FileName, ref targetPath))
+                {
+                    return true;
+                }
+            }
+        }
+
+        private static void SetupSaveDialog(SaveFileDialog dialog, string sourceFile, string targetPath)
+        {
+            dialog.InitialDirectory = Path.GetDirectoryName(targetPath);
+            dialog.FileName = Path.GetFileName(targetPath);
+            dialog.Filter = "保存ファイル|*" + Path.GetExtension(sourceFile);
+            dialog.AddExtension = true;
+            dialog.DefaultExt = Path.GetExtension(sourceFile);
+        }
+
+        private static bool ValidateAlternativePath(string selectedPath, ref string targetPath)
+        {
+            if (File.Exists(selectedPath))
+            {
+                MessageBox.Show($"上書きはできません。{Environment.NewLine}元のファイルを消すか、別のファイルを指定してください。", 
+                              "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return false;
+            }
+
+            if (Path.GetDirectoryName(selectedPath) != Global.cpd.where)
+            {
+                MessageBox.Show("プロジェクトディレクトリ内に保存してください。", 
+                              "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return false;
+            }
+
+            targetPath = selectedPath;
+            return true;
+        }
+
+        private void UpdateFileConfigValue(ConfigParam configParam, int configIndex, string filePath, DataGridViewCellEventArgs e)
+        {
+            string fileName = Path.GetFileName(filePath);
+            ConfView[e.ColumnIndex, e.RowIndex].Value = $"{fileName}...";
+            Global.cpd.project.Config.Configurations[configIndex].Value = fileName;
+        }
+
+        private static void HandleFileConfigRelations(ConfigParam configParam, int configIndex)
+        {
+            string relation = configParam.Relation;
+            if (string.IsNullOrEmpty(relation))
+            {
+                HandleSpecialFileConfigs(configParam);
+                return;
+            }
+
+            RefreshDesignerForRelation(relation);
+            HandleSpecialFileConfigs(configParam);
+        }
+
+        private static void RefreshDesignerForRelation(string relation)
+        {
+            switch (relation)
+            {
+                case "PATTERN":
+                    Global.MainWnd.MainDesigner.PrepareImages();
+                    Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
+                    Global.MainWnd.MainDesigner.Refresh();
+                    break;
+                case "LAYERCHIP":
+                    Global.MainWnd.MainDesigner.PrepareImages();
+                    Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
+                    Global.MainWnd.MainDesigner.Refresh();
+                    break;
+            }
+        }
+
+        private static void HandleSpecialFileConfigs(ConfigParam configParam)
+        {
+            if (configParam.Name == "filename_oriboss_left1")
+            {
+                Global.MainWnd.MainDesigner.PrepareImages();
+                Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
+                Global.MainWnd.MainDesigner.Refresh();
+            }
+            else if (reg_file_prepare().IsMatch(configParam.Name))
+            {
+                Global.MainWnd.MainDesigner.PrepareImages();
+                Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
+                Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
+                Global.MainWnd.MainDesigner.Refresh();
+            }
+        }
+
+        private bool HandleColorConfig(ConfigParam configParam, int configIndex, DataGridViewCellEventArgs e)
+        {
+            using ColorDialog colorDialog = new();
+            Colors colors = new(configParam.Value);
+            colorDialog.Color = colors.c;
+
+            if (colorDialog.ShowDialog() != DialogResult.OK)
+            {
+                return false;
+            }
+
+            UpdateColorConfigValue(colors, colorDialog.Color, configIndex, e);
+            HandleBackgroundColorUpdate(configParam, colors);
+            
+            return true;
+        }
+
+        private void UpdateColorConfigValue(Colors colors, Color newColor, int configIndex, DataGridViewCellEventArgs e)
+        {
+            colors.c = newColor;
+            ConfView[e.ColumnIndex, e.RowIndex].Value = colors.ToString();
+            ConfView[e.ColumnIndex, e.RowIndex].Style.BackColor = colors.c;
+            Global.cpd.project.Config.Configurations[configIndex].Value = colors.ToString();
+        }
+
+        private static void HandleBackgroundColorUpdate(ConfigParam configParam, Colors colors)
+        {
+            var backgroundMappings = new Dictionary<string, int>
+            {
+                { "BACKGROUND", 0 },
+                { "BACKGROUND2", 1 },
+                { "BACKGROUND3", 2 },
+                { "BACKGROUND4", 3 },
+                { "BACKGROUNDM", 4 }
+            };
+
+            if (backgroundMappings.TryGetValue(configParam.Relation, out int stageIndex) && 
+                Global.state.EdittingStage == stageIndex)
+            {
+                Global.state.Background = colors.c;
+                Global.MainWnd.MainDesigner.Refresh();
+            }
+        }
+
         private void ConfView_PreviewAudio(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 0)
