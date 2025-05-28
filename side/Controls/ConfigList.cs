@@ -283,7 +283,7 @@ namespace MasaoPlus.Controls
 
         protected virtual void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (!IsValidCellClick(e))
+            if (!IsValidCellEventArgs(e))
             {
                 return;
             }
@@ -297,7 +297,7 @@ namespace MasaoPlus.Controls
             }
         }
 
-        private bool IsValidCellClick(DataGridViewCellEventArgs e)
+        private bool IsValidCellEventArgs(DataGridViewCellEventArgs e)
         {
             return e.ColumnIndex == 1 && 
                    e.RowIndex >= 0 && 
@@ -621,266 +621,367 @@ namespace MasaoPlus.Controls
 
         protected virtual void ConfView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex != 1)
+            if (!IsValidCellEventArgs(e))
             {
                 return;
             }
-            if (e.RowIndex >= OrigIdx.Count || e.RowIndex < 0)
+
+            int configIndex = OrigIdx[e.RowIndex];
+            ConfigParam configParam = Global.cpd.project.Config.Configurations[configIndex];
+
+            if (ProcessConfigValueChange(configParam, configIndex, e))
             {
-                return;
+                HandlePostValueChangeActions(configParam, configIndex);
+                Global.state.EditFlag = true;
             }
-            int num = OrigIdx[e.RowIndex];
-            ConfigParam configParam = Global.cpd.project.Config.Configurations[num];
-            switch (configParam.Type)
+        }
+
+        private bool ProcessConfigValueChange(ConfigParam configParam, int configIndex, DataGridViewCellEventArgs e)
+        {
+            return configParam.Type switch
             {
-                case ConfigParam.Types.b:
-                case ConfigParam.Types.b2:
-                case ConfigParam.Types.b0:
-                    if (configParam.Value == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
-                    {
-                        return;
-                    }
-                    Global.cpd.project.Config.Configurations[num].Value = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
-                    break;
-                case ConfigParam.Types.s:
-                    if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
-                    {
-                        ConfView[e.ColumnIndex, e.RowIndex].Value = "";
-                    }
-                    if (configParam.Value == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
-                    {
-                        return;
-                    }
-                    Global.cpd.project.Config.Configurations[num].Value = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
-                    break;
-                case ConfigParam.Types.i:
-                    {
-                        if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
-                        {
-                            ConfView[e.ColumnIndex, e.RowIndex].Value = 0.ToString();
-                        }
-                        if (!int.TryParse(ConfView[e.ColumnIndex, e.RowIndex].Value.ToString(), out int num2))
-                        {
-                            MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                            if (configParam.Value.ToString() == ConfView[e.ColumnIndex, e.RowIndex].Value.ToString())
-                            {
-                                return;
-                            }
-                            ConfView[e.ColumnIndex, e.RowIndex].Value = configParam.Value.ToString();
-                            return;
-                        }
-                        else
-                        {
-                            Global.cpd.project.Config.Configurations[num].Value = num2.ToString();
-                        }
-                        break;
-                    }
-                case ConfigParam.Types.t:
-                    {
-                        if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
-                        {
-                            ConfView[e.ColumnIndex, e.RowIndex].Value = "";
-                        }
-                        string text = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
-                        string[] array = text.Split(
-                        [
-                    Environment.NewLine
-                        ], StringSplitOptions.None);
-                        if (configParam.Rows > 0)
-                        {
-                            List<string> list = [.. array];
-                            if (list.Count > configParam.Rows)
-                            {
-                                MessageBox.Show($"行数が最大値を超えています。{Environment.NewLine}超えた行は削除されます。", "行の超過", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                                list.RemoveRange(configParam.Rows, list.Count - configParam.Rows);
-                            }
-                            else if (list.Count < configParam.Rows)
-                            {
-                                while (list.Count < configParam.Rows)
-                                {
-                                    list.Add("0");
-                                }
-                            }
-                            array = [.. list];
-                        }
-                        text = string.Join(Environment.NewLine, array);
-                        if (configParam.Value == text)
-                        {
-                            return;
-                        }
-                        Global.cpd.project.Config.Configurations[num].Value = text;
-                        ConfView[e.ColumnIndex, e.RowIndex].Value = text;
-                        break;
-                    }
-                case ConfigParam.Types.f:
-                case ConfigParam.Types.f_i:
-                case ConfigParam.Types.f_a:
-                    return;
-                case ConfigParam.Types.l:
-                    if (configParam.Value == (((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1).ToString())
-                    {
-                        return;
-                    }
-                    Global.cpd.project.Config.Configurations[num].Value = (((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1).ToString();
-                    if (Global.cpd.project.Config.Configurations[num].Name == "mcs_screen_size")
-                    {
-                        if (Global.cpd.project.Config.Configurations[num].Value == "1")
-                        {
-                            Global.cpd.project.Config.Configurations[width_index].Value = "640";
-                            Global.cpd.project.Config.Configurations[height_index].Value = "480";
-                            int tmp_y = Global.cpd.runtime.Definitions.MapSize.y;
-                            Global.cpd.runtime.Definitions.MapSize.x = 19;
-                            Global.cpd.runtime.Definitions.MapSize.y = 14;
+                ConfigParam.Types.b or ConfigParam.Types.b2 or ConfigParam.Types.b0 => ProcessBooleanValue(configParam, configIndex, e),
+                ConfigParam.Types.s => ProcessStringValue(configParam, configIndex, e),
+                ConfigParam.Types.i => ProcessIntegerValue(configParam, configIndex, e),
+                ConfigParam.Types.t => ProcessTextValue(configParam, configIndex, e),
+                ConfigParam.Types.f or ConfigParam.Types.f_i or ConfigParam.Types.f_a => false,
+                ConfigParam.Types.l => ProcessListValue(configParam, configIndex, e),
+                ConfigParam.Types.l_a => ProcessAthleticListValue(configParam, configIndex, e),
+                _ => false
+            };
+        }
 
-                            Array.Resize(ref Global.cpd.project.MapData.Strings, Global.cpd.runtime.Definitions.MapSize.y);
-                            for (int i = 0; i < Global.cpd.runtime.Definitions.MapSize.y; i++)
-                            {
-                                int k;
-                                if (i < tmp_y) k = Global.cpd.runtime.Definitions.MapSize.x - Global.cpd.project.MapData[i].Length;
-                                else k = Global.cpd.runtime.Definitions.MapSize.x;
-                                for (int j = 0; j < k; j++)
-                                    Global.cpd.project.MapData[i] += ".";
-                            }
-                            Global.state.MinimumStageSize = new Size(20, 15);
-
-
-                            void ResizeY(Runtime.DefinedData.StageSizeData beforesize, int height, ref string[] data, string nullcode)
-                            {
-                                if (beforesize.y < height)
-                                {
-                                    Array.Resize(ref data, height);
-                                    var array = new string[beforesize.x];
-                                    for (int j = 0; j < array.Length; j++)
-                                    {
-                                        array[j] = nullcode;
-                                    }
-                                    var s = string.Join(",", array);
-                                    for (int i = beforesize.y; i < data.Length; i++)
-                                    {
-                                        data[i] = s;
-                                    }
-                                }
-                            }
-                            void ResizeX(int before, int width, ref string[] data, string nullcode)
-                            {
-                                if (before < width)
-                                {
-                                    for (int i = 0; i < data.Length; i++)
-                                    {
-                                        var array = data[i].Split(',');
-                                        Array.Resize(ref array, width);
-                                        for (int j = before; j < array.Length; j++)
-                                        {
-                                            array[j] = nullcode;
-                                        }
-                                        data[i] = string.Join(",", array);
-                                    }
-                                }
-                            }
-                            void setStageSize(ref Runtime.DefinedData.StageSizeData size)
-                            {
-                                if (size.x < Global.state.MinimumStageSize.Width) size.x = Global.state.MinimumStageSize.Width;
-                                if (size.y < Global.state.MinimumStageSize.Height) size.y = Global.state.MinimumStageSize.Height;
-                                size.bytesize = Global.cpd.project.Runtime.Definitions.StageSize.bytesize;
-                            }
-                            var nullcode = Global.cpd.Mapchip[0].code;
-                            ResizeY(Global.cpd.runtime.Definitions.StageSize, Global.state.MinimumStageSize.Height, ref Global.cpd.project.StageData.Strings, nullcode);
-                            ResizeX(Global.cpd.runtime.Definitions.StageSize.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.StageData.Strings, nullcode);
-                            ResizeY(Global.cpd.runtime.Definitions.StageSize2, Global.state.MinimumStageSize.Height, ref Global.cpd.project.StageData2.Strings, nullcode);
-                            ResizeX(Global.cpd.runtime.Definitions.StageSize2.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.StageData2.Strings, nullcode);
-                            ResizeY(Global.cpd.runtime.Definitions.StageSize3, Global.state.MinimumStageSize.Height, ref Global.cpd.project.StageData3.Strings, nullcode);
-                            ResizeX(Global.cpd.runtime.Definitions.StageSize3.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.StageData3.Strings, nullcode);
-                            ResizeY(Global.cpd.runtime.Definitions.StageSize4, Global.state.MinimumStageSize.Height, ref Global.cpd.project.StageData4.Strings, nullcode);
-                            ResizeX(Global.cpd.runtime.Definitions.StageSize4.x, Global.state.MinimumStageSize.Width, ref Global.cpd.project.StageData4.Strings, nullcode);
-                            setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize);
-                            setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize2);
-                            setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize3);
-                            setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize4);
-                            if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
-                            {
-                                void ProcessLayerData(List<LayerObject> layerData, ref Runtime.DefinedData.LayerSizeData sizeData)
-                                {
-                                    string nullcode = Global.cpd.Layerchip[0].code;
-                                    for (int i = 0; i < layerData.Count; i++)
-                                    {
-                                        ResizeY(sizeData, Global.state.MinimumStageSize.Height, ref layerData[i].Strings, nullcode);
-                                        ResizeX(sizeData.x, Global.state.MinimumStageSize.Width, ref layerData[i].Strings, nullcode);
-                                    }
-
-                                    // サイズ設定も同時に行う
-                                    if (sizeData.x < Global.state.MinimumStageSize.Width) sizeData.x = Global.state.MinimumStageSize.Width;
-                                    if (sizeData.y < Global.state.MinimumStageSize.Height) sizeData.y = Global.state.MinimumStageSize.Height;
-                                    sizeData.bytesize = Global.cpd.project.Runtime.Definitions.LayerSize.bytesize;
-                                }
-
-                                ProcessLayerData(Global.cpd.project.LayerData, ref Global.cpd.project.Runtime.Definitions.LayerSize);
-                                ProcessLayerData(Global.cpd.project.LayerData2, ref Global.cpd.project.Runtime.Definitions.LayerSize2);
-                                ProcessLayerData(Global.cpd.project.LayerData3, ref Global.cpd.project.Runtime.Definitions.LayerSize3);
-                                ProcessLayerData(Global.cpd.project.LayerData4, ref Global.cpd.project.Runtime.Definitions.LayerSize4);
-                            }
-                        }
-                        else if (Global.cpd.project.Config.Configurations[num].Value == "2")
-                        {
-                            Global.cpd.project.Config.Configurations[width_index].Value = "512";
-                            Global.cpd.project.Config.Configurations[height_index].Value = "320";
-                            Global.cpd.runtime.Definitions.MapSize.x = 15;
-                            Global.cpd.runtime.Definitions.MapSize.y = 9;
-
-                            Array.Resize(ref Global.cpd.project.MapData.Strings, Global.cpd.runtime.Definitions.MapSize.y);
-                            for (int i = 0; i < Global.cpd.runtime.Definitions.MapSize.y; i++)
-                            {
-                                Global.cpd.project.MapData[i] = Global.cpd.project.MapData[i][..Global.cpd.runtime.Definitions.MapSize.x];
-                            }
-                            Global.state.MinimumStageSize = new Size(16, 10);
-                        }
-                        switch (Global.state.EdittingStage)
-                        {
-                            case 0:
-                                Global.cpd.EditingMap = Global.cpd.project.StageData;
-                                Global.cpd.EditingLayer = Global.cpd.project.LayerData[Global.state.EdittingLayerIndex];
-                                break;
-                            case 1:
-                                Global.cpd.EditingMap = Global.cpd.project.StageData2;
-                                Global.cpd.EditingLayer = Global.cpd.project.LayerData2[Global.state.EdittingLayerIndex];
-                                break;
-                            case 2:
-                                Global.cpd.EditingMap = Global.cpd.project.StageData3;
-                                Global.cpd.EditingLayer = Global.cpd.project.LayerData3[Global.state.EdittingLayerIndex];
-                                break;
-                            case 3:
-                                Global.cpd.EditingMap = Global.cpd.project.StageData4;
-                                Global.cpd.EditingLayer = Global.cpd.project.LayerData4[Global.state.EdittingLayerIndex];
-                                break;
-                            case 4:
-                                Global.cpd.EditingMap = Global.cpd.project.MapData;
-                                break;
-                        }
-                        Global.state.StageSizeChanged = true;
-                        Global.MainWnd.MainDesigner.ForceBufferResize();
-                        Global.MainWnd.UpdateLayer();
-                        Global.MainWnd.UpdateScrollbar();
-                    }
-                    break;
-                case ConfigParam.Types.l_a:
-                    {
-                        int configParam_num = ((DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex]).Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1;
-                        int MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
-                        if (configParam_num <= MaxAthleticNumber && configParam.Value == configParam_num.ToString() || configParam_num > MaxAthleticNumber && configParam.Value == (configParam_num - 1 - MaxAthleticNumber + 1001).ToString())
-                        {
-                            return;
-                        }
-                        Global.cpd.project.Config.Configurations[num].Value = ((configParam_num <= MaxAthleticNumber) ? configParam_num : configParam_num - 1 - MaxAthleticNumber + 1001).ToString();
-                        break;
-                    }
-                default:
-                    return;
+        private bool ProcessBooleanValue(ConfigParam configParam, int configIndex, DataGridViewCellEventArgs e)
+        {
+            string newValue = ConfView[e.ColumnIndex, e.RowIndex].Value?.ToString() ?? "";
+            if (configParam.Value == newValue)
+            {
+                return false;
             }
-            if (configParam.ChipRelation != "" && configParam.ChipRelation != null)
+
+            Global.cpd.project.Config.Configurations[configIndex].Value = newValue;
+            return true;
+        }
+
+        private bool ProcessStringValue(ConfigParam configParam, int configIndex, DataGridViewCellEventArgs e)
+        {
+            if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
             {
-                Global.state.ChipRegister[configParam.ChipRelation] = Global.cpd.project.Config.Configurations[num].Value;
+                ConfView[e.ColumnIndex, e.RowIndex].Value = "";
+            }
+
+            string newValue = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
+            if (configParam.Value == newValue)
+            {
+                return false;
+            }
+
+            Global.cpd.project.Config.Configurations[configIndex].Value = newValue;
+            return true;
+        }
+
+        private bool ProcessIntegerValue(ConfigParam configParam, int configIndex, DataGridViewCellEventArgs e)
+        {
+            if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+            {
+                ConfView[e.ColumnIndex, e.RowIndex].Value = "0";
+            }
+
+            string valueString = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
+            if (!int.TryParse(valueString, out int parsedValue))
+            {
+                MessageBox.Show("有効な設定値ではありません。", "設定エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                if (configParam.Value == valueString)
+                {
+                    return false;
+                }
+                ConfView[e.ColumnIndex, e.RowIndex].Value = configParam.Value;
+                return false;
+            }
+
+            Global.cpd.project.Config.Configurations[configIndex].Value = parsedValue.ToString();
+            return true;
+        }
+
+        private bool ProcessTextValue(ConfigParam configParam, int configIndex, DataGridViewCellEventArgs e)
+        {
+            if (ConfView[e.ColumnIndex, e.RowIndex].Value == null)
+            {
+                ConfView[e.ColumnIndex, e.RowIndex].Value = "";
+            }
+
+            string text = ConfView[e.ColumnIndex, e.RowIndex].Value.ToString();
+            string[] lines = text.Split([Environment.NewLine], StringSplitOptions.None);
+
+            if (configParam.Rows > 0)
+            {
+                lines = ProcessTextRows(lines, configParam.Rows);
+            }
+
+            string processedText = string.Join(Environment.NewLine, lines);
+            if (configParam.Value == processedText)
+            {
+                return false;
+            }
+
+            Global.cpd.project.Config.Configurations[configIndex].Value = processedText;
+            ConfView[e.ColumnIndex, e.RowIndex].Value = processedText;
+            return true;
+        }
+
+        private static string[] ProcessTextRows(string[] lines, int maxRows)
+        {
+            List<string> lineList = [.. lines];
+
+            if (lineList.Count > maxRows)
+            {
+                MessageBox.Show($"行数が最大値を超えています。{Environment.NewLine}超えた行は削除されます。", 
+                              "行の超過", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                lineList.RemoveRange(maxRows, lineList.Count - maxRows);
+            }
+            else if (lineList.Count < maxRows)
+            {
+                while (lineList.Count < maxRows)
+                {
+                    lineList.Add("0");
+                }
+            }
+
+            return [.. lineList];
+        }
+
+        private bool ProcessListValue(ConfigParam configParam, int configIndex, DataGridViewCellEventArgs e)
+        {
+            var comboCell = (DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex];
+            int selectedIndex = comboCell.Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1;
+            string newValue = selectedIndex.ToString();
+
+            if (configParam.Value == newValue)
+            {
+                return false;
+            }
+
+            Global.cpd.project.Config.Configurations[configIndex].Value = newValue;
+
+            if (configParam.Name == "mcs_screen_size")
+            {
+                HandleScreenSizeChange(newValue);
+            }
+
+            return true;
+        }
+
+        private void HandleScreenSizeChange(string newValue)
+        {
+            if (newValue == "1")
+            {
+                ApplyScreenSize640x480();
+            }
+            else if (newValue == "2")
+            {
+                ApplyScreenSize512x320();
+            }
+
+            UpdateEditingReferences();
+            NotifyScreenSizeChange();
+        }
+
+        private void ApplyScreenSize640x480()
+        {
+            Global.cpd.project.Config.Configurations[width_index].Value = "640";
+            Global.cpd.project.Config.Configurations[height_index].Value = "480";
+            
+            int tmp_y = Global.cpd.runtime.Definitions.MapSize.y;
+            Global.cpd.runtime.Definitions.MapSize.x = 19;
+            Global.cpd.runtime.Definitions.MapSize.y = 14;
+
+            ResizeMapData(tmp_y);
+            Global.state.MinimumStageSize = new Size(20, 15);
+
+            ResizeAllStageData();
+        }
+
+        private static void ResizeMapData(int originalHeight)
+        {
+            Array.Resize(ref Global.cpd.project.MapData.Strings, Global.cpd.runtime.Definitions.MapSize.y);
+            for (int i = 0; i < Global.cpd.runtime.Definitions.MapSize.y; i++)
+            {
+                int paddingNeeded = i < originalHeight 
+                    ? Global.cpd.runtime.Definitions.MapSize.x - Global.cpd.project.MapData[i].Length
+                    : Global.cpd.runtime.Definitions.MapSize.x;
+                
+                for (int j = 0; j < paddingNeeded; j++)
+                {
+                    Global.cpd.project.MapData[i] += ".";
+                }
+            }
+        }
+
+        private static void ResizeAllStageData()
+        {
+            string nullcode = Global.cpd.Mapchip[0].code;
+
+            ResizeStageData(ref Global.cpd.project.StageData.Strings, ref Global.cpd.project.Runtime.Definitions.StageSize, nullcode);
+            ResizeStageData(ref Global.cpd.project.StageData2.Strings, ref Global.cpd.project.Runtime.Definitions.StageSize2, nullcode);
+            ResizeStageData(ref Global.cpd.project.StageData3.Strings, ref Global.cpd.project.Runtime.Definitions.StageSize3, nullcode);
+            ResizeStageData(ref Global.cpd.project.StageData4.Strings, ref Global.cpd.project.Runtime.Definitions.StageSize4, nullcode);
+
+            if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
+            {
+                ProcessAllLayerData();
+            }
+        }
+
+        private static void ResizeStageData(ref string[] data, ref Runtime.DefinedData.StageSizeData sizeData, string nullcode)
+        {
+            ResizeDataHeight(sizeData, Global.state.MinimumStageSize.Height, ref data, nullcode);
+            ResizeDataWidth(sizeData.x, Global.state.MinimumStageSize.Width, ref data, nullcode);
+            UpdateStageSizeData(ref sizeData);
+        }
+
+        private static void ResizeDataHeight(Runtime.DefinedData.StageSizeData beforeSize, int height, ref string[] data, string nullcode)
+        {
+            if (beforeSize.y < height)
+            {
+                Array.Resize(ref data, height);
+                var array = new string[beforeSize.x];
+                for (int j = 0; j < array.Length; j++)
+                {
+                    array[j] = nullcode;
+                }
+                var s = string.Join(",", array);
+                for (int i = beforeSize.y; i < data.Length; i++)
+                {
+                    data[i] = s;
+                }
+            }
+        }
+
+        private static void ResizeDataWidth(int before, int width, ref string[] data, string nullcode)
+        {
+            if (before < width)
+            {
+                for (int i = 0; i < data.Length; i++)
+                {
+                    var array = data[i].Split(',');
+                    Array.Resize(ref array, width);
+                    for (int j = before; j < array.Length; j++)
+                    {
+                        array[j] = nullcode;
+                    }
+                    data[i] = string.Join(",", array);
+                }
+            }
+        }
+
+        private static void UpdateStageSizeData(ref Runtime.DefinedData.StageSizeData size)
+        {
+            if (size.x < Global.state.MinimumStageSize.Width) size.x = Global.state.MinimumStageSize.Width;
+            if (size.y < Global.state.MinimumStageSize.Height) size.y = Global.state.MinimumStageSize.Height;
+            size.bytesize = Global.cpd.project.Runtime.Definitions.StageSize.bytesize;
+        }
+
+        private static void ProcessAllLayerData()
+        {
+            ProcessLayerDataCollection(Global.cpd.project.LayerData, ref Global.cpd.project.Runtime.Definitions.LayerSize);
+            ProcessLayerDataCollection(Global.cpd.project.LayerData2, ref Global.cpd.project.Runtime.Definitions.LayerSize2);
+            ProcessLayerDataCollection(Global.cpd.project.LayerData3, ref Global.cpd.project.Runtime.Definitions.LayerSize3);
+            ProcessLayerDataCollection(Global.cpd.project.LayerData4, ref Global.cpd.project.Runtime.Definitions.LayerSize4);
+        }
+
+        private static void ProcessLayerDataCollection(List<LayerObject> layerData, ref Runtime.DefinedData.LayerSizeData sizeData)
+        {
+            string nullcode = Global.cpd.Layerchip[0].code;
+            for (int i = 0; i < layerData.Count; i++)
+            {
+                ResizeDataHeight(sizeData, Global.state.MinimumStageSize.Height, ref layerData[i].Strings, nullcode);
+                ResizeDataWidth(sizeData.x, Global.state.MinimumStageSize.Width, ref layerData[i].Strings, nullcode);
+            }
+
+            if (sizeData.x < Global.state.MinimumStageSize.Width) sizeData.x = Global.state.MinimumStageSize.Width;
+            if (sizeData.y < Global.state.MinimumStageSize.Height) sizeData.y = Global.state.MinimumStageSize.Height;
+            sizeData.bytesize = Global.cpd.project.Runtime.Definitions.LayerSize.bytesize;
+        }
+
+        private void ApplyScreenSize512x320()
+        {
+            Global.cpd.project.Config.Configurations[width_index].Value = "512";
+            Global.cpd.project.Config.Configurations[height_index].Value = "320";
+            Global.cpd.runtime.Definitions.MapSize.x = 15;
+            Global.cpd.runtime.Definitions.MapSize.y = 9;
+
+            Array.Resize(ref Global.cpd.project.MapData.Strings, Global.cpd.runtime.Definitions.MapSize.y);
+            for (int i = 0; i < Global.cpd.runtime.Definitions.MapSize.y; i++)
+            {
+                Global.cpd.project.MapData[i] = Global.cpd.project.MapData[i][..Global.cpd.runtime.Definitions.MapSize.x];
+            }
+            Global.state.MinimumStageSize = new Size(16, 10);
+        }
+
+        private static void UpdateEditingReferences()
+        {
+            switch (Global.state.EdittingStage)
+            {
+                case 0:
+                    Global.cpd.EditingMap = Global.cpd.project.StageData;
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData[Global.state.EdittingLayerIndex];
+                    break;
+                case 1:
+                    Global.cpd.EditingMap = Global.cpd.project.StageData2;
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData2[Global.state.EdittingLayerIndex];
+                    break;
+                case 2:
+                    Global.cpd.EditingMap = Global.cpd.project.StageData3;
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData3[Global.state.EdittingLayerIndex];
+                    break;
+                case 3:
+                    Global.cpd.EditingMap = Global.cpd.project.StageData4;
+                    Global.cpd.EditingLayer = Global.cpd.project.LayerData4[Global.state.EdittingLayerIndex];
+                    break;
+                case 4:
+                    Global.cpd.EditingMap = Global.cpd.project.MapData;
+                    break;
+            }
+        }
+
+        private static void NotifyScreenSizeChange()
+        {
+            Global.state.StageSizeChanged = true;
+            Global.MainWnd.MainDesigner.ForceBufferResize();
+            Global.MainWnd.UpdateLayer();
+            Global.MainWnd.UpdateScrollbar();
+        }
+
+        private bool ProcessAthleticListValue(ConfigParam configParam, int configIndex, DataGridViewCellEventArgs e)
+        {
+            var comboCell = (DataGridViewComboBoxCell)ConfView[e.ColumnIndex, e.RowIndex];
+            int configParamNum = comboCell.Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1;
+            int maxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
+
+            string newValue = configParamNum <= maxAthleticNumber 
+                ? configParamNum.ToString()
+                : (configParamNum - 1 - maxAthleticNumber + 1001).ToString();
+
+            bool isCurrentValue = configParamNum <= maxAthleticNumber 
+                ? configParam.Value == configParamNum.ToString()
+                : configParam.Value == (configParamNum - 1 - maxAthleticNumber + 1001).ToString();
+
+            if (isCurrentValue)
+            {
+                return false;
+            }
+
+            Global.cpd.project.Config.Configurations[configIndex].Value = newValue;
+            return true;
+        }
+
+        private static void HandlePostValueChangeActions(ConfigParam configParam, int configIndex)
+        {
+            if (!string.IsNullOrEmpty(configParam.ChipRelation))
+            {
+                Global.state.ChipRegister[configParam.ChipRelation] = Global.cpd.project.Config.Configurations[configIndex].Value;
                 Global.MainWnd.RefreshAll();
             }
-            Global.state.EditFlag = true;
         }
 
         protected virtual void ConfView_CellClick(object sender, DataGridViewCellEventArgs e)
