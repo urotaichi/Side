@@ -41,174 +41,239 @@ namespace MasaoPlus.Controls
             {
                 return;
             }
+            
+            ClearAndPrepareView();
+            PopulateConfigurationRows();
+            ApplyWrapModeIfEnabled();
+        }
+
+        private void ClearAndPrepareView()
+        {
             OrigIdx.Clear();
             ConfView.Rows.Clear();
+        }
+
+        private void PopulateConfigurationRows()
+        {
             for (int i = 0; i < Global.cpd.project.Config.Configurations.Length; i++)
             {
                 ConfigParam configParam = Global.cpd.project.Config.Configurations[i];
-                if ((ConfigSelector.SelectedIndex == 0 || configParam.Category == Global.cpd.project.Config.Categories[ConfigSelector.SelectedIndex - 1]) && !(configParam.Relation == "STAGENUM") && !(configParam.Relation == "STAGESTART") && !(configParam.Relation == "STAGESELECT"))
+                if (ShouldIncludeConfiguration(configParam))
                 {
-                    if (configParam.Name == "width") width_index = i;
-                    else if (configParam.Name == "height") height_index = i;
-
-                    OrigIdx.Add(i);
-                    ConfView.Rows.Add(
-                    [
-                        configParam.Description,
-                        configParam.Value
-                    ]);
-                    switch (configParam.Type)
-                    {
-                        case ConfigParam.Types.b:
-                        case ConfigParam.Types.b0:
-                            {
-                                DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new()
-                                {
-                                    TrueValue = "true",
-                                    FalseValue = "false"
-                                };
-                                if (bool.TryParse(configParam.Value, out bool flag))
-                                {
-                                    dataGridViewCheckBoxCell.Value = flag.ToString();
-                                }
-                                else
-                                {
-                                    dataGridViewCheckBoxCell.Value = false;
-                                }
-                                ConfView[1, OrigIdx.Count - 1] = dataGridViewCheckBoxCell;
-                                break;
-                            }
-                        case ConfigParam.Types.b2:
-                            {
-                                DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new()
-                                {
-                                    TrueValue = "false",
-                                    FalseValue = "true"
-                                };
-                                if (bool.TryParse(configParam.Value, out bool flag))
-                                {
-                                    dataGridViewCheckBoxCell.Value = (!flag).ToString();
-                                }
-                                else
-                                {
-                                    dataGridViewCheckBoxCell.Value = false;
-                                }
-                                ConfView[1, OrigIdx.Count - 1] = dataGridViewCheckBoxCell;
-                                break;
-                            }
-                        case ConfigParam.Types.i:
-                            {
-                                DataGridViewNumericUpdownCell dataGridViewNumericUpdownCell = new()
-                                {
-                                    Value = configParam.Value
-                                };
-                                ConfView[1, OrigIdx.Count - 1] = dataGridViewNumericUpdownCell;
-                                break;
-                            }
-                        case ConfigParam.Types.t:
-                            if (Global.config.localSystem.UsePropExTextEditor)
-                            {
-                                DataGridViewButtonCell dataGridViewButtonCell = new()
-                                {
-                                    Value = configParam.Value,
-                                    FlatStyle = FlatStyle.Popup
-                                };
-                                ConfView[1, OrigIdx.Count - 1] = dataGridViewButtonCell;
-                            }
-                            else
-                            {
-                                ConfView[1, OrigIdx.Count - 1].Value = configParam.Value;
-                                ConfView[1, OrigIdx.Count - 1].Style.WrapMode = DataGridViewTriState.True;
-                                ConfView[1, OrigIdx.Count - 1].Style.Alignment = DataGridViewContentAlignment.TopLeft;
-                                ConfView[1, OrigIdx.Count - 1].ToolTipText = "Shift+Enterで改行できます。";
-                            }
-                            break;
-                        case ConfigParam.Types.f:
-                        case ConfigParam.Types.f_i:
-                        case ConfigParam.Types.f_a:
-                            {
-                                DataGridViewButtonCell dataGridViewButtonCell2 = new()
-                                {
-                                    Value = configParam.Value + "...",
-                                    FlatStyle = FlatStyle.Popup
-                                };
-                                ConfView[1, OrigIdx.Count - 1] = dataGridViewButtonCell2;
-                                break;
-                            }
-                        case ConfigParam.Types.l:
-                            {
-                                DataGridViewComboBoxCell dataGridViewComboBoxCell = new();
-                                dataGridViewComboBoxCell.Items.AddRange(configParam.ListItems);
-                                dataGridViewComboBoxCell.FlatStyle = FlatStyle.Popup;
-                                if (int.TryParse(configParam.Value, out int num) && num <= dataGridViewComboBoxCell.Items.Count && num > 0)
-                                {
-                                    dataGridViewComboBoxCell.Value = configParam.ListItems[num - 1];
-                                }
-                                else
-                                {
-                                    dataGridViewComboBoxCell.Value = configParam.ListItems[0];
-                                }
-                                ConfView[1, OrigIdx.Count - 1] = dataGridViewComboBoxCell;
-                                break;
-                            }
-                        case ConfigParam.Types.l_a:
-                            {
-                                DataGridViewComboBoxCell dataGridViewComboBoxCell = new();
-                                dataGridViewComboBoxCell.Items.AddRange(configParam.ListItems);
-                                dataGridViewComboBoxCell.FlatStyle = FlatStyle.Popup;
-                                int MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
-                                if (int.TryParse(configParam.Value, out int num) && (num > 0 && num <= MaxAthleticNumber || num >= 1001 && num <= 1249))
-                                {
-                                    if (num <= MaxAthleticNumber)
-                                    {
-                                        dataGridViewComboBoxCell.Value = configParam.ListItems[num - 1];
-                                    }
-                                    else
-                                    {
-                                        dataGridViewComboBoxCell.Value = configParam.ListItems[num - (1001 - MaxAthleticNumber)];
-                                    }
-                                }
-                                else
-                                {
-                                    dataGridViewComboBoxCell.Value = configParam.ListItems[0];
-                                }
-                                ConfView[1, OrigIdx.Count - 1] = dataGridViewComboBoxCell;
-                                break;
-                            }
-                        case ConfigParam.Types.c:
-                            {
-                                DataGridViewButtonCell dataGridViewButtonCell3 = new()
-                                {
-                                    Value = configParam.Value
-                                };
-                                Colors colors = new(configParam.Value);
-                                dataGridViewButtonCell3.Style.BackColor = colors.c;
-                                dataGridViewButtonCell3.Style.SelectionBackColor = colors.c;
-                                dataGridViewButtonCell3.FlatStyle = FlatStyle.Popup;
-                                ConfView[1, OrigIdx.Count - 1] = dataGridViewButtonCell3;
-                                break;
-                            }
-                    }
-                    ConfView.Rows[OrigIdx.Count - 1].DefaultCellStyle.BackColor = configParam.Category switch
-                    {
-                        "システム" => Color.LightCyan,
-                        "表示" => Color.AliceBlue,
-                        "BGM" => Color.GhostWhite,
-                        "効果音" => Color.SeaShell,
-                        "仕掛け" => Color.MistyRose,
-                        "画像" => Color.Honeydew,
-                        "装備" => Color.MintCream,
-                        "敵" => Color.Lavender,
-                        "お店" => Color.LavenderBlush,
-                        "地図" => Color.Azure,
-                        "オリジナルボス" => Color.LightYellow,
-                        "リンク土管" => Color.MistyRose,
-                        "メッセージ" => Color.OldLace,
-                        _ => default,
-                    };
+                    TrackSpecialIndices(configParam, i);
+                    AddConfigurationRow(configParam, i);
                 }
             }
-            if (Global.config.localSystem.WrapPropText) ConfView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+        }
+
+        private bool ShouldIncludeConfiguration(ConfigParam configParam)
+        {
+            bool isInSelectedCategory = ConfigSelector.SelectedIndex == 0 || 
+                                      configParam.Category == Global.cpd.project.Config.Categories[ConfigSelector.SelectedIndex - 1];
+            
+            bool isNotSpecialRelation = configParam.Relation != "STAGENUM" && 
+                                      configParam.Relation != "STAGESTART" && 
+                                      configParam.Relation != "STAGESELECT";
+            
+            return isInSelectedCategory && isNotSpecialRelation;
+        }
+
+        private void TrackSpecialIndices(ConfigParam configParam, int index)
+        {
+            if (configParam.Name == "width") 
+                width_index = index;
+            else if (configParam.Name == "height") 
+                height_index = index;
+        }
+
+        private void AddConfigurationRow(ConfigParam configParam, int originalIndex)
+        {
+            OrigIdx.Add(originalIndex);
+            ConfView.Rows.Add([configParam.Description, configParam.Value]);
+            
+            int rowIndex = OrigIdx.Count - 1;
+            SetupCellForConfigType(configParam, rowIndex);
+            SetRowBackgroundColor(configParam, rowIndex);
+        }
+
+        private void SetupCellForConfigType(ConfigParam configParam, int rowIndex)
+        {
+            switch (configParam.Type)
+            {
+                case ConfigParam.Types.b:
+                case ConfigParam.Types.b0:
+                    SetupBooleanCell(configParam, rowIndex, "true", "false");
+                    break;
+                case ConfigParam.Types.b2:
+                    SetupBooleanCell(configParam, rowIndex, "false", "true");
+                    break;
+                case ConfigParam.Types.i:
+                    SetupNumericCell(configParam, rowIndex);
+                    break;
+                case ConfigParam.Types.t:
+                    SetupTextCell(configParam, rowIndex);
+                    break;
+                case ConfigParam.Types.f:
+                case ConfigParam.Types.f_i:
+                case ConfigParam.Types.f_a:
+                    SetupFileCell(configParam, rowIndex);
+                    break;
+                case ConfigParam.Types.l:
+                    SetupListCell(configParam, rowIndex);
+                    break;
+                case ConfigParam.Types.l_a:
+                    SetupAthleticListCell(configParam, rowIndex);
+                    break;
+                case ConfigParam.Types.c:
+                    SetupColorCell(configParam, rowIndex);
+                    break;
+            }
+        }
+
+        private void SetupBooleanCell(ConfigParam configParam, int rowIndex, string trueValue, string falseValue)
+        {
+            DataGridViewCheckBoxCell cell = new()
+            {
+                TrueValue = trueValue,
+                FalseValue = falseValue
+            };
+            
+            if (bool.TryParse(configParam.Value, out bool flag))
+            {
+                cell.Value = flag.ToString();
+            }
+            else
+            {
+                cell.Value = false;
+            }
+            
+            ConfView[1, rowIndex] = cell;
+        }
+
+        private void SetupNumericCell(ConfigParam configParam, int rowIndex)
+        {
+            DataGridViewNumericUpdownCell cell = new()
+            {
+                Value = configParam.Value
+            };
+            ConfView[1, rowIndex] = cell;
+        }
+
+        private void SetupTextCell(ConfigParam configParam, int rowIndex)
+        {
+            if (Global.config.localSystem.UsePropExTextEditor)
+            {
+                DataGridViewButtonCell cell = new()
+                {
+                    Value = configParam.Value,
+                    FlatStyle = FlatStyle.Popup
+                };
+                ConfView[1, rowIndex] = cell;
+            }
+            else
+            {
+                ConfView[1, rowIndex].Value = configParam.Value;
+                ConfView[1, rowIndex].Style.WrapMode = DataGridViewTriState.True;
+                ConfView[1, rowIndex].Style.Alignment = DataGridViewContentAlignment.TopLeft;
+                ConfView[1, rowIndex].ToolTipText = "Shift+Enterで改行できます。";
+            }
+        }
+
+        private void SetupFileCell(ConfigParam configParam, int rowIndex)
+        {
+            DataGridViewButtonCell cell = new()
+            {
+                Value = configParam.Value + "...",
+                FlatStyle = FlatStyle.Popup
+            };
+            ConfView[1, rowIndex] = cell;
+        }
+
+        private void SetupListCell(ConfigParam configParam, int rowIndex)
+        {
+            DataGridViewComboBoxCell cell = new();
+            cell.Items.AddRange(configParam.ListItems);
+            cell.FlatStyle = FlatStyle.Popup;
+            
+            if (int.TryParse(configParam.Value, out int num) && num <= cell.Items.Count && num > 0)
+            {
+                cell.Value = configParam.ListItems[num - 1];
+            }
+            else
+            {
+                cell.Value = configParam.ListItems[0];
+            }
+            
+            ConfView[1, rowIndex] = cell;
+        }
+
+        private void SetupAthleticListCell(ConfigParam configParam, int rowIndex)
+        {
+            DataGridViewComboBoxCell cell = new();
+            cell.Items.AddRange(configParam.ListItems);
+            cell.FlatStyle = FlatStyle.Popup;
+            
+            int MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
+            if (int.TryParse(configParam.Value, out int num) && 
+                (num > 0 && num <= MaxAthleticNumber || num >= 1001 && num <= 1249))
+            {
+                if (num <= MaxAthleticNumber)
+                {
+                    cell.Value = configParam.ListItems[num - 1];
+                }
+                else
+                {
+                    cell.Value = configParam.ListItems[num - (1001 - MaxAthleticNumber)];
+                }
+            }
+            else
+            {
+                cell.Value = configParam.ListItems[0];
+            }
+            
+            ConfView[1, rowIndex] = cell;
+        }
+
+        private void SetupColorCell(ConfigParam configParam, int rowIndex)
+        {
+            DataGridViewButtonCell cell = new()
+            {
+                Value = configParam.Value
+            };
+            
+            Colors colors = new(configParam.Value);
+            cell.Style.BackColor = colors.c;
+            cell.Style.SelectionBackColor = colors.c;
+            cell.FlatStyle = FlatStyle.Popup;
+            
+            ConfView[1, rowIndex] = cell;
+        }
+
+        private void SetRowBackgroundColor(ConfigParam configParam, int rowIndex)
+        {
+            ConfView.Rows[rowIndex].DefaultCellStyle.BackColor = configParam.Category switch
+            {
+                "システム" => Color.LightCyan,
+                "表示" => Color.AliceBlue,
+                "BGM" => Color.GhostWhite,
+                "効果音" => Color.SeaShell,
+                "仕掛け" => Color.MistyRose,
+                "画像" => Color.Honeydew,
+                "装備" => Color.MintCream,
+                "敵" => Color.Lavender,
+                "お店" => Color.LavenderBlush,
+                "地図" => Color.Azure,
+                "オリジナルボス" => Color.LightYellow,
+                "リンク土管" => Color.MistyRose,
+                "メッセージ" => Color.OldLace,
+                _ => default,
+            };
+        }
+
+        private void ApplyWrapModeIfEnabled()
+        {
+            if (Global.config.localSystem.WrapPropText) 
+                ConfView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
         protected virtual void ConfigSelector_Resize(object sender, EventArgs e)
