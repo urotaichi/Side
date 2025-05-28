@@ -227,7 +227,7 @@ namespace MasaoPlus
                             e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                         }
                         else if (Global.config.draw.ClassicChipListInterpolation) e.Graphics.InterpolationMode = InterpolationMode.High;
-                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawLayerOrig, rectangle, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawLayerOrig[Global.state.EdittingLayerIndex], rectangle, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
                     }
                     if (chipData.character == "Z" && oriboss_view &&
                         Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki) && Global.config.draw.ExtendDraw)

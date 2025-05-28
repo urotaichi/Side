@@ -372,7 +372,7 @@ namespace MasaoPlus
             bufpos = -1;
         }
 
-        private void DrawExtendSizeMap(ChipData cschip, Graphics g, Point p, bool foreground, string chara)
+        private void DrawExtendSizeMap(ChipData cschip, Graphics g, Point p, bool foreground, string chara, int layerIndex)
         {
             bool oriboss_view = Global.state.ChipRegister.TryGetValue("oriboss_v", out string oriboss_v) && int.Parse(oriboss_v) == 3;
             GraphicsState transState;
@@ -405,7 +405,7 @@ namespace MasaoPlus
             }
             else
             { // 背景レイヤー画像
-                g.DrawImage(DrawLayerOrig, rectangle, new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
+                g.DrawImage(DrawLayerOrig[layerIndex], rectangle, new Rectangle(cschip.pattern, cschip.size), GraphicsUnit.Pixel);
             }
             if (chara == "Z" && oriboss_view &&
                 Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string value) && Global.config.draw.ExtendDraw)
@@ -418,7 +418,7 @@ namespace MasaoPlus
                 ChipRenderer.DrawExtendChip(g, rectangle, cschip.xdraw, chipsize);
             }
         }
-        private void DrawNormalSizeMap(ChipData cschip, Graphics g, Point p, bool foreground, string chara, int x)
+        private void DrawNormalSizeMap(ChipData cschip, Graphics g, Point p, bool foreground, string chara, int x, int layerIndex)
         {
             GraphicsState transState;
             Size chipsize = Global.cpd.runtime.Definitions.ChipSize;
@@ -486,7 +486,7 @@ namespace MasaoPlus
             }
             else
             { // 背景レイヤー画像
-                g.DrawImage(DrawLayerOrig, rectangle, new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+                g.DrawImage(DrawLayerOrig[layerIndex], rectangle, new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
             }
             if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
             { // 拡張画像　前面
@@ -680,7 +680,7 @@ namespace MasaoPlus
                                     g.FillRectangle(Brushes.Transparent, new Rectangle(new Point(LogicalToDeviceUnits(num2 * chipsize.Width - c.center.X), LogicalToDeviceUnits(num * chipsize.Height - c.center.Y)), LogicalToDeviceUnits(c.size)));
                                     g.CompositingMode = CompositingMode.SourceOver;
                                 }
-                                DrawExtendSizeMap(c, g, new Point(num2, num), foreground, chipsData.character);
+                                DrawExtendSizeMap(c, g, new Point(num2, num), foreground, chipsData.character, layerIndex);
                             }
                             else
                             { // 標準サイズの画像はリストに追加後、↓で描画
@@ -755,7 +755,7 @@ namespace MasaoPlus
                                     g.FillRectangle(Brushes.Transparent, new Rectangle(new Point(LogicalToDeviceUnits(num2 * chipsize.Width - c.center.X), LogicalToDeviceUnits(num * chipsize.Height - c.center.Y)), LogicalToDeviceUnits(c.size)));
                                     g.CompositingMode = CompositingMode.SourceOver;
                                 }
-                                DrawExtendSizeMap(c, g, new Point(num2, num), foreground, chipsData.character);
+                                DrawExtendSizeMap(c, g, new Point(num2, num), foreground, chipsData.character, layerIndex);
                             }
                             else
                             { // 標準サイズの画像はリストに追加後、↓で描画
@@ -776,7 +776,7 @@ namespace MasaoPlus
                     g.FillRectangle(Brushes.Transparent, new Rectangle(new Point(LogicalToDeviceUnits(keepDrawData.pos.X * chipsize.Width), LogicalToDeviceUnits(keepDrawData.pos.Y * chipsize.Height)), LogicalToDeviceUnits(chipsize)));
                     g.CompositingMode = CompositingMode.SourceOver;
                 }
-                DrawNormalSizeMap(cschip, g, keepDrawData.pos, foreground, keepDrawData.chara, keepDrawData.pos.X);
+                DrawNormalSizeMap(cschip, g, keepDrawData.pos, foreground, keepDrawData.chara, keepDrawData.pos.X, layerIndex);
                 if (keepDrawData.idColor != null)
                 {
                     ChipRenderer.DrawIdColorMark(g, new Point(LogicalToDeviceUnits(keepDrawData.pos.X * chipsize.Width), LogicalToDeviceUnits(keepDrawData.pos.Y * chipsize.Height)), keepDrawData.idColor, this);
@@ -949,9 +949,30 @@ namespace MasaoPlus
                     filename = Path.Combine(Global.cpd.where, DEFAULT_LAYER_IMAGE);
                     Global.cpd.project.Config.LayerImage = DEFAULT_LAYER_IMAGE;
                 }
-
-                DrawLayerOrig = LoadImageFromFile(filename);
-                // DrawLayerMask = CreateMaskFromImage(DrawLayerOrig);
+                DrawLayerOrig = new List<Image>(Global.cpd.LayerCount);
+                DrawLayerOrigDefault = LoadImageFromFile(filename);
+                // DrawLayerMask = CreateMaskFromImage(DrawLayerOrig[0]);
+                Runtime.DefinedData.LayerSizeData CurrentLayerSize = Global.state.EdittingStage switch
+                {
+                    0 => Global.cpd.runtime.Definitions.LayerSize,
+                    1 => Global.cpd.runtime.Definitions.LayerSize2,
+                    2 => Global.cpd.runtime.Definitions.LayerSize3,
+                    3 => Global.cpd.runtime.Definitions.LayerSize4,
+                    _ => Global.cpd.runtime.Definitions.LayerSize
+                };
+                for (int i = 0; i < Global.cpd.LayerCount; i++)
+                {
+                    DrawLayerOrig.Add(DrawLayerOrigDefault);  // レイヤー画像が設定されていない場合はデフォルトのレイヤー画像を使用
+                    var layerValue = CurrentLayerSize?.mapchips?.ElementAtOrDefault(i)?.Value;
+                    if (!string.IsNullOrEmpty(layerValue))
+                    {
+                        filename = Path.Combine(Global.cpd.where, layerValue);
+                        if (File.Exists(filename))
+                        {
+                            DrawLayerOrig[i] = LoadImageFromFile(filename);
+                        }
+                    }
+                }
             }
 
             // オリジナルボス画像の読み込み（設定されている場合）
@@ -1059,6 +1080,19 @@ namespace MasaoPlus
             {
                 disposable.Dispose();
                 disposable = null;
+            }
+        }
+
+        private static void DisposeAndSetNull<T>(ref List<T> disposableList) where T : class, IDisposable
+        {
+            if (disposableList != null)
+            {
+                foreach (var item in disposableList)
+                {
+                    item?.Dispose();
+                }
+                disposableList.Clear();
+                disposableList = null;
             }
         }
 
@@ -2411,7 +2445,7 @@ namespace MasaoPlus
                                 }
                             }
                             ChipData cschip = chipsData.GetCSChip();
-                            if (cschip.size != default) DrawExtendSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character);
+                            if (cschip.size != default) DrawExtendSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, Global.state.EdittingLayerIndex);
                         }
                     IL_514:;
                     }
@@ -2470,7 +2504,7 @@ namespace MasaoPlus
                             ChipData cschip = chipsData.GetCSChip();
                             if (cschip.size == default)
                             {
-                                DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X);
+                                DrawNormalSizeMap(cschip, graphics, point, Global.state.EditingForeground, chipsData.character, rect.X, Global.state.EdittingLayerIndex);
                                 if (chipsData.idColor != null)
                                 {
                                     ChipRenderer.DrawIdColorMark(graphics, new Point(point.X * chipsize.Width, point.Y * chipsize.Height), chipsData.idColor, this);
@@ -2729,7 +2763,9 @@ namespace MasaoPlus
 
         // public Bitmap DrawMask;
 
-        public Image DrawLayerOrig;
+        public Image DrawLayerOrigDefault;
+
+        public List<Image> DrawLayerOrig;
 
         // public Bitmap DrawLayerMask;
 

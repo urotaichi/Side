@@ -476,7 +476,7 @@ namespace MasaoPlus
                 }
                 else
                 {
-                    graphics.DrawImage(MainDesigner.DrawLayerOrig, new Rectangle(new Point(0, 0), size), new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
+                    graphics.DrawImage(MainDesigner.DrawLayerOrig[Global.state.EdittingLayerIndex], new Rectangle(new Point(0, 0), size), new Rectangle(cschip.pattern, size), GraphicsUnit.Pixel);
                 }
                 ChipNavigator.Image = (Image)bitmap.Clone();
                 bitmap.Dispose();
@@ -1065,7 +1065,7 @@ namespace MasaoPlus
                 }
                 else // レイヤー画像
                 {
-                    e.Graphics.DrawImage(MainDesigner.DrawLayerOrig, new Rectangle(new Point(0, 0), ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
+                    e.Graphics.DrawImage(MainDesigner.DrawLayerOrig[Global.state.EdittingLayerIndex], new Rectangle(new Point(0, 0), ChipImage.Size), new Rectangle(cschip.pattern, (cschip.size == default) ? Global.cpd.runtime.Definitions.ChipSize : cschip.size), GraphicsUnit.Pixel);
                 }
             }
         }
@@ -1593,7 +1593,7 @@ namespace MasaoPlus
                         else
                         {
                             cschip = Global.cpd.Layerchip[i].GetCSChip();
-                            e.Graphics.DrawImage(MainDesigner.DrawLayerOrig, new Rectangle(e.Bounds.Location, new Size(e.Bounds.Height, e.Bounds.Height)), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+                            e.Graphics.DrawImage(MainDesigner.DrawLayerOrig[Global.state.EdittingLayerIndex], new Rectangle(e.Bounds.Location, new Size(e.Bounds.Height, e.Bounds.Height)), new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
                         }
                         width = e.Bounds.Height;
                         break;
@@ -1666,7 +1666,7 @@ namespace MasaoPlus
                             cschip = Global.cpd.Layerchip[i].GetCSChip();
                             if (cschip.size == default)
                             {
-                                e.Graphics.DrawImage(MainDesigner.DrawLayerOrig, new Rectangle(e.Bounds.Location, chipsize), new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
+                                e.Graphics.DrawImage(MainDesigner.DrawLayerOrig[Global.state.EdittingLayerIndex], new Rectangle(e.Bounds.Location, chipsize), new Rectangle(cschip.pattern, chipsize), GraphicsUnit.Pixel);
                                 width = chipsize.Width;
                             }
                             else
@@ -2096,6 +2096,7 @@ namespace MasaoPlus
             EditBackground.Checked = true;
             BackgroundLayer.Checked = true;
             MainEditor.BackgroundLayer.Checked = true;
+            Global.state.EdittingLayerIndex = 0;
             UpdateLayer();
         }
 
