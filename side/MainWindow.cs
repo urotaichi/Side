@@ -655,6 +655,7 @@ namespace MasaoPlus
             {
                 return;
             }
+            bool useMultiLayers = CurrentProjectData.UseLayer && Global.cpd.LayerCount > 1;
             if (EditTab.SelectedIndex == 1)
             {
                 if (StageConvert)
@@ -666,6 +667,8 @@ namespace MasaoPlus
                     else
                     {
                         MainEditor.StageTextEditor.Text = JoinLayerToCloneableString(Global.cpd.EditingLayer);
+                        EditPatternChip.Enabled = !useMultiLayers;
+                        MainEditor.PatternChipLayer.Enabled = !useMultiLayers;
                     }
                 }
                 else
@@ -685,6 +688,15 @@ namespace MasaoPlus
                 MEditStage2.Enabled = false;
                 MEditStage3.Enabled = false;
                 MEditStage4.Enabled = false;
+                foreach (var item in LayerMenuCount)
+                {
+                    item.Enabled = !useMultiLayers;
+                }
+                foreach (var item in MainEditor.LayerCount)
+                {
+                    item.Enabled = !useMultiLayers;
+                }
+
             }
             else
             {
@@ -744,6 +756,8 @@ namespace MasaoPlus
                         MainEditor.StageTextEditor.Text = JoinLayerToCloneableString(Global.cpd.EditingLayer);
                         MainEditor.BufferClear();
                         MainEditor.AddBuffer();
+                        EditPatternChip.Enabled = useMultiLayers;
+                        MainEditor.PatternChipLayer.Enabled = useMultiLayers;
                     }
                     MainDesigner.ClearBuffer();
                     MainDesigner.StageSourceToDrawBuffer();
@@ -759,6 +773,14 @@ namespace MasaoPlus
                 MEditStage2.Enabled = true;
                 MEditStage3.Enabled = true;
                 MEditStage4.Enabled = true;
+                foreach (var item in LayerMenuCount)
+                {
+                    item.Enabled = useMultiLayers;
+                }
+                foreach (var item in MainEditor.LayerCount)
+                {
+                    item.Enabled = useMultiLayers;
+                }
                 UpdateStatus("完了");
             }
             UpdateTitle();
