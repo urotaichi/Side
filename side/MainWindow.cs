@@ -2234,21 +2234,20 @@ namespace MasaoPlus
                 MainDesigner.AddBuffer();
                 MainDesigner.Refresh();
                 UpdateStatus("完了");
-                return;
             }
-            if (EditTab.SelectedIndex == 1)
+            else if (EditTab.SelectedIndex == 1)
             {
                 LayerObject clonedText = [.. (string[])MainEditor.StageTextEditor.Lines.Clone()];
                 if (Global.state.EditingForeground)
                 {
                     Global.cpd.EditingLayer = clonedText;
                     MainEditor.StageTextEditor.Text = JoinLayerToCloneableString(Global.cpd.EditingMap);
-                    MainEditor.BufferClear();
-                    MainEditor.AddBuffer();
-                    return;
                 }
-                Global.cpd.EditingMap = clonedText;
-                MainEditor.StageTextEditor.Text = JoinLayerToCloneableString(Global.cpd.EditingLayer);
+                else
+                {
+                    Global.cpd.EditingMap = clonedText;
+                    MainEditor.StageTextEditor.Text = JoinLayerToCloneableString(Global.cpd.EditingLayer);
+                }
                 MainEditor.BufferClear();
                 MainEditor.AddBuffer();
             }
