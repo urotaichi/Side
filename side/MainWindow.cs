@@ -2121,16 +2121,24 @@ namespace MasaoPlus
             switch (newValue)
             {
                 case 0:
-                    SetStageData(Global.cpd.project.StageData, Global.cpd.project.LayerData[0], Global.cpd.project.Config.Background, MEditStage1, CurrentProjectData.UseLayer);
+                    SetStageData(Global.cpd.project.StageData, 
+                        Global.cpd.project.LayerData?.FirstOrDefault(), 
+                        Global.cpd.project.Config.Background, MEditStage1, CurrentProjectData.UseLayer);
                     break;
                 case 1:
-                    SetStageData(Global.cpd.project.StageData2, Global.cpd.project.LayerData2[0], Global.cpd.project.Config.Background2, MEditStage2, CurrentProjectData.UseLayer);
+                    SetStageData(Global.cpd.project.StageData2, 
+                        Global.cpd.project.LayerData2?.FirstOrDefault(), 
+                        Global.cpd.project.Config.Background2, MEditStage2, CurrentProjectData.UseLayer);
                     break;
                 case 2:
-                    SetStageData(Global.cpd.project.StageData3, Global.cpd.project.LayerData3[0], Global.cpd.project.Config.Background3, MEditStage3, CurrentProjectData.UseLayer);
+                    SetStageData(Global.cpd.project.StageData3, 
+                        Global.cpd.project.LayerData3?.FirstOrDefault(), 
+                        Global.cpd.project.Config.Background3, MEditStage3, CurrentProjectData.UseLayer);
                     break;
                 case 3:
-                    SetStageData(Global.cpd.project.StageData4, Global.cpd.project.LayerData4[0], Global.cpd.project.Config.Background4, MEditStage4, CurrentProjectData.UseLayer);
+                    SetStageData(Global.cpd.project.StageData4, 
+                        Global.cpd.project.LayerData4?.FirstOrDefault(), 
+                        Global.cpd.project.Config.Background4, MEditStage4, CurrentProjectData.UseLayer);
                     break;
                 case 4:
                     SetStageData(Global.cpd.project.MapData, null, Global.cpd.project.Config.BackgroundM, MEditMap, false);
