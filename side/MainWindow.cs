@@ -2150,6 +2150,15 @@ namespace MasaoPlus
             UpdateLayerVisibility();
             MainDesigner.ForceBufferResize();
             MainDesigner.PrepareImages();
+            if (!Global.state.EditingForeground)
+            {
+                EditBackground.Checked = true;
+                BackgroundLayer.Checked = true;
+                LayerCount[0].Checked = true;
+                LayerMenuCount[0].Checked = true;
+                Global.state.EdittingLayerIndex = 0;
+                
+            }
             UpdateLayer();
             UpdateScrollbar();
         }
