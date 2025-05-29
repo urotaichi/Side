@@ -2123,6 +2123,13 @@ namespace MasaoPlus
             {
                 return;
             }
+            if (EditTab.SelectedIndex == 1)
+            {
+                if (MessageBox.Show($"ステージを切り替えると、編集結果は失われます。続行してもよろしいですか？", "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
+                {
+                    return;
+                }
+            }
             UpdateStatus("ステージを切り替えています...");
             MEditStage1.Checked = false;
             MEditStage2.Checked = false;
