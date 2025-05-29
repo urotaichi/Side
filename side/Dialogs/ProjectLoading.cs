@@ -139,6 +139,9 @@ namespace MasaoPlus.Dialogs
                     Global.MainWnd.MasaoConfigList.Prepare();
                     Global.MainWnd.CustomPartsConfigList.Prepare();
                     Global.MainWnd.LayerObjectConfigList.Prepare();
+
+                    SetStageDataSources();
+
                     if (CurrentProjectData.UseLayer)
                     {
                         SetLayerDataSources();
@@ -154,6 +157,27 @@ namespace MasaoPlus.Dialogs
                 MessageBox.Show($"プロジェクトをロードできませんでした。{Environment.NewLine}{ex.Message}{Environment.NewLine}アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 Application.Restart();
                 Environment.Exit(-1);
+            }
+        }
+
+        private static void SetStageDataSources()
+        {
+            var stageConfigs = new[]
+            {
+                (Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize),
+                (StageData: Global.cpd.project.StageData2, StageSize: Global.cpd.runtime.Definitions.StageSize2),
+                (StageData: Global.cpd.project.StageData3, StageSize: Global.cpd.runtime.Definitions.StageSize3),
+                (StageData: Global.cpd.project.StageData4, StageSize: Global.cpd.runtime.Definitions.StageSize4)
+            };
+
+            foreach (var (StageData, StageSize) in stageConfigs)
+            {
+                StageData.Source = Global.cpd.project.Config.PatternImage;
+                var layerValue = StageSize.mainPattern.Value;
+                if (!string.IsNullOrEmpty(layerValue))
+                {
+                    StageData.Source = layerValue;
+                }
             }
         }
 

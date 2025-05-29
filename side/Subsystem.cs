@@ -1157,6 +1157,7 @@ namespace MasaoPlus
         {
             sb.AppendLine("\t\t\t\t\t{");
             sb.AppendLine("\t\t\t\t\t\t\"type\": \"main\",");
+            if(MainStageText.Source != Global.cpd.project.Config.PatternImage) sb.AppendLine($"\t\t\t\t\t\t\"src\": \"{MainStageText.Source}\",");
             sb.AppendLine("\t\t\t\t\t\t\"map\": [");
             foreach (string value in MainStageText)
             {

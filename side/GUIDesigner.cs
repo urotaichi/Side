@@ -939,6 +939,23 @@ namespace MasaoPlus
             // パターン画像の読み込みと処理
             DrawChipOrig = LoadImageFromFile(filename);
             // DrawMask = CreateMaskFromImage(DrawChipOrig);
+            Runtime.DefinedData.StageSizeData CurrentStageSize = Global.state.EdittingStage switch
+            {
+                0 => Global.cpd.runtime.Definitions.StageSize,
+                1 => Global.cpd.runtime.Definitions.StageSize2,
+                2 => Global.cpd.runtime.Definitions.StageSize3,
+                3 => Global.cpd.runtime.Definitions.StageSize4,
+                _ => Global.cpd.runtime.Definitions.StageSize
+            };
+            var patternValue = CurrentStageSize?.mainPattern?.Value;
+            if (!string.IsNullOrEmpty(patternValue))
+            {
+                filename = Path.Combine(Global.cpd.where, patternValue);
+                if (File.Exists(filename))
+                {
+                    DrawChipOrig = LoadImageFromFile(filename);
+                }
+            }
 
             if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
             {

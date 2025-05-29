@@ -153,13 +153,6 @@ namespace MasaoPlus
 
                 [XmlAttribute]
                 public int bytesize;
-            }
-
-            [Serializable]
-            public class LayerSizeData : StageSizeData
-            {
-                [XmlAttribute]
-                public int mainOrder;
 
                 [Serializable]
                 public class LayerObject
@@ -170,6 +163,13 @@ namespace MasaoPlus
 
                 [XmlElement("main")]
                 public LayerObject mainPattern = new();
+            }
+
+            [Serializable]
+            public class LayerSizeData : StageSizeData
+            {
+                [XmlAttribute]
+                public int mainOrder;
 
                 [XmlElement("mapchip")]
                 public List<LayerObject> mapchips = [];

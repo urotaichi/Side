@@ -2141,6 +2141,7 @@ namespace MasaoPlus
             Global.state.EdittingStage = newValue;
             UpdateLayerVisibility();
             MainDesigner.ForceBufferResize();
+            MainDesigner.PrepareImages();
             UpdateLayer();
             UpdateScrollbar();
         }
