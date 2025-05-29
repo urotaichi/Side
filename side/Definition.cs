@@ -19,7 +19,7 @@ namespace MasaoPlus
 
         public string AppNameFull = "Supermasao Integrated Development Environment";
 
-        public double CProjVer = 1.0;
+        public double CProjVer = 2.0;
 
         public string ProjExt = ".spj";
 

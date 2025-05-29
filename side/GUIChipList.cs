@@ -37,7 +37,7 @@ namespace MasaoPlus
                     if (Global.cpd.project.Use3rdMapData)
                     {
                         array = [.. array, .. Global.cpd.VarietyChip];
-                        if(Global.cpd.CustomPartsChip != null)
+                        if (Global.cpd.CustomPartsChip != null)
                         {
                             array = [.. array, .. Global.cpd.CustomPartsChip];
                         }
@@ -138,7 +138,7 @@ namespace MasaoPlus
                 if (Global.cpd.project.Use3rdMapData)
                 {
                     num2 += Global.cpd.VarietyChip.Length;
-                    if(Global.cpd.CustomPartsChip != null)
+                    if (Global.cpd.CustomPartsChip != null)
                     {
                         num2 += Global.cpd.CustomPartsChip.Length;
                     }
@@ -199,7 +199,7 @@ namespace MasaoPlus
                         e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
                         if (oriboss_view && chipData.character == "Z")
                         {
-                            if(Global.MainWnd.MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, rectangle.Width, rectangle.Height);
+                            if (Global.MainWnd.MainDesigner.DrawOribossOrig != null) e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawOribossOrig, 0, 0, rectangle.Width, rectangle.Height);
                         }
                         else if (ChipRenderer.IsAthleticChip(cschip.name))
                         {
@@ -227,7 +227,7 @@ namespace MasaoPlus
                             e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
                         }
                         else if (Global.config.draw.ClassicChipListInterpolation) e.Graphics.InterpolationMode = InterpolationMode.High;
-                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawLayerOrig, rectangle, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
+                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawLayerOrig[Global.state.EdittingLayerIndex], rectangle, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
                     }
                     if (chipData.character == "Z" && oriboss_view &&
                         Global.state.ChipRegister.TryGetValue("oriboss_ugoki", out string oriboss_ugoki) && Global.config.draw.ExtendDraw)
@@ -245,12 +245,7 @@ namespace MasaoPlus
                     e.Graphics.PixelOffsetMode = default;
                     if (chipData.idColor != null)
                     {
-                        GraphicsState transState = e.Graphics.Save();
-                        e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
-                        Color col = ColorTranslator.FromHtml(chipData.idColor);
-                        using Brush brush = new SolidBrush(Color.FromArgb(240, col));
-                        e.Graphics.FillRectangle(brush, new Rectangle(new Point(0, 0), LogicalToDeviceUnits(new Size(10, 5))));
-                        e.Graphics.Restore(transState);
+                        ChipRenderer.DrawIdColorMark(e.Graphics, new Point(rectangle.X, rectangle.Y), chipData.idColor, this);
                     }
                     if (Global.state.MapEditMode && Global.state.CurrentChip.character == chipData.character
                         || !Global.state.MapEditMode
@@ -263,7 +258,7 @@ namespace MasaoPlus
                 }
             }
         }
-        
+
         // 共通の選択フレーム描画処理
         protected static void DrawSelectionFrame(Graphics g, Rectangle rectangle)
         {

@@ -206,20 +206,20 @@ namespace MasaoPlus.Dialogs
             {
                 StateLabel.Text = "ステージをコピーしています...";
                 StateLabel.Refresh();
-                project.StageData = (string[])Global.cpd.project.StageData.Clone();
-                project.StageData2 = (string[])Global.cpd.project.StageData2.Clone();
-                project.StageData3 = (string[])Global.cpd.project.StageData3.Clone();
-                project.StageData4 = (string[])Global.cpd.project.StageData4.Clone();
-                project.LayerData = (string[])Global.cpd.project.LayerData.Clone();
-                project.LayerData2 = (string[])Global.cpd.project.LayerData2.Clone();
-                project.LayerData3 = (string[])Global.cpd.project.LayerData3.Clone();
-                project.LayerData4 = (string[])Global.cpd.project.LayerData4.Clone();
-                project.MapData = (string[])Global.cpd.project.MapData.Clone();
+                project.StageData = (LayerObject)Global.cpd.project.StageData.Clone();
+                project.StageData2 = (LayerObject)Global.cpd.project.StageData2.Clone();
+                project.StageData3 = (LayerObject)Global.cpd.project.StageData3.Clone();
+                project.StageData4 = (LayerObject)Global.cpd.project.StageData4.Clone();
+                project.LayerData[0] = (LayerObject)Global.cpd.project.LayerData[0].Clone();
+                project.LayerData2[0] = (LayerObject)Global.cpd.project.LayerData2[0].Clone();
+                project.LayerData3[0] = (LayerObject)Global.cpd.project.LayerData3[0].Clone();
+                project.LayerData4[0] = (LayerObject)Global.cpd.project.LayerData4[0].Clone();
+                project.MapData = (LayerObject)Global.cpd.project.MapData.Clone();
             }
             else
             {
                 ChipsData NullChip = chipDataClass.Mapchip[0];
-                if(project.CustomPartsDefinition == null)
+                if (project.CustomPartsDefinition == null)
                 {
                     project.StageData = StageDataCopy(project, Global.cpd.project.StageData, [.. chipDataClass.Mapchip, .. chipDataClass?.VarietyChip], NullChip, project.Runtime.Definitions.StageSize);
                     project.StageData2 = StageDataCopy(project, Global.cpd.project.StageData2, [.. chipDataClass.Mapchip, .. chipDataClass?.VarietyChip], NullChip, project.Runtime.Definitions.StageSize2);
@@ -237,10 +237,10 @@ namespace MasaoPlus.Dialogs
                 if (project.Runtime.Definitions.LayerSize.bytesize != 0) // レイヤーあり
                 {
                     NullChip = chipDataClass.Layerchip[0];
-                    project.LayerData = LayerDataCopy(project, Global.cpd.project.LayerData, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize);
-                    project.LayerData2 = LayerDataCopy(project, Global.cpd.project.LayerData2, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.StageSize2);
-                    project.LayerData3 = LayerDataCopy(project, Global.cpd.project.LayerData3, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize3);
-                    project.LayerData4 = LayerDataCopy(project, Global.cpd.project.LayerData4, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize4);
+                    project.LayerData[0] = LayerDataCopy(project, Global.cpd.project.LayerData[0], chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize);
+                    project.LayerData2[0] = LayerDataCopy(project, Global.cpd.project.LayerData2[0], chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.StageSize2);
+                    project.LayerData3[0] = LayerDataCopy(project, Global.cpd.project.LayerData3[0], chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize3);
+                    project.LayerData4[0] = LayerDataCopy(project, Global.cpd.project.LayerData4[0], chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize4);
                 }
 
                 NullChip = chipDataClass.WorldChip[0];
@@ -300,7 +300,7 @@ namespace MasaoPlus.Dialogs
             Global.cpd.EditingMap = Global.cpd.project.StageData;
             if (CurrentProjectData.UseLayer)
             {
-                Global.cpd.EditingLayer = Global.cpd.project.LayerData;
+                Global.cpd.EditingLayer = Global.cpd.project.LayerData[0];
             }
             StateLabel.Text = "編集システムを再スタートしています...";
             StateLabel.Refresh();
@@ -322,13 +322,13 @@ namespace MasaoPlus.Dialogs
             Close();
         }
 
-        private string[] StageDataCopy(Project project, string[] StageData, ChipsData[] Mapchip, ChipsData nullchip, Runtime.DefinedData.StageSizeData size)
+        private LayerObject StageDataCopy(Project project, LayerObject StageData, ChipsData[] Mapchip, ChipsData nullchip, Runtime.DefinedData.StageSizeData size)
         {
             string nullcharacter;
             if (project.Use3rdMapData) nullcharacter = nullchip.code;
             else nullcharacter = nullchip.character;
 
-            string[] result = new string[size.y];
+            LayerObject result = [.. new string[size.y]];
 
             for (int k = 0; k < size.y; k++)
             {
@@ -347,7 +347,7 @@ namespace MasaoPlus.Dialogs
                         }
                         string text;
                         if (project.Use3rdMapData)
-                        { 
+                        {
                             text = StageData[k].Split(',')[l];
                             switch (ChipMethod.SelectedIndex)
                             {
@@ -397,8 +397,8 @@ namespace MasaoPlus.Dialogs
                                     }
                             }
                         }
-                        else 
-                        { 
+                        else
+                        {
                             text = StageData[k].Substring(l * Global.cpd.runtime.Definitions.StageSize.bytesize, Global.cpd.runtime.Definitions.StageSize.bytesize);
                             switch (ChipMethod.SelectedIndex)
                             {
@@ -469,13 +469,13 @@ namespace MasaoPlus.Dialogs
             }
             return result;
         }
-        private string[] LayerDataCopy(Project project, string[] LayerData, ChipsData[] Layerchip, ChipsData nullchip, Runtime.DefinedData.StageSizeData size)
+        private LayerObject LayerDataCopy(Project project, LayerObject LayerData, ChipsData[] Layerchip, ChipsData nullchip, Runtime.DefinedData.StageSizeData size)
         {
             string nullcharacter;
             if (project.Use3rdMapData) nullcharacter = nullchip.code;
             else nullcharacter = nullchip.character;
 
-            string[] result = new string[size.y];
+            LayerObject result = [.. new string[size.y]];
 
             for (int num6 = 0; num6 < size.y; num6++)
             {
@@ -616,7 +616,7 @@ namespace MasaoPlus.Dialogs
                 }
                 else
                 {
-                    for (int num13 = 0; num13 < project.LayerData.Length; num13++)
+                    for (int num13 = 0; num13 < project.LayerData[0].Length; num13++)
                     {
                         for (int num14 = 0; num14 < size.x; num14++)
                         {
@@ -630,11 +630,11 @@ namespace MasaoPlus.Dialogs
             }
             return result;
         }
-        private string[] MapDataCopy(Project project, string[] MapData, ChipsData[] Worldchip, ChipsData nullchip)
+        private LayerObject MapDataCopy(Project project, LayerObject MapData, ChipsData[] Worldchip, ChipsData nullchip)
         {// 上記StageDataCopyとほぼ同じ
             string nullcharacter = nullchip.character;
 
-            string[] result = new string[project.Runtime.Definitions.MapSize.y];
+            LayerObject result = [.. new string[project.Runtime.Definitions.MapSize.y]];
 
             for (int k = 0; k < project.Runtime.Definitions.MapSize.y; k++)
             {

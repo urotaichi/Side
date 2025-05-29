@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using System.Collections.Generic;
 
 namespace MasaoPlus
 {
@@ -17,11 +18,51 @@ namespace MasaoPlus
             Project result;
             try
             {
-                XmlSerializer xmlSerializer = new(typeof(Project));
+                // まずファイルからバージョン情報を読み取る
+                double version = 0.0;
+
+                try
+                {
+                    using var reader = new System.Xml.XmlTextReader(file);
+                    while (reader.Read())
+                    {
+                        if (reader.NodeType == System.Xml.XmlNodeType.Element)
+                        {
+                            if (reader.Name == "ProjVer")
+                            {
+                                reader.Read();
+                                if (reader.NodeType == System.Xml.XmlNodeType.Text &&
+                                    double.TryParse(reader.Value, out version))
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                    // XMLの読み取りに失敗した場合はデフォルトの処理を続行
+                }
+
                 using FileStream fileStream = new(file, FileMode.Open);
-                Project project = (Project)xmlSerializer.Deserialize(fileStream);
-                project.Config.ConfigReady();
-                result = project;
+                // バージョンと形式に基づいた読み込み方法の選択
+                if (version < Global.definition.CProjVer)
+                {
+                    // 旧形式として読み込む
+                    XmlSerializer legacySerializer = new(typeof(LegacyProject));
+                    LegacyProject legacyProject = (LegacyProject)legacySerializer.Deserialize(fileStream);
+                    legacyProject.Config.ConfigReady();
+                    result = legacyProject.ToCurrentProject();
+                }
+                else
+                {
+                    // 現行形式で読み込む
+                    XmlSerializer xmlSerializer = new(typeof(Project));
+                    Project project = (Project)xmlSerializer.Deserialize(fileStream);
+                    project.Config.ConfigReady();
+                    result = project;
+                }
             }
             catch (Exception ex)
             {
@@ -67,7 +108,7 @@ namespace MasaoPlus
         //    binaryFormatter.Serialize(deflateStream, this);
         //}
 
-        public static void Convert3rdMapData(string[] StageData, int bytesize = 1)
+        public static void Convert3rdMapData(LayerObject StageData, int bytesize = 1)
         {
             for (int i = 0; i < StageData.Length; i++)
             {
@@ -95,15 +136,15 @@ namespace MasaoPlus
             }
         }
 
-        public static void Convert2ndMapData(string[] StageData, int bytesize = 1)
+        public static void Convert2ndMapData(LayerObject StageData, int bytesize = 1)
         {
             for (int i = 0; i < StageData.Length; i++)
             {
                 if (!StageData[i].Contains(',')) continue;
                 string[] array = StageData[i].Split(',');
-                for (int j = 0; j < array.Length; j ++)
+                for (int j = 0; j < array.Length; j++)
                 {
-                    if(int.TryParse(array[j], out int result))
+                    if (int.TryParse(array[j], out int result))
                     {
                         string c = ChipDataClass.CodeToChar(result, bytesize);
                         if (bytesize == 1 && Global.MainWnd.MainDesigner.DrawItemRef.ContainsKey(c) || bytesize == 2 && Global.MainWnd.MainDesigner.DrawLayerRef.ContainsKey(c))
@@ -130,6 +171,12 @@ namespace MasaoPlus
             if (size.y < Global.state.MinimumStageSize.Height) size.y = Global.state.DefaultStageSize.Height;
         }
 
+        private static void CheckStageSize(ref Runtime.DefinedData.LayerSizeData size)
+        {
+            if (size.x < Global.state.MinimumStageSize.Width) size.x = Global.state.DefaultStageSize.Width;
+            if (size.y < Global.state.MinimumStageSize.Height) size.y = Global.state.DefaultStageSize.Height;
+        }
+
         private static void SetStageSize(ref Runtime.DefinedData.StageSizeData size, Runtime.DefinedData.StageSizeData baseSize)
         {
             size.x = baseSize.x;
@@ -137,7 +184,14 @@ namespace MasaoPlus
             size.bytesize = baseSize.bytesize;
         }
 
-        private static void SetStageData(string[] data, int x, string character)
+        private static void SetStageSize(ref Runtime.DefinedData.LayerSizeData size, Runtime.DefinedData.StageSizeData baseSize)
+        {
+            size.x = baseSize.x;
+            size.y = baseSize.y;
+            size.bytesize = baseSize.bytesize;
+        }
+
+        private static void SetStageData(LayerObject data, int x, string character)
         {
             for (int i = 0; i < data.Length; i++)
             {
@@ -150,6 +204,22 @@ namespace MasaoPlus
             }
         }
 
+        private static void SetLayerData(List<LayerObject> data, int x, string character)
+        {
+            foreach (var layer in data)
+            {
+                for (int i = 0; i < layer.Length; i++)
+                {
+                    StringBuilder stringBuilder = new();
+                    for (int j = 0; j < x; j++)
+                    {
+                        stringBuilder.Append(character);
+                    }
+                    layer[i] = stringBuilder.ToString();
+                }
+            }
+        }
+
         public static ChipDataClass SetAllStageData(Project project, string projPath, Project PrevProject = null)
         {
             Project baseProject = PrevProject ?? project;
@@ -159,20 +229,20 @@ namespace MasaoPlus
                 SetStageSize(ref baseProject.Runtime.Definitions.LayerSize2, baseProject.Runtime.Definitions.LayerSize);
                 SetStageSize(ref baseProject.Runtime.Definitions.LayerSize3, baseProject.Runtime.Definitions.LayerSize);
                 SetStageSize(ref baseProject.Runtime.Definitions.LayerSize4, baseProject.Runtime.Definitions.LayerSize);
-                project.LayerData = new string[baseProject.Runtime.Definitions.LayerSize.y];
-                project.LayerData2 = new string[baseProject.Runtime.Definitions.LayerSize2.y];
-                project.LayerData3 = new string[baseProject.Runtime.Definitions.LayerSize3.y];
-                project.LayerData4 = new string[baseProject.Runtime.Definitions.LayerSize4.y];
+                project.LayerData = [[.. new string[baseProject.Runtime.Definitions.LayerSize.y]]];
+                project.LayerData2 = [[.. new string[baseProject.Runtime.Definitions.LayerSize2.y]]];
+                project.LayerData3 = [[.. new string[baseProject.Runtime.Definitions.LayerSize3.y]]];
+                project.LayerData4 = [[.. new string[baseProject.Runtime.Definitions.LayerSize4.y]]];
             }
             CheckStageSize(ref baseProject.Runtime.Definitions.StageSize);
             SetStageSize(ref baseProject.Runtime.Definitions.StageSize2, baseProject.Runtime.Definitions.StageSize);
             SetStageSize(ref baseProject.Runtime.Definitions.StageSize3, baseProject.Runtime.Definitions.StageSize);
             SetStageSize(ref baseProject.Runtime.Definitions.StageSize4, baseProject.Runtime.Definitions.StageSize);
-            project.StageData = new string[baseProject.Runtime.Definitions.StageSize.y];
-            project.StageData2 = new string[baseProject.Runtime.Definitions.StageSize2.y];
-            project.StageData3 = new string[baseProject.Runtime.Definitions.StageSize3.y];
-            project.StageData4 = new string[baseProject.Runtime.Definitions.StageSize4.y];
-            project.MapData = new string[baseProject.Runtime.Definitions.MapSize.y];
+            project.StageData = [.. new string[baseProject.Runtime.Definitions.StageSize.y]];
+            project.StageData2 = [.. new string[baseProject.Runtime.Definitions.StageSize2.y]];
+            project.StageData3 = [.. new string[baseProject.Runtime.Definitions.StageSize3.y]];
+            project.StageData4 = [.. new string[baseProject.Runtime.Definitions.StageSize4.y]];
+            project.MapData = [.. new string[baseProject.Runtime.Definitions.MapSize.y]];
             ChipDataClass chipDataClass = ChipDataClass.ParseXML(Path.Combine(projPath, project.Runtime.Definitions.ChipDefinition));
             string character = chipDataClass.Mapchip[0].character;
             SetStageData(project.StageData, baseProject.Runtime.Definitions.StageSize.x, character);
@@ -184,10 +254,10 @@ namespace MasaoPlus
             if (baseProject.Runtime.Definitions.LayerSize.bytesize != 0)
             {
                 character = chipDataClass.Layerchip[0].character;
-                SetStageData(project.LayerData, baseProject.Runtime.Definitions.LayerSize.x, character);
-                SetStageData(project.LayerData2, baseProject.Runtime.Definitions.LayerSize2.x, character);
-                SetStageData(project.LayerData3, baseProject.Runtime.Definitions.LayerSize3.x, character);
-                SetStageData(project.LayerData4, baseProject.Runtime.Definitions.LayerSize4.x, character);
+                SetLayerData(project.LayerData, baseProject.Runtime.Definitions.LayerSize.x, character);
+                SetLayerData(project.LayerData2, baseProject.Runtime.Definitions.LayerSize2.x, character);
+                SetLayerData(project.LayerData3, baseProject.Runtime.Definitions.LayerSize3.x, character);
+                SetLayerData(project.LayerData4, baseProject.Runtime.Definitions.LayerSize4.x, character);
             }
             return chipDataClass;
         }
@@ -202,23 +272,30 @@ namespace MasaoPlus
 
         public ChipsData[] CustomPartsDefinition;
 
-        public string[] StageData = [];
+        public LayerObject StageData = [];
 
-        public string[] StageData2 = [];
+        public LayerObject StageData2 = [];
 
-        public string[] StageData3 = [];
+        public LayerObject StageData3 = [];
 
-        public string[] StageData4 = [];
+        public LayerObject StageData4 = [];
 
-        public string[] LayerData = [];
+        [XmlArray("LayerData")]
+        [XmlArrayItem("LayerObject")]
+        public List<LayerObject> LayerData = [];
 
-        public string[] LayerData2 = [];
+        [XmlArray("LayerData2")]
+        [XmlArrayItem("LayerObject")]
+        public List<LayerObject> LayerData2 = [];
 
-        public string[] LayerData3 = [];
+        [XmlArray("LayerData3")]
+        [XmlArrayItem("LayerObject")]
+        public List<LayerObject> LayerData3 = [];
 
-        public string[] LayerData4 = [];
-
-        public string[] MapData = [];
+        [XmlArray("LayerData4")]
+        [XmlArrayItem("LayerObject")]
+        public List<LayerObject> LayerData4 = [];
+        public LayerObject MapData = [];
 
         public ConfigurationOwner Config = new();
     }

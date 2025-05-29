@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace MasaoPlus
 {
@@ -35,7 +36,7 @@ namespace MasaoPlus
             };
             using var imageAttributes = new ImageAttributes();
             imageAttributes.SetColorMatrix(colorMatrix);
-            g.DrawImage(chipImage, destRect, srcPoint.X, srcPoint.Y, srcSize.Width, srcSize.Height, 
+            g.DrawImage(chipImage, destRect, srcPoint.X, srcPoint.Y, srcSize.Width, srcSize.Height,
                         GraphicsUnit.Pixel, imageAttributes);
         }
 
@@ -45,9 +46,9 @@ namespace MasaoPlus
         public static bool ShouldApplyWaterTransparency(out float waterLevel)
         {
             waterLevel = 1.0f;
-            return Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) && 
-                   bool.Parse(water_clear_switch) == false && 
-                   Global.state.ChipRegister.TryGetValue("water_clear_level", out string value) && 
+            return Global.state.ChipRegister.TryGetValue("water_clear_switch", out string water_clear_switch) &&
+                   bool.Parse(water_clear_switch) == false &&
+                   Global.state.ChipRegister.TryGetValue("water_clear_level", out string value) &&
                    float.TryParse(value, out waterLevel);
         }
 
@@ -163,6 +164,20 @@ namespace MasaoPlus
                 27 => "巨大化  右から",
                 _ => "",
             };
+        }
+
+        public static void DrawIdColorMark(Graphics g, Point location, string idColor, Control control)
+        {
+            if (idColor == null) return;
+            
+            GraphicsState transState = g.Save();
+            g.TranslateTransform(location.X, location.Y);
+            Color col = ColorTranslator.FromHtml(idColor);
+            using (Brush brush = new SolidBrush(Color.FromArgb(240, col)))
+            {
+                g.FillRectangle(brush, new Rectangle(new Point(0, 0), control.LogicalToDeviceUnits(new Size(10, 5))));
+            }
+            g.Restore(transState);
         }
     }
 }

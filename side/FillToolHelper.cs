@@ -27,10 +27,10 @@ namespace MasaoPlus
             {
                 return;
             }
-            
+
             repls.Clear();
             replsCode.Clear();
-            
+
             if (Global.state.EditingForeground)
             {
                 int num = 0;
@@ -77,7 +77,7 @@ namespace MasaoPlus
                     }
                 }
             }
-            
+
             string stageChar = GUIDesigner.StageText.GetStageChar(pt);
             // 塗りつぶしたマスと同じなら終了
             if (Global.state.MapEditMode && stageChar == repl.character
@@ -86,7 +86,7 @@ namespace MasaoPlus
             {
                 return;
             }
-            
+
             if (Global.state.MapEditMode)
             {
                 if (Global.MainWnd.MainDesigner.DrawWorldRef.TryGetValue(stageChar, out ChipsData value) && CheckChar(pt, value))
@@ -119,7 +119,7 @@ namespace MasaoPlus
 
             for (int j = 0; j < Global.state.GetCSSize.y; j++)
             {
-                if(Global.state.Use3rdMapDataCurrently)
+                if (Global.state.Use3rdMapDataCurrently)
                 {
                     GUIDesigner.PutItemTextEnd(replsCode[j], j);
                 }

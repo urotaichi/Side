@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MasaoPlus
 {
@@ -16,9 +17,66 @@ namespace MasaoPlus
 
         public Runtime runtime;
 
-        public string[] EditingMap;
+        public LayerObject EditingMap;
 
-        public string[] EditingLayer;
+        public LayerObject EditingLayer;
+
+        public List<LayerObject> EditingLayers
+        {
+            get
+            {
+                if (project != null)
+                {
+                    return Global.state.EdittingStage switch
+                    {
+                        0 => project.LayerData,
+                        1 => project.LayerData2,
+                        2 => project.LayerData3,
+                        3 => project.LayerData4,
+                        _ => null,
+                    };
+                }
+                return null;
+            }
+        }
+
+        public int LayerCount
+        {
+            get
+            {
+                if (UseLayer && project != null)
+                {
+                    return Global.state.EdittingStage switch
+                    {
+                        0 => project.LayerData?.Count ?? 1,
+                        1 => project.LayerData2?.Count ?? 1,
+                        2 => project.LayerData3?.Count ?? 1,
+                        3 => project.LayerData4?.Count ?? 1,
+                        _ => 0,
+                    };
+                }
+                return 0;
+            }
+        }
+
+        public int MainOrder
+        {
+            get
+            {
+                if (UseLayer && project != null)
+                {
+                    return Global.state.EdittingStage switch
+                    {
+                        0 => project.Runtime.Definitions.LayerSize.mainOrder,
+                        1 => project.Runtime.Definitions.LayerSize2.mainOrder,
+                        2 => project.Runtime.Definitions.LayerSize3.mainOrder,
+                        3 => project.Runtime.Definitions.LayerSize4.mainOrder,
+                        _ => 0,
+                    };
+                }
+                return 0;
+            }
+        }
 
         public ChipsData[] Mapchip;
 

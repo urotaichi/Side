@@ -86,7 +86,7 @@ namespace MasaoPlus.Controls
                 if (BasePartsTypes.Value != null && BasePartsTypes.Items.IndexOf(BasePartsTypes.Value) == i)
                 {
                     ChipsData c;
-                    if(CustomizeParts[i].code == Global.state.CurrentCustomPartsChip.basecode)
+                    if (CustomizeParts[i].code == Global.state.CurrentCustomPartsChip.basecode)
                     {
                         c = Global.state.CurrentCustomPartsChip;
                         PrepareCustomPartsParam(c, c.basecode);
@@ -491,7 +491,7 @@ namespace MasaoPlus.Controls
             if (ConfView.CurrentCellAddress.X == 1 && ConfView.IsCurrentCellDirty)
             {
                 ConfView.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                if(ConfView.CurrentCellAddress.Y == 1)
+                if (ConfView.CurrentCellAddress.Y == 1)
                 {
                     ConfigSelector_SelectedIndexChanged();
                 }
@@ -531,7 +531,7 @@ namespace MasaoPlus.Controls
                     {
                         return;
                     }
-                    for(i = 0; i < Global.cpd.CustomPartsChip[cs_i].Chips.Length; i++)
+                    for (i = 0; i < Global.cpd.CustomPartsChip[cs_i].Chips.Length; i++)
                     {
                         Global.cpd.CustomPartsChip[cs_i].Chips[i].name = row_text;
                     }

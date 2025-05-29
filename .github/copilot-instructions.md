@@ -1,0 +1,1 @@
+string.Joinをstring.joinに修正しない

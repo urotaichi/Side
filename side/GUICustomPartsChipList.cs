@@ -41,7 +41,7 @@ namespace MasaoPlus
             {
                 return 0;
             }
-            if(Global.cpd.CustomPartsChip == null)
+            if (Global.cpd.CustomPartsChip == null)
             {
                 return Global.cpd.runtime.Definitions.ChipSize.Height;
             }
@@ -100,12 +100,7 @@ namespace MasaoPlus
                     e.Graphics.PixelOffsetMode = default;
                     if (chipData.idColor != null)
                     {
-                        transState = e.Graphics.Save();
-                        e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
-                        Color col = ColorTranslator.FromHtml(chipData.idColor);
-                        using Brush brush = new SolidBrush(Color.FromArgb(240, col));
-                        e.Graphics.FillRectangle(brush, new Rectangle(new Point(0, 0), LogicalToDeviceUnits(new Size(10, 5))));
-                        e.Graphics.Restore(transState);
+                        ChipRenderer.DrawIdColorMark(e.Graphics, new Point(rectangle.X, rectangle.Y), chipData.idColor, this);
                     }
                     if (Global.state.CurrentCustomPartsChip.code == chipData.code)
                     {
@@ -117,7 +112,7 @@ namespace MasaoPlus
             Point point2 = GetPosition(i);
             Rectangle rectangle2 = new(new Point(point2.X * LogicalToDeviceUnits(chipsize.Width), point2.Y * LogicalToDeviceUnits(chipsize.Height)), LogicalToDeviceUnits(chipsize));
             rectangle2.Y -= vPosition;
-            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle2, new Rectangle(new Point(448,448), chipsize), GraphicsUnit.Pixel);
+            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle2, new Rectangle(new Point(448, 448), chipsize), GraphicsUnit.Pixel);
         }
 
         // クラシックチップリスト
@@ -135,7 +130,7 @@ namespace MasaoPlus
                     {
                         e.Graphics.FillRectangle(brush, e.ClipRectangle); // 背景色で塗りつぶす
                     }
-                    if(Global.cpd.CustomPartsChip == null)
+                    if (Global.cpd.CustomPartsChip == null)
                     {
                         AddChipData(default, 0, e);
                     }
@@ -219,7 +214,7 @@ namespace MasaoPlus
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            void func(string[] stagedata)
+            void func(LayerObject stagedata)
             {
                 for (int i = 0; i < stagedata.Length; i++)
                 {
@@ -232,7 +227,7 @@ namespace MasaoPlus
             func(Global.cpd.project.StageData4);
             Global.MainWnd.MainDesigner.DrawItemCodeRef.Remove(Global.cpd.CustomPartsChip[selectedIndex].code);
             Global.cpd.CustomPartsChip = [.. Global.cpd.CustomPartsChip.Where((_, index) => index != selectedIndex)];
-            if(Global.cpd.CustomPartsChip.Length > 0)
+            if (Global.cpd.CustomPartsChip.Length > 0)
             {
                 Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];
                 SelectedIndex = 0;
@@ -251,7 +246,7 @@ namespace MasaoPlus
         {
             ChipsData data;
             int i;
-            if(basedata.basecode != null)
+            if (basedata.basecode != null)
             {
                 for (i = 0; i < Global.cpd.VarietyChip.Length; i++)
                 {
@@ -268,7 +263,7 @@ namespace MasaoPlus
             }
             var r = new Random();
             const string PWS_CHARS = "abcdefghijklmnopqrstuvwxyz";
-            if(Global.cpd.CustomPartsChip == null)
+            if (Global.cpd.CustomPartsChip == null)
             {
                 Array.Resize(ref Global.cpd.CustomPartsChip, 1);
             }

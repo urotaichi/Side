@@ -215,7 +215,7 @@ namespace MasaoPlus
 
         private bool editFlag;
 
-        public string[] QuickTestrunSource;
+        public LayerObject QuickTestrunSource;
 
         public Dictionary<string, string> ChipRegister = [];
 
@@ -226,6 +226,8 @@ namespace MasaoPlus
         public bool ForceNoBuffering;
 
         public int EdittingStage;
+
+        public int EdittingLayerIndex = -1;
 
         public bool MapEditMode;
 

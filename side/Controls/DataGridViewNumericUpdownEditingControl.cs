@@ -113,18 +113,11 @@ namespace MasaoPlus.Controls
 
         public bool EditingControlWantsInputKey(Keys keyData, bool dataGridViewWantsInputKey)
         {
-            switch (keyData & Keys.KeyCode)
+            return (keyData & Keys.KeyCode) switch
             {
-                case Keys.End:
-                case Keys.Home:
-                case Keys.Left:
-                case Keys.Up:
-                case Keys.Right:
-                case Keys.Down:
-                    return true;
-                default:
-                    return false;
-            }
+                Keys.End or Keys.Home or Keys.Left or Keys.Up or Keys.Right or Keys.Down => true,
+                _ => false,
+            };
         }
 
         public Cursor EditingPanelCursor

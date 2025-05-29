@@ -8,11 +8,9 @@ namespace MasaoPlus.Controls
         public override void InitializeEditingControl(int rowIndex, object initialFormattedValue, DataGridViewCellStyle dataGridViewCellStyle)
         {
             base.InitializeEditingControl(rowIndex, initialFormattedValue, dataGridViewCellStyle);
-            DataGridViewNumericUpdownEditingControl dataGridViewNumericUpdownEditingControl = DataGridView.EditingControl as DataGridViewNumericUpdownEditingControl;
-            if (dataGridViewNumericUpdownEditingControl != null)
+            if (DataGridView.EditingControl is DataGridViewNumericUpdownEditingControl dataGridViewNumericUpdownEditingControl)
             {
-                DataGridViewNumericUpdownColumn dataGridViewNumericUpdownColumn = OwningColumn as DataGridViewNumericUpdownColumn;
-                if (dataGridViewNumericUpdownColumn == null)
+                if (OwningColumn is not DataGridViewNumericUpdownColumn dataGridViewNumericUpdownColumn)
                 {
                     dataGridViewNumericUpdownEditingControl.Minimum = -9999999m;
                     dataGridViewNumericUpdownEditingControl.Maximum = 9999999m;
