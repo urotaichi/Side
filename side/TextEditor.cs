@@ -52,13 +52,8 @@ namespace MasaoPlus
             {
                 return;
             }
-            Global.state.EditFlag = true;
             ci--;
-            Buffering = false;
-            StageTextEditor.Text = (string)TextBuffer[ci].Clone();
-            StageTextEditor.SelectionStart = CursorBuffer[ci];
-            Buffering = true;
-            SetUndoRedo();
+            RestoreTextState();
         }
 
         public void Redo()
@@ -67,8 +62,13 @@ namespace MasaoPlus
             {
                 return;
             }
-            Global.state.EditFlag = true;
             ci++;
+            RestoreTextState();
+        }
+
+        private void RestoreTextState()
+        {
+            Global.state.EditFlag = true;
             Buffering = false;
             StageTextEditor.Text = (string)TextBuffer[ci].Clone();
             StageTextEditor.SelectionStart = CursorBuffer[ci];
