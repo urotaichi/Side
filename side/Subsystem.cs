@@ -139,7 +139,7 @@ namespace MasaoPlus
 
                 if (configParam.RequireStages > 1 && configParam.RequireStages < 5)
                 {
-                    if (configParam.RequireStages > Global.cpd.project.Config.StageNum)
+                    if (configParam.RequireStages <= Global.cpd.project.Config.StageNum)
                     {
                         goto IL_SKIP_PARAM;
                     }
