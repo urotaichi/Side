@@ -681,6 +681,10 @@ namespace MasaoPlus
                 MSave.Enabled = false;
                 MSaveAs.Enabled = false;
                 MTSave.Enabled = false;
+                MEditStage1.Enabled = false;
+                MEditStage2.Enabled = false;
+                MEditStage3.Enabled = false;
+                MEditStage4.Enabled = false;
             }
             else
             {
@@ -751,6 +755,10 @@ namespace MasaoPlus
                 MSave.Enabled = true;
                 MSaveAs.Enabled = true;
                 MTSave.Enabled = true;
+                MEditStage1.Enabled = true;
+                MEditStage2.Enabled = true;
+                MEditStage3.Enabled = true;
+                MEditStage4.Enabled = true;
                 UpdateStatus("完了");
             }
             UpdateTitle();
@@ -1334,16 +1342,16 @@ namespace MasaoPlus
                     switch (keyCode)
                     {
                         case Keys.F1:
-                            StageSelectionChange(0);
+                            if(EditTab.SelectedIndex != 1) StageSelectionChange(0);
                             return;
                         case Keys.F2:
-                            StageSelectionChange(1);
+                            if(EditTab.SelectedIndex != 1) StageSelectionChange(1);
                             return;
                         case Keys.F3:
-                            StageSelectionChange(2);
+                            if(EditTab.SelectedIndex != 1) StageSelectionChange(2);
                             return;
                         case Keys.F4:
-                            StageSelectionChange(3);
+                            if(EditTab.SelectedIndex != 1) StageSelectionChange(3);
                             return;
                         case Keys.F6:
                             StageSelectionChange(4);
@@ -2122,13 +2130,6 @@ namespace MasaoPlus
             if (Global.state.EdittingStage == newValue)
             {
                 return;
-            }
-            if (EditTab.SelectedIndex == 1)
-            {
-                if (MessageBox.Show($"ステージを切り替えると、編集結果は失われます。続行してもよろしいですか？", "警告", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.Cancel)
-                {
-                    return;
-                }
             }
             UpdateStatus("ステージを切り替えています...");
             MEditStage1.Checked = false;
