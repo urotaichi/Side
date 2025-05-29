@@ -247,8 +247,10 @@ namespace MasaoPlus
             
             // レイヤー関連のUIコンポーネントの表示状態を設定
             LayerSelector.Visible = useMultiLayers;
+            MainEditor.LayerSelector.Visible = useMultiLayers;
             LayerMenuSelector.Visible = useMultiLayers;
             BackgroundLayer.Visible = !useMultiLayers;
+            MainEditor.BackgroundLayer.Visible = !useMultiLayers;
             EditBackground.Visible = !useMultiLayers;
             
             if (!useMultiLayers)
@@ -266,18 +268,21 @@ namespace MasaoPlus
             // 最初のアイテムを保持
             var firstLayerCountItem = LayerCount[0];
             var firstLayerSelectorItem = LayerSelector.DropDownItems[0];
+            var firstLayerEditorSelectorItem = MainEditor.LayerSelector.DropDownItems[0];
             var firstLayerMenuCountItem = LayerMenuCount[0];
             var firstLayerMenuSelectorItem = LayerMenuSelector.DropDownItems[0];
             
             // メニュー項目をクリア
             LayerCount.Clear();
             LayerSelector.DropDownItems.Clear();
+            MainEditor.LayerSelector.DropDownItems.Clear();
             LayerMenuCount.Clear();
             LayerMenuSelector.DropDownItems.Clear();
             
             // 最初のアイテムを復元
             LayerCount.Add(firstLayerCountItem);
             LayerSelector.DropDownItems.Add(firstLayerSelectorItem);
+            MainEditor.LayerSelector.DropDownItems.Add(firstLayerEditorSelectorItem);
             LayerMenuCount.Add(firstLayerMenuCountItem);
             LayerMenuSelector.DropDownItems.Add(firstLayerMenuSelectorItem);
             
@@ -298,6 +303,10 @@ namespace MasaoPlus
             var layerSelectorItem = CreateLayerMenuItem("LayerSelector", index);
             LayerCount.Add(layerSelectorItem);
             LayerSelector.DropDownItems.Add(layerSelectorItem);
+            
+            var layerEditorSelectorItem = CreateLayerMenuItem("LayerEditorSelector", index);
+            MainEditor.LayerCount.Add(layerEditorSelectorItem);
+            MainEditor.LayerSelector.DropDownItems.Add(layerEditorSelectorItem);
             
             // LayerMenuSelector用のメニュー項目を作成
             var layerMenuCountItem = CreateLayerMenuItem("LayerMenuCount", index);
@@ -327,7 +336,7 @@ namespace MasaoPlus
             return menuItem;
         }
 
-        private void LayerCount_Click(int layerIndex)
+        public void LayerCount_Click(int layerIndex)
         {
             if (Global.state.EdittingLayerIndex == layerIndex)
             {
@@ -361,11 +370,13 @@ namespace MasaoPlus
                 if (i == layerIndex)
                 {
                     LayerCount[i].Checked = true;
+                    MainEditor.LayerCount[i].Checked = true;
                     LayerMenuCount[i].Checked = true;
                 }
                 else
                 {
                     LayerCount[i].Checked = false;
+                    MainEditor.LayerCount[i].Checked = false;
                     LayerMenuCount[i].Checked = false;
                 }
             }
@@ -2073,6 +2084,7 @@ namespace MasaoPlus
             {
                 LayerMenuCount[i].Checked = false;
                 LayerCount[i].Checked = false;
+                MainEditor.LayerCount[i].Checked = false;
             }
             MainEditor.BackgroundLayer.Checked = false;
             Global.state.EdittingLayerIndex = -1;
@@ -2154,7 +2166,9 @@ namespace MasaoPlus
             {
                 EditBackground.Checked = true;
                 BackgroundLayer.Checked = true;
+                MainEditor.BackgroundLayer.Checked = true;
                 LayerCount[0].Checked = true;
+                MainEditor.LayerCount[0].Checked = true;
                 LayerMenuCount[0].Checked = true;
                 Global.state.EdittingLayerIndex = 0;
                 

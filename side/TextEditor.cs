@@ -446,6 +446,11 @@ namespace MasaoPlus
             StageLayer = new ToolStripDropDownButton();
             PatternChipLayer = new ToolStripMenuItem();
             BackgroundLayer = new ToolStripMenuItem();
+			LayerSelector = new ToolStripMenuItem();
+			LayerCount =
+            [
+                new ToolStripMenuItem()
+			];
             toolStripSeparator1 = new ToolStripSeparator();
             TextUndo = new ToolStripButton();
             TextRedo = new ToolStripButton();
@@ -583,7 +588,8 @@ namespace MasaoPlus
             StageLayer.DropDownItems.AddRange(
             [
                 PatternChipLayer,
-                BackgroundLayer
+                BackgroundLayer,
+				LayerSelector
             ]);
             StageLayer.Image = new IconImageView(DeviceDpi, Resources.layers).View();
             StageLayer.ImageTransparentColor = Color.Magenta;
@@ -600,6 +606,21 @@ namespace MasaoPlus
             BackgroundLayer.ShortcutKeyDisplayString = "F8";
             BackgroundLayer.Size = LogicalToDeviceUnits(new Size(247, 22));
             BackgroundLayer.Text = "背景チップレイヤー(&B)";
+			LayerSelector.DisplayStyle = ToolStripItemDisplayStyle.Text;
+			LayerSelector.DropDownItems.AddRange(
+            [
+                LayerCount[0],
+			]);
+			LayerSelector.Name = "LayerSelector";
+			LayerSelector.Size = LogicalToDeviceUnits(new Size(275, 22));
+			LayerSelector.Text = "背景チップレイヤー";
+			LayerSelector.Visible = false;
+			LayerCount[0].Name = "LayerCount1";
+			LayerCount[0].Size = LogicalToDeviceUnits(new Size(180, 22));
+			LayerCount[0].Text = "レイヤー 1";
+			LayerCount[0].Click += (sender, e) => {
+                Global.MainWnd.LayerCount_Click(0);
+			};
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = LogicalToDeviceUnits(new Size(6, 25));
             TextUndo.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -732,5 +753,9 @@ namespace MasaoPlus
         public ToolStripMenuItem PatternChipLayer;
 
         public ToolStripMenuItem BackgroundLayer;
+
+		public ToolStripMenuItem LayerSelector;
+
+		public List<ToolStripMenuItem> LayerCount;
     }
 }
