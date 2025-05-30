@@ -327,29 +327,43 @@ namespace MasaoPlus
             {
                 if (Global.state.EditingForeground)
                 {
-                    for (int i = 0; i < BackLayerBmp.Count; i++)
-                    {
-                        if (BackLayerBmp[i] != null)
-                        {
-                            Bitmap temp = BackLayerBmp[i];
-                            HalfTransparentBitmap2(ref temp);
-                            BackLayerBmp[i] = temp;
-                        }
-                    }
+                    InitTransparentForForeground();
                 }
                 else
                 {
                     HalfTransparentBitmap2(ref ForeLayerBmp);
-                    for (int i = 0; i < BackLayerBmp.Count; i++)
-                    {
-                        if (BackLayerBmp[i] != null && i != Global.state.EdittingLayerIndex)
-                        {
-                            UpdateSingleLayerBuffer(i);
-                            Bitmap temp = BackLayerBmp[i];
-                            HalfTransparentBitmap2(ref temp);
-                            BackLayerBmp[i] = temp;
-                        }
-                    }
+                    InitTransparentForBackground();
+                }
+            }
+        }
+
+        private void InitTransparentForForeground()
+        {
+            ProcessLayersTransparency(layerIndex => true);
+        }
+
+        public void InitTransparentForBackground()
+        {
+            ProcessLayersTransparency(layerIndex => 
+            {
+                if (layerIndex != Global.state.EdittingLayerIndex)
+                {
+                    UpdateSingleLayerBuffer(layerIndex);
+                    return true;
+                }
+                return false;
+            });
+        }
+
+        private void ProcessLayersTransparency(Func<int, bool> shouldProcess)
+        {
+            for (int i = 0; i < BackLayerBmp.Count; i++)
+            {
+                if (BackLayerBmp[i] != null && shouldProcess(i))
+                {
+                    Bitmap temp = BackLayerBmp[i];
+                    HalfTransparentBitmap2(ref temp);
+                    BackLayerBmp[i] = temp;
                 }
             }
         }

@@ -489,14 +489,18 @@ namespace MasaoPlus.Controls
                 case "PATTERN":
                     Global.MainWnd.MainDesigner.PrepareImages();
                     Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
-                    Global.MainWnd.MainDesigner.Refresh();
+                    if(!Global.state.EditingForeground)
+                    {
+                        Global.MainWnd.MainDesigner.InitTransparent();
+                    }
                     break;
                 case "LAYERCHIP":
                     Global.MainWnd.MainDesigner.PrepareImages();
                     Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
-                    Global.MainWnd.MainDesigner.Refresh();
+                    Global.MainWnd.MainDesigner.InitTransparentForBackground();
                     break;
             }
+            Global.MainWnd.MainDesigner.Refresh();
         }
 
         private static void HandleSpecialFileConfigs(ConfigParam configParam)
