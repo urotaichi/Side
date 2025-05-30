@@ -204,7 +204,7 @@ namespace MasaoPlus.Dialogs
                     }
                     else
                     {
-                        LayerSize.mapchips.Add(new Runtime.DefinedData.StageSizeData.LayerObject { Value = Global.cpd.project.Config.LayerImage });
+                        LayerSize.mapchips.Add(new Runtime.DefinedData.StageSizeData.LayerObject());
                     }
 
                 }

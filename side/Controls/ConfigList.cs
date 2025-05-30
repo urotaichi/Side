@@ -467,6 +467,14 @@ namespace MasaoPlus.Controls
             string fileName = Path.GetFileName(filePath);
             ConfView[e.ColumnIndex, e.RowIndex].Value = $"{fileName}...";
             Global.cpd.project.Config.Configurations[configIndex].Value = fileName;
+            if (Global.cpd.project.Config.Configurations[configIndex].Relation == "PATTERN")
+            {
+                ProjectLoading.SetStageDataSources();
+            }
+            else if (Global.cpd.project.Config.Configurations[configIndex].Relation == "LAYERCHIP")
+            {
+                ProjectLoading.SetLayerDataSources();
+            }
         }
 
         private static void HandleFileConfigRelations(ConfigParam configParam, int configIndex)
