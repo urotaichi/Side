@@ -35,7 +35,7 @@ namespace MasaoPlus.Controls
 
 
         // 表示を変える
-        protected void ConfigSelector_SelectedIndexChanged(object sender, EventArgs e)
+        protected virtual void ConfigSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ConfigSelector.Items.Count < 1)
             {
@@ -270,7 +270,7 @@ namespace MasaoPlus.Controls
             };
         }
 
-        private void ApplyWrapModeIfEnabled()
+        public void ApplyWrapModeIfEnabled()
         {
             if (Global.config.localSystem.WrapPropText) 
                 ConfView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -373,7 +373,7 @@ namespace MasaoPlus.Controls
             };
         }
 
-        private static bool TryCopyFileToProject(string sourceFile, ref string targetPath)
+        protected static bool TryCopyFileToProject(string sourceFile, ref string targetPath)
         {
             if (Path.GetDirectoryName(sourceFile) == Global.cpd.where)
             {
@@ -482,7 +482,7 @@ namespace MasaoPlus.Controls
             HandleSpecialFileConfigs(configParam);
         }
 
-        private static void RefreshDesignerForRelation(string relation)
+        protected static void RefreshDesignerForRelation(string relation)
         {
             switch (relation)
             {
@@ -592,7 +592,7 @@ namespace MasaoPlus.Controls
             MessageBox.Show("ファイルの読み込みに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
         }
 
-        protected void ConfView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        protected virtual void ConfView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             if (e.Control is DataGridViewTextBoxEditingControl dataGridViewTextBoxEditingControl)
             {
@@ -1078,7 +1078,7 @@ namespace MasaoPlus.Controls
 
         private readonly IContainer components;
 
-        protected ComboBox ConfigSelector;
+        public ComboBox ConfigSelector;
 
         public DataGridView ConfView;
 

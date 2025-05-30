@@ -2189,6 +2189,7 @@ namespace MasaoPlus
                     break;
             }
             Global.state.EdittingStage = newValue;
+            if(newValue < 4) LayerObjectConfigList.ConfigSelector.SelectedIndex = newValue;
             UpdateLayerVisibility();
             MainDesigner.ForceBufferResize();
             MainDesigner.PrepareImages();

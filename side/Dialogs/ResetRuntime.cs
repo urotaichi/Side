@@ -314,6 +314,11 @@ namespace MasaoPlus.Dialogs
             Global.MainWnd.ChipItemReady();
             Global.MainWnd.MasaoConfigList.Prepare();
             Global.MainWnd.CustomPartsConfigList.Prepare();
+            ProjectLoading.SetStageDataSources();
+            if (CurrentProjectData.UseLayer)
+            {
+                ProjectLoading.SetLayerDataSources();
+            }
             Global.MainWnd.LayerObjectConfigList.Prepare();
             Global.MainWnd.MEditStage1_Click(this, new EventArgs());
             Global.MainWnd.EditPatternChip_Click(this, new EventArgs());

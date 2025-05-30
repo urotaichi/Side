@@ -117,6 +117,11 @@ namespace MasaoPlus.Dialogs
                     }
                     Global.MainWnd.MainDesigner.CreateDrawItemReference();
                     SetState("画像を準備しています...");
+                    SetStageDataSources();
+                    if (CurrentProjectData.UseLayer)
+                    {
+                        SetLayerDataSources();
+                    }
                     Global.MainWnd.MainDesigner.PrepareImages();
                     SetState("グラフィカルデザイナを初期化しています...");
                     Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
@@ -139,13 +144,6 @@ namespace MasaoPlus.Dialogs
                     Global.MainWnd.MasaoConfigList.Prepare();
                     Global.MainWnd.CustomPartsConfigList.Prepare();
                     Global.MainWnd.LayerObjectConfigList.Prepare();
-
-                    SetStageDataSources();
-
-                    if (CurrentProjectData.UseLayer)
-                    {
-                        SetLayerDataSources();
-                    }
                     if (isLegacyUpgrade) Global.state.EditFlag = true;
                 }
                 catch (InvalidOperationException)
@@ -160,7 +158,7 @@ namespace MasaoPlus.Dialogs
             }
         }
 
-        private static void SetStageDataSources()
+        public static void SetStageDataSources()
         {
             var stageConfigs = new[]
             {
@@ -181,7 +179,7 @@ namespace MasaoPlus.Dialogs
             }
         }
 
-        private static void SetLayerDataSources()
+        public static void SetLayerDataSources()
         {
             var layerConfigs = new[]
             {
@@ -196,11 +194,19 @@ namespace MasaoPlus.Dialogs
                 for (int i = 0; i < LayerData.Count; i++)
                 {
                     LayerData[i].Source = Global.cpd.project.Config.LayerImage;
-                    var layerValue = LayerSize?.mapchips?.ElementAtOrDefault(i)?.Value;
-                    if (!string.IsNullOrEmpty(layerValue))
+                    if (LayerSize?.mapchips?.ElementAtOrDefault(i) != null)
                     {
-                        LayerData[i].Source = layerValue;
+                        var layerValue = LayerSize.mapchips.ElementAtOrDefault(i).Value;
+                        if (!string.IsNullOrEmpty(layerValue))
+                        {
+                            LayerData[i].Source = layerValue;
+                        }
                     }
+                    else
+                    {
+                        LayerSize.mapchips.Add(new Runtime.DefinedData.StageSizeData.LayerObject { Value = Global.cpd.project.Config.LayerImage });
+                    }
+
                 }
             }
         }
