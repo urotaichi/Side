@@ -303,7 +303,7 @@ namespace MasaoPlus.Controls
             };
         }
 
-        private void MoveLayerData(int sourceIndex, int targetIndex)
+        private void MoveLayerData(int sourceDisplayIndex, int targetDisplayIndex)
         {
             var (stageData, layerData) = GetStageAndLayerData(ConfigSelector.SelectedIndex);
             var (stageSize, layerSize) = GetRuntimeDefinitions(ConfigSelector.SelectedIndex);
@@ -342,7 +342,7 @@ namespace MasaoPlus.Controls
             if (e.Button == MouseButtons.Left)
             {
                 var hitTest = ConfView.HitTest(e.X, e.Y);
-                if (hitTest.Type == DataGridViewHitTestType.Cell && hitTest.RowIndex > 0) // ステージ行（0行目）は移動不可
+                if (hitTest.Type == DataGridViewHitTestType.Cell && hitTest.RowIndex >= 0) // 全ての行が移動可能
                 {
                     dragRowIndex = hitTest.RowIndex;
                     Size dragSize = SystemInformation.DragSize;
@@ -389,7 +389,7 @@ namespace MasaoPlus.Controls
             showDropLine = false;
             dropLineY = -1;
 
-            if (hitTest.Type == DataGridViewHitTestType.Cell && hitTest.RowIndex > 0) // ステージ行以外
+            if (hitTest.Type == DataGridViewHitTestType.Cell && hitTest.RowIndex >= 0) // 全ての行が対象
             {
                 Rectangle cellRect = ConfView.GetCellDisplayRectangle(0, hitTest.RowIndex, false);
                 int cellMiddleY = cellRect.Y + cellRect.Height / 2;
@@ -409,7 +409,7 @@ namespace MasaoPlus.Controls
                     dropTargetRowIndex = hitTest.RowIndex + 1;
                 }
             }
-            else if (hitTest.Type == DataGridViewHitTestType.None && ConfView.Rows.Count > 1)
+            else if (hitTest.Type == DataGridViewHitTestType.None && ConfView.Rows.Count > 0)
             {
                 // グリッド外 - 最後の行の下にドロップライン
                 Rectangle lastCellRect = ConfView.GetCellDisplayRectangle(0, ConfView.Rows.Count - 1, false);
@@ -435,15 +435,12 @@ namespace MasaoPlus.Controls
             Point clientPoint = ConfView.PointToClient(new Point(e.X, e.Y));
             var hitTest = ConfView.HitTest(clientPoint.X, clientPoint.Y);
 
-            int targetLayerIndex = GetDropTargetLayerIndex(clientPoint, hitTest);
+            int targetDisplayIndex = GetDropTargetDisplayIndex(clientPoint, hitTest, dragRowIndex);
             
-            if (targetLayerIndex >= 0 && dragRowIndex > 0)
+            if (targetDisplayIndex >= 0 && dragRowIndex >= 0)
             {
-                int sourceLayerIndex = dragRowIndex - 1; // ステージ行を除いたレイヤーインデックス
-
                 // 移動前後のインデックスが同じ場合は何もしない
-                if (sourceLayerIndex == targetLayerIndex || 
-                    (targetLayerIndex > sourceLayerIndex && targetLayerIndex == sourceLayerIndex + 1))
+                if (dragRowIndex == targetDisplayIndex)
                 {
                     ClearDropVisualFeedback();
                     dragRowIndex = -1;
@@ -452,7 +449,7 @@ namespace MasaoPlus.Controls
                 }
 
                 // データソースでの移動
-                MoveLayerData(sourceLayerIndex, targetLayerIndex);
+                MoveLayerData(dragRowIndex, targetDisplayIndex);
 
                 // 表示の更新（タグ情報も含めて再構築）
                 ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
@@ -460,8 +457,8 @@ namespace MasaoPlus.Controls
                 Global.MainWnd.UpdateLayerVisibility();
 
                 // 編集中のレイヤーが移動した場合の処理
-                int newEditingIndex = GetNewEditingLayerIndex(sourceLayerIndex, targetLayerIndex);
-                if(Global.state.EdittingLayerIndex == sourceLayerIndex && newEditingIndex >= 0) 
+                int newEditingIndex = GetNewEditingLayerIndex(dragRowIndex, targetDisplayIndex);
+                if(Global.state.EdittingLayerIndex == dragRowIndex && newEditingIndex >= 0) 
                 {
                     Global.MainWnd.LayerCount_Click(newEditingIndex);
                 }
@@ -494,7 +491,7 @@ namespace MasaoPlus.Controls
             }
         }
 
-        private int GetDropTargetLayerIndex(Point clientPoint, DataGridView.HitTestInfo hitTest)
+        private int GetDropTargetDisplayIndex(Point clientPoint, DataGridView.HitTestInfo hitTest, int sourceRowIndex)
         {
             // 行の境界でのドロップを検出
             if (hitTest.Type == DataGridViewHitTestType.Cell && hitTest.RowIndex >= 0)
@@ -502,21 +499,57 @@ namespace MasaoPlus.Controls
                 Rectangle cellRect = ConfView.GetCellDisplayRectangle(0, hitTest.RowIndex, false);
                 int cellMiddleY = cellRect.Y + cellRect.Height / 2;
 
+                int targetIndex;
                 if (clientPoint.Y < cellMiddleY)
                 {
-                    // セルの上半分 - その行の前に挿入
-                    return Math.Max(0, hitTest.RowIndex - 1);
+                    targetIndex = hitTest.RowIndex;
                 }
                 else
                 {
-                    // セルの下半分 - その行の後に挿入
-                    return hitTest.RowIndex;
+                    targetIndex = hitTest.RowIndex + 1;
                 }
+
+                // 移動前の行より後に挿入する場合は、移動前の行が削除されることを考慮
+                if (targetIndex > sourceRowIndex)
+                {
+                    targetIndex--;
+                }
+
+                return targetIndex;
             }
             else if (hitTest.Type == DataGridViewHitTestType.None || hitTest.RowIndex < 0)
             {
-                // グリッド外 - 最後に挿入
-                return ConfView.Rows.Count - 1;
+                // グリッド外での判定
+                if (ConfView.Rows.Count > 0)
+                {
+                    Rectangle firstCellRect = ConfView.GetCellDisplayRectangle(0, 0, false);
+                    Rectangle lastCellRect = ConfView.GetCellDisplayRectangle(0, ConfView.Rows.Count - 1, false);
+                    
+                    if (clientPoint.Y < firstCellRect.Y)
+                    {
+                        // グリッドの上部 - 先頭に挿入
+                        return 0;
+                    }
+                    else if (clientPoint.Y > lastCellRect.Y + lastCellRect.Height)
+                    {
+                        // グリッドの下部 - 最後に挿入
+                        int targetIndex = ConfView.Rows.Count;
+                        // 移動前の行より後に挿入する場合は、移動前の行が削除されることを考慮
+                        if (targetIndex > sourceRowIndex)
+                        {
+                            targetIndex--;
+                        }
+                        return targetIndex;
+                    }
+                }
+                
+                // その他の場合は最後に挿入
+                int defaultTargetIndex = ConfView.Rows.Count;
+                if (defaultTargetIndex > sourceRowIndex)
+                {
+                    defaultTargetIndex--;
+                }
+                return defaultTargetIndex;
             }
 
             return -1;
