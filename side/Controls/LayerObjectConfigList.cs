@@ -460,22 +460,29 @@ namespace MasaoPlus.Controls
             {
                 int sourceLayerIndex = dragRowIndex - 1; // ステージ行を除いたレイヤーインデックス
 
-                if (sourceLayerIndex != targetLayerIndex)
+                // 移動前後のインデックスが同じ場合は何もしない
+                if (sourceLayerIndex == targetLayerIndex || 
+                    (targetLayerIndex > sourceLayerIndex && targetLayerIndex == sourceLayerIndex + 1))
                 {
-                    // データソースでの移動
-                    MoveLayerData(sourceLayerIndex, targetLayerIndex);
+                    ClearDropVisualFeedback();
+                    dragRowIndex = -1;
+                    dragBoxFromMouseDown = Rectangle.Empty;
+                    return;
+                }
 
-                    // 表示の更新（タグ情報も含めて再構築）
-                    ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
+                // データソースでの移動
+                MoveLayerData(sourceLayerIndex, targetLayerIndex);
 
-                    Global.MainWnd.UpdateLayerVisibility();
+                // 表示の更新（タグ情報も含めて再構築）
+                ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
 
-                    // 編集中のレイヤーが移動した場合の処理
-                    int newEditingIndex = GetNewEditingLayerIndex(sourceLayerIndex, targetLayerIndex);
-                    if(Global.state.EdittingLayerIndex == sourceLayerIndex && newEditingIndex >= 0) 
-                    {
-                        Global.MainWnd.LayerCount_Click(newEditingIndex);
-                    }
+                Global.MainWnd.UpdateLayerVisibility();
+
+                // 編集中のレイヤーが移動した場合の処理
+                int newEditingIndex = GetNewEditingLayerIndex(sourceLayerIndex, targetLayerIndex);
+                if(Global.state.EdittingLayerIndex == sourceLayerIndex && newEditingIndex >= 0) 
+                {
+                    Global.MainWnd.LayerCount_Click(newEditingIndex);
                 }
             }
 
