@@ -467,13 +467,18 @@ namespace MasaoPlus.Controls
             string fileName = Path.GetFileName(filePath);
             ConfView[e.ColumnIndex, e.RowIndex].Value = $"{fileName}...";
             Global.cpd.project.Config.Configurations[configIndex].Value = fileName;
-            if (Global.cpd.project.Config.Configurations[configIndex].Relation == "PATTERN")
+            if (Global.cpd.project.Config.Configurations[configIndex].Relation == "PATTERN" || Global.cpd.project.Config.Configurations[configIndex].Relation == "LAYERCHIP")
             {
-                ProjectLoading.SetStageDataSources();
-            }
-            else if (Global.cpd.project.Config.Configurations[configIndex].Relation == "LAYERCHIP")
-            {
-                ProjectLoading.SetLayerDataSources();
+                if (Global.cpd.project.Config.Configurations[configIndex].Relation == "PATTERN")
+                {
+                    ProjectLoading.SetStageDataSources();
+                }
+                else if (Global.cpd.project.Config.Configurations[configIndex].Relation == "LAYERCHIP")
+                {
+                    ProjectLoading.SetLayerDataSources();
+                }
+                Global.MainWnd.LayerObjectConfigList.ConfView.Rows.Clear();
+                Global.MainWnd.LayerObjectConfigList.PopulateLayerObjectRows(Global.MainWnd.LayerObjectConfigList.ConfigSelector.SelectedIndex);
             }
         }
 

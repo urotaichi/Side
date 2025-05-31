@@ -33,7 +33,7 @@ namespace MasaoPlus.Controls
             ApplyWrapModeIfEnabled();
         }
 
-        private void PopulateLayerObjectRows(int selectedIndex)
+        public void PopulateLayerObjectRows(int selectedIndex)
         {
             List<(string, string)> layerObjects = GetLayerObjectsForStage(selectedIndex);
 
@@ -78,7 +78,6 @@ namespace MasaoPlus.Controls
                     Value = useDefaultImage.ToString()
                 };
                 ConfView[2, ConfView.Rows.Count - 1] = dataGridViewCheckBoxCell;
-                ConfView[2, ConfView.Rows.Count - 1].ReadOnly = useDefaultImage;
             }
         }
 
@@ -122,9 +121,10 @@ namespace MasaoPlus.Controls
                 var checkBoxCell = (DataGridViewCheckBoxCell)ConfView[2, e.RowIndex];
                 bool currentValue = bool.Parse(checkBoxCell.Value?.ToString() ?? "false");
                 
-                // trueの場合はクリック不可
+                // trueの場合はデフォルト画像の値をランタイム定義に書き込んでfalseに変更
                 if (currentValue)
                 {
+                    HandleSetCustomImage(e.RowIndex);
                     return;
                 }
 
@@ -139,6 +139,46 @@ namespace MasaoPlus.Controls
             }
 
             HandleFileSelection(e);
+        }
+
+        private void HandleSetCustomImage(int rowIndex)
+        {
+            string rowTag = ConfView.Rows[rowIndex].Tag?.ToString() ?? "";
+            string defaultFileName = GetDefaultFileName(rowTag);
+            
+            if (string.IsNullOrEmpty(defaultFileName))
+            {
+                return;
+            }
+
+            // ランタイム定義にデフォルト画像の値を設定
+            SetRuntimeDefinitionValue(rowTag, defaultFileName);
+
+            // チェックボックスをfalseに変更
+            ConfView[2, rowIndex].Value = "false";
+
+            Global.state.EditFlag = true;
+        }
+
+        private void SetRuntimeDefinitionValue(string rowTag, string fileName)
+        {
+            var (stageSize, layerSize) = GetRuntimeDefinitions(ConfigSelector.SelectedIndex);
+
+            if (rowTag == "stage")
+            {
+                if (stageSize?.mainPattern != null)
+                {
+                    stageSize.mainPattern.Value = fileName;
+                }
+            }
+            else if (rowTag.StartsWith("layer:"))
+            {
+                if (int.TryParse(rowTag.AsSpan(6), out int layerIndex) && 
+                    layerSize?.mapchips != null && layerIndex < layerSize.mapchips.Count)
+                {
+                    layerSize.mapchips[layerIndex].Value = fileName;
+                }
+            }
         }
 
         private void HandleCheckBoxClick(int rowIndex)
@@ -168,10 +208,28 @@ namespace MasaoPlus.Controls
             // 表示を更新
             ConfView[1, rowIndex].Value = defaultFileName + "...";
             ConfView[2, rowIndex].Value = "true";
-            ConfView[2, rowIndex].ReadOnly = true;
 
             // データソースを更新
             UpdateDataSourceAndRefresh(rowTag, defaultFileName);
+
+            // ランタイム定義の値をnullに設定してデフォルト値を使用
+            var (stageSize, layerSize) = GetRuntimeDefinitions(ConfigSelector.SelectedIndex);
+            
+            if (rowTag == "stage")
+            {
+                if (stageSize?.mainPattern != null)
+                {
+                    stageSize.mainPattern.Value = null;
+                }
+            }
+            else if (rowTag.StartsWith("layer:"))
+            {
+                if (int.TryParse(rowTag.AsSpan(6), out int layerIndex) && 
+                    layerSize?.mapchips != null && layerIndex < layerSize.mapchips.Count)
+                {
+                    layerSize.mapchips[layerIndex].Value = null;
+                }
+            }
 
             Global.state.EditFlag = true;
         }
@@ -221,9 +279,6 @@ namespace MasaoPlus.Controls
             // データソースを更新
             UpdateDataSourceAndRefresh(rowTag, destFileName);
 
-            // チェックボックスの値を更新
-            UpdateCheckBoxValue(e.RowIndex, rowTag, destFileName);
-
             Global.state.EditFlag = true;
         }
 
@@ -248,16 +303,6 @@ namespace MasaoPlus.Controls
                     RefreshDesignerForRelation("LAYERCHIP");
                 }
             }
-        }
-
-        private void UpdateCheckBoxValue(int rowIndex, string rowTag, string fileName)
-        {
-            bool useDefault = rowTag == "stage"
-                ? fileName == Global.cpd.project.Config.PatternImage
-                : fileName == Global.cpd.project.Config.LayerImage;
-            
-            ConfView[2, rowIndex].Value = useDefault.ToString();
-            ConfView[2, rowIndex].ReadOnly = useDefault;
         }
 
         private static (Runtime.DefinedData.StageSizeData stageSize, Runtime.DefinedData.LayerSizeData layerSize) GetRuntimeDefinitions(int selectedIndex)
