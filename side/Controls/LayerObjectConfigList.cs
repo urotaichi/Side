@@ -9,6 +9,11 @@ namespace MasaoPlus.Controls
 {
     public class LayerObjectConfigList : ConfigList
     {
+        private int dragRowIndex = -1;
+        private Rectangle dragBoxFromMouseDown;
+        private int dropTargetRowIndex = -1;
+        private bool showDropLine = false;
+        private int dropLineY = -1;
 
         public override void Prepare()
         {
@@ -317,6 +322,230 @@ namespace MasaoPlus.Controls
             };
         }
 
+        private void MoveLayerData(int sourceIndex, int targetIndex)
+        {
+            var (stageData, layerData) = GetStageAndLayerData(ConfigSelector.SelectedIndex);
+            var (stageSize, layerSize) = GetRuntimeDefinitions(ConfigSelector.SelectedIndex);
+
+            if (layerData != null && layerSize != null &&
+                sourceIndex < layerData.Count && targetIndex <= layerData.Count)
+            {
+                // ソースアイテムを取得
+                var sourceLayerItem = layerData[sourceIndex];
+                var sourceMapchipItem = sourceIndex < layerSize.mapchips.Count ? layerSize.mapchips[sourceIndex] : null;
+
+                // ソースアイテムを削除
+                layerData.RemoveAt(sourceIndex);
+                if (sourceIndex < layerSize.mapchips.Count)
+                {
+                    layerSize.mapchips.RemoveAt(sourceIndex);
+                }
+
+                // 削除により位置が変わる場合の調整
+                int adjustedTargetIndex = targetIndex > sourceIndex ? targetIndex - 1 : targetIndex;
+
+                // ターゲット位置に挿入
+                layerData.Insert(adjustedTargetIndex, sourceLayerItem);
+                if (sourceMapchipItem != null)
+                {
+                    layerSize.mapchips.Insert(adjustedTargetIndex, sourceMapchipItem);
+                }
+
+                Global.state.EditFlag = true;
+                RefreshDesignerForRelation("LAYERCHIP");
+            }
+        }
+
+        private void ConfView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                var hitTest = ConfView.HitTest(e.X, e.Y);
+                if (hitTest.Type == DataGridViewHitTestType.Cell && hitTest.RowIndex > 0) // ステージ行（0行目）は移動不可
+                {
+                    dragRowIndex = hitTest.RowIndex;
+                    Size dragSize = SystemInformation.DragSize;
+                    dragBoxFromMouseDown = new Rectangle(
+                        new Point(e.X - (dragSize.Width / 2), e.Y - (dragSize.Height / 2)),
+                        dragSize);
+                }
+                else
+                {
+                    dragRowIndex = -1;
+                    dragBoxFromMouseDown = Rectangle.Empty;
+                }
+            }
+        }
+
+        private void ConfView_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && dragRowIndex >= 0)
+            {
+                if (dragBoxFromMouseDown != Rectangle.Empty && 
+                    !dragBoxFromMouseDown.Contains(e.X, e.Y))
+                {
+                    ConfView.DoDragDrop(dragRowIndex, DragDropEffects.Move);
+                }
+            }
+        }
+
+        private void ConfView_DragOver(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+            
+            Point clientPoint = ConfView.PointToClient(new Point(e.X, e.Y));
+            var hitTest = ConfView.HitTest(clientPoint.X, clientPoint.Y);
+            
+            UpdateDropVisualFeedback(clientPoint, hitTest);
+        }
+
+        private void UpdateDropVisualFeedback(Point clientPoint, DataGridView.HitTestInfo hitTest)
+        {
+            int previousDropTarget = dropTargetRowIndex;
+            int previousDropLineY = dropLineY;
+            
+            dropTargetRowIndex = -1;
+            showDropLine = false;
+            dropLineY = -1;
+
+            if (hitTest.Type == DataGridViewHitTestType.Cell && hitTest.RowIndex > 0) // ステージ行以外
+            {
+                Rectangle cellRect = ConfView.GetCellDisplayRectangle(0, hitTest.RowIndex, false);
+                int cellMiddleY = cellRect.Y + cellRect.Height / 2;
+
+                if (clientPoint.Y < cellMiddleY)
+                {
+                    // セルの上半分 - その行の上にドロップライン
+                    showDropLine = true;
+                    dropLineY = cellRect.Y;
+                    dropTargetRowIndex = hitTest.RowIndex;
+                }
+                else
+                {
+                    // セルの下半分 - その行の下にドロップライン
+                    showDropLine = true;
+                    dropLineY = cellRect.Y + cellRect.Height;
+                    dropTargetRowIndex = hitTest.RowIndex + 1;
+                }
+            }
+            else if (hitTest.Type == DataGridViewHitTestType.None && ConfView.Rows.Count > 1)
+            {
+                // グリッド外 - 最後の行の下にドロップライン
+                Rectangle lastCellRect = ConfView.GetCellDisplayRectangle(0, ConfView.Rows.Count - 1, false);
+                showDropLine = true;
+                dropLineY = lastCellRect.Y + lastCellRect.Height;
+                dropTargetRowIndex = ConfView.Rows.Count;
+            }
+
+            // 描画更新が必要な場合のみ再描画
+            if (previousDropTarget != dropTargetRowIndex || previousDropLineY != dropLineY)
+            {
+                ConfView.Invalidate();
+            }
+        }
+
+        private void ConfView_DragLeave(object sender, EventArgs e)
+        {
+            ClearDropVisualFeedback();
+        }
+
+        private void ConfView_DragDrop(object sender, DragEventArgs e)
+        {
+            Point clientPoint = ConfView.PointToClient(new Point(e.X, e.Y));
+            var hitTest = ConfView.HitTest(clientPoint.X, clientPoint.Y);
+
+            int targetLayerIndex = GetDropTargetLayerIndex(clientPoint, hitTest);
+            
+            if (targetLayerIndex >= 0 && dragRowIndex > 0)
+            {
+                int sourceLayerIndex = dragRowIndex - 1; // ステージ行を除いたレイヤーインデックス
+
+                if (sourceLayerIndex != targetLayerIndex)
+                {
+                    // データソースでの移動
+                    MoveLayerData(sourceLayerIndex, targetLayerIndex);
+
+                    // 表示の更新（タグ情報も含めて再構築）
+                    ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
+
+                    Global.MainWnd.UpdateLayerVisibility();
+
+                    // 編集中のレイヤーが移動した場合の処理
+                    int newEditingIndex = GetNewEditingLayerIndex(sourceLayerIndex, targetLayerIndex);
+                    if(Global.state.EdittingLayerIndex == sourceLayerIndex && newEditingIndex >= 0) 
+                    {
+                        Global.MainWnd.LayerCount_Click(newEditingIndex);
+                    }
+                }
+            }
+
+            ClearDropVisualFeedback();
+            dragRowIndex = -1;
+            dragBoxFromMouseDown = Rectangle.Empty;
+        }
+
+        private void ClearDropVisualFeedback()
+        {
+            if (dropTargetRowIndex >= 0 || showDropLine)
+            {
+                dropTargetRowIndex = -1;
+                showDropLine = false;
+                dropLineY = -1;
+                ConfView.Invalidate();
+            }
+        }
+
+        private void ConfView_Paint(object sender, PaintEventArgs e)
+        {
+            // ドロップライン描画
+            if (showDropLine && dropLineY >= 0)
+            {
+                using Pen dropLinePen = new(Color.Blue, 2);
+                // dropLineYはGetCellDisplayRectangleで取得した座標なのでそのまま使用
+                e.Graphics.DrawLine(dropLinePen, 0, dropLineY, ConfView.Width, dropLineY);
+            }
+        }
+
+        private int GetDropTargetLayerIndex(Point clientPoint, DataGridView.HitTestInfo hitTest)
+        {
+            // 行の境界でのドロップを検出
+            if (hitTest.Type == DataGridViewHitTestType.Cell && hitTest.RowIndex >= 0)
+            {
+                Rectangle cellRect = ConfView.GetCellDisplayRectangle(0, hitTest.RowIndex, false);
+                int cellMiddleY = cellRect.Y + cellRect.Height / 2;
+
+                if (clientPoint.Y < cellMiddleY)
+                {
+                    // セルの上半分 - その行の前に挿入
+                    return Math.Max(0, hitTest.RowIndex - 1);
+                }
+                else
+                {
+                    // セルの下半分 - その行の後に挿入
+                    return hitTest.RowIndex;
+                }
+            }
+            else if (hitTest.Type == DataGridViewHitTestType.None || hitTest.RowIndex < 0)
+            {
+                // グリッド外 - 最後に挿入
+                return ConfView.Rows.Count - 1;
+            }
+
+            return -1;
+        }
+
+        private static int GetNewEditingLayerIndex(int sourceIndex, int targetIndex)
+        {
+            if (targetIndex > sourceIndex)
+            {
+                return targetIndex - 1;
+            }
+            else
+            {
+                return targetIndex;
+            }
+        }
+
         protected override void InitializeComponent()
         {
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -363,11 +592,18 @@ namespace MasaoPlus.Controls
             ConfView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             ConfView.Size = LogicalToDeviceUnits(new Size(298, 338));
             ConfView.TabIndex = 4;
+            ConfView.AllowDrop = true;
             ConfView.CellValueChanged += ConfView_CellValueChanged;
             ConfView.CellClick += ConfView_CellClick;
             ConfView.EditingControlShowing += ConfView_EditingControlShowing;
             ConfView.CurrentCellDirtyStateChanged += ConfView_CurrentCellDirtyStateChanged;
             ConfView.CellContentClick += ConfView_CellContentClick;
+            ConfView.MouseDown += ConfView_MouseDown;
+            ConfView.MouseMove += ConfView_MouseMove;
+            ConfView.DragOver += ConfView_DragOver;
+            ConfView.DragDrop += ConfView_DragDrop;
+            ConfView.DragLeave += ConfView_DragLeave;
+            ConfView.Paint += ConfView_Paint;
 
             CNames.HeaderText = "レイヤー";
             CNames.Name = "CNames";

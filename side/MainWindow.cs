@@ -263,7 +263,7 @@ namespace MasaoPlus
         /// <summary>
         /// レイヤー関連のメニューを再構築します
         /// </summary>
-        private void RebuildLayerMenus()
+        public void RebuildLayerMenus()
         {
             // 最初のアイテムを保持
             var firstLayerCountItem = LayerCount[0];
