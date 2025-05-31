@@ -40,39 +40,40 @@ namespace MasaoPlus.Controls
 
         public void PopulateLayerObjectRows(int selectedIndex)
         {
-            List<(string, string)> layerObjects = GetLayerObjectsForStage(selectedIndex);
+            var (stageData, layerData) = GetStageAndLayerData(selectedIndex);
+            var (stageSize, layerSize) = GetRuntimeDefinitions(selectedIndex);
+            
+            if (stageData == null || layerData == null || layerSize == null)
+            {
+                return;
+            }
+
+            // mainOrderを考慮してレイヤー順序を決定
+            List<(string name, string source, string rowTag, bool useDefault)> orderedLayers = [];
+            
+            // 背景レイヤーを順番に追加
+            for (int i = 0; i < layerData.Count; i++)
+            {
+                string name = $"背景レイヤーチップ{i + 1}のファイル名";
+                orderedLayers.Add((name, layerData[i].Source, $"layer:{i}", layerData[i].Source == Global.cpd.project.Config.LayerImage));
+            }
+
+            // メインレイヤーをmainOrderの位置に挿入
+            int mainOrder = Math.Max(0, Math.Min(layerSize.mainOrder, orderedLayers.Count));
+            orderedLayers.Insert(mainOrder, ("キャラクターパターンのファイル名", stageData.Source, "stage", stageData.Source == Global.cpd.project.Config.PatternImage));
 
             // 各レイヤーオブジェクトの設定行を追加
-            for (int i = 0; i < layerObjects.Count; i++)
+            for (int i = 0; i < orderedLayers.Count; i++)
             {
-                var (name, defaultValue) = layerObjects[i];
-                ConfView.Rows.Add(
-                [
-                    name,
-                    defaultValue + "..."
-                ]);
+                var (name, source, rowTag, useDefaultImage) = orderedLayers[i];
+                ConfView.Rows.Add([name, source + "..."]);
 
                 DataGridViewButtonCell dataGridViewButtonCell = new()
                 {
-                    Value = defaultValue + "...",
+                    Value = source + "...",
                     FlatStyle = FlatStyle.Popup
                 };
                 ConfView[1, ConfView.Rows.Count - 1] = dataGridViewButtonCell;
-
-                // 行にタグ情報を設定（stageDataかlayerDataのインデックスか）
-                string rowTag;
-                bool useDefaultImage;
-                
-                if (i == 0)
-                {
-                    rowTag = "stage";
-                    useDefaultImage = defaultValue == Global.cpd.project.Config.PatternImage;
-                }
-                else
-                {
-                    rowTag = $"layer:{i - 1}";
-                    useDefaultImage = defaultValue == Global.cpd.project.Config.LayerImage;
-                }
                 
                 ConfView.Rows[^1].Tag = rowTag;
 
@@ -84,26 +85,6 @@ namespace MasaoPlus.Controls
                 };
                 ConfView[2, ConfView.Rows.Count - 1] = dataGridViewCheckBoxCell;
             }
-        }
-
-        private static List<(string, string)> GetLayerObjectsForStage(int selectedIndex)
-        {
-            List<(string, string)> layerObjects = [];
-
-            var (stageData, layerData) = GetStageAndLayerData(selectedIndex);
-            
-            if (stageData != null && layerData != null && layerData.Count > 0)
-            {
-                layerObjects.Add(("キャラクターパターンのファイル名", stageData.Source));
-                layerObjects.Add(("背景レイヤーチップ1のファイル名", layerData[0].Source));
-                
-                for (int i = 1; i < layerData.Count; i++)
-                {
-                    layerObjects.Add(("背景レイヤーチップ" + (i + 1) + "のファイル名", layerData[i].Source));
-                }
-            }
-
-            return layerObjects;
         }
 
         private static (LayerObject stageData, List<LayerObject> layerData) GetStageAndLayerData(int selectedIndex)
