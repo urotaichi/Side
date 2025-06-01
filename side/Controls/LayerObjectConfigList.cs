@@ -20,6 +20,13 @@ namespace MasaoPlus.Controls
         private Button btnDuplicateLayer;
         private Button btnMoveUp;
         private Button btnMoveDown;
+        private ContextMenuStrip contextMenuStrip;
+        private ToolStripMenuItem menuAddLayer;
+        private ToolStripMenuItem menuDeleteLayer;
+        private ToolStripMenuItem menuDuplicateLayer;
+        private ToolStripMenuItem menuMoveUp;
+        private ToolStripMenuItem menuMoveDown;
+        private int rightClickedRowIndex = -1;
 
         public override void Prepare()
         {
@@ -431,6 +438,16 @@ namespace MasaoPlus.Controls
                     dragBoxFromMouseDown = Rectangle.Empty;
                 }
             }
+            else if (e.Button == MouseButtons.Right)
+            {
+                var hitTest = ConfView.HitTest(e.X, e.Y);
+                if (hitTest.Type == DataGridViewHitTestType.Cell && hitTest.RowIndex >= 0)
+                {
+                    rightClickedRowIndex = hitTest.RowIndex;
+                    UpdateContextMenuStates();
+                    contextMenuStrip.Show(ConfView, e.Location);
+                }
+            }
         }
 
         private void ConfView_MouseMove(object sender, MouseEventArgs e)
@@ -642,6 +659,11 @@ namespace MasaoPlus.Controls
 
         private void ButtonPanel_CreateLayer_Click(object sender, EventArgs e)
         {
+            CreateNewLayer(-1); // 末尾に追加
+        }
+
+        private void CreateNewLayer(int insertAfterRowIndex)
+        {
             var (stageData, layerData) = GetStageAndLayerData(ConfigSelector.SelectedIndex);
             var (stageSize, layerSize) = GetRuntimeDefinitions(ConfigSelector.SelectedIndex);
             
@@ -657,9 +679,8 @@ namespace MasaoPlus.Controls
                 Strings = new string[layerSize.y]
             };
 
-            // Stringsを初期化（3rdMapData形式で空のレイヤーデータで埋める）
+            // Stringsを初期化
             string fillValue = Global.cpd.Layerchip[0].code.ToString();
-
             for (int i = 0; i < newLayer.Length; i++)
             {
                 string[] array = new string[layerSize.x];
@@ -670,26 +691,89 @@ namespace MasaoPlus.Controls
                 newLayer[i] = string.Join(",", array);
             }
             
-            // 新しいマップチップアイテムを作成
             var newMapchip = new Runtime.DefinedData.StageSizeData.LayerObject
             {
-                Value = null // デフォルト値を使用
+                Value = null
             };
 
-            // 末尾に追加
-            layerData.Add(newLayer);
-            layerSize.mapchips.Add(newMapchip);
+            int insertIndex;
+            int newRowIndex;
+            bool adjustMainOrder = false;
+
+            if (insertAfterRowIndex == -1)
+            {
+                // 末尾に追加（ボタンから呼ばれた場合）
+                insertIndex = layerData.Count;
+                newRowIndex = ConfView.Rows.Count - 1;
+            }
+            else
+            {
+                // 指定された行の直下に追加（右クリックメニューから呼ばれた場合）
+                string rowTag = ConfView.Rows[insertAfterRowIndex].Tag?.ToString() ?? "";
+                
+                if (rowTag == "stage")
+                {
+                    // メインレイヤーの直下に挿入
+                    insertIndex = CalculateNewLayerIndex(insertAfterRowIndex + 1, layerSize.mainOrder);
+                    adjustMainOrder = insertAfterRowIndex < layerSize.mainOrder;
+                }
+                else if (rowTag.StartsWith("layer:") && int.TryParse(rowTag.AsSpan(6), out int layerIndex))
+                {
+                    // 右クリックされた背景レイヤーの直後に挿入
+                    insertIndex = layerIndex + 1;
+                    adjustMainOrder = insertAfterRowIndex < layerSize.mainOrder;
+                }
+                else
+                {
+                    // 末尾に追加
+                    insertIndex = layerData.Count;
+                }
+                
+                newRowIndex = insertAfterRowIndex + 1;
+            }
+
+            // レイヤーを挿入
+            if (insertIndex >= layerData.Count)
+            {
+                layerData.Add(newLayer);
+                layerSize.mapchips.Add(newMapchip);
+            }
+            else
+            {
+                layerData.Insert(insertIndex, newLayer);
+                layerSize.mapchips.Insert(insertIndex, newMapchip);
+            }
+
+            // mainOrderの調整
+            if (adjustMainOrder)
+            {
+                layerSize.mainOrder++;
+            }
 
             // 表示を更新
             ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
             
             // 新しく追加された行を選択
-            if (ConfView.Rows.Count > 0)
+            if (insertAfterRowIndex == -1)
             {
-                int newRowIndex = ConfView.Rows.Count - 1;
-                ConfView.ClearSelection();
-                ConfView.Rows[newRowIndex].Selected = true;
-                ConfView.CurrentCell = ConfView[0, newRowIndex];
+                // 末尾に追加された場合
+                if (ConfView.Rows.Count > 0)
+                {
+                    newRowIndex = ConfView.Rows.Count - 1;
+                    ConfView.ClearSelection();
+                    ConfView.Rows[newRowIndex].Selected = true;
+                    ConfView.CurrentCell = ConfView[0, newRowIndex];
+                }
+            }
+            else
+            {
+                // 指定位置に追加された場合
+                if (newRowIndex < ConfView.Rows.Count)
+                {
+                    ConfView.ClearSelection();
+                    ConfView.Rows[newRowIndex].Selected = true;
+                    ConfView.CurrentCell = ConfView[0, newRowIndex];
+                }
             }
 
             Global.MainWnd.MainDesigner.BackLayerBmp.Add(null);
@@ -706,7 +790,12 @@ namespace MasaoPlus.Controls
             }
 
             int selectedRowIndex = ConfView.SelectedRows[0].Index;
-            string rowTag = ConfView.Rows[selectedRowIndex].Tag?.ToString() ?? "";
+            DeleteLayer(selectedRowIndex);
+        }
+
+        private void DeleteLayer(int rowIndex)
+        {
+            string rowTag = ConfView.Rows[rowIndex].Tag?.ToString() ?? "";
             
             if (!rowTag.StartsWith("layer:"))
             {
@@ -734,8 +823,8 @@ namespace MasaoPlus.Controls
                 }
                 Global.MainWnd.MainDesigner.BackLayerBmp.RemoveAt(layerIndex);
 
-                // mainOrderの調整（削除されたレイヤーがメインレイヤーより上にある場合）
-                if (selectedRowIndex < layerSize.mainOrder)
+                // mainOrderの調整
+                if (rowIndex < layerSize.mainOrder)
                 {
                     layerSize.mainOrder--;
                 }
@@ -743,26 +832,21 @@ namespace MasaoPlus.Controls
                 // 表示を更新
                 ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
                 
-                // 編集中のレイヤーが削除された場合、一つ上のレイヤーを編集中にする
+                // 編集中のレイヤーが削除された場合の処理
                 if (isDeletingCurrentEditingLayer)
                 {
-                    // 表示行を基準に一つ上のレイヤーを特定
-                    int newEditingDisplayIndex = Math.Max(0, selectedRowIndex - 1);
+                    int newEditingDisplayIndex = Math.Max(0, rowIndex - 1);
                     
-                    // 新しい編集レイヤーのインデックスを計算
                     if (newEditingDisplayIndex < layerSize.mainOrder)
                     {
-                        // メインレイヤーより上の場合は背景レイヤー
                         Global.MainWnd.LayerCount_Click(newEditingDisplayIndex);
                     }
                     else if (newEditingDisplayIndex == layerSize.mainOrder)
                     {
-                        // メインレイヤーの場合はEditPatternChip_Clickを使用
                         Global.MainWnd.EditPatternChip_Click(this, new EventArgs());
                     }
                     else
                     {
-                        // メインレイヤーより下の場合は背景レイヤー（mainOrderを考慮）
                         int backgroundLayerIndex = newEditingDisplayIndex - 1;
                         Global.MainWnd.LayerCount_Click(backgroundLayerIndex);
                     }
@@ -771,7 +855,7 @@ namespace MasaoPlus.Controls
                 // 選択状態を調整
                 if (ConfView.Rows.Count > 0)
                 {
-                    int newSelectionIndex = Math.Min(selectedRowIndex, ConfView.Rows.Count - 1);
+                    int newSelectionIndex = Math.Min(rowIndex, ConfView.Rows.Count - 1);
                     ConfView.ClearSelection();
                     ConfView.Rows[newSelectionIndex].Selected = true;
                     ConfView.CurrentCell = ConfView[0, newSelectionIndex];
@@ -791,7 +875,12 @@ namespace MasaoPlus.Controls
             }
 
             int selectedRowIndex = ConfView.SelectedRows[0].Index;
-            string rowTag = ConfView.Rows[selectedRowIndex].Tag?.ToString() ?? "";
+            DuplicateLayer(selectedRowIndex);
+        }
+
+        private void DuplicateLayer(int rowIndex)
+        {
+            string rowTag = ConfView.Rows[rowIndex].Tag?.ToString() ?? "";
             
             var (stageData, layerData) = GetStageAndLayerData(ConfigSelector.SelectedIndex);
             var (stageSize, layerSize) = GetRuntimeDefinitions(ConfigSelector.SelectedIndex);
@@ -837,27 +926,27 @@ namespace MasaoPlus.Controls
                 }
 
                 // mainOrderの調整（複製されたレイヤーがメインレイヤーより上にある場合）
-                if (selectedRowIndex < layerSize.mainOrder)
+                if (rowIndex < layerSize.mainOrder)
                 {
                     layerSize.mainOrder++;
                 }
-            }
 
-            // 表示を更新
-            ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
-            
-            // 複製された行を選択
-            if (ConfView.Rows.Count > selectedRowIndex + 1)
-            {
-                ConfView.ClearSelection();
-                ConfView.Rows[selectedRowIndex + 1].Selected = true;
-                ConfView.CurrentCell = ConfView[0, selectedRowIndex + 1];
-            }
+                // 表示を更新
+                ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
+                
+                // 複製された行を選択
+                if (ConfView.Rows.Count > rowIndex + 1)
+                {
+                    ConfView.ClearSelection();
+                    ConfView.Rows[rowIndex + 1].Selected = true;
+                    ConfView.CurrentCell = ConfView[0, rowIndex + 1];
+                }
 
-            Global.MainWnd.MainDesigner.BackLayerBmp.Add(null);
-            RefreshDesignerForRelation("LAYERCHIP");
-            Global.MainWnd.RebuildLayerMenus();
-            Global.state.EditFlag = true;
+                Global.MainWnd.MainDesigner.BackLayerBmp.Add(null);
+                RefreshDesignerForRelation("LAYERCHIP");
+                Global.MainWnd.RebuildLayerMenus();
+                Global.state.EditFlag = true;
+            }
         }
 
         private void ButtonPanel_MoveUp_Click(object sender, EventArgs e)
@@ -978,6 +1067,98 @@ namespace MasaoPlus.Controls
             UpdateButtonStates();
         }
 
+        private void UpdateContextMenuStates()
+        {
+            if (rightClickedRowIndex < 0 || rightClickedRowIndex >= ConfView.Rows.Count)
+            {
+                menuAddLayer.Enabled = false;
+                menuDeleteLayer.Enabled = false;
+                menuDuplicateLayer.Enabled = false;
+                menuMoveUp.Enabled = false;
+                menuMoveDown.Enabled = false;
+                return;
+            }
+
+            string rowTag = ConfView.Rows[rightClickedRowIndex].Tag?.ToString() ?? "";
+            
+            // 上下移動メニューの状態制御
+            menuMoveUp.Enabled = rightClickedRowIndex > 0;
+            menuMoveDown.Enabled = rightClickedRowIndex < ConfView.Rows.Count - 1;
+            
+            // メインレイヤーが右クリックされた場合
+            if (rowTag == "stage")
+            {
+                menuAddLayer.Enabled = true; // メインレイヤーの直下に背景レイヤーを追加可能
+                menuDeleteLayer.Enabled = false;
+                menuDuplicateLayer.Enabled = false;
+            }
+            else if (rowTag.StartsWith("layer:"))
+            {
+                var (stageData, layerData) = GetStageAndLayerData(ConfigSelector.SelectedIndex);
+                
+                menuAddLayer.Enabled = true;
+                // 背景レイヤーが1個しかない場合は削除不可
+                menuDeleteLayer.Enabled = layerData != null && layerData.Count > 1;
+                menuDuplicateLayer.Enabled = true;
+            }
+            else
+            {
+                menuAddLayer.Enabled = false;
+                menuDeleteLayer.Enabled = false;
+                menuDuplicateLayer.Enabled = false;
+            }
+        }
+
+        private void MenuAddLayer_Click(object sender, EventArgs e)
+        {
+            if (rightClickedRowIndex < 0 || rightClickedRowIndex >= ConfView.Rows.Count)
+            {
+                return;
+            }
+
+            CreateNewLayer(rightClickedRowIndex); // 右クリックされた行の直下に追加
+        }
+
+        private void MenuDeleteLayer_Click(object sender, EventArgs e)
+        {
+            if (rightClickedRowIndex < 0 || rightClickedRowIndex >= ConfView.Rows.Count)
+            {
+                return;
+            }
+
+            DeleteLayer(rightClickedRowIndex);
+        }
+
+        private void MenuDuplicateLayer_Click(object sender, EventArgs e)
+        {
+            if (rightClickedRowIndex < 0 || rightClickedRowIndex >= ConfView.Rows.Count)
+            {
+                return;
+            }
+
+            DuplicateLayer(rightClickedRowIndex);
+        }
+
+        private void MenuMoveUp_Click(object sender, EventArgs e)
+        {
+            if (rightClickedRowIndex <= 0 || rightClickedRowIndex >= ConfView.Rows.Count)
+            {
+                return;
+            }
+
+            ProcessLayerMove(rightClickedRowIndex, rightClickedRowIndex - 1);
+        }
+
+        private void MenuMoveDown_Click(object sender, EventArgs e)
+        {
+            if (rightClickedRowIndex < 0 || rightClickedRowIndex >= ConfView.Rows.Count - 1)
+            {
+                return;
+            }
+
+            ProcessLayerMove(rightClickedRowIndex, rightClickedRowIndex + 1);
+        }
+
         protected override void InitializeComponent()
         {
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -993,7 +1174,14 @@ namespace MasaoPlus.Controls
             CNames = new DataGridViewTextBoxColumn();
             CValues = new DataGridViewTextBoxColumn();
             UseDefault = new DataGridViewTextBoxColumn();
+            contextMenuStrip = new ContextMenuStrip();
+            menuAddLayer = new ToolStripMenuItem();
+            menuDeleteLayer = new ToolStripMenuItem();
+            menuDuplicateLayer = new ToolStripMenuItem();
+            menuMoveUp = new ToolStripMenuItem();
+            menuMoveDown = new ToolStripMenuItem();
             ((ISupportInitialize)ConfView).BeginInit();
+            contextMenuStrip.SuspendLayout();
             SuspendLayout();
 
             ConfigSelector.Dock = DockStyle.Top;
@@ -1101,6 +1289,47 @@ namespace MasaoPlus.Controls
             Controls.Add(ConfigSelector);
             Name = "LayerConfigList";
             Size = LogicalToDeviceUnits(new Size(298, 358));
+            // コンテキストメニューの設定
+            contextMenuStrip.Items.AddRange([
+                menuAddLayer,
+                menuDeleteLayer,
+                menuDuplicateLayer,
+                new ToolStripSeparator(),
+                menuMoveUp,
+                menuMoveDown
+            ]);
+            contextMenuStrip.Name = "contextMenuStrip";
+            contextMenuStrip.Size = LogicalToDeviceUnits(new Size(180, 120));
+
+            menuAddLayer.Name = "menuAddLayer";
+            menuAddLayer.Size = LogicalToDeviceUnits(new Size(179, 22));
+            menuAddLayer.Text = "レイヤーを追加";
+            menuAddLayer.Click += MenuAddLayer_Click;
+
+            menuDeleteLayer.Name = "menuDeleteLayer";
+            menuDeleteLayer.Size = LogicalToDeviceUnits(new Size(179, 22));
+            menuDeleteLayer.Text = "レイヤーを削除";
+            menuDeleteLayer.Click += MenuDeleteLayer_Click;
+
+            menuDuplicateLayer.Name = "menuDuplicateLayer";
+            menuDuplicateLayer.Size = LogicalToDeviceUnits(new Size(179, 22));
+            menuDuplicateLayer.Text = "レイヤーを複製";
+            menuDuplicateLayer.Click += MenuDuplicateLayer_Click;
+
+            menuMoveUp.Name = "menuMoveUp";
+            menuMoveUp.Size = LogicalToDeviceUnits(new Size(179, 22));
+            menuMoveUp.Text = "上に移動";
+            menuMoveUp.Click += MenuMoveUp_Click;
+
+            menuMoveDown.Name = "menuMoveDown";
+            menuMoveDown.Size = LogicalToDeviceUnits(new Size(179, 22));
+            menuMoveDown.Text = "下に移動";
+            menuMoveDown.Click += MenuMoveDown_Click;
+
+            // DataGridViewにコンテキストメニューを設定
+            ConfView.ContextMenuStrip = contextMenuStrip;
+
+            contextMenuStrip.ResumeLayout(false);
             ((ISupportInitialize)ConfView).EndInit();
             ResumeLayout(false);
         }
