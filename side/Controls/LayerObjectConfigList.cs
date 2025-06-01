@@ -477,13 +477,36 @@ namespace MasaoPlus.Controls
                     dropTargetRowIndex = hitTest.RowIndex + 1;
                 }
             }
-            else if (hitTest.Type == DataGridViewHitTestType.None && ConfView.Rows.Count > 0)
+            else if (hitTest.Type == DataGridViewHitTestType.None || hitTest.RowIndex < 0)
             {
-                // グリッド外 - 最後の行の下にドロップライン
-                Rectangle lastCellRect = ConfView.GetCellDisplayRectangle(0, ConfView.Rows.Count - 1, false);
-                showDropLine = true;
-                dropLineY = lastCellRect.Y + lastCellRect.Height;
-                dropTargetRowIndex = ConfView.Rows.Count;
+                // グリッド外での判定
+                if (ConfView.Rows.Count > 0)
+                {
+                    Rectangle firstCellRect = ConfView.GetCellDisplayRectangle(0, 0, false);
+                    Rectangle lastCellRect = ConfView.GetCellDisplayRectangle(0, ConfView.Rows.Count - 1, false);
+                    
+                    if (clientPoint.Y < firstCellRect.Y)
+                    {
+                        // グリッド上方向 - 最初の行の上にドロップライン
+                        showDropLine = true;
+                        dropLineY = firstCellRect.Y;
+                        dropTargetRowIndex = 0;
+                    }
+                    else if (clientPoint.Y > lastCellRect.Y + lastCellRect.Height)
+                    {
+                        // グリッド下方向 - 最後の行の下にドロップライン
+                        showDropLine = true;
+                        dropLineY = lastCellRect.Y + lastCellRect.Height;
+                        dropTargetRowIndex = ConfView.Rows.Count;
+                    }
+                    else
+                    {
+                        // その他の場合は最後に挿入
+                        showDropLine = true;
+                        dropLineY = lastCellRect.Y + lastCellRect.Height;
+                        dropTargetRowIndex = ConfView.Rows.Count;
+                    }
+                }
             }
 
             // 描画更新が必要な場合のみ再描画
