@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using MasaoPlus.Properties;
 
 namespace MasaoPlus.Controls
 {
@@ -1201,33 +1202,41 @@ namespace MasaoPlus.Controls
             buttonPanel.Padding = new Padding(2);
 
             // ボタンの設定
-            int buttonWidth = LogicalToDeviceUnits(50);
+            int buttonWidth = LogicalToDeviceUnits(70);
             int buttonHeight = LogicalToDeviceUnits(24);
             int buttonSpacing = LogicalToDeviceUnits(2);
 
             btnAddLayer.Text = "追加";
             btnAddLayer.Size = new Size(buttonWidth, buttonHeight);
             btnAddLayer.Location = new Point(buttonSpacing, LogicalToDeviceUnits(3));
+            btnAddLayer.Image = new IconImageView(DeviceDpi, Resources.shape_square_add).View();
+            btnAddLayer.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnAddLayer.Click += ButtonPanel_CreateLayer_Click;
 
             btnDeleteLayer.Text = "削除";
             btnDeleteLayer.Size = new Size(buttonWidth, buttonHeight);
             btnDeleteLayer.Location = new Point(buttonWidth + buttonSpacing * 2, LogicalToDeviceUnits(3));
+            btnDeleteLayer.Image = new IconImageView(DeviceDpi, Resources.cross).View();
+            btnDeleteLayer.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDeleteLayer.Click += ButtonPanel_DeleteLayer_Click;
 
             btnDuplicateLayer.Text = "複製";
             btnDuplicateLayer.Size = new Size(buttonWidth, buttonHeight);
             btnDuplicateLayer.Location = new Point((buttonWidth + buttonSpacing) * 2 + buttonSpacing, LogicalToDeviceUnits(3));
+            btnDuplicateLayer.Image = new IconImageView(DeviceDpi, Resources.copy).View();
+            btnDuplicateLayer.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDuplicateLayer.Click += ButtonPanel_DuplicateLayer_Click;
 
-            btnMoveUp.Text = "↑";
+            btnMoveUp.Text = "";
             btnMoveUp.Size = new Size(LogicalToDeviceUnits(25), buttonHeight);
             btnMoveUp.Location = new Point((buttonWidth + buttonSpacing) * 3 + buttonSpacing, LogicalToDeviceUnits(3));
+            btnMoveUp.Image = new IconImageView(DeviceDpi, Resources.arrow_up).View();
             btnMoveUp.Click += ButtonPanel_MoveUp_Click;
 
-            btnMoveDown.Text = "↓";
+            btnMoveDown.Text = "";
             btnMoveDown.Size = new Size(LogicalToDeviceUnits(25), buttonHeight);
             btnMoveDown.Location = new Point((buttonWidth + buttonSpacing) * 3 + LogicalToDeviceUnits(25) + buttonSpacing * 2, LogicalToDeviceUnits(3));
+            btnMoveDown.Image = new IconImageView(DeviceDpi, Resources.arrow_down).View();
             btnMoveDown.Click += ButtonPanel_MoveDown_Click;
 
             buttonPanel.Controls.AddRange([btnAddLayer, btnDeleteLayer, btnDuplicateLayer, btnMoveUp, btnMoveDown]);
@@ -1304,26 +1313,31 @@ namespace MasaoPlus.Controls
             menuAddLayer.Name = "menuAddLayer";
             menuAddLayer.Size = LogicalToDeviceUnits(new Size(179, 22));
             menuAddLayer.Text = "レイヤーを追加";
+            menuAddLayer.Image = new IconImageView(DeviceDpi, Resources.shape_square_add).View();
             menuAddLayer.Click += MenuAddLayer_Click;
 
             menuDeleteLayer.Name = "menuDeleteLayer";
             menuDeleteLayer.Size = LogicalToDeviceUnits(new Size(179, 22));
             menuDeleteLayer.Text = "レイヤーを削除";
+            menuDeleteLayer.Image = new IconImageView(DeviceDpi, Resources.cross).View();
             menuDeleteLayer.Click += MenuDeleteLayer_Click;
 
             menuDuplicateLayer.Name = "menuDuplicateLayer";
             menuDuplicateLayer.Size = LogicalToDeviceUnits(new Size(179, 22));
             menuDuplicateLayer.Text = "レイヤーを複製";
+            menuDuplicateLayer.Image = new IconImageView(DeviceDpi, Resources.copy).View();
             menuDuplicateLayer.Click += MenuDuplicateLayer_Click;
 
             menuMoveUp.Name = "menuMoveUp";
             menuMoveUp.Size = LogicalToDeviceUnits(new Size(179, 22));
             menuMoveUp.Text = "上に移動";
+            menuMoveUp.Image = new IconImageView(DeviceDpi, Resources.arrow_up).View();
             menuMoveUp.Click += MenuMoveUp_Click;
 
             menuMoveDown.Name = "menuMoveDown";
             menuMoveDown.Size = LogicalToDeviceUnits(new Size(179, 22));
             menuMoveDown.Text = "下に移動";
+            menuMoveDown.Image = new IconImageView(DeviceDpi, Resources.arrow_down).View();
             menuMoveDown.Click += MenuMoveDown_Click;
 
             // DataGridViewにコンテキストメニューを設定
