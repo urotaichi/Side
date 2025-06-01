@@ -946,11 +946,17 @@ namespace MasaoPlus.Controls
             {
                 btnDeleteLayer.Enabled = false;
                 btnDuplicateLayer.Enabled = false;
+                btnMoveUp.Enabled = false;
+                btnMoveDown.Enabled = false;
                 return;
             }
 
             int selectedRowIndex = ConfView.SelectedRows[0].Index;
             string rowTag = ConfView.Rows[selectedRowIndex].Tag?.ToString() ?? "";
+            
+            // 上下移動ボタンの状態制御
+            btnMoveUp.Enabled = selectedRowIndex > 0;
+            btnMoveDown.Enabled = selectedRowIndex < ConfView.Rows.Count - 1;
             
             // メインレイヤーが選択されている場合
             if (rowTag == "stage")
