@@ -546,36 +546,7 @@ namespace MasaoPlus.Controls
                     return;
                 }
 
-                // データソースでの移動
-                MoveLayerData(dragRowIndex, targetDisplayIndex);
-
-                // 表示の更新（タグ情報も含めて再構築）
-                ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
-
-                Global.MainWnd.UpdateLayerVisibility();
-
-                // 編集中のレイヤーが移動した場合の処理
-                int newEditingIndex = GetNewEditingLayerIndex(dragRowIndex, targetDisplayIndex);
-                if(Global.state.EdittingLayerIndex == dragRowIndex && newEditingIndex >= 0) 
-                {
-                    Global.MainWnd.LayerCount_Click(newEditingIndex);
-                }
-
-                // 移動後の行を選択状態にする
-                int finalSelectionIndex = newEditingIndex;
-                
-                // 下方向の移動の場合は次の行を選択
-                if (targetDisplayIndex > dragRowIndex)
-                {
-                    finalSelectionIndex = newEditingIndex + 1;
-                }
-                
-                if (finalSelectionIndex >= 0 && finalSelectionIndex < ConfView.Rows.Count)
-                {
-                    ConfView.ClearSelection();
-                    ConfView.Rows[finalSelectionIndex].Selected = true;
-                    ConfView.CurrentCell = ConfView[0, finalSelectionIndex];
-                }
+                ProcessLayerMove(dragRowIndex, targetDisplayIndex);
             }
 
             ClearDropVisualFeedback();
@@ -667,18 +638,6 @@ namespace MasaoPlus.Controls
             }
 
             return -1;
-        }
-
-        private static int GetNewEditingLayerIndex(int sourceIndex, int targetIndex)
-        {
-            if (targetIndex > sourceIndex)
-            {
-                return targetIndex - 1;
-            }
-            else
-            {
-                return targetIndex;
-            }
         }
 
         private void ButtonPanel_CreateLayer_Click(object sender, EventArgs e)
@@ -926,15 +885,50 @@ namespace MasaoPlus.Controls
             int selectedRowIndex = ConfView.SelectedRows[0].Index;
             int targetIndex = selectedRowIndex + direction;
             
-            MoveLayerData(selectedRowIndex, targetIndex);
-            
-            // 表示の更新
-            ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
-            
-            // 移動後の行を選択
-            ConfView.ClearSelection();
-            ConfView.Rows[targetIndex].Selected = true;
-            ConfView.CurrentCell = ConfView[0, targetIndex];
+            ProcessLayerMove(selectedRowIndex, targetIndex);
+        }
+
+        private void ProcessLayerMove(int sourceDisplayIndex, int targetDisplayIndex)
+        {
+            // 移動元の背景レイヤーインデックスを取得
+            string sourceRowTag = ConfView.Rows[sourceDisplayIndex].Tag?.ToString() ?? "";
+            if (sourceRowTag.StartsWith("layer:") && int.TryParse(sourceRowTag.AsSpan(6), out int sourceLayerIndex))
+            {
+                // 編集中のレイヤーが移動される場合の処理
+                bool isMovingCurrentEditingLayer = sourceLayerIndex == Global.state.EdittingLayerIndex;
+                
+                MoveLayerData(sourceDisplayIndex, targetDisplayIndex);
+                
+                // 表示の更新
+                ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
+                
+                // 編集中のレイヤーが移動した場合、新しいレイヤーインデックスを設定
+                if (isMovingCurrentEditingLayer)
+                {
+                    // 移動後の新しいレイヤーインデックスを計算
+                    var (stageSize, layerSize) = GetRuntimeDefinitions(ConfigSelector.SelectedIndex);
+                    int newLayerIndex = CalculateNewLayerIndex(targetDisplayIndex, layerSize.mainOrder);
+                    Global.MainWnd.LayerCount_Click(newLayerIndex);
+                }
+                
+                // 移動後の行を選択
+                ConfView.ClearSelection();
+                ConfView.Rows[targetDisplayIndex].Selected = true;
+                ConfView.CurrentCell = ConfView[0, targetDisplayIndex];
+            }
+            else
+            {
+                // メインレイヤーの移動の場合は従来通り
+                MoveLayerData(sourceDisplayIndex, targetDisplayIndex);
+                
+                // 表示の更新
+                ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
+                
+                // 移動後の行を選択
+                ConfView.ClearSelection();
+                ConfView.Rows[targetDisplayIndex].Selected = true;
+                ConfView.CurrentCell = ConfView[0, targetDisplayIndex];
+            }
 
             Global.MainWnd.UpdateLayerVisibility();
             Global.state.EditFlag = true;
