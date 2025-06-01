@@ -351,6 +351,33 @@ namespace MasaoPlus.Properties
             }
         }
 
+        internal static Bitmap arrow_up
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("arrow_up", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
+
+        internal static Bitmap arrow_down
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("arrow_down", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
+
+        internal static Bitmap shape_square_add
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("shape_square_add", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
+
         private static ResourceManager resourceMan;
 
 		private static CultureInfo resourceCulture;
