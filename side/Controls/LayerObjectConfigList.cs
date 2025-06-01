@@ -382,11 +382,11 @@ namespace MasaoPlus.Controls
             // 表示インデックスからレイヤーインデックスに変換
             if (targetDisplayIndex < mainOrder)
             {
-                return targetDisplayIndex;
+                return Math.Max(0, targetDisplayIndex);
             }
             else
             {
-                return targetDisplayIndex - 1;
+                return Math.Max(0, targetDisplayIndex - 1);
             }
         }
 
@@ -529,6 +529,22 @@ namespace MasaoPlus.Controls
                 if(Global.state.EdittingLayerIndex == dragRowIndex && newEditingIndex >= 0) 
                 {
                     Global.MainWnd.LayerCount_Click(newEditingIndex);
+                }
+
+                // 移動後の行を選択状態にする
+                int finalSelectionIndex = newEditingIndex;
+                
+                // 下方向の移動の場合は次の行を選択
+                if (targetDisplayIndex > dragRowIndex)
+                {
+                    finalSelectionIndex = newEditingIndex + 1;
+                }
+                
+                if (finalSelectionIndex >= 0 && finalSelectionIndex < ConfView.Rows.Count)
+                {
+                    ConfView.ClearSelection();
+                    ConfView.Rows[finalSelectionIndex].Selected = true;
+                    ConfView.CurrentCell = ConfView[0, finalSelectionIndex];
                 }
             }
 
