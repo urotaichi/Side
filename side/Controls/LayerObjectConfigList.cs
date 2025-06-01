@@ -308,32 +308,100 @@ namespace MasaoPlus.Controls
             var (stageData, layerData) = GetStageAndLayerData(ConfigSelector.SelectedIndex);
             var (stageSize, layerSize) = GetRuntimeDefinitions(ConfigSelector.SelectedIndex);
 
-            if (layerData != null && layerSize != null &&
-                sourceIndex < layerData.Count && targetIndex <= layerData.Count)
+            if (layerData == null || layerSize == null)
             {
-                // ソースアイテムを取得
-                var sourceLayerItem = layerData[sourceIndex];
-                var sourceMapchipItem = sourceIndex < layerSize.mapchips.Count ? layerSize.mapchips[sourceIndex] : null;
+                return;
+            }
 
-                // ソースアイテムを削除
-                layerData.RemoveAt(sourceIndex);
-                if (sourceIndex < layerSize.mapchips.Count)
+            // 現在の表示順序からソースとターゲットのレイヤー情報を取得
+            string sourceRowTag = ConfView.Rows[sourceDisplayIndex].Tag?.ToString() ?? "";
+
+            if (sourceRowTag == "stage" || sourceRowTag.StartsWith("layer:"))
+            {
+                // ソースがメインレイヤーの場合
+                if (sourceRowTag == "stage")
                 {
-                    layerSize.mapchips.RemoveAt(sourceIndex);
+                    // 新しいmainOrderを設定
+                    layerSize.mainOrder = targetDisplayIndex;
+                    RefreshDesignerForRelation("PATTERN");
                 }
-
-                // 削除により位置が変わる場合の調整
-                int adjustedTargetIndex = targetIndex > sourceIndex ? targetIndex - 1 : targetIndex;
-
-                // ターゲット位置に挿入
-                layerData.Insert(adjustedTargetIndex, sourceLayerItem);
-                if (sourceMapchipItem != null)
+                else if (sourceRowTag.StartsWith("layer:"))
                 {
-                    layerSize.mapchips.Insert(adjustedTargetIndex, sourceMapchipItem);
+                    // 背景レイヤーの移動
+                    if (int.TryParse(sourceRowTag.AsSpan(6), out int sourceLayerIndex) &&
+                        sourceLayerIndex < layerData.Count)
+                    {
+                        // 移動するレイヤーを取得
+                        var sourceLayerItem = layerData[sourceLayerIndex];
+                        var sourceMapchipItem = sourceLayerIndex < layerSize.mapchips.Count ? layerSize.mapchips[sourceLayerIndex] : null;
+
+                        // ソースレイヤーを削除
+                        layerData.RemoveAt(sourceLayerIndex);
+                        if (sourceLayerIndex < layerSize.mapchips.Count)
+                        {
+                            layerSize.mapchips.RemoveAt(sourceLayerIndex);
+                        }
+                        // ターゲット位置を計算（メインレイヤーの位置を考慮)
+                        int newLayerIndex = CalculateNewLayerIndex(targetDisplayIndex, layerSize.mainOrder);
+
+                        // 新しい位置に挿入
+                        if (newLayerIndex >= layerData.Count)
+                        {
+                            layerData.Add(sourceLayerItem);
+                        }
+                        else
+                        {
+                            layerData.Insert(newLayerIndex, sourceLayerItem);
+                        }
+                        
+                        if (sourceMapchipItem != null)
+                        {
+                            if (newLayerIndex >= layerSize.mapchips.Count)
+                            {
+                                layerSize.mapchips.Add(sourceMapchipItem);
+                            }
+                            else
+                            {
+                                layerSize.mapchips.Insert(newLayerIndex, sourceMapchipItem);
+                            }
+                        }
+
+                        // mainOrderの調整
+                        AdjustMainOrderAfterLayerMove(sourceDisplayIndex, targetDisplayIndex, layerSize);
+                        
+                        RefreshDesignerForRelation("LAYERCHIP");
+                    }
                 }
 
                 Global.state.EditFlag = true;
-                RefreshDesignerForRelation("LAYERCHIP");
+            }
+        }
+
+        private static int CalculateNewLayerIndex(int targetDisplayIndex, int mainOrder)
+        {
+            // 表示インデックスからレイヤーインデックスに変換
+            if (targetDisplayIndex < mainOrder)
+            {
+                return targetDisplayIndex;
+            }
+            else
+            {
+                return targetDisplayIndex - 1;
+            }
+        }
+
+        private static void AdjustMainOrderAfterLayerMove(int sourceDisplayIndex, int targetDisplayIndex, Runtime.DefinedData.LayerSizeData layerSize)
+        {
+            // 表示位置ベースでmainOrderを調整
+            if (sourceDisplayIndex < layerSize.mainOrder && targetDisplayIndex >= layerSize.mainOrder)
+            {
+                // メインレイヤーより前から後への移動
+                layerSize.mainOrder--;
+            }
+            else if (sourceDisplayIndex > layerSize.mainOrder && targetDisplayIndex <= layerSize.mainOrder)
+            {
+                // メインレイヤーより後から前への移動
+                layerSize.mainOrder++;
             }
         }
 
