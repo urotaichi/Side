@@ -76,15 +76,11 @@ namespace MasaoPlus.Controls
                     {
                         buttonCell.FlatStyle = FlatStyle.Standard;
                         row.Cells[1].ReadOnly = true;
-                        row.Cells[1].Style.BackColor = SystemColors.Control;
-                        row.Cells[1].Style.ForeColor = SystemColors.GrayText;
                     }
                     // チェックボックスセルを無効化
                     if (row.Cells[2] is DataGridViewCheckBoxCell checkBoxCell)
                     {
                         row.Cells[2].ReadOnly = true;
-                        row.Cells[2].Style.BackColor = SystemColors.Control;
-                        row.Cells[2].Style.ForeColor = SystemColors.GrayText;
                     }
                 }
             }
