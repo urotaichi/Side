@@ -31,12 +31,18 @@ namespace MasaoPlus.Controls
 
         public override void Prepare()
         {
-            ConfigSelector.Items.Clear();
-            for (int i = 0; i < Global.cpd.project.Config.StageNum; i++)
+            // 初回のみ項目追加
+            if (ConfigSelector.Items.Count == 0)
             {
-                ConfigSelector.Items.Add($"ステージ{i + 1}のレイヤー設定");
+                for (int i = 0; i < 4; i++)  // 最大4ステージ分
+                {
+                    ConfigSelector.Items.Add($"ステージ{i + 1}のレイヤー設定");
+                }
             }
+
             ConfigSelector.SelectedIndex = Global.state.EdittingStage;
+
+            UpdateControlStates();
         }
 
         protected override void ConfigSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,6 +57,37 @@ namespace MasaoPlus.Controls
 
             ApplyWrapModeIfEnabled();
             UpdateButtonStates();
+        }
+
+        public void UpdateControlStates()
+        {
+            bool enable3rdMapData = Global.cpd.project.Use3rdMapData;
+            buttonPanel.Enabled = enable3rdMapData;
+            contextMenuStrip.Enabled = enable3rdMapData;
+            ConfView.AllowDrop = enable3rdMapData;
+
+            // セルの有効/無効状態を設定
+            if (!enable3rdMapData)
+            {
+                foreach (DataGridViewRow row in ConfView.Rows)
+                {
+                    // ボタンセルを無効化
+                    if (row.Cells[1] is DataGridViewButtonCell buttonCell)
+                    {
+                        buttonCell.FlatStyle = FlatStyle.Standard;
+                        row.Cells[1].ReadOnly = true;
+                        row.Cells[1].Style.BackColor = SystemColors.Control;
+                        row.Cells[1].Style.ForeColor = SystemColors.GrayText;
+                    }
+                    // チェックボックスセルを無効化
+                    if (row.Cells[2] is DataGridViewCheckBoxCell checkBoxCell)
+                    {
+                        row.Cells[2].ReadOnly = true;
+                        row.Cells[2].Style.BackColor = SystemColors.Control;
+                        row.Cells[2].Style.ForeColor = SystemColors.GrayText;
+                    }
+                }
+            }
         }
 
         public void PopulateLayerObjectRows(int selectedIndex)
@@ -116,6 +153,11 @@ namespace MasaoPlus.Controls
 
         protected override void ConfView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (!Global.cpd.project.Use3rdMapData)
+            {
+                return;
+            }
+
             // チェックボックス列のクリック処理
             if (e.ColumnIndex == 2 && e.RowIndex >= 0)
             {
@@ -134,12 +176,10 @@ namespace MasaoPlus.Controls
             }
 
             // ファイル選択列のクリック処理
-            if (e.ColumnIndex != 1 || e.RowIndex < 0)
+            if (e.ColumnIndex == 1 && e.RowIndex >= 0)
             {
-                return;
+                HandleFileSelection(e);
             }
-
-            HandleFileSelection(e);
         }
 
         private void HandleSetCustomImage(int rowIndex)
@@ -422,6 +462,11 @@ namespace MasaoPlus.Controls
 
         private void ConfView_MouseDown(object sender, MouseEventArgs e)
         {
+            if (!Global.cpd.project.Use3rdMapData)
+            {
+                return;
+            }
+
             if (e.Button == MouseButtons.Left)
             {
                 var hitTest = ConfView.HitTest(e.X, e.Y);
@@ -1070,7 +1115,7 @@ namespace MasaoPlus.Controls
 
         private void UpdateContextMenuStates()
         {
-            if (rightClickedRowIndex < 0 || rightClickedRowIndex >= ConfView.Rows.Count)
+            if (!Global.cpd.project.Use3rdMapData || rightClickedRowIndex < 0 || rightClickedRowIndex >= ConfView.Rows.Count)
             {
                 menuAddLayer.Enabled = false;
                 menuDeleteLayer.Enabled = false;
