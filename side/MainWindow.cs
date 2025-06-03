@@ -252,6 +252,15 @@ namespace MasaoPlus
             BackgroundLayer.Visible = !useMultiLayers;
             MainEditor.BackgroundLayer.Visible = !useMultiLayers;
             EditBackground.Visible = !useMultiLayers;
+            if (!Global.state.EditingForeground)
+            {
+                LayerCount[0].Checked = useMultiLayers;
+                MainEditor.LayerCount[0].Checked = useMultiLayers;
+                LayerMenuCount[0].Checked = useMultiLayers;
+                BackgroundLayer.Checked = !useMultiLayers;
+                MainEditor.BackgroundLayer.Checked = !useMultiLayers;
+                EditBackground.Checked = !useMultiLayers;
+            }
             
             if (!useMultiLayers)
                 return;
