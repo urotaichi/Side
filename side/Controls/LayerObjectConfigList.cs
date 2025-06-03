@@ -878,17 +878,6 @@ namespace MasaoPlus.Controls
                 // 表示を更新
                 Reload();
                 
-                // 選択状態を調整
-                if (ConfView.Rows.Count > 0)
-                {
-                    int newSelectionIndex = Math.Min(rowIndex, ConfView.Rows.Count - 1);
-                    ConfView.ClearSelection();
-                    ConfView.Rows[newSelectionIndex].Selected = true;
-                    ConfView.CurrentCell = ConfView[0, newSelectionIndex];
-                }
-
-                RefreshDesignerForRelation("LAYERCHIP");
-                Global.MainWnd.UpdateLayerVisibility();
                 // 編集中のレイヤーが削除された場合の処理
                 if (isDeletingCurrentEditingLayer)
                 {
@@ -908,6 +897,18 @@ namespace MasaoPlus.Controls
                         Global.MainWnd.LayerCount_Click(backgroundLayerIndex);
                     }
                 }
+                
+                // 選択状態を調整
+                if (ConfView.Rows.Count > 0)
+                {
+                    int newSelectionIndex = Math.Min(rowIndex, ConfView.Rows.Count - 1);
+                    ConfView.ClearSelection();
+                    ConfView.Rows[newSelectionIndex].Selected = true;
+                    ConfView.CurrentCell = ConfView[0, newSelectionIndex];
+                }
+
+                RefreshDesignerForRelation("LAYERCHIP");
+                Global.MainWnd.UpdateLayerVisibility();
                 Global.state.EditFlag = true;
             }
         }
