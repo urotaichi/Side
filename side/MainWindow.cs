@@ -297,6 +297,12 @@ namespace MasaoPlus
             {
                 AddLayerMenuItem(i);
             }
+            if (Global.state.EdittingLayerIndex != -1)
+            {
+                LayerCount[Global.state.EdittingLayerIndex].Checked = true;
+                MainEditor.LayerCount[Global.state.EdittingLayerIndex].Checked = true;
+                LayerMenuCount[Global.state.EdittingLayerIndex].Checked = true;
+            }
         }
         
         /// <summary>
@@ -371,7 +377,7 @@ namespace MasaoPlus
             EditPatternChip.Checked = false;
             PatternChipLayer.Checked = false;
             MainEditor.PatternChipLayer.Checked = false;
-            for(int i = 0; i < LayerCount.Count; i++)
+            for(int i = 0; i < Global.cpd.LayerCount; i++)
             {
                 if (i == layerIndex)
                 {
