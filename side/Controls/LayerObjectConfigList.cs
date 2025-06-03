@@ -39,10 +39,14 @@ namespace MasaoPlus.Controls
                     ConfigSelector.Items.Add($"ステージ{i + 1}のレイヤー設定");
                 }
             }
-
-            ConfigSelector.SelectedIndex = Global.state.EdittingStage;
+            ConfigSelector.SelectedIndex = 0;
 
             UpdateControlStates();
+        }
+
+        public override void Reload()
+        {
+            ConfigSelector_SelectedIndexChanged(this, new EventArgs());
         }
 
         protected override void ConfigSelector_SelectedIndexChanged(object sender, EventArgs e)
@@ -793,7 +797,7 @@ namespace MasaoPlus.Controls
             }
 
             // 表示を更新
-            ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
+            Reload();
             
             // 新しく追加された行を選択
             if (insertAfterRowIndex == -1)
@@ -820,7 +824,7 @@ namespace MasaoPlus.Controls
 
             Global.MainWnd.MainDesigner.BackLayerBmp.Add(null);
             RefreshDesignerForRelation("LAYERCHIP");
-            Global.MainWnd.RebuildLayerMenus();
+            Global.MainWnd.UpdateLayerVisibility();
             Global.state.EditFlag = true;
         }
 
@@ -872,7 +876,7 @@ namespace MasaoPlus.Controls
                 }
 
                 // 表示を更新
-                ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
+                Reload();
                 
                 // 編集中のレイヤーが削除された場合の処理
                 if (isDeletingCurrentEditingLayer)
@@ -904,7 +908,7 @@ namespace MasaoPlus.Controls
                 }
 
                 RefreshDesignerForRelation("LAYERCHIP");
-                Global.MainWnd.RebuildLayerMenus();
+                Global.MainWnd.UpdateLayerVisibility();
                 Global.state.EditFlag = true;
             }
         }
@@ -974,7 +978,7 @@ namespace MasaoPlus.Controls
                 }
 
                 // 表示を更新
-                ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
+                Reload();
                 
                 // 複製された行を選択
                 if (ConfView.Rows.Count > rowIndex + 1)
@@ -986,7 +990,7 @@ namespace MasaoPlus.Controls
 
                 Global.MainWnd.MainDesigner.BackLayerBmp.Add(null);
                 RefreshDesignerForRelation("LAYERCHIP");
-                Global.MainWnd.RebuildLayerMenus();
+                Global.MainWnd.UpdateLayerVisibility();
                 Global.state.EditFlag = true;
             }
         }
@@ -1031,7 +1035,7 @@ namespace MasaoPlus.Controls
                 MoveLayerData(sourceDisplayIndex, targetDisplayIndex);
                 
                 // 表示の更新
-                ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
+                Reload();
                 
                 // 編集中のレイヤーが移動した場合、新しいレイヤーインデックスを設定
                 if (isMovingCurrentEditingLayer)
@@ -1053,7 +1057,7 @@ namespace MasaoPlus.Controls
                 MoveLayerData(sourceDisplayIndex, targetDisplayIndex);
                 
                 // 表示の更新
-                ConfigSelector_SelectedIndexChanged(null, EventArgs.Empty);
+                Reload();
                 
                 // 移動後の行を選択
                 ConfView.ClearSelection();

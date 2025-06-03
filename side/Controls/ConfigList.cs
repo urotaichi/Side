@@ -28,7 +28,7 @@ namespace MasaoPlus.Controls
             ConfigSelector.SelectedIndex = 0;
         }
 
-        public void Reload()
+        public virtual void Reload()
         {
             ConfigSelector_SelectedIndexChanged(this, new EventArgs());
         }

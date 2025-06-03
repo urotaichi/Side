@@ -28,6 +28,8 @@ namespace MasaoPlus.Dialogs
         {
             Global.MainWnd.UpdateLayerVisibility();
             Global.MainWnd.UpdateTitle();
+            Global.MainWnd.LayerObjectConfigList.Prepare();
+            Global.MainWnd.LayerObjectConfigList.Reload();
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -143,7 +145,6 @@ namespace MasaoPlus.Dialogs
                     SetState("編集を開始します...");
                     Global.MainWnd.MasaoConfigList.Prepare();
                     Global.MainWnd.CustomPartsConfigList.Prepare();
-                    Global.MainWnd.LayerObjectConfigList.Prepare();
                     if (isLegacyUpgrade) Global.state.EditFlag = true;
                 }
                 catch (InvalidOperationException)
