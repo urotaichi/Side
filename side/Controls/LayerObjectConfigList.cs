@@ -883,18 +883,17 @@ namespace MasaoPlus.Controls
                 {
                     int newEditingDisplayIndex = Math.Max(0, rowIndex - 1);
                     
-                    if (newEditingDisplayIndex < layerSize.mainOrder)
-                    {
-                        Global.MainWnd.LayerCount_Click(newEditingDisplayIndex);
-                    }
-                    else if (newEditingDisplayIndex == layerSize.mainOrder)
+                    if (newEditingDisplayIndex == layerSize.mainOrder)
                     {
                         Global.MainWnd.EditPatternChip_Click(this, new EventArgs());
                     }
+                    else if (newEditingDisplayIndex == ConfView.Rows.Count - 1)
+                    {
+                        Global.MainWnd.LayerCount_Click(--newEditingDisplayIndex);
+                    }
                     else
                     {
-                        int backgroundLayerIndex = newEditingDisplayIndex - 1;
-                        Global.MainWnd.LayerCount_Click(backgroundLayerIndex);
+                        Global.MainWnd.LayerCount_Click(newEditingDisplayIndex);
                     }
                 }
                 
