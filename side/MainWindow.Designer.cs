@@ -40,6 +40,8 @@ namespace MasaoPlus
             this.CustomPartsChipChar = new global::System.Windows.Forms.Label();
             this.CustomPartsChipImage = new global::System.Windows.Forms.PictureBox();
 
+            this.LayerObjectTab = new global::System.Windows.Forms.TabPage();
+
             this.EditTab = new global::System.Windows.Forms.TabControl();
 			this.GuiEditor = new global::System.Windows.Forms.TabPage();
 			this.EditorSystemPanel = new global::System.Windows.Forms.Panel();
@@ -201,6 +203,7 @@ namespace MasaoPlus
 			this.MasaoConfigList = new global::MasaoPlus.Controls.ConfigList();
             this.GuiCustomPartsChipList = new global::MasaoPlus.GUICustomPartsChipList();
             this.CustomPartsConfigList = new global::MasaoPlus.Controls.CustomPartsConfigList();
+            this.LayerObjectConfigList = new global::MasaoPlus.Controls.LayerObjectConfigList();
 
             this.MainDesigner = new global::MasaoPlus.GUIDesigner();
 			this.MainEditor = new global::MasaoPlus.TextEditor();
@@ -230,6 +233,8 @@ namespace MasaoPlus
             this.CustomParts.Panel1.SuspendLayout();
             this.CustomParts.Panel2.SuspendLayout();
             this.CustomParts.SuspendLayout();
+
+            this.LayerObjectTab.SuspendLayout();
 
             this.EditTab.SuspendLayout();
 			this.GuiEditor.SuspendLayout();
@@ -264,6 +269,7 @@ namespace MasaoPlus
 			this.SideTab.Controls.Add(this.ChipPage);
             this.SideTab.Controls.Add(this.PropertyTab);
             this.SideTab.Controls.Add(this.CustomPartsTab);
+            this.SideTab.Controls.Add(this.LayerObjectTab);
             this.SideTab.Dock = global::System.Windows.Forms.DockStyle.Fill;
 			this.SideTab.Location = new global::System.Drawing.Point(0, 0);
 			this.SideTab.Name = "SideTab";
@@ -369,6 +375,14 @@ namespace MasaoPlus
             this.CustomPartsTab.TabIndex = 2;
             this.CustomPartsTab.Text = "カスタムパーツ";
             this.CustomPartsTab.UseVisualStyleBackColor = true;
+
+            this.LayerObjectTab.Controls.Add(this.LayerObjectConfigList);
+            this.LayerObjectTab.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(4), base.LogicalToDeviceUnits(22));
+            this.LayerObjectTab.Name = "LayerObjectTab";
+            this.LayerObjectTab.Padding = new global::System.Windows.Forms.Padding(3);
+            this.LayerObjectTab.TabIndex = 3;
+            this.LayerObjectTab.Text = "マルチレイヤー";
+            this.LayerObjectTab.UseVisualStyleBackColor = true;
             this.ItemSpliter2.BackColor = global::System.Drawing.Color.White;
             this.ItemSpliter2.Dock = global::System.Windows.Forms.DockStyle.Fill;
             this.ItemSpliter2.Margin = new global::System.Windows.Forms.Padding(0);
@@ -1407,6 +1421,12 @@ namespace MasaoPlus
             this.CustomPartsConfigList.Size = new global::System.Drawing.Size(171, 277);
             this.CustomPartsConfigList.TabIndex = 0;
 
+            this.LayerObjectConfigList.Dock = global::System.Windows.Forms.DockStyle.Fill;
+            this.LayerObjectConfigList.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(3), base.LogicalToDeviceUnits(3));
+            this.LayerObjectConfigList.Name = "LayerObjectConfigList";
+            this.LayerObjectConfigList.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(171, 277));
+            this.LayerObjectConfigList.TabIndex = 0;
+
             this.MainDesigner.BorderStyle = global::System.Windows.Forms.BorderStyle.FixedSingle;
 			this.MainDesigner.CopyPaste = global::MasaoPlus.GUIDesigner.CopyPasteTool.None;
 			this.MainDesigner.CurrentTool = global::MasaoPlus.GUIDesigner.EditTool.Cursor;
@@ -1470,6 +1490,8 @@ namespace MasaoPlus
             this.CustomParts.Panel2.ResumeLayout(false);
             this.CustomParts.ResumeLayout(false);
             ((global::System.ComponentModel.ISupportInitialize)this.CustomPartsChipImage).EndInit();
+
+            this.LayerObjectTab.ResumeLayout(false);
 
             this.EditTab.ResumeLayout(false);
 			this.GuiEditor.ResumeLayout(false);
@@ -1745,7 +1767,11 @@ namespace MasaoPlus
 
         private global::System.Windows.Forms.TabPage CustomPartsTab;
 
+        private global::System.Windows.Forms.TabPage LayerObjectTab;
+
         public global::MasaoPlus.Controls.ConfigList MasaoConfigList;
+
+        public global::MasaoPlus.Controls.LayerObjectConfigList LayerObjectConfigList;
 
         private global::System.Windows.Forms.SplitContainer ItemSpliter2;
 

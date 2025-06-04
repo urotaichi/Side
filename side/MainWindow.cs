@@ -252,6 +252,12 @@ namespace MasaoPlus
             BackgroundLayer.Visible = !useMultiLayers;
             MainEditor.BackgroundLayer.Visible = !useMultiLayers;
             EditBackground.Visible = !useMultiLayers;
+            if (!Global.state.EditingForeground)
+            {
+                BackgroundLayer.Checked = !useMultiLayers;
+                MainEditor.BackgroundLayer.Checked = !useMultiLayers;
+                EditBackground.Checked = !useMultiLayers;
+            }
             
             if (!useMultiLayers)
                 return;
@@ -290,6 +296,12 @@ namespace MasaoPlus
             for(int i = 1; i < Global.cpd.LayerCount; i++)
             {
                 AddLayerMenuItem(i);
+            }
+            if (Global.state.EdittingLayerIndex != -1)
+            {
+                LayerCount[Global.state.EdittingLayerIndex].Checked = true;
+                MainEditor.LayerCount[Global.state.EdittingLayerIndex].Checked = true;
+                LayerMenuCount[Global.state.EdittingLayerIndex].Checked = true;
             }
         }
         
@@ -365,7 +377,7 @@ namespace MasaoPlus
             EditPatternChip.Checked = false;
             PatternChipLayer.Checked = false;
             MainEditor.PatternChipLayer.Checked = false;
-            for(int i = 0; i < LayerCount.Count; i++)
+            for(int i = 0; i < Global.cpd.LayerCount; i++)
             {
                 if (i == layerIndex)
                 {
@@ -2189,6 +2201,7 @@ namespace MasaoPlus
                     break;
             }
             Global.state.EdittingStage = newValue;
+            if(newValue < 4) LayerObjectConfigList.ConfigSelector.SelectedIndex = newValue;
             UpdateLayerVisibility();
             MainDesigner.ForceBufferResize();
             MainDesigner.PrepareImages();

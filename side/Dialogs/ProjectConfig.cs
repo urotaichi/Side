@@ -285,6 +285,7 @@ namespace MasaoPlus.Dialogs
                     {
                         resetEditingMapSize();
                     }
+                    Global.MainWnd.LayerObjectConfigList.UpdateControlStates();
                     Global.MainWnd.RefreshAll();
                     Global.MainWnd.MainDesigner.ClearBuffer();
                     Global.MainWnd.MainDesigner.AddBuffer();

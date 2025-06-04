@@ -28,14 +28,14 @@ namespace MasaoPlus.Controls
             ConfigSelector.SelectedIndex = 0;
         }
 
-        public void Reload()
+        public virtual void Reload()
         {
             ConfigSelector_SelectedIndexChanged(this, new EventArgs());
         }
 
 
         // 表示を変える
-        protected void ConfigSelector_SelectedIndexChanged(object sender, EventArgs e)
+        protected virtual void ConfigSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ConfigSelector.Items.Count < 1)
             {
@@ -270,7 +270,7 @@ namespace MasaoPlus.Controls
             };
         }
 
-        private void ApplyWrapModeIfEnabled()
+        public void ApplyWrapModeIfEnabled()
         {
             if (Global.config.localSystem.WrapPropText) 
                 ConfView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -373,7 +373,7 @@ namespace MasaoPlus.Controls
             };
         }
 
-        private static bool TryCopyFileToProject(string sourceFile, ref string targetPath)
+        protected static bool TryCopyFileToProject(string sourceFile, ref string targetPath)
         {
             if (Path.GetDirectoryName(sourceFile) == Global.cpd.where)
             {
@@ -467,6 +467,19 @@ namespace MasaoPlus.Controls
             string fileName = Path.GetFileName(filePath);
             ConfView[e.ColumnIndex, e.RowIndex].Value = $"{fileName}...";
             Global.cpd.project.Config.Configurations[configIndex].Value = fileName;
+            if (Global.cpd.project.Config.Configurations[configIndex].Relation == "PATTERN" || Global.cpd.project.Config.Configurations[configIndex].Relation == "LAYERCHIP")
+            {
+                if (Global.cpd.project.Config.Configurations[configIndex].Relation == "PATTERN")
+                {
+                    ProjectLoading.SetStageDataSources();
+                }
+                else if (Global.cpd.project.Config.Configurations[configIndex].Relation == "LAYERCHIP")
+                {
+                    ProjectLoading.SetLayerDataSources();
+                }
+                Global.MainWnd.LayerObjectConfigList.ConfView.Rows.Clear();
+                Global.MainWnd.LayerObjectConfigList.PopulateLayerObjectRows(Global.MainWnd.LayerObjectConfigList.ConfigSelector.SelectedIndex);
+            }
         }
 
         private static void HandleFileConfigRelations(ConfigParam configParam, int configIndex)
@@ -482,21 +495,25 @@ namespace MasaoPlus.Controls
             HandleSpecialFileConfigs(configParam);
         }
 
-        private static void RefreshDesignerForRelation(string relation)
+        protected static void RefreshDesignerForRelation(string relation)
         {
             switch (relation)
             {
                 case "PATTERN":
                     Global.MainWnd.MainDesigner.PrepareImages();
                     Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
-                    Global.MainWnd.MainDesigner.Refresh();
+                    if(!Global.state.EditingForeground)
+                    {
+                        Global.MainWnd.MainDesigner.InitTransparent();
+                    }
                     break;
                 case "LAYERCHIP":
                     Global.MainWnd.MainDesigner.PrepareImages();
                     Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
-                    Global.MainWnd.MainDesigner.Refresh();
+                    Global.MainWnd.MainDesigner.InitTransparentForBackground();
                     break;
             }
+            Global.MainWnd.MainDesigner.Refresh();
         }
 
         private static void HandleSpecialFileConfigs(ConfigParam configParam)
@@ -592,7 +609,7 @@ namespace MasaoPlus.Controls
             MessageBox.Show("ファイルの読み込みに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
         }
 
-        protected void ConfView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        protected virtual void ConfView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             if (e.Control is DataGridViewTextBoxEditingControl dataGridViewTextBoxEditingControl)
             {
@@ -1078,7 +1095,7 @@ namespace MasaoPlus.Controls
 
         private readonly IContainer components;
 
-        protected ComboBox ConfigSelector;
+        public ComboBox ConfigSelector;
 
         public DataGridView ConfView;
 

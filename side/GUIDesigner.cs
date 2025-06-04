@@ -327,29 +327,43 @@ namespace MasaoPlus
             {
                 if (Global.state.EditingForeground)
                 {
-                    for (int i = 0; i < BackLayerBmp.Count; i++)
-                    {
-                        if (BackLayerBmp[i] != null)
-                        {
-                            Bitmap temp = BackLayerBmp[i];
-                            HalfTransparentBitmap2(ref temp);
-                            BackLayerBmp[i] = temp;
-                        }
-                    }
+                    InitTransparentForForeground();
                 }
                 else
                 {
                     HalfTransparentBitmap2(ref ForeLayerBmp);
-                    for (int i = 0; i < BackLayerBmp.Count; i++)
-                    {
-                        if (BackLayerBmp[i] != null && i != Global.state.EdittingLayerIndex)
-                        {
-                            UpdateSingleLayerBuffer(i);
-                            Bitmap temp = BackLayerBmp[i];
-                            HalfTransparentBitmap2(ref temp);
-                            BackLayerBmp[i] = temp;
-                        }
-                    }
+                    InitTransparentForBackground();
+                }
+            }
+        }
+
+        private void InitTransparentForForeground()
+        {
+            ProcessLayersTransparency(layerIndex => true);
+        }
+
+        public void InitTransparentForBackground()
+        {
+            ProcessLayersTransparency(layerIndex => 
+            {
+                if (layerIndex != Global.state.EdittingLayerIndex)
+                {
+                    UpdateSingleLayerBuffer(layerIndex);
+                    return true;
+                }
+                return false;
+            });
+        }
+
+        private void ProcessLayersTransparency(Func<int, bool> shouldProcess)
+        {
+            for (int i = 0; i < BackLayerBmp.Count; i++)
+            {
+                if (BackLayerBmp[i] != null && shouldProcess(i))
+                {
+                    Bitmap temp = BackLayerBmp[i];
+                    HalfTransparentBitmap2(ref temp);
+                    BackLayerBmp[i] = temp;
                 }
             }
         }
@@ -939,15 +953,15 @@ namespace MasaoPlus
             // パターン画像の読み込みと処理
             DrawChipOrig = LoadImageFromFile(filename);
             // DrawMask = CreateMaskFromImage(DrawChipOrig);
-            Runtime.DefinedData.StageSizeData CurrentStageSize = Global.state.EdittingStage switch
+            LayerObject CurrentStageData = Global.state.EdittingStage switch
             {
-                0 => Global.cpd.runtime.Definitions.StageSize,
-                1 => Global.cpd.runtime.Definitions.StageSize2,
-                2 => Global.cpd.runtime.Definitions.StageSize3,
-                3 => Global.cpd.runtime.Definitions.StageSize4,
-                _ => Global.cpd.runtime.Definitions.StageSize
+                0 => Global.cpd.project.StageData,
+                1 => Global.cpd.project.StageData2,
+                2 => Global.cpd.project.StageData3,
+                3 => Global.cpd.project.StageData4,
+                _ => Global.cpd.project.StageData
             };
-            var patternValue = CurrentStageSize?.mainPattern?.Value;
+            var patternValue = CurrentStageData.Source;
             if (!string.IsNullOrEmpty(patternValue))
             {
                 filename = Path.Combine(Global.cpd.where, patternValue);
@@ -969,18 +983,18 @@ namespace MasaoPlus
                 DrawLayerOrig = new List<Image>(Global.cpd.LayerCount);
                 DrawLayerOrigDefault = LoadImageFromFile(filename);
                 // DrawLayerMask = CreateMaskFromImage(DrawLayerOrig[0]);
-                Runtime.DefinedData.LayerSizeData CurrentLayerSize = Global.state.EdittingStage switch
+                List<LayerObject> CurrentLayerData = Global.state.EdittingStage switch
                 {
-                    0 => Global.cpd.runtime.Definitions.LayerSize,
-                    1 => Global.cpd.runtime.Definitions.LayerSize2,
-                    2 => Global.cpd.runtime.Definitions.LayerSize3,
-                    3 => Global.cpd.runtime.Definitions.LayerSize4,
-                    _ => Global.cpd.runtime.Definitions.LayerSize
+                    0 => Global.cpd.project.LayerData,
+                    1 => Global.cpd.project.LayerData2,
+                    2 => Global.cpd.project.LayerData3,
+                    3 => Global.cpd.project.LayerData4,
+                    _ => Global.cpd.project.LayerData
                 };
                 for (int i = 0; i < Global.cpd.LayerCount; i++)
                 {
                     DrawLayerOrig.Add(DrawLayerOrigDefault);  // レイヤー画像が設定されていない場合はデフォルトのレイヤー画像を使用
-                    var layerValue = CurrentLayerSize?.mapchips?.ElementAtOrDefault(i)?.Value;
+                    var layerValue = CurrentLayerData[i].Source;
                     if (!string.IsNullOrEmpty(layerValue))
                     {
                         filename = Path.Combine(Global.cpd.where, layerValue);

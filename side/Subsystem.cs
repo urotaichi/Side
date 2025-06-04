@@ -1157,7 +1157,7 @@ namespace MasaoPlus
         {
             sb.AppendLine("\t\t\t\t\t{");
             sb.AppendLine("\t\t\t\t\t\t\"type\": \"main\",");
-            if(MainStageText.Source != Global.cpd.project.Config.PatternImage) sb.AppendLine($"\t\t\t\t\t\t\"src\": \"{MainStageText.Source}\",");
+            if(Global.config.localSystem.OutPutInititalSourceCode || MainStageText.Source != Global.cpd.project.Config.PatternImage) sb.AppendLine($"\t\t\t\t\t\t\"src\": \"{MainStageText.Source}\",");
             sb.AppendLine("\t\t\t\t\t\t\"map\": [");
             foreach (string value in MainStageText)
             {
@@ -1176,7 +1176,7 @@ namespace MasaoPlus
         {
             sb.AppendLine("\t\t\t\t\t{");
             sb.AppendLine("\t\t\t\t\t\t\"type\": \"mapchip\",");
-            if(layerObject.Source != Global.cpd.project.Config.LayerImage) sb.AppendLine($"\t\t\t\t\t\t\"src\": \"{layerObject.Source}\",");
+            if(Global.config.localSystem.OutPutInititalSourceCode || layerObject.Source != Global.cpd.project.Config.LayerImage) sb.AppendLine($"\t\t\t\t\t\t\"src\": \"{layerObject.Source}\",");
             sb.AppendLine("\t\t\t\t\t\t\"map\": [");
             foreach (string value in layerObject)
             {
