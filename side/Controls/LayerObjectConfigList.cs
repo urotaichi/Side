@@ -891,6 +891,10 @@ namespace MasaoPlus.Controls
                     {
                         Global.MainWnd.LayerCount_Click(--newEditingDisplayIndex);
                     }
+                    else if (newEditingDisplayIndex == 0)
+                    {
+                        Global.MainWnd.LayerCount_Click(++newEditingDisplayIndex);
+                    }
                     else
                     {
                         Global.MainWnd.LayerCount_Click(newEditingDisplayIndex);
