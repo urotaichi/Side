@@ -507,12 +507,17 @@ namespace MasaoPlus.Dialogs
                         for (int stageIndex = 0; stageIndex < stages.Count; stageIndex++)
                         {
                             var stage = stages[stageIndex];
+                            int layerCount = 0;
+                            JsonElement layers = default;
                             try
                             {
                                 if (stage.TryGetProperty("size", out var size))
                                 {
                                     int sizeX = size.GetProperty("x").GetInt32();
                                     int sizeY = size.GetProperty("y").GetInt32();
+                                    int mainOrder = 0;
+                                    string mainSrc = null;
+                                    string[] layerSrc = null;
 
                                     // マップサイズが500x500を超える場合は警告して500に丸める
                                     if (sizeX > Global.state.MaximumStageSize.Width || sizeY > Global.state.MaximumStageSize.Height)
@@ -527,6 +532,33 @@ namespace MasaoPlus.Dialogs
                                         }
                                         MessageBox.Show($"マップサイズがSideで扱える最大値({Global.state.MaximumStageSize.Width}×{Global.state.MaximumStageSize.Height})を超えています。\nサイズを{Global.state.MaximumStageSize.Width}×{Global.state.MaximumStageSize.Height}に制限します。", "警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     }
+                                    try
+                                    {
+                                        layerCount = stage.TryGetProperty("layers", out layers) ? layers.GetArrayLength() : 0;
+                                        if (layerCount > 1) layerSrc = new string[layerCount - 1];
+                                        if (stage.TryGetProperty("layers", out layers))
+                                        {
+                                            for (int i = 0, j = 0; i < layerCount; i++)
+                                            {
+                                                var layer = layers[i];
+                                                var type = layer.GetProperty("type").GetString();
+                                                var src = layer.GetProperty("src").GetString();
+
+                                                if (type == "main")
+                                                {
+                                                    mainOrder = i;
+                                                    mainSrc = src;
+                                                }
+                                                else
+                                                {
+                                                    layerSrc[j++] = src;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    catch (Exception)
+                                    {
+                                    }
 
                                     // ステージ番号に応じてサイズとデータ配列を更新
                                     switch (stageIndex)
@@ -534,45 +566,85 @@ namespace MasaoPlus.Dialogs
                                         case 0:
                                             project.Runtime.Definitions.StageSize.x = sizeX;
                                             project.Runtime.Definitions.StageSize.y = sizeY;
+                                            project.Runtime.Definitions.StageSize.mainPattern.Value = mainSrc;
                                             project.StageData = [.. new string[sizeY]];
                                             if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                                             {
                                                 project.Runtime.Definitions.LayerSize.x = sizeX;
                                                 project.Runtime.Definitions.LayerSize.y = sizeY;
-                                                project.LayerData[0] = [.. new string[sizeY]];
+                                                project.Runtime.Definitions.LayerSize.mainOrder = mainOrder;
+                                                if (layerCount > 1)
+                                                {
+                                                    project.LayerData.Clear();
+                                                    for (int i = 0; i < layerCount - 1; i++)
+                                                    {
+                                                        project.Runtime.Definitions.LayerSize.mapchips.Add(new Runtime.DefinedData.StageSizeData.LayerObject { Value = layerSrc[i] });
+                                                        project.LayerData.Add([.. new string[sizeY]]);
+                                                    }
+                                                }
                                             }
                                             break;
                                         case 1:
                                             project.Runtime.Definitions.StageSize2.x = sizeX;
                                             project.Runtime.Definitions.StageSize2.y = sizeY;
+                                            project.Runtime.Definitions.StageSize2.mainPattern.Value = mainSrc;
                                             project.StageData2 = [.. new string[sizeY]];
                                             if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                                             {
                                                 project.Runtime.Definitions.LayerSize2.x = sizeX;
                                                 project.Runtime.Definitions.LayerSize2.y = sizeY;
-                                                project.LayerData2[0] = [.. new string[sizeY]];
+                                                project.Runtime.Definitions.LayerSize2.mainOrder = mainOrder;
+                                                if (layerCount > 1)
+                                                {
+                                                    project.LayerData2.Clear();
+                                                    for (int i = 0; i < layerCount - 1; i++)
+                                                    {
+                                                        project.Runtime.Definitions.LayerSize2.mapchips.Add(new Runtime.DefinedData.StageSizeData.LayerObject { Value = layerSrc[i] });
+                                                        project.LayerData2.Add([.. new string[sizeY]]);
+                                                    }
+                                                }
                                             }
                                             break;
                                         case 2:
                                             project.Runtime.Definitions.StageSize3.x = sizeX;
                                             project.Runtime.Definitions.StageSize3.y = sizeY;
+                                            project.Runtime.Definitions.StageSize3.mainPattern.Value = mainSrc;
                                             project.StageData3 = [.. new string[sizeY]];
                                             if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                                             {
                                                 project.Runtime.Definitions.LayerSize3.x = sizeX;
                                                 project.Runtime.Definitions.LayerSize3.y = sizeY;
-                                                project.LayerData3[0] = [.. new string[sizeY]];
+                                                project.Runtime.Definitions.LayerSize3.mainOrder = mainOrder;
+                                                if (layerCount > 1)
+                                                {
+                                                    project.LayerData3.Clear();
+                                                    for (int i = 0; i < layerCount - 1; i++)
+                                                    {
+                                                        project.Runtime.Definitions.LayerSize3.mapchips.Add(new Runtime.DefinedData.StageSizeData.LayerObject { Value = layerSrc[i] });
+                                                        project.LayerData3.Add([.. new string[sizeY]]);
+                                                    }
+                                                }
                                             }
                                             break;
                                         case 3:
                                             project.Runtime.Definitions.StageSize4.x = sizeX;
                                             project.Runtime.Definitions.StageSize4.y = sizeY;
+                                            project.Runtime.Definitions.StageSize4.mainPattern.Value = mainSrc;
                                             project.StageData4 = [.. new string[sizeY]];
                                             if (project.Runtime.Definitions.LayerSize.bytesize != 0)
                                             {
                                                 project.Runtime.Definitions.LayerSize4.x = sizeX;
                                                 project.Runtime.Definitions.LayerSize4.y = sizeY;
-                                                project.LayerData4[0] = [.. new string[sizeY]];
+                                                project.Runtime.Definitions.LayerSize4.mainOrder = mainOrder;
+                                                if (layerCount > 1)
+                                                {
+                                                    project.LayerData4.Clear();
+                                                    for (int i = 0; i < layerCount - 1; i++)
+                                                    {
+                                                        project.Runtime.Definitions.LayerSize4.mapchips.Add(new Runtime.DefinedData.StageSizeData.LayerObject { Value = layerSrc[i] });
+                                                        project.LayerData4.Add([.. new string[sizeY]]);
+                                                    }
+                                                }
                                             }
                                             break;
                                     }
@@ -584,7 +656,7 @@ namespace MasaoPlus.Dialogs
 
                             // 指定サイズでデフォルト値を設定
                             LayerObject targetStageData = null;
-                            LayerObject targetLayerData = null;
+                            LayerObject[] targetLayerData = null;
                             ChipsData[] targetChips = chipDataClass.Mapchip;
                             ChipsData[] targetLayerChips = chipDataClass.Layerchip;
                             int width = default;
@@ -593,22 +665,50 @@ namespace MasaoPlus.Dialogs
                             {
                                 case 0:
                                     targetStageData = project.StageData;
-                                    targetLayerData = project.LayerData[0];
+                                    if (layerCount > 1)
+                                    {
+                                        targetLayerData = new LayerObject[layerCount - 1];
+                                        for (int i = 0; i < layerCount - 1; i++)
+                                        {
+                                            targetLayerData[i] = project.LayerData[i];
+                                        }
+                                    }
                                     width = project.Runtime.Definitions.StageSize.x;
                                     break;
                                 case 1:
                                     targetStageData = project.StageData2;
-                                    targetLayerData = project.LayerData2[0];
+                                    if (layerCount > 1)
+                                    {
+                                        targetLayerData = new LayerObject[layerCount - 1];
+                                        for (int i = 0; i < layerCount - 1; i++)
+                                        {
+                                            targetLayerData[i] = project.LayerData2[i];
+                                        }
+                                    }
                                     width = project.Runtime.Definitions.StageSize2.x;
                                     break;
                                 case 2:
                                     targetStageData = project.StageData3;
-                                    targetLayerData = project.LayerData3[0];
+                                    if (layerCount > 1)
+                                    {
+                                        targetLayerData = new LayerObject[layerCount - 1];
+                                        for (int i = 0; i < layerCount - 1; i++)
+                                        {
+                                            targetLayerData[i] = project.LayerData3[i];
+                                        }
+                                    }
                                     width = project.Runtime.Definitions.StageSize3.x;
                                     break;
                                 case 3:
                                     targetStageData = project.StageData4;
-                                    targetLayerData = project.LayerData4[0];
+                                    if (layerCount > 1)
+                                    {
+                                        targetLayerData = new LayerObject[layerCount - 1];
+                                        for (int i = 0; i < layerCount - 1; i++)
+                                        {
+                                            targetLayerData[i] = project.LayerData4[i];
+                                        }
+                                    }
                                     width = project.Runtime.Definitions.StageSize4.x;
                                     break;
                             }
@@ -619,7 +719,10 @@ namespace MasaoPlus.Dialogs
                             // レイヤーのデフォルト値設定
                             if (project.Runtime.Definitions.LayerSize.bytesize != 0 && targetLayerData != null)
                             {
-                                InitializeEmptyStageData(targetLayerData, width, targetLayerChips);
+                                for (int i = 0; i < layerCount - 1; i++)
+                                {
+                                    InitializeEmptyStageData(targetLayerData[i], width, targetLayerChips);
+                                }
                             }
 
                             StatusText.Text = $"ステージソース生成中[{stageIndex + 1}/4]...";
@@ -627,7 +730,8 @@ namespace MasaoPlus.Dialogs
                             // レイヤーデータの読み込み
                             try
                             {
-                                if (stage.TryGetProperty("layers", out var layers))
+                                int layerIndex = 0;
+                                if (stage.TryGetProperty("layers", out layers))
                                 {
                                     foreach (var layer in layers.EnumerateArray())
                                     {
@@ -635,7 +739,7 @@ namespace MasaoPlus.Dialogs
                                         var map = layer.GetProperty("map");
 
                                         // レイヤーの種類に応じてターゲットデータを選択
-                                        LayerObject targetData = type == "main" ? targetStageData : targetLayerData;
+                                        LayerObject targetData = type == "main" ? targetStageData : targetLayerData[layerIndex++];
                                         var chips = type == "main" ? targetChips : targetLayerChips;
                                         var defaultCode = ChipDataClass.CharToCode(chips[0].character);
 
