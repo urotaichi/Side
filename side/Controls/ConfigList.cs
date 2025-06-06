@@ -940,20 +940,44 @@ namespace MasaoPlus.Controls
             switch (Global.state.EdittingStage)
             {
                 case 0:
-                    Global.cpd.EditingMap = Global.cpd.project.StageData;
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData[Global.state.EdittingLayerIndex];
+                    if (Global.state.EditingForeground)
+                    {
+                        Global.cpd.EditingMap = Global.cpd.project.StageData;
+                    }
+                    else
+                    {
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData[Global.state.EdittingLayerIndex];
+                    }
                     break;
                 case 1:
-                    Global.cpd.EditingMap = Global.cpd.project.StageData2;
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData2[Global.state.EdittingLayerIndex];
+                    if (Global.state.EditingForeground)
+                    {
+                        Global.cpd.EditingMap = Global.cpd.project.StageData2;
+                    }
+                    else
+                    {
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData2[Global.state.EdittingLayerIndex];
+                    }
                     break;
                 case 2:
-                    Global.cpd.EditingMap = Global.cpd.project.StageData3;
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData3[Global.state.EdittingLayerIndex];
+                    if (Global.state.EditingForeground)
+                    {
+                        Global.cpd.EditingMap = Global.cpd.project.StageData3;
+                    }
+                    else
+                    {
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData3[Global.state.EdittingLayerIndex];
+                    }
                     break;
                 case 3:
-                    Global.cpd.EditingMap = Global.cpd.project.StageData4;
-                    Global.cpd.EditingLayer = Global.cpd.project.LayerData4[Global.state.EdittingLayerIndex];
+                    if (Global.state.EditingForeground)
+                    {
+                        Global.cpd.EditingMap = Global.cpd.project.StageData4;
+                    }
+                    else
+                    {
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData4[Global.state.EdittingLayerIndex];
+                    }
                     break;
                 case 4:
                     Global.cpd.EditingMap = Global.cpd.project.MapData;

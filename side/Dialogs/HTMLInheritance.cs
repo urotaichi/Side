@@ -882,7 +882,6 @@ namespace MasaoPlus.Dialogs
                                             mcs_screen_size = 1;
                                         }
                                     }
-                                    break;
                                 }
                                 goto IL_D9E;
                             }
