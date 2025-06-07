@@ -140,7 +140,7 @@ namespace MasaoPlus.Controls
             
             if (bool.TryParse(configParam.Value, out bool flag))
             {
-                cell.Value = flag.ToString();
+                cell.Value = (configParam.Type == ConfigParam.Types.b2 ? !flag : flag).ToString();
             }
             else
             {
