@@ -210,10 +210,22 @@ namespace MasaoPlus.Dialogs
                 project.StageData2 = (LayerObject)Global.cpd.project.StageData2.Clone();
                 project.StageData3 = (LayerObject)Global.cpd.project.StageData3.Clone();
                 project.StageData4 = (LayerObject)Global.cpd.project.StageData4.Clone();
-                project.LayerData[0] = (LayerObject)Global.cpd.project.LayerData[0].Clone();
-                project.LayerData2[0] = (LayerObject)Global.cpd.project.LayerData2[0].Clone();
-                project.LayerData3[0] = (LayerObject)Global.cpd.project.LayerData3[0].Clone();
-                project.LayerData4[0] = (LayerObject)Global.cpd.project.LayerData4[0].Clone();
+                foreach (var layer in Global.cpd.project.LayerData)
+                {
+                    project.LayerData.Add((LayerObject)layer.Clone());
+                }
+                foreach (var layer in Global.cpd.project.LayerData2)
+                {
+                    project.LayerData2.Add((LayerObject)layer.Clone());
+                }
+                foreach (var layer in Global.cpd.project.LayerData3)
+                {
+                    project.LayerData3.Add((LayerObject)layer.Clone());
+                }
+                foreach (var layer in Global.cpd.project.LayerData4)
+                {
+                    project.LayerData4.Add((LayerObject)layer.Clone());
+                }
                 project.MapData = (LayerObject)Global.cpd.project.MapData.Clone();
             }
             else
@@ -237,10 +249,22 @@ namespace MasaoPlus.Dialogs
                 if (project.Runtime.Definitions.LayerSize.bytesize != 0) // レイヤーあり
                 {
                     NullChip = chipDataClass.Layerchip[0];
-                    project.LayerData[0] = LayerDataCopy(project, Global.cpd.project.LayerData[0], chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize);
-                    project.LayerData2[0] = LayerDataCopy(project, Global.cpd.project.LayerData2[0], chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.StageSize2);
-                    project.LayerData3[0] = LayerDataCopy(project, Global.cpd.project.LayerData3[0], chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize3);
-                    project.LayerData4[0] = LayerDataCopy(project, Global.cpd.project.LayerData4[0], chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize4);
+                    foreach (var layer in Global.cpd.project.LayerData)
+                    {
+                        project.LayerData.Add(LayerDataCopy(project, layer, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize));
+                    }
+                    foreach (var layer in Global.cpd.project.LayerData2)
+                    {
+                        project.LayerData2.Add(LayerDataCopy(project, layer, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize2));
+                    }
+                    foreach (var layer in Global.cpd.project.LayerData3)
+                    {
+                        project.LayerData3.Add(LayerDataCopy(project, layer, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize3));
+                    }
+                    foreach (var layer in Global.cpd.project.LayerData4)
+                    {
+                        project.LayerData4.Add(LayerDataCopy(project, layer, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize4));
+                    }
                 }
 
                 NullChip = chipDataClass.WorldChip[0];
