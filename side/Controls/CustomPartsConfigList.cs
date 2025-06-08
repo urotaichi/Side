@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using MasaoPlus.Properties;
+using System.Linq;
 
 namespace MasaoPlus.Controls
 {
     public class CustomPartsConfigList : ConfigList
     {
+        private Panel buttonPanel;
+        private Button btnCopyParts;
+        private Button btnDeleteParts;
 
         public override void Prepare()
         {
@@ -27,6 +32,25 @@ namespace MasaoPlus.Controls
             PrepareCurrentCustomPartsParam();
             BasePartsTypes.FlatStyle = FlatStyle.Popup;
             ConfView[1, 1] = BasePartsTypes;
+            
+            UpdateControlStates();
+        }
+
+        private void UpdateControlStates()
+        {
+            bool enable = Global.cpd.project.Use3rdMapData && CustomizeParts.Count > 0 && 
+                         Global.cpd.CustomPartsChip != null && Global.cpd.CustomPartsChip.Length > 0;
+            
+            buttonPanel.Enabled = enable;
+            
+            foreach (DataGridViewRow row in ConfView.Rows)
+            {
+                row.ReadOnly = !enable;
+                if (row.Cells[1] is DataGridViewButtonCell buttonCell)
+                {
+                    buttonCell.FlatStyle = enable ? FlatStyle.Popup : FlatStyle.Standard;
+                }
+            }
         }
 
         public void PrepareCurrentCustomPartsParam()
@@ -99,6 +123,8 @@ namespace MasaoPlus.Controls
                     break;
                 }
             }
+
+            UpdateControlStates();
         }
 
         protected void PrepareCustomPartsParam(ChipsData c, string chipcode)
@@ -1263,12 +1289,41 @@ namespace MasaoPlus.Controls
         {
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
+            buttonPanel = new Panel();
+            btnCopyParts = new Button();
+            btnDeleteParts = new Button();
             ConfView = new DataGridView();
             CNames = new DataGridViewTextBoxColumn();
             CValues = new DataGridViewTextBoxColumn();
             SE = new DataGridViewTextBoxColumn();
             ((ISupportInitialize)ConfView).BeginInit();
             SuspendLayout();
+
+            // ボタンパネルの設定
+            buttonPanel.Dock = DockStyle.Top;
+            buttonPanel.Height = LogicalToDeviceUnits(30);
+            buttonPanel.Padding = new Padding(2);
+
+            // ボタンの設定
+            int buttonWidth = LogicalToDeviceUnits(70);
+            int buttonHeight = LogicalToDeviceUnits(24);
+            int buttonSpacing = LogicalToDeviceUnits(2);
+
+            btnCopyParts.Text = "複製";
+            btnCopyParts.Size = new Size(buttonWidth, buttonHeight);
+            btnCopyParts.Location = new Point(buttonSpacing, LogicalToDeviceUnits(3));
+            btnCopyParts.Image = new IconImageView(DeviceDpi, Resources.copy).View();
+            btnCopyParts.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCopyParts.Click += BtnCopyParts_Click;
+
+            btnDeleteParts.Text = "削除";
+            btnDeleteParts.Size = new Size(buttonWidth, buttonHeight);
+            btnDeleteParts.Location = new Point(buttonWidth + buttonSpacing * 2, LogicalToDeviceUnits(3));
+            btnDeleteParts.Image = new IconImageView(DeviceDpi, Resources.cross).View();
+            btnDeleteParts.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDeleteParts.Click += BtnDeleteParts_Click;
+
+            buttonPanel.Controls.AddRange([btnCopyParts, btnDeleteParts]);
 
             ConfView.AllowUserToAddRows = false;
             ConfView.AllowUserToDeleteRows = false;
@@ -1330,6 +1385,8 @@ namespace MasaoPlus.Controls
             //AutoScaleDimensions = new SizeF(6f, 12f);
             //AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(ConfView);
+            Controls.Add(buttonPanel);
+            Controls.Add(ConfigSelector);
             Name = "CustomPartsConfigList";
             Size = LogicalToDeviceUnits(new Size(298, 358));
             ((ISupportInitialize)ConfView).EndInit();
@@ -1341,5 +1398,90 @@ namespace MasaoPlus.Controls
         private DataGridViewComboBoxCell BasePartsTypes;
 
         private DataGridViewTextBoxColumn SE;
+
+        private void BtnCopyParts_Click(object sender, EventArgs e)
+        {
+            string name = $"{Global.state.CurrentCustomPartsChip.Chips[0].name}（コピー）";
+            CopyCurrentParts(name);
+        }
+
+        private void BtnDeleteParts_Click(object sender, EventArgs e)
+        {
+            DeleteCurrentParts();
+        }
+
+        private void CopyCurrentParts(string name)
+        {
+            if (Global.cpd.CustomPartsChip == null)
+            {
+                Array.Resize(ref Global.cpd.CustomPartsChip, 1);
+            }
+            else
+            {
+                Array.Resize(ref Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length + 1);
+            }
+
+            ChipsData basedata = Global.state.CurrentCustomPartsChip;
+            Global.cpd.CustomPartsChip[^1] = basedata;
+            Global.cpd.CustomPartsChip[^1].Chips = (ChipData[])basedata.Chips.Clone();
+
+            var r = new Random();
+            const string PWS_CHARS = "abcdefghijklmnopqrstuvwxyz";
+
+            for (int j = 0; j < Global.cpd.CustomPartsChip[^1].Chips.Length; j++)
+            {
+                Global.cpd.CustomPartsChip[^1].Chips[j].name = name;
+            }
+
+            Global.cpd.CustomPartsChip[^1].basecode = basedata.basecode;
+            Global.cpd.CustomPartsChip[^1].code = string.Join("", Enumerable.Range(0, 10).Select(_ => PWS_CHARS[r.Next(PWS_CHARS.Length)]));
+            Global.cpd.CustomPartsChip[^1].idColor = $"#{Guid.NewGuid().ToString("N")[..6]}";
+
+            Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[^1];
+            Global.MainWnd.MainDesigner.DrawItemCodeRef[Global.state.CurrentCustomPartsChip.code] = Global.state.CurrentCustomPartsChip;
+            Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
+
+            Global.MainWnd.RefreshAll();
+            Global.state.EditFlag = true;
+            ConfigSelector_SelectedIndexChanged();
+        }
+
+        private void DeleteCurrentParts()
+        {
+            string currentCode = Global.state.CurrentCustomPartsChip.code;
+            int currentIndex = Array.FindIndex(Global.cpd.CustomPartsChip, x => x.code == currentCode);
+
+            if (currentIndex == -1) return;
+
+            void UpdateStageData(LayerObject stagedata)
+            {
+                for (int i = 0; i < stagedata.Length; i++)
+                {
+                    stagedata[i] = stagedata[i].Replace(currentCode, "0");
+                }
+            }
+
+            UpdateStageData(Global.cpd.project.StageData);
+            UpdateStageData(Global.cpd.project.StageData2);
+            UpdateStageData(Global.cpd.project.StageData3);
+            UpdateStageData(Global.cpd.project.StageData4);
+
+            Global.MainWnd.MainDesigner.DrawItemCodeRef.Remove(currentCode);
+            Global.cpd.CustomPartsChip = [.. Global.cpd.CustomPartsChip.Where((_, index) => index != currentIndex)];
+
+            if (Global.cpd.CustomPartsChip.Length > 0)
+            {
+                Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];
+            }
+            else
+            {
+                Global.state.CurrentCustomPartsChip = default;
+            }
+
+            Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
+            Global.MainWnd.RefreshAll();
+            Global.state.EditFlag = true;
+            ConfigSelector_SelectedIndexChanged();
+        }
     }
 }
