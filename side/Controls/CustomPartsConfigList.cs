@@ -1431,7 +1431,7 @@ namespace MasaoPlus.Controls
                 if (int.Parse(Global.cpd.VarietyChip[i].code) > 5000)
                 {
                     int num2 = Global.cpd.CustomPartsChip?.Length ?? 0;
-                    GUICustomPartsChipList.Create(Global.cpd.VarietyChip[i], $"カスタムパーツ{num2 + 1}");
+                    CreateNewParts(Global.cpd.VarietyChip[i], $"カスタムパーツ{num2 + 1}");
                     break;
                 }
             }
@@ -1473,7 +1473,7 @@ namespace MasaoPlus.Controls
             ConfigSelector_SelectedIndexChanged();
         }
 
-        private void DeleteCurrentParts()
+        public void DeleteCurrentParts()
         {
             string currentCode = Global.state.CurrentCustomPartsChip.code;
             int currentIndex = Array.FindIndex(Global.cpd.CustomPartsChip, x => x.code == currentCode);
@@ -1509,6 +1509,86 @@ namespace MasaoPlus.Controls
             Global.MainWnd.RefreshAll();
             Global.state.EditFlag = true;
             ConfigSelector_SelectedIndexChanged();
+        }
+
+        public void CreateNewParts(ChipsData basedata, string name)
+        {
+            // GUICustomPartsChipList.Create()の実装をこちらに移動
+            ChipsData data;
+            int i;
+            if (basedata.basecode != null)
+            {
+                for (i = 0; i < Global.cpd.VarietyChip.Length; i++)
+                {
+                    if (Global.cpd.VarietyChip[i].code == basedata.basecode)
+                    {
+                        break;
+                    }
+                }
+                data = Global.cpd.VarietyChip[i];
+            }
+            else
+            {
+                data = basedata;
+            }
+
+            if (Global.cpd.CustomPartsChip == null)
+            {
+                Array.Resize(ref Global.cpd.CustomPartsChip, 1);
+            }
+            else
+            {
+                Array.Resize(ref Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length + 1);
+            }
+
+            Global.cpd.CustomPartsChip[^1] = data;
+            Global.cpd.CustomPartsChip[^1].Chips = (ChipData[])data.Chips.Clone();
+
+            var r = new Random();
+            const string PWS_CHARS = "abcdefghijklmnopqrstuvwxyz";
+
+            for (int j = 0; j < Global.cpd.CustomPartsChip[^1].Chips.Length; j++)
+            {
+                Global.cpd.CustomPartsChip[^1].Chips[j].name = name;
+            }
+
+            Global.cpd.CustomPartsChip[^1].basecode = data.basecode;
+            Global.cpd.CustomPartsChip[^1].code = string.Join("", Enumerable.Range(0, 10).Select(_ => PWS_CHARS[r.Next(PWS_CHARS.Length)]));
+            Global.cpd.CustomPartsChip[^1].idColor = $"#{Guid.NewGuid().ToString("N")[..6]}";
+
+            Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[^1];
+            Global.MainWnd.MainDesigner.DrawItemCodeRef[Global.state.CurrentCustomPartsChip.code] = Global.state.CurrentCustomPartsChip;
+            Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
+
+            Global.MainWnd.RefreshAll();
+            Global.state.EditFlag = true;
+            ConfigSelector_SelectedIndexChanged();
+        }
+
+        // 右クリックメニューなどから呼ばれる
+        public void CreateOrCopyParts(bool isCopy = false)
+        {
+            if (isCopy && (Global.cpd.CustomPartsChip == null || Global.cpd.CustomPartsChip.Length < 1))
+                return;
+
+            if (isCopy)
+            {
+                string name = $"{Global.state.CurrentCustomPartsChip.Chips[0].name}（コピー）";
+                CopyCurrentParts(name);
+            }
+            else
+            {
+                // 最初のカスタムパーツ対象のチップを探す
+                for (int i = 0; i < Global.cpd.VarietyChip.Length; i++)
+                {
+                    if (int.Parse(Global.cpd.VarietyChip[i].code) > 5000)
+                    {
+                        int num2 = Global.cpd.CustomPartsChip?.Length ?? 0;
+                        CreateNewParts(Global.cpd.VarietyChip[i], $"カスタムパーツ{num2 + 1}");
+                        break;
+                    }
+                }
+            }
         }
     }
 }

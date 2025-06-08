@@ -169,28 +169,13 @@ namespace MasaoPlus
             }
             int num = (int)Math.Floor(e.X / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width));
             num += (int)Math.Floor((e.Y + vPosition) / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height)) * hMaxChip;
-            int num2;
-            if (Global.cpd.CustomPartsChip == null)
-            {
-                num2 = 0;
-            }
-            else
-            {
-                num2 = Global.cpd.CustomPartsChip.Length;
-            }
+            int num2 = Global.cpd.CustomPartsChip?.Length ?? 0;
+            
             if (num >= num2)
             {
                 if (num == num2)
                 {
-                    int i;
-                    for (i = 0; i < Global.cpd.VarietyChip.Length; i++)
-                    {
-                        if (int.Parse(Global.cpd.VarietyChip[i].code) > 5000)
-                        {
-                            break;
-                        }
-                    }
-                    Create(Global.cpd.VarietyChip[i], $"カスタムパーツ{num2 + 1}");
+                    Global.MainWnd.CustomPartsConfigList.CreateOrCopyParts(); // 新規作成
                 }
                 return;
             }
@@ -201,100 +186,17 @@ namespace MasaoPlus
                 MouseStartPoint.X = (e.X + Global.state.MapPoint.X) / LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width);
                 MouseStartPoint.Y = (e.Y + Global.state.MapPoint.Y) / LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height);
                 CursorContextMenu.Show(this, new Point(e.X, e.Y));
-                return;
             }
         }
 
         private void Copy_Click(object sender, EventArgs e)
         {
-            string name = $"{Global.state.CurrentCustomPartsChip.Chips[0].name}（コピー）";
-            Create(Global.state.CurrentCustomPartsChip, name);
-            Global.MainWnd.CustomPartsConfigList.ConfView[1, 0].Value = name;
+            Global.MainWnd.CustomPartsConfigList.CreateOrCopyParts(true);
         }
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            void func(LayerObject stagedata)
-            {
-                for (int i = 0; i < stagedata.Length; i++)
-                {
-                    stagedata[i] = stagedata[i].Replace(Global.cpd.CustomPartsChip[selectedIndex].code, "0");
-                }
-            }
-            func(Global.cpd.project.StageData);
-            func(Global.cpd.project.StageData2);
-            func(Global.cpd.project.StageData3);
-            func(Global.cpd.project.StageData4);
-            Global.MainWnd.MainDesigner.DrawItemCodeRef.Remove(Global.cpd.CustomPartsChip[selectedIndex].code);
-            Global.cpd.CustomPartsChip = [.. Global.cpd.CustomPartsChip.Where((_, index) => index != selectedIndex)];
-            if (Global.cpd.CustomPartsChip.Length > 0)
-            {
-                Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];
-                SelectedIndex = 0;
-            }
-            else
-            {
-                Global.state.CurrentCustomPartsChip = default;
-                Global.MainWnd.CustomPartsConfigList.ConfigSelector_SelectedIndexChanged();
-            }
-            Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
-            Global.MainWnd.RefreshAll();
-            Global.state.EditFlag = true;
-        }
-
-        public static void Create(ChipsData basedata, string name)
-        {
-            ChipsData data;
-            int i;
-            if (basedata.basecode != null)
-            {
-                for (i = 0; i < Global.cpd.VarietyChip.Length; i++)
-                {
-                    if (Global.cpd.VarietyChip[i].code == basedata.basecode)
-                    {
-                        break;
-                    }
-                }
-                data = Global.cpd.VarietyChip[i];
-            }
-            else
-            {
-                data = basedata;
-            }
-            var r = new Random();
-            const string PWS_CHARS = "abcdefghijklmnopqrstuvwxyz";
-            if (Global.cpd.CustomPartsChip == null)
-            {
-                Array.Resize(ref Global.cpd.CustomPartsChip, 1);
-            }
-            else
-            {
-                Array.Resize(ref Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length + 1);
-            }
-            Global.cpd.CustomPartsChip[^1] = basedata;
-            Global.cpd.CustomPartsChip[^1].Chips = (ChipData[])basedata.Chips.Clone(); // 配列は個別に複製
-            for (int j = 0; j < Global.cpd.CustomPartsChip[^1].Chips.Length; j++)
-            {
-                Global.cpd.CustomPartsChip[^1].Chips[j].name = name;
-                Global.cpd.CustomPartsChip[^1].Chips[j].description = $"{data.Chips[j].name} {data.Chips[j].description}";
-            }
-            Global.cpd.CustomPartsChip[^1].basecode = data.code;
-            Global.cpd.CustomPartsChip[^1].code = string.Join("", Enumerable.Range(0, 10).Select(_ => PWS_CHARS[r.Next(PWS_CHARS.Length)]));
-            Global.cpd.CustomPartsChip[^1].idColor = $"#{Guid.NewGuid().ToString("N")[..6]}";
-            Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[^1];
-            Global.MainWnd.MainDesigner.DrawItemCodeRef[Global.state.CurrentCustomPartsChip.code] = Global.state.CurrentCustomPartsChip;
-            if (Global.cpd.project.CustomPartsDefinition == null)
-            {
-                Array.Resize(ref Global.cpd.project.CustomPartsDefinition, 1);
-            }
-            else
-            {
-                Array.Resize(ref Global.cpd.project.CustomPartsDefinition, Global.cpd.project.CustomPartsDefinition.Length + 1);
-            }
-            Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
-            Global.MainWnd.RefreshAll();
-            Global.state.EditFlag = true;
-            Global.MainWnd.CustomPartsConfigList.ConfigSelector_SelectedIndexChanged();
+            Global.MainWnd.CustomPartsConfigList.DeleteCurrentParts();
         }
 
         protected override void InitializeComponent()
