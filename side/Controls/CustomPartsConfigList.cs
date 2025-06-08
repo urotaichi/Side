@@ -15,6 +15,9 @@ namespace MasaoPlus.Controls
         private Button btnCopyParts;
         private Button btnDeleteParts;
         private Button btnAddParts;  // 追加
+        private ContextMenuStrip contextMenuStrip;
+        private ToolStripMenuItem menuDeleteTiming;
+        private int rightClickedRowIndex = -1;
 
         public override void Prepare()
         {
@@ -485,36 +488,13 @@ namespace MasaoPlus.Controls
             }
         }
 
-        protected void ConfView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void ConfView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 0)
             {
                 return;
             }
-            int num = e.RowIndex;
-            if (num < 3 || num > ConfView.Rows.Count - 2)
-            {
-                return;
-            }
-            int i, cs_i = Global.MainWnd.GuiCustomPartsChipList.SelectedIndex;
-            for (i = 0; i < CustomizeParts.Count; i++)
-            {
-                if (i == BasePartsTypes.Items.IndexOf(BasePartsTypes.Value))
-                {
-                    break;
-                }
-            }
-            ChipsData c = CustomizeParts[i];
-            if (int.TryParse(c.code, out int code))
-            {
-                if ((code - 5000) / 10 == 30) // チコリン（はっぱカッター）
-                {
-                    ConfView.Rows.RemoveAt(num);
-                    Global.cpd.CustomPartsChip[cs_i].Properties.attack_timing.RemoveAt(num - 3);
-                    Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[cs_i];
-                    Global.state.EditFlag = true;
-                }
-            }
+            DeleteAttackTiming(e.RowIndex);
         }
 
         protected override void ConfView_CurrentCellDirtyStateChanged(object sender, EventArgs e)
@@ -1302,6 +1282,8 @@ namespace MasaoPlus.Controls
             CNames = new DataGridViewTextBoxColumn();
             CValues = new DataGridViewTextBoxColumn();
             SE = new DataGridViewTextBoxColumn();
+            contextMenuStrip = new ContextMenuStrip();
+            menuDeleteTiming = new ToolStripMenuItem();
             ((ISupportInitialize)ConfView).BeginInit();
             SuspendLayout();
 
@@ -1364,7 +1346,18 @@ namespace MasaoPlus.Controls
             ConfView.CellClick += ConfView_CellClick;
             ConfView.EditingControlShowing += ConfView_EditingControlShowing;
             ConfView.CurrentCellDirtyStateChanged += ConfView_CurrentCellDirtyStateChanged;
+            ConfView.MouseDown += ConfView_MouseDown;
             ConfView.CellDoubleClick += ConfView_CellDoubleClick;
+
+            contextMenuStrip.Items.AddRange([menuDeleteTiming]);
+            contextMenuStrip.Name = "contextMenuStrip";
+            contextMenuStrip.Size = LogicalToDeviceUnits(new Size(180, 120));
+
+            menuDeleteTiming.Name = "menuDeleteTiming";
+            menuDeleteTiming.Size = LogicalToDeviceUnits(new Size(179, 22));
+            menuDeleteTiming.Text = "葉っぱを投げるタイミングを削除";
+            menuDeleteTiming.Image = new IconImageView(DeviceDpi, Resources.cross).View();
+            menuDeleteTiming.Click += MenuDeleteTiming_Click;
 
             CNames.FillWeight = 30f;
             CNames.HeaderText = "項目名";
@@ -1587,6 +1580,96 @@ namespace MasaoPlus.Controls
                         CreateNewParts(Global.cpd.VarietyChip[i], $"カスタムパーツ{num2 + 1}");
                         break;
                     }
+                }
+            }
+        }
+
+        private void MenuDeleteTiming_Click(object sender, EventArgs e)
+        {
+            DeleteAttackTiming(rightClickedRowIndex);
+        }
+
+        private void DeleteAttackTiming(int rowIndex)
+        {
+            // 行範囲チェック
+            if (rowIndex < 3 || rowIndex > ConfView.Rows.Count - 2)
+            {
+                return;
+            }
+
+            // カスタムパーツのインデックスと現在のパーツを取得
+            int cs_i = Global.MainWnd.GuiCustomPartsChipList.SelectedIndex;
+            int i;
+            for (i = 0; i < CustomizeParts.Count; i++)
+            {
+                if (i == BasePartsTypes.Items.IndexOf(BasePartsTypes.Value))
+                {
+                    break;
+                }
+            }
+            
+            ChipsData c = CustomizeParts[i];
+            if (int.TryParse(c.code, out int code))
+            {
+                if ((code - 5000) / 10 == 30) // チコリン（はっぱカッター）
+                {
+                    ConfView.Rows.RemoveAt(rowIndex);
+                    Global.cpd.CustomPartsChip[cs_i].Properties.attack_timing.RemoveAt(rowIndex - 3);
+                    Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[cs_i];
+                    Global.state.EditFlag = true;
+                }
+            }
+        }
+
+        private bool IsAttackTimingRow(int rowIndex)
+        {
+            if (rowIndex < 3 || rowIndex >= ConfView.Rows.Count - 1)
+            {
+                return false;
+            }
+
+            // カスタムパーツのインデックスと現在のパーツを取得
+            int i;
+            for (i = 0; i < CustomizeParts.Count; i++)
+            {
+                if (i == BasePartsTypes.Items.IndexOf(BasePartsTypes.Value))
+                {
+                    break;
+                }
+            }
+            if (i >= CustomizeParts.Count)
+            {
+                return false;
+            }
+
+            ChipsData c = CustomizeParts[i];
+            if (!int.TryParse(c.code, out int code))
+            {
+                return false;
+            }
+
+            // チコリン（はっぱカッター）の場合のみ
+            if ((code - 5000) / 10 != 30)
+            {
+                return false;
+            }
+
+            // 「葉っぱを投げるタイミング」の行かチェック
+            var cellValue = ConfView[0, rowIndex].Value?.ToString();
+            return cellValue == "葉っぱを投げるタイミング" && ConfView[1, rowIndex].Value?.ToString() != "＋";
+        }
+
+        protected void ConfView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && Global.cpd.project.Use3rdMapData)
+            {
+                var hitTest = ConfView.HitTest(e.X, e.Y);
+                if (hitTest.Type == DataGridViewHitTestType.Cell && 
+                    hitTest.RowIndex >= 0 &&
+                    IsAttackTimingRow(hitTest.RowIndex))
+                {
+                    rightClickedRowIndex = hitTest.RowIndex;
+                    contextMenuStrip.Show(ConfView, e.Location);
                 }
             }
         }
