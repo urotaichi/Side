@@ -14,6 +14,7 @@ namespace MasaoPlus.Controls
         private Panel buttonPanel;
         private Button btnCopyParts;
         private Button btnDeleteParts;
+        private Button btnAddParts;  // 追加
 
         public override void Prepare()
         {
@@ -38,8 +39,12 @@ namespace MasaoPlus.Controls
 
         private void UpdateControlStates()
         {
-            bool enable = Global.cpd.project.Use3rdMapData && CustomizeParts.Count > 0 && 
-                         Global.cpd.CustomPartsChip != null && Global.cpd.CustomPartsChip.Length > 0;
+            bool enable = Global.cpd.project.Use3rdMapData && CustomizeParts.Count > 0;
+            bool hasCustomParts = enable && Global.cpd.CustomPartsChip != null && Global.cpd.CustomPartsChip.Length > 0;
+            
+            btnAddParts.Enabled = enable;
+            btnCopyParts.Enabled = hasCustomParts;
+            btnDeleteParts.Enabled = hasCustomParts;
             
             buttonPanel.Enabled = enable;
             
@@ -1292,6 +1297,7 @@ namespace MasaoPlus.Controls
             buttonPanel = new Panel();
             btnCopyParts = new Button();
             btnDeleteParts = new Button();
+            btnAddParts = new Button();
             ConfView = new DataGridView();
             CNames = new DataGridViewTextBoxColumn();
             CValues = new DataGridViewTextBoxColumn();
@@ -1309,21 +1315,28 @@ namespace MasaoPlus.Controls
             int buttonHeight = LogicalToDeviceUnits(24);
             int buttonSpacing = LogicalToDeviceUnits(2);
 
+            btnAddParts.Text = "追加";
+            btnAddParts.Size = new Size(buttonWidth, buttonHeight);
+            btnAddParts.Location = new Point(buttonSpacing, LogicalToDeviceUnits(3));
+            btnAddParts.Image = new IconImageView(DeviceDpi, Resources.shape_square_add).View();
+            btnAddParts.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnAddParts.Click += BtnAddParts_Click;
+
             btnCopyParts.Text = "複製";
             btnCopyParts.Size = new Size(buttonWidth, buttonHeight);
-            btnCopyParts.Location = new Point(buttonSpacing, LogicalToDeviceUnits(3));
+            btnCopyParts.Location = new Point(buttonWidth + buttonSpacing * 2, LogicalToDeviceUnits(3));
             btnCopyParts.Image = new IconImageView(DeviceDpi, Resources.copy).View();
             btnCopyParts.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCopyParts.Click += BtnCopyParts_Click;
 
             btnDeleteParts.Text = "削除";
             btnDeleteParts.Size = new Size(buttonWidth, buttonHeight);
-            btnDeleteParts.Location = new Point(buttonWidth + buttonSpacing * 2, LogicalToDeviceUnits(3));
+            btnDeleteParts.Location = new Point((buttonWidth + buttonSpacing) * 2 + buttonSpacing, LogicalToDeviceUnits(3));
             btnDeleteParts.Image = new IconImageView(DeviceDpi, Resources.cross).View();
             btnDeleteParts.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDeleteParts.Click += BtnDeleteParts_Click;
 
-            buttonPanel.Controls.AddRange([btnCopyParts, btnDeleteParts]);
+            buttonPanel.Controls.AddRange([btnAddParts, btnCopyParts, btnDeleteParts]);
 
             ConfView.AllowUserToAddRows = false;
             ConfView.AllowUserToDeleteRows = false;
@@ -1408,6 +1421,20 @@ namespace MasaoPlus.Controls
         private void BtnDeleteParts_Click(object sender, EventArgs e)
         {
             DeleteCurrentParts();
+        }
+
+        private void BtnAddParts_Click(object sender, EventArgs e)
+        {
+            // 最初のカスタムパーツ対象のチップを探す
+            for (int i = 0; i < Global.cpd.VarietyChip.Length; i++)
+            {
+                if (int.Parse(Global.cpd.VarietyChip[i].code) > 5000)
+                {
+                    int num2 = Global.cpd.CustomPartsChip?.Length ?? 0;
+                    GUICustomPartsChipList.Create(Global.cpd.VarietyChip[i], $"カスタムパーツ{num2 + 1}");
+                    break;
+                }
+            }
         }
 
         private void CopyCurrentParts(string name)

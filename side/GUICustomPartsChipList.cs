@@ -242,7 +242,7 @@ namespace MasaoPlus
             Global.state.EditFlag = true;
         }
 
-        private static void Create(ChipsData basedata, string name)
+        public static void Create(ChipsData basedata, string name)
         {
             ChipsData data;
             int i;
