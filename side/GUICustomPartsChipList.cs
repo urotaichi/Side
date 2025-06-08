@@ -222,10 +222,10 @@ namespace MasaoPlus
             Copy.Image = new IconImageView(DeviceDpi, Resources.copy).View();
             Copy.Name = "Copy";
             Copy.Size = LogicalToDeviceUnits(new Size(274, 22));
-            Copy.Text = "コピー(&C)";
+            Copy.Text = "複製(&C)";
             Copy.Click += Copy_Click;
             Delete.Image = new IconImageView(DeviceDpi, Resources.cross).View();
-            Delete.Name = "Copy";
+            Delete.Name = "Delete";
             Delete.Size = LogicalToDeviceUnits(new Size(274, 22));
             Delete.Text = "削除";
             Delete.Click += Delete_Click;
