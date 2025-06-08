@@ -163,7 +163,7 @@ namespace MasaoPlus
                 return;
             }
             int hMaxChip = this.hMaxChip;
-            if (e.X > hMaxChip * Global.cpd.runtime.Definitions.ChipSize.Width)
+            if (e.X > LogicalToDeviceUnits(hMaxChip * Global.cpd.runtime.Definitions.ChipSize.Width))
             {
                 return;
             }
