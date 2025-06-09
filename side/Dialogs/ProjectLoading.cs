@@ -31,6 +31,7 @@ namespace MasaoPlus.Dialogs
             Global.MainWnd.LayerObjectConfigList.Prepare();
             Global.MainWnd.LayerObjectConfigList.Reload();
             Global.MainWnd.GuiChipList.RecalculateScrollbar();
+            Global.MainWnd.CustomPartsConfigList.UpdateControlStates();
             DialogResult = DialogResult.OK;
             Close();
         }
