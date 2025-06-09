@@ -9,7 +9,7 @@
       <Update>https://urotaichi.com/other/side/mc28.xml</Update>
       <Package>CanvasMasao_v28.js</Package>
       <Configurations>config.sdx</Configurations>
-      <ChipDefinition>chipresolv.sdx</ChipDefinition>
+      <ChipDefinition>chipresolv_v28.sdx</ChipDefinition>
       <ChipExtender>ex.png</ChipExtender>
       <Chipset />
       <DefVersion>5.04</DefVersion>
