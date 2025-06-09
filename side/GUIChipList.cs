@@ -98,7 +98,8 @@ namespace MasaoPlus
         {
             vScr.LargeChange = MainPanel.Height;
             vScr.SmallChange = LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height);
-            vScr.Maximum = GetVirtSize() - MainPanel.Height + vScr.LargeChange - 1;
+            int virtualSize = GetVirtSize();
+            vScr.Maximum = Math.Max(0, virtualSize);
         }
 
         public GUIChipList()
@@ -155,7 +156,8 @@ namespace MasaoPlus
 
         protected void GUIChipList_Resize(object sender, EventArgs e)
         {
-            if (GetVirtSize(Width) < Height)
+            int virtualSize = GetVirtSize(MainPanel.Width);
+            if (virtualSize <= MainPanel.Height)
             {
                 vScr.Value = 0;
                 vScr.Visible = false;
@@ -472,6 +474,15 @@ namespace MasaoPlus
             KeyDown += GUIChipList_KeyDown;
             ((ISupportInitialize)MainPanel).EndInit();
             ResumeLayout(false);
+        }
+
+        public void RecalculateScrollbar()
+        {
+            if (Global.cpd.project != null && Global.cpd.runtime != null)
+            {
+                SetMaxValue();
+                GUIChipList_Resize(this, EventArgs.Empty);
+            }
         }
 
         protected int selectedIndex;

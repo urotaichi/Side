@@ -1644,7 +1644,7 @@ namespace MasaoPlus
 
 		private global::System.Windows.Forms.PictureBox ChipImage;
 
-        private global::MasaoPlus.GUIChipList GuiChipList;
+        public global::MasaoPlus.GUIChipList GuiChipList;
 
 		private global::System.Windows.Forms.ListBox ChipList;
 

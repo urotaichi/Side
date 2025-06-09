@@ -395,6 +395,7 @@ namespace MasaoPlus
             MainEditor.BackgroundLayer.Checked = true;
             Global.state.EdittingLayerIndex = layerIndex;
             UpdateLayer(layerIndex);
+            Global.MainWnd.GuiChipList.RecalculateScrollbar();
         }
 
         // ステータスバーっぽいところに表示される小さいアイコンや文字
@@ -2131,6 +2132,7 @@ namespace MasaoPlus
             MainEditor.BackgroundLayer.Checked = false;
             Global.state.EdittingLayerIndex = -1;
             UpdateLayer();
+            Global.MainWnd.GuiChipList.RecalculateScrollbar();
         }
 
         public void EditBackground_Click(object sender, EventArgs e)
@@ -2152,6 +2154,7 @@ namespace MasaoPlus
             MainEditor.BackgroundLayer.Checked = true;
             Global.state.EdittingLayerIndex = 0;
             UpdateLayer();
+            Global.MainWnd.GuiChipList.RecalculateScrollbar();
         }
 
         private bool ChangePreCheck()
