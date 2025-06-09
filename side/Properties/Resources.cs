@@ -378,6 +378,15 @@ namespace MasaoPlus.Properties
 			}
 		}
 
+        internal static Bitmap page_white_get
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("page_white_get", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
+
         private static ResourceManager resourceMan;
 
 		private static CultureInfo resourceCulture;
