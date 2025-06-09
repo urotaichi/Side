@@ -281,6 +281,7 @@ namespace MasaoPlus.Dialogs
                         }
                     }
                     Global.cpd.project.Use3rdMapData = Use3rdMapData.Checked;
+                    Global.MainWnd.CustomPartsConfigList.UpdateControlStates();
                     if (flag)
                     {
                         resetEditingMapSize();

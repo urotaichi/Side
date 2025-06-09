@@ -40,7 +40,7 @@ namespace MasaoPlus.Controls
             UpdateControlStates();
         }
 
-        private void UpdateControlStates()
+        public void UpdateControlStates()
         {
             bool enable = Global.cpd.project.Use3rdMapData && CustomizeParts.Count > 0;
             bool hasCustomParts = enable && Global.cpd.CustomPartsChip != null && Global.cpd.CustomPartsChip.Length > 0;
