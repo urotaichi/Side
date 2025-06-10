@@ -511,15 +511,15 @@ namespace MasaoPlus.Controls
 
         protected override void ConfView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
-            {
-                return;
-            }
-            if (e.RowIndex < 0)
+            if (e.ColumnIndex == 0 || e.RowIndex < 0)
             {
                 return;
             }
             if (Global.cpd.CustomPartsChip == null || Global.cpd.CustomPartsChip.Length < 1)
+            {
+                return;
+            }
+            if (BasePartsTypes.Value == null)
             {
                 return;
             }
@@ -1215,11 +1215,15 @@ namespace MasaoPlus.Controls
 
         protected override void ConfView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex != 1)
+            if (e.ColumnIndex != 1 || e.RowIndex < 0)
             {
                 return;
             }
             if (Global.cpd.CustomPartsChip == null || Global.cpd.CustomPartsChip.Length < 1)
+            {
+                return;
+            }
+            if (BasePartsTypes.Value == null)
             {
                 return;
             }
@@ -1573,6 +1577,15 @@ namespace MasaoPlus.Controls
                 {
                     int num2 = Global.cpd.CustomPartsChip?.Length ?? 0;
                     CreateNewParts(Global.cpd.VarietyChip[i], $"カスタムパーツ{num2 + 1}");
+
+                    // ConfViewの値を即座に更新
+                    ConfView[1, 0].Value = $"カスタムパーツ{num2 + 1}";
+                    ConfView[1, 0].ReadOnly = false;
+                    ConfView[1, 1].ReadOnly = false;
+
+                    // BasePartsTypesの選択を設定
+                    BasePartsTypes.Value = BasePartsTypes.Items[0].ToString();
+                    
                     break;
                 }
             }
