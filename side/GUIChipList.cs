@@ -385,7 +385,7 @@ namespace MasaoPlus
             SelectedIndex = num;
         }
 
-        protected void MainPanel_MouseMove(object sender, MouseEventArgs e)
+        protected virtual void MainPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {

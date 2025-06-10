@@ -67,6 +67,13 @@ namespace MasaoPlus
 
                 if (rectangle.Bottom >= 0)
                 {
+                    if (i == dropTargetIndex)
+                    {
+                        // ドロップ位置のマーカーを描画
+                        using var pen = new Pen(Color.Yellow, 3);
+                        e.Graphics.DrawRectangle(pen, rectangle);
+                    }
+
                     ChipData cschip = chipData.GetCSChip();
                     if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd) // チップ裏に拡張画像を描画
                     {
@@ -187,16 +194,24 @@ namespace MasaoPlus
                 MouseStartPoint.Y = (e.Y + Global.state.MapPoint.Y) / LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height);
                 CursorContextMenu.Show(this, new Point(e.X, e.Y));
             }
+            else if (e.Button == MouseButtons.Left)
+            {
+                isDragging = true;
+                dragSourceIndex = num;
+                dragStartPoint = e.Location;
+            }
         }
 
-        private void Copy_Click(object sender, EventArgs e)
+        protected override void MainPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            Global.MainWnd.CustomPartsConfigList.CopyFromCurrentParts();
-        }
-
-        private void Delete_Click(object sender, EventArgs e)
-        {
-            Global.MainWnd.CustomPartsConfigList.DeleteCurrentParts();
+            if (isDragging && e.Button == MouseButtons.Left)
+            {
+                if (Math.Abs(e.X - dragStartPoint.X) > 5 || Math.Abs(e.Y - dragStartPoint.Y) > 5)
+                {
+                    MainPanel.DoDragDrop(dragSourceIndex, DragDropEffects.Move);
+                    isDragging = false;
+                }
+            }
         }
 
         protected override void InitializeComponent()
@@ -245,6 +260,10 @@ namespace MasaoPlus
             MainPanel.MouseMove += MainPanel_MouseMove;
             MainPanel.MouseDown += MainPanel_MouseDown;
             MainPanel.Paint += MainPanel_Paint;
+            MainPanel.AllowDrop = true;
+            MainPanel.DragEnter += MainPanel_DragEnter;
+            MainPanel.DragDrop += MainPanel_DragDrop;
+            MainPanel.DragOver += MainPanel_DragOver;
             //AutoScaleDimensions = new SizeF(6f, 12f);
             //AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(MainPanel);
@@ -259,6 +278,16 @@ namespace MasaoPlus
             ResumeLayout(false);
         }
 
+        private void Copy_Click(object sender, EventArgs e)
+        {
+            Global.MainWnd.CustomPartsConfigList.CopyFromCurrentParts();
+        }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            Global.MainWnd.CustomPartsConfigList.DeleteCurrentParts();
+        }
+
         private Point MouseStartPoint = default;
 
         private ContextMenuStrip CursorContextMenu;
@@ -266,5 +295,65 @@ namespace MasaoPlus
         private ToolStripMenuItem Copy;
 
         private ToolStripMenuItem Delete;
+
+        private bool isDragging = false;
+        private int dragSourceIndex = -1;
+        private Point dragStartPoint;
+        private int dropTargetIndex = -1;
+
+        private void MainPanel_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(int)))
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+        }
+
+        private void MainPanel_DragOver(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent(typeof(int))) return;
+
+            Point clientPoint = MainPanel.PointToClient(new Point(e.X, e.Y));
+            int hMaxChip = this.hMaxChip;
+            int targetIndex = (int)Math.Floor(clientPoint.X / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width));
+            targetIndex += (int)Math.Floor((clientPoint.Y + vPosition) / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height)) * hMaxChip;
+
+            if (targetIndex != dropTargetIndex && targetIndex < Global.cpd.CustomPartsChip.Length)
+            {
+                dropTargetIndex = targetIndex;
+                Refresh();
+            }
+        }
+
+        private void MainPanel_DragDrop(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent(typeof(int))) return;
+
+            Point clientPoint = MainPanel.PointToClient(new Point(e.X, e.Y));
+            int hMaxChip = this.hMaxChip;
+            int targetIndex = (int)Math.Floor(clientPoint.X / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width));
+            targetIndex += (int)Math.Floor((clientPoint.Y + vPosition) / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height)) * hMaxChip;
+
+            if (targetIndex >= Global.cpd.CustomPartsChip.Length) return;
+
+            int sourceIndex = (int)e.Data.GetData(typeof(int));
+            if (sourceIndex == targetIndex) return;
+
+            // カスタムパーツの並び替え
+            var temp = Global.cpd.CustomPartsChip[sourceIndex];
+            if (sourceIndex < targetIndex)
+            {
+                Array.Copy(Global.cpd.CustomPartsChip, sourceIndex + 1, Global.cpd.CustomPartsChip, sourceIndex, targetIndex - sourceIndex);
+            }
+            else
+            {
+                Array.Copy(Global.cpd.CustomPartsChip, targetIndex, Global.cpd.CustomPartsChip, targetIndex + 1, sourceIndex - targetIndex);
+            }
+            Global.cpd.CustomPartsChip[targetIndex] = temp;
+
+            SelectedIndex = targetIndex;
+            dropTargetIndex = -1; // ドロップ完了時にリセット
+            Refresh();
+        }
     }
 }
