@@ -175,7 +175,7 @@ namespace MasaoPlus
             {
                 if (num == num2)
                 {
-                    Global.MainWnd.CustomPartsConfigList.CreateOrCopyParts(); // 新規作成
+                    Global.MainWnd.CustomPartsConfigList.CreateNewFromFirstCustomPart(); // 新規作成
                 }
                 return;
             }
@@ -191,7 +191,7 @@ namespace MasaoPlus
 
         private void Copy_Click(object sender, EventArgs e)
         {
-            Global.MainWnd.CustomPartsConfigList.CreateOrCopyParts(true);
+            Global.MainWnd.CustomPartsConfigList.CopyFromCurrentParts();
         }
 
         private void Delete_Click(object sender, EventArgs e)

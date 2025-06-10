@@ -1407,8 +1407,7 @@ namespace MasaoPlus.Controls
 
         private void BtnCopyParts_Click(object sender, EventArgs e)
         {
-            string name = $"{Global.state.CurrentCustomPartsChip.Chips[0].name}（コピー）";
-            CopyCurrentParts(name);
+            CopyFromCurrentParts();
         }
 
         private void BtnDeleteParts_Click(object sender, EventArgs e)
@@ -1418,16 +1417,7 @@ namespace MasaoPlus.Controls
 
         private void BtnAddParts_Click(object sender, EventArgs e)
         {
-            // 最初のカスタムパーツ対象のチップを探す
-            for (int i = 0; i < Global.cpd.VarietyChip.Length; i++)
-            {
-                if (int.Parse(Global.cpd.VarietyChip[i].code) > 5000)
-                {
-                    int num2 = Global.cpd.CustomPartsChip?.Length ?? 0;
-                    CreateNewParts(Global.cpd.VarietyChip[i], $"カスタムパーツ{num2 + 1}");
-                    break;
-                }
-            }
+            CreateNewFromFirstCustomPart();
         }
 
         private void CopyCurrentParts(string name)
@@ -1567,29 +1557,23 @@ namespace MasaoPlus.Controls
             ConfigSelector_SelectedIndexChanged();
         }
 
-        // 右クリックメニューなどから呼ばれる
-        public void CreateOrCopyParts(bool isCopy = false)
+        public void CopyFromCurrentParts()
         {
-            if (isCopy && (Global.cpd.CustomPartsChip == null || Global.cpd.CustomPartsChip.Length < 1))
-                return;
+            string name = $"{Global.state.CurrentCustomPartsChip.Chips[0].name}（コピー）";
+            CopyCurrentParts(name);
+            ConfView[1, 0].Value = name;
+        }
 
-            if (isCopy)
+        public void CreateNewFromFirstCustomPart()
+        {
+            // 最初のカスタムパーツ対象のチップを探す
+            for (int i = 0; i < Global.cpd.VarietyChip.Length; i++)
             {
-                string name = $"{Global.state.CurrentCustomPartsChip.Chips[0].name}（コピー）";
-                CopyCurrentParts(name);
-                ConfView[1, 0].Value = name;
-            }
-            else
-            {
-                // 最初のカスタムパーツ対象のチップを探す
-                for (int i = 0; i < Global.cpd.VarietyChip.Length; i++)
+                if (int.Parse(Global.cpd.VarietyChip[i].code) > 5000)
                 {
-                    if (int.Parse(Global.cpd.VarietyChip[i].code) > 5000)
-                    {
-                        int num2 = Global.cpd.CustomPartsChip?.Length ?? 0;
-                        CreateNewParts(Global.cpd.VarietyChip[i], $"カスタムパーツ{num2 + 1}");
-                        break;
-                    }
+                    int num2 = Global.cpd.CustomPartsChip?.Length ?? 0;
+                    CreateNewParts(Global.cpd.VarietyChip[i], $"カスタムパーツ{num2 + 1}");
+                    break;
                 }
             }
         }
