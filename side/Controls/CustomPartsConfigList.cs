@@ -1506,7 +1506,6 @@ namespace MasaoPlus.Controls
 
         public void CreateNewParts(ChipsData basedata, string name)
         {
-            // GUICustomPartsChipList.Create()の実装をこちらに移動
             ChipsData data;
             int i;
             if (basedata.basecode != null)
@@ -1534,8 +1533,8 @@ namespace MasaoPlus.Controls
                 Array.Resize(ref Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length + 1);
             }
 
-            Global.cpd.CustomPartsChip[^1] = data;
-            Global.cpd.CustomPartsChip[^1].Chips = (ChipData[])data.Chips.Clone();
+            Global.cpd.CustomPartsChip[^1] = basedata;
+            Global.cpd.CustomPartsChip[^1].Chips = (ChipData[])basedata.Chips.Clone();
 
             var r = new Random();
             const string PWS_CHARS = "abcdefghijklmnopqrstuvwxyz";
@@ -1543,11 +1542,21 @@ namespace MasaoPlus.Controls
             for (int j = 0; j < Global.cpd.CustomPartsChip[^1].Chips.Length; j++)
             {
                 Global.cpd.CustomPartsChip[^1].Chips[j].name = name;
+                Global.cpd.CustomPartsChip[^1].Chips[j].description = $"{data.Chips[j].name} {data.Chips[j].description}";
             }
 
-            Global.cpd.CustomPartsChip[^1].basecode = data.basecode;
+            Global.cpd.CustomPartsChip[^1].basecode = data.code;
             Global.cpd.CustomPartsChip[^1].code = string.Join("", Enumerable.Range(0, 10).Select(_ => PWS_CHARS[r.Next(PWS_CHARS.Length)]));
             Global.cpd.CustomPartsChip[^1].idColor = $"#{Guid.NewGuid().ToString("N")[..6]}";
+
+            if (Global.cpd.project.CustomPartsDefinition == null)
+            {
+                Array.Resize(ref Global.cpd.project.CustomPartsDefinition, 1);
+            }
+            else
+            {
+                Array.Resize(ref Global.cpd.project.CustomPartsDefinition, Global.cpd.project.CustomPartsDefinition.Length + 1);
+            }
 
             Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[^1];
             Global.MainWnd.MainDesigner.DrawItemCodeRef[Global.state.CurrentCustomPartsChip.code] = Global.state.CurrentCustomPartsChip;
@@ -1568,6 +1577,7 @@ namespace MasaoPlus.Controls
             {
                 string name = $"{Global.state.CurrentCustomPartsChip.Chips[0].name}（コピー）";
                 CopyCurrentParts(name);
+                ConfView[1, 0].Value = name;
             }
             else
             {
