@@ -195,7 +195,21 @@ namespace MasaoPlus
             }
         }
 
-        public Color Background = Color.FromArgb(0, 255, 255);
+        public Color Background
+        {
+            get
+            {
+                return _Background;
+            }
+            set
+            {
+                _Background = value;
+                Global.MainWnd.GuiCustomPartsChipList.InvertedColor = Colors.GetInvertedColor(_Background);
+
+            }
+        }
+
+        private Color _Background = Color.FromArgb(0, 255, 255);
 
         public bool DrawUnactiveLayer = true;
 

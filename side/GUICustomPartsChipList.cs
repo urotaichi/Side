@@ -70,7 +70,7 @@ namespace MasaoPlus
                     if (i == dropTargetIndex)
                     {
                         // ドロップ位置のマーカーを描画
-                        using var pen = new Pen(Color.Yellow, 3);
+                        using var pen = new Pen(InvertedColor, 3);
                         e.Graphics.DrawRectangle(pen, rectangle);
                     }
 
@@ -355,5 +355,7 @@ namespace MasaoPlus
             dropTargetIndex = -1; // ドロップ完了時にリセット
             Refresh();
         }
+
+        public Color InvertedColor;
     }
 }

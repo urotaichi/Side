@@ -47,6 +47,16 @@ namespace MasaoPlus
             }
         }
 
+        /// <summary>
+        /// 指定された色の反転色を計算して返します
+        /// </summary>
+        /// <param name="color">反転する色</param>
+        /// <returns>反転色</returns>
+        public static Color GetInvertedColor(Color color)
+        {
+            return Color.FromArgb(255 - color.R, 255 - color.G, 255 - color.B);
+        }
+
         public int r;
 
         public int g;
