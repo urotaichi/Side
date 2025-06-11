@@ -545,8 +545,11 @@ namespace MasaoPlus.Controls
             }
 
             UpdateColorConfigValue(colors, colorDialog.Color, configIndex, e);
-            HandleBackgroundColorUpdate(configParam, colors);
-            
+            if (!string.IsNullOrEmpty(configParam.Relation) && configParam.Relation.StartsWith("BACKGROUND"))
+            {
+                HandleBackgroundColorUpdate(configParam, colors);
+            }
+
             return true;
         }
 
@@ -574,6 +577,7 @@ namespace MasaoPlus.Controls
             {
                 Global.state.Background = colors.c;
                 Global.MainWnd.MainDesigner.Refresh();
+                //Global.MainWnd.UpdateLayer();
             }
         }
 
