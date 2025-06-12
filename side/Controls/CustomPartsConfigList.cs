@@ -1422,7 +1422,6 @@ namespace MasaoPlus.Controls
         private void BtnAddParts_Click(object sender, EventArgs e)
         {
             CreateNewFromFirstCustomPart();
-            Global.MainWnd.GuiCustomPartsChipList.SelectedIndex = Global.cpd.CustomPartsChip.Length - 1;
         }
 
         private void CopyCurrentParts(string name)
@@ -1590,6 +1589,7 @@ namespace MasaoPlus.Controls
                     break;
                 }
             }
+            Global.MainWnd.GuiCustomPartsChipList.SelectedIndex = Global.cpd.CustomPartsChip.Length - 1;
         }
 
         private void MenuDeleteTiming_Click(object sender, EventArgs e)
