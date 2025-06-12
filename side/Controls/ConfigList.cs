@@ -612,6 +612,38 @@ namespace MasaoPlus.Controls
 
         private bool isPlaying = false;
 
+        private void MediaPlayer_PlayStateChange(int NewState)
+        {
+            if (NewState == (int)WMPPlayState.wmppsStopped || 
+                NewState == (int)WMPPlayState.wmppsMediaEnded)
+            {
+                isPlaying = false;
+                now_playing_item = -1;
+                
+                // コントロールスレッドで実行する必要がある
+                if (InvokeRequired)
+                {
+                    Invoke(new Action(() => menuStopAudio.Enabled = false));
+                }
+                else
+                {
+                    menuStopAudio.Enabled = false;
+                }
+            }
+            else if (NewState == (int)WMPPlayState.wmppsPlaying)
+            {
+                isPlaying = true;
+                if (InvokeRequired)
+                {
+                    Invoke(new Action(() => menuStopAudio.Enabled = true));
+                }
+                else
+                {
+                    menuStopAudio.Enabled = true;
+                }
+            }
+        }
+
         private void PlayAudio(int rowIndex)
         {
             if (!IsAudioPreviewRow(rowIndex))
@@ -624,7 +656,6 @@ namespace MasaoPlus.Controls
             {
                 now_playing_item = num;
                 mediaPlayer.URL = Path.Combine(Global.cpd.where, configParam.Value);
-                isPlaying = true;
             }
             else
             {
@@ -639,7 +670,6 @@ namespace MasaoPlus.Controls
             {
                 now_playing_item = -1;
                 mediaPlayer.controls.stop();
-                isPlaying = false;
             }
         }
 
@@ -1182,6 +1212,7 @@ namespace MasaoPlus.Controls
             // メディアプレーヤークラスのインスタンスを作成する
             mediaPlayer = new WindowsMediaPlayer();
             mediaPlayer.MediaError += PreviewAudio_error;
+            mediaPlayer.PlayStateChange += MediaPlayer_PlayStateChange;
 
             audioContextMenu = new ContextMenuStrip();
             menuPlayAudio = new ToolStripMenuItem
