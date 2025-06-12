@@ -547,7 +547,7 @@ namespace MasaoPlus.Controls
             UpdateColorConfigValue(colors, colorDialog.Color, configIndex, e);
             if (!string.IsNullOrEmpty(configParam.Relation) && configParam.Relation.StartsWith("BACKGROUND"))
             {
-                HandleBackgroundColorUpdate(configParam, colors);
+                HandleBackgroundColorUpdate(configParam, colorDialog.Color);
             }
 
             return true;
@@ -561,7 +561,7 @@ namespace MasaoPlus.Controls
             Global.cpd.project.Config.Configurations[configIndex].Value = colors.ToString();
         }
 
-        private static void HandleBackgroundColorUpdate(ConfigParam configParam, Colors colors)
+        private static void HandleBackgroundColorUpdate(ConfigParam configParam, Color color)
         {
             var backgroundMappings = new Dictionary<string, int>
             {
@@ -572,12 +572,11 @@ namespace MasaoPlus.Controls
                 { "BACKGROUNDM", 4 }
             };
 
-            if (backgroundMappings.TryGetValue(configParam.Relation, out int stageIndex) && 
+            if (backgroundMappings.TryGetValue(configParam.Relation, out int stageIndex) &&
                 Global.state.EdittingStage == stageIndex)
             {
-                Global.state.Background = colors.c;
-                Global.MainWnd.MainDesigner.Refresh();
-                //Global.MainWnd.UpdateLayer();
+                Global.state.Background = color;
+                Global.MainWnd.UpdateLayer();
             }
         }
 

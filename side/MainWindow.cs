@@ -2217,7 +2217,6 @@ namespace MasaoPlus
                 MainEditor.LayerCount[0].Checked = true;
                 LayerMenuCount[0].Checked = true;
                 Global.state.EdittingLayerIndex = 0;
-                
             }
             UpdateLayer();
             UpdateScrollbar();
