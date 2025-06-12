@@ -2568,7 +2568,7 @@ namespace MasaoPlus
                 list = [];
                 string text = Global.cpd.EditingMap[i];
 
-                if (Global.cpd.project.Use3rdMapData)
+                if (Global.state.Use3rdMapDataCurrently)
                 {
                     var stagearray = text.Split(',');
                     for (int j = 0; j < stageSizeData.x; j++)
@@ -2585,7 +2585,7 @@ namespace MasaoPlus
                 }
                 string[] array = [.. list];
                 Array.Reverse(array);
-                if (Global.cpd.project.Use3rdMapData)
+                if (Global.state.Use3rdMapDataCurrently)
                 {
                     Global.cpd.EditingMap[i] = string.Join(",", array);
                 }
@@ -2618,7 +2618,7 @@ namespace MasaoPlus
                     }
                     string[] array2 = [.. list];
                     Array.Reverse(array2);
-                    if (Global.cpd.project.Use3rdMapData)
+                    if (Global.state.Use3rdMapDataCurrently)
                     {
                         Global.cpd.EditingLayer[k] = string.Join(",", array2);
                     }
