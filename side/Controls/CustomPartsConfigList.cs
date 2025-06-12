@@ -1667,7 +1667,7 @@ namespace MasaoPlus.Controls
             return cellValue == "葉っぱを投げるタイミング" && ConfView[1, rowIndex].Value?.ToString() != "＋";
         }
 
-        protected void ConfView_MouseDown(object sender, MouseEventArgs e)
+        protected override void ConfView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right && Global.cpd.project.Use3rdMapData)
             {

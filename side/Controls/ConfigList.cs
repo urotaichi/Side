@@ -6,6 +6,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MasaoPlus.Dialogs;
+using MasaoPlus.Properties;
 using WMPLib;
 
 namespace MasaoPlus.Controls
@@ -583,33 +584,97 @@ namespace MasaoPlus.Controls
         private void ConfView_PreviewAudio(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 0)
-            {
                 return;
-            }
-            if (e.RowIndex >= OrigIdx.Count || e.RowIndex < 0)
-            {
+
+            if (!IsAudioPreviewRow(e.RowIndex))
                 return;
-            }
+
             int num = OrigIdx[e.RowIndex];
-            ConfigParam configParam = Global.cpd.project.Config.Configurations[num];
-            if (configParam.Type == ConfigParam.Types.f_a)
+            if (now_playing_item != num)
             {
-                if (now_playing_item != num)
-                {
-                    now_playing_item = num;
-                    mediaPlayer.URL = Path.Combine(Global.cpd.where, configParam.Value);
-                    mediaPlayer.controls.play();
-                }
-                else
-                {
-                    now_playing_item = -1;
-                    mediaPlayer.controls.stop();
-                }
+                PlayAudio(e.RowIndex);
+            }
+            else
+            {
+                StopAudio();
             }
         }
+
+        private bool IsAudioPreviewRow(int rowIndex)
+        {
+            if (rowIndex >= OrigIdx.Count || rowIndex < 0)
+                return false;
+
+            int num = OrigIdx[rowIndex];
+            ConfigParam configParam = Global.cpd.project.Config.Configurations[num];
+            return configParam.Type == ConfigParam.Types.f_a;
+        }
+
+        private bool isPlaying = false;
+
+        private void PlayAudio(int rowIndex)
+        {
+            if (!IsAudioPreviewRow(rowIndex))
+                return;
+
+            int num = OrigIdx[rowIndex];
+            ConfigParam configParam = Global.cpd.project.Config.Configurations[num];
+
+            if (now_playing_item != num)
+            {
+                now_playing_item = num;
+                mediaPlayer.URL = Path.Combine(Global.cpd.where, configParam.Value);
+                isPlaying = true;
+            }
+            else
+            {
+                mediaPlayer.controls.stop();
+            }
+            mediaPlayer.controls.play();
+        }
+
+        private void StopAudio()
+        {
+            if (now_playing_item != -1)
+            {
+                now_playing_item = -1;
+                mediaPlayer.controls.stop();
+                isPlaying = false;
+            }
+        }
+
+        private void MenuPlayAudio_Click(object sender, EventArgs e)
+        {
+            PlayAudio(rightClickedRowIndex);
+        }
+
+        private void MenuStopAudio_Click(object sender, EventArgs e)
+        {
+            StopAudio();
+        }
+
         private static void PreviewAudio_error(object pMediaObject)
         {
             MessageBox.Show("ファイルの読み込みに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+        }
+
+        protected virtual void ConfView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var hitTest = ConfView.HitTest(e.X, e.Y);
+                if (hitTest.Type == DataGridViewHitTestType.Cell && 
+                    hitTest.RowIndex >= 0 && 
+                    IsAudioPreviewRow(hitTest.RowIndex))
+                {
+                    rightClickedRowIndex = hitTest.RowIndex;
+                    
+                    // メニューアイテムの有効/無効を設定
+                    menuStopAudio.Enabled = isPlaying;
+                    
+                    audioContextMenu.Show(ConfView, e.Location);
+                }
+            }
         }
 
         protected virtual void ConfView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -1095,6 +1160,7 @@ namespace MasaoPlus.Controls
             ConfView.CurrentCellDirtyStateChanged += ConfView_CurrentCellDirtyStateChanged;
             ConfView.CellContentClick += ConfView_CellContentClick;
             ConfView.CellDoubleClick += ConfView_PreviewAudio;
+            ConfView.MouseDown += ConfView_MouseDown;
 
             CNames.HeaderText = "項目名";
             CNames.Name = "CNames";
@@ -1116,6 +1182,28 @@ namespace MasaoPlus.Controls
             // メディアプレーヤークラスのインスタンスを作成する
             mediaPlayer = new WindowsMediaPlayer();
             mediaPlayer.MediaError += PreviewAudio_error;
+
+            audioContextMenu = new ContextMenuStrip();
+            menuPlayAudio = new ToolStripMenuItem
+            {
+                Name = "menuPlayAudio",
+                Text = "音声を再生",
+                Size = LogicalToDeviceUnits(new Size(179, 22)),
+                Image = new IconImageView(DeviceDpi, Resources.control_play_blue).View()
+            };
+            menuStopAudio = new ToolStripMenuItem
+            {
+                Name = "menuStopAudio",
+                Text = "音声を停止",
+                Size = LogicalToDeviceUnits(new Size(179, 22)),
+                Image = new IconImageView(DeviceDpi, Resources.control_stop_blue).View()
+            };
+
+            audioContextMenu.Items.AddRange([menuPlayAudio, menuStopAudio]);
+            audioContextMenu.Size = LogicalToDeviceUnits(new Size(180, 48));
+
+            menuPlayAudio.Click += MenuPlayAudio_Click;
+            menuStopAudio.Click += MenuStopAudio_Click;
         }
 
         protected readonly List<int> OrigIdx = [];
@@ -1138,5 +1226,10 @@ namespace MasaoPlus.Controls
 
         [GeneratedRegex("^(filename_haikei|filename_second_haikei|filename_chizu)")]
         private static partial Regex reg_file_prepare();
+
+        private ContextMenuStrip audioContextMenu;
+        private ToolStripMenuItem menuPlayAudio;
+        private ToolStripMenuItem menuStopAudio;
+        private int rightClickedRowIndex = -1;
     }
 }

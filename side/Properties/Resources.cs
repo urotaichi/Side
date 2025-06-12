@@ -387,6 +387,24 @@ namespace MasaoPlus.Properties
 			}
 		}
 
+        internal static Bitmap control_play_blue
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("control_play_blue", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
+
+        internal static Bitmap control_stop_blue
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("control_stop_blue", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
+
         private static ResourceManager resourceMan;
 
 		private static CultureInfo resourceCulture;
