@@ -13,9 +13,56 @@ namespace MasaoPlus.Controls
 {
     public partial class ConfigList : UserControl
     {
+        private class ComboBoxColumnHandler
+        {
+            private readonly DataGridView _dataGridView;
+
+            public ComboBoxColumnHandler(DataGridView dataGridView)
+            {
+                _dataGridView = dataGridView;
+                _dataGridView.EditingControlShowing += DataGridView_EditingControlShowing;
+            }
+
+            private void DataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+            {
+                if (e.Control is ComboBox comboBox)
+                {
+                    // 現在の列がComboBox列かチェック
+                    if (_dataGridView.CurrentCell is DataGridViewComboBoxCell)
+                    {
+                        // 最大幅を計算
+                        int maxWidth = CalculateMaxDropDownWidth(comboBox);
+                        
+                        // 画面の右端を超えないように調整
+                        int maxAllowedWidth = Screen.FromControl(_dataGridView).WorkingArea.Width - 
+                                            _dataGridView.GetCellDisplayRectangle(_dataGridView.CurrentCell.ColumnIndex, 
+                                            _dataGridView.CurrentCell.RowIndex, false).Left;
+                        comboBox.DropDownWidth = Math.Min(maxWidth, maxAllowedWidth);
+                    }
+                }
+            }
+
+            private int CalculateMaxDropDownWidth(ComboBox comboBox)
+            {
+                int maxWidth = 0;
+                using (Graphics g = comboBox.CreateGraphics())
+                {
+                    foreach (object item in comboBox.Items)
+                    {
+                        int width = (int)g.MeasureString(item.ToString(), comboBox.Font).Width;
+                        maxWidth = Math.Max(maxWidth, width);
+                    }
+                }
+                return maxWidth + SystemInformation.VerticalScrollBarWidth + 10;
+            }
+        }
+
+        private readonly ComboBoxColumnHandler _comboBoxHandler;
+
         public ConfigList()
         {
             InitializeComponent();
+            _comboBoxHandler = new ComboBoxColumnHandler(ConfView);
         }
 
         public virtual void Prepare()
@@ -192,10 +239,12 @@ namespace MasaoPlus.Controls
 
         private void SetupListCell(ConfigParam configParam, int rowIndex)
         {
-            DataGridViewComboBoxCell cell = new();
+            DataGridViewComboBoxCell cell = new()
+            {
+                FlatStyle = FlatStyle.Popup
+            };
             cell.Items.AddRange(configParam.ListItems);
-            cell.FlatStyle = FlatStyle.Popup;
-            
+
             if (int.TryParse(configParam.Value, out int num) && num <= cell.Items.Count && num > 0)
             {
                 cell.Value = configParam.ListItems[num - 1];
@@ -204,16 +253,18 @@ namespace MasaoPlus.Controls
             {
                 cell.Value = configParam.ListItems[0];
             }
-            
+
             ConfView[1, rowIndex] = cell;
         }
 
         private void SetupAthleticListCell(ConfigParam configParam, int rowIndex)
         {
-            DataGridViewComboBoxCell cell = new();
+            DataGridViewComboBoxCell cell = new()
+            {
+                FlatStyle = FlatStyle.Popup
+            };
             cell.Items.AddRange(configParam.ListItems);
-            cell.FlatStyle = FlatStyle.Popup;
-            
+
             int MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
             if (int.TryParse(configParam.Value, out int num) && 
                 (num > 0 && num <= MaxAthleticNumber || num >= 1001 && num <= 1249))
@@ -231,7 +282,7 @@ namespace MasaoPlus.Controls
             {
                 cell.Value = configParam.ListItems[0];
             }
-            
+
             ConfView[1, rowIndex] = cell;
         }
 
