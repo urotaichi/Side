@@ -559,6 +559,7 @@ namespace MasaoPlus.Controls
             colors.c = newColor;
             ConfView[e.ColumnIndex, e.RowIndex].Value = colors.ToString();
             ConfView[e.ColumnIndex, e.RowIndex].Style.BackColor = colors.c;
+            ConfView[e.ColumnIndex, e.RowIndex].Style.SelectionBackColor = colors.c;
             Global.cpd.project.Config.Configurations[configIndex].Value = colors.ToString();
         }
 
