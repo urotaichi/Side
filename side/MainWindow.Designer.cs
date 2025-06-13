@@ -916,6 +916,7 @@ namespace MasaoPlus
 			this.GMTestRun.Click += new global::System.EventHandler(this.ProjTestRun);
 			this.GMAllTestrun.Name = "GMAllTestrun";
 			this.GMAllTestrun.ShortcutKeyDisplayString = "Ctrl+Alt+Space";
+			this.GMAllTestrun.ShortcutKeys = global::System.Windows.Forms.Keys.Space | global::System.Windows.Forms.Keys.Control | global::System.Windows.Forms.Keys.Alt;
 			this.GMAllTestrun.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(290, 22));
 			this.GMAllTestrun.Text = "全体をテスト実行(&A)";
 			this.GMAllTestrun.Click += new global::System.EventHandler(this.AllTestrun);
@@ -977,6 +978,7 @@ namespace MasaoPlus
 			this.TMTestRun.Click += new global::System.EventHandler(this.ProjTestRun);
 			this.TMAllTestrun.Name = "TMAllTestrun";
 			this.TMAllTestrun.ShortcutKeyDisplayString = "Ctrl+Alt+Space";
+			this.TMAllTestrun.ShortcutKeys = global::System.Windows.Forms.Keys.Space | global::System.Windows.Forms.Keys.Control | global::System.Windows.Forms.Keys.Alt;
 			this.TMAllTestrun.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(290, 22));
 			this.TMAllTestrun.Text = "全体をテスト実行(&A)";
 			this.TMAllTestrun.Click += new global::System.EventHandler(this.AllTestrun);
