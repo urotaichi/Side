@@ -2694,6 +2694,33 @@ namespace MasaoPlus
             Global.MainWnd.ProjectConfig_Click(this, new EventArgs());
         }
 
+        protected override void WndProc(ref Message m)
+        {
+            // WM_MOUSEHWHEEL = 0x020E
+            if (m.Msg == 0x020E)
+            {
+                // 親指ホイールのイベントを処理
+                int delta = (short)((m.WParam.ToInt64() >> 16) & 0xFFFF);
+                OnMouseHorizontalWheel(new MouseEventArgs(MouseButtons.None, 0, 0, 0, delta));
+                return;
+            }
+            base.WndProc(ref m);
+        }
+
+        protected virtual void OnMouseHorizontalWheel(MouseEventArgs e)
+        {
+            // 横スクロール量を計算
+            int scrollAmount = e.Delta / 120 * Global.cpd.runtime.Definitions.ChipSize.Width;
+            
+            // 横スクロール処理を実行
+            State state = Global.state;
+            state.MapPoint.X -= scrollAmount;
+            
+            Global.state.AdjustMapPoint();
+            Global.MainWnd.CommitScrollbar();
+            Refresh();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && components != null)
