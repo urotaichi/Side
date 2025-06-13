@@ -701,6 +701,11 @@ namespace MasaoPlus.Controls
                     rightClickedRowIndex = hitTest.RowIndex;
                     
                     // メニューアイテムの有効/無効を設定
+                    int configIndex = OrigIdx[hitTest.RowIndex];
+                    ConfigParam configParam = Global.cpd.project.Config.Configurations[configIndex];
+                    string audioPath = Path.Combine(Global.cpd.where, configParam.Value);
+                    
+                    menuPlayAudio.Enabled = File.Exists(audioPath);
                     menuStopAudio.Enabled = isPlaying;
                     
                     audioContextMenu.Show(ConfView, e.Location);
