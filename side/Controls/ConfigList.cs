@@ -7,7 +7,8 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MasaoPlus.Dialogs;
 using MasaoPlus.Properties;
-using WMPLib;
+using NAudio.Vorbis; // OGG用
+using NAudio.Wave;   // WAV用
 
 namespace MasaoPlus.Controls
 {
@@ -42,7 +43,7 @@ namespace MasaoPlus.Controls
                 }
             }
 
-            private int CalculateMaxDropDownWidth(ComboBox comboBox)
+            private static int CalculateMaxDropDownWidth(ComboBox comboBox)
             {
                 int maxWidth = 0;
                 using (Graphics g = comboBox.CreateGraphics())
@@ -664,64 +665,72 @@ namespace MasaoPlus.Controls
 
         private bool isPlaying = false;
 
-        private void MediaPlayer_PlayStateChange(int NewState)
-        {
-            if (NewState == (int)WMPPlayState.wmppsStopped || 
-                NewState == (int)WMPPlayState.wmppsMediaEnded)
-            {
-                isPlaying = false;
-                now_playing_item = -1;
-                
-                // コントロールスレッドで実行する必要がある
-                if (InvokeRequired)
-                {
-                    Invoke(new Action(() => menuStopAudio.Enabled = false));
-                }
-                else
-                {
-                    menuStopAudio.Enabled = false;
-                }
-            }
-            else if (NewState == (int)WMPPlayState.wmppsPlaying)
-            {
-                isPlaying = true;
-                if (InvokeRequired)
-                {
-                    Invoke(new Action(() => menuStopAudio.Enabled = true));
-                }
-                else
-                {
-                    menuStopAudio.Enabled = true;
-                }
-            }
-        }
-
         private void PlayAudio(int rowIndex)
         {
             if (!IsAudioPreviewRow(rowIndex))
                 return;
 
+            StopAudio(); // 既存の再生を停止
+
             int num = OrigIdx[rowIndex];
             ConfigParam configParam = Global.cpd.project.Config.Configurations[num];
+            string audioPath = Path.Combine(Global.cpd.where, configParam.Value);
 
-            if (now_playing_item != num)
+            try
             {
+                waveOut = new WaveOut();
+                
+                // ファイルの拡張子に応じて適切なストリームを作成
+                if (Path.GetExtension(audioPath).Equals(".ogg", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    waveStream = new VorbisWaveReader(audioPath);
+                }
+                else
+                {
+                    waveStream = new AudioFileReader(audioPath);
+                }
+
+                waveOut.Init(waveStream);
+                waveOut.PlaybackStopped += WaveOut_PlaybackStopped;
+                waveOut.Play();
+                
                 now_playing_item = num;
-                mediaPlayer.URL = Path.Combine(Global.cpd.where, configParam.Value);
+                isPlaying = true;
+                menuStopAudio.Enabled = true;
             }
-            else
+            catch (Exception ex)
             {
-                mediaPlayer.controls.stop();
+                MessageBox.Show($"オーディオの再生に失敗しました。\n{ex.Message}", 
+                            "エラー", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                StopAudio();
             }
-            mediaPlayer.controls.play();
+        }
+
+        private void WaveOut_PlaybackStopped(object sender, StoppedEventArgs e)
+        {
+            StopAudio();
         }
 
         private void StopAudio()
         {
-            if (now_playing_item != -1)
+            if (waveOut != null)
             {
-                now_playing_item = -1;
-                mediaPlayer.controls.stop();
+                waveOut.Stop();
+                waveOut.Dispose();
+                waveOut = null;
+            }
+            
+            if (waveStream != null)
+            {
+                waveStream.Dispose();
+                waveStream = null;
+            }
+
+            now_playing_item = -1;
+            isPlaying = false;
+            if (menuStopAudio != null && !menuStopAudio.IsDisposed)
+            {
+                menuStopAudio.Enabled = false;
             }
         }
 
@@ -733,11 +742,6 @@ namespace MasaoPlus.Controls
         private void MenuStopAudio_Click(object sender, EventArgs e)
         {
             StopAudio();
-        }
-
-        private static void PreviewAudio_error(object pMediaObject)
-        {
-            MessageBox.Show("ファイルの読み込みに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
         }
 
         protected virtual void ConfView_MouseDown(object sender, MouseEventArgs e)
@@ -1190,9 +1194,10 @@ namespace MasaoPlus.Controls
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && components != null)
+            if (disposing)
             {
-                components.Dispose();
+                StopAudio();
+                components?.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -1266,11 +1271,6 @@ namespace MasaoPlus.Controls
             ((ISupportInitialize)ConfView).EndInit();
             ResumeLayout(false);
 
-            // メディアプレーヤークラスのインスタンスを作成する
-            mediaPlayer = new WindowsMediaPlayer();
-            mediaPlayer.MediaError += PreviewAudio_error;
-            mediaPlayer.PlayStateChange += MediaPlayer_PlayStateChange;
-
             audioContextMenu = new ContextMenuStrip();
             menuPlayAudio = new ToolStripMenuItem
             {
@@ -1308,7 +1308,9 @@ namespace MasaoPlus.Controls
 
         private int width_index, height_index;
 
-        private WindowsMediaPlayer mediaPlayer;
+        private WaveOut waveOut;
+
+        private WaveStream waveStream;
 
         private int now_playing_item = -1;
 
