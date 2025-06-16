@@ -28,6 +28,7 @@ namespace MasaoPlus.Controls
         private ToolStripMenuItem menuMoveUp;
         private ToolStripMenuItem menuMoveDown;
         private int rightClickedRowIndex = -1;
+        private int mainOrder = 0; // 追加: 現在のステージのmainOrder
 
         public override void Prepare()
         {
@@ -55,10 +56,13 @@ namespace MasaoPlus.Controls
             {
                 return;
             }
+
+            // mainOrderを更新
+            var (_, layerSize) = GetRuntimeDefinitions(ConfigSelector.SelectedIndex);
+            mainOrder = layerSize?.mainOrder ?? 0;
+
             ConfView.Rows.Clear();
-
             PopulateLayerObjectRows(ConfigSelector.SelectedIndex);
-
             ApplyWrapModeIfEnabled();
             UpdateButtonStates();
         }
@@ -111,7 +115,7 @@ namespace MasaoPlus.Controls
             }
 
             // メインレイヤーをmainOrderの位置に挿入
-            int mainOrder = Math.Max(0, Math.Min(layerSize.mainOrder, orderedLayers.Count));
+            mainOrder = Math.Max(0, Math.Min(layerSize.mainOrder, orderedLayers.Count));
             orderedLayers.Insert(mainOrder, ("キャラクターパターンのファイル名", stageData.Source, "stage", stageData.Source == Global.cpd.project.Config.PatternImage));
 
             // 各レイヤーオブジェクトの設定行を追加
@@ -136,6 +140,48 @@ namespace MasaoPlus.Controls
                     Value = useDefaultImage.ToString()
                 };
                 ConfView[2, ConfView.Rows.Count - 1] = dataGridViewCheckBoxCell;
+            }
+
+            // 編集中のレイヤーの行の背景色を設定
+            ApplyEditingLayerHighlight();
+        }
+
+        public void ApplyEditingLayerHighlight()
+        {
+            // すべての行のスタイルをデフォルトに戻す
+            Color defaultBackColor = ConfView.DefaultCellStyle.BackColor;
+            Color defaultSelectionBackColor = ConfView.DefaultCellStyle.SelectionBackColor;
+            Color defaultSelectionForeColor = ConfView.DefaultCellStyle.SelectionForeColor;
+            foreach (DataGridViewRow row in ConfView.Rows)
+            {
+                row.DefaultCellStyle.BackColor = defaultBackColor;
+                row.DefaultCellStyle.SelectionBackColor = defaultSelectionBackColor;
+                row.DefaultCellStyle.SelectionForeColor = defaultSelectionForeColor;
+            }
+
+            // 編集中のレイヤーの行のみハイライト
+            for (int i = 0; i < ConfView.Rows.Count; i++)
+            {
+                string rowTag = ConfView.Rows[i].Tag?.ToString() ?? "";
+                
+                if (rowTag == "stage" && Global.state.EdittingLayerIndex == -1)
+                {
+                    // メインレイヤーが編集中の場合
+                    ConfView.Rows[i].DefaultCellStyle.BackColor = Color.LightYellow;
+                    ConfView.Rows[i].DefaultCellStyle.SelectionBackColor = Color.FromArgb(168, 64, 34);
+                    ConfView.Rows[i].DefaultCellStyle.SelectionForeColor = Color.White;
+                }
+                else if (rowTag.StartsWith("layer:") && int.TryParse(rowTag.AsSpan(6), out int layerIndex))
+                {
+                    // メインレイヤーの位置を考慮して行番号を調整
+                    int adjustedRowIndex = i < mainOrder ? i : i - 1;
+                    if (adjustedRowIndex == Global.state.EdittingLayerIndex)
+                    {
+                        ConfView.Rows[i].DefaultCellStyle.BackColor = Color.LightYellow;
+                        ConfView.Rows[i].DefaultCellStyle.SelectionBackColor = Color.FromArgb(168, 64, 34);
+                        ConfView.Rows[i].DefaultCellStyle.SelectionForeColor = Color.White;
+                    }
+                }
             }
         }
 
@@ -378,6 +424,7 @@ namespace MasaoPlus.Controls
                 {
                     // 新しいmainOrderを設定
                     layerSize.mainOrder = targetDisplayIndex;
+                    mainOrder = targetDisplayIndex; // フィールドも更新
                     RefreshDesignerForRelation("PATTERN");
                 }
                 else if (sourceRowTag.StartsWith("layer:"))
@@ -460,7 +507,7 @@ namespace MasaoPlus.Controls
             }
         }
 
-        private void ConfView_MouseDown(object sender, MouseEventArgs e)
+        protected override void ConfView_MouseDown(object sender, MouseEventArgs e)
         {
             if (!Global.cpd.project.Use3rdMapData)
             {
@@ -794,6 +841,7 @@ namespace MasaoPlus.Controls
             if (adjustMainOrder)
             {
                 layerSize.mainOrder++;
+                mainOrder++; // フィールドも更新
             }
 
             // 表示を更新
@@ -873,6 +921,7 @@ namespace MasaoPlus.Controls
                 if (rowIndex < layerSize.mainOrder)
                 {
                     layerSize.mainOrder--;
+                    mainOrder--; // フィールドも更新
                 }
 
                 // 表示を更新
@@ -978,6 +1027,7 @@ namespace MasaoPlus.Controls
                 if (rowIndex < layerSize.mainOrder)
                 {
                     layerSize.mainOrder++;
+                    mainOrder++; // フィールドも更新
                 }
 
                 // 表示を更新
