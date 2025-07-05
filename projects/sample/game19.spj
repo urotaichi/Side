@@ -12,7 +12,7 @@
       <ChipDefinition>chipresolv.sdx</ChipDefinition>
       <ChipExtender>ex.png</ChipExtender>
       <Chipset />
-      <DefVersion>5.03</DefVersion>
+      <DefVersion>5.05</DefVersion>
       <RequireLower>3.1</RequireLower>
       <ChipSize>
         <Width>32</Width>

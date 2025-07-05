@@ -32,7 +32,11 @@ jobs:
             echo "Updated $XML_FILE from $CURRENT_VERSION to $NEW_VERSION"
             
             # SPJファイルの更新
-            find projects/sample -name "*.spj" -type f | while read spj_file; do
+            spj_files="projects/sample/sample.spj"
+            for i in $(seq 2 15); do
+              spj_files="$spj_files projects/sample/game${i}.spj"
+            done
+            for spj_file in $spj_files; do
               if [ -f "$spj_file" ]; then
                 # SPJファイルのバージョン番号を更新
                 sed -i "s/<DefVersion>$CURRENT_VERSION<\/DefVersion>/<DefVersion>$NEW_VERSION<\/DefVersion>/" "$spj_file"

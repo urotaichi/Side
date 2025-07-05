@@ -38,6 +38,16 @@ jobs:
               sed -i "s/<DefVersion>$CURRENT_VERSION<\/DefVersion>/<DefVersion>$NEW_VERSION<\/DefVersion>/" "$xml_file"
               
               echo "Updated $xml_file from $CURRENT_VERSION to $NEW_VERSION"
+
+              # 対応するSPJファイルも更新
+              for i in $(seq 16 58); do
+                spj_file="projects/sample/game${i}.spj"
+                if [ -f "$spj_file" ] && grep -q "<DefVersion>$CURRENT_VERSION</DefVersion>" "$spj_file"; then
+                  sed -i "s/<DefVersion>$CURRENT_VERSION<\/DefVersion>/<DefVersion>$NEW_VERSION<\/DefVersion>/" "$spj_file"
+                  echo "Updated $spj_file from $CURRENT_VERSION to $NEW_VERSION"
+                fi
+              done
+
             else
               echo "Warning: $xml_file not found"
             fi
@@ -48,5 +58,6 @@ jobs:
           git config --local user.name "GitHub Action"
           git config --local user.email "action@github.com"
           git add runtime/*.xml
+          git add projects/sample/*.spj
           git commit -m "ランタイム更新（FX）"
           git push
