@@ -18,9 +18,9 @@ jobs:
 
       - name: Copy files
         run: |
-          for dir in "01普通の正男" "02ロードランナー正男" "03シューティング正男" "04ドットイート正男" "06普通の正男(640×480)"; do
-            cp temp-source/Outputs/CanvasMasao.js "runtime/$dir/"
-            cp temp-source/Outputs/MasaoKani2.js "runtime/$dir/"
+          for dir in "runtime/01普通の正男" "runtime/02ロードランナー正男" "runtime/03シューティング正男" "runtime/04ドットイート正男" "runtime/06普通の正男(640×480)" "projects/sample"; do
+            cp temp-source/Outputs/CanvasMasao.js "$dir/"
+            cp temp-source/Outputs/MasaoKani2.js "$dir/"
           done
           for dir in "runtime/05まさおコンストラクション Version 2.81" "projects/sample"; do
             cp temp-source/Outputs/CanvasMasao_v28.js "$dir/"
