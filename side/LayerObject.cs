@@ -19,23 +19,6 @@ namespace MasaoPlus
             Strings = [];
         }
 
-        public LayerObject(string[] stringArray)
-        {
-            Strings = stringArray ?? [];
-        }
-
-        public LayerObject(object stringList)
-        {
-            if (stringList is IEnumerable<string> enumerable)
-            {
-                Strings = [.. enumerable];
-            }
-            else
-            {
-                throw new ArgumentException("The provided object is not a valid IEnumerable<string>.", nameof(stringList));
-            }
-        }
-
         public int Length => Strings.Length;
 
         public string this[int index]
@@ -47,7 +30,11 @@ namespace MasaoPlus
         // ICloneable実装
         public object Clone()
         {
-            return new LayerObject((string[])Strings.Clone());
+            return new LayerObject
+            {
+                Strings = (string[])Strings.Clone(),
+                Source = Source
+            };
         }
 
         // IEnumerable<string>実装
@@ -66,21 +53,6 @@ namespace MasaoPlus
         {
             Array.Resize(ref Strings, Strings.Length + 1);
             Strings[^1] = item;
-        }
-
-        public void Clear()
-        {
-            Strings = [];
-        }
-
-        public bool Contains(string item)
-        {
-            return Strings.Contains(item);
-        }
-
-        public int IndexOf(string item)
-        {
-            return Array.IndexOf(Strings, item);
         }
     }
 }
