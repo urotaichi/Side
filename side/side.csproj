@@ -111,7 +111,7 @@
     <PackageReference Include="famfamfam-silk" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="Microsoft.Web.WebView2">
-      <Version>1.0.3296.44</Version>
+      <Version>1.0.3351.48</Version>
     </PackageReference>
     <PackageReference Include="WindowsAPICodePack">
       <Version>8.0.6</Version>
