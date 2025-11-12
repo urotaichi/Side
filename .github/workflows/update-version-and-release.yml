@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         fetch-depth: 0
 
@@ -165,21 +165,21 @@ jobs:
     - name: Remove unnecessary files
       shell: pwsh
       run: |
-        Remove-Item -Path side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.Web.WebView2.Core.xml,
-                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.Web.WebView2.WinForms.xml,
-                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.Web.WebView2.Wpf.dll,
-                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.Web.WebView2.Wpf.xml,
-                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.Windows.SDK.NET.dll,
-                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll,
-                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.Sensors.dll,
-                          side/bin/Release/net9.0-windows10.0.17763.0/Microsoft.WindowsAPICodePack.ShellExtensions.dll,
-                          side/bin/Release/net9.0-windows10.0.17763.0/Newtonsoft.Json.dll,
-                          side/bin/Release/net9.0-windows10.0.17763.0/Newtonsoft.Json.Bson.dll -ErrorAction SilentlyContinue
+        Remove-Item -Path side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Web.WebView2.Core.xml,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Web.WebView2.WinForms.xml,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Web.WebView2.Wpf.dll,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Web.WebView2.Wpf.xml,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Windows.SDK.NET.dll,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.WindowsAPICodePack.Sensors.dll,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.WindowsAPICodePack.ShellExtensions.dll,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Newtonsoft.Json.dll,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Newtonsoft.Json.Bson.dll -ErrorAction SilentlyContinue
 
     - name: Copy necessary files
       shell: pwsh
       run: |
-        $targetPath = "side/bin/Release/net9.0-windows10.0.17763.0"
+        $targetPath = "side/bin/Release/net10.0-windows10.0.26100.1"
         Copy-Item -Path pictures -Destination $targetPath/ -Recurse
         Copy-Item -Path projects -Destination $targetPath/ -Recurse
         Copy-Item -Path runtime -Destination $targetPath/ -Recurse
@@ -191,7 +191,7 @@ jobs:
     - name: Create ZIP file
       shell: pwsh
       run: |
-        Compress-Archive -Path side/bin/Release/net9.0-windows10.0.17763.0/* -DestinationPath side/bin/Release/net9.0-windows10.0.17763.0/Side.zip
+        Compress-Archive -Path side/bin/Release/net10.0-windows10.0.26100.1/* -DestinationPath side/bin/Release/net10.0-windows10.0.26100.1/Side.zip
 
     - name: Create temporary directory
       shell: pwsh
@@ -200,7 +200,7 @@ jobs:
         if (-Not (Test-Path $tempDir)) {
           New-Item -ItemType Directory -Path $tempDir
         }
-        Copy-Item -Path side/bin/Release/net9.0-windows10.0.17763.0/Side.zip -Destination $tempDir/
+        Copy-Item -Path side/bin/Release/net10.0-windows10.0.26100.1/Side.zip -Destination $tempDir/
 
     - name: Create GitHub Release
       id: create_release
@@ -220,12 +220,12 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: side/bin/Release/net9.0-windows10.0.17763.0/Side.zip
+        asset_path: side/bin/Release/net10.0-windows10.0.26100.1/Side.zip
         asset_name: Side.zip
         asset_content_type: application/zip
 
     - name: Upload to FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.6
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
