@@ -17,7 +17,7 @@ namespace MasaoPlus
                 Application.SetHighDpiMode(HighDpiMode.SystemAware);
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.SetColorMode(SystemColorMode.Dark);
+                Application.SetColorMode(SystemColorMode.System);
                 try
                 {
                     if (File.Exists(Path.Combine(Application.StartupPath, Global.definition.ConfigFile)))
