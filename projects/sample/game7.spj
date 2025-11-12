@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MasaoProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Name>game7</Name>
-  <ProjVer>1</ProjVer>
+  <ProjVer>2</ProjVer>
   <Runtime>
     <Definitions>
       <Name>まさおコンストラクション Version 2.81</Name>
@@ -9,10 +9,10 @@
       <Update>https://urotaichi.com/other/side/mc28.xml</Update>
       <Package>CanvasMasao_v28.js</Package>
       <Configurations>config.sdx</Configurations>
-      <ChipDefinition>chipresolv.sdx</ChipDefinition>
+      <ChipDefinition>chipresolv_v28.sdx</ChipDefinition>
       <ChipExtender>ex.png</ChipExtender>
       <Chipset />
-      <DefVersion>5.02</DefVersion>
+      <DefVersion>5.05</DefVersion>
       <RequireLower>2.4</RequireLower>
       <ChipSize>
         <Width>32</Width>
@@ -29,15 +29,33 @@
       <LayerName3 />
       <LayerName4 />
       <MapName>chizu-{0}</MapName>
-      <StageSize x="180" y="30" bytesize="1" />
-      <StageSize2 x="180" y="30" bytesize="1" />
-      <StageSize3 x="180" y="30" bytesize="1" />
-      <StageSize4 x="180" y="30" bytesize="1" />
-      <LayerSize x="0" y="0" bytesize="0" />
-      <LayerSize2 x="0" y="0" bytesize="0" />
-      <LayerSize3 x="0" y="0" bytesize="0" />
-      <LayerSize4 x="0" y="0" bytesize="0" />
-      <MapSize x="15" y="9" bytesize="1" />
+      <StageSize x="180" y="30" bytesize="1">
+        <main />
+      </StageSize>
+      <StageSize2 x="180" y="30" bytesize="1">
+        <main />
+      </StageSize2>
+      <StageSize3 x="180" y="30" bytesize="1">
+        <main />
+      </StageSize3>
+      <StageSize4 x="180" y="30" bytesize="1">
+        <main />
+      </StageSize4>
+      <LayerSize x="0" y="0" bytesize="0" mainOrder="0">
+        <main />
+      </LayerSize>
+      <LayerSize2 x="0" y="0" bytesize="0" mainOrder="0">
+        <main />
+      </LayerSize2>
+      <LayerSize3 x="0" y="0" bytesize="0" mainOrder="0">
+        <main />
+      </LayerSize3>
+      <LayerSize4 x="0" y="0" bytesize="0" mainOrder="0">
+        <main />
+      </LayerSize4>
+      <MapSize x="15" y="9" bytesize="1">
+        <main />
+      </MapSize>
       <MaxAthleticNumber>0</MaxAthleticNumber>
     </Definitions>
     <DefaultConfigurations>

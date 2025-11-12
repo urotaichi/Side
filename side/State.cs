@@ -55,6 +55,17 @@ namespace MasaoPlus
             }
         }
 
+        /// <summary>
+        /// 現在3rdMapDataを使用しているかどうか。Use3rdMapDataがtrueかつMapEditModeがfalseの場合にtrueを返す。
+        /// </summary>
+        public bool Use3rdMapDataCurrently
+        {
+            get
+            {
+                return Global.cpd.project != null && Global.cpd.project.Use3rdMapData && !MapEditMode;
+            }
+        }
+
         public void AdjustMapPoint()
         {
             if (MapPoint.X > MapMoveMax.Width)
@@ -184,7 +195,21 @@ namespace MasaoPlus
             }
         }
 
-        public Color Background = Color.FromArgb(0, 255, 255);
+        public Color Background
+        {
+            get
+            {
+                return _Background;
+            }
+            set
+            {
+                _Background = value;
+                Global.MainWnd.GuiCustomPartsChipList.InvertedColor = Colors.GetInvertedColor(_Background);
+
+            }
+        }
+
+        private Color _Background = Color.FromArgb(0, 255, 255);
 
         public bool DrawUnactiveLayer = true;
 
@@ -204,7 +229,7 @@ namespace MasaoPlus
 
         private bool editFlag;
 
-        public string[] QuickTestrunSource;
+        public LayerObject QuickTestrunSource;
 
         public Dictionary<string, string> ChipRegister = [];
 
@@ -216,6 +241,8 @@ namespace MasaoPlus
 
         public int EdittingStage;
 
+        public int EdittingLayerIndex = -1;
+
         public bool MapEditMode;
 
         public bool TestrunAll;
@@ -226,6 +253,10 @@ namespace MasaoPlus
 
         public bool StageSizeChanged = false;
 
+        public Size DefaultStageSize = new(180, 30);
+
         public Size MinimumStageSize = new(16, 10);
+
+        public Size MaximumStageSize = new(500, 500);
     }
 }

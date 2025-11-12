@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace MasaoPlus.Controls
 {
@@ -58,6 +59,7 @@ namespace MasaoPlus.Controls
             TextAlign = HorizontalAlignment.Left;
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DataGridView EditingControlDataGridView
         {
             get
@@ -70,6 +72,7 @@ namespace MasaoPlus.Controls
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public object EditingControlFormattedValue
         {
             get
@@ -82,6 +85,7 @@ namespace MasaoPlus.Controls
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public int EditingControlRowIndex
         {
             get
@@ -94,6 +98,7 @@ namespace MasaoPlus.Controls
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public bool EditingControlValueChanged
         {
             get
@@ -108,18 +113,11 @@ namespace MasaoPlus.Controls
 
         public bool EditingControlWantsInputKey(Keys keyData, bool dataGridViewWantsInputKey)
         {
-            switch (keyData & Keys.KeyCode)
+            return (keyData & Keys.KeyCode) switch
             {
-                case Keys.End:
-                case Keys.Home:
-                case Keys.Left:
-                case Keys.Up:
-                case Keys.Right:
-                case Keys.Down:
-                    return true;
-                default:
-                    return false;
-            }
+                Keys.End or Keys.Home or Keys.Left or Keys.Up or Keys.Right or Keys.Down => true,
+                _ => false,
+            };
         }
 
         public Cursor EditingPanelCursor

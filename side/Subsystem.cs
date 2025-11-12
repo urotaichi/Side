@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using System.IO.Compression;
 using MasaoPlus.Dialogs;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace MasaoPlus
 {
@@ -20,7 +22,7 @@ namespace MasaoPlus
             streamWriter.Close();
         }
 
-        public static void MakeTestrun(int startup, int replace, string[] sts)
+        public static void MakeTestrun(int startup, int replace, LayerObject sts)
         {
             using StreamWriter streamWriter = new(GetTempFileWhere(), false, Global.config.localSystem.FileEncoding);
             string value = MakeHTMLCode(startup, replace, sts);
@@ -38,77 +40,92 @@ namespace MasaoPlus
             return MakeHTMLCode(StartStage, -1, null);
         }
 
-        public static string MakeHTMLCode(int StartStage, int ReplaceStage, string[] sts)
+        public static string MakeHTMLCode(int StartStage, bool isJSON = false)
+        {
+            return MakeHTMLCode(StartStage, -1, null, isJSON);
+        }
+
+        public static string MakeHTMLCode(int StartStage, int ReplaceStage, LayerObject sts, bool isJSON = false)
         {
             Global.cpd.project.Config.StageStart = StartStage + 1;
             StringBuilder stringBuilder = new();
+            string text;
 
-            // ヘッダーを出力
-            string text = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
-            if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
+            if (isJSON)
             {
-                foreach (HTMLReplaceData htmlreplaceData in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
+                stringBuilder.AppendLine("{");
+                stringBuilder.AppendLine("\t\"masao-json-format-version\": \"draft-4\",");
+                stringBuilder.AppendLine("\t\"params\": {");
+            }
+            else
+            {
+                // ヘッダーを出力
+                text = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
+                if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
                 {
-                    text = text.Replace($"<?{htmlreplaceData.Name}>", htmlreplaceData.Value);
+                    foreach (HTMLReplaceData htmlreplaceData in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
+                    {
+                        text = text.Replace($"<?{htmlreplaceData.Name}>", htmlreplaceData.Value);
+                    }
+                }
+                foreach (string value in text.Split(
+                [
+                    Environment.NewLine,
+                    "\r",
+                    "\n"
+                ], StringSplitOptions.None))
+                {
+                    stringBuilder.AppendLine(value);
+                }
+
+                //エデイタ識別コードを出力
+                if (Global.config.localSystem.IntegrateEditorId)
+                {
+                    stringBuilder.AppendLine($"/* [MI]{Global.definition.EditorIdStr}[/MI] */");
                 }
             }
-            foreach (string value in text.Split(
-            [
-                Environment.NewLine,
-                "\r",
-                "\n"
-            ], StringSplitOptions.None))
-            {
-                stringBuilder.AppendLine(value);
-            }
 
-            //エデイタ識別コードを出力
-            if (Global.config.localSystem.IntegrateEditorId)
-            {
-                stringBuilder.AppendLine(Global.definition.EditorIdStr);
-            }
-
-            //パラメータを出力
             if (!Global.cpd.project.Use3rdMapData)
             {
-                stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize, true));
+                stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"map{0}-{1}\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.StageParam, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize, true, isJSON));
                 if (Global.cpd.project.Config.StageNum >= 2)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize2));
+                    stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"map{0}-{1}-s\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.StageParam2, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize2, false, isJSON));
                 }
                 if (Global.cpd.project.Config.StageNum >= 3)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize3));
+                    stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"map{0}-{1}-t\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.StageParam3, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize3, false, isJSON));
                 }
                 if (Global.cpd.project.Config.StageNum >= 4)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize4));
+                    stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"map{0}-{1}-f\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.StageParam4, Global.cpd.runtime.Definitions.StageSplit, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize4, false, isJSON));
                 }
 
                 if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
                 {
-                    stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize));
+                    stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData[0], Global.cpd.runtime.Definitions.LayerSize, false, isJSON));
                     if (Global.cpd.project.Config.StageNum >= 2)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2, Global.cpd.runtime.Definitions.LayerSize2));
+                        stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}-s\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam2, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData2[0], Global.cpd.runtime.Definitions.LayerSize2, false, isJSON));
                     }
                     if (Global.cpd.project.Config.StageNum >= 3)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3, Global.cpd.runtime.Definitions.LayerSize3));
+                        stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}-t\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam3, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData3[0], Global.cpd.runtime.Definitions.LayerSize3, false, isJSON));
                     }
                     if (Global.cpd.project.Config.StageNum >= 4)
                     {
-                        stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4, Global.cpd.runtime.Definitions.LayerSize4));
+                        stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"layer{0}-{1}-f\": \"{2}\"," : Global.cpd.runtime.DefaultConfigurations.LayerParam4, Global.cpd.runtime.Definitions.LayerSplit, Global.cpd.project.LayerData4[0], Global.cpd.runtime.Definitions.LayerSize4, false, isJSON));
                     }
                 }
             }
 
             if (Global.cpd.project.Config.UseWorldmap)
             {
-                stringBuilder.AppendLine(MakeStageParameter(Global.cpd.runtime.DefaultConfigurations.MapParam, 0, Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize));
+                stringBuilder.AppendLine(MakeStageParameter(isJSON ? "\t\"chizu-{0}\": \"{1}\"," : Global.cpd.runtime.DefaultConfigurations.MapParam, 0, Global.cpd.project.MapData, Global.cpd.runtime.Definitions.MapSize, false, isJSON));
             }
 
-            string parameter = Global.cpd.runtime.DefaultConfigurations.Parameter;
+            //パラメータを出力
+            string parameter = isJSON ? "\t\"{0}\": \"{1}\"," : Global.cpd.runtime.DefaultConfigurations.Parameter;
             ConfigParam[] configurations = Global.cpd.project.Config.Configurations;
             int k = 0;//現在読み込まれている行
             int mcs_screen_size = 2;
@@ -118,137 +135,137 @@ namespace MasaoPlus
 
                 if (configParam.Name == "mcs_screen_size") mcs_screen_size = int.Parse(configParam.Value);
 
-                if (configParam.Category == "オプション") goto IL_718;
+                if (configParam.Category == "オプション") goto IL_SKIP;
 
                 if (configParam.RequireStages > 1 && configParam.RequireStages < 5)
                 {
                     if (configParam.RequireStages <= Global.cpd.project.Config.StageNum)
                     {
-                        goto IL_4DB;
+                        goto IL_SKIP_PARAM;
                     }
                 }
                 else if (configParam.RequireStages != 5 || Global.cpd.project.Config.UseWorldmap)
                 {
-                    goto IL_4DB;
+                    goto IL_SKIP_PARAM;
                 }
 
-            IL_718:
+            IL_SKIP:
                 k++;
                 continue;
 
-            IL_4DB:
+            IL_SKIP_PARAM:
                 if (!Global.config.localSystem.OutPutInititalSourceCode && !Global.cpd.runtime.Definitions.Package.Contains("28"))
                 {
                     // 値を調べ、初期値だったら出力しない（参考：Canvas正男のTagDataBase.js）
                     switch (configParam.Name)
                     {
                         case "mes1_name":
-                            if (configParam.Value == "ダケシ") goto IL_718;
+                            if (configParam.Value == "ダケシ") goto IL_SKIP;
                             else break;
                         case "serifu1":
                             if (configParam.Value ==
-                                "人の命は、お金では買えないと言われています。\r\nしかし、お店へ行けば、ＳＣＯＲＥで買えます。\r\n0") goto IL_718;
+                                "人の命は、お金では買えないと言われています。\r\nしかし、お店へ行けば、ＳＣＯＲＥで買えます。\r\n0") goto IL_SKIP;
                             else break;
                         case "serifu2":
                             if (configParam.Value ==
-                                "時は金なりと、言われています。しかし、\r\nお店なら、時間も買えます。\r\n店員さんて、グレートですね。") goto IL_718;
+                                "時は金なりと、言われています。しかし、\r\nお店なら、時間も買えます。\r\n店員さんて、グレートですね。") goto IL_SKIP;
                             else break;
                         case "mes2_name":
-                            if (configParam.Value == "エリコ") goto IL_718;
+                            if (configParam.Value == "エリコ") goto IL_SKIP;
                             else break;
                         case "serifu3":
                             if (configParam.Value ==
-                                "おはようございます。星と数字が付いた扉が、\r\nありますよね。あれは、ですねえ、その数だけ\r\n人面星を取ると、開くので、ございます。") goto IL_718;
+                                "おはようございます。星と数字が付いた扉が、\r\nありますよね。あれは、ですねえ、その数だけ\r\n人面星を取ると、開くので、ございます。") goto IL_SKIP;
                             else break;
                         case "serifu4":
                             if (configParam.Value ==
-                                "LAST STAGEというのは、最終面の事ですわ。\r\nこれをクリアーすると、エンディングに、\r\n行けますのよ。がんばって下さいね。") goto IL_718;
+                                "LAST STAGEというのは、最終面の事ですわ。\r\nこれをクリアーすると、エンディングに、\r\n行けますのよ。がんばって下さいね。") goto IL_SKIP;
                             else break;
                         case "shop_name":
-                            if (configParam.Value == "店員さん") goto IL_718;
+                            if (configParam.Value == "店員さん") goto IL_SKIP;
                             else break;
                         case "serifu5":
                             if (configParam.Value ==
-                                "いらっしゃいませ。\r\n当店では、ＳＣＯＲＥと、アイテムを、\r\n交換いたします。") goto IL_718;
+                                "いらっしゃいませ。\r\n当店では、ＳＣＯＲＥと、アイテムを、\r\n交換いたします。") goto IL_SKIP;
                             else break;
                         case "serifu8":
                             if (configParam.Value ==
-                                "本日の営業は、終了いたしました。\r\nまたのご来店を、\r\nこころより、お待ちしております。") goto IL_718;
+                                "本日の営業は、終了いたしました。\r\nまたのご来店を、\r\nこころより、お待ちしております。") goto IL_SKIP;
                             else break;
                         case "shop_serifu1":
-                            if (configParam.Value == "どれになさいますか？") goto IL_718;
+                            if (configParam.Value == "どれになさいますか？") goto IL_SKIP;
                             else break;
                         case "shop_serifu2":
-                            if (configParam.Value == "で、よろしいですか？") goto IL_718;
+                            if (configParam.Value == "で、よろしいですか？") goto IL_SKIP;
                             else break;
                         case "shop_serifu3":
                         case "serifu_key1_on-5":
                         case "serifu_key2_on-5":
-                            if (configParam.Value == "はい") goto IL_718;
+                            if (configParam.Value == "はい") goto IL_SKIP;
                             else break;
                         case "shop_serifu4":
                         case "serifu_key1_on-6":
                         case "serifu_key2_on-6":
-                            if (configParam.Value == "いいえ") goto IL_718;
+                            if (configParam.Value == "いいえ") goto IL_SKIP;
                             else break;
                         case "shop_serifu5":
-                            if (configParam.Value == "を、装備した。") goto IL_718;
+                            if (configParam.Value == "を、装備した。") goto IL_SKIP;
                             else break;
                         case "shop_serifu6":
-                            if (configParam.Value == "ＳＣＯＲＥが、足りません。") goto IL_718;
+                            if (configParam.Value == "ＳＣＯＲＥが、足りません。") goto IL_SKIP;
                             else break;
                         case "shop_item_name1":
-                            if (configParam.Value == "グレネード３発") goto IL_718;
+                            if (configParam.Value == "グレネード３発") goto IL_SKIP;
                             else break;
                         case "shop_item_name2":
                         case "setumei_menu4":
-                            if (configParam.Value == "ジェット") goto IL_718;
+                            if (configParam.Value == "ジェット") goto IL_SKIP;
                             else break;
                         case "shop_item_name3":
-                            if (configParam.Value == "ドリル") goto IL_718;
+                            if (configParam.Value == "ドリル") goto IL_SKIP;
                             else break;
                         case "shop_item_name4":
-                            if (configParam.Value == "ヘルメット") goto IL_718;
+                            if (configParam.Value == "ヘルメット") goto IL_SKIP;
                             else break;
                         case "shop_item_name5":
-                            if (configParam.Value == "しっぽ") goto IL_718;
+                            if (configParam.Value == "しっぽ") goto IL_SKIP;
                             else break;
                         case "shop_item_name6":
                         case "setumei_menu3":
-                            if (configParam.Value == "バリア") goto IL_718;
+                            if (configParam.Value == "バリア") goto IL_SKIP;
                             else break;
                         case "shop_item_name7":
                         case "setumei_menu2":
-                            if (configParam.Value == "ファイヤーボール") goto IL_718;
+                            if (configParam.Value == "ファイヤーボール") goto IL_SKIP;
                             else break;
                         case "shop_item_name8":
-                            if (configParam.Value == "１ｕｐ") goto IL_718;
+                            if (configParam.Value == "１ｕｐ") goto IL_SKIP;
                             else break;
                         case "shop_item_name9":
-                            if (configParam.Value == "制限時間増加") goto IL_718;
+                            if (configParam.Value == "制限時間増加") goto IL_SKIP;
                             else break;
                         case "shop_item_teika1":
-                            if (configParam.Value == "200") goto IL_718;
+                            if (configParam.Value == "200") goto IL_SKIP;
                             else break;
                         case "shop_item_teika2":
-                            if (configParam.Value == "150") goto IL_718;
+                            if (configParam.Value == "150") goto IL_SKIP;
                             else break;
                         case "shop_item_teika3":
                         case "shop_item_teika4":
-                            if (configParam.Value == "100") goto IL_718;
+                            if (configParam.Value == "100") goto IL_SKIP;
                             else break;
                         case "shop_item_teika5":
-                            if (configParam.Value == "250") goto IL_718;
+                            if (configParam.Value == "250") goto IL_SKIP;
                             else break;
                         case "shop_item_teika6":
-                            if (configParam.Value == "80") goto IL_718;
+                            if (configParam.Value == "80") goto IL_SKIP;
                             else break;
                         case "shop_item_teika7":
                         case "time_max":
-                            if (configParam.Value == "300") goto IL_718;
+                            if (configParam.Value == "300") goto IL_SKIP;
                             else break;
                         case "shop_item_teika8":
-                            if (configParam.Value == "980") goto IL_718;
+                            if (configParam.Value == "980") goto IL_SKIP;
                             else break;
                         case "shop_item_teika9":
                         case "easy_mode":
@@ -317,32 +334,32 @@ namespace MasaoPlus
                         case "oriboss_waza3_wait":
                         case "oriboss_fumeru_f":
                         case "oriboss_destroy":
-                            if (configParam.Value == "1") goto IL_718;
+                            if (configParam.Value == "1") goto IL_SKIP;
                             else break;
                         case "setumei_name":
-                            if (configParam.Value == "キドはかせ") goto IL_718;
+                            if (configParam.Value == "キドはかせ") goto IL_SKIP;
                             else break;
                         case "serifu9":
                             if (configParam.Value ==
-                                "よく来た。わしは、キドはかせ。\r\nアイテムの研究をしており、みんなから、\r\nアイテムはかせと呼ばれて、したわれておるよ。") goto IL_718;
+                                "よく来た。わしは、キドはかせ。\r\nアイテムの研究をしており、みんなから、\r\nアイテムはかせと呼ばれて、したわれておるよ。") goto IL_SKIP;
                             else break;
                         case "setumei_menu1":
-                            if (configParam.Value == "なんでも、質問してくれたまえよ。") goto IL_718;
+                            if (configParam.Value == "なんでも、質問してくれたまえよ。") goto IL_SKIP;
                             else break;
                         case "serifu10":
                             if (configParam.Value ==
-                                "黄色いチューリップのアイテムと言えば、\r\nそう、ファイヤーボールじゃな。はなれた\r\n敵を攻撃できるという、大変便利なものじゃ。") goto IL_718;
+                                "黄色いチューリップのアイテムと言えば、\r\nそう、ファイヤーボールじゃな。はなれた\r\n敵を攻撃できるという、大変便利なものじゃ。") goto IL_SKIP;
                             else break;
                         case "serifu11":
                             if (configParam.Value ==
-                                "ピンクのキノコのアイテムと言えば、そう、\r\nバリアじゃな。体当たりで敵を倒せるが、うっかり\r\nして、時間切れを忘れぬよう、注意が必要じゃ。") goto IL_718;
+                                "ピンクのキノコのアイテムと言えば、そう、\r\nバリアじゃな。体当たりで敵を倒せるが、うっかり\r\nして、時間切れを忘れぬよう、注意が必要じゃ。") goto IL_SKIP;
                             else break;
                         case "serifu12":
                             if (configParam.Value ==
-                                "ロケットの形のアイテムと言えば、そう、ジェット\r\nじゃな。空中で、スペースキーを押せば、さらに\r\n上昇できる。燃料切れには、気を付けるのじゃぞ。") goto IL_718;
+                                "ロケットの形のアイテムと言えば、そう、ジェット\r\nじゃな。空中で、スペースキーを押せば、さらに\r\n上昇できる。燃料切れには、気を付けるのじゃぞ。") goto IL_SKIP;
                             else break;
                         case "door_score":
-                            if (configParam.Value == "800") goto IL_718;
+                            if (configParam.Value == "800") goto IL_SKIP;
                             else break;
                         case "layer_mode":
                         case "score_v":
@@ -361,20 +378,20 @@ namespace MasaoPlus
                         case "audio_bgm_switch_mp3":
                         case "audio_bgm_switch_ogg":
                         case "oriboss_tail_f":
-                            if (configParam.Value == "true") goto IL_718;
+                            if (configParam.Value == "true") goto IL_SKIP;
                             else break;
                         case "filename_mapchip":
-                            if (configParam.Value == "mapchip.gif") goto IL_718;
+                            if (configParam.Value == "mapchip.gif") goto IL_SKIP;
                             else break;
                         case "filename_haikei":
                         case "filename_haikei2":
                         case "filename_haikei3":
                         case "filename_haikei4":
-                            if (configParam.Value == "haikei.gif") goto IL_718;
+                            if (configParam.Value == "haikei.gif") goto IL_SKIP;
                             else break;
                         case "gazou_scroll":
                         case "mcs_screen_size":
-                            if (configParam.Value == "2") goto IL_718;
+                            if (configParam.Value == "2") goto IL_SKIP;
                             else break;
                         case "now_loading":
                         case "j_hp_name":
@@ -393,121 +410,121 @@ namespace MasaoPlus
                         case "x_backimage2_filename":
                         case "x_backimage3_filename":
                         case "x_backimage4_filename":
-                            if (configParam.Value == string.Empty) goto IL_718;
+                            if (configParam.Value == string.Empty) goto IL_SKIP;
                             else break;
                         case "score_1up_1":
-                            if (configParam.Value == "500") goto IL_718;
+                            if (configParam.Value == "500") goto IL_SKIP;
                             else break;
                         case "score_1up_2":
-                            if (configParam.Value == "1000") goto IL_718;
+                            if (configParam.Value == "1000") goto IL_SKIP;
                             else break;
                         case "url1":
                         case "url2":
                         case "url3":
-                            if (configParam.Value == "http://www.yahoo.co.jp/") goto IL_718;
+                            if (configParam.Value == "http://www.yahoo.co.jp/") goto IL_SKIP;
                             else break;
                         case "url4":
-                            if (configParam.Value == "http://www.t3.rim.or.jp/~naoto/naoto.html") goto IL_718;
+                            if (configParam.Value == "http://www.t3.rim.or.jp/~naoto/naoto.html") goto IL_SKIP;
                             else break;
                         case "hitokoto1_name":
-                            if (configParam.Value == "浩二") goto IL_718;
+                            if (configParam.Value == "浩二") goto IL_SKIP;
                             else break;
                         case "hitokoto1":
-                            if (configParam.Value == "今日は、いい天気だね。\r\n0\r\n0") goto IL_718;
+                            if (configParam.Value == "今日は、いい天気だね。\r\n0\r\n0") goto IL_SKIP;
                             else break;
                         case "hitokoto2_name":
                         case "serifu_key1_on_name":
-                            if (configParam.Value == "お姫様") goto IL_718;
+                            if (configParam.Value == "お姫様") goto IL_SKIP;
                             else break;
                         case "hitokoto2":
-                            if (configParam.Value == "ついに、ここまで来ましたね。\r\n0\r\n0") goto IL_718;
+                            if (configParam.Value == "ついに、ここまで来ましたね。\r\n0\r\n0") goto IL_SKIP;
                             else break;
                         case "hitokoto3_name":
                         case "serifu_key2_on_name":
-                            if (configParam.Value == "ザトシ") goto IL_718;
+                            if (configParam.Value == "ザトシ") goto IL_SKIP;
                             else break;
                         case "hitokoto3":
-                            if (configParam.Value == "オレは、世界一になる男だ。\r\n0\r\n0") goto IL_718;
+                            if (configParam.Value == "オレは、世界一になる男だ。\r\n0\r\n0") goto IL_SKIP;
                             else break;
                         case "hitokoto4_name":
                         case "serifu_grenade_shop_name":
-                            if (configParam.Value == "クリス") goto IL_718;
+                            if (configParam.Value == "クリス") goto IL_SKIP;
                             else break;
                         case "hitokoto4":
-                            if (configParam.Value == "んちゃ！\r\n0\r\n0") goto IL_718;
+                            if (configParam.Value == "んちゃ！\r\n0\r\n0") goto IL_SKIP;
                             else break;
                         case "backcolor_@":
                         case "backcolor_@_s":
                         case "backcolor_@_t":
                         case "backcolor_@_f":
                         case "message_name_@":
-                            if (configParam.Value == "0,255,255") goto IL_718;
+                            if (configParam.Value == "0,255,255") goto IL_SKIP;
                             else break;
                         case "kaishi_@":
                         case "message_back_@":
-                            if (configParam.Value == "0,0,0") goto IL_718;
+                            if (configParam.Value == "0,0,0") goto IL_SKIP;
                             else break;
                         case "scorecolor_@":
-                            if (configParam.Value == "0,0,255") goto IL_718;
+                            if (configParam.Value == "0,0,255") goto IL_SKIP;
                             else break;
                         case "grenade_@1":
                         case "message_border_@":
                         case "message_text_@":
                         case "gauge_border_@":
-                            if (configParam.Value == "255,255,255") goto IL_718;
+                            if (configParam.Value == "255,255,255") goto IL_SKIP;
                             else break;
                         case "grenade_@2":
                         case "gauge_back_@1":
-                            if (configParam.Value == "255,255,0") goto IL_718;
+                            if (configParam.Value == "255,255,0") goto IL_SKIP;
                             else break;
                         case "mizunohadou_@":
-                            if (configParam.Value == "0,32,255") goto IL_718;
+                            if (configParam.Value == "0,32,255") goto IL_SKIP;
                             else break;
                         case "firebar_@1":
                         case "gauge_back_@2":
-                            if (configParam.Value == "255,0,0") goto IL_718;
+                            if (configParam.Value == "255,0,0") goto IL_SKIP;
                             else break;
                         case "firebar_@2":
-                            if (configParam.Value == "255,192,0") goto IL_718;
+                            if (configParam.Value == "255,192,0") goto IL_SKIP;
                             else break;
                         case "moji_score":
-                            if (configParam.Value == "SCORE") goto IL_718;
+                            if (configParam.Value == "SCORE") goto IL_SKIP;
                             else break;
                         case "moji_highscore":
-                            if (configParam.Value == "HIGHSCORE") goto IL_718;
+                            if (configParam.Value == "HIGHSCORE") goto IL_SKIP;
                             else break;
                         case "moji_time":
-                            if (configParam.Value == "TIME") goto IL_718;
+                            if (configParam.Value == "TIME") goto IL_SKIP;
                             else break;
                         case "moji_jet":
-                            if (configParam.Value == "JET") goto IL_718;
+                            if (configParam.Value == "JET") goto IL_SKIP;
                             else break;
                         case "moji_grenade":
-                            if (configParam.Value == "GRENADE") goto IL_718;
+                            if (configParam.Value == "GRENADE") goto IL_SKIP;
                             else break;
                         case "moji_left":
-                            if (configParam.Value == "LEFT") goto IL_718;
+                            if (configParam.Value == "LEFT") goto IL_SKIP;
                             else break;
                         case "moji_size":
-                            if (configParam.Value == "14") goto IL_718;
+                            if (configParam.Value == "14") goto IL_SKIP;
                             else break;
                         case "filename_title":
-                            if (configParam.Value == "title.gif") goto IL_718;
+                            if (configParam.Value == "title.gif") goto IL_SKIP;
                             else break;
                         case "filename_ending":
-                            if (configParam.Value == "ending.gif") goto IL_718;
+                            if (configParam.Value == "ending.gif") goto IL_SKIP;
                             else break;
                         case "filename_gameover":
-                            if (configParam.Value == "gameover.gif") goto IL_718;
+                            if (configParam.Value == "gameover.gif") goto IL_SKIP;
                             else break;
                         case "filename_pattern":
-                            if (configParam.Value == "pattern.gif") goto IL_718;
+                            if (configParam.Value == "pattern.gif") goto IL_SKIP;
                             else break;
                         case "filename_chizu":
-                            if (configParam.Value == "chizu.gif") goto IL_718;
+                            if (configParam.Value == "chizu.gif") goto IL_SKIP;
                             else break;
                         case "game_speed":
-                            if (configParam.Value == "70") goto IL_718;
+                            if (configParam.Value == "70") goto IL_SKIP;
                             else break;
                         case "se_switch":
                         case "se_filename":
@@ -516,90 +533,90 @@ namespace MasaoPlus
                         case "sleep_time_visible":
                         case "mcs_haikei_visible":
                         case "audio_bgm_switch_wave":
-                            if (configParam.Value == "false") goto IL_718;
+                            if (configParam.Value == "false") goto IL_SKIP;
                             else break;
                         case "filename_se_start":
                         case "filename_se_item":
-                            if (reg_se_item().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_item().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_gameover":
-                            if (reg_se_gameover().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_gameover().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_clear":
-                            if (reg_se_clear().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_clear().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_coin":
-                            if (reg_se_coin().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_coin().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_get":
                         case "filename_se_dokan":
                         case "filename_se_chizugamen":
-                            if (reg_se_get().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_get().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_jump":
-                            if (reg_se_jump().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_jump().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_sjump":
-                            if (reg_se_sjump().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_sjump().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_kiki":
-                            if (reg_se_kiki().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_kiki().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_fumu":
-                            if (reg_se_fumu().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_fumu().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_tobasu":
-                            if (reg_se_tobasu().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_tobasu().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_fireball":
                         case "filename_se_bomb":
                         case "filename_se_senkuuza":
-                            if (reg_se_shot().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_shot().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_jet":
                         case "filename_se_dengeki":
                         case "filename_se_hinoko":
                         case "filename_se_grounder":
-                            if (reg_se_mgan().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_mgan().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_miss":
                         case "filename_se_dosun":
-                            if (reg_se_dosun().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_dosun().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_block":
-                            if (reg_se_bakuhatu().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_bakuhatu().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_mizu":
-                            if (reg_se_mizu().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_mizu().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_se_happa":
                         case "filename_se_mizudeppo":
                         case "filename_se_kaiole":
-                            if (reg_se_happa().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_se_happa().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_fx_bgm_stage1":
-                            if (reg_bgm_stage1().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_stage1().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_fx_bgm_stage2":
-                            if (reg_bgm_stage2().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_stage2().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_fx_bgm_stage3":
-                            if (reg_bgm_stage3().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_stage3().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_fx_bgm_stage4":
-                            if (reg_bgm_stage4().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_stage4().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_fx_bgm_boss":
-                            if (reg_bgm_boss().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_boss().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_fx_bgm_title":
-                            if (reg_bgm_title().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_title().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_fx_bgm_ending":
-                            if (reg_bgm_ending().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_ending().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "filename_fx_bgm_chizu":
-                            if (reg_bgm_chizu().IsMatch(configParam.Value)) goto IL_718;
+                            if (reg_bgm_chizu().IsMatch(configParam.Value)) goto IL_SKIP;
                             else break;
                         case "gazou_scroll_speed_x":
                         case "gazou_scroll_speed_y":
@@ -628,105 +645,105 @@ namespace MasaoPlus
                         case "x_backimage2_view_x":
                         case "x_backimage3_view_x":
                         case "x_backimage4_view_x":
-                            if (configParam.Value == "0") goto IL_718;
+                            if (configParam.Value == "0") goto IL_SKIP;
                             else break;
                         case "boss_hp_max":
                         case "grenade_shop_score":
-                            if (configParam.Value == "20") goto IL_718;
+                            if (configParam.Value == "20") goto IL_SKIP;
                             else break;
                         case "j_tail_ap_boss":
-                            if (configParam.Value == "4") goto IL_718;
+                            if (configParam.Value == "4") goto IL_SKIP;
                             else break;
                         case "boss_name":
                         case "boss2_name":
                         case "boss3_name":
-                            if (configParam.Value == "BOSS") goto IL_718;
+                            if (configParam.Value == "BOSS") goto IL_SKIP;
                             else break;
                         case "fs_name":
-                            if (configParam.Value == "ファイヤーボールセレクトの人") goto IL_718;
+                            if (configParam.Value == "ファイヤーボールセレクトの人") goto IL_SKIP;
                             else break;
                         case "serifu7":
                             if (configParam.Value ==
-                                "好きなファイヤーボールを、３種類から\r\n選んで下さい。私はサービスが良いので、\r\n何度でも選べますよ。") goto IL_718;
+                                "好きなファイヤーボールを、３種類から\r\n選んで下さい。私はサービスが良いので、\r\n何度でも選べますよ。") goto IL_SKIP;
                             else break;
                         case "fs_serifu1":
-                            if (configParam.Value == "どのファイヤーボールにしますか？") goto IL_718;
+                            if (configParam.Value == "どのファイヤーボールにしますか？") goto IL_SKIP;
                             else break;
                         case "fs_item_name1":
-                            if (configParam.Value == "バウンド") goto IL_718;
+                            if (configParam.Value == "バウンド") goto IL_SKIP;
                             else break;
                         case "fs_item_name2":
-                            if (configParam.Value == "ストレート") goto IL_718;
+                            if (configParam.Value == "ストレート") goto IL_SKIP;
                             else break;
                         case "fs_item_name3":
-                            if (configParam.Value == "ダブル") goto IL_718;
+                            if (configParam.Value == "ダブル") goto IL_SKIP;
                             else break;
                         case "fs_serifu2":
-                            if (configParam.Value == "を装備しました。") goto IL_718;
+                            if (configParam.Value == "を装備しました。") goto IL_SKIP;
                             else break;
                         case "filename_second_haikei":
                         case "filename_second_haikei2":
                         case "filename_second_haikei3":
                         case "filename_second_haikei4":
-                            if (configParam.Value == "haikei_second.gif") goto IL_718;
+                            if (configParam.Value == "haikei_second.gif") goto IL_SKIP;
                             else break;
                         case "serifu_key1_on":
                             if (configParam.Value ==
-                                "ここから先へ進むには、\r\n３つのＫＥＹ１が必要です。\r\nこの世界のどこかに、あるはず。") goto IL_718;
+                                "ここから先へ進むには、\r\n３つのＫＥＹ１が必要です。\r\nこの世界のどこかに、あるはず。") goto IL_SKIP;
                             else break;
                         case "serifu_key1_on-4":
-                            if (configParam.Value == "ＫＥＹ１を３つ、わたしますか？") goto IL_718;
+                            if (configParam.Value == "ＫＥＹ１を３つ、わたしますか？") goto IL_SKIP;
                             else break;
                         case "serifu_key1_on-7":
-                            if (configParam.Value == "ＫＥＹ１を３つ、持っていません。") goto IL_718;
+                            if (configParam.Value == "ＫＥＹ１を３つ、持っていません。") goto IL_SKIP;
                             else break;
                         case "serifu_key1_on-8":
                             if (configParam.Value ==
-                                "先へ進む道が、開けました。\r\n勇者殿、\r\nお気を付けて。") goto IL_718;
+                                "先へ進む道が、開けました。\r\n勇者殿、\r\nお気を付けて。") goto IL_SKIP;
                             else break;
                         case "key1_on_count":
                         case "key2_on_count":
                         case "oriboss_waza_select_option":
-                            if (configParam.Value == "3") goto IL_718;
+                            if (configParam.Value == "3") goto IL_SKIP;
                             else break;
                         case "serifu_key2_on":
                             if (configParam.Value ==
-                                "３つのＫＥＹ２がないと、\r\nここから先へは進めないぜ。\r\nどこかで見つ付けてくれ。") goto IL_718;
+                                "３つのＫＥＹ２がないと、\r\nここから先へは進めないぜ。\r\nどこかで見つ付けてくれ。") goto IL_SKIP;
                             else break;
                         case "serifu_key2_on-4":
-                            if (configParam.Value == "ＫＥＹ２を３つ、わたしますか？") goto IL_718;
+                            if (configParam.Value == "ＫＥＹ２を３つ、わたしますか？") goto IL_SKIP;
                             else break;
                         case "serifu_key2_on-7":
-                            if (configParam.Value == "ＫＥＹ２を３つ、持っていません。") goto IL_718;
+                            if (configParam.Value == "ＫＥＹ２を３つ、持っていません。") goto IL_SKIP;
                             else break;
                         case "serifu_key2_on-8":
                             if (configParam.Value ==
-                                "３つのＫＥＹ２、受け取ったぜ。\r\nこれで、先へ進めるようになったな。\r\n0") goto IL_718;
+                                "３つのＫＥＹ２、受け取ったぜ。\r\nこれで、先へ進めるようになったな。\r\n0") goto IL_SKIP;
                             else break;
                         case "water_clear_level":
-                            if (configParam.Value == "128") goto IL_718;
+                            if (configParam.Value == "128") goto IL_SKIP;
                             else break;
                         case "serifu_grenade_shop":
                             if (configParam.Value ==
-                                "グレネード１発を、\r\n２０点で売りますよ。\r\n0") goto IL_718;
+                                "グレネード１発を、\r\n２０点で売りますよ。\r\n0") goto IL_SKIP;
                             else break;
                         case "serifu_grenade_shop-4":
-                            if (configParam.Value == "何発にしますか？") goto IL_718;
+                            if (configParam.Value == "何発にしますか？") goto IL_SKIP;
                             else break;
                         case "serifu_grenade_shop-5":
-                            if (configParam.Value == "得点が、足りません。") goto IL_718;
+                            if (configParam.Value == "得点が、足りません。") goto IL_SKIP;
                             else break;
                         case "serifu_grenade_shop-6":
-                            if (configParam.Value == "グレネードを手に入れた。") goto IL_718;
+                            if (configParam.Value == "グレネードを手に入れた。") goto IL_SKIP;
                             else break;
                         case "font_score":
                         case "font_message":
-                            if (configParam.Value == "Helvetica,Arial,ＭＳ ゴシック,HG ゴシックB Sun,HG ゴシックB,monospace") goto IL_718;
+                            if (configParam.Value == "Helvetica,Arial,ＭＳ ゴシック,HG ゴシックB Sun,HG ゴシックB,monospace") goto IL_SKIP;
                             else break;
                         case "oriboss_width":
                         case "oriboss_height":
-                            if (configParam.Value == "32") goto IL_718;
-                            else break;
+                            if (configParam.Value == "32") goto IL_SKIP;
+                            break;
                     }
                 }
 
@@ -736,16 +753,15 @@ namespace MasaoPlus
                     configParam.Value = configParam.Value.Replace(@"""", @"\""");
                 }
 
-                string typestr;
-                switch (typestr = configParam.Typestr)
+                switch (configParam.Typestr)
                 {
                     case "bool":
                     case "bool21":
-                        stringBuilder.AppendLine(string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "1" : "2"));
-                        goto IL_718;
+                        stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "1" : "2"));
+                        goto IL_SKIP;
                     case "bool10":
-                        stringBuilder.AppendLine(string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "1" : "0"));
-                        goto IL_718;
+                        stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name, (configParam.Value == "true") ? "1" : "0"));
+                        goto IL_SKIP;
                     case "int":
                     case "list":
                     case "list_athletic":
@@ -753,13 +769,13 @@ namespace MasaoPlus
                     case "file":
                     case "file_img":
                     case "file_audio":
-                        stringBuilder.AppendLine(string.Format(parameter, configParam.Name, configParam.Value));
-                        goto IL_718;
+                        stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name, configParam.Value));
+                        goto IL_SKIP;
                     case "text":
                         {
                             string[] array2 = configParam.Value.Split(
                             [
-                        Environment.NewLine
+                            Environment.NewLine
                             ], StringSplitOptions.None);
                             int num2 = 1;
 
@@ -773,10 +789,10 @@ namespace MasaoPlus
 
                             foreach (string arg in array2)
                             {
-                                stringBuilder.AppendLine(string.Format(parameter, configParam.Name + "-" + num2.ToString(), arg));
+                                stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name + "-" + num2.ToString(), arg));
                                 num2++;
                             }
-                            goto IL_718;
+                            goto IL_SKIP;
                         }
                     case "color":
                         {
@@ -784,93 +800,105 @@ namespace MasaoPlus
                             string param = configParam.Name;
 
                             if (Global.config.localSystem.OutPutInititalSourceCode || Global.cpd.runtime.Definitions.Package.Contains("28")
-                               || !((param == "backcolor_@" || param == "scorecolor_@" || param == "mizunohadou_@" || param == "kaishi_@" || param == "backcolor_@_s" || param == "backcolor_@_t" || param == "message_back_@" || param == "message_name_@") && colors.r == 0
-                               || (param == "grenade_@1" || param == "grenade_@2" || param == "firebar_@1" || param == "firebar_@2" || param == "message_border_@" || param == "message_text_@" || param == "gauge_border_@" || param == "gauge_back_@1" || param == "gauge_back_@2") && colors.r == 255
-                               || param == "backcolor_@_f" && colors.r == 192
+                                || !((param == "backcolor_@" || param == "scorecolor_@" || param == "mizunohadou_@" || param == "kaishi_@" || param == "backcolor_@_s" || param == "backcolor_@_t" || param == "message_back_@" || param == "message_name_@") && colors.r == 0
+                                || (param == "grenade_@1" || param == "grenade_@2" || param == "firebar_@1" || param == "firebar_@2" || param == "message_border_@" || param == "message_text_@" || param == "gauge_border_@" || param == "gauge_back_@1" || param == "gauge_back_@2") && colors.r == 255
+                                || param == "backcolor_@_f" && colors.r == 192
                             ))
-                                stringBuilder.AppendLine(string.Format(parameter, configParam.Name.Replace("@", "red"), colors.r.ToString()));
+                                stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name.Replace("@", "red"), colors.r.ToString()));
 
                             if (Global.config.localSystem.OutPutInititalSourceCode || Global.cpd.runtime.Definitions.Package.Contains("28")
-                               || !((param == "scorecolor_@" || param == "kaishi_@" || param == "firebar_@1" || param == "backcolor_@_s" || param == "message_back_@" || param == "gauge_back_@2") && colors.g == 0
-                               || (param == "backcolor_@" || param == "grenade_@1" || param == "grenade_@2" || param == "backcolor_@_t" || param == "message_border_@" || param == "message_name_@" || param == "message_text_@" || param == "gauge_border_@" || param == "gauge_back_@1") && colors.g == 255
-                               || param == "mizunohadou_@" && colors.g == 32
-                               || param == "firebar_@2" && colors.g == 192
-                               || param == "backcolor_@_f" && colors.g == 48
+                                || !((param == "scorecolor_@" || param == "kaishi_@" || param == "firebar_@1" || param == "backcolor_@_s" || param == "message_back_@" || param == "gauge_back_@2") && colors.g == 0
+                                || (param == "backcolor_@" || param == "grenade_@1" || param == "grenade_@2" || param == "backcolor_@_t" || param == "message_border_@" || param == "message_name_@" || param == "message_text_@" || param == "gauge_border_@" || param == "gauge_back_@1") && colors.g == 255
+                                || param == "mizunohadou_@" && colors.g == 32
+                                || param == "firebar_@2" && colors.g == 192
+                                || param == "backcolor_@_f" && colors.g == 48
                             ))
-                                stringBuilder.AppendLine(string.Format(parameter, configParam.Name.Replace("@", "green"), colors.g.ToString()));
+                                stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name.Replace("@", "green"), colors.g.ToString()));
 
                             if (Global.config.localSystem.OutPutInititalSourceCode || Global.cpd.runtime.Definitions.Package.Contains("28")
-                               || !((param == "grenade_@2" || param == "firebar_@1" || param == "firebar_@2" || param == "kaishi_@" || param == "backcolor_@_s" || param == "message_back_@" || param == "gauge_back_@1" || param == "gauge_back_@2") && colors.b == 0
-                               || (param == "backcolor_@" || param == "scorecolor_@" || param == "grenade_@1" || param == "mizunohadou_@" || param == "backcolor_@_t" || param == "message_border_@" || param == "message_name_@" || param == "message_text_@" || param == "gauge_border_@") && colors.b == 255
-                               || param == "backcolor_@_f" && colors.b == 48
+                                || !((param == "grenade_@2" || param == "firebar_@1" || param == "firebar_@2" || param == "kaishi_@" || param == "backcolor_@_s" || param == "message_back_@" || param == "gauge_back_@1" || param == "gauge_back_@2") && colors.b == 0
+                                || (param == "backcolor_@" || param == "scorecolor_@" || param == "grenade_@1" || param == "mizunohadou_@" || param == "backcolor_@_t" || param == "message_border_@" || param == "message_name_@" || param == "message_text_@" || param == "gauge_border_@") && colors.b == 255
+                                || param == "backcolor_@_f" && colors.b == 48
                             ))
-                                stringBuilder.AppendLine(string.Format(parameter, configParam.Name.Replace("@", "blue"), colors.b.ToString()));
+                                stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(parameter, configParam.Name.Replace("@", "blue"), colors.b.ToString()));
 
-                            goto IL_718;
+                            goto IL_SKIP;
                         }
                 }
                 throw new Exception($"不明な型が含まれています:{configParam.Typestr}");
             }
-
-            // 中間を出力
-            text = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.MiddleHTML);
-            if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
+            if (isJSON)
             {
-                foreach (HTMLReplaceData htmlreplaceData in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
+                stringBuilder.Length -= 3; // 最後のカンマと改行を削除
+                stringBuilder.AppendLine("\n\t},");
+
+                // バージョン情報を出力
+                stringBuilder.AppendLine($"\t\"version\": \"{(Global.cpd.runtime.Definitions.Package.Contains("28") ? "2.8" : "kani2")}\",");
+            }
+            else
+            {
+                // 中間を出力
+                text = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.MiddleHTML);
+                if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
                 {
-                    text = text.Replace($"<?{htmlreplaceData.Name}>", htmlreplaceData.Value);
+                    foreach (HTMLReplaceData htmlreplaceData in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
+                    {
+                        text = text.Replace($"<?{htmlreplaceData.Name}>", htmlreplaceData.Value);
+                    }
+                }
+                foreach (string value in text.Split(
+                [
+                    Environment.NewLine,
+                    "\r",
+                    "\n"
+                ], StringSplitOptions.None))
+                {
+                    stringBuilder.AppendLine(value);
                 }
             }
-            foreach (string value in text.Split(
-            [
-                Environment.NewLine,
-                "\r",
-                "\n"
-            ], StringSplitOptions.None))
-            {
-                stringBuilder.AppendLine(value);
-            }
 
-            // オプションを出力
-
+            // マップデータを出力
             if (Global.cpd.project.Use3rdMapData)
             {
                 stringBuilder.AppendLine("\t\"advanced-map\": {");
                 stringBuilder.AppendLine("\t\t\"stages\": [");
+
                 if (Global.cpd.runtime.Definitions.LayerSize.bytesize != 0)
                 {
-                    stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.project.LayerData));
+                    stringBuilder.Append(MakeStage3rdMapData(Global.cpd.runtime.Definitions.LayerSize, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData, Global.cpd.project.LayerData));
                     if (Global.cpd.project.Config.StageNum >= 2)
                     {
-                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize2, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.project.LayerData2));
+                        stringBuilder.Append(MakeStage3rdMapData(Global.cpd.runtime.Definitions.LayerSize2, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2, Global.cpd.project.LayerData2));
                     }
                     if (Global.cpd.project.Config.StageNum >= 3)
                     {
-                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize3, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.project.LayerData3));
+                        stringBuilder.Append(MakeStage3rdMapData(Global.cpd.runtime.Definitions.LayerSize3, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3, Global.cpd.project.LayerData3));
                     }
                     if (Global.cpd.project.Config.StageNum >= 4)
                     {
-                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize4, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.project.LayerData4));
+                        stringBuilder.Append(MakeStage3rdMapData(Global.cpd.runtime.Definitions.LayerSize4, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4, Global.cpd.project.LayerData4));
                     }
                 }
                 else
                 {
-                    stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData));
+                    stringBuilder.Append(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize, (ReplaceStage == 0) ? sts : Global.cpd.project.StageData));
                     if (Global.cpd.project.Config.StageNum >= 2)
                     {
-                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize2, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2));
+                        stringBuilder.Append(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize2, (ReplaceStage == 1) ? sts : Global.cpd.project.StageData2));
                     }
                     if (Global.cpd.project.Config.StageNum >= 3)
                     {
-                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize3, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3));
+                        stringBuilder.Append(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize3, (ReplaceStage == 2) ? sts : Global.cpd.project.StageData3));
                     }
                     if (Global.cpd.project.Config.StageNum >= 4)
                     {
-                        stringBuilder.AppendLine(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize4, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4));
+                        stringBuilder.Append(MakeStage3rdMapData(Global.cpd.runtime.Definitions.StageSize4, (ReplaceStage == 3) ? sts : Global.cpd.project.StageData4));
                     }
-
                 }
+
                 stringBuilder.AppendLine("\t\t],");
+
+                // カスタムパーツ情報を出力
                 if (Global.cpd.CustomPartsChip != null)
                 {
                     stringBuilder.AppendLine("\t\t\"customParts\": {");
@@ -879,7 +907,7 @@ namespace MasaoPlus
                         stringBuilder.AppendLine($"\t\t\t\"{parts.code}\": {{");
                         stringBuilder.AppendLine($"\t\t\t\t\"extends\": {parts.basecode},");
                         stringBuilder.AppendLine("\t\t\t\t\"properties\": {");
-                        if(int.TryParse(parts.basecode, out int code))
+                        if (int.TryParse(parts.basecode, out int code))
                         {
                             if (code != 5701) // ヤチャモ（何もしない）を除く
                             {
@@ -905,7 +933,7 @@ namespace MasaoPlus
                                         stringBuilder.AppendLine($"\t\t\t\t\t\"attack_timing\": {{");
                                         foreach (var part in parts.Properties.attack_timing)
                                         {
-                                            stringBuilder.AppendLine($"\t\t\t\t\t\t{part.AttackFrame}: {(part.IsPlaySoundFrame ? 2 : 1)},");
+                                            stringBuilder.AppendLine($"\t\t\t\t\t\t\"{part.AttackFrame}\": {(part.IsPlaySoundFrame ? 2 : 1)},");
                                         }
                                         stringBuilder.AppendLine("\t\t\t\t\t},");
                                         break;
@@ -977,50 +1005,67 @@ namespace MasaoPlus
                         stringBuilder.AppendLine("\t\t\t\t},");
                         stringBuilder.AppendLine("\t\t\t},");
                     }
-                    stringBuilder.AppendLine("\t\t},");
+                    stringBuilder.Length -= 3;
+                    stringBuilder.AppendLine("\n\t\t},");
                 }
                 stringBuilder.AppendLine("\t},");
             }
-            parameter = "\t{0}: {1},";
-            for (k = 0; k < configurations.Length; k++)
+            if (isJSON)
             {
-                ConfigParam configParam = configurations[k];
-
-                if (configParam.Category != "オプション" ||
-                    !Global.config.localSystem.OutPutInititalSourceCode && ( // 初期値を出力しない(2.8含む)
-                        configParam.Value == "false" || // 値が "false" である
-                        (mcs_screen_size == 1 && // スクリーンサイズが640×480である
-                            (
-                                (configParam.Name == "width" && configParam.Value == "640") || (configParam.Name == "height" && configParam.Value == "480")
-                            )
-                        ) ||
-                        (mcs_screen_size == 2 && // スクリーンサイズが512×320である
-                            (
-                                (configParam.Name == "width" && configParam.Value == "512") || (configParam.Name == "height" && configParam.Value == "320")
-                            )
-                        )
-                    )) continue;
-
-                stringBuilder.AppendLine(string.Format(parameter, configParam.Name, configParam.Value));
-            }
-
-            //フッターを出力
-            text = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.FooterHTML);
-            if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
-            {
-                foreach (HTMLReplaceData htmlreplaceData2 in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
+                //エデイタ識別コードを出力
+                if (Global.config.localSystem.IntegrateEditorId)
                 {
-                    text = text.Replace($"<?{htmlreplaceData2.Name}>", htmlreplaceData2.Value);
+                    stringBuilder.AppendLine("\t\"metadata\": {");
+                    stringBuilder.AppendLine($"\t\t\"editor\": \"{Global.definition.EditorIdStr}\"");
+                    stringBuilder.AppendLine("\t},");
                 }
+
+                stringBuilder.AppendLine("}");
             }
-            foreach (string value2 in text.Split(
-            [
-                Environment.NewLine,
-                "\r",
-                "\n"
-            ], StringSplitOptions.None))
+            else
             {
-                stringBuilder.AppendLine(value2);
+                // オプションを出力
+                parameter = "\t{0}: {1},";
+                for (k = 0; k < configurations.Length; k++)
+                {
+                    ConfigParam configParam = configurations[k];
+
+                    if (configParam.Category != "オプション" ||
+                        !Global.config.localSystem.OutPutInititalSourceCode && ( // 初期値を出力しない(2.8含む)
+                            configParam.Value == "false" || // 値が "false" である
+                            (mcs_screen_size == 1 && // スクリーンサイズが640×480である
+                                (
+                                    (configParam.Name == "width" && configParam.Value == "640") || (configParam.Name == "height" && configParam.Value == "480")
+                                )
+                            ) ||
+                            (mcs_screen_size == 2 && // スクリーンサイズが512×320である
+                                (
+                                    (configParam.Name == "width" && configParam.Value == "512") || (configParam.Name == "height" && configParam.Value == "320")
+                                )
+                            )
+                        )) continue;
+
+                    stringBuilder.AppendLine(string.Format(parameter, configParam.Name, configParam.Value));
+                }
+
+                //フッターを出力
+                text = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.FooterHTML);
+                if (Global.cpd.runtime.DefaultConfigurations.OutputReplace.Length > 0)
+                {
+                    foreach (HTMLReplaceData htmlreplaceData2 in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
+                    {
+                        text = text.Replace($"<?{htmlreplaceData2.Name}>", htmlreplaceData2.Value);
+                    }
+                }
+                foreach (string value2 in text.Split(
+                [
+                    Environment.NewLine,
+                    "\r",
+                    "\n"
+                ], StringSplitOptions.None))
+                {
+                    stringBuilder.AppendLine(value2);
+                }
             }
 
             //末尾の,を除去（文法的にはセーフだが）
@@ -1035,57 +1080,113 @@ namespace MasaoPlus
 
         public static string DecodeBase64(string s)
         {
-            return s;
+            if (string.IsNullOrEmpty(s)) return string.Empty;
+            try
+            {
+                byte[] bytes = Convert.FromBase64String(s);
+                return Encoding.UTF8.GetString(bytes);
+            }
+            catch
+            {
+                return s; // デコードに失敗した場合は元の文字列を返す
+            }
         }
 
         public static string EncodeBase64(string str)
         {
-            return str;
+            if (string.IsNullOrEmpty(str)) return string.Empty;
+            try
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(str);
+                return Convert.ToBase64String(bytes);
+            }
+            catch
+            {
+                return str; // エンコードに失敗した場合は元の文字列を返す
+            }
         }
 
-        public static string MakeStage3rdMapData(Runtime.DefinedData.StageSizeData StageSizeData, string[] MainStageText, string[] LayerStageText = null)
+        public static string MakeStage3rdMapData(Runtime.DefinedData.LayerSizeData LayerSizeData, LayerObject MainStageText, List<LayerObject> LayerStageText)
+        {
+            return BuildStage3rdMapDataJson(LayerSizeData.x, LayerSizeData.y, sb =>
+            {
+                for (int i = 0; i < LayerStageText.Count; i++)
+                {
+                    if (i == LayerSizeData.mainOrder)
+                    {
+                        AppendMainMapLayer(MainStageText, sb);
+                    }
+                    AppendMapchipLayer(LayerStageText[i], sb);
+                }
+                
+                if (LayerSizeData.mainOrder == LayerStageText.Count)
+                {
+                    AppendMainMapLayer(MainStageText, sb);
+                }
+            });
+        }
+
+        public static string MakeStage3rdMapData(Runtime.DefinedData.StageSizeData StageSizeData, LayerObject MainStageText)
+        {
+            return BuildStage3rdMapDataJson(StageSizeData.x, StageSizeData.y, sb =>
+            {
+                AppendMainMapLayer(MainStageText, sb);
+            });
+        }
+
+        private static string BuildStage3rdMapDataJson(int x, int y, Action<StringBuilder> appendLayers)
         {
             StringBuilder stringBuilder = new();
-
+            
             stringBuilder.AppendLine("\t\t\t{");
             stringBuilder.AppendLine("\t\t\t\t\"size\": {");
-            stringBuilder.AppendLine($"\t\t\t\t\t\"x\": {StageSizeData.x},");
-            stringBuilder.AppendLine($"\t\t\t\t\t\"y\": {StageSizeData.y}");
+            stringBuilder.AppendLine($"\t\t\t\t\t\"x\": {x},");
+            stringBuilder.AppendLine($"\t\t\t\t\t\"y\": {y}");
             stringBuilder.AppendLine("\t\t\t\t},");
             stringBuilder.AppendLine("\t\t\t\t\"layers\": [");
-            stringBuilder.AppendLine("\t\t\t\t\t{");
-            stringBuilder.AppendLine("\t\t\t\t\t\t\"type\": \"main\",");
-            stringBuilder.AppendLine("\t\t\t\t\t\t\"map\": [");
-            foreach(string value in MainStageText)
-            {
-                var t = value.Split(',');
-                for(int i = 0; i < t.Length; i++)
-                {
-                    if (!int.TryParse(t[i], out int _)) t[i] = $"\"{t[i]}\"";
-                }
-                stringBuilder.AppendLine($"\t\t\t\t\t\t\t[{string.Join(",", t)}],");
-            }
-            stringBuilder.AppendLine("\t\t\t\t\t\t]");
-            stringBuilder.AppendLine("\t\t\t\t\t},");
-            if(LayerStageText != null)
-            {
-                stringBuilder.AppendLine("\t\t\t\t\t{");
-                stringBuilder.AppendLine("\t\t\t\t\t\t\"type\": \"mapchip\",");
-                stringBuilder.AppendLine("\t\t\t\t\t\t\"map\": [");
-                foreach (string value in LayerStageText)
-                {
-                    stringBuilder.AppendLine($"\t\t\t\t\t\t\t[{value}],");
-                }
-                stringBuilder.AppendLine("\t\t\t\t\t\t]");
-                stringBuilder.AppendLine("\t\t\t\t\t},");
-            }
+            
+            appendLayers(stringBuilder);
+
             stringBuilder.AppendLine("\t\t\t\t]");
             stringBuilder.AppendLine("\t\t\t},");
 
             return stringBuilder.ToString();
         }
 
-        public static string MakeStageParameter(string Parameter, int StageSplit, string[] StageText, Runtime.DefinedData.StageSizeData StageSizeData, bool notdefaultparam = false)
+        private static void AppendMainMapLayer(LayerObject MainStageText, StringBuilder sb)
+        {
+            sb.AppendLine("\t\t\t\t\t{");
+            sb.AppendLine("\t\t\t\t\t\t\"type\": \"main\",");
+            if(Global.config.localSystem.OutPutInititalSourceCode || MainStageText.Source != Global.cpd.project.Config.PatternImage) sb.AppendLine($"\t\t\t\t\t\t\"src\": \"{MainStageText.Source}\",");
+            sb.AppendLine("\t\t\t\t\t\t\"map\": [");
+            foreach (string value in MainStageText)
+            {
+                var t = value.Split(',');
+                for (int i = 0; i < t.Length; i++)
+                {
+                    if (!int.TryParse(t[i], out int _)) t[i] = $"\"{t[i]}\"";
+                }
+                sb.AppendLine($"\t\t\t\t\t\t\t[{string.Join(",", t)}],");
+            }
+            sb.AppendLine("\t\t\t\t\t\t]");
+            sb.AppendLine("\t\t\t\t\t},");
+        }
+
+        private static void AppendMapchipLayer(LayerObject layerObject, StringBuilder sb)
+        {
+            sb.AppendLine("\t\t\t\t\t{");
+            sb.AppendLine("\t\t\t\t\t\t\"type\": \"mapchip\",");
+            if(Global.config.localSystem.OutPutInititalSourceCode || layerObject.Source != Global.cpd.project.Config.LayerImage) sb.AppendLine($"\t\t\t\t\t\t\"src\": \"{layerObject.Source}\",");
+            sb.AppendLine("\t\t\t\t\t\t\"map\": [");
+            foreach (string value in layerObject)
+            {
+                sb.AppendLine($"\t\t\t\t\t\t\t[{value}],");
+            }
+            sb.AppendLine("\t\t\t\t\t\t]");
+            sb.AppendLine("\t\t\t\t\t},");
+        }
+
+        public static string MakeStageParameter(string Parameter, int StageSplit, LayerObject StageText, Runtime.DefinedData.StageSizeData StageSizeData, bool notdefaultparam = false, bool isJSON = false)
         {
             StringBuilder stringBuilder = new();
 
@@ -1093,7 +1194,7 @@ namespace MasaoPlus
             StringBuilder null_string = new(), null_string_all = new();
             for (int j = 0; j < StageSizeData.x / (StageSplit + 1); j++)
                 for (int i = 0; i < StageSizeData.bytesize; i++)
-                    null_string.Append("."); // 空白文字をベタ書きしてるので後で直す？
+                    null_string.Append('.'); // 空白文字をベタ書きしてるので後で直す？
             for (int i = 0; i <= StageSplit; i++)
                 null_string_all.Append(null_string);
             int num = 0; // 何行目か
@@ -1114,7 +1215,7 @@ namespace MasaoPlus
                     }
                     if (StageSplit == 0) // 地図画面
                     {
-                        array[j].AppendLine(string.Format(Parameter,
+                        array[j].AppendLine((isJSON ? "\t" : "") + string.Format(Parameter,
                         [
                         num,
                         text.Substring(num2, Global.cpd.runtime.Definitions.MapSize.x / (StageSplit + 1)) // 定義されたマップ幅まで
@@ -1122,7 +1223,7 @@ namespace MasaoPlus
                     }
                     else
                     {
-                        array[j].AppendLine(string.Format(Parameter,
+                        array[j].AppendLine((isJSON ? "\t" : "") + string.Format(Parameter,
                         [
                         j,
                         num,
@@ -1166,7 +1267,7 @@ namespace MasaoPlus
 
             if (notdefaultparam && reg_space().Match(stringBuilder.ToString()).Success)
             { // 出力結果が空白のみの場合
-                stringBuilder.AppendLine(string.Format(Parameter, [0, 0, ".."])); //
+                stringBuilder.AppendLine((isJSON ? "\t" : "") + string.Format(Parameter, [0, 0, ".."])); //
             }
 
             return stringBuilder.ToString();
@@ -1182,7 +1283,7 @@ namespace MasaoPlus
             using (FileStream fileStream = new(path, FileMode.Open))
             {
                 array = new byte[fileStream.Length];
-                fileStream.Read(array, 0, array.Length);
+                fileStream.ReadExactly(array);
             }
             return GetCode(array).GetString(array);
         }
@@ -1391,7 +1492,7 @@ namespace MasaoPlus
             return true;
         }
 
-        public static void UpdateAutoCheck()
+        public static async void UpdateAutoCheck()
         {
             if (!Global.definition.IsAutoUpdateEnabled)
             {
@@ -1401,48 +1502,55 @@ namespace MasaoPlus
             {
                 Global.config.localSystem.UpdateServer = Global.definition.BaseUpdateServer;
             }
-            dlClient = new WebClient();
-            dlClient.Headers.Add("User-Agent", $"{Global.definition.AppName} - {Global.definition.AppNameFull}/{Global.definition.Version}(Windows NT 10.0; Win64; x64)");
-            dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted;
+
             tempfile = Path.GetTempFileName();
-            Uri address = new(Global.config.localSystem.UpdateServer);
             try
             {
-                dlClient.DownloadFileAsync(address, tempfile);
+                await HttpClientManager.DownloadFileSimpleAsync(
+                    Global.config.localSystem.UpdateServer,
+                    tempfile);
+                await dlClient_DownloadFileCompleted();
             }
             catch
             {
+                if (File.Exists(tempfile))
+                {
+                    File.Delete(tempfile);
+                }
             }
         }
 
-        private static void dlClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        private static async Task dlClient_DownloadFileCompleted()
         {
-            dlClient.Dispose();
-            if (e.Error != null)
+            try
             {
-                return;
+                var updateData = await Task.Run(() => UpdateData.ParseXML(tempfile));
+                File.Delete(tempfile);
+                if (updateData.DefVersion <= Global.definition.CheckVersion)
+                {
+                    return;
+                }
+                if (MessageBox.Show($"Sideの新しいバージョンが公開されています。{Environment.NewLine}(バージョン {updateData.Name}){Environment.NewLine}更新しますか？", "Sideの更新", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.No)
+                {
+                    MessageBox.Show($"自動更新チェックはオフになります。{Environment.NewLine}再度有効にする場合はエディタオプションより設定してください。", "更新の中止", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    Global.config.localSystem.CheckAutoUpdate = false;
+                    return;
+                }
+                using WebUpdate webUpdate = new();
+                if (webUpdate.ShowDialog() == DialogResult.Retry)
+                {
+                    Global.state.RunFile = (string)webUpdate.runfile.Clone();
+                    Global.MainWnd.Close();
+                }
             }
-            UpdateData updateData = UpdateData.ParseXML(tempfile);
-            File.Delete(tempfile);
-            if (updateData.DefVersion <= Global.definition.CheckVersion)
+            catch
             {
-                return;
-            }
-            if (MessageBox.Show($"Sideの新しいバージョンが公開されています。{Environment.NewLine}(バージョン {updateData.Name}){Environment.NewLine}更新しますか？", "Sideの更新", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.No)
-            {
-                MessageBox.Show($"自動更新チェックはオフになります。{Environment.NewLine}再度有効にする場合はエディタオプションより設定してください。", "更新の中止", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                Global.config.localSystem.CheckAutoUpdate = false;
-                return;
-            }
-            using WebUpdate webUpdate = new();
-            if (webUpdate.ShowDialog() == DialogResult.Retry)
-            {
-                Global.state.RunFile = (string)webUpdate.runfile.Clone();
-                Global.MainWnd.Close();
+                if (File.Exists(tempfile))
+                {
+                    File.Delete(tempfile);
+                }
             }
         }
-
-        private static WebClient dlClient;
 
         private static string tempfile;
 

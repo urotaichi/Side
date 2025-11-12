@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net9.0-windows7.0</TargetFramework>
+    <TargetFramework>net10.0-windows10.0.26100.1</TargetFramework>
+	<CsWinRTGenerateInteropAssembly>false</CsWinRTGenerateInteropAssembly>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MasaoPlus</RootNamespace>
     <ApplicationIcon>side.ico</ApplicationIcon>
@@ -24,8 +25,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <NoWarn>$(NoWarn);WFO5001</NoWarn>
-	<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <OutputPath>..\</OutputPath>
@@ -42,10 +42,10 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AssemblyVersion></AssemblyVersion>
     <FileVersion></FileVersion>
-	<AssemblyTitle>Side</AssemblyTitle>
+    <AssemblyTitle>Side</AssemblyTitle>
     <Copyright>© 2025 urotaichi</Copyright>
     <Title>Side</Title>
-    <Version>4.1.3</Version>
+    <Version>4.7.0</Version>
     <Authors>urotaichi</Authors>
     <Product>Supermasao Integrated Development Environment</Product>
     <Description>正男エディタ</Description>
@@ -56,9 +56,10 @@
   </PropertyGroup>
   <PropertyGroup>
     <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
-	<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
-	<Company>urotaichi corporation</Company>
-	<LangVersion>12.0</LangVersion>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <Company>urotaichi corporation</Company>
+    <LangVersion>12.0</LangVersion>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
   </PropertyGroup>
   <ItemGroup>
     <AppDesigner Include="Properties\" />
@@ -109,11 +110,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="famfamfam-silk" Version="1.0.0" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
     <PackageReference Include="Microsoft.Web.WebView2">
-      <Version>1.0.2903.40</Version>
+      <Version>1.0.3595.46</Version>
     </PackageReference>
     <PackageReference Include="WindowsAPICodePack">
-      <Version>8.0.6</Version>
+      <Version>8.0.12</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

@@ -11,6 +11,7 @@ namespace MasaoPlus
 {
     public class GUICustomPartsChipList : GUIChipList
     {
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override int SelectedIndex
         {
             get
@@ -40,7 +41,7 @@ namespace MasaoPlus
             {
                 return 0;
             }
-            if(Global.cpd.CustomPartsChip == null)
+            if (Global.cpd.CustomPartsChip == null)
             {
                 return Global.cpd.runtime.Definitions.ChipSize.Height;
             }
@@ -66,12 +67,17 @@ namespace MasaoPlus
 
                 if (rectangle.Bottom >= 0)
                 {
+                    if (i == dropTargetIndex)
+                    {
+                        // ドロップ位置のマーカーを描画
+                        using var pen = new Pen(InvertedColor, 3);
+                        e.Graphics.DrawRectangle(pen, rectangle);
+                    }
+
                     ChipData cschip = chipData.GetCSChip();
                     if (Global.config.draw.ExtendDraw && cschip.xdraw != default && cschip.xdbackgrnd) // チップ裏に拡張画像を描画
                     {
-                        // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
-                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                        ChipRenderer.DrawExtendChip(e.Graphics, rectangle, cschip.xdraw, chipsize);
                     }
                     if (DeviceDpi / 96 >= 2 && (cschip.size == default || cschip.size.Width / cschip.size.Height == 1))
                     {
@@ -81,92 +87,39 @@ namespace MasaoPlus
                     e.Graphics.PixelOffsetMode = PixelOffsetMode.Half;
                     GraphicsState transState = e.Graphics.Save();
                     e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
-                    switch (cschip.name)
+                    if (ChipRenderer.IsAthleticChip(cschip.name))
                     {
-                        case "一方通行":
-                        case "左右へ押せるドッスンスンのゴール":
-                        case "シーソー":
-                        case "ブランコ":
-                        case "スウィングバー":
-                        case "動くＴ字型":
-                        case "ロープ":
-                        case "長いロープ":
-                        case "ゆれる棒":
-                        case "人間大砲":
-                        case "曲線による上り坂":
-                        case "曲線による下り坂":
-                        case "乗れる円":
-                        case "跳ねる円":
-                        case "円":
-                        case "半円":
-                        case "ファイヤーバー":
-                        case "スウィングファイヤーバー":
-                        case "人口太陽":
-                        case "ファイヤーリング":
-                        case "ファイヤーウォール":
-                        case "スイッチ式ファイヤーバー":
-                        case "スイッチ式動くＴ字型":
-                        case "スイッチ式速く動くＴ字型":
-                            AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, chipsize);
-                            break;
-                        default:
-                            e.Graphics.TranslateTransform(LogicalToDeviceUnits(chipsize.Width) / 2, LogicalToDeviceUnits(chipsize.Height) / 2);
-                            var rect = new Rectangle(-LogicalToDeviceUnits(chipsize.Width) / 2, -LogicalToDeviceUnits(chipsize.Height) / 2, rectangle.Width, rectangle.Height);
-                            if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
+                        AthleticView.list[cschip.name].Main(this, cschip, e.Graphics, chipsize);
+                    }
+                    else
+                    {
+                        e.Graphics.TranslateTransform(LogicalToDeviceUnits(chipsize.Width) / 2, LogicalToDeviceUnits(chipsize.Height) / 2);
+                        var rect = new Rectangle(-LogicalToDeviceUnits(chipsize.Width) / 2, -LogicalToDeviceUnits(chipsize.Height) / 2, rectangle.Width, rectangle.Height);
+                        if (Math.Abs(cschip.rotate) % 90 == 0) e.Graphics.RotateTransform(cschip.rotate);
 
-                            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
-                            break;
+                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawChipOrig, rect, new Rectangle(cschip.pattern, (cschip.size == default) ? chipsize : cschip.size), GraphicsUnit.Pixel);
                     }
                     e.Graphics.Restore(transState);
                     if (Global.config.draw.ExtendDraw && cschip.xdraw != default && !cschip.xdbackgrnd)
                     {
-                        // 拡張描画画像は今のところ正方形だけだからInterpolationModeは固定
-                        e.Graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-                        e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle, new Rectangle(cschip.xdraw, chipsize), GraphicsUnit.Pixel);
+                        ChipRenderer.DrawExtendChip(e.Graphics, rectangle, cschip.xdraw, chipsize);
                     }
                     e.Graphics.PixelOffsetMode = default;
                     if (chipData.idColor != null)
                     {
-                        transState = e.Graphics.Save();
-                        e.Graphics.TranslateTransform(rectangle.X, rectangle.Y);
-                        Color col = ColorTranslator.FromHtml(chipData.idColor);
-                        using Brush brush = new SolidBrush(Color.FromArgb(240, col));
-                        e.Graphics.FillRectangle(brush, new Rectangle(new Point(0, 0), LogicalToDeviceUnits(new Size(10, 5))));
-                        e.Graphics.Restore(transState);
+                        ChipRenderer.DrawIdColorMark(e.Graphics, new Point(rectangle.X, rectangle.Y), chipData.idColor, this);
                     }
                     if (Global.state.CurrentCustomPartsChip.code == chipData.code)
                     {
                         if (i != selectedIndex) selectedIndex = i;
-                        switch (Global.config.draw.SelDrawMode)
-                        {
-                            case Config.Draw.SelectionDrawMode.SideOriginal:
-                                using (Brush brush2 = new SolidBrush(Color.FromArgb(100, DrawEx.GetForegroundColor(Global.state.Background))))
-                                {
-                                    ControlPaint.DrawFocusRectangle(e.Graphics, rectangle);
-                                    e.Graphics.FillRectangle(brush2, rectangle);
-                                    break;
-                                }
-                            case Config.Draw.SelectionDrawMode.mtpp:
-                                ControlPaint.DrawFocusRectangle(e.Graphics, rectangle);
-                                ControlPaint.DrawSelectionFrame(e.Graphics, true, rectangle, new Rectangle(0, 0, 0, 0), Color.Blue);
-                                break;
-                            case Config.Draw.SelectionDrawMode.MTool:
-                                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1));
-                                e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 1, rectangle.Y + 1, rectangle.Width - 3, rectangle.Height - 3));
-                                e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 2, rectangle.Y + 2, rectangle.Width - 5, rectangle.Height - 5));
-                                e.Graphics.DrawRectangle(Pens.White, new Rectangle(rectangle.X + 3, rectangle.Y + 3, rectangle.Width - 7, rectangle.Height - 7));
-                                e.Graphics.DrawRectangle(Pens.Black, new Rectangle(rectangle.X + 4, rectangle.Y + 4, rectangle.Width - 9, rectangle.Height - 9));
-                                break;
-                            default:
-                                break;
-                        }
+                        DrawSelectionFrame(e.Graphics, rectangle);
                     }
                 }
             }
             Point point2 = GetPosition(i);
             Rectangle rectangle2 = new(new Point(point2.X * LogicalToDeviceUnits(chipsize.Width), point2.Y * LogicalToDeviceUnits(chipsize.Height)), LogicalToDeviceUnits(chipsize));
             rectangle2.Y -= vPosition;
-            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle2, new Rectangle(new Point(448,448), chipsize), GraphicsUnit.Pixel);
+            e.Graphics.DrawImage(Global.MainWnd.MainDesigner.DrawExOrig, rectangle2, new Rectangle(new Point(448, 448), chipsize), GraphicsUnit.Pixel);
         }
 
         // クラシックチップリスト
@@ -184,7 +137,7 @@ namespace MasaoPlus
                     {
                         e.Graphics.FillRectangle(brush, e.ClipRectangle); // 背景色で塗りつぶす
                     }
-                    if(Global.cpd.CustomPartsChip == null)
+                    if (Global.cpd.CustomPartsChip == null)
                     {
                         AddChipData(default, 0, e);
                     }
@@ -217,34 +170,19 @@ namespace MasaoPlus
                 return;
             }
             int hMaxChip = this.hMaxChip;
-            if (e.X > hMaxChip * Global.cpd.runtime.Definitions.ChipSize.Width)
+            if (e.X > LogicalToDeviceUnits(hMaxChip * Global.cpd.runtime.Definitions.ChipSize.Width))
             {
                 return;
             }
             int num = (int)Math.Floor(e.X / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width));
             num += (int)Math.Floor((e.Y + vPosition) / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height)) * hMaxChip;
-            int num2;
-            if (Global.cpd.CustomPartsChip == null)
-            {
-                num2 = 0;
-            }
-            else
-            {
-                num2 = Global.cpd.CustomPartsChip.Length;
-            }
+            int num2 = Global.cpd.CustomPartsChip?.Length ?? 0;
+            
             if (num >= num2)
             {
                 if (num == num2)
                 {
-                    int i;
-                    for (i = 0; i < Global.cpd.VarietyChip.Length; i++)
-                    {
-                        if (int.Parse(Global.cpd.VarietyChip[i].code) > 5000)
-                        {
-                            break;
-                        }
-                    }
-                    Create(Global.cpd.VarietyChip[i], $"カスタムパーツ{num2 + 1}");
+                    Global.MainWnd.CustomPartsConfigList.CreateNewFromFirstCustomPart(); // 新規作成
                 }
                 return;
             }
@@ -255,100 +193,25 @@ namespace MasaoPlus
                 MouseStartPoint.X = (e.X + Global.state.MapPoint.X) / LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width);
                 MouseStartPoint.Y = (e.Y + Global.state.MapPoint.Y) / LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height);
                 CursorContextMenu.Show(this, new Point(e.X, e.Y));
-                return;
+            }
+            else if (e.Button == MouseButtons.Left)
+            {
+                isDragging = true;
+                dragSourceIndex = num;
+                dragStartPoint = e.Location;
             }
         }
 
-        private void Copy_Click(object sender, EventArgs e)
+        protected override void MainPanel_MouseMove(object sender, MouseEventArgs e)
         {
-            string name = $"{Global.state.CurrentCustomPartsChip.Chips[0].name}（コピー）";
-            Create(Global.state.CurrentCustomPartsChip, name);
-            Global.MainWnd.CustomPartsConfigList.ConfView[1, 0].Value = name;
-        }
-
-        private void Delete_Click(object sender, EventArgs e)
-        {
-            void func(string[] stagedata)
+            if (isDragging && e.Button == MouseButtons.Left)
             {
-                for (int i = 0; i < stagedata.Length; i++)
+                if (Math.Abs(e.X - dragStartPoint.X) > 5 || Math.Abs(e.Y - dragStartPoint.Y) > 5)
                 {
-                    stagedata[i] = stagedata[i].Replace(Global.cpd.CustomPartsChip[selectedIndex].code, "0");
+                    MainPanel.DoDragDrop(dragSourceIndex, DragDropEffects.Move);
+                    isDragging = false;
                 }
             }
-            func(Global.cpd.project.StageData);
-            func(Global.cpd.project.StageData2);
-            func(Global.cpd.project.StageData3);
-            func(Global.cpd.project.StageData4);
-            Global.MainWnd.MainDesigner.DrawItemCodeRef.Remove(Global.cpd.CustomPartsChip[selectedIndex].code);
-            Global.cpd.CustomPartsChip = Global.cpd.CustomPartsChip.Where((_, index) => index != selectedIndex).ToArray();
-            if(Global.cpd.CustomPartsChip.Length > 0)
-            {
-                Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[0];
-                SelectedIndex = 0;
-            }
-            else
-            {
-                Global.state.CurrentCustomPartsChip = default;
-                Global.MainWnd.CustomPartsConfigList.ConfigSelector_SelectedIndexChanged();
-            }
-            Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
-            Global.MainWnd.RefreshAll();
-            Global.state.EditFlag = true;
-        }
-
-        private static void Create(ChipsData basedata, string name)
-        {
-            ChipsData data;
-            int i;
-            if(basedata.basecode != null)
-            {
-                for (i = 0; i < Global.cpd.VarietyChip.Length; i++)
-                {
-                    if (Global.cpd.VarietyChip[i].code == basedata.basecode)
-                    {
-                        break;
-                    }
-                }
-                data = Global.cpd.VarietyChip[i];
-            }
-            else
-            {
-                data = basedata;
-            }
-            var r = new Random();
-            const string PWS_CHARS = "abcdefghijklmnopqrstuvwxyz";
-            if(Global.cpd.CustomPartsChip == null)
-            {
-                Array.Resize(ref Global.cpd.CustomPartsChip, 1);
-            }
-            else
-            {
-                Array.Resize(ref Global.cpd.CustomPartsChip, Global.cpd.CustomPartsChip.Length + 1);
-            }
-            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1] = basedata;
-            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips = (ChipData[])basedata.Chips.Clone(); // 配列は個別に複製
-            for (int j = 0; j < Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips.Length; j++)
-            {
-                Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips[j].name = name;
-                Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].Chips[j].description = $"{data.Chips[j].name} {data.Chips[j].description}";
-            }
-            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].basecode = data.code;
-            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].code = string.Join("", Enumerable.Range(0, 10).Select(_ => PWS_CHARS[r.Next(PWS_CHARS.Length)]));
-            Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1].idColor = $"#{Guid.NewGuid().ToString("N").Substring(0, 6)}";
-            Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[Global.cpd.CustomPartsChip.Length - 1];
-            Global.MainWnd.MainDesigner.DrawItemCodeRef[Global.state.CurrentCustomPartsChip.code] = Global.state.CurrentCustomPartsChip;
-            if (Global.cpd.project.CustomPartsDefinition == null)
-            {
-                Array.Resize(ref Global.cpd.project.CustomPartsDefinition, 1);
-            }
-            else
-            {
-                Array.Resize(ref Global.cpd.project.CustomPartsDefinition, Global.cpd.project.CustomPartsDefinition.Length + 1);
-            }
-            Global.cpd.project.CustomPartsDefinition = Global.cpd.CustomPartsChip;
-            Global.MainWnd.RefreshAll();
-            Global.state.EditFlag = true;
-            Global.MainWnd.CustomPartsConfigList.ConfigSelector_SelectedIndexChanged();
         }
 
         protected override void InitializeComponent()
@@ -374,10 +237,10 @@ namespace MasaoPlus
             Copy.Image = new IconImageView(DeviceDpi, Resources.copy).View();
             Copy.Name = "Copy";
             Copy.Size = LogicalToDeviceUnits(new Size(274, 22));
-            Copy.Text = "コピー(&C)";
+            Copy.Text = "複製(&C)";
             Copy.Click += Copy_Click;
             Delete.Image = new IconImageView(DeviceDpi, Resources.cross).View();
-            Delete.Name = "Copy";
+            Delete.Name = "Delete";
             Delete.Size = LogicalToDeviceUnits(new Size(274, 22));
             Delete.Text = "削除";
             Delete.Click += Delete_Click;
@@ -397,6 +260,10 @@ namespace MasaoPlus
             MainPanel.MouseMove += MainPanel_MouseMove;
             MainPanel.MouseDown += MainPanel_MouseDown;
             MainPanel.Paint += MainPanel_Paint;
+            MainPanel.AllowDrop = true;
+            MainPanel.DragEnter += MainPanel_DragEnter;
+            MainPanel.DragDrop += MainPanel_DragDrop;
+            MainPanel.DragOver += MainPanel_DragOver;
             //AutoScaleDimensions = new SizeF(6f, 12f);
             //AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(MainPanel);
@@ -411,6 +278,16 @@ namespace MasaoPlus
             ResumeLayout(false);
         }
 
+        private void Copy_Click(object sender, EventArgs e)
+        {
+            Global.MainWnd.CustomPartsConfigList.CopyFromCurrentParts();
+        }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            Global.MainWnd.CustomPartsConfigList.DeleteCurrentParts();
+        }
+
         private Point MouseStartPoint = default;
 
         private ContextMenuStrip CursorContextMenu;
@@ -418,5 +295,67 @@ namespace MasaoPlus
         private ToolStripMenuItem Copy;
 
         private ToolStripMenuItem Delete;
+
+        private bool isDragging = false;
+        private int dragSourceIndex = -1;
+        private Point dragStartPoint;
+        private int dropTargetIndex = -1;
+
+        private void MainPanel_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof(int)))
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+        }
+
+        private void MainPanel_DragOver(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent(typeof(int))) return;
+
+            Point clientPoint = MainPanel.PointToClient(new Point(e.X, e.Y));
+            int hMaxChip = this.hMaxChip;
+            int targetIndex = (int)Math.Floor(clientPoint.X / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width));
+            targetIndex += (int)Math.Floor((clientPoint.Y + vPosition) / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height)) * hMaxChip;
+
+            if (targetIndex != dropTargetIndex && targetIndex < Global.cpd.CustomPartsChip.Length)
+            {
+                dropTargetIndex = targetIndex;
+                Refresh();
+            }
+        }
+
+        private void MainPanel_DragDrop(object sender, DragEventArgs e)
+        {
+            if (!e.Data.GetDataPresent(typeof(int))) return;
+
+            Point clientPoint = MainPanel.PointToClient(new Point(e.X, e.Y));
+            int hMaxChip = this.hMaxChip;
+            int targetIndex = (int)Math.Floor(clientPoint.X / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width));
+            targetIndex += (int)Math.Floor((clientPoint.Y + vPosition) / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height)) * hMaxChip;
+
+            if (targetIndex >= Global.cpd.CustomPartsChip.Length) return;
+
+            int sourceIndex = (int)e.Data.GetData(typeof(int));
+            if (sourceIndex == targetIndex) return;
+
+            // カスタムパーツの並び替え
+            var temp = Global.cpd.CustomPartsChip[sourceIndex];
+            if (sourceIndex < targetIndex)
+            {
+                Array.Copy(Global.cpd.CustomPartsChip, sourceIndex + 1, Global.cpd.CustomPartsChip, sourceIndex, targetIndex - sourceIndex);
+            }
+            else
+            {
+                Array.Copy(Global.cpd.CustomPartsChip, targetIndex, Global.cpd.CustomPartsChip, targetIndex + 1, sourceIndex - targetIndex);
+            }
+            Global.cpd.CustomPartsChip[targetIndex] = temp;
+
+            SelectedIndex = targetIndex;
+            dropTargetIndex = -1; // ドロップ完了時にリセット
+            Refresh();
+        }
+
+        public Color InvertedColor;
     }
 }

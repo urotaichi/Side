@@ -32,6 +32,7 @@ namespace MasaoPlus.Controls
             ResumeLayout(false);
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public override string Text
         {
             get
@@ -46,6 +47,7 @@ namespace MasaoPlus.Controls
 
         [Description("説明として表示する文字列です。")]
         [Editor("System.ComponentModel.Design.MultilineStringEditor, System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a", typeof(UITypeEditor))]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public string Description
         {
             get
@@ -104,6 +106,19 @@ namespace MasaoPlus.Controls
             InitializeComponent();
         }
 
+        private Image buttonImage;
+
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Image Image
+        {
+            get { return buttonImage; }
+            set
+            {
+                buttonImage = value;
+                Invalidate();
+            }
+        }
+
         protected override void OnPaint(PaintEventArgs pe)
         {
             if (Pressed)
@@ -122,6 +137,18 @@ namespace MasaoPlus.Controls
             {
                 ControlPaint.DrawFocusRectangle(pe.Graphics, new Rectangle(3, 3, Width - 6, Height - 6));
             }
+
+            int baseOffset = LogicalToDeviceUnits(3);
+            int xOffset = baseOffset;
+            
+            // 画像があれば描画
+            if (buttonImage != null)
+            {
+                int imageSize = LogicalToDeviceUnits(16);
+                pe.Graphics.DrawImage(buttonImage, new Rectangle(xOffset, baseOffset, imageSize, imageSize));
+                xOffset += imageSize + LogicalToDeviceUnits(4); // 画像の幅 + 余白
+            }
+
             FontStyle fontStyle = FontStyle.Bold;
             if (Entered)
             {
@@ -129,9 +156,9 @@ namespace MasaoPlus.Controls
             }
             using (Font font = new(Font, fontStyle))
             {
-                TextRenderer.DrawText(pe.Graphics, text, font, new Point(3, 3), Color.Blue);
+                TextRenderer.DrawText(pe.Graphics, text, font, new Point(xOffset, 3), Color.Blue);
                 Size size = TextRenderer.MeasureText(text, font);
-                TextRenderer.DrawText(pe.Graphics, description, Font, new Point(3, 5 + size.Height), Color.Black);
+                TextRenderer.DrawText(pe.Graphics, description, Font, new Point(xOffset, 5 + size.Height), Color.Black);
             }
             base.OnPaint(pe);
         }
@@ -196,6 +223,7 @@ namespace MasaoPlus.Controls
             }
         }
 
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public DialogResult DialogResult
         {
             get

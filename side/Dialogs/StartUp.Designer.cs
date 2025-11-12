@@ -83,6 +83,7 @@
 			this.ExMenu.Click += new global::System.EventHandler(this.ExMenu_Click);
 			this.CmdInheritNew.Description = "既存のプロジェクトの設定を使って、新しいプロジェクトを作成します。";
 			this.CmdInheritNew.DialogResult = global::System.Windows.Forms.DialogResult.None;
+			this.CmdInheritNew.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.page_white_get).View();
 			this.CmdInheritNew.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(12), base.LogicalToDeviceUnits(123));
 			this.CmdInheritNew.Name = "CmdInheritNew";
 			this.CmdInheritNew.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(372, 34));
@@ -90,8 +91,9 @@
 			this.CmdInheritNew.Text = "過去のプロジェクトを継承して新規作成";
 			global::MasaoPlus.Controls.CommandLinkButton cmdInheritNew = this.CmdInheritNew;
 			cmdInheritNew.Click = (global::System.EventHandler)global::System.Delegate.Combine(cmdInheritNew.Click, new global::System.EventHandler(this.InheritNew_Click));
-			this.CmdOpenFile.Description = "既存のプロジェクトを開いたり、\r\n正男HTMLから新しいプロジェクトを作成したりします。";
+			this.CmdOpenFile.Description = "既存のプロジェクトを開いたり、\r\n正男HTML/JS/JSONから新しいプロジェクトを作成したりします。";
 			this.CmdOpenFile.DialogResult = global::System.Windows.Forms.DialogResult.None;
+			this.CmdOpenFile.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.open).View();
 			this.CmdOpenFile.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(12), base.LogicalToDeviceUnits(67));
 			this.CmdOpenFile.Name = "CmdOpenFile";
 			this.CmdOpenFile.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(372, 50));
@@ -101,6 +103,7 @@
 			cmdOpenFile.Click = (global::System.EventHandler)global::System.Delegate.Combine(cmdOpenFile.Click, new global::System.EventHandler(this.OpenFile_Click));
 			this.CmdNewProj.Description = "空のプロジェクトを作成し、ステージ編集を開始します。";
 			this.CmdNewProj.DialogResult = global::System.Windows.Forms.DialogResult.None;
+			this.CmdNewProj.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources._new).View();
 			this.CmdNewProj.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(12), base.LogicalToDeviceUnits(27));
 			this.CmdNewProj.Name = "CmdNewProj";
 			this.CmdNewProj.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(372, 34));

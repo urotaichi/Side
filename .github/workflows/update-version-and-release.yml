@@ -1,0 +1,235 @@
+name: Update Version and Release
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'readme.txt'
+  workflow_dispatch:
+
+jobs:
+  update-version:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v5
+      with:
+        fetch-depth: 0
+
+    - name: Read version and check tag
+      id: read_version
+      shell: pwsh
+      run: |
+        $content = Get-Content readme.txt
+        if ($content[4] -match '\d+\.\d+\.\d+') {
+            $version = $matches[0]
+            echo "version=$version" >> $env:GITHUB_OUTPUT
+            
+            $existingTag = git tag -l "v$version"
+            if ($existingTag) {
+                echo "Tag v$version already exists"
+                exit 1
+            }
+        } else {
+            echo "Version not found in readme.txt"
+            exit 1
+        }
+
+    - name: Extract release notes
+      id: extract_notes
+      shell: pwsh
+      run: |
+        $version = '${{ steps.read_version.outputs.version }}'
+        try {
+            $notes = Get-Content readme.txt -Raw
+            $lines = $notes -split "`r`n"
+            $startIndex = [array]::IndexOf($lines, "□$version")
+            if ($startIndex -ne -1) {
+                $searchLines = $lines[($startIndex + 1)..($lines.Length - 1)]
+                $nextVersionLine = $searchLines | Where-Object { $_ -match "^□\d+\.\d+\.\d+" } | Select-Object -First 1
+                $endIndex = if ($nextVersionLine) {
+                    [array]::IndexOf($lines, $nextVersionLine)
+                } else {
+                    $lines.Length
+                }
+                $releaseNotes = $lines[($startIndex + 1)..($endIndex - 1)] |
+                    Where-Object { $_ -match '\S' } |
+                    ForEach-Object { $_.Trim() -replace '^\d{4}/\d{2}/\d{2}\s*', '' } |
+                    Where-Object { $_ -notmatch '^□' }
+                $releaseNotes = $releaseNotes | Where-Object { $_ -ne "" }
+                $releaseNotes = $releaseNotes | ForEach-Object { "- $_" }
+                echo "notes<<EOF" >> $env:GITHUB_OUTPUT
+                echo ($releaseNotes -join "`n") >> $env:GITHUB_OUTPUT
+                echo "EOF" >> $env:GITHUB_OUTPUT
+
+                # 最新バージョンのリリースノートの年を記憶
+                $releaseYear = ($lines[$startIndex + 1] -match '^\d{4}') ? $matches[0] : $null
+                echo "releaseYear=$releaseYear" >> $env:GITHUB_OUTPUT
+            } else {
+                Write-Error "Version $version not found in readme.txt"
+            }
+        } catch {
+            Write-Error "Error processing readme.txt: $_"
+        }
+
+    - name: Update Definition.cs
+      shell: pwsh
+      run: |
+        $version = '${{ steps.read_version.outputs.version }}'
+        $version_double = $version -replace '\.(\d+)\.(\d+)$', '.$1$2'
+        (Get-Content side/Definition.cs) -replace 'CheckVersion = .*;', "CheckVersion = $version_double;" | Set-Content side/Definition.cs
+
+    - name: Update side.csproj
+      shell: pwsh
+      run: |
+        $csprojFilePath = "side/side.csproj"
+        $version = '${{ steps.read_version.outputs.version }}'
+        [xml]$xml = Get-Content $csprojFilePath
+        $propertyGroups = $xml.Project.PropertyGroup
+        foreach ($group in $propertyGroups) {
+            if ($group.Version -and -not $group.Condition) {
+                $group.Version = $version
+                break
+            }
+        }
+        $settings = New-Object System.Xml.XmlWriterSettings
+        $settings.Indent = $true
+        $settings.IndentChars = "  "
+        $settings.OmitXmlDeclaration = $true
+        $settings.NewLineChars = "`r`n"
+        $settings.NewLineHandling = [System.Xml.NewLineHandling]::Replace
+        $writer = [System.Xml.XmlWriter]::Create($csprojFilePath, $settings)
+        try {
+            $xml.PreserveWhitespace = $true
+            $xml.Save($writer)
+        } finally {
+            $writer.Close()
+        }
+
+    - name: Commit changes
+      shell: pwsh
+      run: |
+        git config --local user.name 'GitHub Action'
+        git config --local user.email 'action@github.com'
+        git add side/Definition.cs side/side.csproj
+        git commit -m "Update version to ${{ steps.read_version.outputs.version }}"
+        git push
+
+    - name: Update copyright year
+      shell: pwsh
+      run: |
+        $releaseYear = '${{ steps.extract_notes.outputs.releaseYear }}'
+        if ($releaseYear) {
+            $filesToUpdate = @(
+                "side/side.csproj",
+                "side/Dialogs/VersionInfo.Designer.cs",
+                "side/Resources/ViewDat.txt"
+            )
+            $updateNeeded = $false
+            foreach ($file in $filesToUpdate) {
+                $content = Get-Content $file
+                if ($content -match '© (\d{4}) urotaichi' -and $matches[1] -ne $releaseYear) {
+                    $updateNeeded = $true
+                    break
+                }
+            }
+            if ($updateNeeded) {
+                foreach ($file in $filesToUpdate) {
+                    (Get-Content $file) -replace '© \d{4} urotaichi', "© $releaseYear urotaichi" | Set-Content $file
+                }
+                git config --local user.name 'GitHub Action'
+                git config --local user.email 'action@github.com'
+                git add side/side.csproj side/Dialogs/VersionInfo.Designer.cs side/Resources/ViewDat.txt
+                git commit -m "Update copyright year to $releaseYear"
+                git push
+            }
+        }
+
+    - name: Create tag
+      shell: pwsh
+      run: |
+        $version = '${{ steps.read_version.outputs.version }}'
+        git tag -a "v$version" -m "Release $version"
+        git push origin "v$version"
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+      
+    - name: Build project
+      shell: pwsh
+      run: |
+        msbuild /p:Configuration=Release /p:Platform="Any CPU" /p:RestorePackagesConfig=true /t:Restore,Build
+
+    - name: Remove unnecessary files
+      shell: pwsh
+      run: |
+        Remove-Item -Path side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Web.WebView2.Core.xml,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Web.WebView2.WinForms.xml,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Web.WebView2.Wpf.dll,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Web.WebView2.Wpf.xml,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Windows.SDK.NET.dll,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.WindowsAPICodePack.Sensors.dll,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.WindowsAPICodePack.ShellExtensions.dll,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Newtonsoft.Json.dll,
+                          side/bin/Release/net10.0-windows10.0.26100.1/Newtonsoft.Json.Bson.dll -ErrorAction SilentlyContinue
+
+    - name: Copy necessary files
+      shell: pwsh
+      run: |
+        $targetPath = "side/bin/Release/net10.0-windows10.0.26100.1"
+        Copy-Item -Path pictures -Destination $targetPath/ -Recurse
+        Copy-Item -Path projects -Destination $targetPath/ -Recurse
+        Copy-Item -Path runtime -Destination $targetPath/ -Recurse
+        Copy-Item -Path readme.txt -Destination $targetPath/
+        Copy-Item -Path 使い方.txt -Destination $targetPath/
+        Copy-Item -Path 勝手にFx14説明書.txt -Destination $targetPath/
+        Copy-Item -Path runtimes/MicrosoftEdgeWebview2Setup.exe -Destination "$targetPath/runtimes/"
+
+    - name: Create ZIP file
+      shell: pwsh
+      run: |
+        Compress-Archive -Path side/bin/Release/net10.0-windows10.0.26100.1/* -DestinationPath side/bin/Release/net10.0-windows10.0.26100.1/Side.zip
+
+    - name: Create temporary directory
+      shell: pwsh
+      run: |
+        $tempDir = "side/temp"
+        if (-Not (Test-Path $tempDir)) {
+          New-Item -ItemType Directory -Path $tempDir
+        }
+        Copy-Item -Path side/bin/Release/net10.0-windows10.0.26100.1/Side.zip -Destination $tempDir/
+
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        tag_name: "v${{ steps.read_version.outputs.version }}"
+        release_name: "Side v${{ steps.read_version.outputs.version }}"
+        body: ${{ steps.extract_notes.outputs.notes }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: side/bin/Release/net10.0-windows10.0.26100.1/Side.zip
+        asset_name: Side.zip
+        asset_content_type: application/zip
+
+    - name: Upload to FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        protocol: ftps
+        local-dir: side/temp/
+        server-dir: ${{ secrets.FTP_SERVER_DIR }}

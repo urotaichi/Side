@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -12,14 +12,14 @@ namespace MasaoPlus
 
             Version = $"{version.Major}.{version.Minor}.{version.Build}";
 
-            EditorIdStr = $"/* [MI]Created By:Side - the Supermasao Integrated Development Environment v{Version}[/MI] */";
+            EditorIdStr = $"Created By:{AppName} - the {AppNameFull} v{Version}";
         }
 
         public string AppName = "Side";
 
         public string AppNameFull = "Supermasao Integrated Development Environment";
 
-        public double CProjVer = 1.0;
+        public double CProjVer = 2.0;
 
         public string ProjExt = ".spj";
 
@@ -55,7 +55,7 @@ namespace MasaoPlus
 
         public string Version;
 
-        public double CheckVersion = 4.13;
+        public double CheckVersion = 4.70;
 
         public string EditorIdStr;
 

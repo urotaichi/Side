@@ -29,7 +29,7 @@ namespace MasaoPlus
 
         public static string CharToCode(string character)
         {
-            if(character.Length == 2)
+            if (character.Length == 2)
             {
                 if (character.Equals("..")) return "0";
                 else return int.Parse(character, System.Globalization.NumberStyles.HexNumber).ToString();

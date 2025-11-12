@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
-using System.Net;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MasaoPlus.Dialogs
@@ -123,7 +123,7 @@ namespace MasaoPlus.Dialogs
             Uninstall.Enabled = true;
         }
 
-        private void NetworkUpdate_Click(object sender, EventArgs e)
+        private async void NetworkUpdate_Click(object sender, EventArgs e)
         {
             if (RuntimeViewer.SelectedIndices.Count == 0)
             {
@@ -146,31 +146,27 @@ namespace MasaoPlus.Dialogs
             DownProgress.Visible = true;
             Enabled = false;
             tempfile = Path.GetTempFileName();
-            dlClient = new WebClient();
-            dlClient.DownloadProgressChanged += dlClient_DownloadProgressChanged;
-            dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted;
-            Uri address = new(update);
+            HttpClientManager.InitializeDownloadProgress(DownProgress);
             try
             {
-                dlClient.DownloadFileAsync(address, tempfile);
+                await HttpClientManager.DownloadFileAsync(update, tempfile);
+                await dlClient_DownloadFileCompleted();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"更新できませんでした。{Environment.NewLine}{ex.Message}", "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                DialogResult = DialogResult.Retry;
-                Close();
+                HttpClientManager.HandleDownloadError(ex, this);
+            }
+            finally
+            {
+                if (File.Exists(tempfile))
+                {
+                    try { File.Delete(tempfile); } catch { }
+                }
             }
         }
 
-        private void dlClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        private async Task dlClient_DownloadFileCompleted()
         {
-            if (e.Error != null)
-            {
-                MessageBox.Show($"更新できませんでした。{Environment.NewLine}{e.Error.Message}", "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                DialogResult = DialogResult.Retry;
-                Close();
-                return;
-            }
             UpdateData updateData = UpdateData.ParseXML(tempfile);
             if (ur.Definitions.DefVersion >= updateData.DefVersion)
             {
@@ -182,26 +178,17 @@ namespace MasaoPlus.Dialogs
             }
             else if (MessageBox.Show($"新しいランタイムがリリースされています。{Environment.NewLine}{ur.Definitions.DefVersion} -> {updateData.DefVersion}{Environment.NewLine}更新しますか？", "更新の確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                dlClient.Dispose();
                 tempfile = Path.GetTempFileName();
-                dlClient = new WebClient();
-                dlClient.DownloadProgressChanged += dlClient_DownloadProgressChanged;
-                dlClient.DownloadProgressChanged += dlClient_DownloadTaskbarManagerProgressChanged;
-                dlClient.DownloadFileCompleted += dlClient_DownloadFileCompleted_Package;
-                Uri address = new(updateData.Update);
                 try
                 {
                     Text = "ランタイムをダウンロードしています...";
-                    dlClient.DownloadFileAsync(address, tempfile);
+                    await HttpClientManager.DownloadFileAsync(updateData.Update, tempfile);
+                    dlClient_DownloadFileCompleted_Package();
                     return;
                 }
                 catch (Exception ex)
                 {
-                    TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Error);
-                    MessageBox.Show($"更新できませんでした。{Environment.NewLine}{ex.Message}", "アップデートエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
-                    DialogResult = DialogResult.Retry;
-                    Close();
+                    HttpClientManager.HandleDownloadError(ex, this);
                 }
             }
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
@@ -209,24 +196,13 @@ namespace MasaoPlus.Dialogs
             Close();
         }
 
-        private void dlClient_DownloadFileCompleted_Package(object sender, AsyncCompletedEventArgs e)
+        private void dlClient_DownloadFileCompleted_Package()
         {
             Text = "ランタイムをインストールしています...";
             Subsystem.InstallRuntime(tempfile);
             TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
             DialogResult = DialogResult.Retry;
             Close();
-        }
-
-        private void dlClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        {
-            DownProgress.Value = e.ProgressPercentage;
-        }
-
-        private void dlClient_DownloadTaskbarManagerProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-        {
-            TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
-            TaskbarManager.Instance.SetProgressValue(e.ProgressPercentage, 100);
         }
 
         private void Uninstall_Click(object sender, EventArgs e)
@@ -249,8 +225,6 @@ namespace MasaoPlus.Dialogs
             DialogResult = DialogResult.Retry;
             Close();
         }
-
-        private WebClient dlClient;
 
         private string tempfile;
 

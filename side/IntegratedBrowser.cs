@@ -53,7 +53,7 @@ namespace MasaoPlus
             return true;
         }
 
-		public void TrySuspendAsync()
+        public void TrySuspendAsync()
         {
             Browser.Visible = false;
             Browser.CoreWebView2.TrySuspendAsync();

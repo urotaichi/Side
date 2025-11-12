@@ -189,6 +189,15 @@ namespace MasaoPlus.Properties
 			}
 		}
 
+		internal static Bitmap page_white_code_red
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("page_white_code_red", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
+
 		internal static Bitmap paintcan
 		{
 			get
@@ -341,6 +350,60 @@ namespace MasaoPlus.Properties
                 return (Bitmap)@object;
             }
         }
+
+        internal static Bitmap arrow_up
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("arrow_up", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
+
+        internal static Bitmap arrow_down
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("arrow_down", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
+
+        internal static Bitmap shape_square_add
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("shape_square_add", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
+
+        internal static Bitmap page_white_get
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("page_white_get", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
+
+        internal static Bitmap control_play_blue
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("control_play_blue", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
+
+        internal static Bitmap control_stop_blue
+		{
+			get
+			{
+				object @object = Resources.ResourceManager.GetObject("control_stop_blue", Resources.resourceCulture);
+				return (Bitmap)@object;
+			}
+		}
 
         private static ResourceManager resourceMan;
 

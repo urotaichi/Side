@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,13 +20,18 @@ namespace MasaoPlus.Dialogs
         private async void ProjectLoading_Shown(object sender, EventArgs e)
         {
             Application.DoEvents();
-            await Task.Run(() => LoadProject());
+            await Task.Run(LoadProject);
             EndInvInv();
         }
 
         public void EndInvInv()
         {
+            Global.MainWnd.UpdateLayerVisibility();
             Global.MainWnd.UpdateTitle();
+            Global.MainWnd.LayerObjectConfigList.Prepare();
+            Global.MainWnd.LayerObjectConfigList.Reload();
+            Global.MainWnd.GuiChipList.RecalculateScrollbar();
+            Global.MainWnd.CustomPartsConfigList.UpdateControlStates();
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -38,21 +44,12 @@ namespace MasaoPlus.Dialogs
                 {
                     Global.state.ChipRegister = [];
                     Global.cpd.project = Project.ParseXML(load);
+                    bool isLegacyUpgrade = false;
                     if (Global.cpd.project.ProjVer != 0.0 && Global.cpd.project.ProjVer < Global.definition.CProjVer)
                     {
-                        if (MessageBox.Show($"古いバージョンのプロジェクトファイルが指定されました。{Environment.NewLine}プロジェクトファイルのアップグレードを試みます。{Environment.NewLine}よろしいですか？", "レガシー プロジェクト ファイルの読み込み", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation) == DialogResult.Yes)
-                        {
-                            SetState("プロジェクトをコンバートしています...");
-                            // コンバート動作が未定義
-                            double projVer = Global.cpd.project.ProjVer;
-                            MessageBox.Show($"このプロジェクトファイルはサポートされていません。{Environment.NewLine}通常の読み込みを試みます。", "コンバート エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                        }
-                        else
-                        {
-                            MessageBox.Show($"プロジェクトをロードできませんでした。{Environment.NewLine}アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                            DialogResult = DialogResult.Abort;
-                            Close();
-                        }
+                        MessageBox.Show($"古いバージョンのプロジェクトファイルが指定されました。{Environment.NewLine}プロジェクトファイルのアップグレードを試みます。", "レガシー プロジェクト ファイルの読み込み", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        SetState("プロジェクトをコンバートしています...");
+                        isLegacyUpgrade = true;
                     }
                     if (Global.cpd.project == null)
                     {
@@ -64,7 +61,7 @@ namespace MasaoPlus.Dialogs
                     Global.cpd.where = Path.GetDirectoryName(load);
                     Global.cpd.filename = load;
                     Global.state.Background = Global.cpd.project.Config.Background;
-                    if(Global.cpd.project.Config.ScreenSize == "1")
+                    if (Global.cpd.project.Config.ScreenSize == "1")
                     {
                         Global.state.MinimumStageSize = new Size(20, 15);
                     }
@@ -88,7 +85,7 @@ namespace MasaoPlus.Dialogs
                     setStageSize(ref Global.cpd.project.Runtime.Definitions.StageSize4);
                     if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
                     {
-                        void setLayerSize(ref Runtime.DefinedData.StageSizeData size)
+                        void setLayerSize(ref Runtime.DefinedData.LayerSizeData size)
                         {
                             if (size.x < Global.state.MinimumStageSize.Width) size.x = Global.cpd.project.Runtime.Definitions.LayerSize.x;
                             if (size.y < Global.state.MinimumStageSize.Height) size.y = Global.cpd.project.Runtime.Definitions.LayerSize.y;
@@ -120,15 +117,25 @@ namespace MasaoPlus.Dialogs
                     Global.cpd.EditingMap = Global.cpd.project.StageData;
                     if (CurrentProjectData.UseLayer)
                     {
-                        Global.cpd.EditingLayer = Global.cpd.project.LayerData;
+                        Global.cpd.EditingLayer = Global.cpd.project.LayerData[0];
                     }
                     Global.MainWnd.MainDesigner.CreateDrawItemReference();
                     SetState("画像を準備しています...");
+                    SetStageDataSources();
+                    if (CurrentProjectData.UseLayer)
+                    {
+                        SetLayerDataSources();
+                    }
                     Global.MainWnd.MainDesigner.PrepareImages();
                     SetState("グラフィカルデザイナを初期化しています...");
                     Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
                     if (CurrentProjectData.UseLayer)
                     {
+                        Global.MainWnd.MainDesigner.BackLayerBmp = new List<Bitmap>(Global.cpd.LayerCount);
+                        for (int i = 0; i < Global.cpd.LayerCount; i++)
+                        {
+                            Global.MainWnd.MainDesigner.BackLayerBmp.Add(null);
+                        }
                         Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
                     }
                     if (Global.state.TransparentUnactiveLayer)
@@ -140,6 +147,7 @@ namespace MasaoPlus.Dialogs
                     SetState("編集を開始します...");
                     Global.MainWnd.MasaoConfigList.Prepare();
                     Global.MainWnd.CustomPartsConfigList.Prepare();
+                    if (isLegacyUpgrade) Global.state.EditFlag = true;
                 }
                 catch (InvalidOperationException)
                 {
@@ -150,6 +158,59 @@ namespace MasaoPlus.Dialogs
                 MessageBox.Show($"プロジェクトをロードできませんでした。{Environment.NewLine}{ex.Message}{Environment.NewLine}アプリケーションを再起動します。", "プロジェクトロードエラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 Application.Restart();
                 Environment.Exit(-1);
+            }
+        }
+
+        public static void SetStageDataSources()
+        {
+            var stageConfigs = new[]
+            {
+                (Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize),
+                (StageData: Global.cpd.project.StageData2, StageSize: Global.cpd.runtime.Definitions.StageSize2),
+                (StageData: Global.cpd.project.StageData3, StageSize: Global.cpd.runtime.Definitions.StageSize3),
+                (StageData: Global.cpd.project.StageData4, StageSize: Global.cpd.runtime.Definitions.StageSize4)
+            };
+
+            foreach (var (StageData, StageSize) in stageConfigs)
+            {
+                StageData.Source = Global.cpd.project.Config.PatternImage;
+                var layerValue = StageSize.mainPattern.Value;
+                if (!string.IsNullOrEmpty(layerValue))
+                {
+                    StageData.Source = layerValue;
+                }
+            }
+        }
+
+        public static void SetLayerDataSources()
+        {
+            var layerConfigs = new[]
+            {
+                (Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize),
+                (LayerData: Global.cpd.project.LayerData2, LayerSize: Global.cpd.runtime.Definitions.LayerSize2),
+                (LayerData: Global.cpd.project.LayerData3, LayerSize: Global.cpd.runtime.Definitions.LayerSize3),
+                (LayerData: Global.cpd.project.LayerData4, LayerSize: Global.cpd.runtime.Definitions.LayerSize4)
+            };
+
+            foreach (var (LayerData, LayerSize) in layerConfigs)
+            {
+                for (int i = 0; i < LayerData.Count; i++)
+                {
+                    LayerData[i].Source = Global.cpd.project.Config.LayerImage;
+                    if (LayerSize?.mapchips?.ElementAtOrDefault(i) != null)
+                    {
+                        var layerValue = LayerSize.mapchips.ElementAtOrDefault(i).Value;
+                        if (!string.IsNullOrEmpty(layerValue))
+                        {
+                            LayerData[i].Source = layerValue;
+                        }
+                    }
+                    else
+                    {
+                        LayerSize.mapchips.Add(new Runtime.DefinedData.StageSizeData.LayerObject());
+                    }
+
+                }
             }
         }
 

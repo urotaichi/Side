@@ -1,4 +1,6 @@
-﻿namespace MasaoPlus
+﻿using System.Collections.Generic;
+
+namespace MasaoPlus
 {
 	public partial class MainWindow : global::System.Windows.Forms.Form
 	{
@@ -38,6 +40,8 @@
             this.CustomPartsChipChar = new global::System.Windows.Forms.Label();
             this.CustomPartsChipImage = new global::System.Windows.Forms.PictureBox();
 
+            this.LayerObjectTab = new global::System.Windows.Forms.TabPage();
+
             this.EditTab = new global::System.Windows.Forms.TabControl();
 			this.GuiEditor = new global::System.Windows.Forms.TabPage();
 			this.EditorSystemPanel = new global::System.Windows.Forms.Panel();
@@ -56,6 +60,11 @@
 			this.toolStripMenuItem13 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.MDUnactiveLayer = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.MTUnactiveLayer = new global::System.Windows.Forms.ToolStripMenuItem();
+			this.LayerSelector = new global::System.Windows.Forms.ToolStripMenuItem();
+			this.LayerCount = new List<global::System.Windows.Forms.ToolStripMenuItem>
+			{
+				new global::System.Windows.Forms.ToolStripMenuItem()
+			};
 			this.toolStripSeparator2 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.ItemUndo = new global::System.Windows.Forms.ToolStripButton();
 			this.ItemRedo = new global::System.Windows.Forms.ToolStripButton();
@@ -94,6 +103,7 @@
 			this.toolStripMenuItem4 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.MOutput = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.MWriteHTML = new global::System.Windows.Forms.ToolStripMenuItem();
+			this.MWriteJSON = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.MWriteStagePicture = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripMenuItem5 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.MExit = new global::System.Windows.Forms.ToolStripMenuItem();
@@ -129,6 +139,11 @@
 			this.LayerMenu = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.EditPatternChip = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.EditBackground = new global::System.Windows.Forms.ToolStripMenuItem();
+			this.LayerMenuSelector = new global::System.Windows.Forms.ToolStripMenuItem();
+			this.LayerMenuCount = new List<global::System.Windows.Forms.ToolStripMenuItem>
+			{
+				new global::System.Windows.Forms.ToolStripMenuItem()
+			};
 			this.toolStripMenuItem8 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.ViewUnactiveLayer = new global::System.Windows.Forms.ToolStripMenuItem();
 			this.TransparentUnactiveLayer = new global::System.Windows.Forms.ToolStripMenuItem();
@@ -174,6 +189,7 @@
 			this.toolStripSeparator1 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.MTImgOut = new global::System.Windows.Forms.ToolStripButton();
 			this.MTOutput = new global::System.Windows.Forms.ToolStripButton();
+			this.MTOutputJSON = new global::System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator4 = new global::System.Windows.Forms.ToolStripSeparator();
 			this.MTEditConfig = new global::System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator5 = new global::System.Windows.Forms.ToolStripSeparator();
@@ -187,6 +203,7 @@
 			this.MasaoConfigList = new global::MasaoPlus.Controls.ConfigList();
             this.GuiCustomPartsChipList = new global::MasaoPlus.GUICustomPartsChipList();
             this.CustomPartsConfigList = new global::MasaoPlus.Controls.CustomPartsConfigList();
+            this.LayerObjectConfigList = new global::MasaoPlus.Controls.LayerObjectConfigList();
 
             this.MainDesigner = new global::MasaoPlus.GUIDesigner();
 			this.MainEditor = new global::MasaoPlus.TextEditor();
@@ -216,6 +233,8 @@
             this.CustomParts.Panel1.SuspendLayout();
             this.CustomParts.Panel2.SuspendLayout();
             this.CustomParts.SuspendLayout();
+
+            this.LayerObjectTab.SuspendLayout();
 
             this.EditTab.SuspendLayout();
 			this.GuiEditor.SuspendLayout();
@@ -250,6 +269,7 @@
 			this.SideTab.Controls.Add(this.ChipPage);
             this.SideTab.Controls.Add(this.PropertyTab);
             this.SideTab.Controls.Add(this.CustomPartsTab);
+            this.SideTab.Controls.Add(this.LayerObjectTab);
             this.SideTab.Dock = global::System.Windows.Forms.DockStyle.Fill;
 			this.SideTab.Location = new global::System.Drawing.Point(0, 0);
 			this.SideTab.Name = "SideTab";
@@ -355,6 +375,14 @@
             this.CustomPartsTab.TabIndex = 2;
             this.CustomPartsTab.Text = "カスタムパーツ";
             this.CustomPartsTab.UseVisualStyleBackColor = true;
+
+            this.LayerObjectTab.Controls.Add(this.LayerObjectConfigList);
+            this.LayerObjectTab.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(4), base.LogicalToDeviceUnits(22));
+            this.LayerObjectTab.Name = "LayerObjectTab";
+            this.LayerObjectTab.Padding = new global::System.Windows.Forms.Padding(3);
+            this.LayerObjectTab.TabIndex = 3;
+            this.LayerObjectTab.Text = "マルチレイヤー";
+            this.LayerObjectTab.UseVisualStyleBackColor = true;
             this.ItemSpliter2.BackColor = global::System.Drawing.Color.White;
             this.ItemSpliter2.Dock = global::System.Windows.Forms.DockStyle.Fill;
             this.ItemSpliter2.Margin = new global::System.Windows.Forms.Padding(0);
@@ -520,6 +548,7 @@
 			{
 				this.PatternChipLayer,
 				this.BackgroundLayer,
+				this.LayerSelector,
 				this.toolStripMenuItem13,
 				this.MDUnactiveLayer,
 				this.MTUnactiveLayer
@@ -555,6 +584,21 @@
 			this.MTUnactiveLayer.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(275, 22));
 			this.MTUnactiveLayer.Text = "アクティブでないレイヤーを透過(&T)";
 			this.MTUnactiveLayer.Click += new global::System.EventHandler(this.TransparentUnactiveLayer_Click);
+			this.LayerSelector.DisplayStyle = global::System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.LayerSelector.DropDownItems.AddRange(new global::System.Windows.Forms.ToolStripItem[]
+			{
+				this.LayerCount[0],
+			});
+			this.LayerSelector.Name = "LayerSelector";
+			this.LayerSelector.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(275, 22));
+			this.LayerSelector.Text = "背景チップレイヤー";
+			this.LayerSelector.Visible = false;
+			this.LayerCount[0].Name = "LayerCount1";
+			this.LayerCount[0].Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(180, 22));
+			this.LayerCount[0].Text = "レイヤー 1";
+			this.LayerCount[0].Click += (sender, e) => {
+                LayerCount_Click(0);
+			};
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
 			this.toolStripSeparator2.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(6, 25));
 			this.ItemUndo.DisplayStyle = global::System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -759,7 +803,7 @@
 			this.MProjectInheritNew.Click += new global::System.EventHandler(this.MProjectInheritNew_Click);
 			this.MConvertHTML.Name = "MConvertHTML";
 			this.MConvertHTML.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(259, 22));
-			this.MConvertHTML.Text = "HTMLを変換して新規(&C)...";
+			this.MConvertHTML.Text = "HTML/JS/JSONを変換して新規(&C)...";
 			this.MConvertHTML.Click += new global::System.EventHandler(this.MConvertHTML_Click);
 			this.toolStripMenuItem16.Name = "toolStripMenuItem16";
 			this.toolStripMenuItem16.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(199, 6));
@@ -788,6 +832,7 @@
 			this.MOutput.DropDownItems.AddRange(new global::System.Windows.Forms.ToolStripItem[]
 			{
 				this.MWriteHTML,
+				this.MWriteJSON,
 				this.MWriteStagePicture
 			});
 			this.MOutput.Name = "MOutput";
@@ -796,8 +841,13 @@
 			this.MWriteHTML.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.page_white_code).View();
 			this.MWriteHTML.Name = "MWriteHTML";
 			this.MWriteHTML.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(213, 22));
-			this.MWriteHTML.Text = "整形済みファイル(&H)...";
+			this.MWriteHTML.Text = "整形済みHTMLファイル(&H)...";
 			this.MWriteHTML.Click += new global::System.EventHandler(this.MWriteHTML_Click);
+			this.MWriteJSON.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.page_white_code_red).View();
+			this.MWriteJSON.Name = "MWriteJSON";
+			this.MWriteJSON.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(213, 22));
+			this.MWriteJSON.Text = "JSONファイル(&J)...";
+			this.MWriteJSON.Click += new global::System.EventHandler(this.MWriteJSON_Click);
 			this.MWriteStagePicture.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.stv_dot).View();
 			this.MWriteStagePicture.Name = "MWriteStagePicture";
 			this.MWriteStagePicture.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(213, 22));
@@ -866,6 +916,7 @@
 			this.GMTestRun.Click += new global::System.EventHandler(this.ProjTestRun);
 			this.GMAllTestrun.Name = "GMAllTestrun";
 			this.GMAllTestrun.ShortcutKeyDisplayString = "Ctrl+Alt+Space";
+			this.GMAllTestrun.ShortcutKeys = global::System.Windows.Forms.Keys.Space | global::System.Windows.Forms.Keys.Control | global::System.Windows.Forms.Keys.Alt;
 			this.GMAllTestrun.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(290, 22));
 			this.GMAllTestrun.Text = "全体をテスト実行(&A)";
 			this.GMAllTestrun.Click += new global::System.EventHandler(this.AllTestrun);
@@ -927,6 +978,7 @@
 			this.TMTestRun.Click += new global::System.EventHandler(this.ProjTestRun);
 			this.TMAllTestrun.Name = "TMAllTestrun";
 			this.TMAllTestrun.ShortcutKeyDisplayString = "Ctrl+Alt+Space";
+			this.TMAllTestrun.ShortcutKeys = global::System.Windows.Forms.Keys.Space | global::System.Windows.Forms.Keys.Control | global::System.Windows.Forms.Keys.Alt;
 			this.TMAllTestrun.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(290, 22));
 			this.TMAllTestrun.Text = "全体をテスト実行(&A)";
 			this.TMAllTestrun.Click += new global::System.EventHandler(this.AllTestrun);
@@ -983,6 +1035,7 @@
 			{
 				this.EditPatternChip,
 				this.EditBackground,
+				this.LayerMenuSelector,
 				this.toolStripMenuItem8,
 				this.ViewUnactiveLayer,
 				this.TransparentUnactiveLayer
@@ -1002,6 +1055,21 @@
 			this.EditBackground.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(275, 22));
 			this.EditBackground.Text = "背景チップレイヤー(&B)";
 			this.EditBackground.Click += new global::System.EventHandler(this.EditBackground_Click);
+			this.LayerMenuSelector.DisplayStyle = global::System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+			this.LayerMenuSelector.DropDownItems.AddRange(new global::System.Windows.Forms.ToolStripItem[]
+			{
+				this.LayerMenuCount[0]
+			});
+			this.LayerMenuSelector.Name = "LayerMenuSelector";
+			this.LayerMenuSelector.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(275, 22));
+			this.LayerMenuSelector.Text = "背景チップレイヤー";
+			this.LayerMenuSelector.Visible = false;
+			this.LayerMenuCount[0].Name = "LayerMenuCount1";
+			this.LayerMenuCount[0].Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(180, 22));
+			this.LayerMenuCount[0].Text = "レイヤー 1";
+			this.LayerMenuCount[0].Click += (sender, e) => {
+                LayerCount_Click(0);
+			};
 			this.toolStripMenuItem8.Name = "toolStripMenuItem8";
 			this.toolStripMenuItem8.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(272, 6));
 			this.ViewUnactiveLayer.Checked = Global.state.DrawUnactiveLayer;
@@ -1234,6 +1302,7 @@
 				this.toolStripSeparator1,
 				this.MTImgOut,
 				this.MTOutput,
+				this.MTOutputJSON,
 				this.toolStripSeparator4,
 				this.MTEditConfig,
 				this.toolStripSeparator5,
@@ -1281,6 +1350,13 @@
 			this.MTOutput.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(23, 22));
 			this.MTOutput.Text = "HTML書き出し";
 			this.MTOutput.Click += new global::System.EventHandler(this.MWriteHTML_Click);
+			this.MTOutputJSON.DisplayStyle = global::System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.MTOutputJSON.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.page_white_code_red).View();
+			this.MTOutputJSON.ImageTransparentColor = global::System.Drawing.Color.Magenta;
+			this.MTOutputJSON.Name = "MTOutputJSON";
+			this.MTOutputJSON.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(23, 22));
+			this.MTOutputJSON.Text = "JSON書き出し";
+			this.MTOutputJSON.Click += new global::System.EventHandler(this.MWriteJSON_Click);
 			this.toolStripSeparator4.Name = "toolStripSeparator4";
 			this.toolStripSeparator4.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(6, 25));
 			this.MTEditConfig.DisplayStyle = global::System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1347,6 +1423,12 @@
             this.CustomPartsConfigList.Size = new global::System.Drawing.Size(171, 277);
             this.CustomPartsConfigList.TabIndex = 0;
 
+            this.LayerObjectConfigList.Dock = global::System.Windows.Forms.DockStyle.Fill;
+            this.LayerObjectConfigList.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(3), base.LogicalToDeviceUnits(3));
+            this.LayerObjectConfigList.Name = "LayerObjectConfigList";
+            this.LayerObjectConfigList.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(171, 277));
+            this.LayerObjectConfigList.TabIndex = 0;
+
             this.MainDesigner.BorderStyle = global::System.Windows.Forms.BorderStyle.FixedSingle;
 			this.MainDesigner.CopyPaste = global::MasaoPlus.GUIDesigner.CopyPasteTool.None;
 			this.MainDesigner.CurrentTool = global::MasaoPlus.GUIDesigner.EditTool.Cursor;
@@ -1410,6 +1492,8 @@
             this.CustomParts.Panel2.ResumeLayout(false);
             this.CustomParts.ResumeLayout(false);
             ((global::System.ComponentModel.ISupportInitialize)this.CustomPartsChipImage).EndInit();
+
+            this.LayerObjectTab.ResumeLayout(false);
 
             this.EditTab.ResumeLayout(false);
 			this.GuiEditor.ResumeLayout(false);
@@ -1542,7 +1626,7 @@
 
 		private global::System.Windows.Forms.ToolStripMenuItem EditPatternChip;
 
-		private global::System.Windows.Forms.ToolStripMenuItem EditBackground;
+		public global::System.Windows.Forms.ToolStripMenuItem EditBackground;
 
 		private global::System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
 
@@ -1562,7 +1646,7 @@
 
 		private global::System.Windows.Forms.PictureBox ChipImage;
 
-        private global::MasaoPlus.GUIChipList GuiChipList;
+        public global::MasaoPlus.GUIChipList GuiChipList;
 
 		private global::System.Windows.Forms.ListBox ChipList;
 
@@ -1607,7 +1691,7 @@
 
 		private global::System.Windows.Forms.ToolStripMenuItem PatternChipLayer;
 
-		private global::System.Windows.Forms.ToolStripMenuItem BackgroundLayer;
+		public global::System.Windows.Forms.ToolStripMenuItem BackgroundLayer;
 
 		private global::System.Windows.Forms.ToolStripSeparator toolStripMenuItem13;
 
@@ -1685,7 +1769,11 @@
 
         private global::System.Windows.Forms.TabPage CustomPartsTab;
 
+        private global::System.Windows.Forms.TabPage LayerObjectTab;
+
         public global::MasaoPlus.Controls.ConfigList MasaoConfigList;
+
+        public global::MasaoPlus.Controls.LayerObjectConfigList LayerObjectConfigList;
 
         private global::System.Windows.Forms.SplitContainer ItemSpliter2;
 
@@ -1766,5 +1854,17 @@
 		private global::System.Windows.Forms.ToolStripMenuItem MReloadImage;
 
 		private global::System.Windows.Forms.ToolStripMenuItem ShowOverView;
+
+		private global::System.Windows.Forms.ToolStripMenuItem MWriteJSON;
+
+		private global::System.Windows.Forms.ToolStripButton MTOutputJSON;
+
+		public global::System.Windows.Forms.ToolStripMenuItem LayerSelector;
+
+		public List<global::System.Windows.Forms.ToolStripMenuItem> LayerCount;
+
+		public global::System.Windows.Forms.ToolStripMenuItem LayerMenuSelector;
+
+		public List<global::System.Windows.Forms.ToolStripMenuItem> LayerMenuCount;
 	}
 }

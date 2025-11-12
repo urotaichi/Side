@@ -8,7 +8,7 @@ namespace MasaoPlus
     {
         public Color c
         {
-            get
+            readonly get
             {
                 return Color.FromArgb(r, g, b);
             }
@@ -20,7 +20,7 @@ namespace MasaoPlus
             }
         }
 
-        public override string ToString()
+        public override readonly string ToString()
         {
             return $"{r},{g},{b}";
         }
@@ -45,6 +45,16 @@ namespace MasaoPlus
             {
                 throw new Exception($"色の取得に失敗しました:{color}\n{ex.Message}\nst:{ex.StackTrace}");
             }
+        }
+
+        /// <summary>
+        /// 指定された色の反転色を計算して返します
+        /// </summary>
+        /// <param name="color">反転する色</param>
+        /// <returns>反転色</returns>
+        public static Color GetInvertedColor(Color color)
+        {
+            return Color.FromArgb(255 - color.R, 255 - color.G, 255 - color.B);
         }
 
         public int r;
