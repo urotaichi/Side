@@ -42,6 +42,7 @@ namespace MasaoPlus
             UsePropTextDialog.Checked = Global.config.localSystem.UsePropExTextEditor;
             OutPutInititalSourceCode.Checked = Global.config.localSystem.OutPutInititalSourceCode;
             WrapPropText.Checked = Global.config.localSystem.WrapPropText;
+            MinifyOutput.Checked = Global.config.localSystem.MinifyOutput;
             StartWithCL.Checked = Global.config.draw.StartUpWithClassicCL;
             WheelHorz.Checked = Global.config.draw.HScrollDefault;
             if (!Native.CheckRegistryAddmittion())
@@ -94,6 +95,7 @@ namespace MasaoPlus
             Global.config.localSystem.UsePropExTextEditor = UsePropTextDialog.Checked;
             Global.config.localSystem.OutPutInititalSourceCode = OutPutInititalSourceCode.Checked;
             Global.config.localSystem.WrapPropText = WrapPropText.Checked;
+            Global.config.localSystem.MinifyOutput = MinifyOutput.Checked;
             Global.config.draw.StartUpWithClassicCL = StartWithCL.Checked;
             Global.config.draw.HScrollDefault = WheelHorz.Checked;
             Close();

@@ -1075,7 +1075,50 @@ namespace MasaoPlus
             //3連続以上の改行を2連続改行に
             result = reg_return().Replace(result, "\r\n\r\n");
 
+            // minify化処理
+            if (Global.config.localSystem.MinifyOutput)
+            {
+                result = ApplyMinify(result, isJSON);
+            }
+
             return result;
+        }
+
+        private static string ApplyMinify(string code, bool isJSON)
+        {
+            if (isJSON)
+            {
+                // JSONの場合は全ての改行を削除
+                return code.Replace("\r\n", "").Replace("\r", "").Replace("\n", "");
+            }
+            else
+            {
+                // HTMLの場合はヘッダーとフッターの改行は保持
+                string headerHTML = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.HeaderHTML);
+                string footerHTML = DecodeBase64(Global.cpd.runtime.DefaultConfigurations.FooterHTML);
+
+                // ヘッダーとフッターをコードから抽出
+                int headerEndIndex = code.IndexOf(headerHTML) + headerHTML.Length;
+                int footerStartIndex = code.LastIndexOf(footerHTML);
+
+                if (headerEndIndex > 0 && footerStartIndex > headerEndIndex)
+                {
+                    // ヘッダー、中間部分、フッターに分割
+                    string header = code[..headerEndIndex];
+                    string middle = code[headerEndIndex..footerStartIndex];
+                    string footer = code[footerStartIndex..];
+
+                    // 中間部分のみ改行を削除
+                    middle = middle.Replace("\r\n", "").Replace("\r", "").Replace("\n", "");
+
+                    return header + middle + footer;
+                }
+                else
+                {
+                    // フッターが見つからない場合は全体から改行を削除
+                    return code.Replace("\r\n", "").Replace("\r", "").Replace("\n", "");
+                }
+            }
         }
 
         public static string DecodeBase64(string s)

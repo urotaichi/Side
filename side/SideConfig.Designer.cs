@@ -22,6 +22,7 @@
 			this.UsePropTextDialog = new global::System.Windows.Forms.CheckBox();
 			this.OutPutInititalSourceCode = new global::System.Windows.Forms.CheckBox();
 			this.WrapPropText = new global::System.Windows.Forms.CheckBox();
+			this.MinifyOutput = new global::System.Windows.Forms.CheckBox();
 			this.IntegrateEditorId = new global::System.Windows.Forms.CheckBox();
 			this.EnableAutoUpdate = new global::System.Windows.Forms.CheckBox();
 			this.ReversePosition = new global::System.Windows.Forms.CheckBox();
@@ -90,6 +91,7 @@
 			this.tabControl1.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(555, 265));
 			this.tabControl1.TabIndex = 0;
 			this.tabPage1.Controls.Add(this.WrapPropText);
+			this.tabPage1.Controls.Add(this.MinifyOutput);
 			this.tabPage1.Controls.Add(this.OutPutInititalSourceCode);
 			this.tabPage1.Controls.Add(this.UsePropTextDialog);
 			this.tabPage1.Controls.Add(this.IntegrateEditorId);
@@ -111,6 +113,13 @@
 			this.WrapPropText.TabIndex = 7;
 			this.WrapPropText.Text = "長いプロパティ名を改行する(&B)";
 			this.WrapPropText.UseVisualStyleBackColor = true;
+			this.MinifyOutput.AutoSize = true;
+			this.MinifyOutput.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(6), base.LogicalToDeviceUnits(164));
+			this.MinifyOutput.Name = "MinifyOutput";
+			this.MinifyOutput.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(212, 16));
+			this.MinifyOutput.TabIndex = 8;
+			this.MinifyOutput.Text = "出力コードを圧縮する(&M)";
+			this.MinifyOutput.UseVisualStyleBackColor = true;
 			this.OutPutInititalSourceCode.AutoSize = true;
 			this.OutPutInititalSourceCode.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(6), base.LogicalToDeviceUnits(120));
 			this.OutPutInititalSourceCode.Name = "OutPutInititalSourceCode";
@@ -515,6 +524,8 @@
 		private global::System.Windows.Forms.CheckBox OutPutInititalSourceCode;
 
 		private global::System.Windows.Forms.CheckBox WrapPropText;
+
+		private global::System.Windows.Forms.CheckBox MinifyOutput;
 
 		private global::System.Windows.Forms.CheckBox StartWithCL;
 

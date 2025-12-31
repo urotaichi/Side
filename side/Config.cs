@@ -107,6 +107,9 @@ namespace MasaoPlus
 
             //枠に収まりきらないプロパティを改行して表示するかどうか　デフォルトでは改行して表示する
             public bool WrapPropText = true;
+            
+            //出力コードをminify化するかどうか　デフォルトでは出力する
+            public bool MinifyOutput;
         }
 
         public class TestRun
