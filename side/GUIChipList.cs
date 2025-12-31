@@ -393,6 +393,22 @@ namespace MasaoPlus
             }
         }
 
+        private void MainPanel_MouseWheel(object sender, MouseEventArgs e)
+        {
+            // スクロールバーの値を更新
+            int scrollAmount = (e.Delta > 0 ? -1 : 1) * LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height); // ホイール上で上スクロール、下で下スクロール
+            int newValue = vScr.Value + scrollAmount;
+            
+            // スクロールバーの範囲内に制限
+            if (newValue < vScr.Minimum)
+                newValue = vScr.Minimum;
+            else if (newValue > vScr.Maximum - vScr.LargeChange)
+                newValue = vScr.Maximum - vScr.LargeChange;
+            
+            vScr.Value = newValue;
+            MainPanel.Refresh();
+        }
+
         protected void GUIChipList_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
@@ -463,6 +479,7 @@ namespace MasaoPlus
             MainPanel.MouseMove += MainPanel_MouseMove;
             MainPanel.MouseDown += MainPanel_MouseDown;
             MainPanel.Paint += MainPanel_Paint;
+            MainPanel.MouseWheel += MainPanel_MouseWheel;
             // AutoScaleDimensions = new SizeF(6f, 12f);
             // AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(MainPanel);
