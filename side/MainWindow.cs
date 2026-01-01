@@ -1735,7 +1735,7 @@ namespace MasaoPlus
                 e.Graphics.PixelOffsetMode = default;
                 e.Graphics.DrawString(((ListBox)sender).Items[i].ToString(), e.Font, brush, new Rectangle(e.Bounds.X + width, e.Bounds.Y, e.Bounds.Width - width, e.Bounds.Height));
 
-                if (!ChipList.Enabled) e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(160, Color.White)), e.Bounds); // 無効時に白くする
+                if (!ChipList.Enabled) e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(160, (Application.SystemColorMode == SystemColorMode.Classic) ? Color.White : Color.Black)), e.Bounds); // 無効時に白くする
             }
             catch
             {

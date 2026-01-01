@@ -176,7 +176,7 @@
 			this.A.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(514, 266));
 			this.A.TabIndex = 0;
 			this.A.Text = "全般";
-			this.A.UseVisualStyleBackColor = true;
+			this.A.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.UseWorldmap.AutoSize = true;
 			this.UseWorldmap.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(166), base.LogicalToDeviceUnits(100));
 			this.UseWorldmap.Name = "UseWorldmap";
@@ -468,7 +468,7 @@
 			this.Fom.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(514, 266));
 			this.Fom.TabIndex = 4;
 			this.Fom.Text = "フォーマット";
-			this.Fom.UseVisualStyleBackColor = true;
+			this.Fom.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.label16.AutoSize = true;
 			this.label16.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(190), base.LogicalToDeviceUnits(9));
 			this.label16.Name = "label16";
@@ -579,8 +579,8 @@
 			this.OH.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(514, 266));
 			this.OH.TabIndex = 1;
 			this.OH.Text = "出力ヘッダ";
-			this.OH.UseVisualStyleBackColor = true;
-			this.panel1.BackColor = global::System.Drawing.Color.CornflowerBlue;
+			this.OH.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
+			this.panel1.BackColor = (global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic) ? global::System.Drawing.Color.CornflowerBlue : global::System.Drawing.Color.DarkOrange;
 			this.panel1.Controls.Add(this.OutHeader);
 			this.panel1.Dock = global::System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(3), base.LogicalToDeviceUnits(3));
@@ -644,8 +644,8 @@
 			this.OM.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(514, 266));
 			this.OM.TabIndex = 2;
 			this.OM.Text = "出力中間";
-			this.OM.UseVisualStyleBackColor = true;
-			this.panel3.BackColor = global::System.Drawing.Color.CornflowerBlue;
+			this.OM.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
+			this.panel3.BackColor = (global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic) ? global::System.Drawing.Color.CornflowerBlue : global::System.Drawing.Color.DarkOrange;
 			this.panel3.Controls.Add(this.OutMiddle);
 			this.panel3.Dock = global::System.Windows.Forms.DockStyle.Fill;
 			this.panel3.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(3), base.LogicalToDeviceUnits(3));
@@ -672,8 +672,8 @@
 			this.OF.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(514, 266));
 			this.OF.TabIndex = 3;
 			this.OF.Text = "出力フッタ";
-			this.OF.UseVisualStyleBackColor = true;
-			this.panel2.BackColor = global::System.Drawing.Color.CornflowerBlue;
+			this.OF.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
+			this.panel2.BackColor = (global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic) ? global::System.Drawing.Color.CornflowerBlue : global::System.Drawing.Color.DarkOrange;
 			this.panel2.Controls.Add(this.OutFooter);
 			this.panel2.Dock = global::System.Windows.Forms.DockStyle.Fill;
 			this.panel2.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(3), base.LogicalToDeviceUnits(3));
@@ -701,7 +701,7 @@
 			this.OutputReplace.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(514, 266));
 			this.OutputReplace.TabIndex = 3;
 			this.OutputReplace.Text = "出力リプレース";
-			this.OutputReplace.UseVisualStyleBackColor = true;
+			this.OutputReplace.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.OutputReplaceView.AllowUserToResizeRows = false;
 			this.OutputReplaceView.AutoSizeColumnsMode = global::System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.OutputReplaceView.ColumnHeadersHeightSizeMode = global::System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;

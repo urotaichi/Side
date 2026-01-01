@@ -103,7 +103,7 @@
 			this.tabPage1.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(547, 239));
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "システム";
-			this.tabPage1.UseVisualStyleBackColor = true;
+			this.tabPage1.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.WrapPropText.AutoSize = true;
 			this.WrapPropText.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(6), base.LogicalToDeviceUnits(142));
 			this.WrapPropText.Name = "WrapPropText";
@@ -182,7 +182,7 @@
 			this.tabPage2.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(547, 239));
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "グラフィカルデザイナ";
-			this.tabPage2.UseVisualStyleBackColor = true;
+			this.tabPage2.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.WheelHorz.AutoSize = true;
 			this.WheelHorz.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(246), base.LogicalToDeviceUnits(98));
 			this.WheelHorz.Name = "WheelHorz";
@@ -301,7 +301,7 @@
 			this.tabPage3.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(547, 239));
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "テスト実行";
-			this.tabPage3.UseVisualStyleBackColor = true;
+			this.tabPage3.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.UseQTRun.AutoSize = true;
 			this.UseQTRun.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(6), base.LogicalToDeviceUnits(133));
 			this.UseQTRun.Name = "UseQTRun";
@@ -371,7 +371,7 @@
 			this.Regist.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(547, 239));
 			this.Regist.TabIndex = 3;
 			this.Regist.Text = "関連付け";
-			this.Regist.UseVisualStyleBackColor = true;
+			this.Regist.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.label2.AutoSize = true;
 			this.label2.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(169), base.LogicalToDeviceUnits(40));
 			this.label2.Margin = new global::System.Windows.Forms.Padding(3);

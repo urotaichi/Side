@@ -254,16 +254,16 @@ namespace MasaoPlus
                 if (num2 == StageTextEditor.GetLineFromCharIndex(StageTextEditor.GetFirstCharIndexOfCurrentLine()))
                 {
                     e.Graphics.FillRectangle(Brushes.RoyalBlue, new Rectangle(new Point(0, num3), new Size(TextLineNo.Width, height)));
-                    textColor = Color.White;
+                    textColor = SystemColors.Window;
                 }
                 else if (length == Global.state.GetCByteWidth && num2 < GUIDesigner.CurrentStageSize.y)
                 {
-                    textColor = Color.Black;
+                    textColor = SystemColors.WindowText;
                 }
                 else
                 {
                     e.Graphics.FillRectangle(Brushes.Red, new Rectangle(new Point(0, num3), new Size(TextLineNo.Width, height)));
-                    textColor = Color.White;
+                    textColor = SystemColors.Window;
                 }
 
                 int num4 = (int)e.Graphics.MeasureString(num2.ToString(), StageTextEditor.Font).Width;
@@ -352,7 +352,7 @@ namespace MasaoPlus
                     {
                         e.Graphics.DrawLine(Pens.Black, new Point(positionFromCharIndex.X, 0), new Point(positionFromCharIndex.X, TextRuler.Height));
                         int num2 = (int)e.Graphics.MeasureString(i.ToString(), StageTextEditor.Font).Height;
-                        DrawText(e.Graphics, i.ToString(), StageTextEditor.Font, new Point(positionFromCharIndex.X, TextRuler.Height - num2), Color.Black);
+                        DrawText(e.Graphics, i.ToString(), StageTextEditor.Font, new Point(positionFromCharIndex.X, TextRuler.Height - num2), SystemColors.WindowText);
                     }
                 }
             }
@@ -484,7 +484,7 @@ namespace MasaoPlus
             TextEditorTable.RowStyles.Add(new RowStyle(SizeType.Absolute, 20f));
             TextEditorTable.Size = LogicalToDeviceUnits(new Size(553, 215));
             TextEditorTable.TabIndex = 5;
-            TextRuler.BackColor = Color.White;
+            TextRuler.BackColor = SystemColors.Window;
             TextRuler.BorderStyle = BorderStyle.FixedSingle;
             TextRuler.Dock = DockStyle.Fill;
             TextRuler.Location = new Point(LogicalToDeviceUnits(41), LogicalToDeviceUnits(1));
@@ -494,7 +494,7 @@ namespace MasaoPlus
             TextRuler.TabIndex = 2;
             TextRuler.TabStop = false;
             TextRuler.Paint += TextRuler_Paint;
-            TextLineNo.BackColor = Color.White;
+            TextLineNo.BackColor = SystemColors.Window;
             TextLineNo.BorderStyle = BorderStyle.FixedSingle;
             TextLineNo.Dock = DockStyle.Fill;
             TextLineNo.Location = new Point(LogicalToDeviceUnits(1), LogicalToDeviceUnits(24));

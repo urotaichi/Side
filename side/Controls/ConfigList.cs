@@ -305,19 +305,19 @@ namespace MasaoPlus.Controls
         {
             ConfView.Rows[rowIndex].DefaultCellStyle.BackColor = configParam.Category switch
             {
-                "システム" => Color.LightCyan,
-                "表示" => Color.AliceBlue,
-                "BGM" => Color.GhostWhite,
-                "効果音" => Color.SeaShell,
-                "仕掛け" => Color.MistyRose,
-                "画像" => Color.Honeydew,
-                "装備" => Color.MintCream,
-                "敵" => Color.Lavender,
-                "お店" => Color.LavenderBlush,
-                "地図" => Color.Azure,
-                "オリジナルボス" => Color.LightYellow,
-                "リンク土管" => Color.MistyRose,
-                "メッセージ" => Color.OldLace,
+                "システム" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.LightCyan : Color.DarkCyan,
+                "表示" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.AliceBlue : Color.DarkBlue,
+                "BGM" =>(Application.SystemColorMode == SystemColorMode.Classic) ? Color.GhostWhite :  Color.DarkSlateGray,
+                "効果音" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.SeaShell : Color.Maroon,
+                "仕掛け" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.MistyRose : Color.DarkRed,
+                "画像" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.Honeydew : Color.DarkOliveGreen,
+                "装備" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.MintCream : Color.DarkGreen,
+                "敵" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.Lavender : Color.DarkMagenta,
+                "お店" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.LavenderBlush : Color.DarkViolet,
+                "地図" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.Azure : Color.DarkSlateBlue,
+                "オリジナルボス" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.LightYellow : Color.DarkGoldenrod,
+                "リンク土管" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.MistyRose : Color.DarkRed,
+                "メッセージ" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.OldLace : Color.Firebrick,
                 _ => default,
             };
         }

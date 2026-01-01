@@ -167,7 +167,7 @@ namespace MasaoPlus.Controls
                 if (rowTag == "stage" && Global.state.EdittingLayerIndex == -1)
                 {
                     // メインレイヤーが編集中の場合
-                    ConfView.Rows[i].DefaultCellStyle.BackColor = Color.LightYellow;
+                    ConfView.Rows[i].DefaultCellStyle.BackColor = (Application.SystemColorMode == SystemColorMode.Classic) ? Color.LightYellow : Color.DarkGoldenrod;
                     ConfView.Rows[i].DefaultCellStyle.SelectionBackColor = Color.FromArgb(168, 64, 34);
                     ConfView.Rows[i].DefaultCellStyle.SelectionForeColor = Color.White;
                 }
@@ -177,7 +177,7 @@ namespace MasaoPlus.Controls
                     int adjustedRowIndex = i < mainOrder ? i : i - 1;
                     if (adjustedRowIndex == Global.state.EdittingLayerIndex)
                     {
-                        ConfView.Rows[i].DefaultCellStyle.BackColor = Color.LightYellow;
+                        ConfView.Rows[i].DefaultCellStyle.BackColor = (Application.SystemColorMode == SystemColorMode.Classic) ? Color.LightYellow : Color.DarkGoldenrod;
                         ConfView.Rows[i].DefaultCellStyle.SelectionBackColor = Color.FromArgb(168, 64, 34);
                         ConfView.Rows[i].DefaultCellStyle.SelectionForeColor = Color.White;
                     }
@@ -680,7 +680,7 @@ namespace MasaoPlus.Controls
             // ドロップライン描画
             if (showDropLine && dropLineY >= 0)
             {
-                using Pen dropLinePen = new(Color.Blue, 2);
+                using Pen dropLinePen = new((Application.SystemColorMode == SystemColorMode.Classic) ? Color.Blue : Color.Coral, 2);
                 // dropLineYはGetCellDisplayRectangleで取得した座標なのでそのまま使用
                 e.Graphics.DrawLine(dropLinePen, 0, dropLineY, ConfView.Width, dropLineY);
             }
