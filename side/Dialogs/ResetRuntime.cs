@@ -110,7 +110,7 @@ namespace MasaoPlus.Dialogs
                         {
                             return;
                         }
-                        Global.cpd.project.Config.LayerImage = openFileDialog.FileName;
+                        Global.cpd.project.Config.LayerImage = Path.GetFileName(openFileDialog.FileName);
                     }
                     if (MessageBox.Show($"移行を開始します。この操作は取り消せません。{Environment.NewLine}よろしいですか？", "操作の確認", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) != DialogResult.Cancel)
                     {
