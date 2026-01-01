@@ -310,6 +310,7 @@ namespace MasaoPlus.Controls
                 "BGM" =>(Application.SystemColorMode == SystemColorMode.Classic) ? Color.GhostWhite :  Color.DarkSlateGray,
                 "効果音" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.SeaShell : Color.Maroon,
                 "仕掛け" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.MistyRose : Color.DarkRed,
+                "障害物" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.MistyRose : Color.DarkRed,
                 "画像" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.Honeydew : Color.DarkOliveGreen,
                 "装備" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.MintCream : Color.DarkGreen,
                 "敵" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.Lavender : Color.DarkMagenta,

@@ -147,6 +147,7 @@
 			this.ReversePosition.Text = "エディタとチップリスト/プロパティエディタの配置を左右逆にする(&R)[Sideの再起動が必要]";
 			this.ReversePosition.UseVisualStyleBackColor = true;
 			this.OutputFileEncode.DropDownStyle = global::System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.OutputFileEncode.FlatStyle = (global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic) ? global::System.Windows.Forms.FlatStyle.System : global::System.Windows.Forms.FlatStyle.Flat;
 			this.OutputFileEncode.FormattingEnabled = true;
 			this.OutputFileEncode.Items.AddRange(new object[]
 			{
