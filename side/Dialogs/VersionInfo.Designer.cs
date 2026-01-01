@@ -61,8 +61,9 @@
 			this.linkLabel1.TabIndex = 3;
 			this.linkLabel1.TabStop = true;
 			this.linkLabel1.Text = "https://urotaichi.com/";
+			this.linkLabel1.LinkColor = (Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic) ? global::System.Drawing.Color.Blue : global::System.Drawing.Color.Coral;
 			this.linkLabel1.LinkClicked += new global::System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabelClicked);
-			this.ViewDat.BackColor = global::System.Drawing.Color.White;
+			this.ViewDat.BackColor = global::System.Drawing.SystemColors.Window;
 			this.ViewDat.BorderStyle = global::System.Windows.Forms.BorderStyle.None;
 			this.ViewDat.Dock = global::System.Windows.Forms.DockStyle.Fill;
 			this.ViewDat.Font = new global::System.Drawing.Font("ＭＳ ゴシック", 9f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 128);
@@ -83,7 +84,7 @@
 			this.VersionLabel.TabIndex = 1;
 			this.VersionLabel.Text = "v 0.00";
 			this.VersionLabel.TextAlign = global::System.Drawing.ContentAlignment.BottomRight;
-			this.panel1.BackColor = global::System.Drawing.Color.SteelBlue;
+			this.panel1.BackColor = (Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic) ? global::System.Drawing.Color.SteelBlue : global::System.Drawing.Color.Tomato;
 			this.panel1.Controls.Add(this.ViewDat);
 			this.panel1.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(55), base.LogicalToDeviceUnits(57));
 			this.panel1.Name = "panel1";

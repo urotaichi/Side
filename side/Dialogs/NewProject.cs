@@ -114,8 +114,8 @@ namespace MasaoPlus.Dialogs
             TextBox textBox = (TextBox)sender;
             if (File.Exists(textBox.Text))
             {
-                textBox.ForeColor = Color.Black;
-                textBox.BackColor = Color.White;
+                textBox.ForeColor = SystemColors.WindowText;
+                textBox.BackColor = SystemColors.Window;
             }
             else
             {
@@ -130,8 +130,8 @@ namespace MasaoPlus.Dialogs
             TextBox textBox = (TextBox)sender;
             if (textBox.Text != "")
             {
-                textBox.ForeColor = Color.Black;
-                textBox.BackColor = Color.White;
+                textBox.ForeColor = SystemColors.WindowText;
+                textBox.BackColor = SystemColors.Window;
             }
             else
             {
@@ -146,8 +146,8 @@ namespace MasaoPlus.Dialogs
             TextBox textBox = (TextBox)sender;
             if (textBox.Text != "" && File.Exists(textBox.Text))
             {
-                textBox.ForeColor = Color.Black;
-                textBox.BackColor = Color.White;
+                textBox.ForeColor = SystemColors.WindowText;
+                textBox.BackColor = SystemColors.Window;
             }
             else
             {
@@ -162,8 +162,8 @@ namespace MasaoPlus.Dialogs
             TextBox textBox = (TextBox)sender;
             if (textBox.Text == "" || File.Exists(textBox.Text))
             {
-                textBox.ForeColor = Color.Black;
-                textBox.BackColor = Color.White;
+                textBox.ForeColor = SystemColors.WindowText;
+                textBox.BackColor = SystemColors.Window;
             }
             else
             {
@@ -178,8 +178,8 @@ namespace MasaoPlus.Dialogs
             TextBox textBox = (TextBox)sender;
             if (textBox.Text != "" && Directory.Exists(textBox.Text))
             {
-                textBox.ForeColor = Color.Black;
-                textBox.BackColor = Color.White;
+                textBox.ForeColor = SystemColors.WindowText;
+                textBox.BackColor = SystemColors.Window;
             }
             else
             {

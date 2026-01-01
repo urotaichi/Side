@@ -28,6 +28,18 @@ namespace MasaoPlus
                 {
                     MessageBox.Show("設定をロードできませんでした。", "設定読み込み失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 }
+                if(Global.config.localSystem.DarkMode == SystemColorMode.System)
+                {
+                    if (Application.SystemColorMode == SystemColorMode.Dark)
+                        Global.state.DarkMode = SystemColorMode.Dark;
+                    else
+                        Global.state.DarkMode = SystemColorMode.Classic;
+                }
+                else
+                {
+                    Global.state.DarkMode = Global.config.localSystem.DarkMode;
+                }
+                Application.SetColorMode(Global.state.DarkMode);
                 bool flag = true;
                 if (Environment.GetCommandLineArgs().Length == 2)
                 {

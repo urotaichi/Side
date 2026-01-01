@@ -58,6 +58,10 @@ namespace MasaoPlus.Controls
                 {
                     buttonCell.FlatStyle = enable ? FlatStyle.Popup : FlatStyle.Standard;
                 }
+                if(Global.state.DarkMode == SystemColorMode.Dark)
+                {
+                    row.DefaultCellStyle.SelectionForeColor = Color.White;
+                }
             }
         }
 
@@ -1267,6 +1271,10 @@ namespace MasaoPlus.Controls
                         Value = false
                     };
                     ConfView[2, ConfView.Rows.Count - 2] = dataGridViewCheckBoxCell;
+                    if(Global.state.DarkMode == SystemColorMode.Dark)
+                    {
+                        ConfView.Rows[^2].DefaultCellStyle.SelectionForeColor = Color.White;
+                    }
                     Global.cpd.CustomPartsChip[cs_i].Properties.attack_timing.Add(new attack_timing { AttackFrame = next, IsPlaySoundFrame = false });
                     Global.state.CurrentCustomPartsChip = Global.cpd.CustomPartsChip[cs_i];
                     Global.state.EditFlag = true;

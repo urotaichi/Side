@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace MasaoPlus
 {
@@ -258,5 +259,7 @@ namespace MasaoPlus
         public Size MinimumStageSize = new(16, 10);
 
         public Size MaximumStageSize = new(500, 500);
+
+        public SystemColorMode DarkMode;
     }
 }

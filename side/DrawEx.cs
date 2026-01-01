@@ -39,11 +39,8 @@ namespace MasaoPlus
             {
                 if (textureBrush == null || size.Width != pixelsBetweenDots.Width || size.Height != pixelsBetweenDots.Height || flag2 != flag)
                 {
-                    if (textureBrush != null)
-                    {
-                        textureBrush.Dispose();
-                        textureBrush = null;
-                    }
+                    textureBrush?.Dispose();
+                    textureBrush = null;
                     int num = 16;
                     Color color = flag2 ? Color.White : Color.Black;
                     int num2 = area.X % pixelsBetweenDots.Width;
