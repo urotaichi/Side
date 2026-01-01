@@ -381,6 +381,10 @@ namespace MasaoPlus.Dialogs
                 ProjectLoading.SetLayerDataSources();
             }
             Global.MainWnd.LayerObjectConfigList.Prepare();
+            if (isLayerMigration)
+            {
+                Global.MainWnd.LayerObjectConfigList.Reload();
+            }
             Global.MainWnd.MEditStage1_Click(this, new EventArgs());
             Global.MainWnd.EditPatternChip_Click(this, new EventArgs());
             Global.state.EditingForeground = true;
