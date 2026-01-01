@@ -333,7 +333,7 @@ namespace MasaoPlus
 
                     if (!Enabled)
                     {
-                        using Brush brush3 = new SolidBrush(Color.FromArgb(160, (Application.SystemColorMode == SystemColorMode.Classic) ? Color.White : Color.Black));
+                        using Brush brush3 = new SolidBrush(Color.FromArgb(160, (Global.state.DarkMode == SystemColorMode.Classic) ? Color.White : Color.Black));
                         e.Graphics.FillRectangle(brush3, e.ClipRectangle);
                     }
                 }

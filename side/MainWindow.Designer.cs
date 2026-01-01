@@ -285,7 +285,7 @@ namespace MasaoPlus
 			this.ChipPage.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(177, 283));
 			this.ChipPage.TabIndex = 0;
 			this.ChipPage.Text = "チップ";
-			this.ChipPage.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
+			this.ChipPage.UseVisualStyleBackColor = Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.ItemSpliter.BackColor = global::System.Drawing.SystemColors.Window;
 			this.ItemSpliter.Dock = global::System.Windows.Forms.DockStyle.Fill;
 			this.ItemSpliter.FixedPanel = global::System.Windows.Forms.FixedPanel.Panel1;
@@ -342,7 +342,7 @@ namespace MasaoPlus
 			this.ChipList.SelectedIndexChanged += new global::System.EventHandler(this.ChipList_SelectedIndexChanged);
 			this.DrawType.Dock = global::System.Windows.Forms.DockStyle.Top;
 			this.DrawType.DropDownStyle = global::System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.DrawType.FlatStyle = (global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic) ? global::System.Windows.Forms.FlatStyle.System : global::System.Windows.Forms.FlatStyle.Flat;
+			this.DrawType.FlatStyle = (Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic) ? global::System.Windows.Forms.FlatStyle.System : global::System.Windows.Forms.FlatStyle.Flat;
 			this.DrawType.FormattingEnabled = true;
 			this.DrawType.IntegralHeight = false;
 			this.DrawType.Items.AddRange(new object[]
@@ -366,7 +366,7 @@ namespace MasaoPlus
 			this.PropertyTab.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(177, 283));
 			this.PropertyTab.TabIndex = 1;
 			this.PropertyTab.Text = "プロパティ";
-			this.PropertyTab.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
+			this.PropertyTab.UseVisualStyleBackColor = Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic;
 
 			this.CustomPartsTab.Controls.Add(this.ItemSpliter2);
 			this.CustomPartsTab.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(4), base.LogicalToDeviceUnits(22));
@@ -374,7 +374,7 @@ namespace MasaoPlus
             this.CustomPartsTab.Padding = new global::System.Windows.Forms.Padding(3);
             this.CustomPartsTab.TabIndex = 2;
             this.CustomPartsTab.Text = "カスタムパーツ";
-            this.CustomPartsTab.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
+            this.CustomPartsTab.UseVisualStyleBackColor = Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic;
 
             this.LayerObjectTab.Controls.Add(this.LayerObjectConfigList);
             this.LayerObjectTab.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(4), base.LogicalToDeviceUnits(22));
@@ -382,7 +382,7 @@ namespace MasaoPlus
             this.LayerObjectTab.Padding = new global::System.Windows.Forms.Padding(3);
             this.LayerObjectTab.TabIndex = 3;
             this.LayerObjectTab.Text = "マルチレイヤー";
-            this.LayerObjectTab.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
+            this.LayerObjectTab.UseVisualStyleBackColor = Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic;
             this.ItemSpliter2.BackColor = global::System.Drawing.SystemColors.Window;
             this.ItemSpliter2.Dock = global::System.Windows.Forms.DockStyle.Fill;
             this.ItemSpliter2.Margin = new global::System.Windows.Forms.Padding(0);
@@ -451,7 +451,7 @@ namespace MasaoPlus
 			this.GuiEditor.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(477, 283));
 			this.GuiEditor.TabIndex = 0;
 			this.GuiEditor.Text = "グラフィカルデザイナ";
-			this.GuiEditor.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
+			this.GuiEditor.UseVisualStyleBackColor = Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.EditorSystemPanel.BackColor = global::System.Drawing.SystemColors.ButtonFace;
 			this.EditorSystemPanel.Controls.Add(this.MainDesigner);
 			this.EditorSystemPanel.Controls.Add(this.GVirtScroll);
@@ -746,7 +746,7 @@ namespace MasaoPlus
 			this.IntegrateTestrun.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(477, 283));
 			this.IntegrateTestrun.TabIndex = 2;
 			this.IntegrateTestrun.Text = "テスト実行";
-			this.IntegrateTestrun.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
+			this.IntegrateTestrun.UseVisualStyleBackColor = Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.GUIMenu.Dock = global::System.Windows.Forms.DockStyle.None;
 			this.GUIMenu.Items.AddRange(new global::System.Windows.Forms.ToolStripItem[]
 			{

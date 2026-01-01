@@ -305,24 +305,24 @@ namespace MasaoPlus.Controls
         {
             ConfView.Rows[rowIndex].DefaultCellStyle.BackColor = configParam.Category switch
             {
-                "システム" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.LightCyan : Color.DarkCyan,
-                "表示" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.AliceBlue : Color.DarkBlue,
-                "BGM" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.GhostWhite : Color.DarkSlateGray,
-                "効果音" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.SeaShell : Color.Maroon,
-                "仕掛け" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.MistyRose : Color.DarkRed,
-                "障害物" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.MistyRose : Color.DarkRed,
-                "画像" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.Honeydew : Color.DarkOliveGreen,
-                "装備" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.MintCream : Color.DarkGreen,
-                "敵" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.Lavender : Color.DarkMagenta,
-                "お店" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.LavenderBlush : Color.DarkViolet,
-                "地図" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.Azure : Color.DarkSlateBlue,
-                "オリジナルボス" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.LightYellow : Color.DarkGoldenrod,
-                "リンク土管" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.MistyRose : Color.DarkRed,
-                "メッセージ" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.OldLace : Color.Firebrick,
+                "システム" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.LightCyan : Color.DarkCyan,
+                "表示" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.AliceBlue : Color.DarkBlue,
+                "BGM" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.GhostWhite : Color.DarkSlateGray,
+                "効果音" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.SeaShell : Color.Maroon,
+                "仕掛け" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.MistyRose : Color.DarkRed,
+                "障害物" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.MistyRose : Color.DarkRed,
+                "画像" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.Honeydew : Color.DarkOliveGreen,
+                "装備" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.MintCream : Color.DarkGreen,
+                "敵" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.Lavender : Color.DarkMagenta,
+                "お店" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.LavenderBlush : Color.DarkViolet,
+                "地図" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.Azure : Color.DarkSlateBlue,
+                "オリジナルボス" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.LightYellow : Color.DarkGoldenrod,
+                "リンク土管" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.MistyRose : Color.DarkRed,
+                "メッセージ" => (Global.state.DarkMode == SystemColorMode.Classic) ? Color.OldLace : Color.Firebrick,
                 _ => default,
             };
 
-            if(Application.SystemColorMode == SystemColorMode.Dark)
+            if(Global.state.DarkMode == SystemColorMode.Dark)
             {
                 ConfView.Rows[rowIndex].DefaultCellStyle.SelectionForeColor = Color.White;
             }

@@ -58,7 +58,7 @@ namespace MasaoPlus.Controls
                 {
                     buttonCell.FlatStyle = enable ? FlatStyle.Popup : FlatStyle.Standard;
                 }
-                if(Application.SystemColorMode == SystemColorMode.Dark)
+                if(Global.state.DarkMode == SystemColorMode.Dark)
                 {
                     row.DefaultCellStyle.SelectionForeColor = Color.White;
                 }
@@ -1271,7 +1271,7 @@ namespace MasaoPlus.Controls
                         Value = false
                     };
                     ConfView[2, ConfView.Rows.Count - 2] = dataGridViewCheckBoxCell;
-                    if(Application.SystemColorMode == SystemColorMode.Dark)
+                    if(Global.state.DarkMode == SystemColorMode.Dark)
                     {
                         ConfView.Rows[^2].DefaultCellStyle.SelectionForeColor = Color.White;
                     }

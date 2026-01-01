@@ -107,7 +107,7 @@
 			this.tabPage1.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(547, 239));
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "システム";
-			this.tabPage1.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
+			this.tabPage1.UseVisualStyleBackColor = Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.WrapPropText.AutoSize = true;
 			this.WrapPropText.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(6), base.LogicalToDeviceUnits(142));
 			this.WrapPropText.Name = "WrapPropText";
@@ -122,7 +122,7 @@
 			this.DarkModeLabel.TabIndex = 8;
 			this.DarkModeLabel.Text = "ダークモードの設定[Sideの再起動が必要]";
 			this.DarkModeComboBox.DropDownStyle = global::System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.DarkModeComboBox.FlatStyle = (global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic) ? global::System.Windows.Forms.FlatStyle.System : global::System.Windows.Forms.FlatStyle.Flat;
+			this.DarkModeComboBox.FlatStyle = (Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic) ? global::System.Windows.Forms.FlatStyle.System : global::System.Windows.Forms.FlatStyle.Flat;
 			this.DarkModeComboBox.FormattingEnabled = true;
 			this.DarkModeComboBox.Items.AddRange(new object[]
 			{
@@ -170,7 +170,7 @@
 			this.ReversePosition.Text = "エディタとチップリスト/プロパティエディタの配置を左右逆にする(&R)[Sideの再起動が必要]";
 			this.ReversePosition.UseVisualStyleBackColor = true;
 			this.OutputFileEncode.DropDownStyle = global::System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.OutputFileEncode.FlatStyle = (global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic) ? global::System.Windows.Forms.FlatStyle.System : global::System.Windows.Forms.FlatStyle.Flat;
+			this.OutputFileEncode.FlatStyle = (Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic) ? global::System.Windows.Forms.FlatStyle.System : global::System.Windows.Forms.FlatStyle.Flat;
 			this.OutputFileEncode.FormattingEnabled = true;
 			this.OutputFileEncode.Items.AddRange(new object[]
 			{
@@ -206,7 +206,7 @@
 			this.tabPage2.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(547, 239));
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "グラフィカルデザイナ";
-			this.tabPage2.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
+			this.tabPage2.UseVisualStyleBackColor = Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.WheelHorz.AutoSize = true;
 			this.WheelHorz.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(246), base.LogicalToDeviceUnits(98));
 			this.WheelHorz.Name = "WheelHorz";
@@ -325,7 +325,7 @@
 			this.tabPage3.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(547, 239));
 			this.tabPage3.TabIndex = 2;
 			this.tabPage3.Text = "テスト実行";
-			this.tabPage3.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
+			this.tabPage3.UseVisualStyleBackColor = Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.UseQTRun.AutoSize = true;
 			this.UseQTRun.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(6), base.LogicalToDeviceUnits(133));
 			this.UseQTRun.Name = "UseQTRun";
@@ -395,7 +395,7 @@
 			this.Regist.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(547, 239));
 			this.Regist.TabIndex = 3;
 			this.Regist.Text = "関連付け";
-			this.Regist.UseVisualStyleBackColor = global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic;
+			this.Regist.UseVisualStyleBackColor = Global.state.DarkMode == global::System.Windows.Forms.SystemColorMode.Classic;
 			this.label2.AutoSize = true;
 			this.label2.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(169), base.LogicalToDeviceUnits(40));
 			this.label2.Margin = new global::System.Windows.Forms.Padding(3);

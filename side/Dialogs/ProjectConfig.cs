@@ -61,7 +61,7 @@ namespace MasaoPlus.Dialogs
                         htmlreplaceData.Name,
                         htmlreplaceData.Value
                     ]);
-                    if(Application.SystemColorMode == SystemColorMode.Dark)
+                    if(Global.state.DarkMode == SystemColorMode.Dark)
                     {
                         OutputReplaceView.Rows[row].DefaultCellStyle.SelectionForeColor = Color.White;
                     }

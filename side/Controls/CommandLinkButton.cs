@@ -156,7 +156,7 @@ namespace MasaoPlus.Controls
             }
             using (Font font = new(Font, fontStyle))
             {
-                TextRenderer.DrawText(pe.Graphics, text, font, new Point(xOffset, 3), (Application.SystemColorMode == SystemColorMode.Classic) ? Color.Blue : Color.Coral);
+                TextRenderer.DrawText(pe.Graphics, text, font, new Point(xOffset, 3), (Global.state.DarkMode == SystemColorMode.Classic) ? Color.Blue : Color.Coral);
                 Size size = TextRenderer.MeasureText(text, font);
                 TextRenderer.DrawText(pe.Graphics, description, Font, new Point(xOffset, 5 + size.Height), SystemColors.ControlText);
             }
