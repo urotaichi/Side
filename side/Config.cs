@@ -107,6 +107,9 @@ namespace MasaoPlus
 
             //枠に収まりきらないプロパティを改行して表示するかどうか　デフォルトでは改行して表示する
             public bool WrapPropText = true;
+
+            //ダークモード設定 (Classic:ライトモード, System:システム設定に従う, Dark:ダークモード)
+            public SystemColorMode DarkMode = SystemColorMode.System;
         }
 
         public class TestRun

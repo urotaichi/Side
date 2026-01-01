@@ -17,7 +17,6 @@ namespace MasaoPlus
                 Application.SetHighDpiMode(HighDpiMode.SystemAware);
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.SetColorMode(SystemColorMode.System);
                 try
                 {
                     if (File.Exists(Path.Combine(Application.StartupPath, Global.definition.ConfigFile)))
@@ -29,6 +28,7 @@ namespace MasaoPlus
                 {
                     MessageBox.Show("設定をロードできませんでした。", "設定読み込み失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 }
+                Application.SetColorMode(Global.config.localSystem.DarkMode);
                 bool flag = true;
                 if (Environment.GetCommandLineArgs().Length == 2)
                 {

@@ -19,6 +19,8 @@
 			this.Accept = new global::System.Windows.Forms.Button();
 			this.tabControl1 = new global::System.Windows.Forms.TabControl();
 			this.tabPage1 = new global::System.Windows.Forms.TabPage();
+			this.DarkModeComboBox = new global::System.Windows.Forms.ComboBox();
+			this.DarkModeLabel = new global::System.Windows.Forms.Label();
 			this.UsePropTextDialog = new global::System.Windows.Forms.CheckBox();
 			this.OutPutInititalSourceCode = new global::System.Windows.Forms.CheckBox();
 			this.WrapPropText = new global::System.Windows.Forms.CheckBox();
@@ -90,6 +92,8 @@
 			this.tabControl1.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(555, 265));
 			this.tabControl1.TabIndex = 0;
 			this.tabPage1.Controls.Add(this.WrapPropText);
+			this.tabPage1.Controls.Add(this.DarkModeLabel);
+			this.tabPage1.Controls.Add(this.DarkModeComboBox);
 			this.tabPage1.Controls.Add(this.OutPutInititalSourceCode);
 			this.tabPage1.Controls.Add(this.UsePropTextDialog);
 			this.tabPage1.Controls.Add(this.IntegrateEditorId);
@@ -111,6 +115,25 @@
 			this.WrapPropText.TabIndex = 7;
 			this.WrapPropText.Text = "長いプロパティ名を改行する(&B)";
 			this.WrapPropText.UseVisualStyleBackColor = true;
+			this.DarkModeLabel.AutoSize = true;
+			this.DarkModeLabel.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(6), base.LogicalToDeviceUnits(164));
+			this.DarkModeLabel.Name = "DarkModeLabel";
+			this.DarkModeLabel.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(80, 12));
+			this.DarkModeLabel.TabIndex = 8;
+			this.DarkModeLabel.Text = "ダークモードの設定[Sideの再起動が必要]";
+			this.DarkModeComboBox.DropDownStyle = global::System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.DarkModeComboBox.FlatStyle = (global::System.Windows.Forms.Application.SystemColorMode == global::System.Windows.Forms.SystemColorMode.Classic) ? global::System.Windows.Forms.FlatStyle.System : global::System.Windows.Forms.FlatStyle.Flat;
+			this.DarkModeComboBox.FormattingEnabled = true;
+			this.DarkModeComboBox.Items.AddRange(new object[]
+			{
+				"ライトモード",
+				"システム設定に従う",
+				"ダークモード"
+			});
+			this.DarkModeComboBox.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(230), base.LogicalToDeviceUnits(161));
+			this.DarkModeComboBox.Name = "DarkModeComboBox";
+			this.DarkModeComboBox.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(183, 20));
+			this.DarkModeComboBox.TabIndex = 9;
 			this.OutPutInititalSourceCode.AutoSize = true;
 			this.OutPutInititalSourceCode.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(6), base.LogicalToDeviceUnits(120));
 			this.OutPutInititalSourceCode.Name = "OutPutInititalSourceCode";
@@ -444,6 +467,10 @@
 		private global::System.Windows.Forms.TabControl tabControl1;
 
 		private global::System.Windows.Forms.TabPage tabPage1;
+
+		private global::System.Windows.Forms.Label DarkModeLabel;
+
+		private global::System.Windows.Forms.ComboBox DarkModeComboBox;
 
 		private global::System.Windows.Forms.TabPage tabPage2;
 
