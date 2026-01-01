@@ -370,18 +370,12 @@ namespace MasaoPlus
 
         public void ForceBufferResize()
         {
-            if (ForeLayerBmp != null)
-            {
-                ForeLayerBmp.Dispose();
-                ForeLayerBmp = null;
-            }
+            ForeLayerBmp?.Dispose();
+            ForeLayerBmp = null;
             for (int i = 0; i < BackLayerBmp.Count; i++)
             {
-                if (BackLayerBmp[i] != null)
-                {
-                    BackLayerBmp[i].Dispose();
-                    BackLayerBmp[i] = null;
-                }
+                BackLayerBmp[i]?.Dispose();
+                BackLayerBmp[i] = null;
             }
             bufpos = -1;
         }
@@ -1107,11 +1101,8 @@ namespace MasaoPlus
 
         private static void DisposeAndSetNull<T>(ref T disposable) where T : class, IDisposable
         {
-            if (disposable != null)
-            {
-                disposable.Dispose();
-                disposable = null;
-            }
+            disposable?.Dispose();
+            disposable = null;
         }
 
         private static void DisposeAndSetNull<T>(ref List<T> disposableList) where T : class, IDisposable
@@ -1322,11 +1313,8 @@ namespace MasaoPlus
             DisposeAndSetNull(ref ForeLayerBmp);
             for (int i = 0; i < BackLayerBmp.Count; i++)
             {
-                if (BackLayerBmp[i] != null)
-                {
-                    BackLayerBmp[i].Dispose();
-                    BackLayerBmp[i] = null;
-                }
+                BackLayerBmp[i]?.Dispose();
+                BackLayerBmp[i] = null;
             }
             GC.SuppressFinalize(this);
         }
