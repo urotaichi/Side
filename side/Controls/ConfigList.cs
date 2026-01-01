@@ -42,7 +42,7 @@ namespace MasaoPlus.Controls
                 }
             }
 
-            private int CalculateMaxDropDownWidth(ComboBox comboBox)
+            private static int CalculateMaxDropDownWidth(ComboBox comboBox)
             {
                 int maxWidth = 0;
                 using (Graphics g = comboBox.CreateGraphics())
@@ -307,7 +307,7 @@ namespace MasaoPlus.Controls
             {
                 "システム" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.LightCyan : Color.DarkCyan,
                 "表示" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.AliceBlue : Color.DarkBlue,
-                "BGM" =>(Application.SystemColorMode == SystemColorMode.Classic) ? Color.GhostWhite :  Color.DarkSlateGray,
+                "BGM" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.GhostWhite : Color.DarkSlateGray,
                 "効果音" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.SeaShell : Color.Maroon,
                 "仕掛け" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.MistyRose : Color.DarkRed,
                 "障害物" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.MistyRose : Color.DarkRed,
@@ -321,6 +321,11 @@ namespace MasaoPlus.Controls
                 "メッセージ" => (Application.SystemColorMode == SystemColorMode.Classic) ? Color.OldLace : Color.Firebrick,
                 _ => default,
             };
+
+            if(Application.SystemColorMode == SystemColorMode.Dark)
+            {
+                ConfView.Rows[rowIndex].DefaultCellStyle.SelectionForeColor = Color.White;
+            }
         }
 
         public void ApplyWrapModeIfEnabled()

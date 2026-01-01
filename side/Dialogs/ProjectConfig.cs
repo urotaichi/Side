@@ -56,11 +56,15 @@ namespace MasaoPlus.Dialogs
             {
                 foreach (HTMLReplaceData htmlreplaceData in Global.cpd.runtime.DefaultConfigurations.OutputReplace)
                 {
-                    OutputReplaceView.Rows.Add(
+                    int row = OutputReplaceView.Rows.Add(
                     [
                         htmlreplaceData.Name,
                         htmlreplaceData.Value
                     ]);
+                    if(Application.SystemColorMode == SystemColorMode.Dark)
+                    {
+                        OutputReplaceView.Rows[row].DefaultCellStyle.SelectionForeColor = Color.White;
+                    }
                 }
             }
         }

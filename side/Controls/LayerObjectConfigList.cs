@@ -156,7 +156,8 @@ namespace MasaoPlus.Controls
             {
                 row.DefaultCellStyle.BackColor = defaultBackColor;
                 row.DefaultCellStyle.SelectionBackColor = defaultSelectionBackColor;
-                row.DefaultCellStyle.SelectionForeColor = defaultSelectionForeColor;
+                
+                row.DefaultCellStyle.SelectionForeColor = (Application.SystemColorMode == SystemColorMode.Classic) ? defaultSelectionForeColor : Color.White;
             }
 
             // 編集中のレイヤーの行のみハイライト
