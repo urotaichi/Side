@@ -98,7 +98,8 @@ namespace MasaoPlus.Dialogs
                 {
                     Runtime runtime = runtimedatas[RuntimeView.SelectedIndices[0]];
                     string nRPath = runtimes[RuntimeView.SelectedIndices[0]];
-                    if (!CurrentProjectData.UseLayer && runtime.Definitions.LayerSize.bytesize != 0)
+                    bool isLayerMigration = !CurrentProjectData.UseLayer && runtime.Definitions.LayerSize.bytesize != 0;
+                    if (isLayerMigration)
                     {
                         MessageBox.Show($"レイヤー未使用プロジェクトからレイヤー使用プロジェクトへ移行します。{Environment.NewLine}レイヤー画像を指定してください。", "レイヤープロジェクトへの移行", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         using OpenFileDialog openFileDialog = new();
@@ -115,7 +116,7 @@ namespace MasaoPlus.Dialogs
                     {
                         StateLabel.Text = "プロジェクトを移行しています...";
                         StateLabel.Refresh();
-                        MoveProject(nRPath, runtime);
+                        MoveProject(nRPath, runtime, isLayerMigration);
                     }
                 }
             }
@@ -141,7 +142,7 @@ namespace MasaoPlus.Dialogs
             ChipMethod.Enabled = !NoTouch.Checked;
         }
 
-        private void MoveProject(string nRPath, Runtime nR)
+        private void MoveProject(string nRPath, Runtime nR, bool isLayerMigration)
         {
             Project project = new();
             ChipDataClass chipDataClass;
@@ -184,10 +185,20 @@ namespace MasaoPlus.Dialogs
             project.Runtime.Definitions.StageSize2 = Global.cpd.project.Runtime.Definitions.StageSize2;
             project.Runtime.Definitions.StageSize3 = Global.cpd.project.Runtime.Definitions.StageSize3;
             project.Runtime.Definitions.StageSize4 = Global.cpd.project.Runtime.Definitions.StageSize4;
-            project.Runtime.Definitions.LayerSize = Global.cpd.project.Runtime.Definitions.LayerSize;
-            project.Runtime.Definitions.LayerSize2 = Global.cpd.project.Runtime.Definitions.LayerSize2;
-            project.Runtime.Definitions.LayerSize3 = Global.cpd.project.Runtime.Definitions.LayerSize3;
-            project.Runtime.Definitions.LayerSize4 = Global.cpd.project.Runtime.Definitions.LayerSize4;
+            if (isLayerMigration)
+            {
+                // レイヤー移行時はLayerSize2-4をLayerSizeと同じサイズに設定
+                Project.SetStageSize(ref project.Runtime.Definitions.LayerSize2, project.Runtime.Definitions.LayerSize);
+                Project.SetStageSize(ref project.Runtime.Definitions.LayerSize3, project.Runtime.Definitions.LayerSize);
+                Project.SetStageSize(ref project.Runtime.Definitions.LayerSize4, project.Runtime.Definitions.LayerSize);
+            }
+            else
+            {
+                project.Runtime.Definitions.LayerSize = Global.cpd.project.Runtime.Definitions.LayerSize;
+                project.Runtime.Definitions.LayerSize2 = Global.cpd.project.Runtime.Definitions.LayerSize2;
+                project.Runtime.Definitions.LayerSize3 = Global.cpd.project.Runtime.Definitions.LayerSize3;
+                project.Runtime.Definitions.LayerSize4 = Global.cpd.project.Runtime.Definitions.LayerSize4;
+            }
             project.Runtime.Definitions.MapSize = Global.cpd.project.Runtime.Definitions.MapSize;
             project.Use3rdMapData = Global.cpd.project.Use3rdMapData;
             project.CustomPartsDefinition = Global.cpd.project?.CustomPartsDefinition;
@@ -249,21 +260,40 @@ namespace MasaoPlus.Dialogs
                 if (project.Runtime.Definitions.LayerSize.bytesize != 0) // レイヤーあり
                 {
                     NullChip = chipDataClass.Layerchip[0];
-                    foreach (var layer in Global.cpd.project.LayerData)
+                    if (isLayerMigration)
                     {
-                        project.LayerData.Add(LayerDataCopy(project, layer, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize));
+                        // レイヤー移行時：配列を新規作成してヌル文字で埋める
+                        project.LayerData = [[.. new string[project.Runtime.Definitions.LayerSize.y]]];
+                        project.LayerData2 = [[.. new string[project.Runtime.Definitions.LayerSize2.y]]];
+                        project.LayerData3 = [[.. new string[project.Runtime.Definitions.LayerSize3.y]]];
+                        project.LayerData4 = [[.. new string[project.Runtime.Definitions.LayerSize4.y]]];
+                        
+                        string character = NullChip.character;
+
+                        Project.SetLayerData(project.LayerData, project.Runtime.Definitions.LayerSize.x, character);
+                        Project.SetLayerData(project.LayerData2, project.Runtime.Definitions.LayerSize2.x, character);
+                        Project.SetLayerData(project.LayerData3, project.Runtime.Definitions.LayerSize3.x, character);
+                        Project.SetLayerData(project.LayerData4, project.Runtime.Definitions.LayerSize4.x, character);
                     }
-                    foreach (var layer in Global.cpd.project.LayerData2)
+                    else
                     {
-                        project.LayerData2.Add(LayerDataCopy(project, layer, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize2));
-                    }
-                    foreach (var layer in Global.cpd.project.LayerData3)
-                    {
-                        project.LayerData3.Add(LayerDataCopy(project, layer, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize3));
-                    }
-                    foreach (var layer in Global.cpd.project.LayerData4)
-                    {
-                        project.LayerData4.Add(LayerDataCopy(project, layer, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize4));
+                        // 通常の移行時：既存データをコピー
+                        foreach (var layer in Global.cpd.project.LayerData)
+                        {
+                            project.LayerData.Add(LayerDataCopy(project, layer, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize));
+                        }
+                        foreach (var layer in Global.cpd.project.LayerData2)
+                        {
+                            project.LayerData2.Add(LayerDataCopy(project, layer, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize2));
+                        }
+                        foreach (var layer in Global.cpd.project.LayerData3)
+                        {
+                            project.LayerData3.Add(LayerDataCopy(project, layer, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize3));
+                        }
+                        foreach (var layer in Global.cpd.project.LayerData4)
+                        {
+                            project.LayerData4.Add(LayerDataCopy(project, layer, chipDataClass.Layerchip, NullChip, project.Runtime.Definitions.LayerSize4));
+                        }
                     }
                 }
 
@@ -333,6 +363,13 @@ namespace MasaoPlus.Dialogs
             Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
             if (CurrentProjectData.UseLayer)
             {
+                if (isLayerMigration){
+                    Global.MainWnd.MainDesigner.BackLayerBmp = new List<Bitmap>(Global.cpd.LayerCount);
+                    for (int i = 0; i < Global.cpd.LayerCount; i++)
+                    {
+                        Global.MainWnd.MainDesigner.BackLayerBmp.Add(null);
+                    }
+                }
                 Global.MainWnd.MainDesigner.UpdateBackgroundBuffer();
             }
             Global.MainWnd.ChipItemReady();

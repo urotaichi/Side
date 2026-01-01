@@ -184,7 +184,7 @@ namespace MasaoPlus
             size.bytesize = baseSize.bytesize;
         }
 
-        private static void SetStageSize(ref Runtime.DefinedData.LayerSizeData size, Runtime.DefinedData.StageSizeData baseSize)
+        public static void SetStageSize(ref Runtime.DefinedData.LayerSizeData size, Runtime.DefinedData.StageSizeData baseSize)
         {
             size.x = baseSize.x;
             size.y = baseSize.y;
@@ -204,7 +204,7 @@ namespace MasaoPlus
             }
         }
 
-        private static void SetLayerData(List<LayerObject> data, int x, string character)
+        public static void SetLayerData(List<LayerObject> data, int x, string character)
         {
             foreach (var layer in data)
             {
