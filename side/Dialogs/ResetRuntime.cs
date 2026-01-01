@@ -202,7 +202,7 @@ namespace MasaoPlus.Dialogs
             project.Runtime.Definitions.MapSize = Global.cpd.project.Runtime.Definitions.MapSize;
             project.Use3rdMapData = Global.cpd.project.Use3rdMapData;
             project.CustomPartsDefinition = Global.cpd.project?.CustomPartsDefinition;
-            if (CurrentProjectData.UseLayer)
+            if (CurrentProjectData.UseLayer || isLayerMigration)
             {
                 for (int i = 0; i < chipDataClass.Layerchip.Length; i++)
                 {
