@@ -15,11 +15,7 @@ namespace MasaoPlus.Dialogs
             PrevProjPath = PrevProj;
             try
             {
-                PrevProject = Project.ParseXML(PrevProj);
-                if (PrevProject == null)
-                {
-                    throw new Exception("Project Analysis Failured.");
-                }
+                PrevProject = Project.ParseXML(PrevProj) ?? throw new Exception("Project Analysis Failured.");
             }
             catch (Exception ex)
             {
