@@ -874,10 +874,11 @@ namespace MasaoPlus.Dialogs
                             {
                                 string configName = project.Config.Configurations[num].Name;
                                 string configNameNoQuote = configName.Trim('\'');
-                                if (configName == "mcs_screen_size"){
+                                if (configName == "mcs_screen_size")
+                                {
                                     if (dictionary.TryGetValue(configName, out string value1) || dictionary.TryGetValue(configNameNoQuote, out value1))
                                     {
-                                        if(value1 == "1")
+                                        if (value1 == "1")
                                         {
                                             mcs_screen_size = 1;
                                         }
@@ -1141,13 +1142,13 @@ namespace MasaoPlus.Dialogs
                                     "http://www.t3.rim.or.jp/~naoto/naoto.html";
                                 break;
                             case "width":
-                                if(mcs_screen_size == 1)
+                                if (mcs_screen_size == 1)
                                 {
                                     project.Config.Configurations[num].Value = "640";
                                 }
                                 break;
                             case "height":
-                                if(mcs_screen_size == 1)
+                                if (mcs_screen_size == 1)
                                 {
                                     project.Config.Configurations[num].Value = "480";
                                 }

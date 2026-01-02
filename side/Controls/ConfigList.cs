@@ -32,10 +32,10 @@ namespace MasaoPlus.Controls
                     {
                         // 最大幅を計算
                         int maxWidth = CalculateMaxDropDownWidth(comboBox);
-                        
+
                         // 画面の右端を超えないように調整
-                        int maxAllowedWidth = Screen.FromControl(_dataGridView).WorkingArea.Width - 
-                                            _dataGridView.GetCellDisplayRectangle(_dataGridView.CurrentCell.ColumnIndex, 
+                        int maxAllowedWidth = Screen.FromControl(_dataGridView).WorkingArea.Width -
+                                            _dataGridView.GetCellDisplayRectangle(_dataGridView.CurrentCell.ColumnIndex,
                                             _dataGridView.CurrentCell.RowIndex, false).Left;
                         comboBox.DropDownWidth = Math.Min(maxWidth, maxAllowedWidth);
                     }
@@ -89,7 +89,7 @@ namespace MasaoPlus.Controls
             {
                 return;
             }
-            
+
             ClearAndPrepareView();
             PopulateConfigurationRows();
             ApplyWrapModeIfEnabled();
@@ -116,21 +116,21 @@ namespace MasaoPlus.Controls
 
         private bool ShouldIncludeConfiguration(ConfigParam configParam)
         {
-            bool isInSelectedCategory = ConfigSelector.SelectedIndex == 0 || 
+            bool isInSelectedCategory = ConfigSelector.SelectedIndex == 0 ||
                                       configParam.Category == Global.cpd.project.Config.Categories[ConfigSelector.SelectedIndex - 1];
-            
-            bool isNotSpecialRelation = configParam.Relation != "STAGENUM" && 
-                                      configParam.Relation != "STAGESTART" && 
+
+            bool isNotSpecialRelation = configParam.Relation != "STAGENUM" &&
+                                      configParam.Relation != "STAGESTART" &&
                                       configParam.Relation != "STAGESELECT";
-            
+
             return isInSelectedCategory && isNotSpecialRelation;
         }
 
         private void TrackSpecialIndices(ConfigParam configParam, int index)
         {
-            if (configParam.Name == "width") 
+            if (configParam.Name == "width")
                 width_index = index;
-            else if (configParam.Name == "height") 
+            else if (configParam.Name == "height")
                 height_index = index;
         }
 
@@ -138,7 +138,7 @@ namespace MasaoPlus.Controls
         {
             OrigIdx.Add(originalIndex);
             ConfView.Rows.Add([configParam.Description, configParam.Value]);
-            
+
             int rowIndex = OrigIdx.Count - 1;
             SetupCellForConfigType(configParam, rowIndex);
             SetRowBackgroundColor(configParam, rowIndex);
@@ -185,7 +185,7 @@ namespace MasaoPlus.Controls
                 TrueValue = trueValue,
                 FalseValue = falseValue
             };
-            
+
             if (bool.TryParse(configParam.Value, out bool flag))
             {
                 cell.Value = (configParam.Type == ConfigParam.Types.b2 ? !flag : flag).ToString();
@@ -194,7 +194,7 @@ namespace MasaoPlus.Controls
             {
                 cell.Value = false;
             }
-            
+
             ConfView[1, rowIndex] = cell;
         }
 
@@ -266,7 +266,7 @@ namespace MasaoPlus.Controls
             cell.Items.AddRange(configParam.ListItems);
 
             int MaxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
-            if (int.TryParse(configParam.Value, out int num) && 
+            if (int.TryParse(configParam.Value, out int num) &&
                 (num > 0 && num <= MaxAthleticNumber || num >= 1001 && num <= 1249))
             {
                 if (num <= MaxAthleticNumber)
@@ -292,12 +292,12 @@ namespace MasaoPlus.Controls
             {
                 Value = configParam.Value
             };
-            
+
             Colors colors = new(configParam.Value);
             cell.Style.BackColor = colors.c;
             cell.Style.SelectionBackColor = colors.c;
             cell.FlatStyle = FlatStyle.Popup;
-            
+
             ConfView[1, rowIndex] = cell;
         }
 
@@ -322,7 +322,7 @@ namespace MasaoPlus.Controls
                 _ => default,
             };
 
-            if(Global.state.DarkMode == SystemColorMode.Dark)
+            if (Global.state.DarkMode == SystemColorMode.Dark)
             {
                 ConfView.Rows[rowIndex].DefaultCellStyle.SelectionForeColor = Color.White;
             }
@@ -330,7 +330,7 @@ namespace MasaoPlus.Controls
 
         public void ApplyWrapModeIfEnabled()
         {
-            if (Global.config.localSystem.WrapPropText) 
+            if (Global.config.localSystem.WrapPropText)
                 ConfView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
 
@@ -357,8 +357,8 @@ namespace MasaoPlus.Controls
 
         private bool IsValidCellEventArgs(DataGridViewCellEventArgs e)
         {
-            return e.ColumnIndex == 1 && 
-                   e.RowIndex >= 0 && 
+            return e.ColumnIndex == 1 &&
+                   e.RowIndex >= 0 &&
                    e.RowIndex < OrigIdx.Count;
         }
 
@@ -383,14 +383,14 @@ namespace MasaoPlus.Controls
 
             using PropertyTextInputDialog dialog = new();
             dialog.InputStr = configParam.Value;
-            
+
             if (dialog.ShowDialog() != DialogResult.Cancel)
             {
                 ConfView[e.ColumnIndex, e.RowIndex].Value = dialog.InputStr;
                 Global.cpd.project.Config.Configurations[configIndex].Value = dialog.InputStr;
                 return true;
             }
-            
+
             return false;
         }
 
@@ -414,7 +414,7 @@ namespace MasaoPlus.Controls
 
             UpdateFileConfigValue(configParam, configIndex, targetPath, e);
             HandleFileConfigRelations(configParam, configIndex);
-            
+
             return true;
         }
 
@@ -422,7 +422,7 @@ namespace MasaoPlus.Controls
         {
             dialog.InitialDirectory = Global.cpd.where;
             dialog.FileName = configParam.Value;
-            
+
             dialog.Filter = configParam.Type switch
             {
                 ConfigParam.Types.f_i => "画像(*.gif;*.png;*.jpg;*.bmp)|*.gif;*.png;*.jpg;*.bmp|全てのファイル (*.*)|*.*",
@@ -460,13 +460,13 @@ namespace MasaoPlus.Controls
                            $"プロジェクトディレクトリへコピーします。{Environment.NewLine}" +
                            $"また、同じ名前のファイルがある場合は上書きされます。{Environment.NewLine}" +
                            "よろしいですか？";
-            
+
             return MessageBox.Show(message, "ファイルの追加", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
         }
 
         private static bool HandleFileCopyError(string sourceFile, ref string targetPath)
         {
-            MessageBox.Show($"ファイルをコピーできませんでした。{Environment.NewLine}ファイルのコピー先を再指定してください。", 
+            MessageBox.Show($"ファイルをコピーできませんでした。{Environment.NewLine}ファイルのコピー先を再指定してください。",
                           "コピー失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
 
             return GetAlternativeFilePath(sourceFile, ref targetPath);
@@ -504,14 +504,14 @@ namespace MasaoPlus.Controls
         {
             if (File.Exists(selectedPath))
             {
-                MessageBox.Show($"上書きはできません。{Environment.NewLine}元のファイルを消すか、別のファイルを指定してください。", 
+                MessageBox.Show($"上書きはできません。{Environment.NewLine}元のファイルを消すか、別のファイルを指定してください。",
                               "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return false;
             }
 
             if (Path.GetDirectoryName(selectedPath) != Global.cpd.where)
             {
-                MessageBox.Show("プロジェクトディレクトリ内に保存してください。", 
+                MessageBox.Show("プロジェクトディレクトリ内に保存してください。",
                               "選択エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return false;
             }
@@ -560,7 +560,7 @@ namespace MasaoPlus.Controls
                 case "PATTERN":
                     Global.MainWnd.MainDesigner.PrepareImages();
                     Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
-                    if(!Global.state.EditingForeground)
+                    if (!Global.state.EditingForeground)
                     {
                         Global.MainWnd.MainDesigner.InitTransparent();
                     }
@@ -672,12 +672,12 @@ namespace MasaoPlus.Controls
 
         private void MediaPlayer_PlayStateChange(int NewState)
         {
-            if (NewState == (int)WMPPlayState.wmppsStopped || 
+            if (NewState == (int)WMPPlayState.wmppsStopped ||
                 NewState == (int)WMPPlayState.wmppsMediaEnded)
             {
                 isPlaying = false;
                 now_playing_item = -1;
-                
+
                 // コントロールスレッドで実行する必要がある
                 if (InvokeRequired)
                 {
@@ -751,20 +751,20 @@ namespace MasaoPlus.Controls
             if (e.Button == MouseButtons.Right)
             {
                 var hitTest = ConfView.HitTest(e.X, e.Y);
-                if (hitTest.Type == DataGridViewHitTestType.Cell && 
-                    hitTest.RowIndex >= 0 && 
+                if (hitTest.Type == DataGridViewHitTestType.Cell &&
+                    hitTest.RowIndex >= 0 &&
                     IsAudioPreviewRow(hitTest.RowIndex))
                 {
                     rightClickedRowIndex = hitTest.RowIndex;
-                    
+
                     // メニューアイテムの有効/無効を設定
                     int configIndex = OrigIdx[hitTest.RowIndex];
                     ConfigParam configParam = Global.cpd.project.Config.Configurations[configIndex];
                     string audioPath = Path.Combine(Global.cpd.where, configParam.Value);
-                    
+
                     menuPlayAudio.Enabled = File.Exists(audioPath);
                     menuStopAudio.Enabled = isPlaying;
-                    
+
                     audioContextMenu.Show(ConfView, e.Location);
                 }
             }
@@ -913,7 +913,7 @@ namespace MasaoPlus.Controls
 
             if (lineList.Count > maxRows)
             {
-                MessageBox.Show($"行数が最大値を超えています。{Environment.NewLine}超えた行は削除されます。", 
+                MessageBox.Show($"行数が最大値を超えています。{Environment.NewLine}超えた行は削除されます。",
                               "行の超過", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 lineList.RemoveRange(maxRows, lineList.Count - maxRows);
             }
@@ -968,7 +968,7 @@ namespace MasaoPlus.Controls
         {
             Global.cpd.project.Config.Configurations[width_index].Value = "640";
             Global.cpd.project.Config.Configurations[height_index].Value = "480";
-            
+
             int tmp_y = Global.cpd.runtime.Definitions.MapSize.y;
             Global.cpd.runtime.Definitions.MapSize.x = 19;
             Global.cpd.runtime.Definitions.MapSize.y = 14;
@@ -984,10 +984,10 @@ namespace MasaoPlus.Controls
             Array.Resize(ref Global.cpd.project.MapData.Strings, Global.cpd.runtime.Definitions.MapSize.y);
             for (int i = 0; i < Global.cpd.runtime.Definitions.MapSize.y; i++)
             {
-                int paddingNeeded = i < originalHeight 
+                int paddingNeeded = i < originalHeight
                     ? Global.cpd.runtime.Definitions.MapSize.x - Global.cpd.project.MapData[i].Length
                     : Global.cpd.runtime.Definitions.MapSize.x;
-                
+
                 for (int j = 0; j < paddingNeeded; j++)
                 {
                     Global.cpd.project.MapData[i] += ".";
@@ -1160,11 +1160,11 @@ namespace MasaoPlus.Controls
             int configParamNum = comboCell.Items.IndexOf(ConfView[e.ColumnIndex, e.RowIndex].Value) + 1;
             int maxAthleticNumber = Global.cpd.runtime.Definitions.MaxAthleticNumber;
 
-            string newValue = configParamNum <= maxAthleticNumber 
+            string newValue = configParamNum <= maxAthleticNumber
                 ? configParamNum.ToString()
                 : (configParamNum - 1 - maxAthleticNumber + 1001).ToString();
 
-            bool isCurrentValue = configParamNum <= maxAthleticNumber 
+            bool isCurrentValue = configParamNum <= maxAthleticNumber
                 ? configParam.Value == configParamNum.ToString()
                 : configParam.Value == (configParamNum - 1 - maxAthleticNumber + 1001).ToString();
 
