@@ -398,7 +398,7 @@ namespace MasaoPlus
             // スクロールバーの値を更新
             int scrollAmount = (e.Delta > 0 ? -1 : 1) * LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height); // ホイール上で上スクロール、下で下スクロール
             int newValue = vScr.Value + scrollAmount;
-            
+
             // スクロールバーの範囲内に制限
             int effectiveMax = vScr.Maximum - vScr.LargeChange + 1;
             if (effectiveMax < vScr.Minimum) effectiveMax = vScr.Minimum;

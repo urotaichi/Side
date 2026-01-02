@@ -244,7 +244,7 @@ namespace MasaoPlus
         public void UpdateLayerVisibility()
         {
             bool useMultiLayers = CurrentProjectData.UseLayer && Global.cpd.LayerCount > 1;
-            
+
             // レイヤー関連のUIコンポーネントの表示状態を設定
             LayerSelector.Visible = useMultiLayers;
             MainEditor.LayerSelector.Visible = useMultiLayers;
@@ -258,14 +258,14 @@ namespace MasaoPlus
                 MainEditor.BackgroundLayer.Checked = !useMultiLayers;
                 EditBackground.Checked = !useMultiLayers;
             }
-            
+
             if (!useMultiLayers)
                 return;
-            
+
             // レイヤーメニューの再構築
             RebuildLayerMenus();
         }
-        
+
         /// <summary>
         /// レイヤー関連のメニューを再構築します
         /// </summary>
@@ -277,23 +277,23 @@ namespace MasaoPlus
             var firstLayerEditorSelectorItem = MainEditor.LayerSelector.DropDownItems[0];
             var firstLayerMenuCountItem = LayerMenuCount[0];
             var firstLayerMenuSelectorItem = LayerMenuSelector.DropDownItems[0];
-            
+
             // メニュー項目をクリア
             LayerCount.Clear();
             LayerSelector.DropDownItems.Clear();
             MainEditor.LayerSelector.DropDownItems.Clear();
             LayerMenuCount.Clear();
             LayerMenuSelector.DropDownItems.Clear();
-            
+
             // 最初のアイテムを復元
             LayerCount.Add(firstLayerCountItem);
             LayerSelector.DropDownItems.Add(firstLayerSelectorItem);
             MainEditor.LayerSelector.DropDownItems.Add(firstLayerEditorSelectorItem);
             LayerMenuCount.Add(firstLayerMenuCountItem);
             LayerMenuSelector.DropDownItems.Add(firstLayerMenuSelectorItem);
-            
+
             // レイヤーメニュー項目を追加
-            for(int i = 1; i < Global.cpd.LayerCount; i++)
+            for (int i = 1; i < Global.cpd.LayerCount; i++)
             {
                 AddLayerMenuItem(i);
             }
@@ -304,7 +304,7 @@ namespace MasaoPlus
                 LayerMenuCount[Global.state.EdittingLayerIndex].Checked = true;
             }
         }
-        
+
         /// <summary>
         /// 指定されたインデックスのレイヤーメニュー項目を追加します
         /// </summary>
@@ -315,17 +315,17 @@ namespace MasaoPlus
             var layerSelectorItem = CreateLayerMenuItem("LayerSelector", index);
             LayerCount.Add(layerSelectorItem);
             LayerSelector.DropDownItems.Add(layerSelectorItem);
-            
+
             var layerEditorSelectorItem = CreateLayerMenuItem("LayerEditorSelector", index);
             MainEditor.LayerCount.Add(layerEditorSelectorItem);
             MainEditor.LayerSelector.DropDownItems.Add(layerEditorSelectorItem);
-            
+
             // LayerMenuSelector用のメニュー項目を作成
             var layerMenuCountItem = CreateLayerMenuItem("LayerMenuCount", index);
             LayerMenuCount.Add(layerMenuCountItem);
             LayerMenuSelector.DropDownItems.Add(layerMenuCountItem);
         }
-        
+
         /// <summary>
         /// レイヤーメニュー項目を作成します
         /// </summary>
@@ -342,9 +342,9 @@ namespace MasaoPlus
                 Size = LogicalToDeviceUnits(new Size(180, 22)),
                 Text = $"レイヤー {index + 1}"
             };
-            
+
             menuItem.Click += (sender, e) => LayerCount_Click(index);
-            
+
             return menuItem;
         }
 
@@ -377,7 +377,7 @@ namespace MasaoPlus
             EditPatternChip.Checked = false;
             PatternChipLayer.Checked = false;
             MainEditor.PatternChipLayer.Checked = false;
-            for(int i = 0; i < Global.cpd.LayerCount; i++)
+            for (int i = 0; i < Global.cpd.LayerCount; i++)
             {
                 if (i == layerIndex)
                 {
@@ -1378,16 +1378,16 @@ namespace MasaoPlus
                     switch (keyCode)
                     {
                         case Keys.F1:
-                            if(EditTab.SelectedIndex != 1) StageSelectionChange(0);
+                            if (EditTab.SelectedIndex != 1) StageSelectionChange(0);
                             return;
                         case Keys.F2:
-                            if(EditTab.SelectedIndex != 1) StageSelectionChange(1);
+                            if (EditTab.SelectedIndex != 1) StageSelectionChange(1);
                             return;
                         case Keys.F3:
-                            if(EditTab.SelectedIndex != 1) StageSelectionChange(2);
+                            if (EditTab.SelectedIndex != 1) StageSelectionChange(2);
                             return;
                         case Keys.F4:
-                            if(EditTab.SelectedIndex != 1) StageSelectionChange(3);
+                            if (EditTab.SelectedIndex != 1) StageSelectionChange(3);
                             return;
                         case Keys.F6:
                             StageSelectionChange(4);
@@ -2181,23 +2181,23 @@ namespace MasaoPlus
             switch (newValue)
             {
                 case 0:
-                    SetStageData(Global.cpd.project.StageData, 
-                        Global.cpd.project.LayerData?.FirstOrDefault(), 
+                    SetStageData(Global.cpd.project.StageData,
+                        Global.cpd.project.LayerData?.FirstOrDefault(),
                         Global.cpd.project.Config.Background, MEditStage1, CurrentProjectData.UseLayer);
                     break;
                 case 1:
-                    SetStageData(Global.cpd.project.StageData2, 
-                        Global.cpd.project.LayerData2?.FirstOrDefault(), 
+                    SetStageData(Global.cpd.project.StageData2,
+                        Global.cpd.project.LayerData2?.FirstOrDefault(),
                         Global.cpd.project.Config.Background2, MEditStage2, CurrentProjectData.UseLayer);
                     break;
                 case 2:
-                    SetStageData(Global.cpd.project.StageData3, 
-                        Global.cpd.project.LayerData3?.FirstOrDefault(), 
+                    SetStageData(Global.cpd.project.StageData3,
+                        Global.cpd.project.LayerData3?.FirstOrDefault(),
                         Global.cpd.project.Config.Background3, MEditStage3, CurrentProjectData.UseLayer);
                     break;
                 case 3:
-                    SetStageData(Global.cpd.project.StageData4, 
-                        Global.cpd.project.LayerData4?.FirstOrDefault(), 
+                    SetStageData(Global.cpd.project.StageData4,
+                        Global.cpd.project.LayerData4?.FirstOrDefault(),
                         Global.cpd.project.Config.Background4, MEditStage4, CurrentProjectData.UseLayer);
                     break;
                 case 4:
@@ -2207,7 +2207,7 @@ namespace MasaoPlus
                     break;
             }
             Global.state.EdittingStage = newValue;
-            if(newValue < 4) LayerObjectConfigList.ConfigSelector.SelectedIndex = newValue;
+            if (newValue < 4) LayerObjectConfigList.ConfigSelector.SelectedIndex = newValue;
             UpdateLayerVisibility();
             MainDesigner.ForceBufferResize();
             MainDesigner.PrepareImages();

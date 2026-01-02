@@ -62,7 +62,7 @@ namespace MasaoPlus
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"設定定義ファイルを開けませんでした。{Environment.NewLine}{ex.Message}", 
+                MessageBox.Show($"設定定義ファイルを開けませんでした。{Environment.NewLine}{ex.Message}",
                     "オープン失敗", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return null;
             }
@@ -78,16 +78,16 @@ namespace MasaoPlus
             for (int i = 0; i < Configurations.Length; i++)
             {
                 var configParam = Configurations[i];
-                
+
                 // カテゴリ設定
                 ProcessCategory(configParam, i);
-                
+
                 // チップ関係設定
                 ProcessChipRelation(configParam);
-                
+
                 // Relation設定
                 ProcessRelation(configParam, i, requiredFlags);
-                
+
                 // Name設定
                 ProcessName(configParam, i);
             }
@@ -101,7 +101,7 @@ namespace MasaoPlus
             {
                 Configurations[index].Category = "未設定";
             }
-            
+
             if (!Categories.Contains(configParam.Category))
             {
                 Categories.Add(configParam.Category);

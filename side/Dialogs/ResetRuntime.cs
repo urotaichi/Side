@@ -267,7 +267,7 @@ namespace MasaoPlus.Dialogs
                         project.LayerData2 = [[.. new string[project.Runtime.Definitions.LayerSize2.y]]];
                         project.LayerData3 = [[.. new string[project.Runtime.Definitions.LayerSize3.y]]];
                         project.LayerData4 = [[.. new string[project.Runtime.Definitions.LayerSize4.y]]];
-                        
+
                         string character = NullChip.character;
 
                         Project.SetLayerData(project.LayerData, project.Runtime.Definitions.LayerSize.x, character);
@@ -363,7 +363,8 @@ namespace MasaoPlus.Dialogs
             Global.MainWnd.MainDesigner.UpdateForegroundBuffer();
             if (CurrentProjectData.UseLayer)
             {
-                if (isLayerMigration){
+                if (isLayerMigration)
+                {
                     Global.MainWnd.MainDesigner.BackLayerBmp = new List<Bitmap>(Global.cpd.LayerCount);
                     for (int i = 0; i < Global.cpd.LayerCount; i++)
                     {

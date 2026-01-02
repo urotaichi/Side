@@ -36,7 +36,7 @@ namespace MasaoPlus.Controls
             PrepareCurrentCustomPartsParam();
             BasePartsTypes.FlatStyle = FlatStyle.Popup;
             ConfView[1, 1] = BasePartsTypes;
-            
+
             UpdateControlStates();
         }
 
@@ -44,13 +44,13 @@ namespace MasaoPlus.Controls
         {
             bool enable = Global.cpd.project.Use3rdMapData && CustomizeParts.Count > 0;
             bool hasCustomParts = enable && Global.cpd.CustomPartsChip != null && Global.cpd.CustomPartsChip.Length > 0;
-            
+
             btnAddParts.Enabled = enable;
             btnCopyParts.Enabled = hasCustomParts;
             btnDeleteParts.Enabled = hasCustomParts;
-            
+
             buttonPanel.Enabled = enable;
-            
+
             foreach (DataGridViewRow row in ConfView.Rows)
             {
                 row.ReadOnly = !enable;
@@ -58,7 +58,7 @@ namespace MasaoPlus.Controls
                 {
                     buttonCell.FlatStyle = enable ? FlatStyle.Popup : FlatStyle.Standard;
                 }
-                if(Global.state.DarkMode == SystemColorMode.Dark)
+                if (Global.state.DarkMode == SystemColorMode.Dark)
                 {
                     row.DefaultCellStyle.SelectionForeColor = Color.White;
                 }
@@ -1271,7 +1271,7 @@ namespace MasaoPlus.Controls
                         Value = false
                     };
                     ConfView[2, ConfView.Rows.Count - 2] = dataGridViewCheckBoxCell;
-                    if(Global.state.DarkMode == SystemColorMode.Dark)
+                    if (Global.state.DarkMode == SystemColorMode.Dark)
                     {
                         ConfView.Rows[^2].DefaultCellStyle.SelectionForeColor = Color.White;
                     }
@@ -1593,7 +1593,7 @@ namespace MasaoPlus.Controls
 
                     // BasePartsTypesの選択を設定
                     BasePartsTypes.Value = BasePartsTypes.Items[0].ToString();
-                    
+
                     break;
                 }
             }
@@ -1623,7 +1623,7 @@ namespace MasaoPlus.Controls
                     break;
                 }
             }
-            
+
             ChipsData c = CustomizeParts[i];
             if (int.TryParse(c.code, out int code))
             {
@@ -1680,7 +1680,7 @@ namespace MasaoPlus.Controls
             if (e.Button == MouseButtons.Right && Global.cpd.project.Use3rdMapData)
             {
                 var hitTest = ConfView.HitTest(e.X, e.Y);
-                if (hitTest.Type == DataGridViewHitTestType.Cell && 
+                if (hitTest.Type == DataGridViewHitTestType.Cell &&
                     hitTest.RowIndex >= 0 &&
                     IsAttackTimingRow(hitTest.RowIndex))
                 {

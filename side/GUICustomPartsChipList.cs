@@ -177,7 +177,7 @@ namespace MasaoPlus
             int num = (int)Math.Floor(e.X / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Width));
             num += (int)Math.Floor((e.Y + vPosition) / (double)LogicalToDeviceUnits(Global.cpd.runtime.Definitions.ChipSize.Height)) * hMaxChip;
             int num2 = Global.cpd.CustomPartsChip?.Length ?? 0;
-            
+
             if (num >= num2)
             {
                 if (num == num2)
