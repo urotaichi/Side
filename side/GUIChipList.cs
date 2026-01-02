@@ -400,11 +400,14 @@ namespace MasaoPlus
             int newValue = vScr.Value + scrollAmount;
             
             // スクロールバーの範囲内に制限
+            int effectiveMax = vScr.Maximum - vScr.LargeChange + 1;
+            if (effectiveMax < vScr.Minimum) effectiveMax = vScr.Minimum;
+
             if (newValue < vScr.Minimum)
                 newValue = vScr.Minimum;
-            else if (newValue > vScr.Maximum - vScr.LargeChange)
-                newValue = vScr.Maximum - vScr.LargeChange;
-            
+            else if (newValue > effectiveMax)
+                newValue = effectiveMax;
+
             vScr.Value = newValue;
             MainPanel.Refresh();
         }
