@@ -184,19 +184,24 @@ namespace MasaoPlus.Dialogs
 
         public static void SetLayerDataSources()
         {
+            SetLayerDataSources(Global.cpd.project, Global.cpd.runtime);
+        }
+
+        public static void SetLayerDataSources(Project project, Runtime runtime)
+        {
             var layerConfigs = new[]
             {
-                (Global.cpd.project.LayerData, Global.cpd.runtime.Definitions.LayerSize),
-                (LayerData: Global.cpd.project.LayerData2, LayerSize: Global.cpd.runtime.Definitions.LayerSize2),
-                (LayerData: Global.cpd.project.LayerData3, LayerSize: Global.cpd.runtime.Definitions.LayerSize3),
-                (LayerData: Global.cpd.project.LayerData4, LayerSize: Global.cpd.runtime.Definitions.LayerSize4)
+                (project.LayerData, runtime.Definitions.LayerSize),
+                (LayerData: project.LayerData2, LayerSize: runtime.Definitions.LayerSize2),
+                (LayerData: project.LayerData3, LayerSize: runtime.Definitions.LayerSize3),
+                (LayerData: project.LayerData4, LayerSize: runtime.Definitions.LayerSize4)
             };
 
             foreach (var (LayerData, LayerSize) in layerConfigs)
             {
                 for (int i = 0; i < LayerData.Count; i++)
                 {
-                    LayerData[i].Source = Global.cpd.project.Config.LayerImage;
+                    LayerData[i].Source = project.Config.LayerImage;
                     if (LayerSize?.mapchips?.ElementAtOrDefault(i) != null)
                     {
                         var layerValue = LayerSize.mapchips.ElementAtOrDefault(i).Value;
