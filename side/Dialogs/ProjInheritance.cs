@@ -15,11 +15,7 @@ namespace MasaoPlus.Dialogs
             PrevProjPath = PrevProj;
             try
             {
-                PrevProject = Project.ParseXML(PrevProj);
-                if (PrevProject == null)
-                {
-                    throw new Exception("Project Analysis Failured.");
-                }
+                PrevProject = Project.ParseXML(PrevProj) ?? throw new Exception("Project Analysis Failured.");
             }
             catch (Exception ex)
             {
@@ -56,9 +52,11 @@ namespace MasaoPlus.Dialogs
                 Name = NewProjName.Text,
                 Runtime = PrevProject.Runtime,
                 Config = PrevProject.Config,
-                CustomPartsDefinition = PrevProject.CustomPartsDefinition
+                CustomPartsDefinition = PrevProject.CustomPartsDefinition,
+                Use3rdMapData = PrevProject.Use3rdMapData
             };
             Project.SetAllStageData(project, Path.GetDirectoryName(PrevProjPath), PrevProject);
+            if (PrevProject.Use3rdMapData) Project.ConvertAllStageTo3rdMapData(project);
             project.SaveXML(text);
             NewProjectName = text;
             DialogResult = DialogResult.OK;

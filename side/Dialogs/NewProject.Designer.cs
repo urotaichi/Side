@@ -46,6 +46,7 @@
 			this.StageNum = new global::System.Windows.Forms.NumericUpDown();
 			this.label2 = new global::System.Windows.Forms.Label();
 			this.LayerUnsupNotice = new global::System.Windows.Forms.Label();
+			this.Use3rdMapData = new global::System.Windows.Forms.CheckBox();
 			this.groupBox2.SuspendLayout();
 			((global::System.ComponentModel.ISupportInitialize)this.StageNum).BeginInit();
 			base.SuspendLayout();
@@ -66,7 +67,7 @@
 			this.groupBox2.Controls.Add(this.MapChipBrowse);
 			this.groupBox2.Controls.Add(this.MapChip);
 			this.groupBox2.Controls.Add(this.MCLabel);
-			this.groupBox2.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(12), base.LogicalToDeviceUnits(88));
+			this.groupBox2.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(12), base.LogicalToDeviceUnits(112));
 			this.groupBox2.Name = "groupBox2";
 			this.groupBox2.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(515, 164));
 			this.groupBox2.TabIndex = 7;
@@ -248,14 +249,14 @@
 			this.RDLabel.Text = "ルートディレクトリ";
 			this.Cancel.DialogResult = global::System.Windows.Forms.DialogResult.Cancel;
 			this.Cancel.FlatStyle = global::System.Windows.Forms.FlatStyle.Popup;
-			this.Cancel.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(418), base.LogicalToDeviceUnits(258));
+			this.Cancel.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(418), base.LogicalToDeviceUnits(282));
 			this.Cancel.Name = "Cancel";
 			this.Cancel.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(109, 23));
 			this.Cancel.TabIndex = 10;
 			this.Cancel.Text = "キャンセル";
 			this.Cancel.UseVisualStyleBackColor = true;
 			this.OK.FlatStyle = global::System.Windows.Forms.FlatStyle.Popup;
-			this.OK.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(303), base.LogicalToDeviceUnits(258));
+			this.OK.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(303), base.LogicalToDeviceUnits(282));
 			this.OK.Name = "OK";
 			this.OK.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(109, 23));
 			this.OK.TabIndex = 9;
@@ -297,17 +298,26 @@
 			this.LayerUnsupNotice.Text = "ランタイムがレイヤー編集に対応していません";
 			this.LayerUnsupNotice.TextAlign = global::System.Drawing.ContentAlignment.MiddleCenter;
 			this.LayerUnsupNotice.Visible = false;
+			this.Use3rdMapData.AutoSize = true;
+			this.Use3rdMapData.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(12), base.LogicalToDeviceUnits(87));
+			this.Use3rdMapData.Name = "Use3rdMapData";
+			this.Use3rdMapData.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(252, 17));
+			this.Use3rdMapData.TabIndex = 11;
+			this.Use3rdMapData.Text = "第3版マップデータを有効にする(後から変更可能)";
+			this.Use3rdMapData.UseVisualStyleBackColor = true;
+			this.HelpTip.SetToolTip(this.Use3rdMapData, "第3版マップデータを最初から有効化します。");
 			base.AcceptButton = this.OK;
 			//base.AutoScaleDimensions = new global::System.Drawing.SizeF(6f, 12f);
 			//base.AutoScaleMode = global::System.Windows.Forms.AutoScaleMode.Font;
 			base.CancelButton = this.Cancel;
-			base.ClientSize = base.LogicalToDeviceUnits(new global::System.Drawing.Size(539, 293));
+			base.ClientSize = base.LogicalToDeviceUnits(new global::System.Drawing.Size(539, 317));
 			base.ControlBox = false;
 			base.Controls.Add(this.StageNum);
 			base.Controls.Add(this.label2);
 			base.Controls.Add(this.OK);
 			base.Controls.Add(this.Cancel);
 			base.Controls.Add(this.groupBox2);
+			base.Controls.Add(this.Use3rdMapData);
 			base.Controls.Add(this.PNLabel);
 			base.Controls.Add(this.ProjectName);
 			base.Controls.Add(this.RootDir);
@@ -391,5 +401,7 @@
 		private global::System.Windows.Forms.NumericUpDown StageNum;
 
 		private global::System.Windows.Forms.Label LayerUnsupNotice;
+
+		private global::System.Windows.Forms.CheckBox Use3rdMapData;
 	}
 }

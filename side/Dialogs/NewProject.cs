@@ -381,6 +381,14 @@ namespace MasaoPlus.Dialogs
                 {
                     File.Copy(LayerPattern.Text, Path.Combine(text, project.Config.LayerImage), true);
                 }
+
+                // 第3版マップデータを有効化する場合の処理
+                if (Use3rdMapData.Checked && !runtimedatas[RuntimeSet.SelectedIndex].Definitions.Package.Contains("28"))
+                {
+                    project.Use3rdMapData = true;
+                    // 第3版マップデータへの変換を実行
+                    Project.ConvertAllStageTo3rdMapData(project);
+                }
                 project.SaveXML(text2);
                 CreatedProject = text2;
             }
@@ -415,6 +423,17 @@ namespace MasaoPlus.Dialogs
                     LayerPattern.BackColor = Color.LightGray;
                     LayerPattern.ForeColor = Color.Gray;
                     LayerUnsupNotice.Visible = true;
+                }
+
+                // チェックボックスを有効/無効に設定
+                if (!runtimedatas[RuntimeSet.SelectedIndex].Definitions.Package.Contains("28"))
+                {
+                    Use3rdMapData.Enabled = true;
+                }
+                else
+                {
+                    Use3rdMapData.Enabled = false;
+                    Use3rdMapData.Checked = false;
                 }
             }
             CheckInput();
