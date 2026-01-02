@@ -258,18 +258,18 @@ namespace MasaoPlus
             if (baseProject.Runtime.Definitions.LayerSize.bytesize != 0)
             {
                 CheckStageSize(ref baseProject.Runtime.Definitions.LayerSize);
-                SetStageSize(ref baseProject.Runtime.Definitions.LayerSize2, baseProject.Runtime.Definitions.LayerSize);
-                SetStageSize(ref baseProject.Runtime.Definitions.LayerSize3, baseProject.Runtime.Definitions.LayerSize);
-                SetStageSize(ref baseProject.Runtime.Definitions.LayerSize4, baseProject.Runtime.Definitions.LayerSize);
+                SetStageSize(ref baseProject.Runtime.Definitions.LayerSize2, baseProject.Runtime.Definitions.LayerSize2);
+                SetStageSize(ref baseProject.Runtime.Definitions.LayerSize3, baseProject.Runtime.Definitions.LayerSize3);
+                SetStageSize(ref baseProject.Runtime.Definitions.LayerSize4, baseProject.Runtime.Definitions.LayerSize4);
                 project.LayerData = [[.. new string[baseProject.Runtime.Definitions.LayerSize.y]]];
                 project.LayerData2 = [[.. new string[baseProject.Runtime.Definitions.LayerSize2.y]]];
                 project.LayerData3 = [[.. new string[baseProject.Runtime.Definitions.LayerSize3.y]]];
                 project.LayerData4 = [[.. new string[baseProject.Runtime.Definitions.LayerSize4.y]]];
             }
             CheckStageSize(ref baseProject.Runtime.Definitions.StageSize);
-            SetStageSize(ref baseProject.Runtime.Definitions.StageSize2, baseProject.Runtime.Definitions.StageSize);
-            SetStageSize(ref baseProject.Runtime.Definitions.StageSize3, baseProject.Runtime.Definitions.StageSize);
-            SetStageSize(ref baseProject.Runtime.Definitions.StageSize4, baseProject.Runtime.Definitions.StageSize);
+            SetStageSize(ref baseProject.Runtime.Definitions.StageSize2, baseProject.Runtime.Definitions.StageSize2);
+            SetStageSize(ref baseProject.Runtime.Definitions.StageSize3, baseProject.Runtime.Definitions.StageSize3);
+            SetStageSize(ref baseProject.Runtime.Definitions.StageSize4, baseProject.Runtime.Definitions.StageSize4);
             project.StageData = [.. new string[baseProject.Runtime.Definitions.StageSize.y]];
             project.StageData2 = [.. new string[baseProject.Runtime.Definitions.StageSize2.y]];
             project.StageData3 = [.. new string[baseProject.Runtime.Definitions.StageSize3.y]];
