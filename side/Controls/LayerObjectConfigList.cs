@@ -98,7 +98,7 @@ namespace MasaoPlus.Controls
         {
             var (stageData, layerData) = GetStageAndLayerData(selectedIndex);
             var (stageSize, layerSize) = GetRuntimeDefinitions(selectedIndex);
-            
+
             if (stageData == null || layerData == null || layerSize == null)
             {
                 return;
@@ -106,7 +106,7 @@ namespace MasaoPlus.Controls
 
             // mainOrderを考慮してレイヤー順序を決定
             List<(string name, string source, string rowTag, bool useDefault)> orderedLayers = [];
-            
+
             // 背景レイヤーを順番に追加
             for (int i = 0; i < layerData.Count; i++)
             {
@@ -130,7 +130,7 @@ namespace MasaoPlus.Controls
                     FlatStyle = FlatStyle.Popup
                 };
                 ConfView[1, ConfView.Rows.Count - 1] = dataGridViewButtonCell;
-                
+
                 ConfView.Rows[^1].Tag = rowTag;
 
                 DataGridViewCheckBoxCell dataGridViewCheckBoxCell = new()
@@ -156,7 +156,7 @@ namespace MasaoPlus.Controls
             {
                 row.DefaultCellStyle.BackColor = defaultBackColor;
                 row.DefaultCellStyle.SelectionBackColor = defaultSelectionBackColor;
-                
+
                 row.DefaultCellStyle.SelectionForeColor = (Global.state.DarkMode == SystemColorMode.Classic) ? defaultSelectionForeColor : Color.White;
             }
 
@@ -164,7 +164,7 @@ namespace MasaoPlus.Controls
             for (int i = 0; i < ConfView.Rows.Count; i++)
             {
                 string rowTag = ConfView.Rows[i].Tag?.ToString() ?? "";
-                
+
                 if (rowTag == "stage" && Global.state.EdittingLayerIndex == -1)
                 {
                     // メインレイヤーが編集中の場合
@@ -210,7 +210,7 @@ namespace MasaoPlus.Controls
             {
                 var checkBoxCell = (DataGridViewCheckBoxCell)ConfView[2, e.RowIndex];
                 bool currentValue = bool.Parse(checkBoxCell.Value?.ToString() ?? "false");
-                
+
                 // trueの場合はデフォルト画像の値をランタイム定義に書き込んでfalseに変更
                 if (currentValue)
                 {
@@ -233,7 +233,7 @@ namespace MasaoPlus.Controls
         {
             string rowTag = ConfView.Rows[rowIndex].Tag?.ToString() ?? "";
             string defaultFileName = GetDefaultFileName(rowTag);
-            
+
             if (string.IsNullOrEmpty(defaultFileName))
             {
                 return;
@@ -261,7 +261,7 @@ namespace MasaoPlus.Controls
             }
             else if (rowTag.StartsWith("layer:"))
             {
-                if (int.TryParse(rowTag.AsSpan(6), out int layerIndex) && 
+                if (int.TryParse(rowTag.AsSpan(6), out int layerIndex) &&
                     layerSize?.mapchips != null && layerIndex < layerSize.mapchips.Count)
                 {
                     layerSize.mapchips[layerIndex].Value = fileName;
@@ -273,7 +273,7 @@ namespace MasaoPlus.Controls
         {
             string rowTag = ConfView.Rows[rowIndex].Tag?.ToString() ?? "";
             string defaultFileName = GetDefaultFileName(rowTag);
-            
+
             if (string.IsNullOrEmpty(defaultFileName))
             {
                 return;
@@ -284,10 +284,10 @@ namespace MasaoPlus.Controls
 
         private static string GetDefaultFileName(string rowTag)
         {
-            return rowTag == "stage" 
-                ? Global.cpd.project.Config.PatternImage 
-                : rowTag.StartsWith("layer:") 
-                    ? Global.cpd.project.Config.LayerImage 
+            return rowTag == "stage"
+                ? Global.cpd.project.Config.PatternImage
+                : rowTag.StartsWith("layer:")
+                    ? Global.cpd.project.Config.LayerImage
                     : "";
         }
 
@@ -302,7 +302,7 @@ namespace MasaoPlus.Controls
 
             // ランタイム定義の値をnullに設定してデフォルト値を使用
             var (stageSize, layerSize) = GetRuntimeDefinitions(ConfigSelector.SelectedIndex);
-            
+
             if (rowTag == "stage")
             {
                 if (stageSize?.mainPattern != null)
@@ -312,7 +312,7 @@ namespace MasaoPlus.Controls
             }
             else if (rowTag.StartsWith("layer:"))
             {
-                if (int.TryParse(rowTag.AsSpan(6), out int layerIndex) && 
+                if (int.TryParse(rowTag.AsSpan(6), out int layerIndex) &&
                     layerSize?.mapchips != null && layerIndex < layerSize.mapchips.Count)
                 {
                     layerSize.mapchips[layerIndex].Value = null;
@@ -326,17 +326,17 @@ namespace MasaoPlus.Controls
         {
             var (stageData, layerData) = GetStageAndLayerData(ConfigSelector.SelectedIndex);
             string currentSource = "";
-            
+
             // クリックされた行のタグを確認
             string rowTag = ConfView.Rows[e.RowIndex].Tag?.ToString() ?? "";
-            
+
             if (rowTag == "stage")
             {
                 currentSource = stageData?.Source ?? "";
             }
             else if (rowTag.StartsWith("layer:"))
             {
-                if (int.TryParse(rowTag.AsSpan(6), out int layerIndex) && 
+                if (int.TryParse(rowTag.AsSpan(6), out int layerIndex) &&
                     layerData != null && layerIndex < layerData.Count)
                 {
                     currentSource = layerData[layerIndex].Source;
@@ -383,7 +383,7 @@ namespace MasaoPlus.Controls
             }
             else if (rowTag.StartsWith("layer:"))
             {
-                if (int.TryParse(rowTag.AsSpan(6), out int layerIndex) && 
+                if (int.TryParse(rowTag.AsSpan(6), out int layerIndex) &&
                     layerData != null && layerIndex < layerData.Count)
                 {
                     layerData[layerIndex].Source = fileName;
@@ -456,7 +456,7 @@ namespace MasaoPlus.Controls
                         {
                             layerData.Insert(newLayerIndex, sourceLayerItem);
                         }
-                        
+
                         if (sourceMapchipItem != null)
                         {
                             if (newLayerIndex >= layerSize.mapchips.Count)
@@ -471,7 +471,7 @@ namespace MasaoPlus.Controls
 
                         // mainOrderの調整
                         AdjustMainOrderAfterLayerMove(sourceDisplayIndex, targetDisplayIndex, layerSize);
-                        
+
                         RefreshDesignerForRelation("LAYERCHIP");
                     }
                 }
@@ -548,7 +548,7 @@ namespace MasaoPlus.Controls
         {
             if (e.Button == MouseButtons.Left && dragRowIndex >= 0)
             {
-                if (dragBoxFromMouseDown != Rectangle.Empty && 
+                if (dragBoxFromMouseDown != Rectangle.Empty &&
                     !dragBoxFromMouseDown.Contains(e.X, e.Y))
                 {
                     ConfView.DoDragDrop(dragRowIndex, DragDropEffects.Move);
@@ -559,10 +559,10 @@ namespace MasaoPlus.Controls
         private void ConfView_DragOver(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Move;
-            
+
             Point clientPoint = ConfView.PointToClient(new Point(e.X, e.Y));
             var hitTest = ConfView.HitTest(clientPoint.X, clientPoint.Y);
-            
+
             UpdateDropVisualFeedback(clientPoint, hitTest);
         }
 
@@ -570,7 +570,7 @@ namespace MasaoPlus.Controls
         {
             int previousDropTarget = dropTargetRowIndex;
             int previousDropLineY = dropLineY;
-            
+
             dropTargetRowIndex = -1;
             showDropLine = false;
             dropLineY = -1;
@@ -602,7 +602,7 @@ namespace MasaoPlus.Controls
                 {
                     Rectangle firstCellRect = ConfView.GetCellDisplayRectangle(0, 0, false);
                     Rectangle lastCellRect = ConfView.GetCellDisplayRectangle(0, ConfView.Rows.Count - 1, false);
-                    
+
                     if (clientPoint.Y < firstCellRect.Y)
                     {
                         // グリッド上方向 - 最初の行の上にドロップライン
@@ -645,7 +645,7 @@ namespace MasaoPlus.Controls
             var hitTest = ConfView.HitTest(clientPoint.X, clientPoint.Y);
 
             int targetDisplayIndex = GetDropTargetDisplayIndex(clientPoint, hitTest, dragRowIndex);
-            
+
             if (targetDisplayIndex >= 0 && dragRowIndex >= 0)
             {
                 // 移動前後のインデックスが同じ場合は何もしない
@@ -720,7 +720,7 @@ namespace MasaoPlus.Controls
                 {
                     Rectangle firstCellRect = ConfView.GetCellDisplayRectangle(0, 0, false);
                     Rectangle lastCellRect = ConfView.GetCellDisplayRectangle(0, ConfView.Rows.Count - 1, false);
-                    
+
                     if (clientPoint.Y < firstCellRect.Y)
                     {
                         // グリッドの上部 - 先頭に挿入
@@ -738,7 +738,7 @@ namespace MasaoPlus.Controls
                         return targetIndex;
                     }
                 }
-                
+
                 // その他の場合は最後に挿入
                 int defaultTargetIndex = ConfView.Rows.Count;
                 if (defaultTargetIndex > sourceRowIndex)
@@ -760,7 +760,7 @@ namespace MasaoPlus.Controls
         {
             var (stageData, layerData) = GetStageAndLayerData(ConfigSelector.SelectedIndex);
             var (stageSize, layerSize) = GetRuntimeDefinitions(ConfigSelector.SelectedIndex);
-            
+
             if (layerData == null || layerSize == null)
             {
                 return;
@@ -784,7 +784,7 @@ namespace MasaoPlus.Controls
                 }
                 newLayer[i] = string.Join(",", array);
             }
-            
+
             var newMapchip = new Runtime.DefinedData.StageSizeData.LayerObject
             {
                 Value = null
@@ -804,7 +804,7 @@ namespace MasaoPlus.Controls
             {
                 // 指定された行の直下に追加（右クリックメニューから呼ばれた場合）
                 string rowTag = ConfView.Rows[insertAfterRowIndex].Tag?.ToString() ?? "";
-                
+
                 if (rowTag == "stage")
                 {
                     // メインレイヤーの直下に挿入
@@ -822,7 +822,7 @@ namespace MasaoPlus.Controls
                     // 末尾に追加
                     insertIndex = layerData.Count;
                 }
-                
+
                 newRowIndex = insertAfterRowIndex + 1;
             }
 
@@ -847,7 +847,7 @@ namespace MasaoPlus.Controls
 
             // 表示を更新
             Reload();
-            
+
             // 新しく追加された行を選択
             if (insertAfterRowIndex == -1)
             {
@@ -891,7 +891,7 @@ namespace MasaoPlus.Controls
         private void DeleteLayer(int rowIndex)
         {
             string rowTag = ConfView.Rows[rowIndex].Tag?.ToString() ?? "";
-            
+
             if (!rowTag.StartsWith("layer:"))
             {
                 return;
@@ -899,7 +899,7 @@ namespace MasaoPlus.Controls
 
             var (stageData, layerData) = GetStageAndLayerData(ConfigSelector.SelectedIndex);
             var (stageSize, layerSize) = GetRuntimeDefinitions(ConfigSelector.SelectedIndex);
-            
+
             if (layerData == null || layerSize == null)
             {
                 return;
@@ -909,7 +909,7 @@ namespace MasaoPlus.Controls
             {
                 // 編集中のレイヤーが削除される場合の処理
                 bool isDeletingCurrentEditingLayer = layerIndex == Global.state.EdittingLayerIndex;
-                
+
                 // レイヤーを削除
                 layerData.RemoveAt(layerIndex);
                 if (layerIndex < layerSize.mapchips.Count)
@@ -927,12 +927,12 @@ namespace MasaoPlus.Controls
 
                 // 表示を更新
                 Reload();
-                
+
                 // 編集中のレイヤーが削除された場合の処理
                 if (isDeletingCurrentEditingLayer)
                 {
                     int newEditingDisplayIndex = Math.Max(0, rowIndex - 1);
-                    
+
                     if (newEditingDisplayIndex == layerSize.mainOrder)
                     {
                         Global.MainWnd.EditPatternChip_Click(this, new EventArgs());
@@ -950,7 +950,7 @@ namespace MasaoPlus.Controls
                         Global.MainWnd.LayerCount_Click(newEditingDisplayIndex);
                     }
                 }
-                
+
                 // 選択状態を調整
                 if (ConfView.Rows.Count > 0)
                 {
@@ -980,10 +980,10 @@ namespace MasaoPlus.Controls
         private void DuplicateLayer(int rowIndex)
         {
             string rowTag = ConfView.Rows[rowIndex].Tag?.ToString() ?? "";
-            
+
             var (stageData, layerData) = GetStageAndLayerData(ConfigSelector.SelectedIndex);
             var (stageSize, layerSize) = GetRuntimeDefinitions(ConfigSelector.SelectedIndex);
-            
+
             if (layerData == null || layerSize == null)
             {
                 return;
@@ -1006,7 +1006,7 @@ namespace MasaoPlus.Controls
                 {
                     newLayer[i] = sourceLayer[i];
                 }
-                
+
                 var newMapchip = new Runtime.DefinedData.StageSizeData.LayerObject
                 {
                     Value = sourceMapchip?.Value
@@ -1033,7 +1033,7 @@ namespace MasaoPlus.Controls
 
                 // 表示を更新
                 Reload();
-                
+
                 // 複製された行を選択
                 if (ConfView.Rows.Count > rowIndex + 1)
                 {
@@ -1073,7 +1073,7 @@ namespace MasaoPlus.Controls
         {
             int selectedRowIndex = ConfView.SelectedRows[0].Index;
             int targetIndex = selectedRowIndex + direction;
-            
+
             ProcessLayerMove(selectedRowIndex, targetIndex);
         }
 
@@ -1085,12 +1085,12 @@ namespace MasaoPlus.Controls
             {
                 // 編集中のレイヤーが移動される場合の処理
                 bool isMovingCurrentEditingLayer = sourceLayerIndex == Global.state.EdittingLayerIndex;
-                
+
                 MoveLayerData(sourceDisplayIndex, targetDisplayIndex);
-                
+
                 // 表示の更新
                 Reload();
-                
+
                 // 編集中のレイヤーが移動した場合、新しいレイヤーインデックスを設定
                 if (isMovingCurrentEditingLayer)
                 {
@@ -1099,7 +1099,7 @@ namespace MasaoPlus.Controls
                     int newLayerIndex = CalculateNewLayerIndex(targetDisplayIndex, layerSize.mainOrder);
                     Global.MainWnd.LayerCount_Click(newLayerIndex);
                 }
-                
+
                 // 移動後の行を選択
                 ConfView.ClearSelection();
                 ConfView.Rows[targetDisplayIndex].Selected = true;
@@ -1109,10 +1109,10 @@ namespace MasaoPlus.Controls
             {
                 // メインレイヤーの移動の場合は従来通り
                 MoveLayerData(sourceDisplayIndex, targetDisplayIndex);
-                
+
                 // 表示の更新
                 Reload();
-                
+
                 // 移動後の行を選択
                 ConfView.ClearSelection();
                 ConfView.Rows[targetDisplayIndex].Selected = true;
@@ -1136,11 +1136,11 @@ namespace MasaoPlus.Controls
 
             int selectedRowIndex = ConfView.SelectedRows[0].Index;
             string rowTag = ConfView.Rows[selectedRowIndex].Tag?.ToString() ?? "";
-            
+
             // 上下移動ボタンの状態制御
             btnMoveUp.Enabled = selectedRowIndex > 0;
             btnMoveDown.Enabled = selectedRowIndex < ConfView.Rows.Count - 1;
-            
+
             // メインレイヤーが選択されている場合
             if (rowTag == "stage")
             {
@@ -1150,7 +1150,7 @@ namespace MasaoPlus.Controls
             else if (rowTag.StartsWith("layer:"))
             {
                 var (stageData, layerData) = GetStageAndLayerData(ConfigSelector.SelectedIndex);
-                
+
                 // 背景レイヤーが1個しかない場合は削除不可
                 btnDeleteLayer.Enabled = layerData != null && layerData.Count > 1;
                 btnDuplicateLayer.Enabled = true;
@@ -1180,11 +1180,11 @@ namespace MasaoPlus.Controls
             }
 
             string rowTag = ConfView.Rows[rightClickedRowIndex].Tag?.ToString() ?? "";
-            
+
             // 上下移動メニューの状態制御
             menuMoveUp.Enabled = rightClickedRowIndex > 0;
             menuMoveDown.Enabled = rightClickedRowIndex < ConfView.Rows.Count - 1;
-            
+
             // メインレイヤーが右クリックされた場合
             if (rowTag == "stage")
             {
@@ -1195,7 +1195,7 @@ namespace MasaoPlus.Controls
             else if (rowTag.StartsWith("layer:"))
             {
                 var (stageData, layerData) = GetStageAndLayerData(ConfigSelector.SelectedIndex);
-                
+
                 menuAddLayer.Enabled = true;
                 // 背景レイヤーが1個しかない場合は削除不可
                 menuDeleteLayer.Enabled = layerData != null && layerData.Count > 1;

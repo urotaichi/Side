@@ -111,6 +111,7 @@ namespace MasaoPlus.Utils
             string[] list = new string[dysize];
             int num = 0; // 0行目からスタート
             string NullChar = MapChip[0].character; // 空白文字（マップチップ0番の文字）
+            bool foundAnyData = false; // データが見つかったかどうかを追跡
 
             while (num < dysize)
             {
@@ -119,9 +120,15 @@ namespace MasaoPlus.Utils
                     for (int num2 = 0; num2 <= Split; num2++)
                     {
                         if (list[num] == null && Params.ContainsKey(string.Format(f, num2, num)))
+                        {
                             list[num] = Params[string.Format(f, num2, num)];
+                            foundAnyData = true;
+                        }
                         else if (Params.ContainsKey(string.Format(f, num2, num)))
+                        {
                             list[num] += Params[string.Format(f, num2, num)];
+                            foundAnyData = true;
+                        }
                         else
                         {
                             string nullSegment = new(NullChar[0], dxsize / (Split + 1) * NullChar.Length);
@@ -132,11 +139,17 @@ namespace MasaoPlus.Utils
                 else // 地図画面の時
                 {
                     if (Params.ContainsKey(string.Format(f, num)))
+                    {
                         list[num] = Params[string.Format(f, num)];
+                        foundAnyData = true;
+                    }
                     else list[num] = null;
                 }
                 num++;
             }
+
+            // データが見つからなかった場合は false を返す
+            if (!foundAnyData) return false;
 
             if (num == dysize)
             {

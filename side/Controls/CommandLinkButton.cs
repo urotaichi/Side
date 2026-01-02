@@ -140,7 +140,7 @@ namespace MasaoPlus.Controls
 
             int baseOffset = LogicalToDeviceUnits(3);
             int xOffset = baseOffset;
-            
+
             // 画像があれば描画
             if (buttonImage != null)
             {

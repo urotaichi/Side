@@ -61,7 +61,7 @@ namespace MasaoPlus.Dialogs
                         htmlreplaceData.Name,
                         htmlreplaceData.Value
                     ]);
-                    if(Global.state.DarkMode == SystemColorMode.Dark)
+                    if (Global.state.DarkMode == SystemColorMode.Dark)
                     {
                         OutputReplaceView.Rows[row].DefaultCellStyle.SelectionForeColor = Color.White;
                     }
@@ -200,29 +200,7 @@ namespace MasaoPlus.Dialogs
                     if (Use3rdMapData.Checked)
                     {
                         Global.MainWnd.MainDesigner.CreateDrawItemCodeReference();
-                        Project.Convert3rdMapData(Global.cpd.project.StageData, Global.cpd.runtime.Definitions.StageSize.bytesize);
-                        Project.Convert3rdMapData(Global.cpd.project.StageData2, Global.cpd.runtime.Definitions.StageSize.bytesize);
-                        Project.Convert3rdMapData(Global.cpd.project.StageData3, Global.cpd.runtime.Definitions.StageSize.bytesize);
-                        Project.Convert3rdMapData(Global.cpd.project.StageData4, Global.cpd.runtime.Definitions.StageSize.bytesize);
-                        if (Global.cpd.project.Runtime.Definitions.LayerSize.bytesize != 0)
-                        {
-                            foreach (var layer in Global.cpd.project.LayerData)
-                            {
-                                Project.Convert3rdMapData(layer, Global.cpd.runtime.Definitions.LayerSize.bytesize);
-                            }
-                            foreach (var layer in Global.cpd.project.LayerData2)
-                            {
-                                Project.Convert3rdMapData(layer, Global.cpd.runtime.Definitions.LayerSize.bytesize);
-                            }
-                            foreach (var layer in Global.cpd.project.LayerData3)
-                            {
-                                Project.Convert3rdMapData(layer, Global.cpd.runtime.Definitions.LayerSize.bytesize);
-                            }
-                            foreach (var layer in Global.cpd.project.LayerData4)
-                            {
-                                Project.Convert3rdMapData(layer, Global.cpd.runtime.Definitions.LayerSize.bytesize);
-                            }
-                        }
+                        Project.ConvertAllStageTo3rdMapData(Global.cpd.project, Global.cpd.runtime);
                     }
                     else
                     {

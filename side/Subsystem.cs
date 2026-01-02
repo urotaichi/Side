@@ -1118,7 +1118,7 @@ namespace MasaoPlus
                     }
                     AppendMapchipLayer(LayerStageText[i], sb);
                 }
-                
+
                 if (LayerSizeData.mainOrder == LayerStageText.Count)
                 {
                     AppendMainMapLayer(MainStageText, sb);
@@ -1137,14 +1137,14 @@ namespace MasaoPlus
         private static string BuildStage3rdMapDataJson(int x, int y, Action<StringBuilder> appendLayers)
         {
             StringBuilder stringBuilder = new();
-            
+
             stringBuilder.AppendLine("\t\t\t{");
             stringBuilder.AppendLine("\t\t\t\t\"size\": {");
             stringBuilder.AppendLine($"\t\t\t\t\t\"x\": {x},");
             stringBuilder.AppendLine($"\t\t\t\t\t\"y\": {y}");
             stringBuilder.AppendLine("\t\t\t\t},");
             stringBuilder.AppendLine("\t\t\t\t\"layers\": [");
-            
+
             appendLayers(stringBuilder);
 
             stringBuilder.AppendLine("\t\t\t\t]");
@@ -1157,7 +1157,7 @@ namespace MasaoPlus
         {
             sb.AppendLine("\t\t\t\t\t{");
             sb.AppendLine("\t\t\t\t\t\t\"type\": \"main\",");
-            if(Global.config.localSystem.OutPutInititalSourceCode || MainStageText.Source != Global.cpd.project.Config.PatternImage) sb.AppendLine($"\t\t\t\t\t\t\"src\": \"{MainStageText.Source}\",");
+            if (Global.config.localSystem.OutPutInititalSourceCode || MainStageText.Source != Global.cpd.project.Config.PatternImage) sb.AppendLine($"\t\t\t\t\t\t\"src\": \"{MainStageText.Source}\",");
             sb.AppendLine("\t\t\t\t\t\t\"map\": [");
             foreach (string value in MainStageText)
             {
@@ -1176,7 +1176,7 @@ namespace MasaoPlus
         {
             sb.AppendLine("\t\t\t\t\t{");
             sb.AppendLine("\t\t\t\t\t\t\"type\": \"mapchip\",");
-            if(Global.config.localSystem.OutPutInititalSourceCode || layerObject.Source != Global.cpd.project.Config.LayerImage) sb.AppendLine($"\t\t\t\t\t\t\"src\": \"{layerObject.Source}\",");
+            if (Global.config.localSystem.OutPutInititalSourceCode || layerObject.Source != Global.cpd.project.Config.LayerImage) sb.AppendLine($"\t\t\t\t\t\t\"src\": \"{layerObject.Source}\",");
             sb.AppendLine("\t\t\t\t\t\t\"map\": [");
             foreach (string value in layerObject)
             {

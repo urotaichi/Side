@@ -108,7 +108,7 @@ namespace MasaoPlus
         //    binaryFormatter.Serialize(deflateStream, this);
         //}
 
-        public static void Convert3rdMapData(LayerObject StageData, int bytesize = 1)
+        private static void Convert3rdMapData(LayerObject StageData, int bytesize = 1)
         {
             for (int i = 0; i < StageData.Length; i++)
             {
@@ -133,6 +133,38 @@ namespace MasaoPlus
                     }
                 }
                 StageData[i] = string.Join(",", array2);
+            }
+        }
+
+        public static void ConvertAllStageTo3rdMapData(Project project)
+        {
+            ConvertAllStageTo3rdMapData(project, project.Runtime);
+        }
+
+        public static void ConvertAllStageTo3rdMapData(Project project, Runtime runtime)
+        {
+            Convert3rdMapData(project.StageData, runtime.Definitions.StageSize.bytesize);
+            Convert3rdMapData(project.StageData2, runtime.Definitions.StageSize.bytesize);
+            Convert3rdMapData(project.StageData3, runtime.Definitions.StageSize.bytesize);
+            Convert3rdMapData(project.StageData4, runtime.Definitions.StageSize.bytesize);
+            if (runtime.Definitions.LayerSize.bytesize != 0)
+            {
+                foreach (var layer in project.LayerData)
+                {
+                    Convert3rdMapData(layer, runtime.Definitions.LayerSize.bytesize);
+                }
+                foreach (var layer in project.LayerData2)
+                {
+                    Convert3rdMapData(layer, runtime.Definitions.LayerSize.bytesize);
+                }
+                foreach (var layer in project.LayerData3)
+                {
+                    Convert3rdMapData(layer, runtime.Definitions.LayerSize.bytesize);
+                }
+                foreach (var layer in project.LayerData4)
+                {
+                    Convert3rdMapData(layer, runtime.Definitions.LayerSize.bytesize);
+                }
             }
         }
 

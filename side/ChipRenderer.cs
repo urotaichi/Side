@@ -169,7 +169,7 @@ namespace MasaoPlus
         public static void DrawIdColorMark(Graphics g, Point location, string idColor, Control control)
         {
             if (idColor == null) return;
-            
+
             GraphicsState transState = g.Save();
             g.TranslateTransform(location.X, location.Y);
             Color col = ColorTranslator.FromHtml(idColor);
