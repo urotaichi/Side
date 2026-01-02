@@ -821,6 +821,54 @@ namespace MasaoPlus.Dialogs
                         StatusText.Refresh();
                         HtmlParserHelper.GetMapSource(ref project.LayerData4[0].Strings, project.Runtime.Definitions.LayerName4, project.Runtime.Definitions.LayerSize4, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit);
                     }
+
+                    if (dictionary.TryGetValue("layer2_mode", out var layer2Mode) && layer2Mode == "2")
+                    {
+                        // 前景レイヤーのマップデータを抽出
+                        var ForegroundMapData = new string[project.Runtime.Definitions.LayerSize.y];
+                        if(HtmlParserHelper.GetMapSource(ref ForegroundMapData, "layer2-{0}-{1}", project.Runtime.Definitions.LayerSize, ref dictionary, chipDataClass.Layerchip, project.Runtime.Definitions.LayerSplit))
+                        {
+                            StatusText.Text = "前景レイヤー処理中...";
+                            StatusText.Refresh();
+
+                            project.Use3rdMapData = true;
+                            try
+                            {
+                                // 前景レイヤーの参照を追加
+                                project.Runtime.Definitions.LayerSize.mapchips.Add(new Runtime.DefinedData.StageSizeData.LayerObject());
+                                project.Runtime.Definitions.LayerSize2.mapchips.Add(new Runtime.DefinedData.StageSizeData.LayerObject());
+                                project.Runtime.Definitions.LayerSize3.mapchips.Add(new Runtime.DefinedData.StageSizeData.LayerObject());
+                                project.Runtime.Definitions.LayerSize4.mapchips.Add(new Runtime.DefinedData.StageSizeData.LayerObject());
+                                if(dictionary.TryGetValue("filename_mapchip2", out var mapChip2)){
+                                    project.Runtime.Definitions.LayerSize.mapchips[^1].Value = mapChip2;
+                                    project.Runtime.Definitions.LayerSize2.mapchips[^1].Value = mapChip2;
+                                    project.Runtime.Definitions.LayerSize3.mapchips[^1].Value = mapChip2;
+                                    project.Runtime.Definitions.LayerSize4.mapchips[^1].Value = mapChip2;
+                                }
+                                project.Runtime.Definitions.LayerSize.mainOrder = 1;
+                                project.Runtime.Definitions.LayerSize2.mainOrder = 1;
+                                project.Runtime.Definitions.LayerSize3.mainOrder = 1;
+                                project.Runtime.Definitions.LayerSize4.mainOrder = 1;
+
+                                StatusText.Text = "ステージデータを第3マップデータ形式に変換中...";
+                                StatusText.Refresh();
+
+                                // ステージデータをLayerDataに追加
+                                var stageLayerObject = new LayerObject { Strings = ForegroundMapData };
+                                project.LayerData.Insert(0, stageLayerObject);
+                                project.LayerData2.Insert(0, stageLayerObject);
+                                project.LayerData3.Insert(0, stageLayerObject);
+                                project.LayerData4.Insert(0, stageLayerObject);
+
+                                // 第3マップデータ形式に変換
+                                Project.ConvertAllStageTo3rdMapData(project);
+                                ProjectLoading.SetLayerDataSources(project, project.Runtime);
+                            }
+                            catch (Exception)
+                            {
+                            }
+                        }
+                    }
                 }
 
                 StatusText.Text = "パラメータ反映中...";
