@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net10.0-windows10.0.26100.1</TargetFramework>
-	<CsWinRTGenerateInteropAssembly>false</CsWinRTGenerateInteropAssembly>
+    <CsWinRTGenerateInteropAssembly>false</CsWinRTGenerateInteropAssembly>
     <OutputType>WinExe</OutputType>
     <RootNamespace>MasaoPlus</RootNamespace>
     <ApplicationIcon>side.ico</ApplicationIcon>
@@ -45,7 +45,7 @@
     <AssemblyTitle>Side</AssemblyTitle>
     <Copyright>© 2026 urotaichi</Copyright>
     <Title>Side</Title>
-    <Version>4.7.0</Version>
+    <Version>4.8.0</Version>
     <Authors>urotaichi</Authors>
     <Product>Supermasao Integrated Development Environment</Product>
     <Description>正男エディタ</Description>
