@@ -211,7 +211,7 @@ jobs:
         tag_name: "v${{ steps.read_version.outputs.version }}"
         release_name: "Side v${{ steps.read_version.outputs.version }}"
         body: ${{ steps.extract_notes.outputs.notes }}
-        draft: false
+        draft: true
         prerelease: false
 
     - name: Upload Release Asset
@@ -223,13 +223,3 @@ jobs:
         asset_path: side/bin/Release/net10.0-windows10.0.26100.1/Side.zip
         asset_name: Side.zip
         asset_content_type: application/zip
-
-    - name: Upload to FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.6
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        protocol: ftps
-        local-dir: side/temp/
-        server-dir: ${{ secrets.FTP_SERVER_DIR }}
