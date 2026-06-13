@@ -59,7 +59,11 @@ namespace MasaoPlus
 
         public string EditorIdStr;
 
-        public bool IsAutoUpdateEnabled = true;
+#if MICROSOFT_STORE
+        public bool IsAutoUpdateEnabled = false;  // Microsoft Store版では自動更新を無効
+#else
+        public bool IsAutoUpdateEnabled = true;   // 通常版では自動更新を有効
+#endif
 
         public string BaseUpdateServer = "https://urotaichi.com/other/side/side.xml";
     }

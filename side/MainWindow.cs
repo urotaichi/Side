@@ -84,6 +84,11 @@ namespace MasaoPlus
         private void MainWindow_Load(object sender, EventArgs e)
         {
             MUpdateApp.Enabled = Global.definition.IsAutoUpdateEnabled;
+#if MICROSOFT_STORE
+            // Microsoft Store版では更新メニューを無効化し、説明を変更
+            MUpdateApp.Enabled = false;
+            MUpdateApp.Text = "最新版へアップデート(&U) [Microsoft Store版では無効]";
+#endif
             SetDesktopLocation(LogicalToDeviceUnits(Global.config.lastData.WndPoint.X), LogicalToDeviceUnits(Global.config.lastData.WndPoint.Y));
             Size = LogicalToDeviceUnits(Global.config.lastData.WndSize);
             WindowState = Global.config.lastData.WndState;

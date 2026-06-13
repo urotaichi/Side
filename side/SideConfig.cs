@@ -31,6 +31,11 @@ namespace MasaoPlus
             OperatingSystem osversion = Environment.OSVersion;
             ReversePosition.Checked = Global.config.localSystem.ReverseTabView;
             EnableAutoUpdate.Checked = Global.config.localSystem.CheckAutoUpdate;
+#if MICROSOFT_STORE
+            // Microsoft Store版では自動更新設定を無効化
+            EnableAutoUpdate.Enabled = false;
+            EnableAutoUpdate.Checked = false;
+#endif
             RCContextMenu.Checked = Global.config.draw.RightClickMenu;
             ExDraw.Checked = Global.config.draw.ExtendDraw;
             EnableAlpha.Checked = Global.config.draw.AlphaBlending;
@@ -52,9 +57,17 @@ namespace MasaoPlus
                     RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System", false);
                     if (registryKey == null || (int)registryKey.GetValue("EnableLUA") != 0)
                     {
+#if MICROSOFT_STORE
+                        // Microsoft Store版では関連付けはマニフェストで自動処理
+                        RegistProjFile.Enabled = false;
+                        UnregistProjFile.Enabled = false;
+                        RegistProjFile.Text = "関連付けする [Microsoft Store版では自動]";
+                        UnregistProjFile.Text = "関連付けを解除する [Microsoft Store版では自動]";
+#else
                         Native.USER32.SendMessage(RegistProjFile.Handle, 5644U, 0, 1);
                         Native.USER32.SendMessage(UnregistProjFile.Handle, 5644U, 0, 1);
                         UseUAC = true;
+#endif
                     }
                     else
                     {
@@ -83,7 +96,12 @@ namespace MasaoPlus
             Global.config.localSystem.UsingWebBrowser = BrowPath.Text;
             Global.config.testRun.QuickTestrun = UseQTRun.Checked;
             Global.config.localSystem.ReverseTabView = ReversePosition.Checked;
+#if MICROSOFT_STORE
+            // Microsoft Store版では自動更新設定は常にfalse
+            Global.config.localSystem.CheckAutoUpdate = false;
+#else
             Global.config.localSystem.CheckAutoUpdate = EnableAutoUpdate.Checked;
+#endif
             Global.config.draw.RightClickMenu = RCContextMenu.Checked;
             Global.config.draw.ExtendDraw = ExDraw.Checked;
             Global.config.draw.AlphaBlending = EnableAlpha.Checked;
@@ -108,6 +126,11 @@ namespace MasaoPlus
 
         private void RegistProjFile_Click(object sender, EventArgs e)
         {
+#if MICROSOFT_STORE
+            MessageBox.Show("Microsoft Store版では、ファイルの関連付けはアプリのインストール時に自動的に行われます。", 
+                "関連付け情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+#endif
             try
             {
                 UnregistProjFile.Enabled = false;
@@ -147,6 +170,11 @@ namespace MasaoPlus
 
         private void UnregistProjFile_Click(object sender, EventArgs e)
         {
+#if MICROSOFT_STORE
+            MessageBox.Show("Microsoft Store版では、ファイルの関連付けはアプリのアンインストール時に自動的に解除されます。", 
+                "関連付け情報", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
+#endif
             try
             {
                 UnregistProjFile.Enabled = false;

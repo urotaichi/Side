@@ -94,7 +94,17 @@ namespace MasaoPlus
 
             public bool ReverseTabView;
 
-            public bool CheckAutoUpdate = true;
+#if MICROSOFT_STORE
+            // Microsoft Store版では自動更新は常に無効（設定は可能だが無視される）
+            private bool _checkAutoUpdate = false;
+            public bool CheckAutoUpdate 
+            { 
+                get => false; // 常にfalseを返す
+                set { /* 設定は無視 */ } 
+            }
+#else
+            public bool CheckAutoUpdate { get; set; } = true;
+#endif
 
             public bool TextEditorGDIMode = true;
 
@@ -131,7 +141,13 @@ namespace MasaoPlus
                 {
                     if (ProjDir == "")
                     {
+#if MICROSOFT_STORE
+                        // Microsoft Store版では Documents/Side Projects を使用
+                        return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Side Projects");
+#else
+                        // 通常版では従来通りアプリケーションフォルダ内
                         return Path.Combine(Application.StartupPath, "projects");
+#endif
                     }
                     return ProjDir;
                 }
@@ -143,7 +159,13 @@ namespace MasaoPlus
                 {
                     if (PictDir == "")
                     {
+#if MICROSOFT_STORE
+                        // Microsoft Store版では Documents/Side Projects/Pictures を使用
+                        return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Side Projects", "Pictures");
+#else
+                        // 通常版では従来通りアプリケーションフォルダ内
                         return Path.Combine(Application.StartupPath, "pictures\\default");
+#endif
                     }
                     return PictDir;
                 }

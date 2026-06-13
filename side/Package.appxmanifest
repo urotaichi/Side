@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+         xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+         xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities">
+
+  <Identity Name="urotaichicorporation.Side-theSupermasaoIntegratedD"
+            Publisher="CN=urotaichi Test Certificate"
+            Version="4.8.0.0" />
+
+  <Properties>
+    <DisplayName>the Supermasao Integrated Development Environment</DisplayName>
+    <PublisherDisplayName>urotaichi</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+    <Description>正男エディタ - Supermasao Integrated Development Environment</Description>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.26100.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="ja-JP" />
+  </Resources>
+
+  <Applications>
+    <Application Id="Side" Executable="side.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements DisplayName="the Supermasao Integrated Development Environment"
+                          Description="正男エディタ"
+                          BackgroundColor="transparent"
+                          Square150x150Logo="Assets\Square150x150Logo.png"
+                          Square44x44Logo="Assets\Square44x44Logo.png">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"
+                         Square310x310Logo="Assets\LargeTile.png"
+                         Square71x71Logo="Assets\SmallTile.png">
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+      </uap:VisualElements>
+      
+      <Extensions>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="sideproject">
+            <uap:DisplayName>Side プロジェクトファイル</uap:DisplayName>
+            <uap:Logo>Assets\FileIcon.png</uap:Logo>
+            <uap:InfoTip>Supermasao Integrated Development Environment プロジェクトファイル</uap:InfoTip>
+            <uap:SupportedFileTypes>
+              <uap:FileType ContentType="application/x-side-project">.spj</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+        <uap:Extension Category="windows.fileTypeAssociation">
+          <uap:FileTypeAssociation Name="sideruntime">
+            <uap:DisplayName>Side ランタイムパッケージ</uap:DisplayName>
+            <uap:Logo>Assets\RuntimeIcon.png</uap:Logo>
+            <uap:InfoTip>Supermasao Integrated Development Environment ランタイムパッケージ</uap:InfoTip>
+            <uap:SupportedFileTypes>
+              <uap:FileType ContentType="application/x-side-runtime">.srp</uap:FileType>
+            </uap:SupportedFileTypes>
+          </uap:FileTypeAssociation>
+        </uap:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+    <Capability Name="internetClient" />
+    <!-- ドキュメントフォルダへのアクセス権限 -->
+    <uap:Capability Name="documentsLibrary" />
+    <!-- ファイルシステムアクセス権限 -->
+    <rescap:Capability Name="broadFileSystemAccess" />
+  </Capabilities>
+
+</Package>
