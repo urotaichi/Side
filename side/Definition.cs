@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 
 namespace MasaoPlus
@@ -36,6 +37,81 @@ namespace MasaoPlus
         public string Dump = "dmp.txt";
 
         public string RuntimeDir = "runtime";
+
+        public string GetUserDataRootPath()
+        {
+#if MICROSOFT_STORE
+            string userDataRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SideData");
+            Directory.CreateDirectory(userDataRoot);
+
+            EnsureStoreDataAsset(userDataRoot, RuntimeDir);
+            EnsureStoreDataAsset(userDataRoot, "pictures");
+            EnsureStoreDataAsset(userDataRoot, "projects");
+            EnsureStoreDataAsset(userDataRoot, "readme.txt");
+            EnsureStoreDataAsset(userDataRoot, "使い方.txt");
+            EnsureStoreDataAsset(userDataRoot, "勝手にFx14説明書.txt");
+            EnsureStoreDataAsset(userDataRoot, ConfigFile);
+
+            return userDataRoot;
+#else
+            return AppContext.BaseDirectory;
+#endif
+        }
+
+        public string GetUserDataPath(string relativePath)
+        {
+            return Path.Combine(GetUserDataRootPath(), relativePath);
+        }
+
+        public string GetRuntimeDirectoryPath()
+        {
+            return GetUserDataPath(RuntimeDir);
+        }
+
+        private void EnsureStoreDataAsset(string localRoot, string relativePath)
+        {
+            string sourcePath = Path.Combine(AppContext.BaseDirectory, relativePath);
+            string destinationPath = Path.Combine(localRoot, relativePath);
+
+            if (!File.Exists(sourcePath) && !Directory.Exists(sourcePath))
+            {
+                return;
+            }
+
+            if (File.Exists(destinationPath) || Directory.Exists(destinationPath))
+            {
+                return;
+            }
+
+            if (Directory.Exists(sourcePath))
+            {
+                CopyDirectory(sourcePath, destinationPath);
+            }
+            else if (File.Exists(sourcePath))
+            {
+                string destinationDirectory = Path.GetDirectoryName(destinationPath);
+                if (!string.IsNullOrEmpty(destinationDirectory))
+                {
+                    Directory.CreateDirectory(destinationDirectory);
+                }
+                File.Copy(sourcePath, destinationPath, true);
+            }
+        }
+
+        private static void CopyDirectory(string sourceDirectory, string destinationDirectory)
+        {
+            Directory.CreateDirectory(destinationDirectory);
+
+            foreach (string file in Directory.GetFiles(sourceDirectory))
+            {
+                File.Copy(file, Path.Combine(destinationDirectory, Path.GetFileName(file)), true);
+            }
+
+            foreach (string directory in Directory.GetDirectories(sourceDirectory))
+            {
+                CopyDirectory(directory, Path.Combine(destinationDirectory, Path.GetFileName(directory)));
+            }
+        }
 
         public string ConfigFile = "side.xml";
 

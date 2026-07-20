@@ -25,7 +25,8 @@ namespace MasaoPlus.Dialogs
                 ChipMethod.SelectedIndex = 0;
                 StateLabel.Text = "ロード中...";
                 StateLabel.Refresh();
-                if (!Directory.Exists(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir)))
+                string runtimeDirectory = Global.definition.GetRuntimeDirectoryPath();
+                if (!Directory.Exists(runtimeDirectory))
                 {
                     MessageBox.Show($"ランタイムフォルダが見つかりません。{Environment.NewLine}Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                     DialogResult = DialogResult.Cancel;
@@ -33,7 +34,7 @@ namespace MasaoPlus.Dialogs
                 }
                 else
                 {
-                    string[] files = Directory.GetFiles(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir), "*.xml", SearchOption.TopDirectoryOnly);
+                    string[] files = Directory.GetFiles(runtimeDirectory, "*.xml", SearchOption.TopDirectoryOnly);
                     foreach (string text in files)
                     {
                         try

@@ -1450,7 +1450,7 @@ namespace MasaoPlus
                 MessageBox.Show($"定義ファイルはこのバージョンの{Global.definition.AppName}には対応していません。{Environment.NewLine}{Global.definition.AppName}を最新のバージョンへ更新してください。", "インストール拒否", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 return false;
             }
-            string text2 = Path.Combine(Application.StartupPath, Global.definition.RuntimeDir);
+            string text2 = Global.definition.GetRuntimeDirectoryPath();
             string text3 = Path.Combine(text2, fileName);
             if (File.Exists(text3))
             {

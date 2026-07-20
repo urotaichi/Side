@@ -32,14 +32,15 @@ namespace MasaoPlus.Dialogs
         private void Inheritance_Shown(object sender, EventArgs e)
         {
             Application.DoEvents();
-            if (!Directory.Exists(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir)))
+            string runtimeDirectory = Global.definition.GetRuntimeDirectoryPath();
+            if (!Directory.Exists(runtimeDirectory))
             {
                 MessageBox.Show($"ランタイムフォルダが見つかりません。{Environment.NewLine}Sideを再インストールしてください。", "ランタイム定義エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                 DialogResult = DialogResult.Cancel;
                 Close();
                 return;
             }
-            string[] files = Directory.GetFiles(Path.Combine(Application.StartupPath, Global.definition.RuntimeDir), "*.xml", SearchOption.TopDirectoryOnly);
+            string[] files = Directory.GetFiles(runtimeDirectory, "*.xml", SearchOption.TopDirectoryOnly);
             foreach (string text in files)
             {
                 try

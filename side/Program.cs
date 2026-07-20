@@ -19,9 +19,10 @@ namespace MasaoPlus
                 Application.SetCompatibleTextRenderingDefault(false);
                 try
                 {
-                    if (File.Exists(Path.Combine(Application.StartupPath, Global.definition.ConfigFile)))
+                    string configFilePath = Global.definition.GetUserDataPath(Global.definition.ConfigFile);
+                    if (File.Exists(configFilePath))
                     {
-                        Global.config = Config.ParseXML(Path.Combine(Application.StartupPath, Global.definition.ConfigFile));
+                        Global.config = Config.ParseXML(configFilePath);
                     }
                 }
                 catch
@@ -154,32 +155,18 @@ namespace MasaoPlus
         {
             try
             {
-                // Documents/Side Projects フォルダを作成
-                string sideProjectsDir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Side Projects");
-                if (!Directory.Exists(sideProjectsDir))
+                // Documents/SideData フォルダを作成
+                string sideDataRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SideData");
+                if (!Directory.Exists(sideDataRoot))
                 {
-                    Directory.CreateDirectory(sideProjectsDir);
+                    Directory.CreateDirectory(sideDataRoot);
                 }
 
-                // Pictures フォルダを作成
-                string picturesDir = Path.Combine(sideProjectsDir, "Pictures");
-                if (!Directory.Exists(picturesDir))
+                // 画像データは既存の pictures 配下をそのまま使用する
+                string appPicturesDir = Global.definition.GetUserDataPath(Path.Combine("pictures", "default"));
+                if (!Directory.Exists(appPicturesDir))
                 {
-                    Directory.CreateDirectory(picturesDir);
-                }
-
-                // デフォルト画像ファイルをコピー（アプリケーションパッケージ内から）
-                string appPicturesDir = Path.Combine(Application.StartupPath, "pictures", "default");
-                if (Directory.Exists(appPicturesDir))
-                {
-                    foreach (string file in Directory.GetFiles(appPicturesDir))
-                    {
-                        string destFile = Path.Combine(picturesDir, Path.GetFileName(file));
-                        if (!File.Exists(destFile))
-                        {
-                            File.Copy(file, destFile);
-                        }
-                    }
+                    Directory.CreateDirectory(appPicturesDir);
                 }
             }
             catch (Exception ex)

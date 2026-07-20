@@ -142,8 +142,8 @@ namespace MasaoPlus
                     if (ProjDir == "")
                     {
 #if MICROSOFT_STORE
-                        // Microsoft Store版では Documents/Side Projects を使用
-                        return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Side Projects");
+                        // Microsoft Store版ではユーザーが参照できるデータフォルダを使用
+                        return Global.definition.GetUserDataPath("projects");
 #else
                         // 通常版では従来通りアプリケーションフォルダ内
                         return Path.Combine(Application.StartupPath, "projects");
@@ -160,8 +160,8 @@ namespace MasaoPlus
                     if (PictDir == "")
                     {
 #if MICROSOFT_STORE
-                        // Microsoft Store版では Documents/Side Projects/Pictures を使用
-                        return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Side Projects", "Pictures");
+                        // Microsoft Store版では Documents/SideData/pictures/default を使用
+                        return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SideData", "pictures", "default");
 #else
                         // 通常版では従来通りアプリケーションフォルダ内
                         return Path.Combine(Application.StartupPath, "pictures\\default");
