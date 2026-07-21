@@ -13,6 +13,7 @@
 
 		private void InitializeComponent()
 		{
+			this.components = new global::System.ComponentModel.Container();
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Cancel = new global::System.Windows.Forms.Button();
