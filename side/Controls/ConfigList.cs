@@ -7,7 +7,9 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using MasaoPlus.Dialogs;
 using MasaoPlus.Properties;
+#if !MICROSOFT_STORE
 using WMPLib;
+#endif
 
 namespace MasaoPlus.Controls
 {
@@ -670,6 +672,7 @@ namespace MasaoPlus.Controls
 
         private bool isPlaying = false;
 
+#if !MICROSOFT_STORE
         private void MediaPlayer_PlayStateChange(int NewState)
         {
             if (NewState == (int)WMPPlayState.wmppsStopped ||
@@ -701,9 +704,11 @@ namespace MasaoPlus.Controls
                 }
             }
         }
+#endif
 
         private void PlayAudio(int rowIndex)
         {
+#if !MICROSOFT_STORE
             if (!IsAudioPreviewRow(rowIndex))
                 return;
 
@@ -720,30 +725,39 @@ namespace MasaoPlus.Controls
                 mediaPlayer.controls.stop();
             }
             mediaPlayer.controls.play();
+#endif
         }
 
         private void StopAudio()
         {
+#if !MICROSOFT_STORE
             if (now_playing_item != -1)
             {
                 now_playing_item = -1;
                 mediaPlayer.controls.stop();
             }
+#endif
         }
 
         private void MenuPlayAudio_Click(object sender, EventArgs e)
         {
+#if !MICROSOFT_STORE
             PlayAudio(rightClickedRowIndex);
+#endif
         }
 
         private void MenuStopAudio_Click(object sender, EventArgs e)
         {
+#if !MICROSOFT_STORE
             StopAudio();
+#endif
         }
 
         private static void PreviewAudio_error(object pMediaObject)
         {
+#if !MICROSOFT_STORE
             MessageBox.Show("ファイルの読み込みに失敗しました。", "エラー", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+#endif
         }
 
         protected virtual void ConfView_MouseDown(object sender, MouseEventArgs e)
@@ -1273,9 +1287,11 @@ namespace MasaoPlus.Controls
             ResumeLayout(false);
 
             // メディアプレーヤークラスのインスタンスを作成する
+#if !MICROSOFT_STORE
             mediaPlayer = new WindowsMediaPlayer();
             mediaPlayer.MediaError += PreviewAudio_error;
             mediaPlayer.PlayStateChange += MediaPlayer_PlayStateChange;
+#endif
 
             audioContextMenu = new ContextMenuStrip();
             menuPlayAudio = new ToolStripMenuItem
@@ -1314,7 +1330,9 @@ namespace MasaoPlus.Controls
 
         private int width_index, height_index;
 
+#if !MICROSOFT_STORE
         private WindowsMediaPlayer mediaPlayer;
+#endif
 
         private int now_playing_item = -1;
 

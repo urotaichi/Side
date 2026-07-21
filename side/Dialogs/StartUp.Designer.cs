@@ -68,7 +68,12 @@
 			this.CallSideUpdate.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.refresh).View();
 			this.CallSideUpdate.Name = "CallSideUpdate";
 			this.CallSideUpdate.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(218, 22));
+#if MICROSOFT_STORE
+			this.CallSideUpdate.Enabled = false;
+			this.CallSideUpdate.Text = "Sideの更新(&U) [Microsoft Store版では無効]";
+#else
 			this.CallSideUpdate.Text = "Sideの更新(&U)";
+#endif
 			this.CallSideUpdate.Click += new global::System.EventHandler(this.CallSideUpdate_Click);
 			this.ExMenu.FlatStyle = global::System.Windows.Forms.FlatStyle.Popup;
 			this.ExMenu.Image = new IconImageView(DeviceDpi, global::MasaoPlus.Properties.Resources.bullet_arrow_down).View();

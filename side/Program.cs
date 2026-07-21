@@ -19,9 +19,10 @@ namespace MasaoPlus
                 Application.SetCompatibleTextRenderingDefault(false);
                 try
                 {
-                    if (File.Exists(Path.Combine(Application.StartupPath, Global.definition.ConfigFile)))
+                    string configFilePath = Global.definition.GetUserDataPath(Global.definition.ConfigFile);
+                    if (File.Exists(configFilePath))
                     {
-                        Global.config = Config.ParseXML(Path.Combine(Application.StartupPath, Global.definition.ConfigFile));
+                        Global.config = Config.ParseXML(configFilePath);
                     }
                 }
                 catch
@@ -100,6 +101,12 @@ namespace MasaoPlus
                     else
                     {
                         ApplicationConfiguration.Initialize();
+                        
+#if MICROSOFT_STORE
+                        // Microsoft Store版用のフォルダ初期化
+                        InitializeMicrosoftStoreDirectories();
+#endif
+                        
                         Application.Run(new MainWindow());
                     }
                 }
@@ -139,5 +146,36 @@ namespace MasaoPlus
                 Environment.Exit(-1);
             }
         }
+
+#if MICROSOFT_STORE
+        /// <summary>
+        /// Microsoft Store版用のディレクトリを初期化します
+        /// </summary>
+        private static void InitializeMicrosoftStoreDirectories()
+        {
+            try
+            {
+                // Documents/SideData フォルダを作成
+                string sideDataRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SideData");
+                if (!Directory.Exists(sideDataRoot))
+                {
+                    Directory.CreateDirectory(sideDataRoot);
+                }
+
+                // 画像データは既存の pictures 配下をそのまま使用する
+                string appPicturesDir = Global.definition.GetUserDataPath(Path.Combine("pictures", "default"));
+                if (!Directory.Exists(appPicturesDir))
+                {
+                    Directory.CreateDirectory(appPicturesDir);
+                }
+            }
+            catch (Exception ex)
+            {
+                // フォルダ作成に失敗してもアプリケーションは継続
+                MessageBox.Show($"プロジェクトフォルダの初期化に失敗しました: {ex.Message}", 
+                    "初期化警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+#endif
     }
 }

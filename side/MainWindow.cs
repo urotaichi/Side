@@ -84,6 +84,11 @@ namespace MasaoPlus
         private void MainWindow_Load(object sender, EventArgs e)
         {
             MUpdateApp.Enabled = Global.definition.IsAutoUpdateEnabled;
+#if MICROSOFT_STORE
+            // Microsoft Store版では更新メニューを無効化し、説明を変更
+            MUpdateApp.Enabled = false;
+            MUpdateApp.Text = "最新版へアップデート(&U) [Microsoft Store版では無効]";
+#endif
             SetDesktopLocation(LogicalToDeviceUnits(Global.config.lastData.WndPoint.X), LogicalToDeviceUnits(Global.config.lastData.WndPoint.Y));
             Size = LogicalToDeviceUnits(Global.config.lastData.WndSize);
             WindowState = Global.config.lastData.WndState;
@@ -2339,7 +2344,7 @@ namespace MasaoPlus
                 Global.config.lastData.WndSize = new Size(normalWindowLocation.Size.Width * 96 / DeviceDpi, normalWindowLocation.Size.Height * 96 / DeviceDpi);
                 Global.config.lastData.WndPoint = new Point(normalWindowLocation.Location.X * 96 / DeviceDpi, normalWindowLocation.Location.Y * 96 / DeviceDpi);
                 Global.config.lastData.WndState = WindowState;
-                Global.config.SaveXML(Path.Combine(Application.StartupPath, Global.definition.ConfigFile));
+                Global.config.SaveXML(Global.definition.GetUserDataPath(Global.definition.ConfigFile));
                 if (Global.state.RunFile != null)
                 {
                     try

@@ -13,6 +13,7 @@
 
 		private void InitializeComponent()
 		{
+			this.components = new global::System.ComponentModel.Container();
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Cancel = new global::System.Windows.Forms.Button();
@@ -26,6 +27,7 @@
 			this.WrapPropText = new global::System.Windows.Forms.CheckBox();
 			this.IntegrateEditorId = new global::System.Windows.Forms.CheckBox();
 			this.EnableAutoUpdate = new global::System.Windows.Forms.CheckBox();
+			this.toolTip1 = new global::System.Windows.Forms.ToolTip(this.components);
 			this.ReversePosition = new global::System.Windows.Forms.CheckBox();
 			this.OutputFileEncode = new global::System.Windows.Forms.ComboBox();
 			this.OFELabel = new global::System.Windows.Forms.Label();
@@ -160,7 +162,12 @@
 			this.EnableAutoUpdate.Name = "EnableAutoUpdate";
 			this.EnableAutoUpdate.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(168, 16));
 			this.EnableAutoUpdate.TabIndex = 3;
+#if MICROSOFT_STORE
+			this.EnableAutoUpdate.Text = "起動時に更新をチェックする(&A) [Microsoft Store版では無効]";
+			this.toolTip1.SetToolTip(this.EnableAutoUpdate, "Microsoft Store版では自動更新機能は無効です。\nMicrosoft Storeから更新を受け取ります。");
+#else
 			this.EnableAutoUpdate.Text = "起動時に更新をチェックする(&A)";
+#endif
 			this.EnableAutoUpdate.UseVisualStyleBackColor = true;
 			this.ReversePosition.AutoSize = true;
 			this.ReversePosition.Location = new global::System.Drawing.Point(base.LogicalToDeviceUnits(6), base.LogicalToDeviceUnits(32));
@@ -425,7 +432,11 @@
 			this.label1.Name = "label1";
 			this.label1.Size = base.LogicalToDeviceUnits(new global::System.Drawing.Size(357, 12));
 			this.label1.TabIndex = 0;
+#if MICROSOFT_STORE
+			this.label1.Text = "Microsoft Store版では、ファイルの関連付けはアプリのインストール時に自動的に行われます。";
+#else
 			this.label1.Text = "Side プロジェクトファイルやランタイムファイルに対しての関連付けが行えます。\r\n";
+#endif
 			base.AcceptButton = this.Accept;
 			//base.AutoScaleDimensions = new global::System.Drawing.SizeF(6f, 12f);
 			//base.AutoScaleMode = global::System.Windows.Forms.AutoScaleMode.Font;
@@ -547,5 +558,7 @@
 		private global::System.Windows.Forms.CheckBox StartWithCL;
 
 		private global::System.Windows.Forms.CheckBox WheelHorz;
+
+		private global::System.Windows.Forms.ToolTip toolTip1;
 	}
 }

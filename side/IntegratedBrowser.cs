@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using MasaoPlus.Properties;
 using Microsoft.Web.WebView2.WinForms;
@@ -282,12 +283,36 @@ namespace MasaoPlus
         }
         async void InitializeAsync()
         {
-            var webView2Environment = await CoreWebView2Environment.CreateAsync(null, "cache");
-            await Browser.EnsureCoreWebView2Async(webView2Environment);
-            Browser.CoreWebView2.IsMuted = false;
-            Browser.CoreWebView2.StatusBarTextChanged += Browser_StatusTextChanged;
-            Browser.CoreWebView2.NavigationStarting += Browser_Navigating;
-            Browser.CoreWebView2.NewWindowRequested += CoreWebView2_NewWindowRequested;
+            try
+            {
+                string userDataDir = GetWebView2UserDataDirectory();
+                Directory.CreateDirectory(userDataDir);
+
+                var webView2Environment = await CoreWebView2Environment.CreateAsync(null, userDataDir);
+                await Browser.EnsureCoreWebView2Async(webView2Environment);
+                Browser.CoreWebView2.IsMuted = false;
+                Browser.CoreWebView2.StatusBarTextChanged += Browser_StatusTextChanged;
+                Browser.CoreWebView2.NavigationStarting += Browser_Navigating;
+                Browser.CoreWebView2.NewWindowRequested += CoreWebView2_NewWindowRequested;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"WebView2 の初期化に失敗しました。{Environment.NewLine}{ex.Message}", "WebView2 初期化エラー", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private static string GetWebView2UserDataDirectory()
+        {
+            try
+            {
+                string localAppDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                string sideDataDir = Path.Combine(localAppDataPath, "Side", "WebView2Data");
+                return sideDataDir;
+            }
+            catch
+            {
+                return Path.Combine(Application.StartupPath, "cache", "EBWebView");
+            }
         }
 
         private Container components;
