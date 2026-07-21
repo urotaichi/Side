@@ -26,7 +26,6 @@
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
-    
     <!-- Microsoft Store対応設定 -->
     <WindowsPackageType>MSIX</WindowsPackageType>
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
@@ -36,7 +35,6 @@
     <PublishReadyToRun>false</PublishReadyToRun>
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
-  
   <!-- Microsoft Store版用の条件付きコンパイル -->
   <PropertyGroup Condition="'$(Configuration)' == 'Store'">
     <DefineConstants>$(DefineConstants);MICROSOFT_STORE</DefineConstants>
@@ -119,7 +117,7 @@
     <AssemblyTitle>Side</AssemblyTitle>
     <Copyright>© 2026 urotaichi</Copyright>
     <Title>Side</Title>
-    <Version>4.8.0</Version>
+    <Version>4.8.1</Version>
     <Authors>urotaichi</Authors>
     <Product>Supermasao Integrated Development Environment</Product>
     <Description>正男エディタ</Description>
@@ -224,7 +222,6 @@
     <Content Include="Assets\**" Condition="'$(Configuration)' == 'Store'">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    
     <!-- Microsoft Store版に必要なフォルダとファイルを含める -->
     <Content Include="..\runtime\**\*.*" Condition="'$(Configuration)' == 'Store'">
       <Link>runtime\%(RecursiveDir)%(Filename)%(Extension)</Link>
