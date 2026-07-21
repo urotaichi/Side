@@ -180,13 +180,14 @@ jobs:
       shell: pwsh
       run: |
         $targetPath = "side/bin/Release/net10.0-windows10.0.26100.1"
+        New-Item -ItemType Directory -Path "$targetPath/runtimes" -Force | Out-Null
         Copy-Item -Path pictures -Destination $targetPath/ -Recurse
         Copy-Item -Path projects -Destination $targetPath/ -Recurse
         Copy-Item -Path runtime -Destination $targetPath/ -Recurse
         Copy-Item -Path readme.txt -Destination $targetPath/
         Copy-Item -Path 使い方.txt -Destination $targetPath/
         Copy-Item -Path 勝手にFx14説明書.txt -Destination $targetPath/
-        Copy-Item -Path runtimes/MicrosoftEdgeWebview2Setup.exe -Destination "$targetPath/runtimes/"
+        Copy-Item -Path runtimes/MicrosoftEdgeWebview2Setup.exe -Destination "$targetPath/runtimes/" -Force
 
     - name: Create ZIP file
       shell: pwsh
