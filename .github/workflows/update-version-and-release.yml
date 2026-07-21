@@ -108,12 +108,27 @@ jobs:
             $writer.Close()
         }
 
+    - name: Update Package.appxmanifest
+      shell: pwsh
+      run: |
+        $version = '${{ steps.read_version.outputs.version }}'
+        $manifestPath = "side/Package.appxmanifest"
+        $manifestVersion = if ($version -match '^\d+\.\d+\.\d+$') {
+            "$version.0"
+        } else {
+            $version
+        }
+
+        $content = Get-Content $manifestPath
+        $updatedContent = $content -replace '(<Identity\b[^>]*\bVersion=")(\d+(?:\.\d+){1,3})(")', ('$1' + $manifestVersion + '$3')
+        Set-Content -Path $manifestPath -Value $updatedContent
+
     - name: Commit changes
       shell: pwsh
       run: |
         git config --local user.name 'GitHub Action'
         git config --local user.email 'action@github.com'
-        git add side/Definition.cs side/side.csproj
+        git add side/Definition.cs side/side.csproj side/Package.appxmanifest
         git commit -m "Update version to ${{ steps.read_version.outputs.version }}"
         git push
 
