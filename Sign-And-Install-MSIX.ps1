@@ -47,11 +47,11 @@ Write-Host "    サイズ: $([math]::Round((Get-Item $MsixPath).Length / 1MB, 2)
 Write-Host "`n[2/6] 自己署名証明書を作成中..." -ForegroundColor Yellow
 
 # Package.appxmanifest の Publisher と完全一致させる必要がある
-# Package.appxmanifest: Publisher="CN=urotaichi Test Certificate"
-$certSubject = "CN=urotaichi Test Certificate"
-$certName = "SideTestCert"
-$certPath = Join-Path $PSScriptRoot "SideTestCert.pfx"
-$cerPath = Join-Path $PSScriptRoot "SideTestCert.cer"
+# Package.appxmanifest: Publisher="CN=2086D10A-4660-4D0C-AAB2-595399EE7B10"
+$certSubject = "CN=2086D10A-4660-4D0C-AAB2-595399EE7B10"
+$certName = "SideStoreTestCert"
+$certPath = Join-Path $PSScriptRoot "SideStoreTestCert.pfx"
+$cerPath = Join-Path $PSScriptRoot "SideStoreTestCert.cer"
 
 # 既存の証明書を確認（Code Signing EKU付き）
 $existingCert = Get-ChildItem -Path Cert:\CurrentUser\My -CodeSigningCert | 
@@ -91,31 +91,45 @@ Export-Certificate -Cert $cert -FilePath $cerPath -Force | Out-Null
 Write-Host "  ✓ CER をエクスポート: $cerPath" -ForegroundColor Green
 
 # ============================================================================
-# ステップ3: 証明書を信頼されたユーザー (Trusted People) にインストール
+# ステップ3: 証明書を信頼されたユーザー (Trusted People) / ルート (Trusted Root) にインストール
 # ============================================================================
 
 Write-Host "`n[3/6] 証明書を信頼されたユーザーにインストール中..." -ForegroundColor Yellow
 
-# Trusted People ストアを確認（MSIX インストールに必要）
-$trustedCert = Get-ChildItem -Path Cert:\LocalMachine\TrustedPeople -ErrorAction SilentlyContinue | 
+# Trusted People ストアを確認（コード署名の検証に利用）
+$trustedPeopleCert = Get-ChildItem -Path Cert:\LocalMachine\TrustedPeople -ErrorAction SilentlyContinue | 
     Where-Object { $_.Subject -eq $certSubject }
 
-if ($trustedCert) {
-    Write-Host "  ✓ 証明書は既に Trusted People にインストールされています" -ForegroundColor Green
+# ルートストアを確認（自己署名証明書の信頼チェーンに必要）
+$trustedRootCert = Get-ChildItem -Path Cert:\LocalMachine\Root -ErrorAction SilentlyContinue |
+    Where-Object { $_.Subject -eq $certSubject }
+
+if ($trustedPeopleCert -and $trustedRootCert) {
+    Write-Host "  ✓ 証明書は既に Trusted People / Trusted Root にインストールされています" -ForegroundColor Green
 } else {
-    Write-Host "  証明書を Trusted People にインストール中..." -ForegroundColor Cyan
+    Write-Host "  証明書を Trusted People / Trusted Root にインストール中..." -ForegroundColor Cyan
     Write-Host "  ⚠ 管理者権限が必要です。管理者権限で実行していない場合は手動でインストールしてください。" -ForegroundColor Yellow
-    
+
     try {
         # CER ファイルを LocalMachine\TrustedPeople にインポート
-        Import-Certificate -FilePath $cerPath -CertStoreLocation "Cert:\LocalMachine\TrustedPeople" -ErrorAction Stop | Out-Null
-        Write-Host "  ✓ 証明書を Trusted People にインストールしました" -ForegroundColor Green
+        if (-not $trustedPeopleCert) {
+            Import-Certificate -FilePath $cerPath -CertStoreLocation "Cert:\LocalMachine\TrustedPeople" -ErrorAction Stop | Out-Null
+            Write-Host "  ✓ 証明書を Trusted People にインストールしました" -ForegroundColor Green
+        }
+
+        # CER ファイルを LocalMachine\Root にインポート
+        if (-not $trustedRootCert) {
+            Import-Certificate -FilePath $cerPath -CertStoreLocation "Cert:\LocalMachine\Root" -ErrorAction Stop | Out-Null
+            Write-Host "  ✓ 証明書を Trusted Root Certification Authorities にインストールしました" -ForegroundColor Green
+        }
     } catch {
         Write-Host "  ⚠ 証明書のインストールに失敗しました（管理者権限が必要）" -ForegroundColor Yellow
         Write-Host "    手動でインストールしてください:" -ForegroundColor Cyan
         Write-Host "    Import-Certificate -FilePath '$cerPath' -CertStoreLocation 'Cert:\LocalMachine\TrustedPeople'" -ForegroundColor White
+        Write-Host "    Import-Certificate -FilePath '$cerPath' -CertStoreLocation 'Cert:\LocalMachine\Root'" -ForegroundColor White
         Write-Host "    または:" -ForegroundColor Cyan
         Write-Host "    certutil -addstore TrustedPeople '$cerPath'" -ForegroundColor White
+        Write-Host "    certutil -addstore Root '$cerPath'" -ForegroundColor White
         Write-Host ""
         Write-Host "  続行しますか？ (証明書を手動でインストール済みの場合は Y)" -ForegroundColor Yellow
         $continue = Read-Host "  [Y/N]"
