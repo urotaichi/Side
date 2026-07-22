@@ -8,14 +8,14 @@
             Version="4.8.1.0" />
 
   <Properties>
-    <DisplayName>the Supermasao Integrated Development Environment</DisplayName>
+    <DisplayName>Side</DisplayName>
     <PublisherDisplayName>urotaichi</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
     <Description>正男エディタ - Supermasao Integrated Development Environment</Description>
   </Properties>
 
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.26100.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.26100.1" />
   </Dependencies>
 
   <Resources>
@@ -24,7 +24,7 @@
 
   <Applications>
     <Application Id="Side" Executable="side.exe" EntryPoint="Windows.FullTrustApplication">
-      <uap:VisualElements DisplayName="the Supermasao Integrated Development Environment"
+      <uap:VisualElements DisplayName="Side"
                           Description="正男エディタ"
                           BackgroundColor="transparent"
                           Square150x150Logo="Assets\Square150x150Logo.png"
