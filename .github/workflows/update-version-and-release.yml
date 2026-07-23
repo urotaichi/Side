@@ -119,9 +119,25 @@ jobs:
             $version
         }
 
-        $content = Get-Content $manifestPath
-        $updatedContent = $content -replace '(<Identity\b[^>]*\bVersion=")(\d+(?:\.\d+){1,3})(")', ('$1' + $manifestVersion + '$3')
-        Set-Content -Path $manifestPath -Value $updatedContent
+        [xml]$xml = Get-Content $manifestPath
+        $identity = $xml.Package.Identity
+        if ($identity -and $identity.Version) {
+            $identity.Version = $manifestVersion
+        }
+
+        $settings = New-Object System.Xml.XmlWriterSettings
+        $settings.Indent = $true
+        $settings.IndentChars = "  "
+        $settings.OmitXmlDeclaration = $true
+        $settings.NewLineChars = "`r`n"
+        $settings.NewLineHandling = [System.Xml.NewLineHandling]::Replace
+        $writer = [System.Xml.XmlWriter]::Create($manifestPath, $settings)
+        try {
+            $xml.PreserveWhitespace = $true
+            $xml.Save($writer)
+        } finally {
+            $writer.Close()
+        }
 
     - name: Commit changes
       shell: pwsh
