@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 env:
-  BUILD_OUTPUT_PATH: side/bin/Release/net10.0-windows10.0.26100.1/win-x64
+  BUILD_OUTPUT_PATH: side/bin/Release/net10.0-windows10.0.26100.1
 
 jobs:
   update-version:
