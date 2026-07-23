@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
          xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
          xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities">
@@ -40,7 +40,7 @@
         <uap:Extension Category="windows.fileTypeAssociation">
           <uap:FileTypeAssociation Name="sideproject">
             <uap:DisplayName>Side プロジェクトファイル</uap:DisplayName>
-            <uap:Logo>Assets\FileIcon.png</uap:Logo>
+            <uap:Logo>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</uap:Logo>
             <uap:InfoTip>Supermasao Integrated Development Environment プロジェクトファイル</uap:InfoTip>
             <uap:SupportedFileTypes>
               <uap:FileType ContentType="application/x-side-project">.spj</uap:FileType>
@@ -50,7 +50,7 @@
         <uap:Extension Category="windows.fileTypeAssociation">
           <uap:FileTypeAssociation Name="sideruntime">
             <uap:DisplayName>Side ランタイムパッケージ</uap:DisplayName>
-            <uap:Logo>Assets\RuntimeIcon.png</uap:Logo>
+            <uap:Logo>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</uap:Logo>
             <uap:InfoTip>Supermasao Integrated Development Environment ランタイムパッケージ</uap:InfoTip>
             <uap:SupportedFileTypes>
               <uap:FileType ContentType="application/x-side-runtime">.srp</uap:FileType>
