@@ -8,6 +8,9 @@ on:
       - 'readme.txt'
   workflow_dispatch:
 
+env:
+  BUILD_OUTPUT_PATH: side/bin/Release/net10.0-windows10.0.26100.1/win-x64
+
 jobs:
   update-version:
     runs-on: windows-latest
@@ -196,21 +199,21 @@ jobs:
     - name: Remove unnecessary files
       shell: pwsh
       run: |
-        Remove-Item -Path side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.Web.WebView2.Core.xml,
-                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.Web.WebView2.WinForms.xml,
-                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.Web.WebView2.Wpf.dll,
-                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.Web.WebView2.Wpf.xml,
-                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.Windows.SDK.NET.dll,
-                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll,
-                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.WindowsAPICodePack.Sensors.dll,
-                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.WindowsAPICodePack.ShellExtensions.dll,
-                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Newtonsoft.Json.dll,
-                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Newtonsoft.Json.Bson.dll -ErrorAction SilentlyContinue
+        Remove-Item -Path ${{ env.BUILD_OUTPUT_PATH }}/Microsoft.Web.WebView2.Core.xml,
+                           ${{ env.BUILD_OUTPUT_PATH }}/Microsoft.Web.WebView2.WinForms.xml,
+                           ${{ env.BUILD_OUTPUT_PATH }}/Microsoft.Web.WebView2.Wpf.dll,
+                           ${{ env.BUILD_OUTPUT_PATH }}/Microsoft.Web.WebView2.Wpf.xml,
+                           ${{ env.BUILD_OUTPUT_PATH }}/Microsoft.Windows.SDK.NET.dll,
+                           ${{ env.BUILD_OUTPUT_PATH }}/Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll,
+                           ${{ env.BUILD_OUTPUT_PATH }}/Microsoft.WindowsAPICodePack.Sensors.dll,
+                           ${{ env.BUILD_OUTPUT_PATH }}/Microsoft.WindowsAPICodePack.ShellExtensions.dll,
+                           ${{ env.BUILD_OUTPUT_PATH }}/Newtonsoft.Json.dll,
+                           ${{ env.BUILD_OUTPUT_PATH }}/Newtonsoft.Json.Bson.dll -ErrorAction SilentlyContinue
 
     - name: Copy necessary files
       shell: pwsh
       run: |
-        $targetPath = "side/bin/Release/net10.0-windows10.0.26100.1/win-x64"
+        $targetPath = "${{ env.BUILD_OUTPUT_PATH }}"
         Copy-Item -Path pictures -Destination $targetPath/ -Recurse
         Copy-Item -Path projects -Destination $targetPath/ -Recurse
         Copy-Item -Path runtime -Destination $targetPath/ -Recurse
@@ -222,7 +225,7 @@ jobs:
     - name: Create ZIP file
       shell: pwsh
       run: |
-        Compress-Archive -Path side/bin/Release/net10.0-windows10.0.26100.1/win-x64/* -DestinationPath side/bin/Release/net10.0-windows10.0.26100.1/Side.zip
+        Compress-Archive -Path ${{ env.BUILD_OUTPUT_PATH }}/* -DestinationPath ${{ env.BUILD_OUTPUT_PATH }}/Side.zip
 
     - name: Create temporary directory
       shell: pwsh
@@ -231,7 +234,7 @@ jobs:
         if (-Not (Test-Path $tempDir)) {
           New-Item -ItemType Directory -Path $tempDir
         }
-        Copy-Item -Path side/bin/Release/net10.0-windows10.0.26100.1/Side.zip -Destination $tempDir/
+        Copy-Item -Path ${{ env.BUILD_OUTPUT_PATH }}/Side.zip -Destination $tempDir/
 
     - name: Create GitHub Release
       id: create_release
@@ -251,7 +254,7 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: side/bin/Release/net10.0-windows10.0.26100.1/Side.zip
+        asset_path: ${{ env.BUILD_OUTPUT_PATH }}/Side.zip
         asset_name: Side.zip
         asset_content_type: application/zip
 
