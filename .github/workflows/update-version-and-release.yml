@@ -196,21 +196,21 @@ jobs:
     - name: Remove unnecessary files
       shell: pwsh
       run: |
-        Remove-Item -Path side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Web.WebView2.Core.xml,
-                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Web.WebView2.WinForms.xml,
-                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Web.WebView2.Wpf.dll,
-                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Web.WebView2.Wpf.xml,
-                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.Windows.SDK.NET.dll,
-                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll,
-                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.WindowsAPICodePack.Sensors.dll,
-                          side/bin/Release/net10.0-windows10.0.26100.1/Microsoft.WindowsAPICodePack.ShellExtensions.dll,
-                          side/bin/Release/net10.0-windows10.0.26100.1/Newtonsoft.Json.dll,
-                          side/bin/Release/net10.0-windows10.0.26100.1/Newtonsoft.Json.Bson.dll -ErrorAction SilentlyContinue
+        Remove-Item -Path side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.Web.WebView2.Core.xml,
+                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.Web.WebView2.WinForms.xml,
+                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.Web.WebView2.Wpf.dll,
+                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.Web.WebView2.Wpf.xml,
+                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.Windows.SDK.NET.dll,
+                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll,
+                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.WindowsAPICodePack.Sensors.dll,
+                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Microsoft.WindowsAPICodePack.ShellExtensions.dll,
+                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Newtonsoft.Json.dll,
+                           side/bin/Release/net10.0-windows10.0.26100.1/win-x64/Newtonsoft.Json.Bson.dll -ErrorAction SilentlyContinue
 
     - name: Copy necessary files
       shell: pwsh
       run: |
-        $targetPath = "side/bin/Release/net10.0-windows10.0.26100.1"
+        $targetPath = "side/bin/Release/net10.0-windows10.0.26100.1/win-x64"
         Copy-Item -Path pictures -Destination $targetPath/ -Recurse
         Copy-Item -Path projects -Destination $targetPath/ -Recurse
         Copy-Item -Path runtime -Destination $targetPath/ -Recurse
@@ -222,7 +222,7 @@ jobs:
     - name: Create ZIP file
       shell: pwsh
       run: |
-        Compress-Archive -Path side/bin/Release/net10.0-windows10.0.26100.1/* -DestinationPath side/bin/Release/net10.0-windows10.0.26100.1/Side.zip
+        Compress-Archive -Path side/bin/Release/net10.0-windows10.0.26100.1/win-x64/* -DestinationPath side/bin/Release/net10.0-windows10.0.26100.1/Side.zip
 
     - name: Create temporary directory
       shell: pwsh
