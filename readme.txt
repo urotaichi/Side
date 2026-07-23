@@ -2,7 +2,7 @@
 ■	Side
 ■		the Supermasao Integrated Development Environment
 ■
-■	Version 4.8.1
+■	Version 4.8.2
 ■
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
@@ -122,10 +122,9 @@ Karno氏が著作権を放棄しため、改造して配布しています。
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 ■修正点
-□4.8.1
-　2026/07/21
+□4.8.2
+　2026/07/23
 	CanvasMasao.js、CanvasMasao_v28.jsを最新バージョン(v5.6.3)に更新。
-	Microsoft Storeで公開開始。Microsoft Store版ではSideネイティブの自動アップデート機能や音楽再生機能など、一部の機能は未対応です。
 
 □4.8.0
 　2026/01/05
