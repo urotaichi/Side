@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
          xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
          xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities">
 
   <Identity Name="urotaichicorporation.Side-theSupermasaoIntegratedD"
             Publisher="CN=2086D10A-4660-4D0C-AAB2-595399EE7B10"
-            Version="4.8.1.0" />
+            Version="4.8.2.0" />
 
   <Properties>
-    <DisplayName>Side</DisplayName>
+    <DisplayName>Side（ゲーム作成ツール）</DisplayName>
     <PublisherDisplayName>urotaichi</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
     <Description>正男エディタ - Supermasao Integrated Development Environment</Description>
