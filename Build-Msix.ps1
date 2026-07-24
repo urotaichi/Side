@@ -53,6 +53,19 @@ if ($SkipBuild) {
 
 		Write-Host "  MSBuild: $msbuildPath" -ForegroundColor Cyan
 
+		# side\bin を空にする
+		$BinDir = Join-Path $ProjectRoot "side\bin"
+		if (Test-Path $BinDir) {
+			Write-Host "  side\bin フォルダを空にしています..." -ForegroundColor Cyan
+			try {
+				Get-ChildItem -Path $BinDir -Force | Remove-Item -Recurse -Force -ErrorAction Stop
+			}
+			catch {
+				Write-Host "❌ side\bin のクリアに失敗しました: $_" -ForegroundColor Red
+				exit 1
+			}
+		}
+
 		# ビルド実行
 		& $msbuildPath /p:Configuration=$Configuration /p:Platform=$Platform `
 			/p:AppxPackageDir=AppPackages\ `
