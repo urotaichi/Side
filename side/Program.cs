@@ -17,6 +17,17 @@ namespace MasaoPlus
                 Application.SetHighDpiMode(HighDpiMode.SystemAware);
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
+#if MICROSOFT_STORE
+                // side.xml がなければ初起動と判断してフラグを立てる（通知は MainWindow.Load で表示）
+                {
+                    string sideDataRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Global.definition.StoreDataDir);
+                    string configFilePath = Path.Combine(sideDataRoot, Global.definition.ConfigFile);
+                    if (!File.Exists(configFilePath))
+                    {
+                        Global.state.IsFirstLaunch = true;
+                    }
+                }
+#endif
                 try
                 {
                     string configFilePath = Global.definition.GetUserDataPath(Global.definition.ConfigFile);
@@ -155,12 +166,9 @@ namespace MasaoPlus
         {
             try
             {
-                // Documents/SideData フォルダを作成
-                string sideDataRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SideData");
-                if (!Directory.Exists(sideDataRoot))
-                {
-                    Directory.CreateDirectory(sideDataRoot);
-                }
+                // SideData フォルダ本体を作成（通知済みのためここで作成）
+                string sideDataRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Global.definition.StoreDataDir);
+                Directory.CreateDirectory(sideDataRoot);
 
                 // 画像データは既存の pictures 配下をそのまま使用する
                 string appPicturesDir = Global.definition.GetUserDataPath(Path.Combine("pictures", "default"));

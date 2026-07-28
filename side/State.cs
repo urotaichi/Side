@@ -261,5 +261,9 @@ namespace MasaoPlus
         public Size MaximumStageSize = new(500, 500);
 
         public SystemColorMode DarkMode;
+
+#if MICROSOFT_STORE
+        public bool IsFirstLaunch;
+#endif
     }
 }

@@ -38,11 +38,14 @@ namespace MasaoPlus
 
         public string RuntimeDir = "runtime";
 
+#if MICROSOFT_STORE
+        public string StoreDataDir = "SideData";
+#endif
+
         public string GetUserDataRootPath()
         {
 #if MICROSOFT_STORE
-            string userDataRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SideData");
-            Directory.CreateDirectory(userDataRoot);
+            string userDataRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), StoreDataDir);
 
             EnsureStoreDataAsset(userDataRoot, RuntimeDir);
             EnsureStoreDataAsset(userDataRoot, "pictures");
