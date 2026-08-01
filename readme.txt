@@ -2,7 +2,7 @@
 ■	Side
 ■		the Supermasao Integrated Development Environment
 ■
-■	Version 4.8.2
+■	Version 4.8.5
 ■
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 
@@ -119,9 +119,15 @@ Karno氏が著作権を放棄しため、改造して配布しています。
 
 	⚠️ OGGファイルの効果音、BGMが再生できない。
 		→内部でWindows Media Playerを利用して再生しているのでLAVFilters（https://github.com/Nevcairiel/LAVFilters/releases）をインストールすると再生できるようになります。
+		　Microsoft Store版ではOGGファイルに限らず、再生機能は未サポートです。
 
 ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■
 ■修正点
+□4.8.5
+　2026/08/01
+	Microsoft Store版を公開(https://apps.microsoft.com/detail/9NCTNKDP27B8)。
+	BGM、効果音再生機能、Side標準の自動アップデート機能には非対応（Microsoft Storeの標準機能で代用）です。
+
 □4.8.2
 　2026/07/23
 	CanvasMasao.js、CanvasMasao_v28.jsを最新バージョン(v5.6.3)に更新。
