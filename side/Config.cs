@@ -161,7 +161,7 @@ namespace MasaoPlus
                     {
 #if MICROSOFT_STORE
                         // Microsoft Store版では Documents/SideData/pictures/default を使用
-                        return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SideData", "pictures", "default");
+                        return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Global.definition.StoreDataDir, "pictures", "default");
 #else
                         // 通常版では従来通りアプリケーションフォルダ内
                         return Path.Combine(Application.StartupPath, "pictures\\default");
