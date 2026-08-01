@@ -24,6 +24,21 @@ namespace MasaoPlus.Dialogs
         private void StartUp_Shown(object sender, EventArgs e)
         {
             Application.DoEvents();
+#if MICROSOFT_STORE
+            if (Global.state.IsFirstLaunch)
+            {
+                string sideDataRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), Global.definition.StoreDataDir);
+                MessageBox.Show(
+                    $"Sideは、プロジェクトファイルやランタイムパッケージを保存するため、{Environment.NewLine}" +
+                    $"ドキュメント フォルダ内に「{Global.definition.StoreDataDir}」フォルダを作成しました。{Environment.NewLine}{Environment.NewLine}" +
+                    $"場所: {sideDataRoot}{Environment.NewLine}{Environment.NewLine}" +
+                    $"このフォルダはSideが作成・管理するファイルのみに使用され、{Environment.NewLine}" +
+                    $"他のドキュメントの読み取りやアップロードは行いません。",
+                    "フォルダの作成について",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Asterisk);
+            }
+#endif
             if (Global.config.localSystem.CheckAutoUpdate)
             {
                 Subsystem.UpdateAutoCheck();

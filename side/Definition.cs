@@ -38,19 +38,27 @@ namespace MasaoPlus
 
         public string RuntimeDir = "runtime";
 
-        public string GetUserDataRootPath()
+#if MICROSOFT_STORE
+        public string StoreDataDir = "SideData";
+#endif
+
+        public string GetUserDataRootPath(string lastLaunchedVersion = null)
         {
 #if MICROSOFT_STORE
-            string userDataRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "SideData");
-            Directory.CreateDirectory(userDataRoot);
+            string userDataRoot = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), StoreDataDir);
 
-            EnsureStoreDataAsset(userDataRoot, RuntimeDir);
-            EnsureStoreDataAsset(userDataRoot, "pictures");
-            EnsureStoreDataAsset(userDataRoot, "projects");
-            EnsureStoreDataAsset(userDataRoot, "readme.txt");
-            EnsureStoreDataAsset(userDataRoot, "使い方.txt");
-            EnsureStoreDataAsset(userDataRoot, "勝手にFx14説明書.txt");
-            EnsureStoreDataAsset(userDataRoot, ConfigFile);
+            // 前回起動時のバージョンと現在のバージョンを比較してアップデートを検知
+            // lastLaunchedVersion が null の場合は config から取得
+            string prevVersion = lastLaunchedVersion ?? Global.config.localSystem.LastLaunchedVersion;
+            bool isUpdated = prevVersion != Version;
+
+            EnsureStoreDataAsset(userDataRoot, RuntimeDir, isUpdated);
+            EnsureStoreDataAsset(userDataRoot, "pictures", isUpdated);
+            EnsureStoreDataAsset(userDataRoot, "projects", isUpdated);
+            EnsureStoreDataAsset(userDataRoot, "readme.txt", isUpdated);
+            EnsureStoreDataAsset(userDataRoot, "使い方.txt", isUpdated);
+            EnsureStoreDataAsset(userDataRoot, "勝手にFx14説明書.txt", isUpdated);
+            EnsureStoreDataAsset(userDataRoot, ConfigFile, isUpdated);
 
             return userDataRoot;
 #else
@@ -68,7 +76,7 @@ namespace MasaoPlus
             return GetUserDataPath(RuntimeDir);
         }
 
-        private void EnsureStoreDataAsset(string localRoot, string relativePath)
+        private void EnsureStoreDataAsset(string localRoot, string relativePath, bool overwrite = false)
         {
             string sourcePath = Path.Combine(AppContext.BaseDirectory, relativePath);
             string destinationPath = Path.Combine(localRoot, relativePath);
@@ -78,7 +86,8 @@ namespace MasaoPlus
                 return;
             }
 
-            if (File.Exists(destinationPath) || Directory.Exists(destinationPath))
+            // overwrite=false のときは既存ファイル・フォルダをスキップ
+            if (!overwrite && (File.Exists(destinationPath) || Directory.Exists(destinationPath)))
             {
                 return;
             }
