@@ -120,6 +120,9 @@ namespace MasaoPlus
 
             //ダークモード設定 (Classic:ライトモード, System:システム設定に従う, Dark:ダークモード)
             public SystemColorMode DarkMode = SystemColorMode.System;
+
+            // 前回起動時のアプリバージョン（アップデート検知に使用）
+            public string LastLaunchedVersion = "";
         }
 
         public class TestRun

@@ -30,7 +30,16 @@ namespace MasaoPlus
 #endif
                 try
                 {
+#if MICROSOFT_STORE
+                    // MICROSOFT_STORE版ではGetUserDataPathがGetUserDataRootPathを経由してしまうため、
+                    // configパスを直接構築してconfigを先に読み込む
+                    string configFilePath = Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                        Global.definition.StoreDataDir,
+                        Global.definition.ConfigFile);
+#else
                     string configFilePath = Global.definition.GetUserDataPath(Global.definition.ConfigFile);
+#endif
                     if (File.Exists(configFilePath))
                     {
                         Global.config = Config.ParseXML(configFilePath);
